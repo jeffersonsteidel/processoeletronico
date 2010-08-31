@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping 
+	PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="br.com.progepe.entity.Lotacao" table="LOTACAO">
+		<id name="codigo" column="LOT_COD">
+			<generator class="increment"></generator>
+		</id>
+		<property name="descricao" column="LOT_DESC" />
+		<property name="diretorGeral" column="LOT_DIRETOR_GER" />
+		<property name="diretorAdministrativo" column="LOT_DIRETOR_ADM" />
+		<property name="email" column="LOT_EMAIL" />
+		<property name="site" column="LOT_SITE" />
+		<many-to-one name="endereco" class="br.com.progepe.entity.Endereco"
+			column="END_COD" lazy="false" cascade="all" />
+		<many-to-one name="telefone" class="br.com.progepe.entity.Telefone"
+			column="TEL_COD" lazy="false" cascade="all" />
+	</class>
+</hibernate-mapping>

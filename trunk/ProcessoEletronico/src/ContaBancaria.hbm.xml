@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping 
+	PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="br.com.progepe.entity.ContaBancaria" table="CONTABANCARIA">
+		<id name="codigo" column="CONT_BAN_COD">
+			<generator class="increment"></generator>
+		</id>
+		<property name="numeroConta" column="CONT_BAN_NUMERO" />
+		<property name="agencia" column="CONT_BAN_AGENCIA" />
+		<property name="indPoupanca" column="CONT_BAN_IND_POUPANCA" />
+		<many-to-one name="banco" class="br.com.progepe.entity.Banco"
+			column="BAN_COD" not-null="true" lazy="false" />
+	</class>
+</hibernate-mapping>

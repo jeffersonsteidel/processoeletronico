@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping 
+	PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="br.com.progepe.entity.Dependente" table="DEPENDENTE">
+		<id name="codigo" column="DEP_COD">
+			<generator class="increment"></generator>
+		</id>
+		<property name="nome" column="DEP_NOME" />
+		<property name="sexo" column="DEP_SEXO" />
+		<property name="dataNascimento" column="DEP_DATA_NASC" />
+		<many-to-one name="grauParentesco" class="br.com.progepe.entity.GrauParentesco"
+			column="GRAU_PAR_COD_DEP" not-null="true" lazy="false" />
+		<property name="indNecessidadesEspeciais" column="DEP_IND_NEC_ESP"
+			type="boolean" />
+		<property name="indEstudante" column="DEP_IND_EST" type="boolean" />
+		<property name="indIr" column="DEP_IND_IR" type="boolean" />
+		<many-to-one name="documento" class="br.com.progepe.entity.Documento"
+			column="DOC_COD" not-null="true" lazy="false" />
+	</class>
+</hibernate-mapping>
