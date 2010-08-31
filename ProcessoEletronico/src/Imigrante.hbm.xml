@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping 
+	PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="br.com.progepe.entity.Imigrante" table="IMIGRANTE">
+		<id name="codigo" column="IMIG_COD">
+			<generator class="increment"></generator>  
+		</id>
+		<property name="dataChegadaPais" column="IMIG_DATA_CHEG" />	
+		<many-to-one name="servidor" class="br.com.progepe.entity.Servidor"
+			column="SERV_COD" not-null="true" lazy="false" />
+		<many-to-one name="conjugue" class="br.com.progepe.entity.Conjugue"
+			column="CONJ_COD" not-null="true" lazy="false" />	
+		<many-to-one name="pais" class="br.com.progepe.entity.Pais"
+			column="PAIS_COD" not-null="true" lazy="false" />
+	</class>
+</hibernate-mapping>

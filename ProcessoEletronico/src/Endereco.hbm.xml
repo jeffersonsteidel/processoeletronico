@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping 
+	PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="br.com.progepe.entity.Endereco" table="ENDERECO">
+		<id name="codigo" column="END_COD">
+			<generator class="increment"></generator>  
+		</id>
+		<property name="cep" column="END_CEP" />
+		<property name="numero" column="END_NUM" />
+		<property name="rua" column="END_RUA" />
+		<property name="complemento" column="END_COMP" />
+		<property name="bairro" column="END_BAIRRO" />
+		<many-to-one name="cidade" class="br.com.progepe.entity.Cidade"
+			column="CID_COD" not-null="true" lazy="false" />
+	</class>
+</hibernate-mapping>

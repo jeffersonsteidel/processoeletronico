@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping 
+	PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="br.com.progepe.entity.Cargo" table="CARGO">
+		<id name="codigo" column="CARG_COD">
+			<generator class="increment" />
+		</id>
+		<property name="descricao" column="CARG_DESC" />
+		<property name="codigoIdentificador" column="CARG_COD_IDENTIFICADOR" />
+		<many-to-one name="classe" class="br.com.progepe.entity.Classe"
+			column="CLAS_COD" not-null="true" lazy="false" />
+	</class>
+</hibernate-mapping>
