@@ -1,0 +1,76 @@
+﻿SELECT * FROM condicao c;
+
+update condicao set cond_desc = 'ATIVO' Where cond_cod = 1;
+update condicao set cond_desc = 'VISITANTE' Where cond_cod = 2;
+update condicao set cond_desc = 'REQUISITADO' Where cond_cod = 3;
+update condicao set cond_desc = 'COLABORADOR TECNICO' Where cond_cod = 4;
+update condicao set cond_desc = 'EXCLUÍDO' Where cond_cod = 5;
+
+SELECT * FROM estado e;
+update estado set est_desc = 'ACRE' where est_cod = 1;
+update estado set est_desc = 'ALAGOAS' where est_cod = 2;
+update estado set est_desc = 'AMAZONAS' where est_cod = 3;
+update estado set est_desc = 'AMAPA' where est_cod = 4;
+update estado set est_desc = 'BAHIA' where est_cod = 5;
+update estado set est_desc = 'CEARA' where est_cod = 6;
+update estado set est_desc = 'DISTRITO FEDERAL' where est_cod = 7;
+update estado set est_desc = 'ESPIRITO SANTO' where est_cod = 8;
+update estado set est_desc = 'GOIAS' where est_cod = 9;
+update estado set est_desc = 'MARANHAO' where est_cod = 10;
+update estado set est_desc = 'MINAS GERAIS' where est_cod = 11;
+update estado set est_desc = 'MATO GROSSO DO SUL' where est_cod = 12;
+update estado set est_desc = 'MATO GROSSO' where est_cod = 13;
+update estado set est_desc = 'PARA' where est_cod = 14;
+update estado set est_desc = 'PARAIBA' where est_cod = 15;
+update estado set est_desc = 'PERNANBUCO' where est_cod  = 16;
+update estado set est_desc = 'PIAUI' where est_cod = 17;
+update estado set est_desc = 'PARANA' where est_cod = 18;
+update estado set est_desc = 'RIO DE JANEIRO' where est_cod = 19;
+update estado set est_desc = 'RIO GRANDE DO NORTE' where est_cod = 20;
+update estado set est_desc = 'RORAIMA' where est_cod =  21;
+update estado set est_desc = 'RONDONIA' where est_cod = 22;
+update estado set est_desc = 'RIO GRANDE DO SUL' where est_cod = 23;
+update estado set est_desc = 'SANTA CATARINA' where est_cod = 24;
+update estado set est_desc = 'SERGIPE' where est_cod = 25;
+update estado set est_desc = 'SAO PAULO' where est_cod = 26;
+update estado set est_desc = 'TOCANTINS' where est_cod = 27;
+
+SELECT * FROM lotacao l;
+update lotacao set lot_desc = 'CAMPUS CURITIBA' where lot_cod = 1;
+update lotacao set lot_desc = 'CAMPUS FOZ DO IGUACU' where lot_cod = 2;
+update lotacao set lot_desc = 'CAMPUS PARANAGUA' where lot_cod = 3;
+update lotacao set lot_desc = 'CAMPUS LONDRINA' where lot_cod = 4;
+update lotacao set lot_desc = 'CAMPUS UMUARAMA' where lot_cod = 5;
+update lotacao set lot_desc = 'CAMPUS PARANAVAI' where lot_cod = 6;
+update lotacao set lot_desc = 'CAMPUS TELEMACO BORBA' where lot_cod = 7;
+update lotacao set lot_desc = 'CAMPUS JACAREZINHO' where lot_cod = 8;
+update lotacao set lot_desc = 'CAMPUS PALMAS' where lot_cod = 9;
+update lotacao set lot_desc = 'CAMPUS IRATI' where lot_cod = 10;
+update lotacao set lot_desc = 'CAMPUS CAMPO LARGO' where lot_cod = 11;
+update lotacao set lot_desc = 'CAMPUS CASCAVEL' where lot_cod = 12;
+update lotacao set lot_desc = 'CAMPUS IVAIPORA' where lot_cod = 13;
+update lotacao set lot_desc = 'CAMPUS CHATEAUBRIAND' where lot_cod = 14;
+update lotacao set lot_desc = 'CAMPUS REITORIA-PROGEPE' where lot_cod = 15;
+update lotacao set lot_desc = 'CAMPUS REITORIA-PROPLAN' where lot_cod = 16;
+update lotacao set lot_desc = 'CAMPUS REITORIA-PRAI' where lot_cod = 17;
+update lotacao set lot_desc = 'CAMPUS REITORIA-PRI' where lot_cod = 18;
+update lotacao set lot_desc = 'CAMPUS REITORIA-PREPPG' where lot_cod = 19;
+
+SELECT * FROM titulacao t;
+update titulacao set tit_desc = 'ENS. FUNDAMENTAL' where tit_cod = 1;
+update titulacao set tit_desc = 'ENS. MEDIO' where tit_cod = 2;
+update titulacao set tit_desc = 'GRADUACAO' where tit_cod = 3;
+update titulacao set tit_desc = 'ESTENSAO' where tit_cod = 4;
+update titulacao set tit_desc = 'MESTRADO' where tit_cod = 5;
+update titulacao set tit_desc = 'DOUTORADO' where tit_cod = 6;
+
+
+SELECT * FROM tipocargo t;
+update tipocargo set tip_car_desc = 'DOCENTES EFETIVOS' where tip_car_cod = 1;
+update tipocargo set tip_car_desc = 'TECNICOS-ADMINISTRATIVOS EFETIVOS' where tip_car_cod = 2;
+update tipocargo set tip_car_desc = 'PROFESSORES SUBSTITUTOS' where tip_car_cod = 3;
+update tipocargo set tip_car_desc = 'PESSOAL CEDIDO DE OUTRO ORGAO' where tip_car_cod = 4;
+update tipocargo set tip_car_desc = 'PESSOAL EXTERNO COM CARGO COMISSIONADO' where tip_car_cod = 5;
+update tipocargo set tip_car_desc = 'VISITANTE' where tip_car_cod = 6;
+update tipocargo set tip_car_desc = 'LOTACAO PROVISORIA' where tip_car_cod = 7;
+

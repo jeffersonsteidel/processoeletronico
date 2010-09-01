@@ -1,0 +1,1 @@
+alter table dependente add column doc_cod integer references documento(doc_cod)
