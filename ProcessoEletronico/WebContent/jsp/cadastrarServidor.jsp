@@ -96,18 +96,16 @@
 							reRender="data, dataCampo, pais, paisCampo"></a4j:support>
 					</h:selectBooleanCheckbox>
 
-					<h:outputText id="data" value="Data de Chegada no País: "
-						rendered="#{servidorController.servidorEstrangeiro}" />
+					<h:outputText id="data" value="Data de Chegada no País: " />
 					<rich:calendar id="dataCampo" value="" locale="" popup="true"
-						rendered="#{servidorController.servidorEstrangeiro}"
+						disabled="#{!servidorController.servidorEstrangeiro}"
 						datePattern="dd/MM/yyyy" showApplyButton="#" cellWidth="12px"
 						cellHeight="12px" style="width:80px" required="true"
 						inputSize="12" requiredMessage="Data de Chegada no País!" />
 
-					<h:outputText id="pais" value="País de Orgiem: "
-						rendered="#{servidorController.servidorEstrangeiro}" />
+					<h:outputText id="pais" value="País de Orgiem: " />
 					<h:selectOneMenu id="paisCampo" value="#" required="true"
-						rendered="#{servidorController.servidorEstrangeiro}"
+						disabled="#{!servidorController.servidorEstrangeiro}"
 						requiredMessage="Campo País de Origem é obrigatório!">
 						<f:selectItem itemLabel="SELECIONE" itemValue="" />
 					</h:selectOneMenu>
@@ -187,7 +185,7 @@
 					<h:outputText value="Certificado Militar Série: " />
 					<h:inputText
 						value="#{servidorController.servidor.documento.certificadoSerie}"
-						size="16" maxlength="1"></h:inputText>
+						size="7" maxlength="1"></h:inputText>
 					<h:outputText value="Carteira de Trabalho: " />
 					<h:inputText
 						value="#{servidorController.servidor.documento.carteiraTrabalho}"
@@ -196,7 +194,7 @@
 					<h:outputText value="Carteira de Trabalho Série: " />
 					<h:inputText
 						value="#{servidorController.servidor.documento.carteiraSerie}"
-						size="12" maxlength="5" required="true"
+						size="10" maxlength="5" required="true"
 						requiredMessage="Campo Carteira de Trabalho Série obrigatório!"></h:inputText>
 					<h:outputText value="UF da Carteira de Trabalho: " />
 					<h:selectOneMenu
@@ -243,10 +241,11 @@
 					<h:inputText value="#{servidorController.servidor.endereco.bairro}"
 						size="30" maxlength="80" required="true"
 						requiredMessage="Campo Bairro obrigatório!"></h:inputText>
-						
+
 					<h:outputText value="Complemento: " />
-					<h:inputText value="#{servidorController.servidor.endereco.complemento}"
-						size="25" maxlength="25"></h:inputText>	
+					<h:inputText
+						value="#{servidorController.servidor.endereco.complemento}"
+						size="25" maxlength="25"></h:inputText>
 
 					<h:outputText value="CEP: " />
 					<h:inputText value="#{servidorController.servidor.endereco.cep}"
@@ -290,7 +289,7 @@
 				</h:panelGrid>
 			</rich:tab>
 
-			<rich:tab label="Escolaridade" >
+			<rich:tab label="Escolaridade">
 				<a4j:region>
 					<h:panelGrid columns="6">
 						<h:outputText value="Titulação: " />
@@ -328,12 +327,6 @@
 							<f:selectItems value="#{servidorController.cidades}" />
 						</h:selectOneMenu>
 
-						<h:outputText value="País: " />
-						<h:selectOneMenu
-							value="#{servidorController.servidorTitulacao.cidadeEstabelecimentoEnsino.codigo}">
-							<f:selectItem itemLabel="SELECIONE" itemValue="" />
-						</h:selectOneMenu>
-
 						<h:outputText value="Ano de Conclusão: " />
 						<h:inputText
 							value="#{servidorController.servidorTitulacao.anoConclusao}"
@@ -360,7 +353,22 @@
 							<f:selectItem itemLabel="SELECIONE" itemValue="" />
 							<f:selectItems value="#{servidorController.estados}" />
 						</h:selectOneMenu>
-						
+
+						<h:outputText value="Titulação Estrangeira:" />
+						<h:selectBooleanCheckbox 
+							value="#{servidorController.indTitulacaoEstrangeira}">
+								<a4j:support event="onchange"
+							action="#{servidorController.isTitulacaoEstrangeira}" ajaxSingle="true"
+							reRender="titulacaoEstrangeira"></a4j:support>
+						</h:selectBooleanCheckbox>
+
+						<h:outputText value="País: " />
+						<h:selectOneMenu id="titulacaoEstrangeira"
+							disabled="#{!servidorController.indTitulacaoEstrangeira}"
+							value="#{servidorController.servidorTitulacao.pais.codigo}">
+							<f:selectItem itemLabel="SELECIONE" itemValue="" />
+						</h:selectOneMenu>
+
 						<a4j:commandButton value="Adicionar" reRender="listaEscolariadade"
 							oncomplete="#{rich:component('confirmPanel')}.show()"
 							action="#{servidorController.adicionarTitulacao}" />
@@ -416,7 +424,7 @@
 						<f:selectItems value="#{servidorController.bancos}" />
 						<a4j:support event="onchange"
 							action="#{servidorController.isPoupanca}" ajaxSingle="true"
-							immediate="true" reRender="poupanca01"></a4j:support>
+							reRender="poupanca"></a4j:support>
 					</h:selectOneMenu>
 					<h:outputText value="Número da Conta: " />
 					<h:inputText
@@ -429,10 +437,9 @@
 						size="10" maxlength="8" required="true"
 						requiredMessage="Campo Agência obrigatório!"></h:inputText>
 
-					<h:outputText value="Poupança:" id="poupanca01"
-						rendered="#{servidorController.indPoupanca}" />
-					<h:selectBooleanCheckbox
-						rendered="#{servidorController.indPoupanca}"
+					<h:outputText value="Poupança:" />
+					<h:selectBooleanCheckbox id="poupanca"
+						disabled="#{!servidorController.indPoupanca}"
 						value="#{servidorController.servidor.contaBancaria.indPoupanca}">
 					</h:selectBooleanCheckbox>
 				</h:panelGrid>
@@ -473,7 +480,14 @@
 						required="true" requiredMessage="Campo Cargo é obrigatório!">
 						<f:selectItem itemLabel="SELECIONE" itemValue="" />
 						<f:selectItems value="#{servidorController.cargos}" />
+						<a4j:support event="onchange"
+							action="#{servidorController.listarClasses}" ajaxSingle="true"
+							reRender="classe"></a4j:support>
 					</h:selectOneMenu>
+
+					<h:outputText value="Classe: " />
+					<h:outputText
+						value="#{servidorController.servidor.cargo.classe.codigo}" />
 
 					<h:outputText value="Padrão: " />
 					<h:selectOneMenu
