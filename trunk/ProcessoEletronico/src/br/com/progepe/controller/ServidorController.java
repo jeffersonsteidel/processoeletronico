@@ -62,6 +62,7 @@ public class ServidorController {
 	private ServidorTitulacao servidorTitulacao;
 
 	private List<SelectItem> cargos;
+	private List<SelectItem> classes;
 	private List<SelectItem> bancos;
 	private List<SelectItem> coresPeles;
 	private List<SelectItem> estadosCivis;
@@ -82,6 +83,7 @@ public class ServidorController {
 
 	private Boolean servidorEstrangeiro = false;
 	private Boolean indPoupanca = false;
+	private Boolean indTitulacaoEstrangeira = false;
 
 	public Servidor getPessoa() {
 		return servidor;
@@ -290,6 +292,22 @@ public class ServidorController {
 	public void setIndPoupanca(Boolean indPoupanca) {
 		this.indPoupanca = indPoupanca;
 	}
+	
+	public List<SelectItem> getClasses() {
+		return classes;
+	}
+
+	public void setClasses(List<SelectItem> classes) {
+		this.classes = classes;
+	}
+
+	public Boolean getIndTitulacaoEstrangeira() {
+		return indTitulacaoEstrangeira;
+	}
+
+	public void setIndTitulacaoEstrangeira(Boolean indTitulacaoEstrangeira) {
+		this.indTitulacaoEstrangeira = indTitulacaoEstrangeira;
+	}
 
 	public void cadastrar() throws IOException {
 		servidor = new Servidor();
@@ -342,6 +360,7 @@ public class ServidorController {
 		dependente.getDocumento().setTituloUf(new Estado());
 
 		cargos = new ArrayList<SelectItem>();
+		classes = new ArrayList<SelectItem>();
 		ufs = new ArrayList<SelectItem>();
 		cidades = new ArrayList<SelectItem>();
 		estados = new ArrayList<SelectItem>();
@@ -550,6 +569,19 @@ public class ServidorController {
 		return funcoes;
 	}
 
+	@SuppressWarnings("unchecked")
+	public List<SelectItem> listarClasses() {
+		classes = new ArrayList<SelectItem>();
+		List<Classe> classeList = new ArrayList<Classe>();
+		classeList = dao.list(servidor.getCargo().getClasse().getClass());
+		for (Classe classe : classeList) {
+			classes.add(new SelectItem(classe.getCodigo(), classe.getSigla()));
+		}
+		servidor.getCargo().setClasse(new Classe());
+		servidor.setCargo((Cargo)dao.refresh(servidor.getCargo()));
+		return classes;
+	}
+	
 	public List<SelectItem> listarSituacoesFuncionais() {
 		SituacaoFuncionalDAO situacaoFuncionalDAO = new SituacaoFuncionalDAO();
 		situacoesFuncionais = new ArrayList<SelectItem>();
@@ -615,21 +647,31 @@ public class ServidorController {
 		} else {
 			servidorEstrangeiro = false;
 		}
-		return true;
+		return false;
 	}
 
-	public void isPoupanca() {
+	public Boolean isPoupanca() {
 		if ((CAIXA_ECONOMICA_FEDERAL).equals(servidor.getContaBancaria()
 				.getBanco().getCodigo())) {
 			indPoupanca = true;
 		} else {
 			indPoupanca = false;
 		}
+		return false;
 	}
 
 	public void salvar() {
 		dao.save(servidor);
 		servidor = new Servidor();
+	}
+	
+	public Boolean isTitulacaoEstrangeira() {
+		if (this.getIndTitulacaoEstrangeira()) {
+			indTitulacaoEstrangeira = true;
+		} else {
+			indTitulacaoEstrangeira = false;
+		}
+		return false;
 	}
 
 	public List<ServidorTitulacao> adicionarTitulacao() {

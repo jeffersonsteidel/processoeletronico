@@ -54,6 +54,7 @@ public class DAO {
 		try {
 			session = HibernateUtility.getSessionFactory().getCurrentSession();
 			session.beginTransaction();
+			session.flush();
 			session.refresh(object);
 		} catch (Exception e) {
 			session.getTransaction().rollback();
@@ -70,6 +71,7 @@ public class DAO {
 	public List list(Class objectClass) {
 		session = HibernateUtility.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
+		session.flush();
 		Criteria c = session.createCriteria(objectClass);
 		return c.list();
 	}
