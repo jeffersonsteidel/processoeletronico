@@ -18,7 +18,6 @@ import br.com.progepe.dao.EstadoDAO;
 import br.com.progepe.dao.FuncaoDAO;
 import br.com.progepe.dao.GrauParentescoDAO;
 import br.com.progepe.dao.GrupoSanguineoDAO;
-import br.com.progepe.dao.LotacaoDAO;
 import br.com.progepe.dao.PadraoDAO;
 import br.com.progepe.dao.PaisDAO;
 import br.com.progepe.dao.RegimeTrabalhoDAO;
@@ -475,11 +474,11 @@ public class ServidorController {
 		return cidades;
 	}
 
+	@SuppressWarnings("unchecked")
 	public List<SelectItem> listarLotacoes() {
-		LotacaoDAO lotacaoDAO = new LotacaoDAO();
 		lotacoes = new ArrayList<SelectItem>();
 		List<Lotacao> lotacaoList = new ArrayList<Lotacao>();
-		lotacaoList = lotacaoDAO.list();
+		lotacaoList = dao.list(servidor.getLotacao().getClass());
 		for (Lotacao lotacao : lotacaoList) {
 			lotacoes.add(new SelectItem(lotacao.getCodigo(), lotacao
 					.getDescricao()));
