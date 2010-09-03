@@ -70,7 +70,6 @@ public class DAO {
 	@SuppressWarnings("rawtypes")
 	public List list(Class objectClass) {
 		session.beginTransaction();
-		session.flush();
 		Criteria c = session.createCriteria(objectClass);
 		return c.list();
 	}
