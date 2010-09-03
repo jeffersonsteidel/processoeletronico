@@ -578,9 +578,12 @@ public class ServidorController {
 		for (Classe classe : classeList) {
 			classes.add(new SelectItem(classe.getCodigo(), classe.getSigla()));
 		}
+		return classes;
+	}
+
+	public void carregarClasse() {
 		servidor.getCargo().setClasse(new Classe());
 		servidor.setCargo((Cargo) dao.refresh(servidor.getCargo()));
-		return classes;
 	}
 
 	public List<SelectItem> listarSituacoesFuncionais() {
@@ -763,9 +766,9 @@ public class ServidorController {
 		if (servidorTitulacao.getCodigo() != 0) {
 			titulacaoList.remove(servidorTitulacao);
 		} else {
-			for (int i=0; i< titulacaoList.size(); i++) {
-				if (titulacaoList.get(i).getIndentificador().equals(
-						servidorTitulacao.getIndentificador())) {
+			for (int i = 0; i < titulacaoList.size(); i++) {
+				if (titulacaoList.get(i).getIndentificador()
+						.equals(servidorTitulacao.getIndentificador())) {
 					titulacaoList.remove(titulacaoList.get(i));
 				}
 			}
