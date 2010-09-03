@@ -44,7 +44,7 @@
 		<mapping resource="ServidorTitulacao.hbm.xml" />
 		<mapping resource="SituacaoFuncional.hbm.xml" />
 		<mapping resource="Telefone.hbm.xml" />
-		<mapping resource="TipoFuncaohbm.xml" />
+		<mapping resource="TipoFuncao.hbm.xml" />
 		<mapping resource="Titulacao.hbm.xml" />
 	</session-factory>
 </hibernate-configuration>
