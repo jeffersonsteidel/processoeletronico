@@ -465,7 +465,7 @@ orgaoRegistro,estadoOrgaoRegistro, titulacaoEstrangeira, titEstrangeira	"
 					<rich:calendar value="#{servidorController.servidor.dataAdmissao}"
 						locale="" popup="true" datePattern="dd/MM/yyyy"
 						showApplyButton="#" cellWidth="12px" cellHeight="12px"
-						style="width:80px" required="true"
+						style="width:80px" required="true" inputSize="12"
 						requiredMessage="Campo Data de Admissão obrigatório!" />
 
 					<h:outputText value="Lotação: " />
