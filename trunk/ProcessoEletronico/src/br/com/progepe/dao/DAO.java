@@ -54,6 +54,7 @@ public class DAO {
 		try {
 			session = HibernateUtility.getSessionFactory().getCurrentSession();
 			session.beginTransaction();
+			session.clear();
 			session.refresh(object);
 		} catch (Exception e) {
 			session.getTransaction().rollback();
