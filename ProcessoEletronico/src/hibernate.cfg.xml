@@ -5,17 +5,17 @@
 	<session-factory>
 		<!-- Database connection settings -->
 		<property name="connection.driver_class">com.mysql.jdbc.Driver</property>
-		<property name="connection.url">jdbc:mysql://localhost/ifpr</property>
-		<property name="connection.username">root</property>
-		<property name="connection.password">ifpr10</property>
+		<property name="connection.url">jdbc:mysql://192.168.3.130/ifpr</property>
+		<property name="connection.username">marlon</property>
+		<property name="connection.password">ifpr</property>
 		<property name="pool_size">1</property>
 		<property name="dialect">org.hibernate.dialect.MySQLDialect</property>
 		<property name="current_session_context_class">thread</property>
 		<property name="cache.provider_class">org.hibernate.cache.NoCacheProvider</property>
 		<property name="show_sql">true</property>
 		<property name="hbm2ddl.auto">update</property>
-		
-	
+
+
 		<mapping resource="Acao.hbm.xml" />
 		<mapping resource="Autenticacao.hbm.xml" />
 		<mapping resource="Banco.hbm.xml" />
@@ -44,6 +44,7 @@
 		<mapping resource="ServidorTitulacao.hbm.xml" />
 		<mapping resource="SituacaoFuncional.hbm.xml" />
 		<mapping resource="Telefone.hbm.xml" />
+		<mapping resource="TipoFuncaohbm.xml" />
 		<mapping resource="Titulacao.hbm.xml" />
 	</session-factory>
 </hibernate-configuration>

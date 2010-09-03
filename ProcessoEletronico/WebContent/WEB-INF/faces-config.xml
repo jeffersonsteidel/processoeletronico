@@ -28,4 +28,9 @@ Config 1.1//EN"
 		<managed-bean-class>br.com.progepe.controller.ServidorController</managed-bean-class>
 		<managed-bean-scope>session</managed-bean-scope>
 	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>tipoFuncaoController</managed-bean-name>
+		<managed-bean-class>br.com.progepe.controller.TipoFuncaoController</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
 </faces-config>
