@@ -5,7 +5,7 @@ import java.util.List;
 
 import javax.faces.context.FacesContext;
 
-import br.com.progepe.dao.TipoFuncaoDAO;
+import br.com.progepe.dao.DAO;
 import br.com.progepe.entity.TipoFuncao;
 
 public class TipoFuncaoController {
@@ -29,31 +29,31 @@ public class TipoFuncaoController {
 		this.tipoFuncaoList = tipoFuncaoList;
 	}
 
-	public void cadastrarTipoFuncao() throws IOException {
+	DAO dao = new DAO();
+
+	public void cadastrar() throws IOException {
 		tipoFuncao = new TipoFuncao();
 		FacesContext.getCurrentInstance().getExternalContext()
 				.redirect("cadastrarTipoFuncao.jsp");
 	}
 
 	public void salvar() {
-		TipoFuncaoDAO tipoFuncaoDAO = new TipoFuncaoDAO();
-		tipoFuncaoDAO.save(tipoFuncao);
+		dao.save(tipoFuncao);
 		tipoFuncao = new TipoFuncao();
 	}
 
-	public void carregarTipoFuncao() throws IOException {
-		TipoFuncaoDAO tipoFuncaoDAO = new TipoFuncaoDAO();
-		tipoFuncaoDAO.refresh(tipoFuncao);
+	public void carregar() throws IOException {
+		dao.refresh(tipoFuncao);
 		FacesContext.getCurrentInstance().getExternalContext()
-				.redirect("cadastrarTipo.jsp");
+				.redirect("cadastrarTipoFuncao.jsp");
 	}
 
-	public List<TipoFuncao> listarTipoFuncoes() throws IOException {
+	@SuppressWarnings("unchecked")
+	public List<TipoFuncao> listar() throws IOException {
 		tipoFuncao = new TipoFuncao();
-		TipoFuncaoDAO tipoFuncaoDAO = new TipoFuncaoDAO();
-		this.setTipoFuncaoList(tipoFuncaoDAO.list());
+		this.setTipoFuncaoList(dao.list(tipoFuncao.getClass()));
 		FacesContext.getCurrentInstance().getExternalContext()
-				.redirect("listarTipoFuncoes.jsp");
+				.redirect("listarBancos.jsp");
 		return this.getTipoFuncaoList();
 	}
 
