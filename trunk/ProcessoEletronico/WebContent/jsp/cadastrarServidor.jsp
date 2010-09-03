@@ -294,24 +294,19 @@
 					<h:panelGrid columns="6">
 						<h:outputText value="Titulação: " />
 						<h:selectOneMenu
-							value="#{servidorController.servidorTitulacao.titulacao.codigo}"
-							required="true" requiredMessage="Campo Titulação é obrigatório!">
+							value="#{servidorController.servidorTitulacao.titulacao.codigo}">
 							<f:selectItem itemLabel="SELECIONE" itemValue="" />
 							<f:selectItems value="#{servidorController.titulacoes}" />
 						</h:selectOneMenu>
 
 						<h:outputText value="Estabelecimento de Ensino: " />
 						<h:inputText
-							value="#{servidorController.servidorTitulacao.estabelecimentoEnsino}"
-							required="true"
-							requiredMessage="Campo Estabelecimento de Ensino é obrigatório!">
+							value="#{servidorController.servidorTitulacao.estabelecimentoEnsino}">
 						</h:inputText>
 
 						<h:outputText value="Estado do Estabelecimento: " />
 						<h:selectOneMenu
-							value="#{servidorController.servidorTitulacao.cidadeEstabelecimentoEnsino.estado.codigo}"
-							required="true"
-							requiredMessage="Campo Estado do Estabelecimento é obrigatório!">
+							value="#{servidorController.servidorTitulacao.cidadeEstabelecimentoEnsino.estado.codigo}">
 							<f:selectItem itemLabel="SELECIONE" itemValue="" />
 							<f:selectItems value="#{servidorController.estados}" />
 							<a4j:support event="onchange"
@@ -320,9 +315,7 @@
 						</h:selectOneMenu>
 						<h:outputText value="Cidade do Estabelecimento: " />
 						<h:selectOneMenu id="cidadeEstabelecimento"
-							value="#{servidorController.servidorTitulacao.cidadeEstabelecimentoEnsino.codigo}"
-							required="true"
-							requiredMessage="Campo Cidade do Estabelecimento é obrigatório!">
+							value="#{servidorController.servidorTitulacao.cidadeEstabelecimentoEnsino.codigo}">
 							<f:selectItem itemLabel="SELECIONE" itemValue="" />
 							<f:selectItems value="#{servidorController.cidades}" />
 						</h:selectOneMenu>
@@ -355,11 +348,11 @@
 						</h:selectOneMenu>
 
 						<h:outputText value="Titulação Estrangeira:" />
-						<h:selectBooleanCheckbox 
+						<h:selectBooleanCheckbox
 							value="#{servidorController.indTitulacaoEstrangeira}">
-								<a4j:support event="onchange"
-							action="#{servidorController.isTitulacaoEstrangeira}" ajaxSingle="true"
-							reRender="titulacaoEstrangeira"></a4j:support>
+							<a4j:support event="onchange"
+								action="#{servidorController.isTitulacaoEstrangeira}"
+								ajaxSingle="true" reRender="titulacaoEstrangeira"></a4j:support>
 						</h:selectBooleanCheckbox>
 
 						<h:outputText value="País: " />
