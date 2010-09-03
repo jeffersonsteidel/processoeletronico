@@ -403,6 +403,10 @@ orgaoRegistro,estadoOrgaoRegistro, titulacaoEstrangeira, titEstrangeira	"
 								reRender="listaEscolariadade" ajaxSingle="true">
 								<h:graphicImage value="../images/delete.gif" style="border:0"
 									width="20" height="18" id="excluir" />
+								<f:setPropertyActionListener value="#{list.codigo}"
+									target="#{servidorController.servidorTitulacao.codigo}" />
+								<f:setPropertyActionListener value="#{list.indentificador}"
+									target="#{servidorController.servidorTitulacao.indentificador}" />
 							</a4j:commandLink>
 							<rich:toolTip for="excluir" value="Excluir" />
 						</rich:column>

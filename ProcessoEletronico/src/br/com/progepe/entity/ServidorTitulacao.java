@@ -19,6 +19,8 @@ public class ServidorTitulacao implements Serializable {
 	private String registroConselho;
 	private String orgaoEmissor;
 	private Estado estadoOrgaoEmissor;
+	//Variavel auxiliar
+	private Integer indentificador;
 
 	public Long getCodigo() {
 		return codigo;
@@ -108,4 +110,13 @@ public class ServidorTitulacao implements Serializable {
 	public void setEstadoOrgaoEmissor(Estado estadoOrgaoEmissor) {
 		this.estadoOrgaoEmissor = estadoOrgaoEmissor;
 	}
+
+	public Integer getIndentificador() {
+		return indentificador;
+	}
+
+	public void setIndentificador(Integer indentificador) {
+		this.indentificador = indentificador;
+	}
+	
 }

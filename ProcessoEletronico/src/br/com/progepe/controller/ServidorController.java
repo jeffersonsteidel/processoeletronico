@@ -685,6 +685,7 @@ public class ServidorController {
 			Titulacao titulacao = (Titulacao) dao.refresh(servidorTitulacao
 					.getTitulacao());
 			servidorTitulacao.setTitulacao(titulacao);
+			servidorTitulacao.setIndentificador(titulacaoList.size() + 1);
 			titulacaoList.add(servidorTitulacao);
 			FacesMessage messageSucesso = new FacesMessage(
 					FacesMessage.SEVERITY_INFO, "Item inserido com sucesso!",
@@ -759,7 +760,16 @@ public class ServidorController {
 	}
 
 	public List<ServidorTitulacao> removerTitulacao() {
-		titulacaoList.remove(servidorTitulacao);
+		if (servidorTitulacao.getCodigo() != 0) {
+			titulacaoList.remove(servidorTitulacao);
+		} else {
+			for (int i=0; i< titulacaoList.size(); i++) {
+				if (titulacaoList.get(i).getIndentificador().equals(
+						servidorTitulacao.getIndentificador())) {
+					titulacaoList.remove(titulacaoList.get(i));
+				}
+			}
+		}
 		return titulacaoList;
 	}
 
