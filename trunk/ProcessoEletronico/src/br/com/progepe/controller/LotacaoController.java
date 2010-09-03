@@ -8,8 +8,7 @@ import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
 
 import br.com.progepe.dao.CidadeDAO;
-import br.com.progepe.dao.EstadoDAO;
-import br.com.progepe.dao.LotacaoDAO;
+import br.com.progepe.dao.DAO;
 import br.com.progepe.entity.Cidade;
 import br.com.progepe.entity.Endereco;
 import br.com.progepe.entity.Estado;
@@ -67,39 +66,38 @@ public class LotacaoController {
 		FacesContext.getCurrentInstance().getExternalContext()
 				.redirect("cadastrarLotacao.jsp");
 	}
-
+	DAO dao = new DAO();
+	
 	public void salvar() {
-		LotacaoDAO lotacaoDAO = new LotacaoDAO();
-		lotacaoDAO.save(lotacao);
+		dao.save(lotacao);
 		lotacao = new Lotacao();
 	}
 
 	public void carregar() throws IOException {
-		LotacaoDAO lotacaoDAO = new LotacaoDAO();
-		lotacaoDAO.refresh(lotacao);
+		dao.refresh(lotacao);
 		listarEstados();
 		listarCidades();
 		FacesContext.getCurrentInstance().getExternalContext()
 				.redirect("cadastrarLotacao.jsp");
 	}
 
+	@SuppressWarnings("unchecked")
 	public List<Lotacao> listar() throws IOException {
 		lotacao = new Lotacao();
 		lotacao.setEndereco(new Endereco());
 		lotacao.getEndereco().setCidade(new Cidade());
 		lotacao.getEndereco().getCidade().setEstado(new Estado());
-		LotacaoDAO lotacaoDAO = new LotacaoDAO();
-		this.setLotacaoList(lotacaoDAO.list());
+		this.setLotacaoList(dao.list(lotacao.getClass()));
 		FacesContext.getCurrentInstance().getExternalContext()
 				.redirect("listarLotacoes.jsp");
 		return this.getLotacaoList();
 	}
 
+	@SuppressWarnings("unchecked")
 	public List<SelectItem> listarEstados() {
-		EstadoDAO estadoDAO = new EstadoDAO();
 		estados = new ArrayList<SelectItem>();
 		List<Estado> estadoList = new ArrayList<Estado>();
-		estadoList = estadoDAO.list();
+		estadoList = dao.list(lotacao.getEndereco().getCidade().getEstado().getClass());
 		for (Estado estado : estadoList) {
 			estados.add(new SelectItem(estado.getCodigo(), estado
 					.getDescricao()));
