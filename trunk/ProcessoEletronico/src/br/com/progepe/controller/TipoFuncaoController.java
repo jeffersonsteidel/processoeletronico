@@ -53,7 +53,7 @@ public class TipoFuncaoController {
 		tipoFuncao = new TipoFuncao();
 		this.setTipoFuncaoList(dao.list(tipoFuncao.getClass()));
 		FacesContext.getCurrentInstance().getExternalContext()
-				.redirect("listarBancos.jsp");
+				.redirect("listarTipoFuncao.jsp");
 		return this.getTipoFuncaoList();
 	}
 
