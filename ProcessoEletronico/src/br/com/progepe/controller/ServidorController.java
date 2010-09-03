@@ -353,6 +353,7 @@ public class ServidorController {
 		servidorTitulacao.getCidadeEstabelecimentoEnsino().setEstado(
 				new Estado());
 		servidorTitulacao.setEstadoOrgaoEmissor(new Estado());
+		servidorTitulacao.setPais(new Pais());
 		titulacaoList = new ArrayList<ServidorTitulacao>();
 		dependente.setDocumento(new Documento());
 		dependente.getDocumento().setCarteiraUf(new Estado());
@@ -668,6 +669,9 @@ public class ServidorController {
 	public Boolean isTitulacaoEstrangeira() {
 		if (this.getIndTitulacaoEstrangeira()) {
 			indTitulacaoEstrangeira = true;
+			servidorTitulacao.setCidadeEstabelecimentoEnsino(new Cidade());
+			servidorTitulacao.getCidadeEstabelecimentoEnsino().setEstado(
+					new Estado());
 		} else {
 			indTitulacaoEstrangeira = false;
 		}
@@ -675,39 +679,8 @@ public class ServidorController {
 	}
 
 	public List<ServidorTitulacao> adicionarTitulacao() {
-		FacesMessage message = null;
-		if (servidorTitulacao.getTitulacao().getCodigo() == 0) {
-			message = new FacesMessage(FacesMessage.SEVERITY_ERROR,
-					"Campo Titulação é obrigatório!",
-					"Campo Titulação é obrigatório!");
-			FacesContext.getCurrentInstance().addMessage("", message);
-		}
-		if (servidorTitulacao.getEstabelecimentoEnsino() == null
-				|| servidorTitulacao.getEstabelecimentoEnsino() == "") {
-			message = new FacesMessage(FacesMessage.SEVERITY_ERROR,
-					"Campo Estabelecimento de Ensino é obrigatório!",
-					"Campo Estabelecimento de Ensino é obrigatório!");
-			FacesContext.getCurrentInstance().addMessage("", message);
-		}
-		if (servidorTitulacao.getCidadeEstabelecimentoEnsino().getEstado()
-				.getCodigo() == 0) {
-			message = new FacesMessage(FacesMessage.SEVERITY_ERROR,
-					"Campo Estado do Estabelecimento é obrigatório!",
-					"Campo Estado do Estabelecimento é obrigatório!");
-			FacesContext.getCurrentInstance().addMessage("", message);
-		}
-		if (servidorTitulacao.getCidadeEstabelecimentoEnsino().getCodigo() == 0) {
-			message = new FacesMessage(FacesMessage.SEVERITY_ERROR,
-					"Campo Cidade do Estabelecimento é obrigatório!",
-					"Campo Cidade do Estabelecimento é obrigatório!");
-			FacesContext.getCurrentInstance().addMessage("", message);
-		}
-		if (servidorTitulacao.getAnoConclusao() == null
-				|| servidorTitulacao.getAnoConclusao() == 0) {
-			message = new FacesMessage(FacesMessage.SEVERITY_ERROR,
-					"Campo Ano de Conclusão é obrigatório!",
-					"Campo Ano de Conclusão é obrigatório!");
-			FacesContext.getCurrentInstance().addMessage("", message);
+		if (validatorTitulacao()) {
+			System.out.println("ERROS");
 		} else {
 			Titulacao titulacao = (Titulacao) dao.refresh(servidorTitulacao
 					.getTitulacao());
@@ -726,6 +699,63 @@ public class ServidorController {
 			servidorTitulacao.setEstadoOrgaoEmissor(new Estado());
 		}
 		return titulacaoList;
+	}
+
+	public boolean validatorTitulacao() {
+		FacesMessage message = null;
+		int contadorErros = 0;
+		if (servidorTitulacao.getTitulacao().getCodigo() == 0) {
+			message = new FacesMessage(FacesMessage.SEVERITY_ERROR,
+					"Campo Titulação é obrigatório!",
+					"Campo Titulação é obrigatório!");
+			FacesContext.getCurrentInstance().addMessage("", message);
+			contadorErros = +1;
+		}
+		if (servidorTitulacao.getEstabelecimentoEnsino() == null
+				|| servidorTitulacao.getEstabelecimentoEnsino() == "") {
+			message = new FacesMessage(FacesMessage.SEVERITY_ERROR,
+					"Campo Estabelecimento de Ensino é obrigatório!",
+					"Campo Estabelecimento de Ensino é obrigatório!");
+			FacesContext.getCurrentInstance().addMessage("", message);
+			contadorErros = +1;
+		}
+		if (servidorTitulacao.getCidadeEstabelecimentoEnsino().getEstado()
+				.getCodigo() == 0
+				&& !(this.getIndTitulacaoEstrangeira())) {
+			message = new FacesMessage(FacesMessage.SEVERITY_ERROR,
+					"Campo Estado do Estabelecimento é obrigatório!",
+					"Campo Estado do Estabelecimento é obrigatório!");
+			FacesContext.getCurrentInstance().addMessage("", message);
+			contadorErros = +1;
+		}
+		if (servidorTitulacao.getCidadeEstabelecimentoEnsino().getCodigo() == 0
+				&& !(this.getIndTitulacaoEstrangeira())) {
+			message = new FacesMessage(FacesMessage.SEVERITY_ERROR,
+					"Campo Cidade do Estabelecimento é obrigatório!",
+					"Campo Cidade do Estabelecimento é obrigatório!");
+			FacesContext.getCurrentInstance().addMessage("", message);
+			contadorErros = +1;
+		}
+		if (servidorTitulacao.getAnoConclusao() == null
+				|| servidorTitulacao.getAnoConclusao() == 0) {
+			message = new FacesMessage(FacesMessage.SEVERITY_ERROR,
+					"Campo Ano de Conclusão é obrigatório!",
+					"Campo Ano de Conclusão é obrigatório!");
+			FacesContext.getCurrentInstance().addMessage("", message);
+			contadorErros = +1;
+		}
+		if (this.getIndTitulacaoEstrangeira()
+				&& servidorTitulacao.getPais().getCodigo() == 0) {
+			message = new FacesMessage(FacesMessage.SEVERITY_ERROR,
+					"Campo País é obrigatório!", "Campo País é obrigatório!");
+			FacesContext.getCurrentInstance().addMessage("", message);
+			contadorErros = +1;
+		}
+		if (contadorErros > 0) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	public List<ServidorTitulacao> removerTitulacao() {

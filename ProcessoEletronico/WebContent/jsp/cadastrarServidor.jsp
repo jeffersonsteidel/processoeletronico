@@ -293,19 +293,20 @@
 				<a4j:region>
 					<h:panelGrid columns="6">
 						<h:outputText value="Titulação: " />
-						<h:selectOneMenu
+						<h:selectOneMenu id="titulacao"
 							value="#{servidorController.servidorTitulacao.titulacao.codigo}">
 							<f:selectItem itemLabel="SELECIONE" itemValue="" />
 							<f:selectItems value="#{servidorController.titulacoes}" />
 						</h:selectOneMenu>
 
 						<h:outputText value="Estabelecimento de Ensino: " />
-						<h:inputText
+						<h:inputText id="estabeleciemntoEnsino"
 							value="#{servidorController.servidorTitulacao.estabelecimentoEnsino}">
 						</h:inputText>
 
 						<h:outputText value="Estado do Estabelecimento: " />
-						<h:selectOneMenu
+						<h:selectOneMenu id="estadoEstabelecimento"
+							disabled="#{servidorController.indTitulacaoEstrangeira}"
 							value="#{servidorController.servidorTitulacao.cidadeEstabelecimentoEnsino.estado.codigo}">
 							<f:selectItem itemLabel="SELECIONE" itemValue="" />
 							<f:selectItems value="#{servidorController.estados}" />
@@ -315,44 +316,46 @@
 						</h:selectOneMenu>
 						<h:outputText value="Cidade do Estabelecimento: " />
 						<h:selectOneMenu id="cidadeEstabelecimento"
+							disabled="#{servidorController.indTitulacaoEstrangeira}"
 							value="#{servidorController.servidorTitulacao.cidadeEstabelecimentoEnsino.codigo}">
 							<f:selectItem itemLabel="SELECIONE" itemValue="" />
 							<f:selectItems value="#{servidorController.cidades}" />
 						</h:selectOneMenu>
 
 						<h:outputText value="Ano de Conclusão: " />
-						<h:inputText
+						<h:inputText id="anoConclusao"
 							value="#{servidorController.servidorTitulacao.anoConclusao}"
 							size="10" maxlength="4" onkeypress="mascara(this, soNumeros);"></h:inputText>
 
 						<h:outputText value="Carga Horária: " />
-						<h:inputText
+						<h:inputText id="cargaHoraria"
 							value="#{servidorController.servidorTitulacao.cargaHoraria}"
 							size="10" maxlength="4" onkeypress="mascara(this, soNumeros);"></h:inputText>
 
 						<h:outputText value="Registro no Conselho: " />
-						<h:inputText
+						<h:inputText id="registroConselho"
 							value="#{servidorController.servidorTitulacao.registroConselho}"
 							size="10" maxlength="8"></h:inputText>
 
 						<h:outputText value="Órgão Emissaor do Registro: " />
-						<h:inputText
+						<h:inputText id="orgaoRegistro"
 							value="#{servidorController.servidorTitulacao.orgaoEmissor}"
 							size="10" maxlength="8"></h:inputText>
 
 						<h:outputText value="Estado do Orgão Emissor do Registro: " />
-						<h:selectOneMenu
+						<h:selectOneMenu id="estadoOrgaoRegistro"
 							value="#{servidorController.servidorTitulacao.estadoOrgaoEmissor.codigo}">
 							<f:selectItem itemLabel="SELECIONE" itemValue="" />
 							<f:selectItems value="#{servidorController.estados}" />
 						</h:selectOneMenu>
 
 						<h:outputText value="Titulação Estrangeira:" />
-						<h:selectBooleanCheckbox
+						<h:selectBooleanCheckbox id="titEstrangeira"
 							value="#{servidorController.indTitulacaoEstrangeira}">
 							<a4j:support event="onchange"
 								action="#{servidorController.isTitulacaoEstrangeira}"
-								ajaxSingle="true" reRender="titulacaoEstrangeira"></a4j:support>
+								ajaxSingle="true"
+								reRender="titulacaoEstrangeira, estadoEstabelecimento, cidadeEstabelecimento"></a4j:support>
 						</h:selectBooleanCheckbox>
 
 						<h:outputText value="País: " />
@@ -362,7 +365,10 @@
 							<f:selectItem itemLabel="SELECIONE" itemValue="" />
 						</h:selectOneMenu>
 
-						<a4j:commandButton value="Adicionar" reRender="listaEscolariadade"
+						<a4j:commandButton value="Adicionar"
+							reRender="listaEscolariadade, titulacao, estabeleciemntoEnsino, estadoEstabelecimento,
+cidadeEstabelecimento, anoConclusao, cargaHoraria, registroConselho,
+orgaoRegistro,estadoOrgaoRegistro, titulacaoEstrangeira, titEstrangeira	"
 							oncomplete="#{rich:component('confirmPanel')}.show()"
 							action="#{servidorController.adicionarTitulacao}" />
 					</h:panelGrid>
