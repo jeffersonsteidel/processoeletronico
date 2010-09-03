@@ -484,13 +484,13 @@ orgaoRegistro,estadoOrgaoRegistro, titulacaoEstrangeira, titEstrangeira	"
 						<f:selectItem itemLabel="SELECIONE" itemValue="" />
 						<f:selectItems value="#{servidorController.cargos}" />
 						<a4j:support event="onchange"
-							action="#{servidorController.listarClasses}" ajaxSingle="true"
+							action="#{servidorController.carregarClasse}" ajaxSingle="true"
 							reRender="classe"></a4j:support>
 					</h:selectOneMenu>
 
 					<h:outputText value="Classe: " />
-					<h:outputText
-						value="#{servidorController.servidor.cargo.classe.codigo}" />
+					<h:outputText id="classe"
+						value="#{servidorController.servidor.cargo.classe.sigla}" />
 
 					<h:outputText value="Padrão: " />
 					<h:selectOneMenu
