@@ -292,7 +292,7 @@ public class ServidorController {
 	public void setIndPoupanca(Boolean indPoupanca) {
 		this.indPoupanca = indPoupanca;
 	}
-	
+
 	public List<SelectItem> getClasses() {
 		return classes;
 	}
@@ -578,10 +578,10 @@ public class ServidorController {
 			classes.add(new SelectItem(classe.getCodigo(), classe.getSigla()));
 		}
 		servidor.getCargo().setClasse(new Classe());
-		servidor.setCargo((Cargo)dao.refresh(servidor.getCargo()));
+		servidor.setCargo((Cargo) dao.refresh(servidor.getCargo()));
 		return classes;
 	}
-	
+
 	public List<SelectItem> listarSituacoesFuncionais() {
 		SituacaoFuncionalDAO situacaoFuncionalDAO = new SituacaoFuncionalDAO();
 		situacoesFuncionais = new ArrayList<SelectItem>();
@@ -639,7 +639,7 @@ public class ServidorController {
 		}
 		return paises;
 	}
-	
+
 	public Boolean isEstrangeiro() {
 		if (servidor.getIndEstrangeiro()) {
 			servidorEstrangeiro = true;
@@ -664,7 +664,7 @@ public class ServidorController {
 		dao.save(servidor);
 		servidor = new Servidor();
 	}
-	
+
 	public Boolean isTitulacaoEstrangeira() {
 		if (this.getIndTitulacaoEstrangeira()) {
 			indTitulacaoEstrangeira = true;
@@ -675,16 +675,59 @@ public class ServidorController {
 	}
 
 	public List<ServidorTitulacao> adicionarTitulacao() {
-		Titulacao titulacao = (Titulacao) dao.refresh(servidorTitulacao.getTitulacao());
-		servidorTitulacao.setTitulacao(titulacao);
-		titulacaoList.add(servidorTitulacao);
-		FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO,
-				"Item inserido com sucesso!", "Item inserido com sucesso!");
-		FacesContext.getCurrentInstance().addMessage("", message);
-		servidorTitulacao = new ServidorTitulacao();
+		FacesMessage message = null;
+		if (servidorTitulacao.getTitulacao().getCodigo() == 0) {
+			message = new FacesMessage(FacesMessage.SEVERITY_ERROR,
+					"Campo Titulação é obrigatório!",
+					"Campo Titulação é obrigatório!");
+			FacesContext.getCurrentInstance().addMessage("", message);
+		}
+		if (servidorTitulacao.getEstabelecimentoEnsino() == null
+				|| servidorTitulacao.getEstabelecimentoEnsino() == "") {
+			message = new FacesMessage(FacesMessage.SEVERITY_ERROR,
+					"Campo Estabelecimento de Ensino é obrigatório!",
+					"Campo Estabelecimento de Ensino é obrigatório!");
+			FacesContext.getCurrentInstance().addMessage("", message);
+		}
+		if (servidorTitulacao.getCidadeEstabelecimentoEnsino().getEstado()
+				.getCodigo() == 0) {
+			message = new FacesMessage(FacesMessage.SEVERITY_ERROR,
+					"Campo Estado do Estabelecimento é obrigatório!",
+					"Campo Estado do Estabelecimento é obrigatório!");
+			FacesContext.getCurrentInstance().addMessage("", message);
+		}
+		if (servidorTitulacao.getCidadeEstabelecimentoEnsino().getCodigo() == 0) {
+			message = new FacesMessage(FacesMessage.SEVERITY_ERROR,
+					"Campo Cidade do Estabelecimento é obrigatório!",
+					"Campo Cidade do Estabelecimento é obrigatório!");
+			FacesContext.getCurrentInstance().addMessage("", message);
+		}
+		if (servidorTitulacao.getAnoConclusao() == null
+				|| servidorTitulacao.getAnoConclusao() == 0) {
+			message = new FacesMessage(FacesMessage.SEVERITY_ERROR,
+					"Campo Ano de Conclusão é obrigatório!",
+					"Campo Ano de Conclusão é obrigatório!");
+			FacesContext.getCurrentInstance().addMessage("", message);
+		} else {
+			Titulacao titulacao = (Titulacao) dao.refresh(servidorTitulacao
+					.getTitulacao());
+			servidorTitulacao.setTitulacao(titulacao);
+			titulacaoList.add(servidorTitulacao);
+			FacesMessage messageSucesso = new FacesMessage(
+					FacesMessage.SEVERITY_INFO, "Item inserido com sucesso!",
+					"Item inserido com sucesso!");
+			FacesContext.getCurrentInstance().addMessage("", messageSucesso);
+			servidorTitulacao = new ServidorTitulacao();
+			servidorTitulacao.setTitulacao(new Titulacao());
+			servidorTitulacao.setServidor(new Servidor());
+			servidorTitulacao.setCidadeEstabelecimentoEnsino(new Cidade());
+			servidorTitulacao.getCidadeEstabelecimentoEnsino().setEstado(
+					new Estado());
+			servidorTitulacao.setEstadoOrgaoEmissor(new Estado());
+		}
 		return titulacaoList;
 	}
-	
+
 	public List<ServidorTitulacao> removerTitulacao() {
 		titulacaoList.remove(servidorTitulacao);
 		return titulacaoList;
