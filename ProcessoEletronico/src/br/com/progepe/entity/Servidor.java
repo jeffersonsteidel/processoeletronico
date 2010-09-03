@@ -41,7 +41,8 @@ public class Servidor implements Serializable {
 	private Telefone celular;
 	private Set<Dependente> dependentes = new HashSet<Dependente>();
 	private Set<Titulacao> titulacoes = new HashSet<Titulacao>();
-	
+	private String identificacaoUnica;
+
 	public Long getCodigo() {
 		return codigo;
 	}
@@ -281,5 +282,13 @@ public class Servidor implements Serializable {
 	public void setTitulacoes(Set<Titulacao> titulacoes) {
 		this.titulacoes = titulacoes;
 	}
-	
+
+	public String getIdentificacaoUnica() {
+		return identificacaoUnica;
+	}
+
+	public void setIdentificacaoUnica(String identificacaoUnica) {
+		this.identificacaoUnica = identificacaoUnica;
+	}
+
 }
