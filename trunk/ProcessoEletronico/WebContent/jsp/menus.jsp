@@ -32,8 +32,8 @@
 					action="#{lotacaoController.listar}" />
 				<a4j:commandButton value="CADASTRAR SERVIDOR"
 					action="#{servidorController.cadastrar}" />
-				<a4j:commandButton value="CADASTRAR TIPO FUN플O" action="#" />
-				<a4j:commandButton value="LISTAR TIPO FUN플O" action="#" />
+				<a4j:commandButton value="CADASTRAR TIPO FUN플O" action="#{tipoFuncaoController.cadastrar}" />
+				<a4j:commandButton value="LISTAR TIPO FUN플O" action="#{tipoFuncaoController.listar}" />
 			</rich:toolBar>
 		</a4j:form>
 	</rich:panel></center>
