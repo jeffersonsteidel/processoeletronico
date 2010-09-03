@@ -583,7 +583,9 @@ public class ServidorController {
 
 	public void carregarClasse() {
 		servidor.getCargo().setClasse(new Classe());
-		servidor.setCargo((Cargo) dao.refresh(servidor.getCargo()));
+		Cargo cargo = servidor.getCargo();
+		dao.refresh(cargo);
+		servidor.setCargo(cargo);
 	}
 
 	public List<SelectItem> listarSituacoesFuncionais() {

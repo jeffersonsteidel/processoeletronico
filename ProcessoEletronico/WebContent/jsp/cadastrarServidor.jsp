@@ -456,6 +456,11 @@ orgaoRegistro,estadoOrgaoRegistro, titulacaoEstrangeira, titEstrangeira	"
 						maxlength="7" required="true"
 						requiredMessage="Campo SIAPE obrigatório!"
 						onkeypress="mascara(this,soNumeros);"></h:inputText>
+					<h:outputText value="Id Única: " />
+					<h:inputText value="#{servidorController.servidor.identificacaoUnica}" size="10"
+						maxlength="9" required="true"
+						requiredMessage="Campo Id Única obrigatório!"
+						onkeypress="mascara(this,idUnica);"></h:inputText>	
 					<h:outputText value="Data de Admissão: " />
 					<rich:calendar value="#{servidorController.servidor.dataAdmissao}"
 						locale="" popup="true" datePattern="dd/MM/yyyy"

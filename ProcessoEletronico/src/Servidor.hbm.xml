@@ -9,6 +9,7 @@
 		</id>
 		<property name="nome" column="SERV_NOME" />
 		<property name="siape" column="SERV_SIAPE" />
+		<property name="identificacaoUnica" column="SERV_ID_UNICA" />
 		<many-to-one name="cargo" class="br.com.progepe.entity.Cargo"
 			column="CARG_COD" not-null="true" lazy="false" />
 		<property name="dataAdmissao" column="SERV_DATA_ADM_CARGO" />
