@@ -111,6 +111,91 @@
 					</h:selectOneMenu>
 				</h:panelGrid>
 			</rich:tab>
+
+			<rich:tab label="Dados Funcionais">
+				<h:panelGrid columns="6">
+					<h:outputText value="SIAPE: " />
+					<h:inputText value="#{servidorController.servidor.siape}" size="10"
+						maxlength="7" required="true"
+						requiredMessage="Campo SIAPE obrigatório!"
+						onkeypress="mascara(this,soNumeros);"></h:inputText>
+					<h:outputText value="Id Única: " />
+					<h:inputText
+						value="#{servidorController.servidor.identificacaoUnica}"
+						size="10" maxlength="9" required="true"
+						requiredMessage="Campo Id Única obrigatório!"
+						onkeypress="mascara(this,idUnica);"></h:inputText>
+					<h:outputText value="Data de Admissão: " />
+					<rich:calendar value="#{servidorController.servidor.dataAdmissao}"
+						locale="" popup="true" datePattern="dd/MM/yyyy"
+						showApplyButton="#" cellWidth="12px" cellHeight="12px"
+						style="width:80px" required="true" inputSize="12"
+						requiredMessage="Campo Data de Admissão obrigatório!" />
+
+					<h:outputText value="Lotação: " />
+					<h:selectOneMenu
+						value="#{servidorController.servidor.lotacao.codigo}"
+						required="true" requiredMessage="Campo Lotação é obrigatório!">
+						<f:selectItem itemLabel="SELECIONE" itemValue="" />
+						<f:selectItems value="#{servidorController.lotacoes}" />
+					</h:selectOneMenu>
+
+					<h:outputText value="Ramal: " />
+					<h:inputText value="#{servidorController.servidor.ramal}" size="8"
+						maxlength="4" required="true"
+						requiredMessage="Campo Ramal obrigatório!"
+						onkeypress="mascara(this, soNumeros);"></h:inputText>
+
+					<h:outputText value="Cargo: " />
+					<h:selectOneMenu
+						value="#{servidorController.servidor.cargo.codigo}"
+						required="true" requiredMessage="Campo Cargo é obrigatório!">
+						<f:selectItem itemLabel="SELECIONE" itemValue="" />
+						<f:selectItems value="#{servidorController.cargos}" />
+						<a4j:support event="onchange"
+							action="#{servidorController.carregarClasse}" ajaxSingle="true"
+							reRender="classe"></a4j:support>
+					</h:selectOneMenu>
+
+					<h:outputText value="Classe: " />
+					<h:outputText id="classe"
+						value="#{servidorController.servidor.cargo.classe.sigla}" />
+
+					<h:outputText value="Padrão: " />
+					<h:selectOneMenu
+						value="#{servidorController.servidor.padrao.codigo}"
+						required="true" requiredMessage="Campo Padrão é obrigatório!">
+						<f:selectItem itemLabel="SELECIONE" itemValue="" />
+						<f:selectItems value="#{servidorController.padroes}" />
+					</h:selectOneMenu>
+
+					<h:outputText value="Regime de Trabalho: " />
+					<h:selectOneMenu
+						value="#{servidorController.servidor.regimeTrabalho.codigo}"
+						required="true"
+						requiredMessage="Campo Regime de Trabalho é obrigatório!">
+						<f:selectItem itemLabel="SELECIONE" itemValue="" />
+						<f:selectItems value="#{servidorController.regimesTrabalhos}" />
+					</h:selectOneMenu>
+
+					<h:outputText value="Função: " />
+					<h:selectOneMenu
+						value="#{servidorController.servidor.funcao.codigo}">
+						<f:selectItem itemLabel="SELECIONE" itemValue="" />
+						<f:selectItems value="#{servidorController.funcoes}" />
+					</h:selectOneMenu>
+
+					<h:outputText value="Situação Funcional: " />
+					<h:selectOneMenu
+						value="#{servidorController.servidor.situacaoFuncional.codigo}"
+						required="true"
+						requiredMessage="Campo Situação Funcional é obrigatório!">
+						<f:selectItem itemLabel="SELECIONE" itemValue="" />
+						<f:selectItems value="#{servidorController.situacoesFuncionais}" />
+					</h:selectOneMenu>
+				</h:panelGrid>
+			</rich:tab>
+
 			<rich:tab label="Documentos">
 				<h:panelGrid columns="6">
 					<h:outputText value="CPF: " />
@@ -417,6 +502,8 @@ orgaoRegistro,estadoOrgaoRegistro, titulacaoEstrangeira, titEstrangeira	"
 				</a4j:region>
 			</rich:tab>
 
+			<rich:tab label="Profissional">
+			</rich:tab>
 
 			<rich:tab label="Conta Bancária">
 				<h:panelGrid columns="6">
@@ -448,89 +535,6 @@ orgaoRegistro,estadoOrgaoRegistro, titulacaoEstrangeira, titEstrangeira	"
 				</h:panelGrid>
 			</rich:tab>
 
-
-			<rich:tab label="Profissional">
-				<h:panelGrid columns="6">
-					<h:outputText value="SIAPE: " />
-					<h:inputText value="#{servidorController.servidor.siape}" size="10"
-						maxlength="7" required="true"
-						requiredMessage="Campo SIAPE obrigatório!"
-						onkeypress="mascara(this,soNumeros);"></h:inputText>
-					<h:outputText value="Id Única: " />
-					<h:inputText value="#{servidorController.servidor.identificacaoUnica}" size="10"
-						maxlength="9" required="true"
-						requiredMessage="Campo Id Única obrigatório!"
-						onkeypress="mascara(this,idUnica);"></h:inputText>	
-					<h:outputText value="Data de Admissão: " />
-					<rich:calendar value="#{servidorController.servidor.dataAdmissao}"
-						locale="" popup="true" datePattern="dd/MM/yyyy"
-						showApplyButton="#" cellWidth="12px" cellHeight="12px"
-						style="width:80px" required="true" inputSize="12"
-						requiredMessage="Campo Data de Admissão obrigatório!" />
-
-					<h:outputText value="Lotação: " />
-					<h:selectOneMenu
-						value="#{servidorController.servidor.lotacao.codigo}"
-						required="true" requiredMessage="Campo Lotação é obrigatório!">
-						<f:selectItem itemLabel="SELECIONE" itemValue="" />
-						<f:selectItems value="#{servidorController.lotacoes}" />
-					</h:selectOneMenu>
-
-					<h:outputText value="Ramal: " />
-					<h:inputText value="#{servidorController.servidor.ramal}" size="8"
-						maxlength="4" required="true"
-						requiredMessage="Campo Ramal obrigatório!"
-						onkeypress="mascara(this, soNumeros);"></h:inputText>
-
-					<h:outputText value="Cargo: " />
-					<h:selectOneMenu
-						value="#{servidorController.servidor.cargo.codigo}"
-						required="true" requiredMessage="Campo Cargo é obrigatório!">
-						<f:selectItem itemLabel="SELECIONE" itemValue="" />
-						<f:selectItems value="#{servidorController.cargos}" />
-						<a4j:support event="onchange"
-							action="#{servidorController.carregarClasse}" ajaxSingle="true"
-							reRender="classe"></a4j:support>
-					</h:selectOneMenu>
-
-					<h:outputText value="Classe: " />
-					<h:outputText id="classe"
-						value="#{servidorController.servidor.cargo.classe.sigla}" />
-
-					<h:outputText value="Padrão: " />
-					<h:selectOneMenu
-						value="#{servidorController.servidor.padrao.codigo}"
-						required="true" requiredMessage="Campo Padrão é obrigatório!">
-						<f:selectItem itemLabel="SELECIONE" itemValue="" />
-						<f:selectItems value="#{servidorController.padroes}" />
-					</h:selectOneMenu>
-
-					<h:outputText value="Regime de Trabalho: " />
-					<h:selectOneMenu
-						value="#{servidorController.servidor.regimeTrabalho.codigo}"
-						required="true"
-						requiredMessage="Campo Regime de Trabalho é obrigatório!">
-						<f:selectItem itemLabel="SELECIONE" itemValue="" />
-						<f:selectItems value="#{servidorController.regimesTrabalhos}" />
-					</h:selectOneMenu>
-
-					<h:outputText value="Função: " />
-					<h:selectOneMenu
-						value="#{servidorController.servidor.funcao.codigo}">
-						<f:selectItem itemLabel="SELECIONE" itemValue="" />
-						<f:selectItems value="#{servidorController.funcoes}" />
-					</h:selectOneMenu>
-
-					<h:outputText value="Situação Funcional: " />
-					<h:selectOneMenu
-						value="#{servidorController.servidor.situacaoFuncional.codigo}"
-						required="true"
-						requiredMessage="Campo Situação Funcional é obrigatório!">
-						<f:selectItem itemLabel="SELECIONE" itemValue="" />
-						<f:selectItems value="#{servidorController.situacoesFuncionais}" />
-					</h:selectOneMenu>
-				</h:panelGrid>
-			</rich:tab>
 
 			<rich:tab label="Cônjugue">
 				<h:panelGrid columns="6">

@@ -10,12 +10,16 @@ import org.hibernate.Session;
 
 public class DAO {
 
-	private static Session session;
+	private static Session session = HibernateUtility.getSessionFactory()
+			.getCurrentSession();
+
+	public DAO() {
+		session.beginTransaction();
+	}
 
 	public void save(Object object) {
 		try {
-			session = HibernateUtility.getSessionFactory().getCurrentSession();
-			session.beginTransaction();
+
 			session.saveOrUpdate(object);
 			session.getTransaction().commit();
 			FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO,
@@ -33,8 +37,6 @@ public class DAO {
 
 	public void delete(Object object) {
 		try {
-			session = HibernateUtility.getSessionFactory().getCurrentSession();
-			session.beginTransaction();
 			session.delete(object);
 			session.getTransaction().commit();
 			FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO,
@@ -52,8 +54,6 @@ public class DAO {
 
 	public Object refresh(Object object) {
 		try {
-			session = HibernateUtility.getSessionFactory().getCurrentSession();
-			session.beginTransaction();
 			session.clear();
 			session.refresh(object);
 		} catch (Exception e) {
@@ -69,8 +69,6 @@ public class DAO {
 
 	@SuppressWarnings("rawtypes")
 	public List list(Class objectClass) {
-		session = HibernateUtility.getSessionFactory().getCurrentSession();
-		session.beginTransaction();
 		Criteria c = session.createCriteria(objectClass);
 		return c.list();
 	}
