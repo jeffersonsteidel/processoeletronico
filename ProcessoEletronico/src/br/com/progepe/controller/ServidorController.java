@@ -83,6 +83,7 @@ public class ServidorController {
 	private Boolean servidorEstrangeiro = false;
 	private Boolean indPoupanca = false;
 	private Boolean indTitulacaoEstrangeira = false;
+	private Boolean indConjugueServidor = false;
 
 	public Servidor getPessoa() {
 		return servidor;
@@ -306,6 +307,14 @@ public class ServidorController {
 
 	public void setIndTitulacaoEstrangeira(Boolean indTitulacaoEstrangeira) {
 		this.indTitulacaoEstrangeira = indTitulacaoEstrangeira;
+	}
+	
+	public Boolean getIndConjugueServidor() {
+		return indConjugueServidor;
+	}
+
+	public void setIndConjugueServidor(Boolean indConjugueServidor) {
+		this.indConjugueServidor = indConjugueServidor;
 	}
 
 	public void cadastrar() throws IOException {
@@ -651,6 +660,15 @@ public class ServidorController {
 			listarPais();
 		} else {
 			servidorEstrangeiro = false;
+		}
+		return false;
+	}
+	
+	public Boolean isConjugueServidor() {
+		if(servidor.getConjugue().getIndServidor()) {
+			indConjugueServidor = true;
+		} else {
+			indConjugueServidor = false;
 		}
 		return false;
 	}
