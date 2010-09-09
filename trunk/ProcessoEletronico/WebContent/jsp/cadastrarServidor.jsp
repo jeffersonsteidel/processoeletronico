@@ -606,15 +606,17 @@ orgaoRegistro,estadoOrgaoRegistro, titulacaoEstrangeira, titEstrangeira	"
 						value="#{servidorController.servidor.conjugue.indEstrangeiro}">
 					</h:selectBooleanCheckbox>
 
-					<h:outputText value="É servidor?: " />
+					<h:outputText value="É servidor? " />
 					<h:selectBooleanCheckbox
 						value="#{servidorController.servidor.conjugue.indServidor}">
+						<a4j:support event="onchange"
+							action="#{servidorController.isConjugueServidor}"
+							ajaxSingle="true" reRender="orgao"></a4j:support>
 					</h:selectBooleanCheckbox>
 
 					<h:outputText value="Em qual Orgão: " />
 					<h:inputText value="#{servidorController.servidor.conjugue.local}"
-						required="true"
-						requiredMessage="Campo Em qual Orgão é obrigatório!" />
+						id="orgao" disabled="#{!servidorController.indConjugueServidor}" />
 				</h:panelGrid>
 			</rich:tab>
 
@@ -684,7 +686,7 @@ orgaoRegistro,estadoOrgaoRegistro, titulacaoEstrangeira, titEstrangeira	"
 							<f:selectItems value="#{servidorController.grauParentescos}" />
 						</h:selectOneMenu>
 
-						<h:outputText value="IR: " />
+						<h:outputText value="Imposto de Renda: " />
 						<h:selectBooleanCheckbox
 							value="#{servidorController.dependente.indIr}">
 						</h:selectBooleanCheckbox>
@@ -694,7 +696,7 @@ orgaoRegistro,estadoOrgaoRegistro, titulacaoEstrangeira, titEstrangeira	"
 							value="#{servidorController.dependente.indNecessidadesEspeciais}">
 						</h:selectBooleanCheckbox>
 
-						<h:outputText value="É Estudante? " />
+						<h:outputText value="É Estudante Universitário? " />
 						<h:selectBooleanCheckbox
 							value="#{servidorController.dependente.indEstudante}">
 						</h:selectBooleanCheckbox>
