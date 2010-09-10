@@ -13,14 +13,8 @@
 		<a4j:form>
 			<h:graphicImage value="../images/ifpr_logo.png" />
 			<BR />
-			<font size="10"><b>PROGEPE - PROCESSO ELETRÔNICO</b></font>
+			<font size="8"><b>PROGEPE - PROCESSO ELETRÔNICO</b></font>
 			<!--<rich:toolBar style="text-align: center;">
-				<a4j:commandButton value="CADASTRAR BANCO"
-					action="#{bancoController.cadastrar}" />
-				<a4j:commandButton value="LISTAR BANCOS"
-					action="#{bancoController.listar}" />
-				<a4j:commandButton value="CADASTRAR CARGO"
-					action="#{cargoController.cadastrar}" />
 				<a4j:commandButton value="LISTAR CARGOS"
 					action="#{cargoController.listar}" />
 				<a4j:commandButton value="CADASTRAR FUNÇÃO"
@@ -29,18 +23,40 @@
 					action="#{funcaoController.listar}" />
 			</rich:toolBar>-->
 			<rich:toolBar style="text-align: center;">
+
+				<!-- ### CADASTRAR BANCO### -->
+				<a4j:commandButton image="../images/bot_adicionarbanco.gif"
+					action="#{bancoController.cadastrar}" />
+
+				<!-- ### LISTAR BANCO### -->
+				<a4j:commandButton image="../images/bot_listarbancos.gif"
+					action="#{bancoController.listar}" />
+
 				<!-- ### CADASTRAR LOTAÇÃO### -->
 				<a4j:commandButton image="../images/bot_cadastrarlotacao.gif"
 					action="#{lotacaoController.cadastrar}" />
+
 				<!-- ### LSITAR LOTAÇÃO### -->
 				<a4j:commandButton image="../images/bot_lotacoescadastradas.gif"
 					action="#{lotacaoController.listar}" />
-				<!-- ### CADASTRAR SERVIDOR### -->
-				<a4j:commandButton image="../images/bot_adicionarservidor.gif"
-					action="#{servidorController.cadastrar}" />
+
+				<!-- ### CADASTRAR CARGO### -->
+				<a4j:commandButton image="../images/bot_incluircargo.gif"
+					action="#{cargoController.cadastrar}" />
+
+				<!-- ### LISTAR CARGO### -->
+				<a4j:commandButton image="../images/bot_listarcargo.gif"
+					action="#{cargoController.listar}" />
+
+
 				<!--<a4j:commandButton value="CADASTRAR TIPO FUNÇÃO" action="#{tipoFuncaoController.cadastrar}" />
 				<a4j:commandButton value="LISTAR TIPO FUNÇÃO" action="#{tipoFuncaoController.listar}" />
 				-->
+			</rich:toolBar>
+			<rich:toolBar>
+				<!-- ### CADASTRAR SERVIDOR### -->
+				<a4j:commandButton image="../images/bot_adicionarservidor.gif"
+					action="#{servidorController.cadastrar}" />
 			</rich:toolBar>
 		</a4j:form>
 	</rich:panel></center>

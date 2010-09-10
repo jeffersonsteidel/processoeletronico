@@ -58,8 +58,8 @@ public class CargoController {
 	}
 
 	public void carregar() throws IOException {
-		dao.refresh(cargo);
 		listarClasses();
+		dao.refresh(cargo);
 		FacesContext.getCurrentInstance().getExternalContext()
 				.redirect("cadastrarCargo.jsp");
 	}

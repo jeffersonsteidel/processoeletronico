@@ -46,8 +46,6 @@
 							width="20" height="18" id="editar" />
 						<f:setPropertyActionListener value="#{list.codigo}"
 							target="#{cargoController.cargo.codigo}" />
-						<f:setPropertyActionListener value="#{list.classe.codigo}"
-							target="#{cargoController.cargo.classe.codigo}" />	
 					</a4j:commandLink>
 					<rich:toolTip for="editar" value="Editar" />
 				</rich:column>
