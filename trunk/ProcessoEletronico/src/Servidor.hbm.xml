@@ -13,6 +13,7 @@
 		<many-to-one name="cargo" class="br.com.progepe.entity.Cargo"
 			column="CARG_COD" not-null="true" lazy="false" />
 		<property name="dataAdmissao" column="SERV_DATA_ADM_CARGO" />
+		<property name="dataAdmServicoPublico" column="SERV_DATA_ADM_SERV_PUB" />
 		<many-to-one name="lotacao" class="br.com.progepe.entity.Lotacao"
 			column="LOT_COD" not-null="true" lazy="false" />
 		<many-to-one name="localExercicio" class="br.com.progepe.entity.Lotacao"
