@@ -19,6 +19,7 @@ public class ServidorTitulacao implements Serializable {
 	private String registroConselho;
 	private String orgaoEmissor;
 	private Estado estadoOrgaoEmissor;
+	private String curso;
 	//Variavel auxiliar
 	private Integer indentificador;
 
@@ -117,6 +118,14 @@ public class ServidorTitulacao implements Serializable {
 
 	public void setIndentificador(Integer indentificador) {
 		this.indentificador = indentificador;
+	}
+
+	public String getCurso() {
+		return curso;
+	}
+
+	public void setCurso(String curso) {
+		this.curso = curso;
 	}
 	
 }

@@ -388,6 +388,11 @@
 						<h:inputText id="estabeleciemntoEnsino"
 							value="#{servidorController.servidorTitulacao.estabelecimentoEnsino}">
 						</h:inputText>
+						
+						<h:outputText value="Curso: " />
+						<h:inputText 
+							value="#{servidorController.servidorTitulacao.curso}">
+						</h:inputText>
 
 						<h:outputText value="Estado do Estabelecimento: " />
 						<h:selectOneMenu id="estadoEstabelecimento"
