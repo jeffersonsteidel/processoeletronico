@@ -9,7 +9,6 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
 
-import br.com.progepe.dao.CargoDAO;
 import br.com.progepe.dao.CidadeDAO;
 import br.com.progepe.dao.CorPeleDAO;
 import br.com.progepe.dao.DAO;
@@ -644,11 +643,11 @@ public class ServidorController {
 		return regimesTrabalhos;
 	}
 
+	@SuppressWarnings("unchecked")
 	public List<SelectItem> listarCargos() {
-		CargoDAO cargoDAO = new CargoDAO();
 		cargos = new ArrayList<SelectItem>();
 		List<Cargo> cargoList = new ArrayList<Cargo>();
-		cargoList = cargoDAO.list();
+		cargoList = dao.list(Cargo.class);
 		for (Cargo cargo : cargoList) {
 			cargos.add(new SelectItem(cargo.getCodigo(), cargo.getDescricao()));
 		}
