@@ -742,6 +742,14 @@ public class ServidorController {
 			FacesContext.getCurrentInstance().addMessage("", message);
 			contadorErros = +1;
 		}
+		if (servidorTitulacao.getCurso() == null
+				|| servidorTitulacao.getCurso() == "") {
+			message = new FacesMessage(FacesMessage.SEVERITY_ERROR,
+					"Campo Curso é obrigatório!",
+					"Campo Curso é obrigatório!");
+			FacesContext.getCurrentInstance().addMessage("", message);
+			contadorErros = +1;
+		}
 		if (servidorTitulacao.getCidadeEstabelecimentoEnsino().getEstado()
 				.getCodigo() == 0
 				&& !(this.getIndTitulacaoEstrangeira())) {
