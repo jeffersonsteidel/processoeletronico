@@ -624,15 +624,11 @@ orgaoRegistro,estadoOrgaoRegistro, titulacaoEstrangeira, titEstrangeira	"
 				<a4j:region>
 					<h:panelGrid columns="6">
 						<h:outputText value="Nome do Dependente: " />
-						<h:inputText value="#{servidorController.dependente.nome}"
-							required="true"
-							requiredMessage="Campo Nome do Dependente é obrigatório!">
+						<h:inputText value="#{servidorController.dependente.nome}">
 						</h:inputText>
 
 						<h:outputText value="Sexo: " />
-						<h:selectOneMenu value="#{servidorController.dependente.sexo}"
-							required="true"
-							requiredMessage="Campo Sexo do Dependente é obrigatório!">
+						<h:selectOneMenu value="#{servidorController.dependente.sexo}">
 							<f:selectItem itemLabel="SELECIONE" itemValue="" />
 							<f:selectItem itemLabel="FEMININO" itemValue="F" />
 							<f:selectItem itemLabel="MASCULINO" itemValue="M" />
@@ -643,45 +639,37 @@ orgaoRegistro,estadoOrgaoRegistro, titulacaoEstrangeira, titEstrangeira	"
 							value="#{servidorController.dependente.dataNascimento}" locale=""
 							popup="true" datePattern="dd/MM/yyyy" showApplyButton="#"
 							cellWidth="12px" cellHeight="12px" style="width:80px"
-							required="true" inputSize="12"
-							requiredMessage="Campo Data de Nascimento do Dependente!" />
+							inputSize="12" />
 
 						<h:outputText value="CPF do Dependente: " />
 						<h:inputText
 							value="#{servidorController.dependente.documento.cpf}" size="16"
-							maxlength="14" required="true"
-							requiredMessage="Campo CPF do Dependente obrigatório!"
-							onkeypress="mascara(this,cpf);"></h:inputText>
+							maxlength="14" onkeypress="mascara(this,cpf);"></h:inputText>
+
 						<h:outputText value="RG do Dependente: " />
 						<h:inputText value="#{servidorController.dependente.documento.rg}"
-							size="16" maxlength="14" required="true"
-							requiredMessage="Campo RG do Dependente obrigatório!"></h:inputText>
+							size="16" maxlength="14"></h:inputText>
+
 						<h:outputText value="UF do RG do Dependente: " />
 						<h:selectOneMenu
-							value="#{servidorController.dependente.documento.rgUf.codigo}"
-							required="true"
-							requiredMessage="Campo UF do RG do Dependente é obrigatório!">
+							value="#{servidorController.dependente.documento.rgUf.codigo}">
 							<f:selectItem itemLabel="SELECIONE" itemValue="" />
 							<f:selectItems value="#{servidorController.ufs}" />
 						</h:selectOneMenu>
 						<h:outputText value="Orgão Emissor do RG do Dependente: " />
 						<h:inputText
 							value="#{servidorController.dependente.documento.rgOrgaoEmissor}"
-							size="16" maxlength="8" required="true"
-							requiredMessage="Campo Orgão Emissor do RG do Dependente obrigatório!"></h:inputText>
+							size="16" maxlength="8">
+						</h:inputText>
 						<h:outputText value="Data de Expedição do RG: " />
 						<rich:calendar
 							value="#{servidorController.servidor.conjugue.documento.rgDataExpedicao}"
 							locale="" popup="true" datePattern="dd/MM/yyyy"
 							showApplyButton="#" cellWidth="12px" cellHeight="12px"
-							style="width:80px" required="true" inputSize="12"
-							requiredMessage="Campo Data de Expedição do RG  do Cônjugue obrigatório!" />
+							style="width:80px" inputSize="12" />
 
 						<h:outputText value="Grau Parentesco: " />
-						<h:selectOneMenu
-							value="#{servidorController.dependente.grauParentesco.codigo}"
-							required="true"
-							requiredMessage="Campo Grau Parentesco é obrigatório!">
+						<h:selectOneMenu>
 							<f:selectItem itemLabel="SELECIONE" itemValue="" />
 							<f:selectItems value="#{servidorController.grauParentescos}" />
 						</h:selectOneMenu>
