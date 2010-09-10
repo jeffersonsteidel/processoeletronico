@@ -125,12 +125,20 @@
 						size="10" maxlength="9" required="true"
 						requiredMessage="Campo Id Única obrigatório!"
 						onkeypress="mascara(this,idUnica);"></h:inputText>
-					<h:outputText value="Data de Admissão: " />
+
+					<h:outputText value="Data de Admissão no Órgão: " />
 					<rich:calendar value="#{servidorController.servidor.dataAdmissao}"
 						locale="" popup="true" datePattern="dd/MM/yyyy"
 						showApplyButton="#" cellWidth="12px" cellHeight="12px"
 						style="width:80px" required="true" inputSize="12"
-						requiredMessage="Campo Data de Admissão obrigatório!" />
+						requiredMessage="Campo Data de Admissão no Órgão obrigatório!" />
+
+					<h:outputText value="Data de Admissão no Serviço Público: " />
+					<rich:calendar value="#{servidorController.servidor.dataAdmServicoPublico}"
+						locale="" popup="true" datePattern="dd/MM/yyyy"
+						showApplyButton="#" cellWidth="12px" cellHeight="12px"
+						style="width:80px" required="true" inputSize="12"
+						requiredMessage="Campo Data de Admissão no Serviço Público obrigatório!" />
 
 					<h:outputText value="Lotação: " />
 					<h:selectOneMenu
@@ -139,11 +147,12 @@
 						<f:selectItem itemLabel="SELECIONE" itemValue="" />
 						<f:selectItems value="#{servidorController.lotacoes}" />
 					</h:selectOneMenu>
-					
+
 					<h:outputText value="Local de Exercício: " />
 					<h:selectOneMenu
 						value="#{servidorController.servidor.localExercicio.codigo}"
-						required="true" requiredMessage="Campo Local de Exercício é obrigatório!">
+						required="true"
+						requiredMessage="Campo Local de Exercício é obrigatório!">
 						<f:selectItem itemLabel="SELECIONE" itemValue="" />
 						<f:selectItems value="#{servidorController.lotacoes}" />
 					</h:selectOneMenu>
@@ -639,7 +648,7 @@ orgaoRegistro,estadoOrgaoRegistro, titulacaoEstrangeira, titEstrangeira	"
 						id="orgao" disabled="#{!servidorController.indConjugueServidor}" />
 				</h:panelGrid>
 			</rich:tab>
- 
+
 			<rich:tab label="Dependentes">
 				<a4j:region>
 					<h:panelGrid columns="4">

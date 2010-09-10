@@ -43,6 +43,7 @@ public class Servidor implements Serializable {
 	private Set<Dependente> dependentes = new HashSet<Dependente>();
 	private Set<Titulacao> titulacoes = new HashSet<Titulacao>();
 	private String identificacaoUnica;
+	private Date dataAdmServicoPublico;
 
 	public Long getCodigo() {
 		return codigo;
@@ -299,5 +300,12 @@ public class Servidor implements Serializable {
 	public void setLocalExercicio(Lotacao localExercicio) {
 		this.localExercicio = localExercicio;
 	}
-	
+
+	public Date getDataAdmServicoPublico() {
+		return dataAdmServicoPublico;
+	}
+
+	public void setDataAdmServicoPublico(Date dataAdmServicoPublico) {
+		this.dataAdmServicoPublico = dataAdmServicoPublico;
+	}
 }
