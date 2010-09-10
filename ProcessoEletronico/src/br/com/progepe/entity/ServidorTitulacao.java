@@ -14,6 +14,7 @@ public class ServidorTitulacao implements Serializable {
 	private String estabelecimentoEnsino;
 	private Cidade cidadeEstabelecimentoEnsino;
 	private Pais pais;
+	private AreaConhecimento areaConhecimento;
 	private Integer anoConclusao;
 	private Integer cargaHoraria;
 	private String registroConselho;
@@ -126,6 +127,14 @@ public class ServidorTitulacao implements Serializable {
 
 	public void setCurso(String curso) {
 		this.curso = curso;
+	}
+
+	public AreaConhecimento getAreaConhecimento() {
+		return areaConhecimento;
+	}
+
+	public void setAreaConhecimento(AreaConhecimento areaConhecimento) {
+		this.areaConhecimento = areaConhecimento;
 	}
 	
 }

@@ -19,9 +19,11 @@
 		<property name="anoConclusao" column="SERV_TIT_ANO_CONC" />
 		<property name="cargaHoraria" column="SERV_TIT_CARG_HOR" />
 		<property name="registroConselho" column="SERV_TIT_REG_CONC" />
-		<property name="curso" column="SERV_TIT_REG_CURSO" />
+		<property name="curso" column="SERV_TIT_CURSO" />
 		<property name="orgaoEmissor" column="SERV_TIT_ORG_EMI" />
 		<many-to-one name="estadoOrgaoEmissor" class="br.com.progepe.entity.Estado"
 			column="EST_COD_ORG_EMI" not-null="true" lazy="false" />
+		<many-to-one name="areaConhecimento" class="br.com.progepe.entity.AreaConhecimento"
+			column="AREA_CONH_COD" not-null="true" lazy="false" />
 	</class>
 </hibernate-mapping>

@@ -22,6 +22,7 @@ import br.com.progepe.dao.PadraoDAO;
 import br.com.progepe.dao.PaisDAO;
 import br.com.progepe.dao.RegimeTrabalhoDAO;
 import br.com.progepe.dao.SituacaoFuncionalDAO;
+import br.com.progepe.entity.AreaConhecimento;
 import br.com.progepe.entity.Banco;
 import br.com.progepe.entity.Cargo;
 import br.com.progepe.entity.Cidade;
@@ -77,6 +78,7 @@ public class ServidorController {
 	private List<SelectItem> regimesTrabalhos;
 	private List<SelectItem> grauParentescos;
 	private List<SelectItem> titulacoes;
+	private List<SelectItem> areasConhecimentos;
 
 	DAO dao = new DAO();
 
@@ -135,6 +137,14 @@ public class ServidorController {
 
 	public Dependente getDependente() {
 		return dependente;
+	}
+	
+	public List<SelectItem> getAreasConhecimentos() {
+		return areasConhecimentos;
+	}
+
+	public void setAreasConhecimentos(List<SelectItem> areasConhecimentos) {
+		this.areasConhecimentos = areasConhecimentos;
 	}
 
 	public void setDependente(Dependente dependente) {
@@ -346,6 +356,7 @@ public class ServidorController {
 		servidor.setGrupo(new Grupo());
 		servidor.setGrupoSanguineo(new GrupoSanguineo());
 		servidor.setLotacao(new Lotacao());
+		servidor.setLocalExercicio(new Lotacao());
 		servidor.setPadrao(new Padrao());
 		servidor.setRegimeTrabalho(new RegimeTrabalho());
 		servidor.setSituacaoFuncional(new SituacaoFuncional());
@@ -356,7 +367,7 @@ public class ServidorController {
 		dependentes = new ArrayList<Dependente>();
 		servidorTitulacao = new ServidorTitulacao();
 		servidorTitulacao.setTitulacao(new Titulacao());
-		servidorTitulacao.setServidor(new Servidor());
+		servidorTitulacao.setAreaConhecimento(new AreaConhecimento());
 		servidorTitulacao.setCidadeEstabelecimentoEnsino(new Cidade());
 		servidorTitulacao.getCidadeEstabelecimentoEnsino().setEstado(
 				new Estado());
@@ -385,6 +396,7 @@ public class ServidorController {
 		paises = new ArrayList<SelectItem>();
 		grauParentescos = new ArrayList<SelectItem>();
 		titulacoes = new ArrayList<SelectItem>();
+		areasConhecimentos = new ArrayList<SelectItem>();
 
 		listarBancos();
 		listarGrauParentesco();
@@ -403,6 +415,7 @@ public class ServidorController {
 		listarEstadosCivis();
 
 		listarTitulacoes();
+		listarAreaConhecimento();
 
 		FacesContext.getCurrentInstance().getExternalContext()
 				.redirect("cadastrarServidor.jsp");
@@ -565,6 +578,17 @@ public class ServidorController {
 		}
 		return bancos;
 	}
+	
+	@SuppressWarnings("unchecked")
+	public List<SelectItem> listarAreaConhecimento() {
+		areasConhecimentos = new ArrayList<SelectItem>();
+		List<AreaConhecimento> areaConheciemntoList = new ArrayList<AreaConhecimento>();
+		areaConheciemntoList = dao.list(servidorTitulacao.getAreaConhecimento().getClass());
+		for (AreaConhecimento areaConhecimento : areaConheciemntoList) {
+			areasConhecimentos.add(new SelectItem(areaConhecimento.getCodigo(), areaConhecimento.getDescricao()));
+		}
+		return areasConhecimentos;
+	}
 
 	public List<SelectItem> listarFuncoes() {
 		FuncaoDAO funcaoDAO = new FuncaoDAO();
@@ -716,6 +740,7 @@ public class ServidorController {
 			servidorTitulacao = new ServidorTitulacao();
 			servidorTitulacao.setTitulacao(new Titulacao());
 			servidorTitulacao.setServidor(new Servidor());
+			servidorTitulacao.setAreaConhecimento(new AreaConhecimento());
 			servidorTitulacao.setCidadeEstabelecimentoEnsino(new Cidade());
 			servidorTitulacao.getCidadeEstabelecimentoEnsino().setEstado(
 					new Estado());

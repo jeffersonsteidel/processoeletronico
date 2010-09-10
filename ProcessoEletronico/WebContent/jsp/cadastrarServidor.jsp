@@ -17,7 +17,7 @@
 	<a4j:form id="form">
 		<rich:tabPanel switchType="client" width="920">
 			<rich:tab label="Dados Pessoais">
-				<h:panelGrid columns="6">
+				<h:panelGrid columns="4">
 					<h:outputText value="Nome: " />
 					<h:inputText value="#{servidorController.servidor.nome}" size="40"
 						maxlength="100" required="true"
@@ -139,6 +139,14 @@
 						<f:selectItem itemLabel="SELECIONE" itemValue="" />
 						<f:selectItems value="#{servidorController.lotacoes}" />
 					</h:selectOneMenu>
+					
+					<h:outputText value="Local de Exercício: " />
+					<h:selectOneMenu
+						value="#{servidorController.servidor.localExercicio.codigo}"
+						required="true" requiredMessage="Campo Local de Exercício é obrigatório!">
+						<f:selectItem itemLabel="SELECIONE" itemValue="" />
+						<f:selectItems value="#{servidorController.lotacoes}" />
+					</h:selectOneMenu>
 
 					<h:outputText value="Ramal: " />
 					<h:inputText value="#{servidorController.servidor.ramal}" size="8"
@@ -197,7 +205,7 @@
 			</rich:tab>
 
 			<rich:tab label="Documentos">
-				<h:panelGrid columns="6">
+				<h:panelGrid columns="4">
 					<h:outputText value="CPF: " />
 					<h:inputText value="#{servidorController.servidor.documento.cpf}"
 						size="16" maxlength="14" required="true"
@@ -311,7 +319,7 @@
 			</rich:tab>
 
 			<rich:tab label="Contato">
-				<h:panelGrid columns="6">
+				<h:panelGrid columns="4">
 					<h:outputText value="Endereço: " />
 					<h:inputText value="#{servidorController.servidor.endereco.rua}"
 						size="50" maxlength="120" required="true"
@@ -376,7 +384,7 @@
 
 			<rich:tab label="Escolaridade">
 				<a4j:region>
-					<h:panelGrid columns="6">
+					<h:panelGrid columns="4">
 						<h:outputText value="Titulação: " />
 						<h:selectOneMenu id="titulacao"
 							value="#{servidorController.servidorTitulacao.titulacao.codigo}">
@@ -385,14 +393,21 @@
 						</h:selectOneMenu>
 
 						<h:outputText value="Estabelecimento de Ensino: " />
-						<h:inputText id="estabeleciemntoEnsino"
+						<h:inputText id="estabeleciemntoEnsino" size="40"
 							value="#{servidorController.servidorTitulacao.estabelecimentoEnsino}">
 						</h:inputText>
-						
+
 						<h:outputText value="Curso: " />
-						<h:inputText 
+						<h:inputText size="40" maxlength="80"
 							value="#{servidorController.servidorTitulacao.curso}">
 						</h:inputText>
+
+						<h:outputText value="Área de Conheciemnto: " />
+						<h:selectOneMenu
+							value="#{servidorController.servidorTitulacao.areaConhecimento.codigo}">
+							<f:selectItem itemLabel="SELECIONE" itemValue="" />
+							<f:selectItems value="#{servidorController.areasConhecimentos}" />
+						</h:selectOneMenu>
 
 						<h:outputText value="Estado do Estabelecimento: " />
 						<h:selectOneMenu id="estadoEstabelecimento"
@@ -473,9 +488,9 @@ orgaoRegistro,estadoOrgaoRegistro, titulacaoEstrangeira, titEstrangeira	"
 						</rich:column>
 						<rich:column width="450px">
 							<f:facet name="header">
-								<h:outputText value="Carga Horária" />
+								<h:outputText value="Curso" />
 							</f:facet>
-							<h:outputText value="#{list.cargaHoraria}" />
+							<h:outputText value="#{list.curso}" />
 						</rich:column>
 
 						<rich:column width="450px">
@@ -624,10 +639,10 @@ orgaoRegistro,estadoOrgaoRegistro, titulacaoEstrangeira, titEstrangeira	"
 						id="orgao" disabled="#{!servidorController.indConjugueServidor}" />
 				</h:panelGrid>
 			</rich:tab>
-
+ 
 			<rich:tab label="Dependentes">
 				<a4j:region>
-					<h:panelGrid columns="6">
+					<h:panelGrid columns="4">
 						<h:outputText value="Nome do Dependente: " />
 						<h:inputText value="#{servidorController.dependente.nome}">
 						</h:inputText>
