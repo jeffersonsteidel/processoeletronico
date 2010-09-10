@@ -8,10 +8,13 @@
 	media="screen" />
 <body>
 <div id="non-printable"><f:subview id="Menu">
-	<center><rich:panel header="PROGEPE - PROCESSO ELETRÔNICO"
+	<center><rich:panel header="INSTITUTO FEDERAL DO PARANÁ"
 		style="height:auto;">
 		<a4j:form>
-			<rich:toolBar style="text-align: center;">
+			<h:graphicImage value="../images/ifpr_logo.png" />
+			<BR />
+			<font size="10"><b>PROGEPE - PROCESSO ELETRÔNICO</b></font>
+			<!--<rich:toolBar style="text-align: center;">
 				<a4j:commandButton value="CADASTRAR BANCO"
 					action="#{bancoController.cadastrar}" />
 				<a4j:commandButton value="LISTAR BANCOS"
@@ -24,16 +27,20 @@
 					action="#{funcaoController.cadastrar}" />
 				<a4j:commandButton value="LISTAR FUNÇÕES"
 					action="#{funcaoController.listar}" />
-			</rich:toolBar>
+			</rich:toolBar>-->
 			<rich:toolBar style="text-align: center;">
-				<a4j:commandButton value="CADASTRAR LOTAÇÃO"
+				<!-- ### CADASTRAR LOTAÇÃO### -->
+				<a4j:commandButton image="../images/bot_cadastrarlotacao.gif"
 					action="#{lotacaoController.cadastrar}" />
-				<a4j:commandButton value="LISTAR LOTAÇÕES"
+				<!-- ### LSITAR LOTAÇÃO### -->
+				<a4j:commandButton image="../images/bot_lotacoescadastradas.gif"
 					action="#{lotacaoController.listar}" />
-				<a4j:commandButton value="CADASTRAR SERVIDOR"
+				<!-- ### CADASTRAR SERVIDOR### -->
+				<a4j:commandButton image="../images/bot_adicionarservidor.gif"
 					action="#{servidorController.cadastrar}" />
-				<a4j:commandButton value="CADASTRAR TIPO FUNÇÃO" action="#{tipoFuncaoController.cadastrar}" />
+				<!--<a4j:commandButton value="CADASTRAR TIPO FUNÇÃO" action="#{tipoFuncaoController.cadastrar}" />
 				<a4j:commandButton value="LISTAR TIPO FUNÇÃO" action="#{tipoFuncaoController.listar}" />
+				-->
 			</rich:toolBar>
 		</a4j:form>
 	</rich:panel></center>
