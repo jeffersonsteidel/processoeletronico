@@ -4,7 +4,7 @@
     "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
 	<class name="br.com.progepe.entity.ServidorTitulacao" table="SERVIDORTITULACAO">
-		<id name="codigo" column="SERC_TIT_COD">
+		<id name="codigo" column="SERV_TIT_COD">
 			<generator class="increment"></generator>  
 		</id>
 		<many-to-one name="servidor" class="br.com.progepe.entity.Servidor"
@@ -15,7 +15,7 @@
 		<many-to-one name="cidadeEstabelecimentoEnsino" class="br.com.progepe.entity.Cidade"
 			column="CID_COD_ESTAB_ENS" not-null="true" lazy="false" />	
 		<many-to-one name="pais" class="br.com.progepe.entity.Pais"
-			column="PAIS_COD_EST_ENS" not-null="true" lazy="false" />
+			column="PAIS_COD_ESTAB_ENS" not-null="true" lazy="false" />
 		<property name="anoConclusao" column="SERV_TIT_ANO_CONC" />	
 		<property name="cargaHoraria" column="SERV_TIT_CARG_HOR" />	
 		<property name="registroConselho" column="SERV_TIT_REG_CONC" />
