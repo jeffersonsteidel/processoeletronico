@@ -13,7 +13,7 @@
 		<a4j:form>
 			<h:graphicImage value="../images/ifpr_logo.png" />
 			<BR />
-			<font size="8"><b>PROGEPE - PROCESSO ELETRÔNICO</b></font>
+			<font size="4"><b>PROGEPE - PROCESSO ELETRÔNICO</b></font>
 			<!--<rich:toolBar style="text-align: center;">
 				<a4j:commandButton value="LISTAR CARGOS"
 					action="#{cargoController.listar}" />
