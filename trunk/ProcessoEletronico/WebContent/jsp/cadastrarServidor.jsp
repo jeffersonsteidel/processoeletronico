@@ -699,7 +699,7 @@ orgaoRegistro,estadoOrgaoRegistro, titulacaoEstrangeira, titEstrangeira	"
 							style="width:80px" inputSize="12" />
 
 						<h:outputText value="Grau Parentesco: " />
-						<h:selectOneMenu>
+						<h:selectOneMenu value="#{servidorController.dependente.grauParentesco.codigo}">
 							<f:selectItem itemLabel="SELECIONE" itemValue="" />
 							<f:selectItems value="#{servidorController.grauParentescos}" />
 						</h:selectOneMenu>
@@ -741,7 +741,7 @@ orgaoRegistro,estadoOrgaoRegistro, titulacaoEstrangeira, titEstrangeira	"
 							disabled="#{!servidorController.indUniversitario}" inputSize="12" />
 
 						<a4j:commandButton value="Adicionar"
-							action="#{servidorController.adicionarDependente}"
+							action="#{servidorController.adicionarDependentes}"
 							oncomplete="#{rich:component('confirmPanel')}.show()" />
 					</h:panelGrid>
 					<rich:dataTable id="listaDependentes"
