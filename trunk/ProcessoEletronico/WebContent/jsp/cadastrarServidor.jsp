@@ -134,7 +134,8 @@
 						requiredMessage="Campo Data de Admissão no Órgão obrigatório!" />
 
 					<h:outputText value="Data de Admissão no Serviço Público: " />
-					<rich:calendar value="#{servidorController.servidor.dataAdmServicoPublico}"
+					<rich:calendar
+						value="#{servidorController.servidor.dataAdmServicoPublico}"
 						locale="" popup="true" datePattern="dd/MM/yyyy"
 						showApplyButton="#" cellWidth="12px" cellHeight="12px"
 						style="width:80px" required="true" inputSize="12"
@@ -713,10 +714,32 @@ orgaoRegistro,estadoOrgaoRegistro, titulacaoEstrangeira, titEstrangeira	"
 							value="#{servidorController.dependente.indNecessidadesEspeciais}">
 						</h:selectBooleanCheckbox>
 
-						<h:outputText value="É Estudante Universitário? " />
+						<h:outputText value="Estudante Universitário? " />
 						<h:selectBooleanCheckbox
 							value="#{servidorController.dependente.indEstudante}">
+							<a4j:support event="onchange"
+								action="#{servidorController.isUniversitario}" ajaxSingle="true"
+								reRender="estabelecimento, curso, formacao"></a4j:support>
 						</h:selectBooleanCheckbox>
+
+						<h:outputText value="Estabelecimento de Ensino:" />
+						<h:inputText value="#{servidorController.dependente.faculdade}"
+							id="estabelecimento"
+							disabled="#{!servidorController.indUniversitario}">
+						</h:inputText>
+
+						<h:outputText value="Curso:" />
+						<h:inputText value="#{servidorController.dependente.curso}"
+							id="curso" disabled="#{!servidorController.indUniversitario}">
+						</h:inputText>
+
+						<h:outputText value="Previsão de Formação:" />
+						<rich:calendar id="formacao"
+							value="#{servidorController.dependente.dataFormacao}" locale=""
+							popup="true" datePattern="dd/MM/yyyy" showApplyButton="#"
+							cellWidth="12px" cellHeight="12px" style="width:80px"
+							disabled="#{!servidorController.indUniversitario}" inputSize="12" />
+
 						<a4j:commandButton value="Adicionar"
 							action="#{servidorController.adicionarDependente}"
 							oncomplete="#{rich:component('confirmPanel')}.show()" />
