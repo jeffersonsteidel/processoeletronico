@@ -1,6 +1,8 @@
 package br.com.progepe.entity;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 public class Grupo implements Serializable {
 	/**
@@ -9,6 +11,7 @@ public class Grupo implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private Long codigo;
 	private String descricao;
+	private Set<Acao> acoes = new HashSet<Acao>();
 
 	public Long getCodigo() {
 		return codigo;
@@ -25,4 +28,13 @@ public class Grupo implements Serializable {
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
+
+	public Set<Acao> getAcoes() {
+		return acoes;
+	}
+
+	public void setAcoes(Set<Acao> acoes) {
+		this.acoes = acoes;
+	}
+
 }
