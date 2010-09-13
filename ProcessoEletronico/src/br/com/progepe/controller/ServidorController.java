@@ -138,7 +138,7 @@ public class ServidorController {
 	public Dependente getDependente() {
 		return dependente;
 	}
-	
+
 	public List<SelectItem> getAreasConhecimentos() {
 		return areasConhecimentos;
 	}
@@ -318,7 +318,7 @@ public class ServidorController {
 	public void setIndTitulacaoEstrangeira(Boolean indTitulacaoEstrangeira) {
 		this.indTitulacaoEstrangeira = indTitulacaoEstrangeira;
 	}
-	
+
 	public Boolean getIndConjugueServidor() {
 		return indConjugueServidor;
 	}
@@ -383,6 +383,7 @@ public class ServidorController {
 		servidorTitulacao.setPais(new Pais());
 		titulacaoList = new ArrayList<ServidorTitulacao>();
 		dependente.setDocumento(new Documento());
+		dependente.setGrauParentesco(new GrauParentesco());
 		dependente.getDocumento().setCarteiraUf(new Estado());
 		dependente.getDocumento().setRgUf(new Estado());
 		dependente.getDocumento().setTituloUf(new Estado());
@@ -586,14 +587,16 @@ public class ServidorController {
 		}
 		return bancos;
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	public List<SelectItem> listarAreaConhecimento() {
 		areasConhecimentos = new ArrayList<SelectItem>();
 		List<AreaConhecimento> areaConheciemntoList = new ArrayList<AreaConhecimento>();
-		areaConheciemntoList = dao.list(servidorTitulacao.getAreaConhecimento().getClass());
+		areaConheciemntoList = dao.list(servidorTitulacao.getAreaConhecimento()
+				.getClass());
 		for (AreaConhecimento areaConhecimento : areaConheciemntoList) {
-			areasConhecimentos.add(new SelectItem(areaConhecimento.getCodigo(), areaConhecimento.getDescricao()));
+			areasConhecimentos.add(new SelectItem(areaConhecimento.getCodigo(),
+					areaConhecimento.getDescricao()));
 		}
 		return areasConhecimentos;
 	}
@@ -695,9 +698,9 @@ public class ServidorController {
 		}
 		return false;
 	}
-	
+
 	public Boolean isConjugueServidor() {
-		if(servidor.getConjugue().getIndServidor()) {
+		if (servidor.getConjugue().getIndServidor()) {
 			indConjugueServidor = true;
 		} else {
 			indConjugueServidor = false;
@@ -740,7 +743,7 @@ public class ServidorController {
 		}
 		return false;
 	}
-	
+
 	public List<ServidorTitulacao> adicionarTitulacao() {
 		if (validatorTitulacao()) {
 			System.out.println("ERROS");
@@ -787,8 +790,7 @@ public class ServidorController {
 		if (servidorTitulacao.getCurso() == null
 				|| servidorTitulacao.getCurso() == "") {
 			message = new FacesMessage(FacesMessage.SEVERITY_ERROR,
-					"Campo Curso é obrigatório!",
-					"Campo Curso é obrigatório!");
+					"Campo Curso é obrigatório!", "Campo Curso é obrigatório!");
 			FacesContext.getCurrentInstance().addMessage("", message);
 			contadorErros = +1;
 		}
@@ -845,8 +847,74 @@ public class ServidorController {
 		return titulacaoList;
 	}
 
-	public List<Dependente> adicionarDependente() {
-		dependentes.add(dependente);
+	public List<Dependente> adicionarDependentes() {
+		if (validatorDependentes()) {
+			System.out.println("ERROS");
+		} else {
+			dependentes.add(dependente);
+		}
 		return dependentes;
+	}
+
+	public boolean validatorDependentes() {
+		FacesMessage message = null;
+		int contadorErros = 0;
+		if (dependente.getNome() == null || dependente.getNome() == "") {
+			message = new FacesMessage(FacesMessage.SEVERITY_ERROR,
+					"Campo Nome do Dependente é obrigatório!",
+					"Campo Nome do Dependente é obrigatório!");
+			FacesContext.getCurrentInstance().addMessage("", message);
+			contadorErros = +1;
+		}
+		if (dependente.getSexo() == null || dependente.getSexo() == "") {
+			message = new FacesMessage(FacesMessage.SEVERITY_ERROR,
+					"Campo Sexo é obrigatório!", "Campo Sexo é obrigatório!");
+			FacesContext.getCurrentInstance().addMessage("", message);
+			contadorErros = +1;
+		}
+		if (dependente.getDataNascimento() == null) {
+			message = new FacesMessage(FacesMessage.SEVERITY_ERROR,
+					"Campo Data de Nascimento do Dependente é obrigatório!",
+					"Campo Data de Nascimento do Dependente é obrigatório!");
+			FacesContext.getCurrentInstance().addMessage("", message);
+			contadorErros = +1;
+		}
+		if (dependente.getGrauParentesco().getCodigo() == 0 ) {
+			message = new FacesMessage(FacesMessage.SEVERITY_ERROR,
+					"Campo Grau Parentesco é obrigatório!",
+					"Campo Grau Parentesco é obrigatório!");
+			FacesContext.getCurrentInstance().addMessage("", message);
+			contadorErros = +1;
+		}
+		if (dependente.getIndEstudante()) {
+			if (dependente.getFaculdade() == null
+					|| dependente.getFaculdade() == "") {
+				message = new FacesMessage(FacesMessage.SEVERITY_ERROR,
+						"Campo Estabelecimento de Ensino é obrigatório!",
+						"Campo Estabelecimento de Ensino é obrigatório!");
+				FacesContext.getCurrentInstance().addMessage("", message);
+				contadorErros = +1;
+			}
+			if (dependente.getCurso() == null || dependente.getCurso() == "") {
+				message = new FacesMessage(FacesMessage.SEVERITY_ERROR,
+						"Campo Curso é obrigatório!",
+						"Campo Curso é obrigatório!");
+				FacesContext.getCurrentInstance().addMessage("", message);
+				contadorErros = +1;
+			}
+			if (dependente.getDataFormacao() == null) {
+				message = new FacesMessage(FacesMessage.SEVERITY_ERROR,
+						"Campo Previsão de Formação é obrigatório!",
+						"Campo Previsão de Formação é obrigatório!");
+				FacesContext.getCurrentInstance().addMessage("", message);
+				contadorErros = +1;
+			}
+		}
+
+		if (contadorErros > 0) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 }
