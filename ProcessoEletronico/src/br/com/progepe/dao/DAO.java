@@ -20,7 +20,6 @@ public class DAO {
 
 	public void save(Object object) {
 		try {
-
 			session.saveOrUpdate(object);
 			session.getTransaction().commit();
 			FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO,

@@ -10,6 +10,9 @@
 		<property name="nome" column="DEP_NOME" />
 		<property name="sexo" column="DEP_SEXO" />
 		<property name="dataNascimento" column="DEP_DATA_NASC" />
+		<property name="curso" column="DEP_CURSO" />
+		<property name="faculdade" column="DEP_FACULDADE" />
+		<property name="dataFormacao" column="DEP_DATA_FORMACAO" />
 		<many-to-one name="grauParentesco" class="br.com.progepe.entity.GrauParentesco"
 			column="GRAU_PAR_COD_DEP" not-null="true" lazy="false" />
 		<property name="indNecessidadesEspeciais" column="DEP_IND_NEC_ESP"

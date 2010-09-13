@@ -85,6 +85,7 @@ public class ServidorController {
 	private Boolean indPoupanca = false;
 	private Boolean indTitulacaoEstrangeira = false;
 	private Boolean indConjugueServidor = false;
+	private Boolean indUniversitario = false;
 
 	public Servidor getPessoa() {
 		return servidor;
@@ -324,6 +325,14 @@ public class ServidorController {
 
 	public void setIndConjugueServidor(Boolean indConjugueServidor) {
 		this.indConjugueServidor = indConjugueServidor;
+	}
+
+	public Boolean getIndUniversitario() {
+		return indUniversitario;
+	}
+
+	public void setIndUniversitario(Boolean indUniversitario) {
+		this.indUniversitario = indUniversitario;
 	}
 
 	public void cadastrar() throws IOException {
@@ -723,6 +732,15 @@ public class ServidorController {
 		return false;
 	}
 
+	public Boolean isUniversitario() {
+		if (dependente.getIndEstudante()) {
+			indUniversitario = true;
+		} else {
+			indUniversitario = false;
+		}
+		return false;
+	}
+	
 	public List<ServidorTitulacao> adicionarTitulacao() {
 		if (validatorTitulacao()) {
 			System.out.println("ERROS");

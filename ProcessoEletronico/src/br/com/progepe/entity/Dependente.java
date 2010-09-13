@@ -18,6 +18,9 @@ public class Dependente implements Serializable {
 	private Boolean indEstudante;
 	private Boolean indIr;
 	private Documento documento;
+	private String curso;
+	private String faculdade;
+	private String dataFormacao;
 
 	public Long getCodigo() {
 		return codigo;
@@ -89,6 +92,30 @@ public class Dependente implements Serializable {
 
 	public void setDocumento(Documento documento) {
 		this.documento = documento;
+	}
+
+	public String getCurso() {
+		return curso;
+	}
+
+	public void setCurso(String curso) {
+		this.curso = curso;
+	}
+
+	public String getFaculdade() {
+		return faculdade;
+	}
+
+	public void setFaculdade(String faculdade) {
+		this.faculdade = faculdade;
+	}
+
+	public String getDataFormacao() {
+		return dataFormacao;
+	}
+
+	public void setDataFormacao(String dataFormacao) {
+		this.dataFormacao = dataFormacao;
 	}
 	
 }
