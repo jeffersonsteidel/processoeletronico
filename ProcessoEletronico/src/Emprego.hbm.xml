@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping 
+	PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="br.com.progepe.entity.EMPREGO" table="EMPREGO">
+		<id name="codigo" column="EMP_COD">
+			<generator class="increment" />
+		</id>
+		<property name="cargo" column="EMP_CARGO" />
+		<property name="dataAdmissao" column="EMP_DATA_ADM" />
+		<property name="dataSaida" column="EMP_DATA_SAIDA" />
+		<property name="empresa" column="EMP_EMPRESA" />
+		<property name="codigoIdentificador" column="CARG_COD_IDENTIFICADOR" />
+		
+	</class>
+</hibernate-mapping>
