@@ -533,6 +533,89 @@ orgaoRegistro,estadoOrgaoRegistro, titulacaoEstrangeira, titEstrangeira	"
 			</rich:tab>
 
 			<rich:tab label="Profissional">
+				<a4j:region>
+					<h:panelGrid columns="4">
+						<h:outputText value="Empresa: " />
+						<h:inputText value="#{servidorController.emprego.empresa}"
+							id="empEmpresa" maxlength="100">
+						</h:inputText>
+						<h:outputText value="Cargo: " />
+						<h:inputText value="#{servidorController.emprego.cargo}"
+							id="empCargo" maxlength="80">
+						</h:inputText>
+
+
+						<h:outputText value="Data de Admissão: " />
+						<rich:calendar id="empDataAdm"
+							value="#{servidorController.emprego.dataAdmissao}" locale=""
+							popup="true" datePattern="dd/MM/yyyy" showApplyButton="#"
+							cellWidth="12px" cellHeight="12px" style="width:80px"
+							inputSize="12" />
+
+						<h:outputText value="Data de Saída: " />
+						<rich:calendar id="empDataSaida"
+							value="#{servidorController.emprego.dataSaida}" locale=""
+							popup="true" datePattern="dd/MM/yyyy" showApplyButton="#"
+							cellWidth="12px" cellHeight="12px" style="width:80px"
+							inputSize="12" />
+						<h:outputText value="Atividades: " />
+						<h:inputTextarea  value="#{servidorController.emprego.atividades}"
+							id="empAtividades" >
+						</h:inputTextarea>
+
+						<a4j:commandButton value="Adicionar"
+							reRender="listaEmpregos, empCargo,empEmpresa, empDataAdm, empDataSaida, empAtividades"
+							action="#{servidorController.adicionarEmprego}"
+							oncomplete="#{rich:component('confirmPanel')}.show()" />
+					</h:panelGrid>
+					<rich:dataTable id="listaEmpregos"
+						value="#{servidorController.empregoList}" var="list" width="950px"
+						columnClasses="center" rows="10" reRender="ds">
+						<rich:column width="450px">
+							<f:facet name="header">
+								<h:outputText value="Empresa" />
+							</f:facet>
+							<h:outputText value="#{list.empresa}" />
+						</rich:column>
+						<rich:column width="450px">
+							<f:facet name="header">
+								<h:outputText value="Cargo" />
+							</f:facet>
+							<h:outputText value="#{list.cargo}" />
+						</rich:column>
+						<rich:column width="450px">
+							<f:facet name="header">
+								<h:outputText value="Data de Admissão" />
+							</f:facet>
+							<h:outputText value="#{list.dataAdmissao}" />
+						</rich:column>
+						<rich:column width="450px">
+							<f:facet name="header">
+								<h:outputText value="Data de Saida" />
+							</f:facet>
+							<h:outputText value="#{list.dataSaida}" />
+						</rich:column>
+
+						<rich:column>
+							<f:facet name="header">
+								<h:outputText value="Excluir" />
+							</f:facet>
+							<a4j:commandLink action="#{servidorController.removerEmprego}"
+								reRender="listaEmpregos" ajaxSingle="true">
+								<h:graphicImage value="../images/delete.gif" style="border:0"
+									width="20" height="18" id="excluir" />
+								<f:setPropertyActionListener value="#{list.codigo}"
+									target="#{servidorController.emprego.codigo}" />
+								<f:setPropertyActionListener value="#{list.indentificador}"
+									target="#{servidorController.emprego.indentificador}" />
+							</a4j:commandLink>
+							<rich:toolTip for="excluir" value="Excluir" />
+						</rich:column>
+						<f:facet name="footer">
+							<rich:datascroller id="ds"></rich:datascroller>
+						</f:facet>
+					</rich:dataTable>
+				</a4j:region>
 			</rich:tab>
 
 			<rich:tab label="Conta Bancária">
@@ -766,7 +849,7 @@ orgaoRegistro,estadoOrgaoRegistro, titulacaoEstrangeira, titEstrangeira	"
 							<h:outputText value="#{list.grauParentesco.descricao}" />
 						</rich:column>
 
-						
+
 						<rich:column>
 							<f:facet name="header">
 								<h:outputText value="Excluir" />

@@ -11,7 +11,7 @@
 		<property name="dataAdmissao" column="EMP_DATA_ADM" />
 		<property name="dataSaida" column="EMP_DATA_SAIDA" />
 		<property name="empresa" column="EMP_EMPRESA" />
-		<property name="codigoIdentificador" column="CARG_COD_IDENTIFICADOR" />
+		<property name="atividades" column="EMP_ATIVIDADE" />
 		
 	</class>
 </hibernate-mapping>
