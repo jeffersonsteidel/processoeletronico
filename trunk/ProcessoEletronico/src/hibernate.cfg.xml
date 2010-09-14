@@ -29,6 +29,7 @@
 		<mapping resource="Dependente.hbm.xml" />
 		<mapping resource="Documento.hbm.xml" />
 		<mapping resource="Endereco.hbm.xml" />
+		<mapping resource="Emprego.hbm.xml" />
 		<mapping resource="Estado.hbm.xml" />
 		<mapping resource="EstadoCivil.hbm.xml" />
 		<mapping resource="Funcao.hbm.xml" />
