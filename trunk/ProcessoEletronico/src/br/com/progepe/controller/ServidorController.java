@@ -397,6 +397,7 @@ public class ServidorController {
 		dependente.getDocumento().setRgUf(new Estado());
 		dependente.getDocumento().setTituloUf(new Estado());
 		emprego = new Emprego();
+		empregoList = new ArrayList<Emprego>();
 
 		cargos = new ArrayList<SelectItem>();
 		classes = new ArrayList<SelectItem>();
@@ -981,6 +982,13 @@ public class ServidorController {
 			FacesContext.getCurrentInstance().addMessage("", message);
 			contadorErros = +1;
 		}
+		if (emprego.getCargo() == null || emprego.getCargo() == "") {
+			message = new FacesMessage(FacesMessage.SEVERITY_ERROR,
+					"Campo Cargo é obrigatório!",
+					"Campo Cargo é obrigatório!");
+			FacesContext.getCurrentInstance().addMessage("", message);
+			contadorErros = +1;
+		}
 		if (emprego.getDataAdmissao() == null) {
 			message = new FacesMessage(FacesMessage.SEVERITY_ERROR,
 					"Campo Data de Admissão é obrigatório!",
@@ -995,7 +1003,7 @@ public class ServidorController {
 			FacesContext.getCurrentInstance().addMessage("", message);
 			contadorErros = +1;
 		}
-		if (emprego.getAtividades() == null) {
+		if (emprego.getAtividades() == null || emprego.getAtividades() == "") {
 			message = new FacesMessage(FacesMessage.SEVERITY_ERROR,
 					"Campo Atividades é obrigatório!",
 					"Campo Atividades é obrigatório!");
@@ -1013,7 +1021,7 @@ public class ServidorController {
 		if (emprego.getCodigo() != 0) {
 			empregoList.remove(emprego);
 		} else {
-			for (int i = 0; i < titulacaoList.size(); i++) {
+			for (int i = 0; i < empregoList.size(); i++) {
 				if (empregoList.get(i).getIndentificador()
 						.equals(emprego.getIndentificador())) {
 					empregoList.remove(empregoList.get(i));

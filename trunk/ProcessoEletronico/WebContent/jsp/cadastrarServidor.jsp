@@ -489,7 +489,7 @@ orgaoRegistro,estadoOrgaoRegistro, titulacaoEstrangeira, titEstrangeira	"
 					</h:panelGrid>
 					<rich:dataTable id="listaEscolariadade"
 						value="#{servidorController.titulacaoList}" var="list"
-						width="950px" columnClasses="center" rows="10" reRender="ds">
+						width="930px" columnClasses="center" rows="10" reRender="ds">
 						<rich:column width="450px">
 							<f:facet name="header">
 								<h:outputText value="Titulação" />
@@ -537,11 +537,11 @@ orgaoRegistro,estadoOrgaoRegistro, titulacaoEstrangeira, titEstrangeira	"
 					<h:panelGrid columns="4">
 						<h:outputText value="Empresa: " />
 						<h:inputText value="#{servidorController.emprego.empresa}"
-							id="empEmpresa" maxlength="100">
+							id="empEmpresa" maxlength="100" size="50">
 						</h:inputText>
 						<h:outputText value="Cargo: " />
 						<h:inputText value="#{servidorController.emprego.cargo}"
-							id="empCargo" maxlength="80">
+							id="empCargo" maxlength="80" size="30">
 						</h:inputText>
 
 
@@ -559,17 +559,17 @@ orgaoRegistro,estadoOrgaoRegistro, titulacaoEstrangeira, titEstrangeira	"
 							cellWidth="12px" cellHeight="12px" style="width:80px"
 							inputSize="12" />
 						<h:outputText value="Atividades: " />
-						<h:inputTextarea  value="#{servidorController.emprego.atividades}"
-							id="empAtividades" >
+						<h:inputTextarea value="#{servidorController.emprego.atividades}"
+							id="empAtividades" cols="35" rows="5">
 						</h:inputTextarea>
-
-						<a4j:commandButton value="Adicionar"
-							reRender="listaEmpregos, empCargo,empEmpresa, empDataAdm, empDataSaida, empAtividades"
-							action="#{servidorController.adicionarEmprego}"
-							oncomplete="#{rich:component('confirmPanel')}.show()" />
 					</h:panelGrid>
+					<a4j:commandButton value="Adicionar"
+						reRender="listaEmpregos, empCargo,empEmpresa, empDataAdm, empDataSaida, empAtividades"
+						action="#{servidorController.adicionarEmprego}"
+						oncomplete="#{rich:component('confirmPanel')}.show()" />
+
 					<rich:dataTable id="listaEmpregos"
-						value="#{servidorController.empregoList}" var="list" width="950px"
+						value="#{servidorController.empregoList}" var="list" width="930px"
 						columnClasses="center" rows="10" reRender="ds">
 						<rich:column width="450px">
 							<f:facet name="header">
@@ -587,15 +587,14 @@ orgaoRegistro,estadoOrgaoRegistro, titulacaoEstrangeira, titEstrangeira	"
 							<f:facet name="header">
 								<h:outputText value="Data de Admissão" />
 							</f:facet>
-							<h:outputText value="#{list.dataAdmissao}" />
+							<h:outputText value="#{list.dataAdmissaoString}" />
 						</rich:column>
 						<rich:column width="450px">
 							<f:facet name="header">
 								<h:outputText value="Data de Saida" />
 							</f:facet>
-							<h:outputText value="#{list.dataSaida}" />
+							<h:outputText value="#{list.dataSaidaString}" />
 						</rich:column>
-
 						<rich:column>
 							<f:facet name="header">
 								<h:outputText value="Excluir" />
@@ -834,7 +833,7 @@ orgaoRegistro,estadoOrgaoRegistro, titulacaoEstrangeira, titEstrangeira	"
 							oncomplete="#{rich:component('confirmPanel')}.show()" />
 					</h:panelGrid>
 					<rich:dataTable id="listaDependentes"
-						value="#{servidorController.dependentes}" var="list" width="950px"
+						value="#{servidorController.dependentes}" var="list" width="930px"
 						columnClasses="center" rows="10" reRender="ds">
 						<rich:column width="450px">
 							<f:facet name="header">
