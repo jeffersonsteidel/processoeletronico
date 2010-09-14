@@ -5,13 +5,14 @@ import java.util.List;
 
 import javax.faces.context.FacesContext;
 
-import br.com.progepe.dao.FuncaoDAO;
+import br.com.progepe.dao.DAO;
 import br.com.progepe.entity.Funcao;
 
 public class FuncaoController {
 
 	private Funcao funcao;
 	private List<Funcao> funcaoList;
+	DAO dao = new DAO();
 
 	public Funcao getFuncao() {
 		return funcao;
@@ -36,22 +37,20 @@ public class FuncaoController {
 	}
 
 	public void salvar() {
-		FuncaoDAO funcaoDAO = new FuncaoDAO();
-		funcaoDAO.save(funcao);
+		dao.save(funcao);
 		funcao = new Funcao();
 	}
 
 	public void carregarFuncao() throws IOException {
-		FuncaoDAO funcaoDAO = new FuncaoDAO();
-		funcaoDAO.refresh(funcao);
+		dao.refresh(funcao);
 		FacesContext.getCurrentInstance().getExternalContext()
 				.redirect("cadastrarFuncao.jsp");
 	}
 
+	@SuppressWarnings("unchecked")
 	public List<Funcao> listarFuncoes() throws IOException {
 		funcao = new Funcao();
-		FuncaoDAO funcaoDAO = new FuncaoDAO();
-		this.setFuncaoList(funcaoDAO.list());
+		this.setFuncaoList(dao.list(Funcao.class));
 		FacesContext.getCurrentInstance().getExternalContext()
 				.redirect("listarFuncoes.jsp");
 		return this.getFuncaoList();

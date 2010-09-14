@@ -10,17 +10,7 @@ import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
 
 import br.com.progepe.dao.CidadeDAO;
-import br.com.progepe.dao.CorPeleDAO;
 import br.com.progepe.dao.DAO;
-import br.com.progepe.dao.EstadoCivilDAO;
-import br.com.progepe.dao.EstadoDAO;
-import br.com.progepe.dao.FuncaoDAO;
-import br.com.progepe.dao.GrauParentescoDAO;
-import br.com.progepe.dao.GrupoSanguineoDAO;
-import br.com.progepe.dao.PadraoDAO;
-import br.com.progepe.dao.PaisDAO;
-import br.com.progepe.dao.RegimeTrabalhoDAO;
-import br.com.progepe.dao.SituacaoFuncionalDAO;
 import br.com.progepe.entity.AreaConhecimento;
 import br.com.progepe.entity.Banco;
 import br.com.progepe.entity.Cargo;
@@ -430,22 +420,22 @@ public class ServidorController {
 				.redirect("cadastrarServidor.jsp");
 	}
 
+	@SuppressWarnings("unchecked")
 	public List<SelectItem> listarUfs() {
-		EstadoDAO estadoDAO = new EstadoDAO();
 		ufs = new ArrayList<SelectItem>();
 		List<Estado> estadoList = new ArrayList<Estado>();
-		estadoList = estadoDAO.list();
+		estadoList = dao.list(Estado.class);
 		for (Estado estado : estadoList) {
 			ufs.add(new SelectItem(estado.getCodigo(), estado.getUf()));
 		}
 		return ufs;
 	}
 
+	@SuppressWarnings("unchecked")
 	public List<SelectItem> listarEstados() {
-		EstadoDAO estadoDAO = new EstadoDAO();
 		estados = new ArrayList<SelectItem>();
 		List<Estado> estadoList = new ArrayList<Estado>();
-		estadoList = estadoDAO.list();
+		estadoList = dao.list(Estado.class);
 		for (Estado estado : estadoList) {
 			estados.add(new SelectItem(estado.getCodigo(), estado
 					.getDescricao()));
@@ -517,11 +507,11 @@ public class ServidorController {
 		return lotacoes;
 	}
 
+	@SuppressWarnings("unchecked")
 	public List<SelectItem> listarEstadosCivis() {
-		EstadoCivilDAO estadoCivilDAO = new EstadoCivilDAO();
 		estadosCivis = new ArrayList<SelectItem>();
 		List<EstadoCivil> estadoCivilList = new ArrayList<EstadoCivil>();
-		estadoCivilList = estadoCivilDAO.list();
+		estadoCivilList = dao.list(EstadoCivil.class);
 		for (EstadoCivil estadoCivil : estadoCivilList) {
 			estadosCivis.add(new SelectItem(estadoCivil.getCodigo(),
 					estadoCivil.getDescricao()));
@@ -529,11 +519,11 @@ public class ServidorController {
 		return estadosCivis;
 	}
 
+	@SuppressWarnings("unchecked")
 	public List<SelectItem> listarCorPele() {
-		CorPeleDAO corPeleDAO = new CorPeleDAO();
 		coresPeles = new ArrayList<SelectItem>();
 		List<CorPele> corPeleList = new ArrayList<CorPele>();
-		corPeleList = corPeleDAO.list();
+		corPeleList = dao.list(CorPele.class);
 		for (CorPele corPele : corPeleList) {
 			coresPeles.add(new SelectItem(corPele.getCodigo(), corPele
 					.getDescricao()));
@@ -541,11 +531,11 @@ public class ServidorController {
 		return coresPeles;
 	}
 
+	@SuppressWarnings("unchecked")
 	public List<SelectItem> listarGrauParentesco() {
-		GrauParentescoDAO grauParentescoDAO = new GrauParentescoDAO();
 		grauParentescos = new ArrayList<SelectItem>();
 		List<GrauParentesco> grauParentescoList = new ArrayList<GrauParentesco>();
-		grauParentescoList = grauParentescoDAO.list();
+		grauParentescoList = dao.list(GrauParentesco.class);
 		for (GrauParentesco grauParentesco : grauParentescoList) {
 			grauParentescos.add(new SelectItem(grauParentesco.getCodigo(),
 					grauParentesco.getDescricao()));
@@ -553,11 +543,11 @@ public class ServidorController {
 		return grauParentescos;
 	}
 
+	@SuppressWarnings("unchecked")
 	public List<SelectItem> listarGrupoSanguineo() {
-		GrupoSanguineoDAO grupoSanguineoDAO = new GrupoSanguineoDAO();
 		gruposSanguineos = new ArrayList<SelectItem>();
 		List<GrupoSanguineo> grupoSanguineoList = new ArrayList<GrupoSanguineo>();
-		grupoSanguineoList = grupoSanguineoDAO.list();
+		grupoSanguineoList = dao.list(GrupoSanguineo.class);
 		for (GrupoSanguineo grupoSanguineo : grupoSanguineoList) {
 			gruposSanguineos.add(new SelectItem(grupoSanguineo.getCodigo(),
 					grupoSanguineo.getDescricao()));
@@ -565,11 +555,11 @@ public class ServidorController {
 		return gruposSanguineos;
 	}
 
+	@SuppressWarnings("unchecked")
 	public List<SelectItem> listarPadroes() {
-		PadraoDAO padraoDAO = new PadraoDAO();
 		padroes = new ArrayList<SelectItem>();
 		List<Padrao> padraoList = new ArrayList<Padrao>();
-		padraoList = padraoDAO.list();
+		padraoList = dao.list(Padrao.class);
 		for (Padrao padrao : padraoList) {
 			padroes.add(new SelectItem(padrao.getCodigo(), padrao.getNivel()
 					.toString()));
@@ -601,11 +591,11 @@ public class ServidorController {
 		return areasConhecimentos;
 	}
 
+	@SuppressWarnings("unchecked")
 	public List<SelectItem> listarFuncoes() {
-		FuncaoDAO funcaoDAO = new FuncaoDAO();
 		funcoes = new ArrayList<SelectItem>();
 		List<Funcao> funcoesList = new ArrayList<Funcao>();
-		funcoesList = funcaoDAO.list();
+		funcoesList = dao.list(Funcao.class);
 		for (Funcao funcao : funcoesList) {
 			funcoes.add(new SelectItem(funcao.getCodigo(), funcao
 					.getDescricao()));
@@ -631,11 +621,11 @@ public class ServidorController {
 		servidor.setCargo(cargo);
 	}
 
+	@SuppressWarnings("unchecked")
 	public List<SelectItem> listarSituacoesFuncionais() {
-		SituacaoFuncionalDAO situacaoFuncionalDAO = new SituacaoFuncionalDAO();
 		situacoesFuncionais = new ArrayList<SelectItem>();
 		List<SituacaoFuncional> situacaoFuncionalList = new ArrayList<SituacaoFuncional>();
-		situacaoFuncionalList = situacaoFuncionalDAO.list();
+		situacaoFuncionalList = dao.list(SituacaoFuncional.class);
 		for (SituacaoFuncional situacaoFuncional : situacaoFuncionalList) {
 			situacoesFuncionais.add(new SelectItem(situacaoFuncional
 					.getCodigo(), situacaoFuncional.getDescricao()));
@@ -643,11 +633,11 @@ public class ServidorController {
 		return situacoesFuncionais;
 	}
 
+	@SuppressWarnings("unchecked")
 	public List<SelectItem> listarRegimesTrabalhos() {
-		RegimeTrabalhoDAO regimeTrabalhoDAO = new RegimeTrabalhoDAO();
 		regimesTrabalhos = new ArrayList<SelectItem>();
 		List<RegimeTrabalho> regimeTrabalhoList = new ArrayList<RegimeTrabalho>();
-		regimeTrabalhoList = regimeTrabalhoDAO.list();
+		regimeTrabalhoList = dao.list(RegimeTrabalho.class);
 		for (RegimeTrabalho regimeTrabalho : regimeTrabalhoList) {
 			regimesTrabalhos.add(new SelectItem(regimeTrabalho.getCodigo(),
 					regimeTrabalho.getDescricao()));
@@ -678,11 +668,11 @@ public class ServidorController {
 		return titulacoes;
 	}
 
+	@SuppressWarnings("unchecked")
 	public List<SelectItem> listarPais() {
-		PaisDAO paisDAO = new PaisDAO();
 		paises = new ArrayList<SelectItem>();
 		List<Pais> paisList = new ArrayList<Pais>();
-		paisList = paisDAO.list();
+		paisList = dao.list(Pais.class);
 		for (Pais pais : paisList) {
 			paises.add(new SelectItem(pais.getCodigo(), pais.getDescricao()));
 		}
@@ -879,7 +869,7 @@ public class ServidorController {
 			FacesContext.getCurrentInstance().addMessage("", message);
 			contadorErros = +1;
 		}
-		if (dependente.getGrauParentesco().getCodigo() == 0 ) {
+		if (dependente.getGrauParentesco().getCodigo() == 0) {
 			message = new FacesMessage(FacesMessage.SEVERITY_ERROR,
 					"Campo Grau Parentesco é obrigatório!",
 					"Campo Grau Parentesco é obrigatório!");
