@@ -1,6 +1,7 @@
 package br.com.progepe.entity;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Emprego implements Serializable {
@@ -12,8 +13,11 @@ public class Emprego implements Serializable {
 	private Date dataSaida;
 	private String empresa;
 	private String atividades;
-	//Variavel auxiliar
+	// Variavel auxiliar
 	private Integer indentificador;
+
+	private String dataAdmissaoString;
+	private String dataSaidaString;
 
 	public Long getCodigo() {
 		return codigo;
@@ -70,5 +74,29 @@ public class Emprego implements Serializable {
 	public void setIndentificador(Integer indentificador) {
 		this.indentificador = indentificador;
 	}
-	
+
+	public String getDataAdmissaoString() {
+		if (dataAdmissao != null) {
+			SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+			dataAdmissaoString = sdf.format(dataAdmissao);
+		}
+		return dataAdmissaoString;
+	}
+
+	public void setDataAdmissaoString(String dataAdmissaoString) {
+		this.dataAdmissaoString = dataAdmissaoString;
+	}
+
+	public String getDataSaidaString() {
+		if (dataSaida != null) {
+			SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+			dataSaidaString = sdf.format(dataSaida);
+		}
+		return dataSaidaString;
+	}
+
+	public void setDataSaidaString(String dataSaidaString) {
+		this.dataSaidaString = dataSaidaString;
+	}
+
 }
