@@ -654,68 +654,72 @@ orgaoRegistro,estadoOrgaoRegistro, titulacaoEstrangeira, titEstrangeira	"
 				<a4j:region>
 					<h:panelGrid columns="4">
 						<h:outputText value="Nome do Dependente: " />
-						<h:inputText value="#{servidorController.dependente.nome}">
+						<h:inputText value="#{servidorController.dependente.nome}"
+							id="depNome">
 						</h:inputText>
 
 						<h:outputText value="Sexo: " />
-						<h:selectOneMenu value="#{servidorController.dependente.sexo}">
+						<h:selectOneMenu value="#{servidorController.dependente.sexo}"
+							id="depSexo">
 							<f:selectItem itemLabel="SELECIONE" itemValue="" />
 							<f:selectItem itemLabel="FEMININO" itemValue="F" />
 							<f:selectItem itemLabel="MASCULINO" itemValue="M" />
 						</h:selectOneMenu>
 
 						<h:outputText value="Data de Nascimento do Dependente: " />
-						<rich:calendar
+						<rich:calendar id="depDtNasc"
 							value="#{servidorController.dependente.dataNascimento}" locale=""
 							popup="true" datePattern="dd/MM/yyyy" showApplyButton="#"
 							cellWidth="12px" cellHeight="12px" style="width:80px"
 							inputSize="12" />
 
 						<h:outputText value="CPF do Dependente: " />
-						<h:inputText
+						<h:inputText id="depCPF"
 							value="#{servidorController.dependente.documento.cpf}" size="16"
 							maxlength="14" onkeypress="mascara(this,cpf);"></h:inputText>
 
 						<h:outputText value="RG do Dependente: " />
-						<h:inputText value="#{servidorController.dependente.documento.rg}"
-							size="16" maxlength="14"></h:inputText>
+						<h:inputText id="depRG"
+							value="#{servidorController.dependente.documento.rg}" size="16"
+							maxlength="14"></h:inputText>
 
 						<h:outputText value="UF do RG do Dependente: " />
-						<h:selectOneMenu
+						<h:selectOneMenu id="depUFRG"
 							value="#{servidorController.dependente.documento.rgUf.codigo}">
 							<f:selectItem itemLabel="SELECIONE" itemValue="" />
 							<f:selectItems value="#{servidorController.ufs}" />
 						</h:selectOneMenu>
 						<h:outputText value="Orgão Emissor do RG do Dependente: " />
-						<h:inputText
+						<h:inputText id="depOrgRG"
 							value="#{servidorController.dependente.documento.rgOrgaoEmissor}"
 							size="16" maxlength="8">
 						</h:inputText>
 						<h:outputText value="Data de Expedição do RG: " />
-						<rich:calendar
+						<rich:calendar id="depExpRG"
 							value="#{servidorController.servidor.conjugue.documento.rgDataExpedicao}"
 							locale="" popup="true" datePattern="dd/MM/yyyy"
 							showApplyButton="#" cellWidth="12px" cellHeight="12px"
 							style="width:80px" inputSize="12" />
 
 						<h:outputText value="Grau Parentesco: " />
-						<h:selectOneMenu value="#{servidorController.dependente.grauParentesco.codigo}">
+						<h:selectOneMenu id="grauParentesco"
+							value="#{servidorController.dependente.grauParentesco.codigo}">
 							<f:selectItem itemLabel="SELECIONE" itemValue="" />
 							<f:selectItems value="#{servidorController.grauParentescos}" />
 						</h:selectOneMenu>
 
 						<h:outputText value="Imposto de Renda: " />
-						<h:selectBooleanCheckbox
+						<h:selectBooleanCheckbox id="ir"
 							value="#{servidorController.dependente.indIr}">
 						</h:selectBooleanCheckbox>
 
 						<h:outputText value="Necessidades Especiais: " />
-						<h:selectBooleanCheckbox
+						<h:selectBooleanCheckbox id="pne"
 							value="#{servidorController.dependente.indNecessidadesEspeciais}">
 						</h:selectBooleanCheckbox>
 
 						<h:outputText value="Estudante Universitário? " />
-						<h:selectBooleanCheckbox
+						<h:selectBooleanCheckbox id="universitario"
 							value="#{servidorController.dependente.indEstudante}">
 							<a4j:support event="onchange"
 								action="#{servidorController.isUniversitario}" ajaxSingle="true"
@@ -741,6 +745,8 @@ orgaoRegistro,estadoOrgaoRegistro, titulacaoEstrangeira, titEstrangeira	"
 							disabled="#{!servidorController.indUniversitario}" inputSize="12" />
 
 						<a4j:commandButton value="Adicionar"
+							reRender="listaDependentes, estabelecimento, curso, formacao, universitario, pne, ir, grauParentesco,
+							depExpRG, depOrgRG, depUFRG, depRG, depNome, depCPF, depDtNasc, depSexo"
 							action="#{servidorController.adicionarDependentes}"
 							oncomplete="#{rich:component('confirmPanel')}.show()" />
 					</h:panelGrid>
@@ -760,27 +766,19 @@ orgaoRegistro,estadoOrgaoRegistro, titulacaoEstrangeira, titEstrangeira	"
 							<h:outputText value="#{list.grauParentesco.descricao}" />
 						</rich:column>
 
-						<rich:column>
-							<f:facet name="header">
-								<h:outputText value="Editar" />
-							</f:facet>
-							<a4j:commandLink action="#" reRender="listaDependentes"
-								ajaxSingle="true">
-								<h:graphicImage value="../images/edit.gif" style="border:0"
-									width="20" height="18" id="editar" />
-							</a4j:commandLink>
-							<rich:toolTip for="editar" value="Editar" />
-						</rich:column>
-
-
+						
 						<rich:column>
 							<f:facet name="header">
 								<h:outputText value="Excluir" />
 							</f:facet>
-							<a4j:commandLink action="#" reRender="listaDependentes"
-								ajaxSingle="true">
+							<a4j:commandLink action="#{servidorController.removerDependente}"
+								reRender="listaDependentes" ajaxSingle="true">
 								<h:graphicImage value="../images/delete.gif" style="border:0"
 									width="20" height="18" id="excluir" />
+								<f:setPropertyActionListener value="#{list.codigo}"
+									target="#{servidorController.dependente.codigo}" />
+								<f:setPropertyActionListener value="#{list.indentificador}"
+									target="#{servidorController.dependente.indentificador}" />
 							</a4j:commandLink>
 							<rich:toolTip for="excluir" value="Excluir" />
 						</rich:column>
