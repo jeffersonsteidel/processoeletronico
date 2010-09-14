@@ -21,6 +21,7 @@ import br.com.progepe.entity.ContaBancaria;
 import br.com.progepe.entity.CorPele;
 import br.com.progepe.entity.Dependente;
 import br.com.progepe.entity.Documento;
+import br.com.progepe.entity.Emprego;
 import br.com.progepe.entity.Endereco;
 import br.com.progepe.entity.Estado;
 import br.com.progepe.entity.EstadoCivil;
@@ -49,6 +50,8 @@ public class ServidorController {
 	private Titulacao titulacao;
 	private List<ServidorTitulacao> titulacaoList;
 	private ServidorTitulacao servidorTitulacao;
+	private Emprego emprego;
+	private List<Emprego> empregoList;
 
 	private List<SelectItem> cargos;
 	private List<SelectItem> classes;
@@ -273,6 +276,22 @@ public class ServidorController {
 		return titulacoes;
 	}
 
+	public Emprego getEmprego() {
+		return emprego;
+	}
+
+	public void setEmprego(Emprego emprego) {
+		this.emprego = emprego;
+	}
+
+	public List<Emprego> getEmpregoList() {
+		return empregoList;
+	}
+
+	public void setEmpregoList(List<Emprego> empregoList) {
+		this.empregoList = empregoList;
+	}
+
 	public void setTitulacoes(List<SelectItem> titulacoes) {
 		this.titulacoes = titulacoes;
 	}
@@ -377,6 +396,7 @@ public class ServidorController {
 		dependente.getDocumento().setCarteiraUf(new Estado());
 		dependente.getDocumento().setRgUf(new Estado());
 		dependente.getDocumento().setTituloUf(new Estado());
+		emprego = new Emprego();
 
 		cargos = new ArrayList<SelectItem>();
 		classes = new ArrayList<SelectItem>();
@@ -841,7 +861,8 @@ public class ServidorController {
 		if (validatorDependentes()) {
 			System.out.println("ERROS");
 		} else {
-			dependente.setGrauParentesco((GrauParentesco) dao.refresh(dependente.getGrauParentesco()));
+			dependente.setGrauParentesco((GrauParentesco) dao
+					.refresh(dependente.getGrauParentesco()));
 			dependente.setIndentificador(dependentes.size() + 1);
 			dependentes.add(dependente);
 			FacesMessage messageSucesso = new FacesMessage(
@@ -920,7 +941,7 @@ public class ServidorController {
 			return false;
 		}
 	}
-	
+
 	public List<Dependente> removerDependente() {
 		if (dependente.getCodigo() != 0) {
 			dependentes.remove(dependente);
@@ -933,5 +954,72 @@ public class ServidorController {
 			}
 		}
 		return dependentes;
+	}
+
+	public List<Emprego> adicionarEmprego() {
+		if (validatorEmprego()) {
+			System.out.println("ERROS");
+		} else {
+			emprego.setIndentificador(empregoList.size() + 1);
+			empregoList.add(emprego);
+			FacesMessage messageSucesso = new FacesMessage(
+					FacesMessage.SEVERITY_INFO, "Item inserido com sucesso!",
+					"Item inserido com sucesso!");
+			FacesContext.getCurrentInstance().addMessage("", messageSucesso);
+			emprego = new Emprego();
+		}
+		return empregoList;
+	}
+
+	public boolean validatorEmprego() {
+		FacesMessage message = null;
+		int contadorErros = 0;
+		if (emprego.getEmpresa() == null || emprego.getEmpresa() == "") {
+			message = new FacesMessage(FacesMessage.SEVERITY_ERROR,
+					"Campo Empresa é obrigatório!",
+					"Campo Empresa é obrigatório!");
+			FacesContext.getCurrentInstance().addMessage("", message);
+			contadorErros = +1;
+		}
+		if (emprego.getDataAdmissao() == null) {
+			message = new FacesMessage(FacesMessage.SEVERITY_ERROR,
+					"Campo Data de Admissão é obrigatório!",
+					"Campo Data de Admissão é obrigatório!");
+			FacesContext.getCurrentInstance().addMessage("", message);
+			contadorErros = +1;
+		}
+		if (emprego.getDataSaida() == null) {
+			message = new FacesMessage(FacesMessage.SEVERITY_ERROR,
+					"Campo Data de Saída é obrigatório!",
+					"Campo Data de Saída é obrigatório!");
+			FacesContext.getCurrentInstance().addMessage("", message);
+			contadorErros = +1;
+		}
+		if (emprego.getAtividades() == null) {
+			message = new FacesMessage(FacesMessage.SEVERITY_ERROR,
+					"Campo Atividades é obrigatório!",
+					"Campo Atividades é obrigatório!");
+			FacesContext.getCurrentInstance().addMessage("", message);
+			contadorErros = +1;
+		}
+		if (contadorErros > 0) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	public List<Emprego> removerEmprego() {
+		if (emprego.getCodigo() != 0) {
+			empregoList.remove(emprego);
+		} else {
+			for (int i = 0; i < titulacaoList.size(); i++) {
+				if (empregoList.get(i).getIndentificador()
+						.equals(emprego.getIndentificador())) {
+					empregoList.remove(empregoList.get(i));
+				}
+			}
+		}
+		return empregoList;
 	}
 }

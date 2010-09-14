@@ -12,6 +12,8 @@ public class Emprego implements Serializable {
 	private Date dataSaida;
 	private String empresa;
 	private String atividades;
+	//Variavel auxiliar
+	private Integer indentificador;
 
 	public Long getCodigo() {
 		return codigo;
@@ -61,4 +63,12 @@ public class Emprego implements Serializable {
 		this.atividades = atividades;
 	}
 
+	public Integer getIndentificador() {
+		return indentificador;
+	}
+
+	public void setIndentificador(Integer indentificador) {
+		this.indentificador = indentificador;
+	}
+	
 }
