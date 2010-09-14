@@ -29,11 +29,11 @@
 				<h:outputText value="CPF: " />
 				<h:inputText
 					value="#{autenticacaoController.autenticacao.servidor.documento.cpf}"
-					size="25" maxlength="20" required="false"
+					size="25" maxlength="20" required="true"
 					requiredMessage="Campo CPF obrigatório!"></h:inputText>
 				<h:outputText value="Senha: " />
 				<h:inputSecret value="#{autenticacaoController.autenticacao.senha}"
-					size="25" maxlength="12" required="false"
+					size="25" maxlength="12" required="true"
 					requiredMessage="Campo Senha obrigatório!"></h:inputSecret>
 			</h:panelGrid>
 			<a4j:commandButton value="Entrar" type="submit" reRender="form"

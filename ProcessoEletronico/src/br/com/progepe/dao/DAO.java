@@ -73,8 +73,4 @@ public class DAO {
 		return c.list();
 	}
 
-	@SuppressWarnings("rawtypes")
-	public Class load(Class objectClass, Long id) {
-        return (Class) session.load(objectClass, id);
-    }
 }

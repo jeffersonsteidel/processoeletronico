@@ -360,8 +360,6 @@ public class ServidorController {
 		servidor.setSituacaoFuncional(new SituacaoFuncional());
 		servidor.setTelefone(new Telefone());
 		servidor.setCelular(new Telefone());
-		dependente = new Dependente();
-		dependente.setGrauParentesco(new GrauParentesco());
 		dependentes = new ArrayList<Dependente>();
 		servidorTitulacao = new ServidorTitulacao();
 		servidorTitulacao.setTitulacao(new Titulacao());
@@ -372,6 +370,8 @@ public class ServidorController {
 		servidorTitulacao.setEstadoOrgaoEmissor(new Estado());
 		servidorTitulacao.setPais(new Pais());
 		titulacaoList = new ArrayList<ServidorTitulacao>();
+		dependente = new Dependente();
+		dependente.setGrauParentesco(new GrauParentesco());
 		dependente.setDocumento(new Documento());
 		dependente.setGrauParentesco(new GrauParentesco());
 		dependente.getDocumento().setCarteiraUf(new Estado());
@@ -841,7 +841,20 @@ public class ServidorController {
 		if (validatorDependentes()) {
 			System.out.println("ERROS");
 		} else {
+			dependente.setGrauParentesco((GrauParentesco) dao.refresh(dependente.getGrauParentesco()));
+			dependente.setIndentificador(dependentes.size() + 1);
 			dependentes.add(dependente);
+			FacesMessage messageSucesso = new FacesMessage(
+					FacesMessage.SEVERITY_INFO, "Item inserido com sucesso!",
+					"Item inserido com sucesso!");
+			FacesContext.getCurrentInstance().addMessage("", messageSucesso);
+			dependente = new Dependente();
+			dependente.setGrauParentesco(new GrauParentesco());
+			dependente.setDocumento(new Documento());
+			dependente.setGrauParentesco(new GrauParentesco());
+			dependente.getDocumento().setCarteiraUf(new Estado());
+			dependente.getDocumento().setRgUf(new Estado());
+			dependente.getDocumento().setTituloUf(new Estado());
 		}
 		return dependentes;
 	}
@@ -906,5 +919,19 @@ public class ServidorController {
 		} else {
 			return false;
 		}
+	}
+	
+	public List<Dependente> removerDependente() {
+		if (dependente.getCodigo() != 0) {
+			dependentes.remove(dependente);
+		} else {
+			for (int i = 0; i < dependentes.size(); i++) {
+				if (dependentes.get(i).getIndentificador()
+						.equals(dependente.getIndentificador())) {
+					dependentes.remove(dependentes.get(i));
+				}
+			}
+		}
+		return dependentes;
 	}
 }
