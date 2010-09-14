@@ -26,15 +26,18 @@
 				</f:facet>
 			</rich:messages>
 			<h:panelGrid columns="2">
-				<h:outputText value="Matrícula SIAPE: " />
-				<h:inputText value="" size="25" maxlength="20" required="false"
-					requiredMessage="Campo Matrícula SIAPE obrigatório!"></h:inputText>
+				<h:outputText value="CPF: " />
+				<h:inputText
+					value="#{autenticacaoController.autenticacao.servidor.documento.cpf}"
+					size="25" maxlength="20" required="false"
+					requiredMessage="Campo CPF obrigatório!"></h:inputText>
 				<h:outputText value="Senha: " />
-				<h:inputSecret value="" size="25" maxlength="12" required="false"
+				<h:inputSecret value="#{autenticacaoController.autenticacao.senha}"
+					size="25" maxlength="12" required="false"
 					requiredMessage="Campo Senha obrigatório!"></h:inputSecret>
 			</h:panelGrid>
 			<a4j:commandButton value="Entrar" type="submit" reRender="form"
-				action="#{servidorController.cadastrarNovoServidor}" />
+				action="#{autenticacaoController.login}" />
 		</rich:panel>
 	</h:form></center>
 </f:view>
