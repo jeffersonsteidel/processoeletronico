@@ -16,27 +16,27 @@
 		<servlet-name>Faces Servlet</servlet-name>
 		<url-pattern>/faces/*</url-pattern>
 	</servlet-mapping>
-  
-  <!-- "Blue Sky" skin para o projeto -->
+
+	<!-- "Blue Sky" skin para o projeto -->
 	<context-param>
 		<param-name>org.richfaces.SKIN</param-name>
 		<param-value>ruby</param-value>
 	</context-param>
-<!-- Making the RichFaces skin spread to standard HTML controls -->
+	<!-- Making the RichFaces skin spread to standard HTML controls -->
 	<context-param>
 		<param-name>org.richfaces.CONTROL_SKINNING</param-name>
 		<param-value>enable</param-value>
 	</context-param>
-<!-- Defining and mapping the RichFaces filter -->
+	<!-- Defining and mapping the RichFaces filter -->
 	<filter>
 		<display-name>RichFaces Filter</display-name>
 		<filter-name>richfaces</filter-name>
 		<filter-class>org.ajax4jsf.Filter</filter-class>
-		<init-param>   
-            <param-name>createTempFiles</param-name>   
-            <param-value>false</param-value>   
-        </init-param>   
-        <init-param>
+		<init-param>
+			<param-name>createTempFiles</param-name>
+			<param-value>false</param-value>
+		</init-param>
+		<init-param>
 			<param-name>maxRequestSize</param-name>
 			<param-value>900000000</param-value>
 		</init-param>
@@ -48,7 +48,9 @@
 		<dispatcher>FORWARD</dispatcher>
 		<dispatcher>INCLUDE</dispatcher>
 	</filter-mapping>
-	<listener>
-		<listener-class>com.sun.faces.config.ConfigureListener</listener-class>
-	</listener>
+	<!-- <filter> <display-name>AuthFilter</display-name> <filter-name>AuthFilter</filter-name> 
+		<filter-class>br.com.progepe.controller.AuthFilter</filter-class> </filter> 
+		<filter-mapping> <filter-name>AuthFilter</filter-name> <url-pattern>/*</url-pattern> 
+		</filter-mapping> <listener> <listener-class>com.sun.faces.config.ConfigureListener</listener-class> 
+		</listener> -->
 </web-app>
