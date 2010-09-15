@@ -731,6 +731,8 @@ public class ServidorController {
 
 	public void salvar() {
 		dao.save(servidor);
+		dao.save(dependente);
+		dao.save(titulacao);
 		servidor = new Servidor();
 	}
 
