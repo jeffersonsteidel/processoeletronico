@@ -134,7 +134,7 @@ public class FitaEspelho {
 			System.out.println("                                           -- Data Publicação:" + conteudo.substring(1164 , 1172));
 			System.out.println("Ocorrência de Aposentadoria -- Nº do Processo:" + conteudo.substring(1172, 1187));
 			System.out.println("                            -- Ano Previsto:" + conteudo.substring(1187, 1191));
-			System.out.println("                            -- Opção Aposent. Legal:" + conteudo.substring(1191, 1192));
+			System.out.println("                            -- Opção Aposent. Integral:" + conteudo.substring(1191, 1192));
 			
 			//String teste;
 			//teste =  conteudo.substring(843, 855);
