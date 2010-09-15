@@ -652,13 +652,10 @@ orgaoRegistro,estadoOrgaoRegistro, titulacaoEstrangeira, titEstrangeira	"
 				<h:panelGrid columns="6">
 					<h:outputText value="Nome do Cônjugue: " />
 					<h:inputText value="#{servidorController.servidor.conjugue.nome}"
-						size="40" maxlength="100" required="true"
-						requiredMessage="Campo do Cônjugue obrigatório!"></h:inputText>
+						size="40" maxlength="100"></h:inputText>
 					<h:outputText value="Sexo do Cônjugue: " />
 					<h:selectOneMenu
-						value="#{servidorController.servidor.conjugue.sexo}"
-						required="true"
-						requiredMessage="Campo Sexo do Cônjugue é obrigatório!">
+						value="#{servidorController.servidor.conjugue.sexo}">
 						<f:selectItem itemLabel="SELECIONE" itemValue="" />
 						<f:selectItem itemLabel="FEMININO" itemValue="F" />
 						<f:selectItem itemLabel="MASCULINO" itemValue="M" />
@@ -666,39 +663,30 @@ orgaoRegistro,estadoOrgaoRegistro, titulacaoEstrangeira, titEstrangeira	"
 					<h:outputText value="CPF do Cônjugue: " />
 					<h:inputText
 						value="#{servidorController.servidor.conjugue.documento.cpf}"
-						size="16" maxlength="14" required="true"
-						requiredMessage="Campo CPF do Cônjugue obrigatório!"
-						onkeypress="mascara(this,cpf);"></h:inputText>
+						size="16" maxlength="14" onkeypress="mascara(this,cpf);"></h:inputText>
 					<h:outputText value="RG do Cônjugue: " />
 					<h:inputText
 						value="#{servidorController.servidor.conjugue.documento.rg}"
-						size="16" maxlength="14" required="true"
-						requiredMessage="Campo RG do Cônjugue obrigatório!"></h:inputText>
+						size="16" maxlength="14"></h:inputText>
 					<h:outputText value="UF do RG do Cônjugue: " />
 					<h:selectOneMenu
-						value="#{servidorController.servidor.conjugue.documento.rgUf.codigo}"
-						required="true"
-						requiredMessage="Campo UF do RG do Cônjugue é obrigatório!">
+						value="#{servidorController.servidor.conjugue.documento.rgUf.codigo}">
 						<f:selectItem itemLabel="SELECIONE" itemValue="" />
 						<f:selectItems value="#{servidorController.ufs}" />
 					</h:selectOneMenu>
 					<h:outputText value="Orgão Emissor do RG do Cônjugue: " />
 					<h:inputText
 						value="#{servidorController.servidor.conjugue.documento.rgOrgaoEmissor}"
-						size="16" maxlength="8" required="true"
-						requiredMessage="Campo Orgão Emissor do RG obrigatório!"></h:inputText>
+						size="16" maxlength="8"></h:inputText>
 					<h:outputText value="Data de Expedição do RG: " />
 					<rich:calendar
 						value="#{servidorController.servidor.conjugue.documento.rgDataExpedicao}"
 						locale="" popup="true" datePattern="dd/MM/yyyy"
 						showApplyButton="#" cellWidth="12px" cellHeight="12px"
-						style="width:80px" required="true" inputSize="12"
-						requiredMessage="Campo Data de Expedição do RG  do Cônjugue obrigatório!" />
+						style="width:80px" inputSize="12" />
 					<h:outputText value="Estado de Nascimento do Cônjugue: " />
 					<h:selectOneMenu
-						value="#{servidorController.servidor.conjugue.cidadeNascimento.estado.codigo}"
-						required="true"
-						requiredMessage="Campo Estado de Nascimento do Cônjugue é obrigatório!">
+						value="#{servidorController.servidor.conjugue.cidadeNascimento.estado.codigo}">
 						<f:selectItem itemLabel="SELECIONE" itemValue="" />
 						<f:selectItems value="#{servidorController.estados}" />
 						<a4j:support event="onchange"
@@ -707,9 +695,7 @@ orgaoRegistro,estadoOrgaoRegistro, titulacaoEstrangeira, titEstrangeira	"
 					</h:selectOneMenu>
 					<h:outputText value="Cidade de Nascimento do Cônjugue: " />
 					<h:selectOneMenu id="cidadeNacimentoConjugue"
-						value="#{servidorController.servidor.conjugue.cidadeNascimento.codigo}"
-						required="true"
-						requiredMessage="Campo Cidade de Nascimento do Cônjugue é obrigatório!">
+						value="#{servidorController.servidor.conjugue.cidadeNascimento.codigo}">
 						<f:selectItem itemLabel="SELECIONE" itemValue="" />
 						<f:selectItems value="#{servidorController.cidades}" />
 					</h:selectOneMenu>
