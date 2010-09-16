@@ -48,7 +48,6 @@ public class FitaEspelho {
 					System.out.println("UF do RG:" + linha.substring(360, 362));
 					System.out.println("Titulo de Eleitor:" + linha.substring(362, 375));
 					System.out.println("Filler:" + linha.substring(375, 764));
-					break;
 				}
 				
 				linha = br.readLine().substring(0, 764);
