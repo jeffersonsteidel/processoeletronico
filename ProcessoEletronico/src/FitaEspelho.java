@@ -241,22 +241,22 @@ public class FitaEspelho {
 		*/
 		try {
 			BufferedReader br = new BufferedReader(new FileReader(
-			"C://FITA.txt"));
-			
+					"C://FITA.txt"));
+
 			String html = "";
-			html = html + "<html>";  
-	        html = html + "<body>";  
-	        html = html + "<table name='table' border='1'>";
-	        html = html + "<tr>";
-	        html = html + "<th>SIAPE</th>";
-	        html = html + "<th>NOME</th>";
-	        html = html + "<th>GRUPO</th>";
-	        html = html + "<th>CARGO</th>";
-	        html = html + "<th>LOTAÇÃO</th>";
-	        html = html + "<th>DATA ADMISSÃO</th>";
-	        html = html + "<th>SITUAÇÃO</th>";
-	        html = html + "</tr>";
-	        
+			html = html + "<html>";
+			html = html + "<body>";
+			html = html + "<table name='table' border='1'>";
+			html = html + "<tr>";
+			html = html + "<th>SIAPE</th>";
+			html = html + "<th>NOME</th>";
+			html = html + "<th>GRUPO</th>";
+			html = html + "<th>CARGO</th>";
+			html = html + "<th>LOTAÇÃO</th>";
+			html = html + "<th>DATA ADMISSÃO</th>";
+			html = html + "<th>SITUAÇÃO</th>";
+			html = html + "</tr>";
+
 			while (br.ready()) {
 				String linha = br.readLine().substring(0, 764);
 				Integer teste = Integer.parseInt(linha.substring(17, 18));
@@ -264,36 +264,70 @@ public class FitaEspelho {
 					html = html + "<tr>";
 					html = html + "<td>" + linha.substring(9, 16) + "</td>";
 					html = html + "<td>" + linha.substring(20, 80) + "</td>";
-					
-				} 
+
+				}
 				if (teste.equals(2)) {
 					html = html + "<td>";
-					if(linha.substring(113,116).equals("701")){
+					if (linha.substring(113, 116).equals("701")) {
 						html = html + "TÉCNICO";
-					}
-					else if(linha.substring(113,116).equals("702")){
+					} else if (linha.substring(113, 116).equals("702")) {
 						html = html + "DOCENTE";
-					}else{
-						html = html + linha.substring(113,116);
+					} else {
+						html = html + linha.substring(113, 116);
 					}
 					html = html + "</td>";
 					html = html + "<td>" + linha.substring(116, 119) + "</td>";
-					html = html + "<td>" + linha.substring(215, 224) + "</td>";
-					html = html + "<td>" + linha.substring(123, 131) + "</td>";
-					String situacao = linha.substring(315,323);
-					if(situacao.equals("00000000")){
-					 html = html + "<td> ATIVO </td>";
-					}else{
-					 html = html + "<td> INATIVO </td>";
+					html = html + "<td>";
+					if (linha.substring(215, 224).equals("000000003")) {
+						html = html + "REITORIA";
+					} 
+					else if (linha.substring(215, 224).equals("000000012")) {
+						html = html + "CAMPUS CURITIBA";
+					}
+					else if (linha.substring(215, 224).equals("000000008")) {
+						html = html + "PROGEPE";
+					}
+					else if (linha.substring(215, 224).equals("000000006")) {
+						html = html + "PROPLAN";
+					}
+					else if (linha.substring(215, 224).equals("000000007")) {
+						html = html + "PRAI";
+					}
+					else if (linha.substring(215, 224).equals("000000004")) {
+						html = html + "GABINETE";
+					}
+					else if (linha.substring(215, 224).equals("000000005")) {
+						html = html + "PREPPG";
+					}
+					else if (linha.substring(215, 224).equals("000000023")) {
+						html = html + "DIRETORIA ADM E FINANCEIRO/ C. FOZ";
+					}
+					else if (linha.substring(215, 224).equals("000000036")) {
+						html = html + "CAMPUS UMUARAMA";
+					}
+					else if (linha.substring(215, 224).equals("000000121")) {
+						html = html + "N. A. AS. CHATEAUBRIAND";
+					}
+					else {
+						html = html + linha.substring(215, 224);
+					}
+					html = html + "</td>";
+					html = html + "<td>" + linha.substring(123, 125) + "/"
+							+ linha.substring(125, 127) + "/"
+							+ linha.substring(127, 131) + "</td>";
+					String situacao = linha.substring(315, 323);
+					if (situacao.equals("00000000")) {
+						html = html + "<td> ATIVO </td>";
+					} else {
+						html = html + "<td> INATIVO </td>";
 					}
 					html = html + "</tr>";
-				} 
+				}
 			}
-	        
-	        html = html + "</table>";
-	        html = html + "</body>";
-	        html = html + "</html>";
-	        
+			html = html + "</table>";
+			html = html + "</body>";
+			html = html + "</html>";
+
 			FileOutputStream file = new FileOutputStream("C:\\Relatorio.html");
 			PrintStream print = new PrintStream(file);
 			print.println(html);
