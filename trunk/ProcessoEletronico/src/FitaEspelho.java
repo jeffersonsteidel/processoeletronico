@@ -250,8 +250,7 @@ public class FitaEspelho {
 			html = html + "<tr>";
 			html = html + "<th>SIAPE</th>";
 			html = html + "<th>NOME</th>";
-			html = html + "<th>GRUPO</th>";
-			html = html + "<th>CARGO</th>";
+			html = html + "<th>GRUPO/CARGO</th>";
 			html = html + "<th>LOTAÇÃO</th>";
 			html = html + "<th>DATA ADMISSÃO</th>";
 			html = html + "<th>SITUAÇÃO</th>";
@@ -269,14 +268,110 @@ public class FitaEspelho {
 				if (teste.equals(2)) {
 					html = html + "<td>";
 					if (linha.substring(113, 116).equals("701")) {
-						html = html + "TÉCNICO";
+						html = html + "TÉCNICO/";
+						if(linha.substring(116, 119).equals("001")){
+							html = html + "ADMINISTRADOR";
+						}
+						if(linha.substring(116, 119).equals("009")){
+							html = html + "AUDITOR";
+						}
+						if(linha.substring(116, 119).equals("010")){
+							html = html + "BIBLIOTECARIO";
+						}
+						if(linha.substring(116, 119).equals("015")){
+							html = html + "CONTADOR";
+						}
+						if(linha.substring(116, 119).equals("029")){
+							html = html + "ENFERMEIRO";
+						}
+						if(linha.substring(116, 119).equals("031")){
+							html = html + "ENGENHEIRO";
+						}
+						if(linha.substring(116, 119).equals("032")){
+							html = html + "ENG. DE SEG. DO TRABALHO ";
+						}
+						if(linha.substring(116, 119).equals("045")){
+							html = html + "JORNALISTA";
+						}
+						if(linha.substring(116, 119).equals("047")){
+							html = html + "MÉDICO";
+						}
+						if(linha.substring(116, 119).equals("058")){
+							html = html + "PEDAGOGO";
+						}
+						if(linha.substring(116, 119).equals("062")){
+							html = html + "ANAL. DE TEC. DA INFORMAÇÃO";
+						}
+						if(linha.substring(116, 119).equals("066")){
+							html = html + "PROGRAMADOR VISUAL";
+						}
+						if(linha.substring(116, 119).equals("076")){
+							html = html + "SECRETARIADO EXECUTIVO";
+						}
+						if(linha.substring(116, 119).equals("079")){
+							html = html + "TEC. EM ASSUN. EDUCACIONAIS";
+						}
+						if(linha.substring(116, 119).equals("200")){
+							html = html + "ASS. EM ADMINISTRAÇÃO";
+						}
+						if(linha.substring(116, 119).equals("224")){
+							html = html + "TEC. EM CONTABILIDADE";
+						}
+						if(linha.substring(116, 119).equals("226")){
+							html = html + "TEC. EM TECNOL. DA INFORMAÇÃO";
+						}
+						if(linha.substring(116, 119).equals("233")){
+							html = html + "TEC. EM ENFERMAGEM";
+						}
+						if(linha.substring(116, 119).equals("244")){
+							html = html + "TEC. EM LABORATÓRIO";
+						}
+						if(linha.substring(116, 119).equals("257")){
+							html = html + "TEC. EM RADIOLOGIA";
+						}
+						if(linha.substring(116, 119).equals("403")){
+							html = html + "ASS. DE ALUNO";
+						}
+						if(linha.substring(116, 119).equals("409")){
+							html = html + "AUX. DE BIBLIOTECA";
+						}
+						if(linha.substring(116, 119).equals("421")){
+							html = html + "CONTINUO";
+						}
+						if(linha.substring(116, 119).equals("422")){
+							html = html + "CONZINHEIRO";
+						}
+						if(linha.substring(116, 119).equals("436")){
+							html = html + "IMPRESSOR";
+						}
+						if(linha.substring(116, 119).equals("459")){
+							html = html + "RECEPCIONISTA";
+						}
+						if(linha.substring(116, 119).equals("464")){
+							html = html + "TELEFONISTA";
+						}
+						if(linha.substring(116, 119).equals("611")){
+							html = html + "AUX. DE AGROPECUÁRIA";
+						}
+						if(linha.substring(116, 119).equals("623")){
+							html = html + "AUX. DE NUTRIÇÃO";
+						}
+						if(linha.substring(116, 119).equals("828")){
+							html = html + "OPER. DE MAQ. DE LAVANDERIA";
+						}
 					} else if (linha.substring(113, 116).equals("702")) {
-						html = html + "DOCENTE";
+						html = html + "DOCENTE/";
+						if(linha.substring(116, 119).equals("001")){
+							html = html + "";
+						}
+						if(linha.substring(116, 119).equals("003")){
+							html = html + "";
+						}
 					} else {
 						html = html + linha.substring(113, 116);
 					}
 					html = html + "</td>";
-					html = html + "<td>" + linha.substring(116, 119) + "</td>";
+					
 					html = html + "<td>";
 					if (linha.substring(215, 224).equals("000000003")) {
 						html = html + "REITORIA";
@@ -300,13 +395,52 @@ public class FitaEspelho {
 						html = html + "PREPPG";
 					}
 					else if (linha.substring(215, 224).equals("000000023")) {
-						html = html + "DIRETORIA ADM E FINANCEIRO/ C. FOZ";
+						html = html + "DIR. ADM E FINANCEIRO/ C. FOZ";
 					}
 					else if (linha.substring(215, 224).equals("000000036")) {
 						html = html + "CAMPUS UMUARAMA";
 					}
 					else if (linha.substring(215, 224).equals("000000121")) {
 						html = html + "N. A. AS. CHATEAUBRIAND";
+					}
+					else if (linha.substring(215, 224).equals("000000017")) {
+						html = html + "DIR. GERAL/ C. PALMAS";
+					}
+					else if (linha.substring(215, 224).equals("000000009")) {
+						html = html + "PRI";
+					}
+					else if (linha.substring(215, 224).equals("000000016")) {
+						html = html + "CAMPUS PARANAGUÁ";
+					}
+					else if (linha.substring(215, 224).equals("000000024")) {
+						html = html + "CAMPUS JACAREZINHO";
+					}
+					else if (linha.substring(215, 224).equals("000000028")) {
+						html = html + "CAMPUS PARANAVAI";
+					}
+					else if (linha.substring(215, 224).equals("000000117")) {
+						html = html + "CAMPUS LODRINA";
+					}
+					else if (linha.substring(215, 224).equals("000000020")) {
+						html = html + "CAMPUS FOZ DO IGUAÇU";
+					}
+					else if (linha.substring(215, 224).equals("000000112")) {
+						html = html + "CAMPUS PALMAS";
+					}
+					else if (linha.substring(215, 224).equals("000000018")) {
+						html = html + "DIR. ENSINO/ C. PGUA";
+					}
+					else if (linha.substring(215, 224).equals("000000032")) {
+						html = html + "CAMPUS TELEMACO BORDA";
+					}
+					else if (linha.substring(215, 224).equals("000000041")) {
+						html = html + "N. A. DE CAMPO LARGO";
+					}
+					else if (linha.substring(215, 224).equals("000000021")) {
+						html = html + "DIR. GERAL/ C. FOZ";
+					}
+					else if (linha.substring(215, 224).equals("000000116")) {
+						html = html + "N. A. DE IRATI";
 					}
 					else {
 						html = html + linha.substring(215, 224);
