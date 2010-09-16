@@ -1,10 +1,13 @@
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.PrintStream;
 
 public class FitaEspelho {
 	public static void main(String[] args) {
-		try {
+		/*try {
 			BufferedReader br = new BufferedReader(new FileReader(
 					"C://FITA.txt"));
 			while (br.ready()) {
@@ -139,11 +142,11 @@ public class FitaEspelho {
 					System.out.println("                            -- Opção Aposent. Integral:" + linha.substring(433,434));
 					System.out.println("UORG de controle:" + linha.substring(434,443));
 					System.out.println("Ocorrência Modif. Funcional -- Grupo:" + linha.substring(443,445));
-					System.out.println("							-- Ocorrência:" + linha.substring(445,448));
-					System.out.println("							-- Data:" + linha.substring(448,456));
-					System.out.println("							-- Diploma Legal -- Código:" + linha.substring(456,458));
-					System.out.println("											 -- Número:" + linha.substring(458,467));
-					System.out.println("											 -- Data Publicação:" + linha.substring(467,475));
+					System.out.println("                            -- Ocorrência:" + linha.substring(445,448));
+					System.out.println("                            -- Data:" + linha.substring(448,456));
+					System.out.println("                            -- Diploma Legal -- Código:" + linha.substring(456,458));
+					System.out.println("                                             -- Número:" + linha.substring(458,467));
+					System.out.println("                                             -- Data Publicação:" + linha.substring(467,475));
 					System.out.println("Regime Jurídico - Anterior:" + linha.substring(475,478));
 					System.out.println("Situação Servidor - Anterior:" + linha.substring(478,480));
 					System.out.println("Mudança Órgão -- Órgão Destino:" + linha.substring(480,485));
@@ -151,33 +154,64 @@ public class FitaEspelho {
 					System.out.println("			  -- Órgão Origem:" + linha.substring(493,498));
 					System.out.println("Órgão Anterior:" + linha.substring(498,503));
 					System.out.println("Matrícula Anterior:" + linha.substring(503,510));
-					System.out.println("Código Órgão Extinto / Modificado:" + linha.substring(510,515));
+					System.out.println("Código Órgão Extinto / Modificada:" + linha.substring(510,515));
 					System.out.println("Matrícula Servidor Extinta / Modificada:" + linha.substring(515,522));
 					System.out.println("Órgão Atual:" + linha.substring(522,527));
 					System.out.println("Matrícula Atual:" + linha.substring(527,534));
-					
-					// terminei a segunda pagina do manual
-					
-					
-//					System.out.println("Mudança Unidade Pagadora -- Código UPAG:" + linha.substring(1292,1301));
-//					System.out.println("                         -- Data Liberação:" + linha.substring(1301,1309));
-//					System.out.println("                         -- Motivo:" + linha.substring(1309,1310));
-//					System.out.println("Indicador de Pagamento Servidor:" + linha.substring(1310,1311));
-//					System.out.println("Registro de Óbito -- Nome do Cartório:" + linha.substring(1311,1361));
-//					System.out.println("                  -- Nº do Livro:" + linha.substring(1361,1368));
-//					System.out.println("                  -- Nº da Folha:" + linha.substring(1368,1374));
-//					System.out.println("                  -- Data:" + linha.substring(1374,1382));
-//					System.out.println("Indicador de Exclusão Instituidor:" + linha.substring(1382,1383));
-//					System.out.println("Dia de Exclusão do Instituidor:" + linha.substring(1383,1391));
-//					System.out.println("Vale Alimentação -- Tipo:" + linha.substring(1391,1392));
-//					System.out.println("                 -- Data Início:" + linha.substring(1392,1400));
-//					System.out.println("                 -- Data Fim:" + linha.substring(1400,1408));
-//					System.out.println("Indicador de Operador de Raio-X:" + linha.substring(1408,1409));
-//					System.out.println("Órgão Requisitante:" + linha.substring(1409,1414));
-//					System.out.println("Código da Vaga:" + linha.substring(1414,1421));
-//					System.out.println("Mes de Concessão do Adenuo:" + linha.substring(1409,1414));
-//					System.out.println(linha.substring(1409,1414));
+					System.out.println("Mudança Unidade Pagadora -- Código UPAG:" + linha.substring(534,543));
+					System.out.println("                         -- Data Liberação:" + linha.substring(543,551));
+					System.out.println("                         -- Motivo:" + linha.substring(551,552));
+					System.out.println("Indicador de Pagamento Servidor:" + linha.substring(552,553));
+					System.out.println("Registro de Óbito -- Nome do Cartório:" + linha.substring(553,603));
+					System.out.println("                  -- Nº do Livro:" + linha.substring(603,611));
+					System.out.println("                  -- Nº da Folha:" + linha.substring(611,617));
+					System.out.println("                  -- Nº Registro:" + linha.substring(617,625));
+					System.out.println("                  -- Data:" + linha.substring(625,633));
+					System.out.println("Indicador de Exclusão Instituidor:" + linha.substring(633,634));
+					System.out.println("Dia de Exclusão do Instituidor:" + linha.substring(634,642));
+					System.out.println("Vale Alimentação -- Tipo:" + linha.substring(642,643));
+					System.out.println("                 -- Data Início:" + linha.substring(643,651));
+					System.out.println("                 -- Data Fim:" + linha.substring(651, 659));
+					System.out.println("Indicador de Operador de Raio-X:" + linha.substring(659,660));
+					System.out.println("Órgão Requisitante:" + linha.substring(660,665));
+					System.out.println("Código da Vaga:" + linha.substring(665,672));
+					System.out.println("Mês de Concessão do Anuênio:" + linha.substring(672,674));
+					System.out.println("Percentual de Operador Raio X:" + linha.substring(674, 679));
+					System.out.println("Grupo - Ingr. Serv. Púb. -POSSE -- Código Grupo:" + linha.substring(679,681));
+					System.out.println("                                -- Ocorrência:" + linha.substring(681,684));
+					System.out.println("                                -- Data:" + linha.substring(684,692));
+					System.out.println("                                -- Código Diploma:" + linha.substring(692,694));
+					System.out.println("                                -- Data do Diploma:" + linha.substring(694,702));
+					System.out.println("                                -- Número do Diploma:" + linha.substring(702,711));
+					System.out.println("Grupo Reversão a Atividade -- Grupo de Ocorrência:" + linha.substring(711,713));
+					System.out.println("                           -- Código de Ocorrência:" + linha.substring(713,716));
+					System.out.println("                           -- Data da Ocorrência:" + linha.substring(716,724));
+					System.out.println("                           -- Código do Diploma:" + linha.substring(724,726));
+					System.out.println("                           --Data Publicação do Diploma:" + linha.substring(726,734));
+					System.out.println("                           --Número do Diploma:" + linha.substring(734,743));
+					System.out.println("Indicador de Cálculo Automático -- Cargo:" + linha.substring(743,744));
+					System.out.println("                                -- Função:" + linha.substring(744,745));
+					System.out.println("                                -- Salário Família:" + linha.substring(745,746));
+					System.out.println("                                -- Adicional por Tempo de Serviço :" + linha.substring(746,747));
+					System.out.println("                                -- FGTS:" + linha.substring(747,748));
+					System.out.println("                                -- Presidência Social:" + linha.substring(748,749));
+					System.out.println("                                -- Imposto de Renda:" + linha.substring(749,750));
+					System.out.println("                                -- Margem Consignável:" + linha.substring(750,751));
+					System.out.println("                                -- Constribuição Sindical:" + linha.substring(751,752));
+					System.out.println("                                -- Adiantamento 13º Salário:" + linha.substring(752,753));
+					System.out.println("                                -- Abate Teto Constitucional:" + linha.substring(753,754));
+					System.out.println("                                -- 13º Salário:" + linha.substring(754,755));
+					System.out.println("                                -- Plano de Seguridade Social 6%:" + linha.substring(755,756));
+					System.out.println("                                -- Férias:" + linha.substring(756,757));
+					System.out.println("                                -- Pensão:" + linha.substring(757,758));
+					System.out.println("                                -- Benefícios:" + linha.substring(758,759));
+					System.out.println("                                -- IPMF/CPMF:" + linha.substring(759,760));
+					System.out.println("                                -- RAIS:" + linha.substring(760,761));
+					System.out.println("                                -- Diferença de URV:" + linha.substring(761,762));
+					System.out.println("                                -- Adiantamento:" + linha.substring(762,763));
+					System.out.println("                                -- Rendimento PASEP:" + linha.substring(763,764));
 				}
+				
 				
 				linha = br.readLine().substring(0, 764);
 				teste = Integer.parseInt(linha.substring(17, 18));
@@ -203,6 +237,74 @@ public class FitaEspelho {
 			br.close();
 		} catch (IOException ioe) {
 			ioe.printStackTrace();
+		}
+		*/
+		try {
+			BufferedReader br = new BufferedReader(new FileReader(
+			"C://FITA.txt"));
+			
+			String html = "";
+			html = html + "<html>";  
+	        html = html + "<body>";  
+	        html = html + "<table name='table' border='1'>";
+	        html = html + "<tr>";
+	        html = html + "<th>SIAPE</th>";
+	        html = html + "<th>NOME</th>";
+	        html = html + "<th>GRUPO</th>";
+	        html = html + "<th>CARGO</th>";
+	        html = html + "<th>LOTAÇÃO</th>";
+	        html = html + "<th>DATA ADMISSÃO</th>";
+	        html = html + "<th>SITUAÇÃO</th>";
+	        html = html + "</tr>";
+	        
+			while (br.ready()) {
+				String linha = br.readLine().substring(0, 764);
+				Integer teste = Integer.parseInt(linha.substring(17, 18));
+				if (teste.equals(1)) {
+					html = html + "<tr>";
+					html = html + "<td>" + linha.substring(9, 16) + "</td>";
+					html = html + "<td>" + linha.substring(20, 80) + "</td>";
+					
+				} 
+				if (teste.equals(2)) {
+					html = html + "<td>";
+					if(linha.substring(113,116).equals("701")){
+						html = html + "TÉCNICO";
+					}
+					else if(linha.substring(113,116).equals("702")){
+						html = html + "DOCENTE";
+					}else{
+						html = html + linha.substring(113,116);
+					}
+					html = html + "</td>";
+					html = html + "<td>" + linha.substring(116, 119) + "</td>";
+					html = html + "<td>" + linha.substring(215, 224) + "</td>";
+					html = html + "<td>" + linha.substring(123, 131) + "</td>";
+					String situacao = linha.substring(315,323);
+					if(situacao.equals("00000000")){
+					 html = html + "<td> ATIVO </td>";
+					}else{
+					 html = html + "<td> INATIVO </td>";
+					}
+					html = html + "</tr>";
+				} 
+			}
+	        
+	        html = html + "</table>";
+	        html = html + "</body>";
+	        html = html + "</html>";
+	        
+			FileOutputStream file = new FileOutputStream("C:\\Relatorio.html");
+			PrintStream print = new PrintStream(file);
+			print.println(html);
+			System.out.println("Arquivo gerado com sucesso!!!");
+			file.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+			System.out.println(e);
+		} catch (IOException e) {
+			e.printStackTrace();
+			System.out.println(e);
 		}
 	}
 }
