@@ -402,7 +402,7 @@ public class FitaEspelho {
 					} else if (linha.substring(215, 224).equals("000000121")) {
 						html = html + "N. A. AS. CHATEAUBRIAND";
 					} else if (linha.substring(215, 224).equals("000000017")) {
-						html = html + "DIR. GERAL/ C. PALMAS";
+						html = html + "DIR. GERAL/ C. PARANAGUA";
 					} else if (linha.substring(215, 224).equals("000000009")) {
 						html = html + "PRI";
 					} else if (linha.substring(215, 224).equals("000000016")) {
