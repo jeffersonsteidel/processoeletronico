@@ -16,7 +16,7 @@ import br.com.progepe.entity.Banco;
 import br.com.progepe.entity.Cargo;
 import br.com.progepe.entity.Cidade;
 import br.com.progepe.entity.Classe;
-import br.com.progepe.entity.Conjugue;
+import br.com.progepe.entity.Conjuge;
 import br.com.progepe.entity.ContaBancaria;
 import br.com.progepe.entity.CorPele;
 import br.com.progepe.entity.Dependente;
@@ -77,7 +77,7 @@ public class ServidorController {
 	private Boolean servidorEstrangeiro = false;
 	private Boolean indPoupanca = false;
 	private Boolean indTitulacaoEstrangeira = false;
-	private Boolean indConjugueServidor = false;
+	private Boolean indConjugeServidor = false;
 	private Boolean indUniversitario = false;
 
 	public Servidor getPessoa() {
@@ -328,12 +328,12 @@ public class ServidorController {
 		this.indTitulacaoEstrangeira = indTitulacaoEstrangeira;
 	}
 
-	public Boolean getIndConjugueServidor() {
-		return indConjugueServidor;
+	public Boolean getIndConjugeServidor() {
+		return indConjugeServidor;
 	}
 
-	public void setIndConjugueServidor(Boolean indConjugueServidor) {
-		this.indConjugueServidor = indConjugueServidor;
+	public void setIndConjugeServidor(Boolean indConjugeServidor) {
+		this.indConjugeServidor = indConjugeServidor;
 	}
 
 	public Boolean getIndUniversitario() {
@@ -350,13 +350,13 @@ public class ServidorController {
 		servidor.getCargo().setClasse(new Classe());
 		servidor.setCidadeNascimento(new Cidade());
 		servidor.getCidadeNascimento().setEstado(new Estado());
-		servidor.setConjugue(new Conjugue());
-		servidor.getConjugue().setDocumento(new Documento());
-		servidor.getConjugue().getDocumento().setCarteiraUf(new Estado());
-		servidor.getConjugue().getDocumento().setRgUf(new Estado());
-		servidor.getConjugue().getDocumento().setTituloUf(new Estado());
-		servidor.getConjugue().setCidadeNascimento(new Cidade());
-		servidor.getConjugue().getCidadeNascimento().setEstado(new Estado());
+		servidor.setConjuge(new Conjuge());
+		servidor.getConjuge().setDocumento(new Documento());
+		servidor.getConjuge().getDocumento().setCarteiraUf(new Estado());
+		servidor.getConjuge().getDocumento().setRgUf(new Estado());
+		servidor.getConjuge().getDocumento().setTituloUf(new Estado());
+		servidor.getConjuge().setCidadeNascimento(new Cidade());
+		servidor.getConjuge().getCidadeNascimento().setEstado(new Estado());
 		servidor.setContaBancaria(new ContaBancaria());
 		servidor.getContaBancaria().setBanco(new Banco());
 		servidor.setCorPele(new CorPele());
@@ -477,11 +477,11 @@ public class ServidorController {
 		return cidades;
 	}
 
-	public List<SelectItem> listarCidadesConjugue() {
+	public List<SelectItem> listarCidadesConjuge() {
 		CidadeDAO cidadeDAO = new CidadeDAO();
 		cidades = new ArrayList<SelectItem>();
 		List<Cidade> cidadeList = new ArrayList<Cidade>();
-		cidadeList = cidadeDAO.listByEstado(servidor.getConjugue()
+		cidadeList = cidadeDAO.listByEstado(servidor.getConjuge()
 				.getCidadeNascimento().getEstado());
 		for (Cidade cidade : cidadeList) {
 			cidades.add(new SelectItem(cidade.getCodigo(), cidade
@@ -710,11 +710,11 @@ public class ServidorController {
 		return false;
 	}
 
-	public Boolean isConjugueServidor() {
-		if (servidor.getConjugue().getIndServidor()) {
-			indConjugueServidor = true;
+	public Boolean isConjugeServidor() {
+		if (servidor.getConjuge().getIndServidor()) {
+			indConjugeServidor = true;
 		} else {
-			indConjugueServidor = false;
+			indConjugeServidor = false;
 		}
 		return false;
 	}

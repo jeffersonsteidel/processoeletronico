@@ -22,7 +22,7 @@ public class Servidor implements Serializable {
 	private Documento documento;
 	private Padrao padrao;
 	private ContaBancaria contaBancaria;
-	private Conjugue conjugue;
+	private Conjuge conjuge;
 	private String sexo;
 	private String Email;
 	private Date dataNascimento;
@@ -125,12 +125,12 @@ public class Servidor implements Serializable {
 		this.contaBancaria = contaBancaria;
 	}
 
-	public Conjugue getConjugue() {
-		return conjugue;
+	public Conjuge getConjuge() {
+		return conjuge;
 	}
 
-	public void setConjugue(Conjugue conjugue) {
-		this.conjugue = conjugue;
+	public void setConjuge(Conjuge conjuge) {
+		this.conjuge = conjuge;
 	}
 
 	public String getSexo() {

@@ -8,7 +8,6 @@
 			<generator class="increment" />
 		</id>
 		<property name="descricao" column="CARG_DESC" />
-		<property name="codigoIdentificador" column="CARG_COD_IDENTIFICADOR" />
 		<many-to-one name="classe" class="br.com.progepe.entity.Classe"
 			column="CLAS_COD" not-null="true" lazy="false" />
 	</class>

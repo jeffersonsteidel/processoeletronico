@@ -648,45 +648,45 @@ orgaoRegistro,estadoOrgaoRegistro, titulacaoEstrangeira, titEstrangeira	"
 			</rich:tab>
 
 
-			<rich:tab label="Cônjugue">
+			<rich:tab label="Cônjuge">
 				<h:panelGrid columns="6">
-					<h:outputText value="Nome do Cônjugue: " />
-					<h:inputText value="#{servidorController.servidor.conjugue.nome}"
+					<h:outputText value="Nome do Cônjuge: " />
+					<h:inputText value="#{servidorController.servidor.conjuge.nome}"
 						size="40" maxlength="100"></h:inputText>
 					<h:outputText value="Sexo do Cônjugue: " />
 					<h:selectOneMenu
-						value="#{servidorController.servidor.conjugue.sexo}">
+						value="#{servidorController.servidor.conjuge.sexo}">
 						<f:selectItem itemLabel="SELECIONE" itemValue="" />
 						<f:selectItem itemLabel="FEMININO" itemValue="F" />
 						<f:selectItem itemLabel="MASCULINO" itemValue="M" />
 					</h:selectOneMenu>
-					<h:outputText value="CPF do Cônjugue: " />
+					<h:outputText value="CPF do Cônjuge: " />
 					<h:inputText
-						value="#{servidorController.servidor.conjugue.documento.cpf}"
+						value="#{servidorController.servidor.conjuge.documento.cpf}"
 						size="16" maxlength="14" onkeypress="mascara(this,cpf);"></h:inputText>
-					<h:outputText value="RG do Cônjugue: " />
+					<h:outputText value="RG do Cônjuge: " />
 					<h:inputText
-						value="#{servidorController.servidor.conjugue.documento.rg}"
+						value="#{servidorController.servidor.conjuge.documento.rg}"
 						size="16" maxlength="14"></h:inputText>
-					<h:outputText value="UF do RG do Cônjugue: " />
+					<h:outputText value="UF do RG do Cônjuge: " />
 					<h:selectOneMenu
-						value="#{servidorController.servidor.conjugue.documento.rgUf.codigo}">
+						value="#{servidorController.servidor.conjuge.documento.rgUf.codigo}">
 						<f:selectItem itemLabel="SELECIONE" itemValue="" />
 						<f:selectItems value="#{servidorController.ufs}" />
 					</h:selectOneMenu>
-					<h:outputText value="Orgão Emissor do RG do Cônjugue: " />
+					<h:outputText value="Orgão Emissor do RG do Cônjuge: " />
 					<h:inputText
-						value="#{servidorController.servidor.conjugue.documento.rgOrgaoEmissor}"
+						value="#{servidorController.servidor.conjuge.documento.rgOrgaoEmissor}"
 						size="16" maxlength="8"></h:inputText>
 					<h:outputText value="Data de Expedição do RG: " />
 					<rich:calendar
-						value="#{servidorController.servidor.conjugue.documento.rgDataExpedicao}"
+						value="#{servidorController.servidor.conjuge.documento.rgDataExpedicao}"
 						locale="" popup="true" datePattern="dd/MM/yyyy"
 						showApplyButton="#" cellWidth="12px" cellHeight="12px"
 						style="width:80px" inputSize="12" />
-					<h:outputText value="Estado de Nascimento do Cônjugue: " />
+					<h:outputText value="Estado de Nascimento do Cônjuge: " />
 					<h:selectOneMenu
-						value="#{servidorController.servidor.conjugue.cidadeNascimento.estado.codigo}">
+						value="#{servidorController.servidor.conjuge.cidadeNascimento.estado.codigo}">
 						<f:selectItem itemLabel="SELECIONE" itemValue="" />
 						<f:selectItems value="#{servidorController.estados}" />
 						<a4j:support event="onchange"
@@ -695,26 +695,26 @@ orgaoRegistro,estadoOrgaoRegistro, titulacaoEstrangeira, titEstrangeira	"
 					</h:selectOneMenu>
 					<h:outputText value="Cidade de Nascimento do Cônjugue: " />
 					<h:selectOneMenu id="cidadeNacimentoConjugue"
-						value="#{servidorController.servidor.conjugue.cidadeNascimento.codigo}">
+						value="#{servidorController.servidor.conjuge.cidadeNascimento.codigo}">
 						<f:selectItem itemLabel="SELECIONE" itemValue="" />
 						<f:selectItems value="#{servidorController.cidades}" />
 					</h:selectOneMenu>
 					<h:outputText value="Estrangeiro: " />
 					<h:selectBooleanCheckbox
-						value="#{servidorController.servidor.conjugue.indEstrangeiro}">
+						value="#{servidorController.servidor.conjuge.indEstrangeiro}">
 					</h:selectBooleanCheckbox>
 
 					<h:outputText value="É servidor? " />
 					<h:selectBooleanCheckbox
-						value="#{servidorController.servidor.conjugue.indServidor}">
+						value="#{servidorController.servidor.conjuge.indServidor}">
 						<a4j:support event="onchange"
-							action="#{servidorController.isConjugueServidor}"
+							action="#{servidorController.isConjugeServidor}"
 							ajaxSingle="true" reRender="orgao"></a4j:support>
 					</h:selectBooleanCheckbox>
 
 					<h:outputText value="Em qual Orgão: " />
-					<h:inputText value="#{servidorController.servidor.conjugue.local}"
-						id="orgao" disabled="#{!servidorController.indConjugueServidor}" />
+					<h:inputText value="#{servidorController.servidor.conjuge.local}"
+						id="orgao" disabled="#{!servidorController.indConjugeServidor}" />
 				</h:panelGrid>
 			</rich:tab>
 
@@ -764,7 +764,7 @@ orgaoRegistro,estadoOrgaoRegistro, titulacaoEstrangeira, titEstrangeira	"
 						</h:inputText>
 						<h:outputText value="Data de Expedição do RG: " />
 						<rich:calendar id="depExpRG"
-							value="#{servidorController.servidor.conjugue.documento.rgDataExpedicao}"
+							value="#{servidorController.servidor.dependente.documento.rgDataExpedicao}"
 							locale="" popup="true" datePattern="dd/MM/yyyy"
 							showApplyButton="#" cellWidth="12px" cellHeight="12px"
 							style="width:80px" inputSize="12" />
