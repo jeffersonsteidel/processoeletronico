@@ -690,7 +690,7 @@ orgaoRegistro,estadoOrgaoRegistro, titulacaoEstrangeira, titEstrangeira	"
 						<f:selectItem itemLabel="SELECIONE" itemValue="" />
 						<f:selectItems value="#{servidorController.estados}" />
 						<a4j:support event="onchange"
-							action="#{servidorController.listarCidadesConjugue}"
+							action="#{servidorController.listarCidadesConjuge}"
 							ajaxSingle="true" reRender="cidadeNacimentoConjugue"></a4j:support>
 					</h:selectOneMenu>
 					<h:outputText value="Cidade de Nascimento do Cônjugue: " />
