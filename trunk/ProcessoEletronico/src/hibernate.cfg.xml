@@ -23,7 +23,7 @@
 		<mapping resource="Cargo.hbm.xml" />
 		<mapping resource="Cidade.hbm.xml" />
 		<mapping resource="Classe.hbm.xml" />
-		<mapping resource="Conjugue.hbm.xml" />
+		<mapping resource="Conjuge.hbm.xml" />
 		<mapping resource="ContaBancaria.hbm.xml" />
 		<mapping resource="CorPele.hbm.xml" />
 		<mapping resource="Dependente.hbm.xml" />
