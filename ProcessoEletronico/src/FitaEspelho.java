@@ -212,7 +212,6 @@ public class FitaEspelho {
 					System.out.println("                                -- Rendimento PASEP:" + linha.substring(763,764));
 				}
 				
-				
 				linha = br.readLine().substring(0, 764);
 				teste = Integer.parseInt(linha.substring(17, 18));
 				if (teste.equals(3)) {
