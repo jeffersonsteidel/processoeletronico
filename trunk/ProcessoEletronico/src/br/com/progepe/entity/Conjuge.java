@@ -2,7 +2,7 @@ package br.com.progepe.entity;
 
 import java.io.Serializable;
 
-public class Conjugue implements Serializable {
+public class Conjuge implements Serializable {
 
 	/**
 	 * 

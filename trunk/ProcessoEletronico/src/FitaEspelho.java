@@ -419,7 +419,7 @@ public class FitaEspelho {
 					} else if (linha.substring(215, 224).equals("000000018")) {
 						html = html + "DIR. ENSINO/ C. PGUA";
 					} else if (linha.substring(215, 224).equals("000000032")) {
-						html = html + "CAMPUS TELEMACO BORDA";
+						html = html + "CAMPUS TELEMACO BORBA";
 					} else if (linha.substring(215, 224).equals("000000041")) {
 						html = html + "N. A. DE CAMPO LARGO";
 					} else if (linha.substring(215, 224).equals("000000021")) {

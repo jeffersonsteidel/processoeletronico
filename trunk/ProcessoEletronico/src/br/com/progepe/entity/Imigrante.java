@@ -11,7 +11,7 @@ public class Imigrante implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private Long codigo;
 	private Servidor servidor;
-	private Conjugue conjugue;
+	private Conjuge conjugue;
 	private Pais pais;
 	private Date dataChegadaPais;
 
@@ -31,11 +31,11 @@ public class Imigrante implements Serializable {
 		this.servidor = servidor;
 	}
 
-	public Conjugue getConjugue() {
+	public Conjuge getConjugue() {
 		return conjugue;
 	}
 
-	public void setConjugue(Conjugue conjugue) {
+	public void setConjugue(Conjuge conjugue) {
 		this.conjugue = conjugue;
 	}
 

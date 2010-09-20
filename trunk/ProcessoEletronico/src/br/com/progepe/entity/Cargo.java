@@ -10,7 +10,6 @@ public class Cargo implements Serializable {
 	private Long codigo;
 	private String descricao;
 	private Classe classe;
-	private String codigoIdentificador;
 
 	public Long getCodigo() {
 		return codigo;
@@ -35,13 +34,4 @@ public class Cargo implements Serializable {
 	public void setClasse(Classe classe) {
 		this.classe = classe;
 	}
-
-	public String getCodigoIdentificador() {
-		return codigoIdentificador;
-	}
-
-	public void setCodigoIdentificador(String codigoIdentificador) {
-		this.codigoIdentificador = codigoIdentificador;
-	}
-	
 }
