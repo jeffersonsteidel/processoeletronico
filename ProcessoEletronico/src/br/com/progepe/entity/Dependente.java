@@ -21,9 +21,10 @@ public class Dependente implements Serializable {
 	private String curso;
 	private String faculdade;
 	private String dataFormacao;
-	//Variavel auxiliar
+	// Variavel auxiliar
 	private Integer indentificador;
-	
+	private Servidor servidor;
+
 	public Long getCodigo() {
 		return codigo;
 	}
@@ -127,5 +128,13 @@ public class Dependente implements Serializable {
 	public void setIndentificador(Integer indentificador) {
 		this.indentificador = indentificador;
 	}
-	
+
+	public Servidor getServidor() {
+		return servidor;
+	}
+
+	public void setServidor(Servidor servidor) {
+		this.servidor = servidor;
+	}
+
 }
