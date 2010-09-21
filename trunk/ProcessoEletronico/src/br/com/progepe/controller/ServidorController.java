@@ -37,6 +37,7 @@ import br.com.progepe.entity.Servidor;
 import br.com.progepe.entity.ServidorTitulacao;
 import br.com.progepe.entity.SituacaoFuncional;
 import br.com.progepe.entity.Telefone;
+import br.com.progepe.entity.TipoFuncao;
 import br.com.progepe.entity.Titulacao;
 
 public class ServidorController {
@@ -71,6 +72,7 @@ public class ServidorController {
 	private List<SelectItem> grauParentescos;
 	private List<SelectItem> titulacoes;
 	private List<SelectItem> areasConhecimentos;
+	private List<SelectItem> tipoFuncoes;
 
 	DAO dao = new DAO();
 
@@ -343,6 +345,14 @@ public class ServidorController {
 	public void setIndUniversitario(Boolean indUniversitario) {
 		this.indUniversitario = indUniversitario;
 	}
+	
+	public List<SelectItem> getTipoFuncoes() {
+		return tipoFuncoes;
+	}
+
+	public void setTipoFuncoes(List<SelectItem> tipoFuncoes) {
+		this.tipoFuncoes = tipoFuncoes;
+	}
 
 	public void cadastrar() throws IOException {
 		servidor = new Servidor();
@@ -370,6 +380,7 @@ public class ServidorController {
 		servidor.getEndereco().getCidade().setEstado(new Estado());
 		servidor.setEstadoCivil(new EstadoCivil());
 		servidor.setFuncao(new Funcao());
+		servidor.getFuncao().setTipoFuncao(new TipoFuncao());
 		servidor.setGrupo(new Grupo());
 		servidor.setGrupoSanguineo(new GrupoSanguineo());
 		servidor.setLotacao(new Lotacao());
@@ -417,6 +428,8 @@ public class ServidorController {
 		grauParentescos = new ArrayList<SelectItem>();
 		titulacoes = new ArrayList<SelectItem>();
 		areasConhecimentos = new ArrayList<SelectItem>();
+		tipoFuncoes = new ArrayList<SelectItem>();
+
 
 		listarBancos();
 		listarGrauParentesco();
@@ -986,8 +999,7 @@ public class ServidorController {
 		}
 		if (emprego.getCargo() == null || emprego.getCargo() == "") {
 			message = new FacesMessage(FacesMessage.SEVERITY_ERROR,
-					"Campo Cargo é obrigatório!",
-					"Campo Cargo é obrigatório!");
+					"Campo Cargo é obrigatório!", "Campo Cargo é obrigatório!");
 			FacesContext.getCurrentInstance().addMessage("", message);
 			contadorErros = +1;
 		}

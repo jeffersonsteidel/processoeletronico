@@ -14,6 +14,7 @@
 			column="CARG_COD" not-null="true" lazy="false" />
 		<property name="dataAdmissao" column="SERV_DATA_ADM_CARGO" />
 		<property name="dataAdmServicoPublico" column="SERV_DATA_ADM_SERV_PUB" />
+		<property name="dataSaida" 	column="SERV_DATA_SAIDA" />
 		<many-to-one name="lotacao" class="br.com.progepe.entity.Lotacao"
 			column="LOT_COD" not-null="true" lazy="false" />
 		<many-to-one name="localExercicio" class="br.com.progepe.entity.Lotacao"
@@ -25,7 +26,7 @@
 			column="PAD_COD" not-null="true" lazy="false" />
 		<many-to-one name="contaBancaria" class="br.com.progepe.entity.ContaBancaria"
 			column="CONT_BAN_COD" not-null="true" lazy="false" />
-		<many-to-one name="conjugue" class="br.com.progepe.entity.Conjugue"
+		<many-to-one name="conjuge" class="br.com.progepe.entity.Conjuge"
 			column="CONJ_COD" not-null="true" lazy="false" />
 		<property name="sexo" column="SERV_SEXO" />
 		<property name="email" column="SERV_EMAIL" />
