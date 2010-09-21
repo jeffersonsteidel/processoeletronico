@@ -67,7 +67,7 @@ public class CargoController {
 	@SuppressWarnings("unchecked")
 	public List<Cargo> listar() throws IOException {
 		cargo = new Cargo();
-		this.setCargoList(dao.list(cargo.getClass()));
+		this.setCargoList(dao.list(cargo.getClass(), "descricao"));
 		FacesContext.getCurrentInstance().getExternalContext()
 				.redirect("listarCargos.jsp");
 		return this.getCargoList();
@@ -78,7 +78,7 @@ public class CargoController {
 		classes = new ArrayList<SelectItem>();
 		List<Classe> classeList = new ArrayList<Classe>();
 		cargo.setClasse(new Classe());
-		classeList = dao.list(cargo.getClasse().getClass());
+		classeList = dao.list(cargo.getClasse().getClass(), "descricao");
 		for (Classe classe : classeList) {
 			classes.add(new SelectItem(classe.getCodigo(), classe.getSigla()));
 		}

@@ -50,7 +50,7 @@ public class FuncaoController {
 	@SuppressWarnings("unchecked")
 	public List<Funcao> listarFuncoes() throws IOException {
 		funcao = new Funcao();
-		this.setFuncaoList(dao.list(Funcao.class));
+		this.setFuncaoList(dao.list(Funcao.class, "descricao"));
 		FacesContext.getCurrentInstance().getExternalContext()
 				.redirect("listarFuncoes.jsp");
 		return this.getFuncaoList();

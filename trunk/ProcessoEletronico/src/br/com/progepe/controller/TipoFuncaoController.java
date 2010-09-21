@@ -51,7 +51,7 @@ public class TipoFuncaoController {
 	@SuppressWarnings("unchecked")
 	public List<TipoFuncao> listar() throws IOException {
 		tipoFuncao = new TipoFuncao();
-		this.setTipoFuncaoList(dao.list(tipoFuncao.getClass()));
+		this.setTipoFuncaoList(dao.list(tipoFuncao.getClass(), "descricao"));
 		FacesContext.getCurrentInstance().getExternalContext()
 				.redirect("listarTipoFuncao.jsp");
 		return this.getTipoFuncaoList();
