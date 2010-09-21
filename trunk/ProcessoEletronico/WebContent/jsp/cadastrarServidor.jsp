@@ -492,6 +492,7 @@
 							disabled="#{!servidorController.indTitulacaoEstrangeira}"
 							value="#{servidorController.servidorTitulacao.pais.codigo}">
 							<f:selectItem itemLabel="SELECIONE" itemValue="" />
+							<f:selectItems value="#{servidorController.paises}" />
 						</h:selectOneMenu>
 
 						<a4j:commandButton value="Adicionar"
