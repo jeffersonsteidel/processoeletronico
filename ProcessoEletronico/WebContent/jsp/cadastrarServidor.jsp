@@ -15,7 +15,7 @@
 	<a4j:loadScript src="../js/script.js" />
 	<center><h:graphicImage value="../images/alterarDados02.GIF" />
 	<a4j:form id="form">
-		<rich:tabPanel switchType="client" width="920">
+		<rich:tabPanel switchType="client" width="950">
 			<rich:tab label="Dados Pessoais">
 				<h:panelGrid columns="4">
 					<h:outputText value="Nome: " />
@@ -104,16 +104,17 @@
 						inputSize="12" requiredMessage="Data de Chegada no País!" />
 
 					<h:outputText id="pais" value="País de Orgiem: " />
-					<h:selectOneMenu id="paisCampo" value="#" required="true"
+					<h:selectOneMenu id="paisCampo" value="" required="true"
 						disabled="#{!servidorController.servidorEstrangeiro}"
 						requiredMessage="Campo País de Origem é obrigatório!">
 						<f:selectItem itemLabel="SELECIONE" itemValue="" />
+						<f:selectItems value="#{servidorController.paises}" />
 					</h:selectOneMenu>
 				</h:panelGrid>
 			</rich:tab>
 
 			<rich:tab label="Dados Funcionais">
-				<h:panelGrid columns="6">
+				<h:panelGrid columns="4">
 					<h:outputText value="SIAPE: " />
 					<h:inputText value="#{servidorController.servidor.siape}" size="10"
 						maxlength="7" required="true"
@@ -203,6 +204,13 @@
 						<f:selectItems value="#{servidorController.funcoes}" />
 					</h:selectOneMenu>
 
+					<h:outputText value="Tipo Função: " />
+					<h:selectOneMenu
+						value="#{servidorController.servidor.funcao.tipoFuncao.codigo}">
+						<f:selectItem itemLabel="SELECIONE" itemValue="" />
+						<f:selectItems value="#{servidorController.tipoFuncoes}" />
+					</h:selectOneMenu>
+
 					<h:outputText value="Situação Funcional: " />
 					<h:selectOneMenu
 						value="#{servidorController.servidor.situacaoFuncional.codigo}"
@@ -211,6 +219,12 @@
 						<f:selectItem itemLabel="SELECIONE" itemValue="" />
 						<f:selectItems value="#{servidorController.situacoesFuncionais}" />
 					</h:selectOneMenu>
+
+					<h:outputText value="Data de Saída do Orgão: " />
+					<rich:calendar value="#{servidorController.servidor.dataSaida}"
+						locale="" popup="true" datePattern="dd/MM/yyyy"
+						showApplyButton="#" cellWidth="12px" cellHeight="12px"
+						style="width:80px" inputSize="12" />
 				</h:panelGrid>
 			</rich:tab>
 
@@ -649,7 +663,7 @@ orgaoRegistro,estadoOrgaoRegistro, titulacaoEstrangeira, titEstrangeira	"
 
 
 			<rich:tab label="Cônjuge">
-				<h:panelGrid columns="6">
+				<h:panelGrid columns="4">
 					<h:outputText value="Nome do Cônjuge: " />
 					<h:inputText value="#{servidorController.servidor.conjuge.nome}"
 						size="40" maxlength="100"></h:inputText>
@@ -764,7 +778,7 @@ orgaoRegistro,estadoOrgaoRegistro, titulacaoEstrangeira, titEstrangeira	"
 						</h:inputText>
 						<h:outputText value="Data de Expedição do RG: " />
 						<rich:calendar id="depExpRG"
-							value="#{servidorController.servidor.dependente.documento.rgDataExpedicao}"
+							value="#{servidorController.dependente.documento.rgDataExpedicao}"
 							locale="" popup="true" datePattern="dd/MM/yyyy"
 							showApplyButton="#" cellWidth="12px" cellHeight="12px"
 							style="width:80px" inputSize="12" />

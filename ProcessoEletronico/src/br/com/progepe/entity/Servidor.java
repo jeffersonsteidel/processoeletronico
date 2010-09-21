@@ -32,6 +32,7 @@ public class Servidor implements Serializable {
 	private Cidade cidadeNascimento;
 	private EstadoCivil estadoCivil;
 	private CorPele corPele;
+	private Date dataSaida;
 	private Boolean indEstrangeiro = false;
 	private Funcao funcao;
 	private RegimeTrabalho regimeTrabalho;
@@ -307,5 +308,13 @@ public class Servidor implements Serializable {
 
 	public void setDataAdmServicoPublico(Date dataAdmServicoPublico) {
 		this.dataAdmServicoPublico = dataAdmServicoPublico;
+	}
+
+	public Date getDataSaida() {
+		return dataSaida;
+	}
+
+	public void setDataSaida(Date dataSaida) {
+		this.dataSaida = dataSaida;
 	}
 }
