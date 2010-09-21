@@ -435,7 +435,7 @@ public class ServidorController {
 		listarGrauParentesco();
 		listarEstados();
 		listarUfs();
-
+		
 		listarLotacoes();
 		listarPadroes();
 		listarSituacoesFuncionais();
@@ -448,6 +448,7 @@ public class ServidorController {
 		listarEstadosCivis();
 
 		listarTitulacoes();
+		listarAreaConhecimento();
 		listarAreaConhecimento();
 
 		FacesContext.getCurrentInstance().getExternalContext()
