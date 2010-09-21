@@ -66,8 +66,9 @@ public class LotacaoController {
 		FacesContext.getCurrentInstance().getExternalContext()
 				.redirect("cadastrarLotacao.jsp");
 	}
+
 	DAO dao = new DAO();
-	
+
 	public void salvar() {
 		dao.save(lotacao);
 		lotacao = new Lotacao();
@@ -87,7 +88,7 @@ public class LotacaoController {
 		lotacao.setEndereco(new Endereco());
 		lotacao.getEndereco().setCidade(new Cidade());
 		lotacao.getEndereco().getCidade().setEstado(new Estado());
-		this.setLotacaoList(dao.list(lotacao.getClass()));
+		this.setLotacaoList(dao.list(lotacao.getClass(), "descricao"));
 		FacesContext.getCurrentInstance().getExternalContext()
 				.redirect("listarLotacoes.jsp");
 		return this.getLotacaoList();
@@ -97,7 +98,8 @@ public class LotacaoController {
 	public List<SelectItem> listarEstados() {
 		estados = new ArrayList<SelectItem>();
 		List<Estado> estadoList = new ArrayList<Estado>();
-		estadoList = dao.list(lotacao.getEndereco().getCidade().getEstado().getClass());
+		estadoList = dao.list(lotacao.getEndereco().getCidade().getEstado()
+				.getClass(), "descricao");
 		for (Estado estado : estadoList) {
 			estados.add(new SelectItem(estado.getCodigo(), estado
 					.getDescricao()));

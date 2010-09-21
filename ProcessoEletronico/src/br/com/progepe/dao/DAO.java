@@ -7,6 +7,7 @@ import javax.faces.context.FacesContext;
 
 import org.hibernate.Criteria;
 import org.hibernate.Session;
+import org.hibernate.criterion.Order;
 
 public class DAO {
 
@@ -68,8 +69,9 @@ public class DAO {
 	}
 
 	@SuppressWarnings("rawtypes")
-	public List list(Class objectClass) {
-		Criteria c = session.createCriteria(objectClass);
+	public List list(Class objectClass, String ordenarPor) {
+		Criteria c = session.createCriteria(objectClass).addOrder(
+				Order.asc(ordenarPor));
 		return c.list();
 	}
 

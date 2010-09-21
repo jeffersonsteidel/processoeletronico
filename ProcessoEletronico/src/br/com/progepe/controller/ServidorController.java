@@ -458,7 +458,7 @@ public class ServidorController {
 	public List<SelectItem> listarUfs() {
 		ufs = new ArrayList<SelectItem>();
 		List<Estado> estadoList = new ArrayList<Estado>();
-		estadoList = dao.list(Estado.class);
+		estadoList = dao.list(Estado.class, "descricao");
 		for (Estado estado : estadoList) {
 			ufs.add(new SelectItem(estado.getCodigo(), estado.getUf()));
 		}
@@ -469,7 +469,7 @@ public class ServidorController {
 	public List<SelectItem> listarEstados() {
 		estados = new ArrayList<SelectItem>();
 		List<Estado> estadoList = new ArrayList<Estado>();
-		estadoList = dao.list(Estado.class);
+		estadoList = dao.list(Estado.class, "descricao");
 		for (Estado estado : estadoList) {
 			estados.add(new SelectItem(estado.getCodigo(), estado
 					.getDescricao()));
@@ -533,7 +533,7 @@ public class ServidorController {
 	public List<SelectItem> listarLotacoes() {
 		lotacoes = new ArrayList<SelectItem>();
 		List<Lotacao> lotacaoList = new ArrayList<Lotacao>();
-		lotacaoList = dao.list(servidor.getLotacao().getClass());
+		lotacaoList = dao.list(servidor.getLotacao().getClass(), "descricao");
 		for (Lotacao lotacao : lotacaoList) {
 			lotacoes.add(new SelectItem(lotacao.getCodigo(), lotacao
 					.getDescricao()));
@@ -545,7 +545,7 @@ public class ServidorController {
 	public List<SelectItem> listarEstadosCivis() {
 		estadosCivis = new ArrayList<SelectItem>();
 		List<EstadoCivil> estadoCivilList = new ArrayList<EstadoCivil>();
-		estadoCivilList = dao.list(EstadoCivil.class);
+		estadoCivilList = dao.list(EstadoCivil.class, "descricao");
 		for (EstadoCivil estadoCivil : estadoCivilList) {
 			estadosCivis.add(new SelectItem(estadoCivil.getCodigo(),
 					estadoCivil.getDescricao()));
@@ -557,7 +557,7 @@ public class ServidorController {
 	public List<SelectItem> listarCorPele() {
 		coresPeles = new ArrayList<SelectItem>();
 		List<CorPele> corPeleList = new ArrayList<CorPele>();
-		corPeleList = dao.list(CorPele.class);
+		corPeleList = dao.list(CorPele.class, "descricao");
 		for (CorPele corPele : corPeleList) {
 			coresPeles.add(new SelectItem(corPele.getCodigo(), corPele
 					.getDescricao()));
@@ -569,7 +569,7 @@ public class ServidorController {
 	public List<SelectItem> listarGrauParentesco() {
 		grauParentescos = new ArrayList<SelectItem>();
 		List<GrauParentesco> grauParentescoList = new ArrayList<GrauParentesco>();
-		grauParentescoList = dao.list(GrauParentesco.class);
+		grauParentescoList = dao.list(GrauParentesco.class, "descricao");
 		for (GrauParentesco grauParentesco : grauParentescoList) {
 			grauParentescos.add(new SelectItem(grauParentesco.getCodigo(),
 					grauParentesco.getDescricao()));
@@ -581,7 +581,7 @@ public class ServidorController {
 	public List<SelectItem> listarGrupoSanguineo() {
 		gruposSanguineos = new ArrayList<SelectItem>();
 		List<GrupoSanguineo> grupoSanguineoList = new ArrayList<GrupoSanguineo>();
-		grupoSanguineoList = dao.list(GrupoSanguineo.class);
+		grupoSanguineoList = dao.list(GrupoSanguineo.class, "descricao");
 		for (GrupoSanguineo grupoSanguineo : grupoSanguineoList) {
 			gruposSanguineos.add(new SelectItem(grupoSanguineo.getCodigo(),
 					grupoSanguineo.getDescricao()));
@@ -593,7 +593,7 @@ public class ServidorController {
 	public List<SelectItem> listarPadroes() {
 		padroes = new ArrayList<SelectItem>();
 		List<Padrao> padraoList = new ArrayList<Padrao>();
-		padraoList = dao.list(Padrao.class);
+		padraoList = dao.list(Padrao.class, "nivel");
 		for (Padrao padrao : padraoList) {
 			padroes.add(new SelectItem(padrao.getCodigo(), padrao.getNivel()
 					.toString()));
@@ -605,7 +605,7 @@ public class ServidorController {
 	public List<SelectItem> listarBancos() {
 		bancos = new ArrayList<SelectItem>();
 		List<Banco> bancoList = new ArrayList<Banco>();
-		bancoList = dao.list(servidor.getContaBancaria().getBanco().getClass());
+		bancoList = dao.list(servidor.getContaBancaria().getBanco().getClass(),"descricao");
 		for (Banco banco : bancoList) {
 			bancos.add(new SelectItem(banco.getCodigo(), banco.getDescricao()));
 		}
@@ -617,7 +617,7 @@ public class ServidorController {
 		areasConhecimentos = new ArrayList<SelectItem>();
 		List<AreaConhecimento> areaConheciemntoList = new ArrayList<AreaConhecimento>();
 		areaConheciemntoList = dao.list(servidorTitulacao.getAreaConhecimento()
-				.getClass());
+				.getClass(), "descricao");
 		for (AreaConhecimento areaConhecimento : areaConheciemntoList) {
 			areasConhecimentos.add(new SelectItem(areaConhecimento.getCodigo(),
 					areaConhecimento.getDescricao()));
@@ -629,7 +629,7 @@ public class ServidorController {
 	public List<SelectItem> listarFuncoes() {
 		funcoes = new ArrayList<SelectItem>();
 		List<Funcao> funcoesList = new ArrayList<Funcao>();
-		funcoesList = dao.list(Funcao.class);
+		funcoesList = dao.list(Funcao.class, "descricao");
 		for (Funcao funcao : funcoesList) {
 			funcoes.add(new SelectItem(funcao.getCodigo(), funcao
 					.getDescricao()));
@@ -641,7 +641,7 @@ public class ServidorController {
 	public List<SelectItem> listarClasses() {
 		classes = new ArrayList<SelectItem>();
 		List<Classe> classeList = new ArrayList<Classe>();
-		classeList = dao.list(servidor.getCargo().getClasse().getClass());
+		classeList = dao.list(servidor.getCargo().getClasse().getClass(), "descricao");
 		for (Classe classe : classeList) {
 			classes.add(new SelectItem(classe.getCodigo(), classe.getSigla()));
 		}
@@ -659,7 +659,7 @@ public class ServidorController {
 	public List<SelectItem> listarSituacoesFuncionais() {
 		situacoesFuncionais = new ArrayList<SelectItem>();
 		List<SituacaoFuncional> situacaoFuncionalList = new ArrayList<SituacaoFuncional>();
-		situacaoFuncionalList = dao.list(SituacaoFuncional.class);
+		situacaoFuncionalList = dao.list(SituacaoFuncional.class, "descricao");
 		for (SituacaoFuncional situacaoFuncional : situacaoFuncionalList) {
 			situacoesFuncionais.add(new SelectItem(situacaoFuncional
 					.getCodigo(), situacaoFuncional.getDescricao()));
@@ -671,7 +671,7 @@ public class ServidorController {
 	public List<SelectItem> listarRegimesTrabalhos() {
 		regimesTrabalhos = new ArrayList<SelectItem>();
 		List<RegimeTrabalho> regimeTrabalhoList = new ArrayList<RegimeTrabalho>();
-		regimeTrabalhoList = dao.list(RegimeTrabalho.class);
+		regimeTrabalhoList = dao.list(RegimeTrabalho.class, "descricao");
 		for (RegimeTrabalho regimeTrabalho : regimeTrabalhoList) {
 			regimesTrabalhos.add(new SelectItem(regimeTrabalho.getCodigo(),
 					regimeTrabalho.getDescricao()));
@@ -683,7 +683,7 @@ public class ServidorController {
 	public List<SelectItem> listarCargos() {
 		cargos = new ArrayList<SelectItem>();
 		List<Cargo> cargoList = new ArrayList<Cargo>();
-		cargoList = dao.list(Cargo.class);
+		cargoList = dao.list(Cargo.class, "descricao");
 		for (Cargo cargo : cargoList) {
 			cargos.add(new SelectItem(cargo.getCodigo(), cargo.getDescricao()));
 		}
@@ -694,7 +694,7 @@ public class ServidorController {
 	public List<SelectItem> listarTitulacoes() {
 		titulacoes = new ArrayList<SelectItem>();
 		List<Titulacao> titulacaoList = new ArrayList<Titulacao>();
-		titulacaoList = dao.list(servidorTitulacao.getTitulacao().getClass());
+		titulacaoList = dao.list(servidorTitulacao.getTitulacao().getClass(), "descricao");
 		for (Titulacao titulacao : titulacaoList) {
 			titulacoes.add(new SelectItem(titulacao.getCodigo(), titulacao
 					.getDescricao()));
@@ -706,7 +706,7 @@ public class ServidorController {
 	public List<SelectItem> listarPais() {
 		paises = new ArrayList<SelectItem>();
 		List<Pais> paisList = new ArrayList<Pais>();
-		paisList = dao.list(Pais.class);
+		paisList = dao.list(Pais.class, "descricao");
 		for (Pais pais : paisList) {
 			paises.add(new SelectItem(pais.getCodigo(), pais.getDescricao()));
 		}

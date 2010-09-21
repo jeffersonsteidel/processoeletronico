@@ -52,7 +52,7 @@ public class GrupoController {
 	@SuppressWarnings("unchecked")
 	public List<Grupo> listar() throws IOException {
 		grupo = new Grupo();
-		this.setGrupoList(dao.list(grupo.getClass()));
+		this.setGrupoList(dao.list(grupo.getClass(), "descricao"));
 		FacesContext.getCurrentInstance().getExternalContext()
 				.redirect("listarGrupo.jsp");
 		return this.getGrupoList();

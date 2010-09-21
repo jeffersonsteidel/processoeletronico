@@ -51,7 +51,7 @@ public class BancoController {
 	@SuppressWarnings("unchecked")
 	public List<Banco> listar() throws IOException {
 		banco = new Banco();
-		this.setBancoList(dao.list(banco.getClass()));
+		this.setBancoList(dao.list(banco.getClass(), "descricao"));
 		FacesContext.getCurrentInstance().getExternalContext()
 				.redirect("listarBancos.jsp");
 		return this.getBancoList();
