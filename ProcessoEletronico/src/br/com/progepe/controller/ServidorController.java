@@ -755,6 +755,7 @@ public class ServidorController {
 			servidorTitulacao.setCidadeEstabelecimentoEnsino(new Cidade());
 			servidorTitulacao.getCidadeEstabelecimentoEnsino().setEstado(
 					new Estado());
+			listarPais();
 		} else {
 			indTitulacaoEstrangeira = false;
 		}
