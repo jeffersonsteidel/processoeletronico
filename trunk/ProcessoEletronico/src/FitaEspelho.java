@@ -38,13 +38,13 @@ public class FitaEspelho {
 //					System.out.println("Quantidade de Dependentes SF:" + linha.substring(183, 185));
 //					System.out.println("Data do Primeiro Emprego:" + linha.substring(185, 193));
 //					System.out.println("Identificação Origem:" + linha.substring(193, 201));
-					System.out.println("Endereço -- Logradouro:" + linha.substring(201, 241));
-					System.out.println("         -- Numero:" + linha.substring(241, 247));
-					System.out.println("         -- Complemento:" + linha.substring(247, 268));
-					System.out.println("Bairro:" + linha.substring(268, 293));
-					System.out.println("Cidade:" + linha.substring(293, 323));
-					System.out.println("CEP:" + linha.substring(323, 331));
-					System.out.println("UF:" + linha.substring(331, 333));
+//					System.out.println("Endereço -- Logradouro:" + linha.substring(201, 241));
+//					System.out.println("         -- Numero:" + linha.substring(241, 247));
+//					System.out.println("         -- Complemento:" + linha.substring(247, 268));
+//					System.out.println("Bairro:" + linha.substring(268, 293));
+//					System.out.println("Cidade:" + linha.substring(293, 323));
+//					System.out.println("CEP:" + linha.substring(323, 331));
+//					System.out.println("UF:" + linha.substring(331, 333));
 //					System.out.println("RG:" + linha.substring(333,347));
 //					System.out.println("Sigla do Orgão Expedidor do RG:" + linha.substring(347, 352));
 //					System.out.println("Data de Expedição:" + linha.substring(352, 360));
@@ -52,10 +52,10 @@ public class FitaEspelho {
 //					System.out.println("Titulo de Eleitor:" + linha.substring(362, 375));
 //					System.out.println("Filler:" + linha.substring(375, 764));
 				}
-			}
-//				linha = br.readLine().substring(0, 764);
-//				teste = Integer.parseInt(linha.substring(17, 18));
-//				if (teste.equals(2)) {
+			
+				linha = br.readLine().substring(0, 764);
+				teste = Integer.parseInt(linha.substring(17, 18));
+				if (teste.equals(2)) {
 //					System.out.println("-------------DADOS FUNCIONAIS-------------------");
 //					System.out.println("Unidade Pagadora:" + linha.substring(0, 9));
 //					System.out.println("Siape:" + linha.substring(9, 16));
@@ -89,14 +89,14 @@ public class FitaEspelho {
 //					System.out.println("              -- Data Entrada Saída:" + linha.substring(131,139));
 //					System.out.println("Função -- Sigla:" + linha.substring(139,142));
 //					System.out.println("       -- Código de Nível:" + linha.substring(142,147));
-//					System.out.println("       -- Escolaridade:" + linha.substring(147,149));
+					System.out.println("       -- Escolaridade:" + linha.substring(147,149));
 //					System.out.println("       -- Opção:" + linha.substring(149,150));
 //					System.out.println("       -- Data Ingresso:" + linha.substring(150,158));
 //					System.out.println("       -- Data Saída:" + linha.substring(158,166));
 //					System.out.println("       -- Unidade Organizacional:" + linha.substring(166,175));
 //					System.out.println("Nova Função -- Sigla:" + linha.substring(175,178));
-//					System.out.println("       -- Código de Nível:" + linha.substring(178,183));
-//					System.out.println("       -- Escolaridade:" + linha.substring(183,185));
+					System.out.println("       -- Código de Nível:" + linha.substring(178,183));
+					System.out.println("       -- Escolaridade:" + linha.substring(183,185));
 //					System.out.println("       -- Opção:" + linha.substring(185,186));
 //					System.out.println("       -- Data Ingresso:" + linha.substring(186,194));
 //					System.out.println("       -- Data Saída:" + linha.substring(194,202));
@@ -180,13 +180,13 @@ public class FitaEspelho {
 //					System.out.println("Grupo - Ingr. Serv. Púb. -POSSE -- Código Grupo:" + linha.substring(679,681));
 //					System.out.println("                                -- Ocorrência:" + linha.substring(681,684));
 //					System.out.println("                                -- Data:" + linha.substring(684,692));
-//					System.out.println("                                -- Código Diploma:" + linha.substring(692,694));
+					System.out.println("                                -- Código Diploma:" + linha.substring(692,694));
 //					System.out.println("                                -- Data do Diploma:" + linha.substring(694,702));
 //					System.out.println("                                -- Número do Diploma:" + linha.substring(702,711));
 //					System.out.println("Grupo Reversão a Atividade -- Grupo de Ocorrência:" + linha.substring(711,713));
 //					System.out.println("                           -- Código de Ocorrência:" + linha.substring(713,716));
 //					System.out.println("                           -- Data da Ocorrência:" + linha.substring(716,724));
-//					System.out.println("                           -- Código do Diploma:" + linha.substring(724,726));
+					System.out.println("                           -- Código do Diploma:" + linha.substring(724,726));
 //					System.out.println("                           --Data Publicação do Diploma:" + linha.substring(726,734));
 //					System.out.println("                           --Número do Diploma:" + linha.substring(734,743));
 //					System.out.println("Indicador de Cálculo Automático -- Cargo:" + linha.substring(743,744));
@@ -210,7 +210,7 @@ public class FitaEspelho {
 //					System.out.println("                                -- Diferença de URV:" + linha.substring(761,762));
 //					System.out.println("                                -- Adiantamento:" + linha.substring(762,763));
 //					System.out.println("                                -- Rendimento PASEP:" + linha.substring(763,764));
-//				}
+				}
 //				
 //				linha = br.readLine().substring(0, 764);
 //				teste = Integer.parseInt(linha.substring(17, 18));
@@ -232,7 +232,7 @@ public class FitaEspelho {
 //					System.out.println("**********TRAILLER**********");
 //					System.out.println(linha);
 //				}
-//			}
+		}
 			br.close();
 		} catch (IOException ioe) {
 			ioe.printStackTrace();

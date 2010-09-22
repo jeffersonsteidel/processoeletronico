@@ -8,8 +8,8 @@
 			<generator class="increment"></generator>  
 		</id>
 		<property name="nome" column="CONJ_NOME" />	
-		<many-to-one name="documento" class="br.com.progepe.entity.Documento"
-			column="DOC_COD" not-null="true" lazy="false" />
+		<one-to-one name="documento" class="br.com.progepe.entity.Documento"
+		constrained="true" cascade="all"/>
 		<many-to-one name="cidadeNascimento" class="br.com.progepe.entity.Cidade"
 			column="CID_COD_CID_NASC" not-null="true" lazy="false" />
 		<property name="indEstrangeiro" column="CONJ_IND_ESTRAN" type="boolean" />	

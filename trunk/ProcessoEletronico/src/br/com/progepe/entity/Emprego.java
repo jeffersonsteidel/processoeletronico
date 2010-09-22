@@ -13,6 +13,7 @@ public class Emprego implements Serializable {
 	private Date dataSaida;
 	private String empresa;
 	private String atividades;
+	private Servidor servidor;
 	// Variavel auxiliar
 	private Integer indentificador;
 
@@ -99,4 +100,11 @@ public class Emprego implements Serializable {
 		this.dataSaidaString = dataSaidaString;
 	}
 
+	public Servidor getServidor() {
+		return servidor;
+	}
+
+	public void setServidor(Servidor servidor) {
+		this.servidor = servidor;
+	}
 }
