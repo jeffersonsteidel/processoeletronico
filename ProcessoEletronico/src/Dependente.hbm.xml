@@ -19,8 +19,8 @@
 			type="boolean" />
 		<property name="indEstudante" column="DEP_IND_EST" type="boolean" />
 		<property name="indIr" column="DEP_IND_IR" type="boolean" />
-		<many-to-one name="documento" class="br.com.progepe.entity.Documento"
-			column="DOC_COD" not-null="true" lazy="false" />
+		<one-to-one name="documento" class="br.com.progepe.entity.Documento"
+			cascade="all" />
 		<many-to-one name="servidor" class="br.com.progepe.entity.Servidor"
 			column="SERV_COD" not-null="true" lazy="false" />
 	</class>
