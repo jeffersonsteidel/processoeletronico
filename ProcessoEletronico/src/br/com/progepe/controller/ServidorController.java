@@ -760,7 +760,7 @@ public class ServidorController {
 		} else {
 			indTitulacaoEstrangeira = false;
 		}
-		return false;
+		return indTitulacaoEstrangeira;
 	}
 
 	public Boolean isUniversitario() {
@@ -769,7 +769,7 @@ public class ServidorController {
 		} else {
 			indUniversitario = false;
 		}
-		return false;
+		return indUniversitario;
 	}
 
 	public List<ServidorTitulacao> adicionarTitulacao() {
