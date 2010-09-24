@@ -10,12 +10,12 @@
 		<property name="cpf" column="DOC_CPF" />	
 		<property name="rg" column="DOC_RG" />
 		<many-to-one name="rgUf" class="br.com.progepe.entity.Estado"
-			column="EST_COD_UF_RG" not-null="true" lazy="false" />
+			column="EST_COD_UF_RG" lazy="false" />
 		<property name="rgOrgaoEmissor" column="DOC_RG_ORG_EMI" />
 		<property name="rgDataExpedicao" column="DOC_RG_DATA_EXP" />
 		<property name="tituloEleitor" column="DOC_TIT_ELEIT" />
 		<many-to-one name="tituloUf" class="br.com.progepe.entity.Estado"
-			column="EST_COD_UF_TIT_ELEIT" not-null="true" lazy="false" />
+			column="EST_COD_UF_TIT_ELEIT" lazy="false" />
 		<property name="tituloZona" column="DOC_TIT_ELEIT_ZONA" />
 		<property name="tituloSecao" column="DOC_TIT_ELEIT_SECAO" />
 		<property name="tituloDataEmissao" column="DOC_TIT_DATA_EMI" />
@@ -25,7 +25,7 @@
 		<property name="carteiraTrabalho" column="DOC_CART_TRAB" />
 		<property name="carteiraSerie" column="DOC_CART_TRAB_SERIE" />
 		<many-to-one name="carteiraUf" class="br.com.progepe.entity.Estado"
-			column="EST_COD_CART_TRAB_UF" not-null="true" lazy="false" />
+			column="EST_COD_CART_TRAB_UF"  lazy="false" />
 		<property name="carteiraDataExpedicao" column="DOC_CART_TRAB_DATA_EXP" />
 		<property name="pis" column="DOC_PIS" />
 		<property name="dataPrimeiroEmprego" column="DOC_DATA_PRI_EMP" />

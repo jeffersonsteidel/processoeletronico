@@ -16,7 +16,6 @@ public class DAO {
 
 	public DAO() {
 		session.beginTransaction();
-		session.flush();
 	}
 
 	public void save(Object object) {
