@@ -385,6 +385,9 @@ public class ServidorController {
 		servidor.setGrupoSanguineo(new GrupoSanguineo());
 		servidor.setLotacao(new Lotacao());
 		servidor.setLocalExercicio(new Lotacao());
+		servidor.setEndereco(new Endereco());
+		servidor.getEndereco().setCidade(new Cidade());
+		servidor.getEndereco().getCidade().setEstado(new Estado());
 		servidor.setPadrao(new Padrao());
 		servidor.setRegimeTrabalho(new RegimeTrabalho());
 		servidor.setSituacaoFuncional(new SituacaoFuncional());
