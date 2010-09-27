@@ -7,7 +7,7 @@ public class Lotacao implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private Long codigo;
 	private String descricao;
-	private Telefone telefone;
+	private String telefone;
 	private Endereco endereco;
 	private String diretorGeral;
 	private String diretorAdministrativo;
@@ -30,11 +30,11 @@ public class Lotacao implements Serializable {
 		this.descricao = descricao;
 	}
 
-	public Telefone getTelefone() {
+	public String getTelefone() {
 		return telefone;
 	}
 
-	public void setTelefone(Telefone telefone) {
+	public void setTelefone(String telefone) {
 		this.telefone = telefone;
 	}
 
