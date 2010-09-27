@@ -39,8 +39,8 @@ public class Servidor implements Serializable {
 	private SituacaoFuncional situacaoFuncional;
 	private Grupo grupo;
 	private Endereco endereco;
-	private Telefone telefone;
-	private Telefone celular;
+	private String telefone;
+	private String celular;
 	private Set<Dependente> dependentes = new HashSet<Dependente>();
 	private Set<Titulacao> titulacoes = new HashSet<Titulacao>();
 	private String identificacaoUnica;
@@ -254,19 +254,19 @@ public class Servidor implements Serializable {
 		this.endereco = endereco;
 	}
 
-	public Telefone getTelefone() {
+	public String getTelefone() {
 		return telefone;
 	}
 
-	public void setTelefone(Telefone telefone) {
+	public void setTelefone(String telefone) {
 		this.telefone = telefone;
 	}
 
-	public Telefone getCelular() {
+	public String getCelular() {
 		return celular;
 	}
 
-	public void setCelular(Telefone celular) {
+	public void setCelular(String celular) {
 		this.celular = celular;
 	}
 
