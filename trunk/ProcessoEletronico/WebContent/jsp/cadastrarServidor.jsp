@@ -391,13 +391,13 @@
 					</h:selectOneMenu>
 
 					<h:outputText value="Telefone: " />
-					<h:inputText value="#{servidorController.servidor.telefone.numero}"
+					<h:inputText value="#{servidorController.servidor.telefone}"
 						size="16" maxlength="13" required="true"
 						requiredMessage="Campo Telefone obrigatório!"
 						onkeypress="mascara(this,telefone);"></h:inputText>
 
 					<h:outputText value="Celular: " />
-					<h:inputText value="#{servidorController.servidor.celular.numero}"
+					<h:inputText value="#{servidorController.servidor.celular}"
 						size="16" maxlength="13" onkeypress="mascara(this,telefone);"></h:inputText>
 
 					<h:outputText value="E-mail: " />
@@ -871,6 +871,7 @@ orgaoRegistro,estadoOrgaoRegistro, titulacaoEstrangeira, titEstrangeira	"
 					</rich:dataTable>
 				</a4j:region>
 			</rich:tab>
+
 
 			<rich:tab label="SALVAR">
 				<a4j:commandButton value="Salvar"

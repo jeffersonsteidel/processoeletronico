@@ -34,7 +34,7 @@
 					<f:facet name="header">
 						<h:outputText value="Telefone" />
 					</f:facet>
-					<h:outputText value="#{list.telefone.numero}" />
+					<h:outputText value="#{list.telefone}" />
 				</rich:column>
 				<rich:column sortBy="#{list.site}" filterBy="#{list.site}"
 					filterEvent="onkeyup">
