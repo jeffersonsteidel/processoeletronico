@@ -17,6 +17,7 @@ public class BancoController {
 		return banco;
 	}
 
+	
 	public void setBanco(Banco banco) {
 		this.banco = banco;
 	}
