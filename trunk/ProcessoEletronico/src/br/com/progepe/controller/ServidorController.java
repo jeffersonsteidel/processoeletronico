@@ -36,7 +36,6 @@ import br.com.progepe.entity.RegimeTrabalho;
 import br.com.progepe.entity.Servidor;
 import br.com.progepe.entity.ServidorTitulacao;
 import br.com.progepe.entity.SituacaoFuncional;
-import br.com.progepe.entity.Telefone;
 import br.com.progepe.entity.TipoFuncao;
 import br.com.progepe.entity.Titulacao;
 
@@ -391,8 +390,6 @@ public class ServidorController {
 		servidor.setPadrao(new Padrao());
 		servidor.setRegimeTrabalho(new RegimeTrabalho());
 		servidor.setSituacaoFuncional(new SituacaoFuncional());
-		servidor.setTelefone(new Telefone());
-		servidor.setCelular(new Telefone());
 		dependentes = new ArrayList<Dependente>();
 		servidorTitulacao = new ServidorTitulacao();
 		servidorTitulacao.setTitulacao(new Titulacao());
@@ -748,8 +745,8 @@ public class ServidorController {
 
 	public void salvar() {
 		dao.save(servidor);
-		dao.save(dependente);
-		dao.save(titulacao);
+//		dao.save(dependente);
+//		dao.save(titulacao);
 		servidor = new Servidor();
 	}
 

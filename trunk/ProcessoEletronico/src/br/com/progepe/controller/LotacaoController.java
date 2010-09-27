@@ -13,7 +13,6 @@ import br.com.progepe.entity.Cidade;
 import br.com.progepe.entity.Endereco;
 import br.com.progepe.entity.Estado;
 import br.com.progepe.entity.Lotacao;
-import br.com.progepe.entity.Telefone;
 
 public class LotacaoController {
 
@@ -56,7 +55,6 @@ public class LotacaoController {
 
 	public void cadastrar() throws IOException {
 		lotacao = new Lotacao();
-		lotacao.setTelefone(new Telefone());
 		lotacao.setEndereco(new Endereco());
 		lotacao.getEndereco().setCidade(new Cidade());
 		lotacao.getEndereco().getCidade().setEstado(new Estado());
