@@ -71,7 +71,7 @@
 					maxlength="120" required="true" requiredMessage="Campo Diretor Administrativo obrigatório!" ></h:inputText>
 					
 				<h:outputText value="Telefone: " />
-				<h:inputText value="#{lotacaoController.lotacao.telefone.numero}"
+				<h:inputText value="#{lotacaoController.lotacao.telefone}"
 					size="20" maxlength="13" onkeypress="mascara(this,telefone)"
 					required="true" requiredMessage="Campo Telefone obrigatório!"></h:inputText>
 
