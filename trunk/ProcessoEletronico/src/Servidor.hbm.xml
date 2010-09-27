@@ -21,6 +21,8 @@
 		<property name="nomeMae" column="SERV_NOME_MAE" />
 		<property name="indEstrangeiro" column="SERV_IND_ESTRAN"
 			type="boolean" />
+		<property name="telefone" column="SERV_TEL_FIXO" />
+		<property name="celular" column="SERV_TEL_CEL" />
 		<one-to-one name="cargo" class="br.com.progepe.entity.Cargo"
 			constrained="true" />
 		<one-to-one name="lotacao" class="br.com.progepe.entity.Lotacao"
@@ -51,19 +53,15 @@
 			constrained="true" />
 		<one-to-one name="endereco" class="br.com.progepe.entity.Endereco"
 			constrained="true" />
-		<one-to-one name="telefone" class="br.com.progepe.entity.Telefone"
-			cascade="all" constrained="true" />
-		<one-to-one name="celular" class="br.com.progepe.entity.Telefone"
-			cascade="all" constrained="true" />
 		<one-to-one name="conjuge" class="br.com.progepe.entity.Conjuge"
-			 cascade="all" constrained="true"/>
+			cascade="all" constrained="true" />
 		<set name="dependentes" table="SERVIDORDEPENDENTE">
 			<key column="SERV_COD" />
-			<one-to-many  class="br.com.progepe.entity.Dependente" />
+			<one-to-many class="br.com.progepe.entity.Dependente" />
 		</set>
 		<set name="titulacoes" table="SERVIDORTITULACAO">
 			<key column="SERV_TIT_COD" />
-				<one-to-many class="br.com.progepe.entity.ServidorTitulacao" /> 	
-		</set>		
+			<one-to-many class="br.com.progepe.entity.ServidorTitulacao" />
+		</set>
 	</class>
 </hibernate-mapping>
