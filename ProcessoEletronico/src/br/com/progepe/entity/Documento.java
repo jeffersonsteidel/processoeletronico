@@ -26,7 +26,6 @@ public class Documento implements Serializable {
 	private Integer carteiraTrabalho;
 	private String carteiraSerie;
 	private Estado carteiraUf;
-	private Date carteiraDataExpedicao;
 	private String pis;
 	private Date dataPrimeiroEmprego;
 
@@ -158,14 +157,6 @@ public class Documento implements Serializable {
 		this.carteiraUf = carteiraUf;
 	}
 
-	public Date getCarteiraDataExpedicao() {
-		return carteiraDataExpedicao;
-	}
-
-	public void setCarteiraDataExpedicao(Date carteiraDataExpedicao) {
-		this.carteiraDataExpedicao = carteiraDataExpedicao;
-	}
-
 	public String getPis() {
 		return pis;
 	}
@@ -189,4 +180,5 @@ public class Documento implements Serializable {
 	public void setTituloEleitor(String tituloEleitor) {
 		this.tituloEleitor = tituloEleitor;
 	}
+
 }

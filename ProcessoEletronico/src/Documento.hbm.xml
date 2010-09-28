@@ -26,7 +26,6 @@
 		<property name="carteiraSerie" column="DOC_CART_TRAB_SERIE" />
 		<many-to-one name="carteiraUf" class="br.com.progepe.entity.Estado"
 			column="EST_COD_CART_TRAB_UF"  lazy="false" />
-		<property name="carteiraDataExpedicao" column="DOC_CART_TRAB_DATA_EXP" />
 		<property name="pis" column="DOC_PIS" />
 		<property name="dataPrimeiroEmprego" column="DOC_DATA_PRI_EMP" />
 	</class>

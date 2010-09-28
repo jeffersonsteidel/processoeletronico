@@ -321,13 +321,6 @@
 						<f:selectItem itemLabel="SELECIONE" itemValue="" />
 						<f:selectItems value="#{servidorController.ufs}" />
 					</h:selectOneMenu>
-					<h:outputText value="Data de Expedição da Carteira de Trabalho: " />
-					<rich:calendar
-						value="#{servidorController.servidor.documento.carteiraDataExpedicao}"
-						locale="" popup="true" datePattern="dd/MM/yyyy"
-						showApplyButton="#" cellWidth="12px" cellHeight="12px"
-						style="width:80px" required="true" inputSize="12"
-						requiredMessage="Campo Data de Expedição da Carteira de Trabalho obrigatório!" />
 					<h:outputText value="PIS/PASEP: " />
 					<h:inputText value="#{servidorController.servidor.documento.pis}"
 						size="16" maxlength="14" required="true"
