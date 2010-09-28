@@ -41,7 +41,7 @@ import br.com.progepe.entity.Titulacao;
 
 public class ServidorController {
 
-	public static final Long CAIXA_ECONOMICA_FEDERAL = 20L;
+	public static final Long CAIXA_ECONOMICA_FEDERAL = 104L;
 
 	private Servidor servidor;
 	private List<Servidor> servidores;
@@ -714,33 +714,30 @@ public class ServidorController {
 		return paises;
 	}
 
-	public Boolean isEstrangeiro() {
+	public void isEstrangeiro() {
 		if (servidor.getIndEstrangeiro()) {
 			servidorEstrangeiro = true;
 			listarPais();
 		} else {
 			servidorEstrangeiro = false;
 		}
-		return false;
 	}
 
-	public Boolean isConjugeServidor() {
+	public void isConjugeServidor() {
 		if (servidor.getConjuge().getIndServidor()) {
 			indConjugeServidor = true;
 		} else {
 			indConjugeServidor = false;
 		}
-		return false;
 	}
 
-	public Boolean isPoupanca() {
+	public void isPoupanca() {
 		if ((CAIXA_ECONOMICA_FEDERAL).equals(servidor.getContaBancaria()
 				.getBanco().getCodigo())) {
 			indPoupanca = true;
 		} else {
 			indPoupanca = false;
 		}
-		return false;
 	}
 
 	public void salvar() {
