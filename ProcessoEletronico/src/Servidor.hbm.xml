@@ -29,16 +29,12 @@
 			column="LOT_COD"/>
 		<many-to-one name="localExercicio" class="br.com.progepe.entity.Lotacao"
 			column="LOT_COD_EXERC" />
-		<!-- 
 		<many-to-one name="documento" class="br.com.progepe.entity.Documento"
-			column="DOC_COD"/>
-		 -->	
+			column="DOC_COD" unique="true" cascade="all"/>	
 		<many-to-one name="padrao" class="br.com.progepe.entity.Padrao"
 			column="PAD_COD" />
-		<!-- 
 		<many-to-one name="contaBancaria" class="br.com.progepe.entity.ContaBancaria"
-			column="CONT_BAN_COD"/>
-		-->	
+			column="CONT_BAN_COD" unique="true" cascade="all"/>
 		<many-to-one name="grupoSanguineo" class="br.com.progepe.entity.GrupoSanguineo"
 			column="GRUPO_SANG_COD" />
 		<many-to-one name="cidadeNascimento" class="br.com.progepe.entity.Cidade"
@@ -53,10 +49,8 @@
 			column="REG_TRAB_COD"  />
 		<many-to-one name="situacaoFuncional" class="br.com.progepe.entity.SituacaoFuncional"
 			column="SIT_FUN_COD" />
-		<!-- 
 		<many-to-one name="endereco" class="br.com.progepe.entity.Endereco"
-			column="END_COD" />
-		 -->		
+			column="END_COD" unique="true" cascade="all"/>
 		<!-- <one-to-one name="conjuge" class="br.com.progepe.entity.Conjuge" cascade="all" 
 			constrained="true" /> <set name="dependentes" table="SERVIDORDEPENDENTE"> 
 			<key column="SERV_COD" /> <one-to-many class="br.com.progepe.entity.Dependente" 
