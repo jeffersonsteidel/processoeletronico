@@ -2,58 +2,58 @@ package br.com.progepe.extract;
 
 public class DadosPessoais {
 
-	private Integer matriculaSiape;
-	private Integer dvMatricula;
-	private Integer tipoRegistro;
+	private String matriculaSiape;
+	private String dvMatricula;
+	private String tipoRegistro;
 	private String nomeServidor;
-	private Integer cpf;
-	private Integer pisPasef;
+	private String cpf;
+	private String pisPasef;
 	private String nomeMae;
 	private String sexo;
-	private Integer dataNascimento;
-	private Integer estadoCivil;
-	private Integer nivelEscolaridade;
-	private Integer codigoTitulacaoFormacao;
-	private Integer nacionalidade;
+	private String dataNascimento;
+	private String estadoCivil;
+	private String nivelEscolaridade;
+	private String codigoTitulacaoFormacao;
+	private String nacionalidade;
 	private String naturalidade;
-	private Integer pais;
-	private Integer anoChegada;
-	private Integer dataPrimeiroEmprego;
-	private Integer identificacaoOrigem;
+	private String pais;
+	private String anoChegada;
+	private String dataPrimeiroEmprego;
+	private String identificacaoOrigem;
 	private String logradouro;
-	private String numero;
-	private String complemento;
+	private String numeroEndereco;
+	private String complementoEndereco;
 	private String bairro;
 	private String municipio;
-	private Integer cep;
+	private String cep;
 	private String uf;
 	private String numeroRegistroGeral;
 	private String siglaOrgaoExpedidor;
-	private Integer dataExpedicaoIdentidade;
+	private String dataExpedicaoIdentidade;
 	private String siglaUfIdentidade;
-	private Integer numeroTituloEleitor;
+	private String numeroTituloEleitor;
 
-	public Integer getMatriculaSiape() {
+	public String getMatriculaSiape() {
 		return matriculaSiape;
 	}
 
-	public void setMatriculaSiape(Integer matriculaSiape) {
+	public void setMatriculaSiape(String matriculaSiape) {
 		this.matriculaSiape = matriculaSiape;
 	}
 
-	public Integer getDvMatricula() {
+	public String getDvMatricula() {
 		return dvMatricula;
 	}
 
-	public void setDvMatricula(Integer dvMatricula) {
+	public void setDvMatricula(String dvMatricula) {
 		this.dvMatricula = dvMatricula;
 	}
 
-	public Integer getTipoRegistro() {
+	public String getTipoRegistro() {
 		return tipoRegistro;
 	}
 
-	public void setTipoRegistro(Integer tipoRegistro) {
+	public void setTipoRegistro(String tipoRegistro) {
 		this.tipoRegistro = tipoRegistro;
 	}
 
@@ -65,19 +65,19 @@ public class DadosPessoais {
 		this.nomeServidor = nomeServidor;
 	}
 
-	public Integer getCpf() {
+	public String getCpf() {
 		return cpf;
 	}
 
-	public void setCpf(Integer cpf) {
+	public void setCpf(String cpf) {
 		this.cpf = cpf;
 	}
 
-	public Integer getPisPasef() {
+	public String getPisPasef() {
 		return pisPasef;
 	}
 
-	public void setPisPasef(Integer pisPasef) {
+	public void setPisPasef(String pisPasef) {
 		this.pisPasef = pisPasef;
 	}
 
@@ -97,43 +97,43 @@ public class DadosPessoais {
 		this.sexo = sexo;
 	}
 
-	public Integer getDataNascimento() {
+	public String getDataNascimento() {
 		return dataNascimento;
 	}
 
-	public void setDataNascimento(Integer dataNascimento) {
+	public void setDataNascimento(String dataNascimento) {
 		this.dataNascimento = dataNascimento;
 	}
 
-	public Integer getEstadoCivil() {
+	public String getEstadoCivil() {
 		return estadoCivil;
 	}
 
-	public void setEstadoCivil(Integer estadoCivil) {
+	public void setEstadoCivil(String estadoCivil) {
 		this.estadoCivil = estadoCivil;
 	}
 
-	public Integer getNivelEscolaridade() {
+	public String getNivelEscolaridade() {
 		return nivelEscolaridade;
 	}
 
-	public void setNivelEscolaridade(Integer nivelEscolaridade) {
+	public void setNivelEscolaridade(String nivelEscolaridade) {
 		this.nivelEscolaridade = nivelEscolaridade;
 	}
 
-	public Integer getCodigoTitulacaoFormacao() {
+	public String getCodigoTitulacaoFormacao() {
 		return codigoTitulacaoFormacao;
 	}
 
-	public void setCodigoTitulacaoFormacao(Integer codigoTitulacaoFormacao) {
+	public void setCodigoTitulacaoFormacao(String codigoTitulacaoFormacao) {
 		this.codigoTitulacaoFormacao = codigoTitulacaoFormacao;
 	}
 
-	public Integer getNacionalidade() {
+	public String getNacionalidade() {
 		return nacionalidade;
 	}
 
-	public void setNacionalidade(Integer nacionalidade) {
+	public void setNacionalidade(String nacionalidade) {
 		this.nacionalidade = nacionalidade;
 	}
 
@@ -145,35 +145,35 @@ public class DadosPessoais {
 		this.naturalidade = naturalidade;
 	}
 
-	public Integer getPais() {
+	public String getPais() {
 		return pais;
 	}
 
-	public void setPais(Integer pais) {
+	public void setPais(String pais) {
 		this.pais = pais;
 	}
 
-	public Integer getAnoChegada() {
+	public String getAnoChegada() {
 		return anoChegada;
 	}
 
-	public void setAnoChegada(Integer anoChegada) {
+	public void setAnoChegada(String anoChegada) {
 		this.anoChegada = anoChegada;
 	}
 
-	public Integer getDataPrimeiroEmprego() {
+	public String getDataPrimeiroEmprego() {
 		return dataPrimeiroEmprego;
 	}
 
-	public void setDataPrimeiroEmprego(Integer dataPrimeiroEmprego) {
+	public void setDataPrimeiroEmprego(String dataPrimeiroEmprego) {
 		this.dataPrimeiroEmprego = dataPrimeiroEmprego;
 	}
 
-	public Integer getIdentificacaoOrigem() {
+	public String getIdentificacaoOrigem() {
 		return identificacaoOrigem;
 	}
 
-	public void setIdentificacaoOrigem(Integer identificacaoOrigem) {
+	public void setIdentificacaoOrigem(String identificacaoOrigem) {
 		this.identificacaoOrigem = identificacaoOrigem;
 	}
 
@@ -183,22 +183,6 @@ public class DadosPessoais {
 
 	public void setLogradouro(String logradouro) {
 		this.logradouro = logradouro;
-	}
-
-	public String getNumero() {
-		return numero;
-	}
-
-	public void setNumero(String numero) {
-		this.numero = numero;
-	}
-
-	public String getComplemento() {
-		return complemento;
-	}
-
-	public void setComplemento(String complemento) {
-		this.complemento = complemento;
 	}
 
 	public String getBairro() {
@@ -217,11 +201,11 @@ public class DadosPessoais {
 		this.municipio = municipio;
 	}
 
-	public Integer getCep() {
+	public String getCep() {
 		return cep;
 	}
 
-	public void setCep(Integer cep) {
+	public void setCep(String cep) {
 		this.cep = cep;
 	}
 
@@ -249,11 +233,11 @@ public class DadosPessoais {
 		this.siglaOrgaoExpedidor = siglaOrgaoExpedidor;
 	}
 
-	public Integer getDataExpedicaoIdentidade() {
+	public String getDataExpedicaoIdentidade() {
 		return dataExpedicaoIdentidade;
 	}
 
-	public void setDataExpedicaoIdentidade(Integer dataExpedicaoIdentidade) {
+	public void setDataExpedicaoIdentidade(String dataExpedicaoIdentidade) {
 		this.dataExpedicaoIdentidade = dataExpedicaoIdentidade;
 	}
 
@@ -265,12 +249,28 @@ public class DadosPessoais {
 		this.siglaUfIdentidade = siglaUfIdentidade;
 	}
 
-	public Integer getNumeroTituloEleitor() {
+	public String getNumeroTituloEleitor() {
 		return numeroTituloEleitor;
 	}
 
-	public void setNumeroTituloEleitor(Integer numeroTituloEleitor) {
+	public void setNumeroTituloEleitor(String numeroTituloEleitor) {
 		this.numeroTituloEleitor = numeroTituloEleitor;
+	}
+
+	public void setNumeroEndereco(String numeroEndereco) {
+		this.numeroEndereco = numeroEndereco;
+	}
+
+	public String getNumeroEndereco() {
+		return numeroEndereco;
+	}
+
+	public void setComplementoEndereco(String complementoEndereco) {
+		this.complementoEndereco = complementoEndereco;
+	}
+
+	public String getComplementoEndereco() {
+		return complementoEndereco;
 	}
 
 }
