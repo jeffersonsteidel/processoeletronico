@@ -21,40 +21,45 @@
 		<property name="nomeMae" column="SERV_NOME_MAE" />
 		<property name="indEstrangeiro" column="SERV_IND_ESTRAN"
 			type="boolean" />
-		<property name="telefone"  column="SERV_TEL_FIXO" />
+		<property name="telefone" column="SERV_TEL_FIXO" />
 		<property name="celular" column="SERV_TEL_CEL" />
 		<many-to-one name="cargo" class="br.com.progepe.entity.Cargo"
-			column="CARG_COD"/>
+			column="CARG_COD" />
 		<many-to-one name="lotacao" class="br.com.progepe.entity.Lotacao"
-			column="LOT_COD"/>
+			column="LOT_COD" />
 		<many-to-one name="localExercicio" class="br.com.progepe.entity.Lotacao"
 			column="LOT_COD_EXERC" />
 		<many-to-one name="documento" class="br.com.progepe.entity.Documento"
-			column="DOC_COD" unique="true" cascade="all"/>	
+			column="DOC_COD" unique="true" cascade="all" />
 		<many-to-one name="padrao" class="br.com.progepe.entity.Padrao"
 			column="PAD_COD" />
 		<many-to-one name="contaBancaria" class="br.com.progepe.entity.ContaBancaria"
-			column="CONT_BAN_COD" unique="true" cascade="all"/>
+			column="CONT_BAN_COD" unique="true" cascade="all" />
 		<many-to-one name="grupoSanguineo" class="br.com.progepe.entity.GrupoSanguineo"
 			column="GRUPO_SANG_COD" />
 		<many-to-one name="cidadeNascimento" class="br.com.progepe.entity.Cidade"
-			column="CID_COD_NASC_SERV"/>
+			column="CID_COD_NASC_SERV" />
 		<many-to-one name="estadoCivil" class="br.com.progepe.entity.EstadoCivil"
-			column="EST_CIV_COD"/>
+			column="EST_CIV_COD" />
 		<many-to-one name="corPele" class="br.com.progepe.entity.CorPele"
-			column="COR_PELE_COD"/>
-	<!--  <many-to-one name="funcao" class="br.com.progepe.entity.Funcao"
-			column="FUN_COD" />-->
+			column="COR_PELE_COD" />
+		<!-- <many-to-one name="funcao" class="br.com.progepe.entity.Funcao" column="FUN_COD" 
+			/> -->
 		<many-to-one name="regimeTrabalho" class="br.com.progepe.entity.RegimeTrabalho"
-			column="REG_TRAB_COD"  />
-		<many-to-one name="situacaoFuncional" class="br.com.progepe.entity.SituacaoFuncional"
-			column="SIT_FUN_COD" />
+			column="REG_TRAB_COD" />
+		<many-to-one name="situacaoFuncional"
+			class="br.com.progepe.entity.SituacaoFuncional" column="SIT_FUN_COD" />
 		<many-to-one name="endereco" class="br.com.progepe.entity.Endereco"
-			column="END_COD" unique="true" cascade="all"/>
+			column="END_COD" unique="true" cascade="all" />
 		<!-- <one-to-one name="conjuge" class="br.com.progepe.entity.Conjuge" cascade="all" 
-			constrained="true" /> <set name="dependentes" table="SERVIDORDEPENDENTE"> 
-			<key column="SERV_COD" /> <one-to-many class="br.com.progepe.entity.Dependente" 
-			/> </set> <set name="titulacoes" table="SERVIDORTITULACAO"> <key column="SERV_TIT_COD" 
-			/> <one-to-many class="br.com.progepe.entity.ServidorTitulacao" /> </set> -->
+			constrained="true" /> -->
+		<set name="dependentes" table="SERVIDORDEPENDENTE">
+			<key column="SERV_DEP_COD" />
+			<one-to-many class="br.com.progepe.entity.Dependente" />
+		</set>
+		<set name="titulacoes" table="SERVIDORTITULACAO" cascade="all">
+			<key column="SERV_TIT_COD" unique="true" />
+			<one-to-many class="br.com.progepe.entity.ServidorTitulacao" />
+		</set>
 	</class>
 </hibernate-mapping>
