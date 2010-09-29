@@ -5,15 +5,6 @@ import java.util.regex.Pattern;
 
 public abstract class Validator {
 
-	public static boolean validarPlaca(String placa) {
-		String formato = "^(([A-Z]{3})\\-(([1-9][0-9][0-9][0-9])|([0][1-9][0-9][0-9])|([0]{2}[1-9][0-9])|([0]{3}[1-9])))$";
-		if ((placa == null) || (placa.length() != 8)
-				|| (!placa.matches(formato)))
-			return false;
-		else
-			return true;
-	}
-
 	public static boolean validarCep(String cep) {
 		String formato = "[0-9]{5}?\\-[0-9]{3}?";
 		if ((cep == null) || (cep.length() != 9) || (!cep.matches(formato)))

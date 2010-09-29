@@ -38,6 +38,7 @@ import br.com.progepe.entity.ServidorTitulacao;
 import br.com.progepe.entity.SituacaoFuncional;
 import br.com.progepe.entity.TipoFuncao;
 import br.com.progepe.entity.Titulacao;
+import br.com.progepe.validator.Validator;
 
 public class ServidorController {
 
@@ -344,7 +345,7 @@ public class ServidorController {
 	public void setIndUniversitario(Boolean indUniversitario) {
 		this.indUniversitario = indUniversitario;
 	}
-	
+
 	public List<SelectItem> getTipoFuncoes() {
 		return tipoFuncoes;
 	}
@@ -430,12 +431,11 @@ public class ServidorController {
 		areasConhecimentos = new ArrayList<SelectItem>();
 		tipoFuncoes = new ArrayList<SelectItem>();
 
-
 		listarBancos();
 		listarGrauParentesco();
 		listarEstados();
 		listarUfs();
-		
+
 		listarLotacoes();
 		listarPadroes();
 		listarSituacoesFuncionais();
@@ -606,7 +606,8 @@ public class ServidorController {
 	public List<SelectItem> listarBancos() {
 		bancos = new ArrayList<SelectItem>();
 		List<Banco> bancoList = new ArrayList<Banco>();
-		bancoList = dao.list(servidor.getContaBancaria().getBanco().getClass(),"descricao");
+		bancoList = dao.list(servidor.getContaBancaria().getBanco().getClass(),
+				"descricao");
 		for (Banco banco : bancoList) {
 			bancos.add(new SelectItem(banco.getCodigo(), banco.getDescricao()));
 		}
@@ -642,7 +643,8 @@ public class ServidorController {
 	public List<SelectItem> listarClasses() {
 		classes = new ArrayList<SelectItem>();
 		List<Classe> classeList = new ArrayList<Classe>();
-		classeList = dao.list(servidor.getCargo().getClasse().getClass(), "descricao");
+		classeList = dao.list(servidor.getCargo().getClasse().getClass(),
+				"descricao");
 		for (Classe classe : classeList) {
 			classes.add(new SelectItem(classe.getCodigo(), classe.getSigla()));
 		}
@@ -695,7 +697,8 @@ public class ServidorController {
 	public List<SelectItem> listarTitulacoes() {
 		titulacoes = new ArrayList<SelectItem>();
 		List<Titulacao> titulacaoList = new ArrayList<Titulacao>();
-		titulacaoList = dao.list(servidorTitulacao.getTitulacao().getClass(), "descricao");
+		titulacaoList = dao.list(servidorTitulacao.getTitulacao().getClass(),
+				"descricao");
 		for (Titulacao titulacao : titulacaoList) {
 			titulacoes.add(new SelectItem(titulacao.getCodigo(), titulacao
 					.getDescricao()));
@@ -742,8 +745,8 @@ public class ServidorController {
 
 	public void salvar() {
 		dao.save(servidor);
-//		dao.save(dependente);
-//		dao.save(titulacao);
+		// dao.save(dependente);
+		// dao.save(titulacao);
 		servidor = new Servidor();
 	}
 
@@ -1042,5 +1045,15 @@ public class ServidorController {
 			}
 		}
 		return empregoList;
+	}
+
+	public void validarCPF() {
+		if (!Validator.validarCNPJCPF(servidor.getDocumento().getCpf())) {
+			FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR,
+					"Campo CPF inválido!",
+					"Campo CPF inválido!");
+			FacesContext.getCurrentInstance().addMessage("", message);
+			servidor.getDocumento().setCpf("");
+		}
 	}
 }
