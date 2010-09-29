@@ -744,6 +744,8 @@ public class ServidorController {
 	}
 
 	public void salvar() {
+		servidor.getTitulacoes().addAll(titulacaoList);
+		servidor.getDependentes().addAll(dependentes);
 		dao.save(servidor);
 		// dao.save(dependente);
 		// dao.save(titulacao);

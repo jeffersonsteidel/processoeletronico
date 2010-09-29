@@ -42,7 +42,7 @@ public class Servidor implements Serializable {
 	private String telefone;
 	private String celular;
 	private Set<Dependente> dependentes = new HashSet<Dependente>();
-	private Set<Titulacao> titulacoes = new HashSet<Titulacao>();
+	private Set<ServidorTitulacao> titulacoes = new HashSet<ServidorTitulacao>();
 	private String identificacaoUnica;
 	private Date dataAdmServicoPublico;
 
@@ -278,11 +278,11 @@ public class Servidor implements Serializable {
 		this.dependentes = dependentes;
 	}
 
-	public Set<Titulacao> getTitulacoes() {
+	public Set<ServidorTitulacao> getTitulacoes() {
 		return titulacoes;
 	}
 
-	public void setTitulacoes(Set<Titulacao> titulacoes) {
+	public void setTitulacoes(Set<ServidorTitulacao> titulacoes) {
 		this.titulacoes = titulacoes;
 	}
 

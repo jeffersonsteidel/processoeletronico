@@ -241,7 +241,7 @@
 					</h:inputText>
 					<h:outputText value="RG: " />
 					<h:inputText value="#{servidorController.servidor.documento.rg}"
-						size="16" maxlength="14" required="true"
+						size="16" maxlength="11" required="true"
 						requiredMessage="Campo RG obrigatório!"></h:inputText>
 					<h:outputText value="UF do RG: " />
 					<h:selectOneMenu
