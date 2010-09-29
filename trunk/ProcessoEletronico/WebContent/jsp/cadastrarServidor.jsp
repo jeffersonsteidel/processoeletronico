@@ -270,7 +270,7 @@
 						validatorMessage="O campo Título de Eleitor deve ter 13 caracteres"
 						requiredMessage="Campo Título de Eleitor obrigatório!">
 						<f:validateLength minimum="13" />
-						</h:inputText>
+					</h:inputText>
 					<h:outputText value="Título de Eleitor Zona: " />
 					<h:inputText
 						value="#{servidorController.servidor.documento.tituloZona}"
@@ -371,7 +371,10 @@
 					<h:inputText value="#{servidorController.servidor.endereco.cep}"
 						size="20" maxlength="9" required="true"
 						requiredMessage="Campo CEP obrigatório!"
-						onkeypress="mascara(this,cep)"></h:inputText>
+						validatorMessage="Campo CEP deve ter no mínimo 9 caracateres!"
+						onkeypress="mascara(this,cep)">
+						<f:validateLength minimum="9" />
+					</h:inputText>
 
 
 					<h:outputText value="Estado: " />
@@ -397,11 +400,17 @@
 					<h:inputText value="#{servidorController.servidor.telefone}"
 						size="16" maxlength="13" required="true"
 						requiredMessage="Campo Telefone obrigatório!"
-						onkeypress="mascara(this,telefone);"></h:inputText>
+						onkeypress="mascara(this,telefone);"
+						validatorMessage="Campo Telefone deve ter no mínimo 13 caracteres!">
+						<f:validateLength minimum="13" />
+					</h:inputText>
 
 					<h:outputText value="Celular: " />
 					<h:inputText value="#{servidorController.servidor.celular}"
-						size="16" maxlength="13" onkeypress="mascara(this,telefone);"></h:inputText>
+						size="16" maxlength="13" onkeypress="mascara(this,telefone);"
+						validatorMessage="Campo Celular deve ter no mínimo 13 caracteres!">
+						<f:validateLength minimum="13" />
+					</h:inputText>
 
 					<h:outputText value="E-mail: " />
 					<h:inputText value="#{servidorController.servidor.email}" size="40"
