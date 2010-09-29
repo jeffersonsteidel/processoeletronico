@@ -773,9 +773,7 @@ public class ServidorController {
 	}
 
 	public List<ServidorTitulacao> adicionarTitulacao() {
-		if (validatorTitulacao()) {
-			System.out.println("ERROS");
-		} else {
+		if (!validatorTitulacao()) {
 			Titulacao titulacao = (Titulacao) dao.refresh(servidorTitulacao
 					.getTitulacao());
 			servidorTitulacao.setTitulacao(titulacao);
@@ -876,9 +874,7 @@ public class ServidorController {
 	}
 
 	public List<Dependente> adicionarDependentes() {
-		if (validatorDependentes()) {
-			System.out.println("ERROS");
-		} else {
+		if (!validatorDependentes()) {
 			dependente.setGrauParentesco((GrauParentesco) dao
 					.refresh(dependente.getGrauParentesco()));
 			dependente.setIndentificador(dependentes.size() + 1);
