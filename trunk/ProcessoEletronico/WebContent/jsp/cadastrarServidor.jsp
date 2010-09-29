@@ -232,9 +232,13 @@
 				<h:panelGrid columns="4">
 					<h:outputText value="CPF: " />
 					<h:inputText value="#{servidorController.servidor.documento.cpf}"
-						size="16" maxlength="14" required="true"
+						size="16" maxlength="14" required="true" id="cpf"
 						requiredMessage="Campo CPF obrigatório!"
-						onkeypress="mascara(this,cpf);"></h:inputText>
+						onkeypress="mascara(this,cpf);">
+						<a4j:support event="onchange"
+							action="#{servidorController.validarCPF}" ajaxSingle="true"
+							reRender="cpf, confirmPanel, messages"></a4j:support>
+					</h:inputText>
 					<h:outputText value="RG: " />
 					<h:inputText value="#{servidorController.servidor.documento.rg}"
 						size="16" maxlength="14" required="true"
@@ -263,7 +267,10 @@
 						value="#{servidorController.servidor.documento.tituloEleitor}"
 						size="16" maxlength="13" required="true"
 						onkeypress="mascara(this,tituloEleitor);"
-						requiredMessage="Campo Título de Eleitor obrigatório!"></h:inputText>
+						validatorMessage="O campo Título de Eleitor deve ter 13 caracteres"
+						requiredMessage="Campo Título de Eleitor obrigatório!">
+						<f:validateLength minimum="13" />
+						</h:inputText>
 					<h:outputText value="Título de Eleitor Zona: " />
 					<h:inputText
 						value="#{servidorController.servidor.documento.tituloZona}"
@@ -324,8 +331,11 @@
 					<h:outputText value="PIS/PASEP: " />
 					<h:inputText value="#{servidorController.servidor.documento.pis}"
 						size="16" maxlength="14" required="true"
+						validatorMessage="O campo PIS/PASEP deve ter 14 caracteres!"
 						onkeypress="mascara(this, pis);"
-						requiredMessage="Campo PIS/PASEP obrigatório!"></h:inputText>
+						requiredMessage="Campo PIS/PASEP obrigatório!">
+						<f:validateLength minimum="14" />
+					</h:inputText>
 					<h:outputText value="Data do 1º Emprego: " />
 					<rich:calendar
 						value="#{servidorController.servidor.documento.dataPrimeiroEmprego}"

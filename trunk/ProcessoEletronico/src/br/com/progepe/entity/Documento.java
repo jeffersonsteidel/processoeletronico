@@ -23,7 +23,7 @@ public class Documento implements Serializable {
 	private Integer certificadoMilitar;
 	private String certificadoOrgaoEmissor;
 	private String certificadoSerie;
-	private Integer carteiraTrabalho;
+	private String carteiraTrabalho;
 	private String carteiraSerie;
 	private Estado carteiraUf;
 	private String pis;
@@ -133,11 +133,11 @@ public class Documento implements Serializable {
 		this.certificadoSerie = certificadoSerie;
 	}
 
-	public Integer getCarteiraTrabalho() {
+	public String getCarteiraTrabalho() {
 		return carteiraTrabalho;
 	}
 
-	public void setCarteiraTrabalho(Integer carteiraTrabalho) {
+	public void setCarteiraTrabalho(String carteiraTrabalho) {
 		this.carteiraTrabalho = carteiraTrabalho;
 	}
 
