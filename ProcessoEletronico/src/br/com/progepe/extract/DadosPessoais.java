@@ -2,8 +2,8 @@ package br.com.progepe.extract;
 
 public class DadosPessoais {
 
-	private String matriculaSiape;
-	private String dvMatricula;
+	private Integer matriculaSiape;
+	private Integer dvMatricula;
 	private String tipoRegistro;
 	private String nomeServidor;
 	private String cpf;
@@ -13,11 +13,11 @@ public class DadosPessoais {
 	private String dataNascimento;
 	private String estadoCivil;
 	private String nivelEscolaridade;
-	private String codigoTitulacaoFormacao;
+	private Integer codigoTitulacaoFormacao;
 	private String nacionalidade;
 	private String naturalidade;
 	private String pais;
-	private String anoChegada;
+	private Integer anoChegada;
 	private String dataPrimeiroEmprego;
 	private String identificacaoOrigem;
 	private String logradouro;
@@ -27,25 +27,25 @@ public class DadosPessoais {
 	private String municipio;
 	private String cep;
 	private String uf;
-	private String numeroRegistroGeral;
+	private Integer numeroRegistroGeral;
 	private String siglaOrgaoExpedidor;
 	private String dataExpedicaoIdentidade;
 	private String siglaUfIdentidade;
 	private String numeroTituloEleitor;
 
-	public String getMatriculaSiape() {
+	public Integer getMatriculaSiape() {
 		return matriculaSiape;
 	}
 
-	public void setMatriculaSiape(String matriculaSiape) {
+	public void setMatriculaSiape(Integer matriculaSiape) {
 		this.matriculaSiape = matriculaSiape;
 	}
 
-	public String getDvMatricula() {
+	public Integer getDvMatricula() {
 		return dvMatricula;
 	}
 
-	public void setDvMatricula(String dvMatricula) {
+	public void setDvMatricula(Integer dvMatricula) {
 		this.dvMatricula = dvMatricula;
 	}
 
@@ -121,11 +121,11 @@ public class DadosPessoais {
 		this.nivelEscolaridade = nivelEscolaridade;
 	}
 
-	public String getCodigoTitulacaoFormacao() {
+	public Integer getCodigoTitulacaoFormacao() {
 		return codigoTitulacaoFormacao;
 	}
 
-	public void setCodigoTitulacaoFormacao(String codigoTitulacaoFormacao) {
+	public void setCodigoTitulacaoFormacao(Integer codigoTitulacaoFormacao) {
 		this.codigoTitulacaoFormacao = codigoTitulacaoFormacao;
 	}
 
@@ -153,11 +153,11 @@ public class DadosPessoais {
 		this.pais = pais;
 	}
 
-	public String getAnoChegada() {
+	public Integer getAnoChegada() {
 		return anoChegada;
 	}
 
-	public void setAnoChegada(String anoChegada) {
+	public void setAnoChegada(Integer anoChegada) {
 		this.anoChegada = anoChegada;
 	}
 
@@ -183,6 +183,22 @@ public class DadosPessoais {
 
 	public void setLogradouro(String logradouro) {
 		this.logradouro = logradouro;
+	}
+
+	public String getNumeroEndereco() {
+		return numeroEndereco;
+	}
+
+	public void setNumeroEndereco(String numeroEndereco) {
+		this.numeroEndereco = numeroEndereco;
+	}
+
+	public String getComplementoEndereco() {
+		return complementoEndereco;
+	}
+
+	public void setComplementoEndereco(String complementoEndereco) {
+		this.complementoEndereco = complementoEndereco;
 	}
 
 	public String getBairro() {
@@ -217,11 +233,11 @@ public class DadosPessoais {
 		this.uf = uf;
 	}
 
-	public String getNumeroRegistroGeral() {
+	public Integer getNumeroRegistroGeral() {
 		return numeroRegistroGeral;
 	}
 
-	public void setNumeroRegistroGeral(String numeroRegistroGeral) {
+	public void setNumeroRegistroGeral(Integer numeroRegistroGeral) {
 		this.numeroRegistroGeral = numeroRegistroGeral;
 	}
 
@@ -255,22 +271,6 @@ public class DadosPessoais {
 
 	public void setNumeroTituloEleitor(String numeroTituloEleitor) {
 		this.numeroTituloEleitor = numeroTituloEleitor;
-	}
-
-	public void setNumeroEndereco(String numeroEndereco) {
-		this.numeroEndereco = numeroEndereco;
-	}
-
-	public String getNumeroEndereco() {
-		return numeroEndereco;
-	}
-
-	public void setComplementoEndereco(String complementoEndereco) {
-		this.complementoEndereco = complementoEndereco;
-	}
-
-	public String getComplementoEndereco() {
-		return complementoEndereco;
 	}
 
 }
