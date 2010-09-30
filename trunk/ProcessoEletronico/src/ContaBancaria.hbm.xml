@@ -11,6 +11,6 @@
 		<property name="agencia" column="CONT_BAN_AGENCIA" />
 		<property name="indPoupanca" column="CONT_BAN_IND_POUPANCA" />
 		<many-to-one name="banco" class="br.com.progepe.entity.Banco"
-			column="BAN_COD" not-null="true" lazy="false" />
+			column="BAN_COD"  lazy="false" />
 	</class>
 </hibernate-mapping>
