@@ -7,7 +7,7 @@ public class Endereco implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private Long codigo;
 	private String cep;
-	private Integer numero;
+	private String numero;
 	private String rua;
 	private String complemento;
 	private String bairro;
@@ -29,11 +29,11 @@ public class Endereco implements Serializable {
 		this.cep = cep;
 	}
 
-	public Integer getNumero() {
+	public String getNumero() {
 		return numero;
 	}
 
-	public void setNumero(Integer numero) {
+	public void setNumero(String numero) {
 		this.numero = numero;
 	}
 

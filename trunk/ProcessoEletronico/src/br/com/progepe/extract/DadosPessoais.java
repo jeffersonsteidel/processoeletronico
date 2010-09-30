@@ -11,7 +11,7 @@ public class DadosPessoais {
 	private String nomeMae;
 	private String sexo;
 	private String dataNascimento;
-	private String estadoCivil;
+	private Integer estadoCivil;
 	private String nivelEscolaridade;
 	private Integer codigoTitulacaoFormacao;
 	private String nacionalidade;
@@ -27,7 +27,7 @@ public class DadosPessoais {
 	private String municipio;
 	private String cep;
 	private String uf;
-	private Integer numeroRegistroGeral;
+	private String numeroRegistroGeral;
 	private String siglaOrgaoExpedidor;
 	private String dataExpedicaoIdentidade;
 	private String siglaUfIdentidade;
@@ -105,11 +105,11 @@ public class DadosPessoais {
 		this.dataNascimento = dataNascimento;
 	}
 
-	public String getEstadoCivil() {
+	public Integer getEstadoCivil() {
 		return estadoCivil;
 	}
 
-	public void setEstadoCivil(String estadoCivil) {
+	public void setEstadoCivil(Integer estadoCivil) {
 		this.estadoCivil = estadoCivil;
 	}
 
@@ -233,11 +233,11 @@ public class DadosPessoais {
 		this.uf = uf;
 	}
 
-	public Integer getNumeroRegistroGeral() {
+	public String getNumeroRegistroGeral() {
 		return numeroRegistroGeral;
 	}
 
-	public void setNumeroRegistroGeral(Integer numeroRegistroGeral) {
+	public void setNumeroRegistroGeral(String numeroRegistroGeral) {
 		this.numeroRegistroGeral = numeroRegistroGeral;
 	}
 
