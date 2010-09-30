@@ -3,8 +3,13 @@ package br.com.progepe.extract;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+
+import javax.xml.crypto.Data;
 
 public class Extrator {
 
@@ -36,7 +41,7 @@ public class Extrator {
 		this.dadosFuncionaisList = dadosFuncionaisList;
 	}
 
-	public void carregarDados() {
+	public void carregarDados() throws ParseException {
 		try {
 			BufferedReader br = new BufferedReader(new FileReader(
 					"C://FITA.txt"));
@@ -46,38 +51,38 @@ public class Extrator {
 						.parseInt(linha.substring(17, 18));
 				if (tipoRegistro.equals(1)) {
 
-						DadosPessoais dadosPessoaisTeste = new DadosPessoais();
-						dadosPessoaisTeste.setMatriculaSiape(Integer.parseInt(linha.substring(9, 16)));
-						dadosPessoaisTeste.setDvMatricula(Integer.parseInt(linha.substring(16, 17)));
-						dadosPessoaisTeste.setTipoRegistro(linha.substring(17, 18));
-						dadosPessoaisTeste.setNomeServidor(linha.substring(20, 80));
-						dadosPessoaisTeste.setCpf(linha.substring(80, 91));
-						dadosPessoaisTeste.setPisPasef(linha.substring(91,102));
-						dadosPessoaisTeste.setNomeMae(linha.substring(102, 152));
-						dadosPessoaisTeste.setSexo(linha.substring(152, 153));
-						dadosPessoaisTeste.setDataNascimento(linha.substring(153, 161));
-						dadosPessoaisTeste.setEstadoCivil(linha.substring(161, 162));
-						dadosPessoaisTeste.setNivelEscolaridade(linha.substring(162, 164));
-						dadosPessoaisTeste.setCodigoTitulacaoFormacao(Integer.parseInt(linha.substring(164, 166)));
-						dadosPessoaisTeste.setNacionalidade(linha.substring(171, 172));
-						dadosPessoaisTeste.setNaturalidade(linha.substring(172, 174));
-						dadosPessoaisTeste.setPais(linha.substring(174, 177));
-						dadosPessoaisTeste.setAnoChegada(Integer.parseInt(linha.substring(177, 181)));
-						dadosPessoaisTeste.setDataPrimeiroEmprego(linha.substring(185, 193));
-						dadosPessoaisTeste.setIdentificacaoOrigem(linha.substring(193, 201));
-						dadosPessoaisTeste.setLogradouro(linha.substring(201, 241));
-						dadosPessoaisTeste.setNumeroEndereco(linha.substring(241, 247));
-						dadosPessoaisTeste.setComplementoEndereco(linha.substring(247, 268));
-						dadosPessoaisTeste.setBairro(linha.substring(268, 293));
-						dadosPessoaisTeste.setMunicipio(linha.substring(293, 323));
-						dadosPessoaisTeste.setCep(linha.substring(323, 331));
-						dadosPessoaisTeste.setUf(linha.substring(331, 333));
-						dadosPessoaisTeste.setSiglaOrgaoExpedidor(linha.substring(347, 352));
-						dadosPessoaisTeste.setDataExpedicaoIdentidade(linha.substring(352, 360));
-						dadosPessoaisTeste.setSiglaUfIdentidade(linha.substring(360, 362));
-						dadosPessoaisTeste.setNumeroTituloEleitor(linha.substring(362, 375));	
+						DadosPessoais dadosPessoais = new DadosPessoais();
+						dadosPessoais.setMatriculaSiape(Integer.parseInt(linha.substring(9, 16).trim()));
+						dadosPessoais.setDvMatricula(Integer.parseInt(linha.substring(16, 17)));
+						dadosPessoais.setTipoRegistro(linha.substring(17, 18).trim());
+						dadosPessoais.setNomeServidor(linha.substring(20, 80).trim());
+						dadosPessoais.setCpf(linha.substring(80, 91).trim());
+						dadosPessoais.setPisPasef(linha.substring(91,102).trim());
+						dadosPessoais.setNomeMae(linha.substring(102, 152).trim());
+						dadosPessoais.setSexo(linha.substring(152, 153).trim());
+						dadosPessoais.setDataNascimento(linha.substring(153, 161).trim());
+						dadosPessoais.setEstadoCivil(Integer.parseInt(linha.substring(161, 162)));
+						dadosPessoais.setNivelEscolaridade(linha.substring(162, 164).trim());
+						dadosPessoais.setCodigoTitulacaoFormacao(Integer.parseInt(linha.substring(164, 166)));
+						dadosPessoais.setNacionalidade(linha.substring(171, 172).trim());
+						dadosPessoais.setNaturalidade(linha.substring(172, 174).trim());
+						dadosPessoais.setPais(linha.substring(174, 177).trim());
+						dadosPessoais.setAnoChegada(Integer.parseInt(linha.substring(177, 181)));
+						dadosPessoais.setDataPrimeiroEmprego(linha.substring(185, 193));
+						dadosPessoais.setIdentificacaoOrigem(linha.substring(193, 201).trim());
+						dadosPessoais.setLogradouro(linha.substring(201, 241).trim());
+						dadosPessoais.setNumeroEndereco(linha.substring(241, 247).trim());
+						dadosPessoais.setComplementoEndereco(linha.substring(247, 268).trim());
+						dadosPessoais.setBairro(linha.substring(268, 293).trim());
+						dadosPessoais.setMunicipio(linha.substring(293, 323).trim());
+						dadosPessoais.setCep(linha.substring(323, 331).trim());
+						dadosPessoais.setUf(linha.substring(331, 333).trim());
+						dadosPessoais.setSiglaOrgaoExpedidor(linha.substring(347, 352).trim());
+						dadosPessoais.setDataExpedicaoIdentidade(linha.substring(352, 360));
+						dadosPessoais.setSiglaUfIdentidade(linha.substring(360, 362).trim());
+						dadosPessoais.setNumeroTituloEleitor(linha.substring(362, 375).trim());	
 
-					dadosPessoaisList.add(dadosPessoaisTeste);
+					dadosPessoaisList.add(dadosPessoais);
 				}
 
 				else if (tipoRegistro.equals(2)) {
@@ -206,17 +211,5 @@ public class Extrator {
 
 	}
 
-	public static void main(String[] args) {
-		Extrator injetorDados = new Extrator();
-		injetorDados.carregarDados();
-
-		for (DadosPessoais item : injetorDados.getDadosPessoaisList()) {
-			System.out.println(item.getMatriculaSiape() + " - "
-					+ item.getNomeServidor());
-		}
-		for (DadosFuncionais item : injetorDados.getDadosFuncionaisList()) {
-			System.out.println(item.getMatriculaSiape() + " - "
-					+ item.getDataCadastramentoServidor());
-		}
-	}
+	
 }
