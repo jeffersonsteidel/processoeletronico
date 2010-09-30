@@ -1,6 +1,7 @@
 package br.com.progepe.entity;
 
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -41,7 +42,7 @@ public class Servidor implements Serializable {
 	private Endereco endereco;
 	private String telefone;
 	private String celular;
-	private Set<Dependente> dependentes = new HashSet<Dependente>();
+	private Collection<Dependente> dependentes = new HashSet<Dependente>();
 	private Set<ServidorTitulacao> titulacoes = new HashSet<ServidorTitulacao>();
 	private String identificacaoUnica;
 	private Date dataAdmServicoPublico;
@@ -270,11 +271,11 @@ public class Servidor implements Serializable {
 		this.celular = celular;
 	}
 
-	public Set<Dependente> getDependentes() {
+	public Collection<Dependente> getDependentes() {
 		return dependentes;
 	}
 
-	public void setDependentes(Set<Dependente> dependentes) {
+	public void setDependentes(Collection<Dependente> dependentes) {
 		this.dependentes = dependentes;
 	}
 

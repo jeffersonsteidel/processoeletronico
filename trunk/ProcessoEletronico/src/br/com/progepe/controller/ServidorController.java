@@ -744,11 +744,22 @@ public class ServidorController {
 	}
 
 	public void salvar() {
-		servidor.getTitulacoes().addAll(titulacaoList);
-		servidor.getDependentes().addAll(dependentes);
+		for(Dependente item: dependentes){
+			item.setServidor(servidor);
+			servidor.getDependentes().add(item);
+		}
+		
 		dao.save(servidor);
-		// dao.save(dependente);
-		// dao.save(titulacao);
+//		for(ServidorTitulacao item: titulacaoList){
+//			item.setServidor(servidor);
+////			servidor.getTitulacoes().add(item);
+//			dao.save(item);
+//		}
+//		for(Dependente item: dependentes){
+//			item.setServidor(servidor);
+////			servidor.getDependentes().add(item);
+//			dao.save(item);
+//		}
 		servidor = new Servidor();
 	}
 
