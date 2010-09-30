@@ -141,11 +141,32 @@ public abstract class Validator {
 		}
 		return formatar(cpf, "###.###.###-##");
 	}
+	
+	public static String formatarPis(String pis) {
+		while (pis.length() < 11) {
+			pis = "0" + pis;
+		}
+		return formatar(pis, "###.#####.##-#");
+	}
+	
+	public static String formatarCep(String cep) {
+		while (cep.length() < 8) {
+			cep = "0" + cep;
+		}
+		return formatar(cep, "#####-###");
+	}
 
 	public static String formatarCnpj(String cnpj) {
 		while (cnpj.length() < 14) {
 			cnpj = "0" + cnpj;
 		}
 		return formatar(cnpj, "##.###.###/####-##");
+	}
+	
+	public static String formatarData(String data) {
+		while (data.length() < 8) {
+			data = "0" + data;
+		}
+		return formatar(data, "##/##/####");
 	}
 }
