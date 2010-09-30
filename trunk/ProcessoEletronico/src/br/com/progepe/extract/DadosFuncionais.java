@@ -3,123 +3,123 @@ package br.com.progepe.extract;
 public class DadosFuncionais {
 
 	// pagina 5:
-	private String matriculaSiape;
+	private Integer matriculaSiape;
 	private String tipoRegistro;
-	private String codigoSituacaoServidor;
-	private String numeroCarteiraDeTrabalho;
+	private Integer codigoSituacaoServidor;
+	private Integer numeroCarteiraDeTrabalho;
 	private String serieCarteiraDeTrabalho;
 	private String UfCarteiraDeTrabalho;
-	private String codigoBanco;
+	private Integer codigoBanco;
 	private String agenciaBanco;
 	private String contaCorrenteBanco;
-	private String jornadaDeTrabalho;
+	private Integer jornadaDeTrabalho;
 	private String dataCadastramentoServidor;
-	private String codigoGrupoCargo;
-	private String codigoCargo;//ALTERAR
+	private Integer codigoGrupoCargo;
+	private Integer codigoCargo;// ALTERAR
 	private String classeCargo;
 	private String codigoReferenciaNivelPadraoCargo;
 	private String dataEntradaOcupacaoCargo;
 	private String dataSaidaCargo;
 	private String siglaFuncao;
-	private String codigoNivelFuncao;
+	private Integer codigoNivelFuncao;
 	private String codigoEscolaridadeFuncao;
 	// pagina 6:
 	private String codigoOpcaoFuncao;
 	private String dataIngressoFuncao;
 	private String dataSaidaFuncao;
-	private String codigoUnidadeOrganizacionalFuncao;
+	private Integer codigoUnidadeOrganizacionalFuncao;
 	private String siglaNovaFuncao;
-	private String codigoNivelNovaFuncao;
+	private Integer codigoNivelNovaFuncao;
 	private String codigoEscolaridadeNovaFuncao;
 	private String codigoOpcaoNovaFuncao;
 	private String dataIngressoNovaFuncao;
 	private String dataSaidaNovaFuncao;
-	private String codigoUnidadeOrganizacionalNovaFuncao;
-	private String codigoUnidadeOrganizacionalLotacao;
+	private Integer codigoUnidadeOrganizacionalNovaFuncao;
+	private Integer codigoUnidadeOrganizacionalLotacao;
 	private String dataLotacao;
-	private String codigoOrgaoLocalizacao;
-	private String codigoUnidadeOrganizacionalLocalizacao;
-	private String codigoGrupoIngressoOrgao;
-	private String codigoOcorrenciaIngressoOrgao;
+	private Integer codigoOrgaoLocalizacao;
+	private Integer codigoUnidadeOrganizacionalLocalizacao;
+	private Integer codigoGrupoIngressoOrgao;
+	private Integer codigoOcorrenciaIngressoOrgao;
 	private String dataIngressoOrgao;
-	private String codigoDiplomaLegalIngressoOrgao;
+	private Integer codigoDiplomaLegalIngressoOrgao;
 	private String numeroDiplomaLegalIngressoOrgao;
 	private String dataPublicacaoDiplomaLegalIngressoOrgao;
-	private String codigoGrupoIngressoServPublico;
-	private String codigoOcorrenciaIngressoServPublico;
+	private Integer codigoGrupoIngressoServPublico;
+	private Integer codigoOcorrenciaIngressoServPublico;
 	private String dataIngressoServPublico;
-	private String codigoDiplomaLegalIngressoServPublico;
+	private Integer codigoDiplomaLegalIngressoServPublico;
 	private String numeroDiplomaLegalIngressoServPublico;
 	private String dataPublicacaoDiplomaLegalIngressoServPublico;
-	private String codigoGrupoExclusao;
-	private String codigoOcorrenciaExclusao;
+	private Integer codigoGrupoExclusao;
+	private Integer codigoOcorrenciaExclusao;
 	private String dataExclusao;
-	private String codigoDiplomaLegalExclusao;
+	private Integer codigoDiplomaLegalExclusao;
 	private String numeroDiplomaLegalExclusao;
 	private String dataPublicacaoDiplomaLegalExclusao;
 	// pagina 7:
-	private String codigoGrupoAfastamento;
-	private String codigoOcerrenciaAfastamento;
+	private Integer codigoGrupoAfastamento;
+	private Integer codigoOcerrenciaAfastamento;
 	private String dataInicioAfastamento;
 	private String dataTerminoAfastamento;
-	private String codigoDiplomaLegalAfastamento;
+	private Integer codigoDiplomaLegalAfastamento;
 	private String numeroDiplomaLegalAfastamento;
 	private String dataPublicacaoDiplomaLegalAfastamento;
-	private String codigoGrupoInatividade;
-	private String codigoOcorrenciaInatividade;
+	private Integer codigoGrupoInatividade;
+	private Integer codigoOcorrenciaInatividade;
 	private String dataInatividade;
-	private String codigoDiplomaLegalInatividade;
+	private Integer codigoDiplomaLegalInatividade;
 	private String numeroDiplomaLegalInatividade;
 	private String dataPublicacaoDiplomaLegalInatividade;
 	private String numeroProcessoAposentadoria;
-	private String anoPrevistoAposentadoria;
+	private Integer anoPrevistoAposentadoria;
 	private String opcaoAposentadoriaIntegral;
-	private String codigoGrupoModifFuncional;
-	private String codigoOcorrenciaModifFuncional;
+	private Integer codigoGrupoModifFuncional;
+	private Integer codigoOcorrenciaModifFuncional;
 	private String dataModifFuncional;
-	private String codigoDiplomaLegalModifFuncional;
+	private Integer codigoDiplomaLegalModifFuncional;
 	private String numeroDiplomaLegalModifFuncional;
 	private String dataPublicacaoDiplomaLegalModifFuncional;
 	private String codigoRegimeJuridicoAnterior;
-	private String codigoSituaçãoServidorAnterior;
-	private String codigoOrgaoDestinoMudancaOrgao;
+	private Integer codigoSituaçãoServidorAnterior;
+	private Integer codigoOrgaoDestinoMudancaOrgao;
 	private String dataLiberacaoMudancaOrgao;
-	private String codigoOrgaoOrigemMudancaOrgao;
-	private String codigoOrgaoAnterior;
+	private Integer codigoOrgaoOrigemMudancaOrgao;
+	private Integer codigoOrgaoAnterior;
 	private String matriculaAnterior;
-	private String codigoOrgaoExtintoModificado;
+	private Integer codigoOrgaoExtintoModificado;
 	private String matriculaServidorExtintaModificada;
-	private String codigoOrgaoAtual;
+	private Integer codigoOrgaoAtual;
 	private String matriculaAtual;
 	// página 8:
-	private String codigoUpagMudancaUnidadePagadora;
+	private Integer codigoUpagMudancaUnidadePagadora;
 	private String dataLiberacaoMudancaUnidadePagadora;
 	private String motivoMudancaUnidadePagadora;
-	private String codigoIndicadorDePagamentoServidor;
+	private Integer codigoIndicadorDePagamentoServidor;
 	private String codigoTipoValeAlimentacao;
 	private String dataInicioValeAlimentacao;
 	private String dataFimValeAlimentacao;
-	private String codigoIndicadorDeOperadorDeRaioX;
-	private String codigoOrgaoRequisitante;
-	private String codigoDavaga;
-	private String codigoDoGrupoPosse;
-	private String codigoOcorrenciaPosse;
+	private Integer codigoIndicadorDeOperadorDeRaioX;
+	private Integer codigoOrgaoRequisitante;
+	private Integer codigoDavaga;
+	private Integer codigoDoGrupoPosse;
+	private Integer codigoOcorrenciaPosse;
 	private String dataPosse;
-	private String codigoDiplomaPosse;
+	private Integer codigoDiplomaPosse;
 	private String dataDiplomaPosse;
 	private String numeroDiplomaPosse;
-	private String codigoGrupoOcorrenciaGrupoReversaoAtividade;
-	private String codigoOcorrenciaGrupoReversaoAtividade;
+	private Integer codigoGrupoOcorrenciaGrupoReversaoAtividade;
+	private Integer codigoOcorrenciaGrupoReversaoAtividade;
 	private String dataOcorrenciaGrupoReversaoAtividade;
-	private String codigoDiplomaGrupoReversaoAtividade;
+	private Integer codigoDiplomaGrupoReversaoAtividade;
 	private String dataPublicacaoDiplomaGrupoReversaoAtividade;
 	private String numeroDiplomaGrupoReversaoAtividade;
 
-	public String getMatriculaSiape() {
+	public Integer getMatriculaSiape() {
 		return matriculaSiape;
 	}
 
-	public void setMatriculaSiape(String matriculaSiape) {
+	public void setMatriculaSiape(Integer matriculaSiape) {
 		this.matriculaSiape = matriculaSiape;
 	}
 
@@ -131,19 +131,19 @@ public class DadosFuncionais {
 		this.tipoRegistro = tipoRegistro;
 	}
 
-	public String getCodigoSituacaoServidor() {
+	public Integer getCodigoSituacaoServidor() {
 		return codigoSituacaoServidor;
 	}
 
-	public void setCodigoSituacaoServidor(String codigoSituacaoServidor) {
+	public void setCodigoSituacaoServidor(Integer codigoSituacaoServidor) {
 		this.codigoSituacaoServidor = codigoSituacaoServidor;
 	}
 
-	public String getNumeroCarteiraDeTrabalho() {
+	public Integer getNumeroCarteiraDeTrabalho() {
 		return numeroCarteiraDeTrabalho;
 	}
 
-	public void setNumeroCarteiraDeTrabalho(String numeroCarteiraDeTrabalho) {
+	public void setNumeroCarteiraDeTrabalho(Integer numeroCarteiraDeTrabalho) {
 		this.numeroCarteiraDeTrabalho = numeroCarteiraDeTrabalho;
 	}
 
@@ -163,11 +163,11 @@ public class DadosFuncionais {
 		UfCarteiraDeTrabalho = ufCarteiraDeTrabalho;
 	}
 
-	public String getCodigoBanco() {
+	public Integer getCodigoBanco() {
 		return codigoBanco;
 	}
 
-	public void setCodigoBanco(String codigoBanco) {
+	public void setCodigoBanco(Integer codigoBanco) {
 		this.codigoBanco = codigoBanco;
 	}
 
@@ -186,12 +186,12 @@ public class DadosFuncionais {
 	public void setContaCorrenteBanco(String contaCorrenteBanco) {
 		this.contaCorrenteBanco = contaCorrenteBanco;
 	}
-	
-	public String getJornadaDeTrabalho() {
+
+	public Integer getJornadaDeTrabalho() {
 		return jornadaDeTrabalho;
 	}
 
-	public void setJornadaDeTrabalho(String jornadaDeTrabalho) {
+	public void setJornadaDeTrabalho(Integer jornadaDeTrabalho) {
 		this.jornadaDeTrabalho = jornadaDeTrabalho;
 	}
 
@@ -203,19 +203,19 @@ public class DadosFuncionais {
 		this.dataCadastramentoServidor = dataCadastramentoServidor;
 	}
 
-	public String getCodigoGrupoCargo() {
+	public Integer getCodigoGrupoCargo() {
 		return codigoGrupoCargo;
 	}
 
-	public void setCodigoGrupoCargo(String codigoGrupoCargo) {
+	public void setCodigoGrupoCargo(Integer codigoGrupoCargo) {
 		this.codigoGrupoCargo = codigoGrupoCargo;
 	}
 
-	public String getCodigoCargo() {
+	public Integer getCodigoCargo() {
 		return codigoCargo;
 	}
 
-	public void setCodigoCargo(String codigoCargo) {
+	public void setCodigoCargo(Integer codigoCargo) {
 		this.codigoCargo = codigoCargo;
 	}
 
@@ -231,7 +231,8 @@ public class DadosFuncionais {
 		return codigoReferenciaNivelPadraoCargo;
 	}
 
-	public void setCodigoReferenciaNivelPadraoCargo(String codigoReferenciaNivelPadraoCargo) {
+	public void setCodigoReferenciaNivelPadraoCargo(
+			String codigoReferenciaNivelPadraoCargo) {
 		this.codigoReferenciaNivelPadraoCargo = codigoReferenciaNivelPadraoCargo;
 	}
 
@@ -259,11 +260,11 @@ public class DadosFuncionais {
 		this.siglaFuncao = siglaFuncao;
 	}
 
-	public String getCodigoNivelFuncao() {
+	public Integer getCodigoNivelFuncao() {
 		return codigoNivelFuncao;
 	}
 
-	public void setCodigoNivelFuncao(String codigoNivelFuncao) {
+	public void setCodigoNivelFuncao(Integer codigoNivelFuncao) {
 		this.codigoNivelFuncao = codigoNivelFuncao;
 	}
 
@@ -299,12 +300,12 @@ public class DadosFuncionais {
 		this.dataSaidaFuncao = dataSaidaFuncao;
 	}
 
-	public String getCodigoUnidadeOrganizacionalFuncao() {
+	public Integer getCodigoUnidadeOrganizacionalFuncao() {
 		return codigoUnidadeOrganizacionalFuncao;
 	}
 
 	public void setCodigoUnidadeOrganizacionalFuncao(
-			String codigoUnidadeOrganizacionalFuncao) {
+			Integer codigoUnidadeOrganizacionalFuncao) {
 		this.codigoUnidadeOrganizacionalFuncao = codigoUnidadeOrganizacionalFuncao;
 	}
 
@@ -316,11 +317,11 @@ public class DadosFuncionais {
 		this.siglaNovaFuncao = siglaNovaFuncao;
 	}
 
-	public String getCodigoNivelNovaFuncao() {
+	public Integer getCodigoNivelNovaFuncao() {
 		return codigoNivelNovaFuncao;
 	}
 
-	public void setCodigoNivelNovaFuncao(String codigoNivelNovaFuncao) {
+	public void setCodigoNivelNovaFuncao(Integer codigoNivelNovaFuncao) {
 		this.codigoNivelNovaFuncao = codigoNivelNovaFuncao;
 	}
 
@@ -357,21 +358,21 @@ public class DadosFuncionais {
 		this.dataSaidaNovaFuncao = dataSaidaNovaFuncao;
 	}
 
-	public String getCodigoUnidadeOrganizacionalNovaFuncao() {
+	public Integer getCodigoUnidadeOrganizacionalNovaFuncao() {
 		return codigoUnidadeOrganizacionalNovaFuncao;
 	}
 
 	public void setCodigoUnidadeOrganizacionalNovaFuncao(
-			String codigoUnidadeOrganizacionalNovaFuncao) {
+			Integer codigoUnidadeOrganizacionalNovaFuncao) {
 		this.codigoUnidadeOrganizacionalNovaFuncao = codigoUnidadeOrganizacionalNovaFuncao;
 	}
 
-	public String getCodigoUnidadeOrganizacionalLotacao() {
+	public Integer getCodigoUnidadeOrganizacionalLotacao() {
 		return codigoUnidadeOrganizacionalLotacao;
 	}
 
 	public void setCodigoUnidadeOrganizacionalLotacao(
-			String codigoUnidadeOrganizacionalLotacao) {
+			Integer codigoUnidadeOrganizacionalLotacao) {
 		this.codigoUnidadeOrganizacionalLotacao = codigoUnidadeOrganizacionalLotacao;
 	}
 
@@ -383,37 +384,37 @@ public class DadosFuncionais {
 		this.dataLotacao = dataLotacao;
 	}
 
-	public String getCodigoOrgaoLocalizacao() {
+	public Integer getCodigoOrgaoLocalizacao() {
 		return codigoOrgaoLocalizacao;
 	}
 
-	public void setCodigoOrgaoLocalizacao(String codigoOrgaoLocalizacao) {
+	public void setCodigoOrgaoLocalizacao(Integer codigoOrgaoLocalizacao) {
 		this.codigoOrgaoLocalizacao = codigoOrgaoLocalizacao;
 	}
 
-	public String getCodigoUnidadeOrganizacionalLocalizacao() {
+	public Integer getCodigoUnidadeOrganizacionalLocalizacao() {
 		return codigoUnidadeOrganizacionalLocalizacao;
 	}
 
 	public void setCodigoUnidadeOrganizacionalLocalizacao(
-			String codigoUnidadeOrganizacionalLocalizacao) {
+			Integer codigoUnidadeOrganizacionalLocalizacao) {
 		this.codigoUnidadeOrganizacionalLocalizacao = codigoUnidadeOrganizacionalLocalizacao;
 	}
 
-	public String getCodigoGrupoIngressoOrgao() {
+	public Integer getCodigoGrupoIngressoOrgao() {
 		return codigoGrupoIngressoOrgao;
 	}
 
-	public void setCodigoGrupoIngressoOrgao(String codigoGrupoIngressoOrgao) {
+	public void setCodigoGrupoIngressoOrgao(Integer codigoGrupoIngressoOrgao) {
 		this.codigoGrupoIngressoOrgao = codigoGrupoIngressoOrgao;
 	}
 
-	public String getCodigoOcorrenciaIngressoOrgao() {
+	public Integer getCodigoOcorrenciaIngressoOrgao() {
 		return codigoOcorrenciaIngressoOrgao;
 	}
 
 	public void setCodigoOcorrenciaIngressoOrgao(
-			String codigoOcorrenciaIngressoOrgao) {
+			Integer codigoOcorrenciaIngressoOrgao) {
 		this.codigoOcorrenciaIngressoOrgao = codigoOcorrenciaIngressoOrgao;
 	}
 
@@ -425,12 +426,12 @@ public class DadosFuncionais {
 		this.dataIngressoOrgao = dataIngressoOrgao;
 	}
 
-	public String getCodigoDiplomaLegalIngressoOrgao() {
+	public Integer getCodigoDiplomaLegalIngressoOrgao() {
 		return codigoDiplomaLegalIngressoOrgao;
 	}
 
 	public void setCodigoDiplomaLegalIngressoOrgao(
-			String codigoDiplomaLegalIngressoOrgao) {
+			Integer codigoDiplomaLegalIngressoOrgao) {
 		this.codigoDiplomaLegalIngressoOrgao = codigoDiplomaLegalIngressoOrgao;
 	}
 
@@ -452,21 +453,21 @@ public class DadosFuncionais {
 		this.dataPublicacaoDiplomaLegalIngressoOrgao = dataPublicacaoDiplomaLegalIngressoOrgao;
 	}
 
-	public String getCodigoGrupoIngressoServPublico() {
+	public Integer getCodigoGrupoIngressoServPublico() {
 		return codigoGrupoIngressoServPublico;
 	}
 
 	public void setCodigoGrupoIngressoServPublico(
-			String codigoGrupoIngressoServPublico) {
+			Integer codigoGrupoIngressoServPublico) {
 		this.codigoGrupoIngressoServPublico = codigoGrupoIngressoServPublico;
 	}
 
-	public String getCodigoOcorrenciaIngressoServPublico() {
+	public Integer getCodigoOcorrenciaIngressoServPublico() {
 		return codigoOcorrenciaIngressoServPublico;
 	}
 
 	public void setCodigoOcorrenciaIngressoServPublico(
-			String codigoOcorrenciaIngressoServPublico) {
+			Integer codigoOcorrenciaIngressoServPublico) {
 		this.codigoOcorrenciaIngressoServPublico = codigoOcorrenciaIngressoServPublico;
 	}
 
@@ -478,12 +479,12 @@ public class DadosFuncionais {
 		this.dataIngressoServPublico = dataIngressoServPublico;
 	}
 
-	public String getCodigoDiplomaLegalIngressoServPublico() {
+	public Integer getCodigoDiplomaLegalIngressoServPublico() {
 		return codigoDiplomaLegalIngressoServPublico;
 	}
 
 	public void setCodigoDiplomaLegalIngressoServPublico(
-			String codigoDiplomaLegalIngressoServPublico) {
+			Integer codigoDiplomaLegalIngressoServPublico) {
 		this.codigoDiplomaLegalIngressoServPublico = codigoDiplomaLegalIngressoServPublico;
 	}
 
@@ -505,19 +506,19 @@ public class DadosFuncionais {
 		this.dataPublicacaoDiplomaLegalIngressoServPublico = dataPublicacaoDiplomaLegalIngressoServPublico;
 	}
 
-	public String getCodigoGrupoExclusao() {
+	public Integer getCodigoGrupoExclusao() {
 		return codigoGrupoExclusao;
 	}
 
-	public void setCodigoGrupoExclusao(String codigoGrupoExclusao) {
+	public void setCodigoGrupoExclusao(Integer codigoGrupoExclusao) {
 		this.codigoGrupoExclusao = codigoGrupoExclusao;
 	}
 
-	public String getCodigoOcorrenciaExclusao() {
+	public Integer getCodigoOcorrenciaExclusao() {
 		return codigoOcorrenciaExclusao;
 	}
 
-	public void setCodigoOcorrenciaExclusao(String codigoOcorrenciaExclusao) {
+	public void setCodigoOcorrenciaExclusao(Integer codigoOcorrenciaExclusao) {
 		this.codigoOcorrenciaExclusao = codigoOcorrenciaExclusao;
 	}
 
@@ -529,11 +530,11 @@ public class DadosFuncionais {
 		this.dataExclusao = dataExclusao;
 	}
 
-	public String getCodigoDiplomaLegalExclusao() {
+	public Integer getCodigoDiplomaLegalExclusao() {
 		return codigoDiplomaLegalExclusao;
 	}
 
-	public void setCodigoDiplomaLegalExclusao(String codigoDiplomaLegalExclusao) {
+	public void setCodigoDiplomaLegalExclusao(Integer codigoDiplomaLegalExclusao) {
 		this.codigoDiplomaLegalExclusao = codigoDiplomaLegalExclusao;
 	}
 
@@ -554,20 +555,20 @@ public class DadosFuncionais {
 		this.dataPublicacaoDiplomaLegalExclusao = dataPublicacaoDiplomaLegalExclusao;
 	}
 
-	public String getCodigoGrupoAfastamento() {
+	public Integer getCodigoGrupoAfastamento() {
 		return codigoGrupoAfastamento;
 	}
 
-	public void setCodigoGrupoAfastamento(String codigoGrupoAfastamento) {
+	public void setCodigoGrupoAfastamento(Integer codigoGrupoAfastamento) {
 		this.codigoGrupoAfastamento = codigoGrupoAfastamento;
 	}
 
-	public String getCodigoOcerrenciaAfastamento() {
+	public Integer getCodigoOcerrenciaAfastamento() {
 		return codigoOcerrenciaAfastamento;
 	}
 
 	public void setCodigoOcerrenciaAfastamento(
-			String codigoOcerrenciaAfastamento) {
+			Integer codigoOcerrenciaAfastamento) {
 		this.codigoOcerrenciaAfastamento = codigoOcerrenciaAfastamento;
 	}
 
@@ -587,12 +588,12 @@ public class DadosFuncionais {
 		this.dataTerminoAfastamento = dataTerminoAfastamento;
 	}
 
-	public String getCodigoDiplomaLegalAfastamento() {
+	public Integer getCodigoDiplomaLegalAfastamento() {
 		return codigoDiplomaLegalAfastamento;
 	}
 
 	public void setCodigoDiplomaLegalAfastamento(
-			String codigoDiplomaLegalAfastamento) {
+			Integer codigoDiplomaLegalAfastamento) {
 		this.codigoDiplomaLegalAfastamento = codigoDiplomaLegalAfastamento;
 	}
 
@@ -614,20 +615,20 @@ public class DadosFuncionais {
 		this.dataPublicacaoDiplomaLegalAfastamento = dataPublicacaoDiplomaLegalAfastamento;
 	}
 
-	public String getCodigoGrupoInatividade() {
+	public Integer getCodigoGrupoInatividade() {
 		return codigoGrupoInatividade;
 	}
 
-	public void setCodigoGrupoInatividade(String codigoGrupoInatividade) {
+	public void setCodigoGrupoInatividade(Integer codigoGrupoInatividade) {
 		this.codigoGrupoInatividade = codigoGrupoInatividade;
 	}
 
-	public String getCodigoOcorrenciaInatividade() {
+	public Integer getCodigoOcorrenciaInatividade() {
 		return codigoOcorrenciaInatividade;
 	}
 
 	public void setCodigoOcorrenciaInatividade(
-			String codigoOcorrenciaInatividade) {
+			Integer codigoOcorrenciaInatividade) {
 		this.codigoOcorrenciaInatividade = codigoOcorrenciaInatividade;
 	}
 
@@ -639,12 +640,12 @@ public class DadosFuncionais {
 		this.dataInatividade = dataInatividade;
 	}
 
-	public String getCodigoDiplomaLegalInatividade() {
+	public Integer getCodigoDiplomaLegalInatividade() {
 		return codigoDiplomaLegalInatividade;
 	}
 
 	public void setCodigoDiplomaLegalInatividade(
-			String codigoDiplomaLegalInatividade) {
+			Integer codigoDiplomaLegalInatividade) {
 		this.codigoDiplomaLegalInatividade = codigoDiplomaLegalInatividade;
 	}
 
@@ -675,11 +676,11 @@ public class DadosFuncionais {
 		this.numeroProcessoAposentadoria = numeroProcessoAposentadoria;
 	}
 
-	public String getAnoPrevistoAposentadoria() {
+	public Integer getAnoPrevistoAposentadoria() {
 		return anoPrevistoAposentadoria;
 	}
 
-	public void setAnoPrevistoAposentadoria(String anoPrevistoAposentadoria) {
+	public void setAnoPrevistoAposentadoria(Integer anoPrevistoAposentadoria) {
 		this.anoPrevistoAposentadoria = anoPrevistoAposentadoria;
 	}
 
@@ -691,20 +692,20 @@ public class DadosFuncionais {
 		this.opcaoAposentadoriaIntegral = opcaoAposentadoriaIntegral;
 	}
 
-	public String getCodigoGrupoModifFuncional() {
+	public Integer getCodigoGrupoModifFuncional() {
 		return codigoGrupoModifFuncional;
 	}
 
-	public void setCodigoGrupoModifFuncional(String codigoGrupoModifFuncional) {
+	public void setCodigoGrupoModifFuncional(Integer codigoGrupoModifFuncional) {
 		this.codigoGrupoModifFuncional = codigoGrupoModifFuncional;
 	}
 
-	public String getCodigoOcorrenciaModifFuncional() {
+	public Integer getCodigoOcorrenciaModifFuncional() {
 		return codigoOcorrenciaModifFuncional;
 	}
 
 	public void setCodigoOcorrenciaModifFuncional(
-			String codigoOcorrenciaModifFuncional) {
+			Integer codigoOcorrenciaModifFuncional) {
 		this.codigoOcorrenciaModifFuncional = codigoOcorrenciaModifFuncional;
 	}
 
@@ -716,12 +717,12 @@ public class DadosFuncionais {
 		this.dataModifFuncional = dataModifFuncional;
 	}
 
-	public String getCodigoDiplomaLegalModifFuncional() {
+	public Integer getCodigoDiplomaLegalModifFuncional() {
 		return codigoDiplomaLegalModifFuncional;
 	}
 
 	public void setCodigoDiplomaLegalModifFuncional(
-			String codigoDiplomaLegalModifFuncional) {
+			Integer codigoDiplomaLegalModifFuncional) {
 		this.codigoDiplomaLegalModifFuncional = codigoDiplomaLegalModifFuncional;
 	}
 
@@ -752,21 +753,21 @@ public class DadosFuncionais {
 		this.codigoRegimeJuridicoAnterior = codigoRegimeJuridicoAnterior;
 	}
 
-	public String getCodigoSituaçãoServidorAnterior() {
+	public Integer getCodigoSituaçãoServidorAnterior() {
 		return codigoSituaçãoServidorAnterior;
 	}
 
 	public void setCodigoSituaçãoServidorAnterior(
-			String codigoSituaçãoServidorAnterior) {
+			Integer codigoSituaçãoServidorAnterior) {
 		this.codigoSituaçãoServidorAnterior = codigoSituaçãoServidorAnterior;
 	}
 
-	public String getCodigoOrgaoDestinoMudancaOrgao() {
+	public Integer getCodigoOrgaoDestinoMudancaOrgao() {
 		return codigoOrgaoDestinoMudancaOrgao;
 	}
 
 	public void setCodigoOrgaoDestinoMudancaOrgao(
-			String codigoOrgaoDestinoMudancaOrgao) {
+			Integer codigoOrgaoDestinoMudancaOrgao) {
 		this.codigoOrgaoDestinoMudancaOrgao = codigoOrgaoDestinoMudancaOrgao;
 	}
 
@@ -778,20 +779,20 @@ public class DadosFuncionais {
 		this.dataLiberacaoMudancaOrgao = dataLiberacaoMudancaOrgao;
 	}
 
-	public String getCodigoOrgaoOrigemMudancaOrgao() {
+	public Integer getCodigoOrgaoOrigemMudancaOrgao() {
 		return codigoOrgaoOrigemMudancaOrgao;
 	}
 
 	public void setCodigoOrgaoOrigemMudancaOrgao(
-			String codigoOrgaoOrigemMudancaOrgao) {
+			Integer codigoOrgaoOrigemMudancaOrgao) {
 		this.codigoOrgaoOrigemMudancaOrgao = codigoOrgaoOrigemMudancaOrgao;
 	}
 
-	public String getCodigoOrgaoAnterior() {
+	public Integer getCodigoOrgaoAnterior() {
 		return codigoOrgaoAnterior;
 	}
 
-	public void setCodigoOrgaoAnterior(String codigoOrgaoAnterior) {
+	public void setCodigoOrgaoAnterior(Integer codigoOrgaoAnterior) {
 		this.codigoOrgaoAnterior = codigoOrgaoAnterior;
 	}
 
@@ -803,12 +804,12 @@ public class DadosFuncionais {
 		this.matriculaAnterior = matriculaAnterior;
 	}
 
-	public String getCodigoOrgaoExtintoModificado() {
+	public Integer getCodigoOrgaoExtintoModificado() {
 		return codigoOrgaoExtintoModificado;
 	}
 
 	public void setCodigoOrgaoExtintoModificado(
-			String codigoOrgaoExtintoModificado) {
+			Integer codigoOrgaoExtintoModificado) {
 		this.codigoOrgaoExtintoModificado = codigoOrgaoExtintoModificado;
 	}
 
@@ -821,11 +822,11 @@ public class DadosFuncionais {
 		this.matriculaServidorExtintaModificada = matriculaServidorExtintaModificada;
 	}
 
-	public String getCodigoOrgaoAtual() {
+	public Integer getCodigoOrgaoAtual() {
 		return codigoOrgaoAtual;
 	}
 
-	public void setCodigoOrgaoAtual(String codigoOrgaoAtual) {
+	public void setCodigoOrgaoAtual(Integer codigoOrgaoAtual) {
 		this.codigoOrgaoAtual = codigoOrgaoAtual;
 	}
 
@@ -837,12 +838,12 @@ public class DadosFuncionais {
 		this.matriculaAtual = matriculaAtual;
 	}
 
-	public String getCodigoUpagMudancaUnidadePagadora() {
+	public Integer getCodigoUpagMudancaUnidadePagadora() {
 		return codigoUpagMudancaUnidadePagadora;
 	}
 
 	public void setCodigoUpagMudancaUnidadePagadora(
-			String codigoUpagMudancaUnidadePagadora) {
+			Integer codigoUpagMudancaUnidadePagadora) {
 		this.codigoUpagMudancaUnidadePagadora = codigoUpagMudancaUnidadePagadora;
 	}
 
@@ -864,12 +865,12 @@ public class DadosFuncionais {
 		this.motivoMudancaUnidadePagadora = motivoMudancaUnidadePagadora;
 	}
 
-	public String getCodigoIndicadorDePagamentoServidor() {
+	public Integer getCodigoIndicadorDePagamentoServidor() {
 		return codigoIndicadorDePagamentoServidor;
 	}
 
 	public void setCodigoIndicadorDePagamentoServidor(
-			String codigoIndicadorDePagamentoServidor) {
+			Integer codigoIndicadorDePagamentoServidor) {
 		this.codigoIndicadorDePagamentoServidor = codigoIndicadorDePagamentoServidor;
 	}
 
@@ -897,44 +898,44 @@ public class DadosFuncionais {
 		this.dataFimValeAlimentacao = dataFimValeAlimentacao;
 	}
 
-	public String getCodigoIndicadorDeOperadorDeRaioX() {
+	public Integer getCodigoIndicadorDeOperadorDeRaioX() {
 		return codigoIndicadorDeOperadorDeRaioX;
 	}
 
 	public void setCodigoIndicadorDeOperadorDeRaioX(
-			String codigoIndicadorDeOperadorDeRaioX) {
+			Integer codigoIndicadorDeOperadorDeRaioX) {
 		this.codigoIndicadorDeOperadorDeRaioX = codigoIndicadorDeOperadorDeRaioX;
 	}
 
-	public String getCodigoOrgaoRequisitante() {
+	public Integer getCodigoOrgaoRequisitante() {
 		return codigoOrgaoRequisitante;
 	}
 
-	public void setCodigoOrgaoRequisitante(String codigoOrgaoRequisitante) {
+	public void setCodigoOrgaoRequisitante(Integer codigoOrgaoRequisitante) {
 		this.codigoOrgaoRequisitante = codigoOrgaoRequisitante;
 	}
 
-	public String getCodigoDavaga() {
+	public Integer getCodigoDavaga() {
 		return codigoDavaga;
 	}
 
-	public void setCodigoDavaga(String codigoDavaga) {
+	public void setCodigoDavaga(Integer codigoDavaga) {
 		this.codigoDavaga = codigoDavaga;
 	}
 
-	public String getCodigoDoGrupoPosse() {
+	public Integer getCodigoDoGrupoPosse() {
 		return codigoDoGrupoPosse;
 	}
 
-	public void setCodigoDoGrupoPosse(String codigoDoGrupoPosse) {
+	public void setCodigoDoGrupoPosse(Integer codigoDoGrupoPosse) {
 		this.codigoDoGrupoPosse = codigoDoGrupoPosse;
 	}
 
-	public String getCodigoOcorrenciaPosse() {
+	public Integer getCodigoOcorrenciaPosse() {
 		return codigoOcorrenciaPosse;
 	}
 
-	public void setCodigoOcorrenciaPosse(String codigoOcorrenciaPosse) {
+	public void setCodigoOcorrenciaPosse(Integer codigoOcorrenciaPosse) {
 		this.codigoOcorrenciaPosse = codigoOcorrenciaPosse;
 	}
 
@@ -946,11 +947,11 @@ public class DadosFuncionais {
 		this.dataPosse = dataPosse;
 	}
 
-	public String getCodigoDiplomaPosse() {
+	public Integer getCodigoDiplomaPosse() {
 		return codigoDiplomaPosse;
 	}
 
-	public void setCodigoDiplomaPosse(String codigoDiplomaPosse) {
+	public void setCodigoDiplomaPosse(Integer codigoDiplomaPosse) {
 		this.codigoDiplomaPosse = codigoDiplomaPosse;
 	}
 
@@ -970,21 +971,21 @@ public class DadosFuncionais {
 		this.numeroDiplomaPosse = numeroDiplomaPosse;
 	}
 
-	public String getCodigoGrupoOcorrenciaGrupoReversaoAtividade() {
+	public Integer getCodigoGrupoOcorrenciaGrupoReversaoAtividade() {
 		return codigoGrupoOcorrenciaGrupoReversaoAtividade;
 	}
 
 	public void setCodigoGrupoOcorrenciaGrupoReversaoAtividade(
-			String codigoGrupoOcorrenciaGrupoReversaoAtividade) {
+			Integer codigoGrupoOcorrenciaGrupoReversaoAtividade) {
 		this.codigoGrupoOcorrenciaGrupoReversaoAtividade = codigoGrupoOcorrenciaGrupoReversaoAtividade;
 	}
 
-	public String getCodigoOcorrenciaGrupoReversaoAtividade() {
+	public Integer getCodigoOcorrenciaGrupoReversaoAtividade() {
 		return codigoOcorrenciaGrupoReversaoAtividade;
 	}
 
 	public void setCodigoOcorrenciaGrupoReversaoAtividade(
-			String codigoOcorrenciaGrupoReversaoAtividade) {
+			Integer codigoOcorrenciaGrupoReversaoAtividade) {
 		this.codigoOcorrenciaGrupoReversaoAtividade = codigoOcorrenciaGrupoReversaoAtividade;
 	}
 
@@ -997,12 +998,12 @@ public class DadosFuncionais {
 		this.dataOcorrenciaGrupoReversaoAtividade = dataOcorrenciaGrupoReversaoAtividade;
 	}
 
-	public String getCodigoDiplomaGrupoReversaoAtividade() {
+	public Integer getCodigoDiplomaGrupoReversaoAtividade() {
 		return codigoDiplomaGrupoReversaoAtividade;
 	}
 
 	public void setCodigoDiplomaGrupoReversaoAtividade(
-			String codigoDiplomaGrupoReversaoAtividade) {
+			Integer codigoDiplomaGrupoReversaoAtividade) {
 		this.codigoDiplomaGrupoReversaoAtividade = codigoDiplomaGrupoReversaoAtividade;
 	}
 
