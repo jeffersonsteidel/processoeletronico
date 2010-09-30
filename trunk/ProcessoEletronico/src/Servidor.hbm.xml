@@ -51,15 +51,13 @@
 			class="br.com.progepe.entity.SituacaoFuncional" column="SIT_FUN_COD" />
 		<many-to-one name="endereco" class="br.com.progepe.entity.Endereco"
 			column="END_COD" unique="true" cascade="all" />
+
 		<!-- <one-to-one name="conjuge" class="br.com.progepe.entity.Conjuge" cascade="all" 
-			constrained="true" /> -->
-		<set name="dependentes" table="SERVIDORDEPENDENTE">
-			<key column="SERV_DEP_COD" />
-			<one-to-many class="br.com.progepe.entity.Dependente" />
-		</set>
-		<set name="titulacoes" table="SERVIDORTITULACAO" cascade="all">
-			<key column="SERV_TIT_COD" unique="true" />
-			<one-to-many class="br.com.progepe.entity.ServidorTitulacao" />
-		</set>
+			constrained="true" /> <set name="titulacoes" table="SERVIDORTITULACAO" cascade="all"> 
+			<key column="SERV_TIT_COD" unique="true" /> <one-to-many class="br.com.progepe.entity.ServidorTitulacao" 
+			/> </set> -->
+		<!-- <set name="dependentes" table="DEPENDENTE" inverse="true" lazy="true" 
+			fetch="join"> <key column="SERV_COD" /> <one-to-many class="br.com.progepe.entity.Dependente" 
+			/> </set> -->
 	</class>
 </hibernate-mapping>
