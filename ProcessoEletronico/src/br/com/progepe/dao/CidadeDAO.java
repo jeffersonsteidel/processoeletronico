@@ -27,4 +27,12 @@ public class CidadeDAO {
 				Restrictions.like("estado", estado)).addOrder(
 				Order.asc("descricao")).list();
 	}
+	
+	public Cidade listByNome(String nomeCidade) {
+		Session session = HibernateUtility.getSessionFactory()
+				.getCurrentSession();
+		session.beginTransaction();
+		return (Cidade) session.createCriteria(Cidade.class).add(
+				Restrictions.like("descricao", nomeCidade)).uniqueResult();
+	}
 }

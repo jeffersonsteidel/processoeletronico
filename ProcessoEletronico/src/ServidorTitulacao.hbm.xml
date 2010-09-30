@@ -14,16 +14,16 @@
 		<property name="curso" column="SERV_TIT_CURSO" />
 		<property name="orgaoEmissor" column="SERV_TIT_ORG_EMI" />
 		<many-to-one name="servidor" class="br.com.progepe.entity.Servidor"
-			column="SERV_COD" not-null="true" lazy="false" />
+			column="SERV_COD" lazy="false" />
 		<many-to-one name="titulacao" class="br.com.progepe.entity.Titulacao"
-			column="TIT_COD" not-null="true" lazy="false" />
+			column="TIT_COD" lazy="false" />
 		<many-to-one name="cidadeEstabelecimentoEnsino" class="br.com.progepe.entity.Cidade"
-			column="CID_COD_ESTAB_ENS" not-null="true" lazy="false" />
+			column="CID_COD_ESTAB_ENS" lazy="false" />
 		<many-to-one name="estadoOrgaoEmissor" class="br.com.progepe.entity.Estado"
-			column="EST_COD_ORG_EMI" not-null="true" lazy="false" />
+			column="EST_COD_ORG_EMI" lazy="false" />
 		<many-to-one name="areaConhecimento" class="br.com.progepe.entity.AreaConhecimento"
-			column="AREA_CONH_COD" not-null="true" lazy="false" />
+			column="AREA_CONH_COD"  lazy="false" />
 		<many-to-one name="pais" class="br.com.progepe.entity.Pais"
-			column="PAIS_COD_ESTAB_ENS" not-null="true" lazy="false" />
+			column="PAIS_COD_ESTAB_ENS" lazy="false" />
 	</class>
 </hibernate-mapping>

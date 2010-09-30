@@ -13,6 +13,6 @@
 		<property name="complemento" column="END_COMP" />
 		<property name="bairro" column="END_BAIRRO" />
 		<many-to-one name="cidade" class="br.com.progepe.entity.Cidade"
-			column="CID_COD" lazy="false" />
+			column="CID_COD" lazy="false"/>
 	</class>
 </hibernate-mapping>

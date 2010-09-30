@@ -9,6 +9,6 @@
 		</id>
 		<property name="descricao" column="CARG_DESC" />
 		<many-to-one name="classe" class="br.com.progepe.entity.Classe"
-			column="CLAS_COD" not-null="true" lazy="false" />
+			column="CLAS_COD" lazy="false" />
 	</class>
 </hibernate-mapping>

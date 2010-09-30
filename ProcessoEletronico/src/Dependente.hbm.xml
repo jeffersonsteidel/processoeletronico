@@ -14,7 +14,7 @@
 		<property name="faculdade" column="DEP_FACULDADE" />
 		<property name="dataFormacao" column="DEP_DATA_FORMACAO" />
 		<many-to-one name="grauParentesco" class="br.com.progepe.entity.GrauParentesco"
-			column="GRAU_PAR_COD_DEP" not-null="true" lazy="false" />
+			column="GRAU_PAR_COD_DEP" lazy="false" />
 		<property name="indNecessidadesEspeciais" column="DEP_IND_NEC_ESP"
 			type="boolean" />
 		<property name="indEstudante" column="DEP_IND_EST" type="boolean" />
@@ -22,6 +22,6 @@
 		<one-to-one name="documento" class="br.com.progepe.entity.Documento"
 			cascade="all" />
 		<many-to-one name="servidor" class="br.com.progepe.entity.Servidor"
-			column="SERV_COD" not-null="true" lazy="false" />
+			column="SERV_COD" lazy="false" />
 	</class>
 </hibernate-mapping>

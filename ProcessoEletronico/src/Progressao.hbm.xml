@@ -8,15 +8,15 @@
 			<generator class="increment"></generator>  
 		</id>
 		<many-to-one name="servidor" class="br.com.progepe.entity.Servidor"
-			column="SERV_COD" not-null="true" lazy="false" />
+			column="SERV_COD"  lazy="false" />
 		<many-to-one name="classeAntiga" class="br.com.progepe.entity.Classe"
-			column="CLAS_COD_ANTIGA" not-null="true" lazy="false" />
+			column="CLAS_COD_ANTIGA" lazy="false" />
 		<many-to-one name="classeNova" class="br.com.progepe.entity.Classe"
-			column="CLAS_COD_NOVA" not-null="true" lazy="false" />	
+			column="CLAS_COD_NOVA" lazy="false" />	
 		<many-to-one name="padraoAntigo" class="br.com.progepe.entity.Padrao"
-			column="PAD_COD_ANTIGO" not-null="true" lazy="false" />
+			column="PAD_COD_ANTIGO" lazy="false" />
 		<many-to-one name="padraoNovo" class="br.com.progepe.entity.Padrao"
-			column="PAD_COD_NOVO" not-null="true" lazy="false" />		
+			column="PAD_COD_NOVO" lazy="false" />		
 		<property name="dataProgressao" column="PROG_DATA" />	
 		<property name="portaria" column="PROG_PORT" />			
 	</class>
