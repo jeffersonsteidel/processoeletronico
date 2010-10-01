@@ -141,14 +141,14 @@ public abstract class Validator {
 		}
 		return formatar(cpf, "###.###.###-##");
 	}
-	
+
 	public static String formatarPis(String pis) {
 		while (pis.length() < 11) {
 			pis = "0" + pis;
 		}
 		return formatar(pis, "###.#####.##-#");
 	}
-	
+
 	public static String formatarCep(String cep) {
 		while (cep.length() < 8) {
 			cep = "0" + cep;
@@ -162,11 +162,19 @@ public abstract class Validator {
 		}
 		return formatar(cnpj, "##.###.###/####-##");
 	}
-	
+
 	public static String formatarData(String data) {
-		while (data.length() < 8) {
-			data = "0" + data;
+		if (data != null) {
+			while (data.length() < 8) {
+				data = "0" + data;
+			}
+			return formatar(data, "##/##/####");
+		} else {
+			String date = "00000000";
+			while (date.length() < 8) {
+				data = "0" + data;
+			}
+			return formatar(date, "##/##/####");
 		}
-		return formatar(data, "##/##/####");
 	}
 }
