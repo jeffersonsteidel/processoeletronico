@@ -2,7 +2,7 @@
 <!DOCTYPE hibernate-mapping 
 	PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
     "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<hibernate-mapping> 
+<hibernate-mapping>
 	<class name="br.com.progepe.entity.Servidor" table="SERVIDOR">
 		<id name="codigo" column="SERV_COD">
 			<generator class="increment"></generator>
@@ -40,7 +40,7 @@
 		<many-to-one name="cidadeNascimento" class="br.com.progepe.entity.Cidade"
 			column="CID_COD_NASC_SERV" lazy="false" />
 		<many-to-one name="estadoCivil" class="br.com.progepe.entity.EstadoCivil"
-			column="EST_CIV_COD" lazy="false"/>
+			column="EST_CIV_COD" lazy="false" />
 		<many-to-one name="corPele" class="br.com.progepe.entity.CorPele"
 			column="COR_PELE_COD" />
 		<!-- <many-to-one name="funcao" class="br.com.progepe.entity.Funcao" column="FUN_COD" 
@@ -56,9 +56,8 @@
 			constrained="true" /> <set name="titulacoes" table="SERVIDORTITULACAO" cascade="all"> 
 			<key column="SERV_TIT_COD" unique="true" /> <one-to-many class="br.com.progepe.entity.ServidorTitulacao" 
 			/> </set> -->
-		<set name="dependentes" table="DEPENDENTE" inverse="true" >
-			<key column="SERV_COD"  />
-				<one-to-many class="br.com.progepe.entity.Dependente" /> 
-		</set>
+		<!-- <set name="dependentes" table="DEPENDENTE" inverse="true" > <key column="SERV_COD" 
+			/> <one-to-many class="br.com.progepe.entity.Dependente" /> </set> -->
+
 	</class>
 </hibernate-mapping>
