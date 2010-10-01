@@ -15,7 +15,7 @@
 	<a4j:loadScript src="../js/script.js" />
 	<center><h:graphicImage value="../images/alterarDados02.GIF" />
 	<a4j:form id="form">
-		<rich:tabPanel switchType="client" width="950">
+		<rich:tabPanel switchType="client" width="860">
 			<rich:tab label="Dados Pessoais">
 				<h:panelGrid columns="4">
 					<h:outputText value="Nome: " />
@@ -418,6 +418,7 @@
 				</h:panelGrid>
 			</rich:tab>
 
+			<!-- <%--
 			<rich:tab label="Escolaridade">
 				<a4j:region>
 					<h:panelGrid columns="4">
@@ -642,7 +643,7 @@ orgaoRegistro,estadoOrgaoRegistro, titulacaoEstrangeira, titEstrangeira	"
 						</f:facet>
 					</rich:dataTable>
 				</a4j:region>
-			</rich:tab>
+			</rich:tab> --%> -->
 
 			<rich:tab label="Conta Bancária">
 				<h:panelGrid columns="6">
@@ -674,7 +675,7 @@ orgaoRegistro,estadoOrgaoRegistro, titulacaoEstrangeira, titEstrangeira	"
 				</h:panelGrid>
 			</rich:tab>
 
-
+			<!-- <%--
 			<rich:tab label="Cônjuge">
 				<h:panelGrid columns="4">
 					<h:outputText value="Nome do Cônjuge: " />
@@ -882,8 +883,8 @@ orgaoRegistro,estadoOrgaoRegistro, titulacaoEstrangeira, titEstrangeira	"
 						</f:facet>
 					</rich:dataTable>
 				</a4j:region>
-			</rich:tab>
-
+			</rich:tab>--%>
+ -->
 
 			<rich:tab label="SALVAR">
 				<a4j:commandButton value="Salvar"
