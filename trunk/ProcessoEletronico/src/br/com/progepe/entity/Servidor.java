@@ -42,7 +42,7 @@ public class Servidor implements Serializable {
 	private Endereco endereco;
 	private String telefone;
 	private String celular;
-	private Collection<Dependente> dependentes = new HashSet<Dependente>();
+	private Set<Dependente> dependentes = new HashSet<Dependente>();
 	private Set<ServidorTitulacao> titulacoes = new HashSet<ServidorTitulacao>();
 	private String identificacaoUnica;
 	private Date dataAdmServicoPublico;
@@ -275,7 +275,7 @@ public class Servidor implements Serializable {
 		return dependentes;
 	}
 
-	public void setDependentes(Collection<Dependente> dependentes) {
+	public void setDependentes(Set<Dependente> dependentes) {
 		this.dependentes = dependentes;
 	}
 

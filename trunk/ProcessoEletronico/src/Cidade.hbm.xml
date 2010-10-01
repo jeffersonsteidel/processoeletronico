@@ -8,7 +8,7 @@
 			<generator class="increment"></generator>  
 		</id>
 		<property name="descricao" column="CID_DESC" />
-		<many-to-one name="estado" class="br.com.progepe.entity.Estado" lazy="false"
-			column="EST_COD" />
+		<many-to-one name="estado" class="br.com.progepe.entity.Estado" 
+			column="EST_COD" lazy="false"/>
 	</class>
 </hibernate-mapping>
