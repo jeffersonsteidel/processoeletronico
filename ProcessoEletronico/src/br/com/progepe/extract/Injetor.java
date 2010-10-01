@@ -91,6 +91,7 @@ public class Injetor {
 			servidor.getEndereco().setComplemento(item.getComplementoEndereco());
 			servidor.getEndereco().setBairro(item.getBairro());
 			servidor.getEndereco().setCep(Validator.formatarCep(item.getCep()));
+			
 			Cidade cidade = cidadeDAO.listByNome(item.getMunicipio().toUpperCase().trim());
 			servidor.getEndereco().setCidade(cidade);
 			servidor.getEndereco().getCidade().setEstado(cidade.getEstado());
@@ -99,15 +100,8 @@ public class Injetor {
 			servidor.getDocumento().setRgDataExpedicao(new Date(Validator.formatarData(item.getDataExpedicaoIdentidade())));
 			
 			dao.save(servidor);
-			
-			
-			
 		}
-		
-		
-		
-	}
-	
+	}	
 	public static void main(String[] args) throws ParseException {
 		Injetor injetorDados = new Injetor();	
 		injetorDados.popularDados();
