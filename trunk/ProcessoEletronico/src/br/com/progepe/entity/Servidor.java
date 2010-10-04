@@ -1,10 +1,7 @@
 package br.com.progepe.entity;
 
 import java.io.Serializable;
-import java.util.Collection;
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
 
 public class Servidor implements Serializable {
 
@@ -23,7 +20,6 @@ public class Servidor implements Serializable {
 	private Documento documento;
 	private Padrao padrao;
 	private ContaBancaria contaBancaria;
-	private Conjuge conjuge;
 	private String sexo;
 	private String Email;
 	private Date dataNascimento;
@@ -42,8 +38,6 @@ public class Servidor implements Serializable {
 	private Endereco endereco;
 	private String telefone;
 	private String celular;
-	private Set<Dependente> dependentes = new HashSet<Dependente>();
-	private Set<ServidorTitulacao> titulacoes = new HashSet<ServidorTitulacao>();
 	private String identificacaoUnica;
 	private Date dataAdmServicoPublico;
 
@@ -125,14 +119,6 @@ public class Servidor implements Serializable {
 
 	public void setContaBancaria(ContaBancaria contaBancaria) {
 		this.contaBancaria = contaBancaria;
-	}
-
-	public Conjuge getConjuge() {
-		return conjuge;
-	}
-
-	public void setConjuge(Conjuge conjuge) {
-		this.conjuge = conjuge;
 	}
 
 	public String getSexo() {
@@ -269,22 +255,6 @@ public class Servidor implements Serializable {
 
 	public void setCelular(String celular) {
 		this.celular = celular;
-	}
-
-	public Collection<Dependente> getDependentes() {
-		return dependentes;
-	}
-
-	public void setDependentes(Set<Dependente> dependentes) {
-		this.dependentes = dependentes;
-	}
-
-	public Set<ServidorTitulacao> getTitulacoes() {
-		return titulacoes;
-	}
-
-	public void setTitulacoes(Set<ServidorTitulacao> titulacoes) {
-		this.titulacoes = titulacoes;
 	}
 
 	public String getIdentificacaoUnica() {
