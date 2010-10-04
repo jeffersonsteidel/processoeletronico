@@ -164,17 +164,13 @@ public abstract class Validator {
 	}
 
 	public static String formatarData(String data) {
-		if (data != null) {
+		if (data != null &&  !("00000000").equalsIgnoreCase(data)) {
 			while (data.length() < 8) {
 				data = "0" + data;
 			}
 			return formatar(data, "##/##/####");
 		} else {
-			String date = "00000000";
-			while (date.length() < 8) {
-				data = "0" + data;
-			}
-			return formatar(date, "##/##/####");
+			return "01/01/2010";
 		}
 	}
 }
