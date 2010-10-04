@@ -94,16 +94,20 @@ public class LotacaoController {
 
 	@SuppressWarnings("unchecked")
 	public List<SelectItem> listarEstados() {
+		lotacao = new Lotacao();
+		lotacao.setEndereco(new Endereco());
+		lotacao.getEndereco().setCidade(new Cidade());
+		lotacao.getEndereco().getCidade().setEstado(new Estado());
 		estados = new ArrayList<SelectItem>();
 		List<Estado> estadoList = new ArrayList<Estado>();
-		estadoList = dao.list(lotacao.getEndereco().getCidade().getEstado()
-				.getClass(), "descricao");
+		estadoList = dao.list(Estado.class, "descricao");
 		for (Estado estado : estadoList) {
 			estados.add(new SelectItem(estado.getCodigo(), estado
 					.getDescricao()));
 		}
 		return estados;
 	}
+
 
 	public List<SelectItem> listarCidades() {
 		CidadeDAO cidadeDAO = new CidadeDAO();
