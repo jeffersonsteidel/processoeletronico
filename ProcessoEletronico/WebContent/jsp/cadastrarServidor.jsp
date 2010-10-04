@@ -68,7 +68,7 @@
 						required="true"
 						requiredMessage="Campo Cidade de Nascimento é obrigatório!">
 						<f:selectItem itemLabel="SELECIONE" itemValue="" />
-						<f:selectItems value="#{servidorController.cidades}" />
+						<f:selectItems value="#{servidorController.cidadesNascimento}" />
 					</h:selectOneMenu>
 					<h:outputText value="Estado Civil: " />
 					<h:selectOneMenu

@@ -40,7 +40,8 @@ public class Servidor implements Serializable {
 	private String celular;
 	private String identificacaoUnica;
 	private Date dataAdmServicoPublico;
-
+	private Pais pais;
+	
 	public Long getCodigo() {
 		return codigo;
 	}
@@ -288,4 +289,13 @@ public class Servidor implements Serializable {
 	public void setDataSaida(Date dataSaida) {
 		this.dataSaida = dataSaida;
 	}
+
+	public Pais getPais() {
+		return pais;
+	}
+
+	public void setPais(Pais pais) {
+		this.pais = pais;
+	}
+	
 }
