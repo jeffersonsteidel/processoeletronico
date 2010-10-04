@@ -17,8 +17,8 @@ import br.com.progepe.entity.Lotacao;
 public class LotacaoController {
 
 	private Lotacao lotacao;
-	private List<SelectItem> estados;
-	private List<SelectItem> cidades;
+	private List<SelectItem> estados = new ArrayList<SelectItem>();
+	private List<SelectItem> cidades = new ArrayList<SelectItem>();
 	private List<Lotacao> lotacaoList;
 
 	public Lotacao getLotacao() {
@@ -94,10 +94,6 @@ public class LotacaoController {
 
 	@SuppressWarnings("unchecked")
 	public List<SelectItem> listarEstados() {
-		lotacao = new Lotacao();
-		lotacao.setEndereco(new Endereco());
-		lotacao.getEndereco().setCidade(new Cidade());
-		lotacao.getEndereco().getCidade().setEstado(new Estado());
 		estados = new ArrayList<SelectItem>();
 		List<Estado> estadoList = new ArrayList<Estado>();
 		estadoList = dao.list(Estado.class, "descricao");
@@ -107,7 +103,6 @@ public class LotacaoController {
 		}
 		return estados;
 	}
-
 
 	public List<SelectItem> listarCidades() {
 		CidadeDAO cidadeDAO = new CidadeDAO();

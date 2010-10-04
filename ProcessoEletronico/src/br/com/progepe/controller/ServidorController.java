@@ -49,6 +49,7 @@ public class ServidorController {
 	private List<SelectItem> gruposSanguineos = new ArrayList<SelectItem>();
 	private List<SelectItem> estados = new ArrayList<SelectItem>();
 	private List<SelectItem> ufs = new ArrayList<SelectItem>();
+	private List<SelectItem> cidadesNascimento = new ArrayList<SelectItem>();
 	private List<SelectItem> cidades = new ArrayList<SelectItem>();
 	private List<SelectItem> lotacoes = new ArrayList<SelectItem>();
 	private List<SelectItem> paises = new ArrayList<SelectItem>();
@@ -115,6 +116,14 @@ public class ServidorController {
 
 	public List<SelectItem> getAreasConhecimentos() {
 		return areasConhecimentos;
+	}
+	
+	public List<SelectItem> getCidadesNascimento() {
+		return cidadesNascimento;
+	}
+
+	public void setCidadesNascimento(List<SelectItem> cidadesNascimento) {
+		this.cidadesNascimento = cidadesNascimento;
 	}
 
 	public void setAreasConhecimentos(List<SelectItem> areasConhecimentos) {
@@ -290,6 +299,7 @@ public class ServidorController {
 		cargos = new ArrayList<SelectItem>();
 		classes = new ArrayList<SelectItem>();
 		ufs = new ArrayList<SelectItem>();
+		cidadesNascimento = new ArrayList<SelectItem>();
 		cidades = new ArrayList<SelectItem>();
 		estados = new ArrayList<SelectItem>();
 		bancos = new ArrayList<SelectItem>();
@@ -352,15 +362,15 @@ public class ServidorController {
 
 	public List<SelectItem> listarCidadesNascimentoServidor() {
 		CidadeDAO cidadeDAO = new CidadeDAO();
-		cidades = new ArrayList<SelectItem>();
+		cidadesNascimento = new ArrayList<SelectItem>();
 		List<Cidade> cidadeList = new ArrayList<Cidade>();
 		cidadeList = cidadeDAO.listByEstado(servidor.getCidadeNascimento()
 				.getEstado());
 		for (Cidade cidade : cidadeList) {
-			cidades.add(new SelectItem(cidade.getCodigo(), cidade
+			cidadesNascimento.add(new SelectItem(cidade.getCodigo(), cidade
 					.getDescricao()));
 		}
-		return cidades;
+		return cidadesNascimento;
 	}
 
 	public List<SelectItem> listarCidadesContato() {
@@ -555,7 +565,7 @@ public class ServidorController {
 		}
 	}
 
-	public void salvar() {
+	public void salvar() throws IOException {
 		dao.save(servidor);
 		servidor = new Servidor();
 	}

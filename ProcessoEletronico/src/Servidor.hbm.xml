@@ -51,5 +51,7 @@
 			class="br.com.progepe.entity.SituacaoFuncional" column="SIT_FUN_COD" />
 		<many-to-one name="endereco" class="br.com.progepe.entity.Endereco"
 			column="END_COD" unique="true" cascade="all" />
+		<many-to-one name="pais" class="br.com.progepe.entity.Pais"
+			column="PAIS_COD"/>	
 	</class>
 </hibernate-mapping>
