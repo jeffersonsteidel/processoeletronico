@@ -269,6 +269,11 @@ public class FitaEspelho {
 			html = html + "<th>SEXO</th>";
 			html = html + "<th>DATA DE NASCIMENTO</th>";
 			html = html + "<th>ESTADO CIVIL</th>";
+			html=html+"<th>REGIME JURIDICO</th>";
+			html=html+"<th>JORNADA DE TRABALHO</th>";
+			html=html+"<th>BANCO</th>";
+			html=html+"<th>AGENCIA</th>";
+			html=html+"<th>CONTA CORRENTE</th>";
 			html = html + "<th>GRUPO/CARGO</th>";
 			html = html + "<th>LOTAÇÃO</th>";
 			html = html + "<th>DATA ADMISSÃO</th>";
@@ -316,6 +321,11 @@ public class FitaEspelho {
 
 				}
 				if (teste.equals(2)) {
+					html = html + "<td>" + linha.substring(20,23)+ "</td>";
+					html = html + "<td>" + linha.substring(90,92)+ "</td>";
+					html = html + "<td>" + linha.substring(38,41)+ "</td>";
+					html = html + "<td>" + linha.substring(41,47)+ "</td>";
+					html = html + "<td>" + linha.substring(47,60)+ "</td>";
 					html = html + "<td>";
 					if (linha.substring(113, 116).equals("701")) {
 						html = html + "TÉCNICO/";
@@ -484,11 +494,41 @@ public class FitaEspelho {
 					html = html + "<td>" + linha.substring(283,285 ) + "/"
 							+ linha.substring(285, 287) + "/"
 							+ linha.substring(287, 291) + "</td>";
-					String situacao = linha.substring(315, 323);
-					if (situacao.equals("00000000")) {
-						html = html + "<td> ATIVO </td>";
-					} else {
-						html = html + "<td> INATIVO </td>";
+					Integer situacao = Integer.parseInt(linha.substring(23,25));
+					if (situacao.equals(1)) {
+						html = html + "<td> ATIVO PERMANENTE </td>";
+					} else if (situacao.equals(2)) {
+						html = html + "<td> APOSENTADO </td>";
+					}else if (situacao.equals(3)) {
+						html = html + "<td> REQUISITADO </td>";
+					}else if (situacao.equals(4)) {
+						html = html + "<td> NOMEADO CARGO COMIS. </td>";
+					}else if (situacao.equals(8)) {
+						html = html + "<td> CEDIDO </td>";
+					}else if (situacao.equals(9)) {
+						html = html + "<td> REDISTRIBUIDO </td>";
+					}else if (situacao.equals(12)) {
+						html = html + "<td> CONTRATO TEMPORARIO </td>";
+					}else if (situacao.equals(13)) {
+						html = html + "<td> EM DISPONIBILIDADE </td>";
+					}else if (situacao.equals(14)) {
+						html = html + "<td> REQ. DE OUTROS ORGÃOS </td>";
+					}else if (situacao.equals(15)) {
+						html = html + "<td> INSTITUIDOR PENSÃO </td>";
+					}else if (situacao.equals(41)) {
+						html = html + "<td> COLABORADOR PCCTAE </td>";
+					}else if (situacao.equals(66)) {
+						html = html + "<td> ESTAGIARIO </td>";
+					}else if (situacao.equals(84)) {
+						html = html + "<td> PENSIONISTA </td>";
+					}else if (situacao.equals(93)) {
+						html = html + "<td> BENEFICIARIO PENSÃO </td>";
+					}else if (situacao.equals(18)) {
+						html = html + "<td> EXERC DESCENT CARREI </td>";
+					}else if (situacao.equals(19)) {
+						html = html + "<td> EXERCICIO PROVISORIO </td>";
+					}else {
+						html = html + "<td>"+ situacao +"</td>";
 					}
 					html = html + "</tr>";
 				}
