@@ -1,10 +1,7 @@
-import java.text.DateFormat;
-import java.util.Date;
 import java.util.List;
 
 import br.com.progepe.extract.DadosFuncionais;
 import br.com.progepe.extract.DadosPessoais;
-import br.com.progepe.extract.Extrator;
 import br.com.progepe.validator.Validator;
 
 public class Relatorio {
@@ -14,42 +11,64 @@ public class Relatorio {
 		List<DadosFuncionais> dadosFuncionais;
 		Extrator extrator = new Extrator();
 		extrator.carregarDados();
+		List<DadosFinanceiros> dadosFinanceiros;
 		String data;
-//		Date dataLimite = new Date("22/09/2008");
+		// Date dataLimite = new Date("22/09/2008");
 		dadosPessoais = extrator.getDadosPessoaisList();
 		dadosFuncionais = extrator.getDadosFuncionaisList();
-		try {
-			for (int count = 0; count < dadosPessoais.size(); count++) {
+		dadosFinanceiros = extrator.getDadosFinanceiros();
 
+		try {
+
+			for (int count = 0; count < dadosPessoais.size(); count++) {
+				int count2 = 0;
+				dadosFinanceiros = extrator.getDadosFinanceiros();
 				DadosPessoais servidorPessoal = dadosPessoais.get(count);
 				DadosFuncionais servidorFuncional = dadosFuncionais.get(count);
-				if (servidorFuncional.getCodigoCargo().equals(1)
-						&& servidorFuncional.getCodigoGrupoCargo().equals(702)
-						&& servidorFuncional
-								.getCodigoReferenciaNivelPadraoCargo().equals(
-										"101")) {
-
-//					Date dataI = new Date(
-//							Validator.formatarData(servidorFuncional
-//									.getDataIngressoServPublico()));
-//					if (dataI.after(dataLimite)) {
-						System.out.print(servidorPessoal.getMatriculaSiape());
-						System.out.print(","
-								+ servidorPessoal.getNomeServidor());
-						data = Validator.formatarData(servidorFuncional
-								.getDataIngressoServPublico().toString());
-						System.out.print("," + data);
-						System.out.print(",PROF. ENS. BAS. TEC. TECNOL.");
-						System.out.print(","
-								+ servidorFuncional.getClasseCargo());
-						System.out.print(","
-								+ servidorFuncional
-										.getCodigoReferenciaNivelPadraoCargo());
-						System.out.println(","
-								+ servidorFuncional.getCodigoNivelFuncao());
+				DadosFinanceiros servidorFinanceiro = null;
+				try {
+					while (!dadosFinanceiros.isEmpty()) {
+						if ((dadosFinanceiros.get(count2).getSiape()
+								.equals(servidorPessoal.getMatriculaSiape()
+										.toString()))
+								/*&& (dadosFinanceiros.get(count2).getCodigo()
+										.equals("00001"))*/) {
+							servidorFinanceiro = dadosFinanceiros.get(count2);
+						} else if (servidorFinanceiro.getValor().equals(null)) {
+							servidorFinanceiro.setCodigo("00001");
+							servidorFinanceiro.setValor("00000");
+						}
+						dadosFinanceiros.remove(count2);
+						count2++;
 					}
+				} catch (Exception exception) {
 				}
-			//}
+				// if (servidorFuncional.getCodigoCargo().equals(1)
+				// && servidorFuncional.getCodigoGrupoCargo().equals(702)
+				// && servidorFuncional
+				// .getCodigoReferenciaNivelPadraoCargo().equals(
+				// "101")) {
+				System.out.print(servidorPessoal.getMatriculaSiape());
+				System.out.print("," + servidorPessoal.getNomeServidor());
+				data = Validator.formatarData(servidorFuncional
+						.getDataIngressoServPublico().toString());
+				System.out.print("," + data);
+				System.out.print(",PROF. ENS. BAS. TEC. TECNOL.");
+				System.out.print("," + servidorFuncional.getClasseCargo());
+				System.out.print(","
+						+ servidorFuncional
+								.getCodigoReferenciaNivelPadraoCargo());
+				System.out
+						.print("," + servidorFuncional.getCodigoNivelFuncao());
+				try {
+					System.out.print(",valor," + servidorFinanceiro.getValor());
+
+				} catch (Exception exception) {
+				}
+				System.out.println();
+				// }
+
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 
