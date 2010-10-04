@@ -2,7 +2,6 @@ package br.com.progepe.extract;
 
 import java.text.ParseException;
 import java.util.Date;
-import java.util.HashSet;
 
 import br.com.progepe.dao.CidadeDAO;
 import br.com.progepe.dao.DAO;
@@ -10,10 +9,8 @@ import br.com.progepe.entity.Banco;
 import br.com.progepe.entity.Cargo;
 import br.com.progepe.entity.Cidade;
 import br.com.progepe.entity.Classe;
-import br.com.progepe.entity.Conjuge;
 import br.com.progepe.entity.ContaBancaria;
 import br.com.progepe.entity.CorPele;
-import br.com.progepe.entity.Dependente;
 import br.com.progepe.entity.Documento;
 import br.com.progepe.entity.Endereco;
 import br.com.progepe.entity.Estado;
@@ -44,13 +41,6 @@ public class Injetor {
 			servidor.getCargo().setClasse(new Classe());
 			servidor.setCidadeNascimento(new Cidade());
 			servidor.getCidadeNascimento().setEstado(new Estado());
-			servidor.setConjuge(new Conjuge());
-			servidor.getConjuge().setDocumento(new Documento());
-			servidor.getConjuge().getDocumento().setCarteiraUf(new Estado());
-			servidor.getConjuge().getDocumento().setRgUf(new Estado());
-			servidor.getConjuge().getDocumento().setTituloUf(new Estado());
-			servidor.getConjuge().setCidadeNascimento(new Cidade());
-			servidor.getConjuge().getCidadeNascimento().setEstado(new Estado());
 			servidor.setContaBancaria(new ContaBancaria());
 			servidor.getContaBancaria().setBanco(new Banco());
 			servidor.setCorPele(new CorPele());
@@ -58,7 +48,6 @@ public class Injetor {
 			servidor.getDocumento().setCarteiraUf(new Estado());
 			servidor.getDocumento().setRgUf(new Estado());
 			servidor.getDocumento().setTituloUf(new Estado());
-			servidor.setDependentes(new HashSet<Dependente>());
 			servidor.setEndereco(new Endereco());
 			servidor.getEndereco().setCidade(new Cidade());
 			servidor.getEndereco().getCidade().setEstado(new Estado());
