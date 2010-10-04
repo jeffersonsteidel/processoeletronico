@@ -1,18 +1,15 @@
 package br.com.progepe.extract;
 
 import java.text.ParseException;
-import java.util.Date;
 
 import br.com.progepe.dao.CidadeDAO;
 import br.com.progepe.dao.DAO;
 import br.com.progepe.dao.EstadoDAO;
-import br.com.progepe.entity.Banco;
-import br.com.progepe.entity.Cargo;
-import br.com.progepe.entity.ContaBancaria;
+import br.com.progepe.entity.Cidade;
+import br.com.progepe.entity.Endereco;
+import br.com.progepe.entity.Estado;
 import br.com.progepe.entity.EstadoCivil;
-import br.com.progepe.entity.Padrao;
 import br.com.progepe.entity.Servidor;
-import br.com.progepe.entity.SituacaoFuncional;
 import br.com.progepe.validator.Validator;
 
 public class Injetor {
@@ -26,19 +23,20 @@ public class Injetor {
 		EstadoDAO estadoDAO = new EstadoDAO();
 		
 		for (DadosPessoais pessoal : injetorDados.getDadosPessoaisList()) {
+			if(pessoal.getMatriculaSiape().toString().equals("1802567")){
 			Servidor servidor = new Servidor();
-			servidor.setCargo(new Cargo());
-			servidor.setContaBancaria(new ContaBancaria());
-			servidor.getContaBancaria().setBanco(new Banco());
+			//servidor.setCargo(new Cargo());
+//			servidor.setContaBancaria(new ContaBancaria());
+//			servidor.getContaBancaria().setBanco(new Banco());
 //			servidor.setDocumento(new Documento());
-//			servidor.setEndereco(new Endereco());
-//			servidor.getEndereco().setCidade(new Cidade());
-//			servidor.getEndereco().getCidade().setEstado(new Estado());
+			servidor.setEndereco(new Endereco());
+			servidor.getEndereco().setCidade(new Cidade());
+			servidor.getEndereco().getCidade().setEstado(new Estado());
 			servidor.setEstadoCivil(new EstadoCivil());
 		//	servidor.setLotacao(new Lotacao());
-			servidor.setPadrao(new Padrao());
+		//	servidor.setPadrao(new Padrao());
 		//	servidor.setRegimeTrabalho(new RegimeTrabalho());
-			servidor.setSituacaoFuncional(new SituacaoFuncional());
+			//servidor.setSituacaoFuncional(new SituacaoFuncional());
 			
 			servidor.setSiape(pessoal.getMatriculaSiape());
 			servidor.setIdentificacaoUnica(pessoal.getMatriculaSiape() + "-" + pessoal.getDvMatricula());
@@ -46,26 +44,27 @@ public class Injetor {
 //			servidor.getDocumento().setCpf(Validator.formatarCpf(pessoal.getCpf()));
 //			servidor.getDocumento().setPis(Validator.formatarPis(pessoal.getPisPasef()));
 			servidor.setNomeMae(pessoal.getNomeMae());
-			servidor.setSexo(pessoal.getSexo());	
-			servidor.setDataNascimento(new Date(Validator.formatarData(pessoal.getDataNascimento())));
+			servidor.setSexo(pessoal.getSexo());
+			servidor.setDataNascimento(Validator.formatarData(pessoal.getDataNascimento()));
 			servidor.getEstadoCivil().setCodigo(new Long (pessoal.getEstadoCivil()));
 //			servidor.getDocumento().setDataPrimeiroEmprego(new Date(Validator.formatarData(pessoal.getDataPrimeiroEmprego())));
-//			servidor.getEndereco().setRua(pessoal.getLogradouro());
-//			servidor.getEndereco().setNumero(pessoal.getNumeroEndereco());
-//			servidor.getEndereco().setComplemento(pessoal.getComplementoEndereco());
-//			servidor.getEndereco().setBairro(pessoal.getBairro());
-//			servidor.getEndereco().setCep(Validator.formatarCep(pessoal.getCep()));
+			servidor.getEndereco().setRua(pessoal.getLogradouro());
+			servidor.getEndereco().setNumero(pessoal.getNumeroEndereco());
+			servidor.getEndereco().setComplemento(pessoal.getComplementoEndereco());
+			servidor.getEndereco().setBairro(pessoal.getBairro());
+			servidor.getEndereco().setCep(Validator.formatarCep(pessoal.getCep()));
 			
-//			Cidade cidade = cidadeDAO.listByNome(pessoal.getMunicipio().toUpperCase().trim());
-//			servidor.getEndereco().setCidade(cidade);
-//			servidor.getEndereco().getCidade().setEstado(cidade.getEstado());
+			Cidade cidade = cidadeDAO.listByNome(pessoal.getMunicipio().toUpperCase().trim());
+			servidor.getEndereco().setCidade(cidade);
+			servidor.getEndereco().getCidade().setEstado(cidade.getEstado());
 //			servidor.getDocumento().setRg(pessoal.getNumeroRegistroGeral());
 //			servidor.getDocumento().setRgOrgaoEmissor(pessoal.getSiglaOrgaoExpedidor());
 //			servidor.getDocumento().setRgDataExpedicao(new Date(Validator.formatarData(pessoal.getDataExpedicaoIdentidade())));
+			dao.save(servidor);
 			
 			for (DadosFuncionais funcional : injetorDados.getDadosFuncionaisList()) {
 				if(pessoal.getMatriculaSiape().equals(funcional.getMatriculaSiape())){
-					servidor.getSituacaoFuncional().setCodigo(new Long(funcional.getCodigoSituacaoServidor()));
+				//	servidor.getSituacaoFuncional().setCodigo(new Long(funcional.getCodigoSituacaoServidor()));
 //					servidor.getDocumento().setCarteiraTrabalho(funcional.getNumeroCarteiraDeTrabalho().toString());
 //					servidor.getDocumento().setCarteiraSerie(funcional.getSerieCarteiraDeTrabalho());
 					
@@ -74,15 +73,15 @@ public class Injetor {
 //					servidor.getDocumento().setRgUf(estado);
 //					servidor.getDocumento().setTituloUf(estado);
 					
-					servidor.getContaBancaria().getBanco().setCodigo(new Long (funcional.getCodigoBanco()));
-					servidor.getContaBancaria().setAgencia(funcional.getAgenciaBanco());
-					servidor.getContaBancaria().setNumeroConta(funcional.getContaCorrenteBanco());
-					servidor.getCargo().setCodigo(new Long (funcional.getCodigoCargo()));
-					servidor.getPadrao().setCodigo(new Long (funcional.getCodigoReferenciaNivelPadraoCargo()));
-					servidor.setDataAdmissao(new Date (Validator.formatarData(funcional.getDataEntradaOcupacaoCargo())));
-					servidor.setDataSaida(new Date (Validator.formatarData(funcional.getDataSaidaCargo())));
+//					servidor.getContaBancaria().getBanco().setCodigo(new Long (funcional.getCodigoBanco()));
+//					servidor.getContaBancaria().setAgencia(funcional.getAgenciaBanco());
+//					servidor.getContaBancaria().setNumeroConta(funcional.getContaCorrenteBanco());
+				//	servidor.getCargo().setCodigo(new Long (funcional.getCodigoCargo()));
+			//		servidor.getPadrao().setCodigo(new Long (funcional.getCodigoReferenciaNivelPadraoCargo()));
+					servidor.setDataAdmissao(Validator.formatarData(funcional.getDataEntradaOcupacaoCargo()));
+					servidor.setDataSaida(Validator.formatarData(funcional.getDataSaidaCargo()));
 					Long codigoLotacao = new Long(funcional.getCodigoUnidadeOrganizacionalLotacao());
-					if(codigoLotacao != null && codigoLotacao != 0){
+					if(codigoLotacao != null && codigoLotacao != 0){ 
 					//	servidor.getLotacao().setCodigo(codigoLotacao);
 					}else{
 //						servidor.getLotacao().setCodigo(3L);
@@ -94,7 +93,9 @@ public class Injetor {
 //						servidor.getLocalExercicio().getEndereco().setCidade(cidade);
 //						servidor.getLocalExercicio().getEndereco().getCidade().setEstado(cidade.getEstado());
 					}
+				
 					dao.save(servidor);
+				}
 					break;
 				}
 			}

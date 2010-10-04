@@ -1,3 +1,4 @@
+import java.util.Date;
 import java.util.List;
 
 import br.com.progepe.extract.DadosFuncionais;
@@ -12,7 +13,7 @@ public class Relatorio {
 		Extrator extrator = new Extrator();
 		extrator.carregarDados();
 		List<DadosFinanceiros> dadosFinanceiros;
-		String data;
+		Date data;
 		// Date dataLimite = new Date("22/09/2008");
 		dadosPessoais = extrator.getDadosPessoaisList();
 		dadosFuncionais = extrator.getDadosFuncionaisList();

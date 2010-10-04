@@ -1,5 +1,8 @@
 package br.com.progepe.validator;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -163,14 +166,13 @@ public abstract class Validator {
 		return formatar(cnpj, "##.###.###/####-##");
 	}
 
-	public static String formatarData(String data) {
-		if (data != null &&  !("00000000").equalsIgnoreCase(data)) {
-			while (data.length() < 8) {
-				data = "0" + data;
-			}
-			return formatar(data, "##/##/####");
+	public static Date formatarData(String data) throws ParseException {
+		if (data != null && !("00000000").equalsIgnoreCase(data)) {
+			SimpleDateFormat sf = new SimpleDateFormat("dd/MM/yyyy");
+			Date dataFormatada = sf.parse(data);
+			return dataFormatada;
 		} else {
-			return "01/01/2010";
+			return new Date();
 		}
 	}
 }
