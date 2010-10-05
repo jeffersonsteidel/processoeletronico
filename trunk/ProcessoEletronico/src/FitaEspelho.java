@@ -270,11 +270,18 @@ public class FitaEspelho {
 			html = html + "<th>SEXO</th>";
 			html = html + "<th>DATA DE NASCIMENTO</th>";
 			html = html + "<th>ESTADO CIVIL</th>";
-			html=html+"<th>REGIME JURIDICO</th>";
-			html=html+"<th>JORNADA DE TRABALHO</th>";
-			html=html+"<th>BANCO</th>";
-			html=html+"<th>AGENCIA</th>";
-			html=html+"<th>CONTA CORRENTE</th>";
+			html = html + "<th>ENDEREÇO</th>";
+			html = html + "<th>NUMERO</th>";
+			html = html + "<th>COMPLEMENTO</th>";
+			html = html + "<th>BAIRRO</th>";
+			html = html + "<th>CIDADE</th>";
+			html = html + "<th>CEP</th>";
+			html = html + "<th>UF</th>";
+			html = html + "<th>REGIME JURIDICO</th>";
+			html = html + "<th>JORNADA DE TRABALHO</th>";
+			html = html + "<th>BANCO</th>";
+			html = html + "<th>AGENCIA</th>";
+			html = html + "<th>CONTA CORRENTE</th>";
 			html = html + "<th>GRUPO/CARGO</th>";
 			html = html + "<th>LOTAÇÃO</th>";
 			html = html + "<th>DATA ADMISSÃO SERV. PUB.</th>";
@@ -306,26 +313,47 @@ public class FitaEspelho {
 						if (linha.substring(161, 162).equals("1")) {
 							html = html + "SOLTEIRO";
 						}
-						if (linha.substring(161, 162).equals("2")) {
+						else if (linha.substring(161, 162).equals("2")) {
 							html = html + "CASADO";
 						}
-						if (linha.substring(161, 162).equals("3")) {
+						else if (linha.substring(161, 162).equals("3")) {
 							html = html + "SEPARADO";
 						}
-						if (linha.substring(161, 162).equals("4")) {
+						else if (linha.substring(161, 162).equals("4")) {
 							html = html + "DIVORCIADO";
 						}
-						if (linha.substring(161, 162).equals("5")) {
+						else if (linha.substring(161, 162).equals("5")) {
 							html = html + "VIUVO";
 						}
 						html = html + "</td>";
+					}
+					
+					if (teste.equals(1)) {
+						html = html + "<td>"+linha.substring(201, 241)+"</td>";
+						html = html + "<td>"+linha.substring(241, 247)+"</td>";
+						html = html + "<td>"+linha.substring(247, 268)+"</td>";
+						html = html + "<td>"+linha.substring(268, 293)+"</td>";
+						html = html + "<td>"+linha.substring(293, 323)+"</td>";
+						html = html + "<td>"+linha.substring(323, 331)+"</td>";
+						html = html + "<td>"+linha.substring(331, 333)+"</td>";
 					}
 
 				}
 				if (teste.equals(2)) {
 					html = html + "<td>" + linha.substring(20,23)+ "</td>";
 					html = html + "<td>" + linha.substring(90,92)+ "</td>";
-					html = html + "<td>" + linha.substring(38,41)+ "</td>";
+					html = html + "<td>";
+					 if(("001").equals(linha.substring(38,41))){
+						 html = html + "BB"; 
+					 }
+					 else if(("104").equals(linha.substring(38,41))){
+						 html = html + "CEF"; 
+					 }
+					 else if(("341").equals(linha.substring(38,41))){
+						 html = html + "ITAU"; 
+					 }
+					html = html + "</td>";
+					
 					html = html + "<td>" + linha.substring(41,47)+ "</td>";
 					html = html + "<td>" + linha.substring(47,60)+ "</td>";
 					html = html + "<td>";
@@ -334,91 +362,91 @@ public class FitaEspelho {
 						if (linha.substring(116, 119).equals("001")) {
 							html = html + "ADMINISTRADOR";
 						}
-						if (linha.substring(116, 119).equals("009")) {
+						else if (linha.substring(116, 119).equals("009")) {
 							html = html + "AUDITOR";
 						}
-						if (linha.substring(116, 119).equals("010")) {
+						else if (linha.substring(116, 119).equals("010")) {
 							html = html + "BIBLIOTECARIO";
 						}
-						if (linha.substring(116, 119).equals("015")) {
+						else if (linha.substring(116, 119).equals("015")) {
 							html = html + "CONTADOR";
 						}
-						if (linha.substring(116, 119).equals("029")) {
+						else if (linha.substring(116, 119).equals("029")) {
 							html = html + "ENFERMEIRO";
 						}
-						if (linha.substring(116, 119).equals("031")) {
+					    else if (linha.substring(116, 119).equals("031")) {
 							html = html + "ENGENHEIRO";
 						}
-						if (linha.substring(116, 119).equals("032")) {
+					    else if (linha.substring(116, 119).equals("032")) {
 							html = html + "ENG. DE SEG. DO TRABALHO ";
 						}
-						if (linha.substring(116, 119).equals("045")) {
+					    else if (linha.substring(116, 119).equals("045")) {
 							html = html + "JORNALISTA";
 						}
-						if (linha.substring(116, 119).equals("047")) {
+					    else if (linha.substring(116, 119).equals("047")) {
 							html = html + "MÉDICO";
 						}
-						if (linha.substring(116, 119).equals("058")) {
+					    else if (linha.substring(116, 119).equals("058")) {
 							html = html + "PEDAGOGO";
 						}
-						if (linha.substring(116, 119).equals("062")) {
+					    else if (linha.substring(116, 119).equals("062")) {
 							html = html + "ANAL. DE TEC. DA INFORMAÇÃO";
 						}
-						if (linha.substring(116, 119).equals("066")) {
+					    else if (linha.substring(116, 119).equals("066")) {
 							html = html + "PROGRAMADOR VISUAL";
 						}
-						if (linha.substring(116, 119).equals("076")) {
+					    else if (linha.substring(116, 119).equals("076")) {
 							html = html + "SECRETARIADO EXECUTIVO";
 						}
-						if (linha.substring(116, 119).equals("079")) {
+					    else if (linha.substring(116, 119).equals("079")) {
 							html = html + "TEC. EM ASSUN. EDUCACIONAIS";
 						}
-						if (linha.substring(116, 119).equals("200")) {
+					    else if (linha.substring(116, 119).equals("200")) {
 							html = html + "ASS. EM ADMINISTRAÇÃO";
 						}
-						if (linha.substring(116, 119).equals("224")) {
+					    else if (linha.substring(116, 119).equals("224")) {
 							html = html + "TEC. EM CONTABILIDADE";
 						}
-						if (linha.substring(116, 119).equals("226")) {
+					    else if (linha.substring(116, 119).equals("226")) {
 							html = html + "TEC. EM TECNOL. DA INFORMAÇÃO";
 						}
-						if (linha.substring(116, 119).equals("233")) {
+					    else if (linha.substring(116, 119).equals("233")) {
 							html = html + "TEC. EM ENFERMAGEM";
 						}
-						if (linha.substring(116, 119).equals("244")) {
+					    else if (linha.substring(116, 119).equals("244")) {
 							html = html + "TEC. EM LABORATÓRIO";
 						}
-						if (linha.substring(116, 119).equals("257")) {
+					    else if (linha.substring(116, 119).equals("257")) {
 							html = html + "TEC. EM RADIOLOGIA";
 						}
-						if (linha.substring(116, 119).equals("403")) {
+					    else if (linha.substring(116, 119).equals("403")) {
 							html = html + "ASS. DE ALUNO";
 						}
-						if (linha.substring(116, 119).equals("409")) {
+					    else if (linha.substring(116, 119).equals("409")) {
 							html = html + "AUX. DE BIBLIOTECA";
 						}
-						if (linha.substring(116, 119).equals("421")) {
+					    else if (linha.substring(116, 119).equals("421")) {
 							html = html + "CONTINUO";
 						}
-						if (linha.substring(116, 119).equals("422")) {
+					    else if (linha.substring(116, 119).equals("422")) {
 							html = html + "CONZINHEIRO";
 						}
-						if (linha.substring(116, 119).equals("436")) {
+					    else if (linha.substring(116, 119).equals("436")) {
 							html = html + "IMPRESSOR";
 						}
-						if (linha.substring(116, 119).equals("459")) {
+					    else if (linha.substring(116, 119).equals("459")) {
 							html = html + "RECEPCIONISTA";
 						}
-						if (linha.substring(116, 119).equals("464")) {
+					    else if (linha.substring(116, 119).equals("464")) {
 							html = html + "TELEFONISTA";
 						}
-						if (linha.substring(116, 119).equals("611")) {
+					    else if (linha.substring(116, 119).equals("611")) {
 							html = html + "AUX. DE AGROPECUÁRIA";
 						}
-						if (linha.substring(116, 119).equals("623")) {
+					    else if (linha.substring(116, 119).equals("623")) {
 							html = html + "AUX. DE NUTRIÇÃO";
 						}
-						if (linha.substring(116, 119).equals("828")) {
+					    else if (linha.substring(116, 119).equals("828")) {
 							html = html + "OPER. DE MAQ. DE LAVANDERIA";
 						}
 					} else if (linha.substring(113, 116).equals("702")) {
@@ -426,7 +454,7 @@ public class FitaEspelho {
 						if (linha.substring(116, 119).equals("001")) {
 							html = html + "PROF. ENS. BAS. TEC. TECNOL.";
 						}
-						if (linha.substring(116, 119).equals("003")) {
+						else if (linha.substring(116, 119).equals("003")) {
 							html = html + "PROF. ENS. BAS. TEC. TECNOL. - SUB";
 						}
 					} else if (linha.substring(113, 116).equals("060")) {
@@ -434,7 +462,7 @@ public class FitaEspelho {
 						if (linha.substring(116, 119).equals("001")) {
 							html = html + "PROF. DO 3º GRAU";
 						}
-						if (linha.substring(116, 119).equals("012")) {
+						else if (linha.substring(116, 119).equals("012")) {
 							html = html + "PROF. DO 1º E 2º GRAUS - SUB";
 						}
 					} else {

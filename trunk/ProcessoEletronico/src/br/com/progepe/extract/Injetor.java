@@ -14,7 +14,6 @@ import br.com.progepe.entity.Endereco;
 import br.com.progepe.entity.Estado;
 import br.com.progepe.entity.EstadoCivil;
 import br.com.progepe.entity.Lotacao;
-import br.com.progepe.entity.Padrao;
 import br.com.progepe.entity.RegimeTrabalho;
 import br.com.progepe.entity.Servidor;
 import br.com.progepe.entity.SituacaoFuncional;
@@ -33,7 +32,7 @@ public class Injetor {
 				.getDadosFitaEspelhoList()) {
 
 			Servidor servidor = new Servidor();
-			servidor.setCargo(new Cargo());
+		//	servidor.setCargo(new Cargo());
 			servidor.setContaBancaria(new ContaBancaria());
 			servidor.getContaBancaria().setBanco(new Banco());
 			servidor.setDocumento(new Documento());
@@ -49,11 +48,12 @@ public class Injetor {
 			servidor.getLocalExercicio().setEndereco(new Endereco());
 			servidor.getLocalExercicio().getEndereco().setCidade(new Cidade());
 			servidor.getLocalExercicio().getEndereco().getCidade().setEstado(new Estado());
-			servidor.setPadrao(new Padrao());
+		//	servidor.setPadrao(new Padrao());
 			servidor.setRegimeTrabalho(new RegimeTrabalho());
 			servidor.setSituacaoFuncional(new SituacaoFuncional());
 
 			servidor.setSiape(dadosFitaEspelho.getMatriculaSiape());
+			if(servidor.getSiape().equals(1760205)){
 			servidor.setIdentificacaoUnica(dadosFitaEspelho.getMatriculaSiape()
 					+ "-" + dadosFitaEspelho.getDvMatricula());
 			servidor.setNome(dadosFitaEspelho.getNomeServidor());
@@ -78,6 +78,7 @@ public class Injetor {
 			servidor.getEndereco().setBairro(dadosFitaEspelho.getBairro());
 			servidor.getEndereco().setCep(
 					Validator.formatarCep(dadosFitaEspelho.getCep()));
+			
 
 			Cidade cidade = cidadeDAO.listByNome(dadosFitaEspelho
 					.getMunicipio().toUpperCase().trim());
@@ -107,9 +108,9 @@ public class Injetor {
 			servidor.getContaBancaria().setAgencia(dadosFitaEspelho.getAgenciaBanco());
 			servidor.getContaBancaria().setNumeroConta(
 					dadosFitaEspelho.getContaCorrenteBanco());
-			servidor.getCargo().setCodigo(new Long(dadosFitaEspelho.getCodigoCargo()));
-			servidor.getPadrao().setCodigo(
-					new Long(dadosFitaEspelho.getCodigoReferenciaNivelPadraoCargo()));
+//			servidor.getCargo().setCodigo(new Long(dadosFitaEspelho.getCodigoCargo()));
+//			servidor.getPadrao().setCodigo(
+//					new Long(dadosFitaEspelho.getCodigoReferenciaNivelPadraoCargo()));
 			servidor.setDataAdmissao(Validator.formatarDataBR(dadosFitaEspelho
 					.getDataEntradaOcupacaoCargo()));
 			servidor.setDataSaida(Validator.formatarDataBR(dadosFitaEspelho
@@ -118,6 +119,15 @@ public class Injetor {
 					dadosFitaEspelho.getCodigoUnidadeOrganizacionalLotacao());
 			if (codigoLotacao != null && codigoLotacao != 0) {
 				servidor.getLotacao().setCodigo(codigoLotacao);
+				servidor.getLotacao().getEndereco().setCodigo(9L);
+				servidor.getLotacao().getEndereco().setCidade(cidade);
+ 				servidor.getLotacao().getEndereco().getCidade()
+						.setEstado(cidade.getEstado());
+				servidor.getLocalExercicio().setCodigo(codigoLotacao);
+				servidor.getLocalExercicio().getEndereco().setCodigo(2L);
+				servidor.getLocalExercicio().getEndereco().setCidade(cidade);
+				servidor.getLocalExercicio().getEndereco().getCidade()
+						.setEstado(cidade.getEstado());
 			} else {
 				servidor.getLotacao().setCodigo(3L);
 				servidor.getLotacao().getEndereco().setCodigo(9L);
@@ -130,8 +140,9 @@ public class Injetor {
 				servidor.getLocalExercicio().getEndereco().getCidade()
 						.setEstado(cidade.getEstado());
 			}
-
-			dao.save(servidor);
+			
+							dao.save(servidor);
+				}
 		}
 
 	}
