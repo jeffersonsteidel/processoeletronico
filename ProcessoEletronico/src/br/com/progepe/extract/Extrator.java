@@ -9,196 +9,185 @@ import java.util.List;
 
 public class Extrator {
 
-	private List<DadosPessoais> dadosPessoaisList = new ArrayList<DadosPessoais>();// cria
-																								// lista
-																								// de
-																								// Dados
-																								// Pessoais
-	private List<DadosFuncionais> dadosFuncionaisList = new ArrayList<DadosFuncionais>();// cria
-																									// lista
-																									// de
-																									// Dados
-																									// Funcionais
+	private List<DadosFitaEspelho> dadosFitaEspelhoList = new ArrayList<DadosFitaEspelho>(); //cria lista de DaDosFitaEspelho
 
-	public List<DadosPessoais> getDadosPessoaisList() {
-		return dadosPessoaisList;
+
+	public List<DadosFitaEspelho> getDadosFitaEspelhoList() {
+		return dadosFitaEspelhoList;
 	}
 
-	public List<DadosFuncionais> getDadosFuncionaisList() {
-		return dadosFuncionaisList;
-	}
-
-	public void setDadosPessoaisList(List<DadosPessoais> dadosPessoaisList) {
-		this.dadosPessoaisList = dadosPessoaisList;
-	}
-
-	public void setDadosFuncionaisList(
-			List<DadosFuncionais> dadosFuncionaisList) {
-		this.dadosFuncionaisList = dadosFuncionaisList;
+	public void setDadosFitaEspelhoList(
+			List<DadosFitaEspelho> dadosFitaEspelhoList) {
+		this.dadosFitaEspelhoList = dadosFitaEspelhoList;
 	}
 
 	public void carregarDados() throws ParseException {
 		try {
 			BufferedReader br = new BufferedReader(new FileReader(
 					"C://FITA.txt"));
+			DadosFitaEspelho dadosFitaEspelho = null;
 			while (br.ready()) {
 				String linha = br.readLine().substring(0, 764);
 				Integer tipoRegistro = Integer
 						.parseInt(linha.substring(17, 18));
+				
 				if (tipoRegistro.equals(1)) {
+					   dadosFitaEspelho= new DadosFitaEspelho();
+						
+						
+						dadosFitaEspelho.setMatriculaSiape(Integer.parseInt(linha.substring(9, 16).trim()));
+						dadosFitaEspelho.setDvMatricula(Integer.parseInt(linha.substring(16, 17)));
+						dadosFitaEspelho.setTipoRegistro(linha.substring(17, 18).trim());
+						dadosFitaEspelho.setNomeServidor(linha.substring(20, 80).trim());
+						dadosFitaEspelho.setCpf(linha.substring(80, 91).trim());
+						dadosFitaEspelho.setPisPasef(linha.substring(91,102).trim());
+						dadosFitaEspelho.setNomeMae(linha.substring(102, 152).trim());
+						dadosFitaEspelho.setSexo(linha.substring(152, 153).trim());
+						dadosFitaEspelho.setDataNascimento(linha.substring(153, 161).trim());
+						dadosFitaEspelho.setEstadoCivil(Integer.parseInt(linha.substring(161, 162)));
+						dadosFitaEspelho.setNivelEscolaridade(linha.substring(162, 164).trim());
+						dadosFitaEspelho.setCodigoTitulacaoFormacao(Integer.parseInt(linha.substring(164, 166)));
+						dadosFitaEspelho.setNacionalidade(linha.substring(171, 172).trim());
+						dadosFitaEspelho.setNaturalidade(linha.substring(172, 174).trim());
+						dadosFitaEspelho.setPais(linha.substring(174, 177).trim());
+						dadosFitaEspelho.setAnoChegada(Integer.parseInt(linha.substring(177, 181)));
+						dadosFitaEspelho.setDataPrimeiroEmprego(linha.substring(185, 193));
+						dadosFitaEspelho.setIdentificacaoOrigem(linha.substring(193, 201).trim());
+						dadosFitaEspelho.setLogradouro(linha.substring(201, 241).trim());
+						dadosFitaEspelho.setNumeroEndereco(linha.substring(241, 247).trim());
+						dadosFitaEspelho.setComplementoEndereco(linha.substring(247, 268).trim());
+						dadosFitaEspelho.setBairro(linha.substring(268, 293).trim());
+						dadosFitaEspelho.setMunicipio(linha.substring(293, 323).trim());
+						dadosFitaEspelho.setCep(linha.substring(323, 331).trim());
+						dadosFitaEspelho.setUf(linha.substring(331, 333).trim());
+						dadosFitaEspelho.setSiglaOrgaoExpedidor(linha.substring(347, 352).trim());
+						dadosFitaEspelho.setDataExpedicaoIdentidade(linha.substring(352, 360));
+						dadosFitaEspelho.setSiglaUfIdentidade(linha.substring(360, 362).trim());
+						dadosFitaEspelho.setNumeroTituloEleitor(linha.substring(362, 375).trim());	
 
-						DadosPessoais dadosPessoais = new DadosPessoais();
-						dadosPessoais.setMatriculaSiape(Integer.parseInt(linha.substring(9, 16).trim()));
-						dadosPessoais.setDvMatricula(Integer.parseInt(linha.substring(16, 17)));
-						dadosPessoais.setTipoRegistro(linha.substring(17, 18).trim());
-						dadosPessoais.setNomeServidor(linha.substring(20, 80).trim());
-						dadosPessoais.setCpf(linha.substring(80, 91).trim());
-						dadosPessoais.setPisPasef(linha.substring(91,102).trim());
-						dadosPessoais.setNomeMae(linha.substring(102, 152).trim());
-						dadosPessoais.setSexo(linha.substring(152, 153).trim());
-						dadosPessoais.setDataNascimento(linha.substring(153, 161).trim());
-						dadosPessoais.setEstadoCivil(Integer.parseInt(linha.substring(161, 162)));
-						dadosPessoais.setNivelEscolaridade(linha.substring(162, 164).trim());
-						dadosPessoais.setCodigoTitulacaoFormacao(Integer.parseInt(linha.substring(164, 166)));
-						dadosPessoais.setNacionalidade(linha.substring(171, 172).trim());
-						dadosPessoais.setNaturalidade(linha.substring(172, 174).trim());
-						dadosPessoais.setPais(linha.substring(174, 177).trim());
-						dadosPessoais.setAnoChegada(Integer.parseInt(linha.substring(177, 181)));
-						dadosPessoais.setDataPrimeiroEmprego(linha.substring(185, 193));
-						dadosPessoais.setIdentificacaoOrigem(linha.substring(193, 201).trim());
-						dadosPessoais.setLogradouro(linha.substring(201, 241).trim());
-						dadosPessoais.setNumeroEndereco(linha.substring(241, 247).trim());
-						dadosPessoais.setComplementoEndereco(linha.substring(247, 268).trim());
-						dadosPessoais.setBairro(linha.substring(268, 293).trim());
-						dadosPessoais.setMunicipio(linha.substring(293, 323).trim());
-						dadosPessoais.setCep(linha.substring(323, 331).trim());
-						dadosPessoais.setUf(linha.substring(331, 333).trim());
-						dadosPessoais.setSiglaOrgaoExpedidor(linha.substring(347, 352).trim());
-						dadosPessoais.setDataExpedicaoIdentidade(linha.substring(352, 360));
-						dadosPessoais.setSiglaUfIdentidade(linha.substring(360, 362).trim());
-						dadosPessoais.setNumeroTituloEleitor(linha.substring(362, 375).trim());	
-
-					dadosPessoaisList.add(dadosPessoais);
+						
 				}
 
-				else if (tipoRegistro.equals(2)) {
+				if (tipoRegistro.equals(2)) {
 
-					DadosFuncionais dadosFuncionaisTeste = new DadosFuncionais();
-
-					// pagina 5:
-						dadosFuncionaisTeste.setMatriculaSiape(Integer.parseInt(linha.substring(9, 16)));
-						dadosFuncionaisTeste.setTipoRegistro(linha.substring(17,18));
-						dadosFuncionaisTeste.setCodigoSituacaoServidor(Integer.parseInt(linha.substring(23, 25)));
-						dadosFuncionaisTeste.setNumeroCarteiraDeTrabalho(Integer.parseInt(linha.substring(25, 31)));
-						dadosFuncionaisTeste.setSerieCarteiraDeTrabalho(linha.substring(31, 36));
-						dadosFuncionaisTeste.setUfCarteiraDeTrabalho(linha.substring(36, 38));
-						dadosFuncionaisTeste.setCodigoBanco(Integer.parseInt(linha.substring(38, 41)));
-						dadosFuncionaisTeste.setAgenciaBanco(linha.substring(41, 47));
-						dadosFuncionaisTeste.setContaCorrenteBanco(linha.substring(47, 60));
-						dadosFuncionaisTeste.setJornadaDeTrabalho(Integer.parseInt(linha.substring(90, 92)));
-						dadosFuncionaisTeste.setDataCadastramentoServidor(linha.substring(94, 102));
-						dadosFuncionaisTeste.setCodigoGrupoCargo(Integer.parseInt(linha.substring(113, 116)));
-						dadosFuncionaisTeste.setCodigoCargo(Integer.parseInt(linha.substring(116, 119)));
-						dadosFuncionaisTeste.setClasseCargo(linha.substring(119, 120));
-						dadosFuncionaisTeste.setCodigoReferenciaNivelPadraoCargo(linha.substring(120, 123));
-						dadosFuncionaisTeste.setDataEntradaOcupacaoCargo(linha.substring(123, 131));
-						dadosFuncionaisTeste.setDataSaidaCargo(linha.substring(131, 139));
-						dadosFuncionaisTeste.setSiglaFuncao(linha.substring(139, 142));
-						dadosFuncionaisTeste.setCodigoNivelFuncao(Integer.parseInt(linha.substring(142, 147)));
-						dadosFuncionaisTeste.setCodigoEscolaridadeFuncao(linha.substring(147, 149));
+					
+					    DadosFitaEspelho dadosFitaEspelho2 = dadosFitaEspelho;
+						dadosFitaEspelho2.setMatriculaSiape(Integer.parseInt(linha.substring(9, 16)));
+						dadosFitaEspelho2.setTipoRegistro(linha.substring(17,18));
+						dadosFitaEspelho2.setCodigoSituacaoServidor(Integer.parseInt(linha.substring(23, 25)));
+						dadosFitaEspelho2.setNumeroCarteiraDeTrabalho(Integer.parseInt(linha.substring(25, 31)));
+						dadosFitaEspelho2.setSerieCarteiraDeTrabalho(linha.substring(31, 36));
+						dadosFitaEspelho2.setUfCarteiraDeTrabalho(linha.substring(36, 38));
+						dadosFitaEspelho2.setCodigoBanco(Integer.parseInt(linha.substring(38, 41)));
+						dadosFitaEspelho2.setAgenciaBanco(linha.substring(41, 47));
+						dadosFitaEspelho2.setContaCorrenteBanco(linha.substring(47, 60));
+						dadosFitaEspelho2.setJornadaDeTrabalho(Integer.parseInt(linha.substring(90, 92)));
+						dadosFitaEspelho2.setDataCadastramentoServidor(linha.substring(94, 102));
+						dadosFitaEspelho2.setCodigoGrupoCargo(Integer.parseInt(linha.substring(113, 116)));
+						dadosFitaEspelho2.setCodigoCargo(Integer.parseInt(linha.substring(116, 119)));
+						dadosFitaEspelho2.setClasseCargo(linha.substring(119, 120));
+						dadosFitaEspelho2.setCodigoReferenciaNivelPadraoCargo(linha.substring(120, 123));
+						dadosFitaEspelho2.setDataEntradaOcupacaoCargo(linha.substring(123, 131));
+						dadosFitaEspelho2.setDataSaidaCargo(linha.substring(131, 139));
+						dadosFitaEspelho2.setSiglaFuncao(linha.substring(139, 142));
+						dadosFitaEspelho2.setCodigoNivelFuncao(Integer.parseInt(linha.substring(142, 147)));
+						dadosFitaEspelho2.setCodigoEscolaridadeFuncao(linha.substring(147, 149));
 						//pagina 6:
-						dadosFuncionaisTeste.setCodigoOpcaoFuncao(linha.substring(149, 150));
-						dadosFuncionaisTeste.setDataIngressoFuncao(linha.substring(150, 158));
-						dadosFuncionaisTeste.setDataSaidaFuncao(linha.substring(158, 166));
-						dadosFuncionaisTeste.setCodigoUnidadeOrganizacionalFuncao(Integer.parseInt(linha.substring(166, 175)));
-						dadosFuncionaisTeste.setSiglaNovaFuncao(linha.substring(175, 178));
-						dadosFuncionaisTeste.setCodigoNivelNovaFuncao(Integer.parseInt(linha.substring(178, 183)));
-						dadosFuncionaisTeste.setCodigoEscolaridadeNovaFuncao(linha.substring(183, 185));
-						dadosFuncionaisTeste.setCodigoOpcaoNovaFuncao(linha.substring(185, 186));
-						dadosFuncionaisTeste.setDataIngressoNovaFuncao(linha.substring(186, 194));
-						dadosFuncionaisTeste.setDataSaidaNovaFuncao(linha.substring(194, 202));
-						dadosFuncionaisTeste.setCodigoUnidadeOrganizacionalNovaFuncao(Integer.parseInt(linha.substring(202, 211)));
-						dadosFuncionaisTeste.setCodigoUnidadeOrganizacionalLotacao(Integer.parseInt(linha.substring(215, 224)));
-						dadosFuncionaisTeste.setDataLotacao(linha.substring(224, 232));
-						dadosFuncionaisTeste.setCodigoOrgaoLocalizacao(Integer.parseInt(linha.substring(232, 237)));
-						dadosFuncionaisTeste.setCodigoUnidadeOrganizacionalLocalizacao(Integer.parseInt(linha.substring(237, 246)));
-						dadosFuncionaisTeste.setCodigoGrupoIngressoOrgao(Integer.parseInt(linha.substring(246, 248)));
-						dadosFuncionaisTeste.setCodigoOcorrenciaIngressoOrgao(Integer.parseInt(linha.substring(248, 251)));
-						dadosFuncionaisTeste.setDataIngressoOrgao(linha.substring(251, 259));
-						dadosFuncionaisTeste.setCodigoDiplomaLegalIngressoOrgao(Integer.parseInt(linha.substring(259, 261)));
-						dadosFuncionaisTeste.setNumeroDiplomaLegalIngressoOrgao(linha.substring(261, 270));
-						dadosFuncionaisTeste.setDataPublicacaoDiplomaLegalIngressoOrgao(linha.substring(270, 278));
-						dadosFuncionaisTeste.setCodigoGrupoIngressoServPublico(Integer.parseInt(linha.substring(278, 280)));
-						dadosFuncionaisTeste.setCodigoOcorrenciaIngressoServPublico(Integer.parseInt(linha.substring(280, 283)));
-						dadosFuncionaisTeste.setDataIngressoServPublico(linha.substring(283, 291));
-						dadosFuncionaisTeste.setCodigoDiplomaLegalIngressoServPublico(Integer.parseInt(linha.substring(291, 293)));
-						dadosFuncionaisTeste.setNumeroDiplomaLegalIngressoServPublico(linha.substring(293, 302));
-						dadosFuncionaisTeste.setDataPublicacaoDiplomaLegalIngressoServPublico(linha.substring(302, 310));
-						dadosFuncionaisTeste.setCodigoGrupoExclusao(Integer.parseInt(linha.substring(310, 312)));
-						dadosFuncionaisTeste.setCodigoOcorrenciaExclusao(Integer.parseInt(linha.substring(312, 315)));
-						dadosFuncionaisTeste.setDataExclusao(linha.substring(315, 323));
-						dadosFuncionaisTeste.setCodigoDiplomaLegalExclusao(Integer.parseInt(linha.substring(323, 325)));
-						dadosFuncionaisTeste.setNumeroDiplomaLegalExclusao(linha.substring(325, 334));
-						dadosFuncionaisTeste.setDataPublicacaoDiplomaLegalExclusao(linha.substring(334, 342));
+						dadosFitaEspelho2.setCodigoOpcaoFuncao(linha.substring(149, 150));
+						dadosFitaEspelho2.setDataIngressoFuncao(linha.substring(150, 158));
+						dadosFitaEspelho2.setDataSaidaFuncao(linha.substring(158, 166));
+						dadosFitaEspelho2.setCodigoUnidadeOrganizacionalFuncao(Integer.parseInt(linha.substring(166, 175)));
+						dadosFitaEspelho2.setSiglaNovaFuncao(linha.substring(175, 178));
+						dadosFitaEspelho2.setCodigoNivelNovaFuncao(Integer.parseInt(linha.substring(178, 183)));
+						dadosFitaEspelho2.setCodigoEscolaridadeNovaFuncao(linha.substring(183, 185));
+						dadosFitaEspelho2.setCodigoOpcaoNovaFuncao(linha.substring(185, 186));
+						dadosFitaEspelho2.setDataIngressoNovaFuncao(linha.substring(186, 194));
+						dadosFitaEspelho2.setDataSaidaNovaFuncao(linha.substring(194, 202));
+						dadosFitaEspelho2.setCodigoUnidadeOrganizacionalNovaFuncao(Integer.parseInt(linha.substring(202, 211)));
+						dadosFitaEspelho2.setCodigoUnidadeOrganizacionalLotacao(Integer.parseInt(linha.substring(215, 224)));
+						dadosFitaEspelho2.setDataLotacao(linha.substring(224, 232));
+						dadosFitaEspelho2.setCodigoOrgaoLocalizacao(Integer.parseInt(linha.substring(232, 237)));
+						dadosFitaEspelho2.setCodigoUnidadeOrganizacionalLocalizacao(Integer.parseInt(linha.substring(237, 246)));
+						dadosFitaEspelho2.setCodigoGrupoIngressoOrgao(Integer.parseInt(linha.substring(246, 248)));
+						dadosFitaEspelho2.setCodigoOcorrenciaIngressoOrgao(Integer.parseInt(linha.substring(248, 251)));
+						dadosFitaEspelho2.setDataIngressoOrgao(linha.substring(251, 259));
+						dadosFitaEspelho2.setCodigoDiplomaLegalIngressoOrgao(Integer.parseInt(linha.substring(259, 261)));
+						dadosFitaEspelho2.setNumeroDiplomaLegalIngressoOrgao(linha.substring(261, 270));
+						dadosFitaEspelho2.setDataPublicacaoDiplomaLegalIngressoOrgao(linha.substring(270, 278));
+						dadosFitaEspelho2.setCodigoGrupoIngressoServPublico(Integer.parseInt(linha.substring(278, 280)));
+						dadosFitaEspelho2.setCodigoOcorrenciaIngressoServPublico(Integer.parseInt(linha.substring(280, 283)));
+						dadosFitaEspelho2.setDataIngressoServPublico(linha.substring(283, 291));
+						dadosFitaEspelho2.setCodigoDiplomaLegalIngressoServPublico(Integer.parseInt(linha.substring(291, 293)));
+						dadosFitaEspelho2.setNumeroDiplomaLegalIngressoServPublico(linha.substring(293, 302));
+						dadosFitaEspelho2.setDataPublicacaoDiplomaLegalIngressoServPublico(linha.substring(302, 310));
+						dadosFitaEspelho2.setCodigoGrupoExclusao(Integer.parseInt(linha.substring(310, 312)));
+						dadosFitaEspelho2.setCodigoOcorrenciaExclusao(Integer.parseInt(linha.substring(312, 315)));
+						dadosFitaEspelho2.setDataExclusao(linha.substring(315, 323));
+						dadosFitaEspelho2.setCodigoDiplomaLegalExclusao(Integer.parseInt(linha.substring(323, 325)));
+						dadosFitaEspelho2.setNumeroDiplomaLegalExclusao(linha.substring(325, 334));
+						dadosFitaEspelho2.setDataPublicacaoDiplomaLegalExclusao(linha.substring(334, 342));
 						//página 7
-						dadosFuncionaisTeste.setCodigoGrupoAfastamento(Integer.parseInt(linha.substring(342, 344)));
-						dadosFuncionaisTeste.setCodigoOcerrenciaAfastamento(Integer.parseInt(linha.substring(344, 347)));
-						dadosFuncionaisTeste.setDataInicioAfastamento(linha.substring(347, 355));
-						dadosFuncionaisTeste.setDataTerminoAfastamento(linha.substring(355, 363));
-						dadosFuncionaisTeste.setCodigoDiplomaLegalAfastamento(Integer.parseInt(linha.substring(363, 365)));
-						dadosFuncionaisTeste.setNumeroDiplomaLegalAfastamento(linha.substring(365, 374));
-						dadosFuncionaisTeste.setDataPublicacaoDiplomaLegalAfastamento(linha.substring(374, 382));
-						dadosFuncionaisTeste.setCodigoGrupoInatividade(Integer.parseInt(linha.substring(382, 384)));
-						dadosFuncionaisTeste.setCodigoOcorrenciaInatividade(Integer.parseInt(linha.substring(384, 387)));
-						dadosFuncionaisTeste.setDataInatividade(linha.substring(388, 395));
-						dadosFuncionaisTeste.setCodigoDiplomaLegalInatividade(Integer.parseInt(linha.substring(395, 397)));
-						dadosFuncionaisTeste.setNumeroDiplomaLegalInatividade(linha.substring(397, 406));
-						dadosFuncionaisTeste.setDataPublicacaoDiplomaLegalInatividade(linha.substring(406, 414));
-						dadosFuncionaisTeste.setNumeroProcessoAposentadoria(linha.substring(414, 429));
-						dadosFuncionaisTeste.setAnoPrevistoAposentadoria(Integer.parseInt(linha.substring(429, 433)));
-						dadosFuncionaisTeste.setOpcaoAposentadoriaIntegral(linha.substring(433, 434));
-						dadosFuncionaisTeste.setCodigoGrupoModifFuncional(Integer.parseInt(linha.substring(443, 445)));
-						dadosFuncionaisTeste.setCodigoOcorrenciaModifFuncional(Integer.parseInt(linha.substring(445, 448)));
-						dadosFuncionaisTeste.setDataModifFuncional(linha.substring(448, 456));
-						dadosFuncionaisTeste.setCodigoDiplomaLegalModifFuncional(Integer.parseInt(linha.substring(456, 458)));
-						dadosFuncionaisTeste.setNumeroDiplomaLegalModifFuncional(linha.substring(458, 467));
-						dadosFuncionaisTeste.setDataPublicacaoDiplomaLegalModifFuncional(linha.substring(467, 475));
-						dadosFuncionaisTeste.setCodigoRegimeJuridicoAnterior(linha.substring(475, 478));
-						dadosFuncionaisTeste.setCodigoSituaçãoServidorAnterior(Integer.parseInt(linha.substring(478, 480)));
-						dadosFuncionaisTeste.setCodigoOrgaoDestinoMudancaOrgao(Integer.parseInt(linha.substring(480, 485)));
-						dadosFuncionaisTeste.setDataLiberacaoMudancaOrgao(linha.substring(485, 493));
-						dadosFuncionaisTeste.setCodigoOrgaoOrigemMudancaOrgao(Integer.parseInt(linha.substring(493, 498)));
-						dadosFuncionaisTeste.setCodigoOrgaoAnterior(Integer.parseInt(linha.substring(498, 503)));
-						dadosFuncionaisTeste.setMatriculaAnterior(linha.substring(503, 510));
-						dadosFuncionaisTeste.setCodigoOrgaoExtintoModificado(Integer.parseInt(linha.substring(510, 515)));
-						dadosFuncionaisTeste.setMatriculaServidorExtintaModificada(linha.substring(515, 522));
-						dadosFuncionaisTeste.setCodigoOrgaoAtual(Integer.parseInt(linha.substring(522, 527)));
-				    	dadosFuncionaisTeste.setMatriculaAtual(linha.substring(527, 534));
+						dadosFitaEspelho2.setCodigoGrupoAfastamento(Integer.parseInt(linha.substring(342, 344)));
+						dadosFitaEspelho2.setCodigoOcerrenciaAfastamento(Integer.parseInt(linha.substring(344, 347)));
+						dadosFitaEspelho2.setDataInicioAfastamento(linha.substring(347, 355));
+						dadosFitaEspelho2.setDataTerminoAfastamento(linha.substring(355, 363));
+						dadosFitaEspelho2.setCodigoDiplomaLegalAfastamento(Integer.parseInt(linha.substring(363, 365)));
+						dadosFitaEspelho2.setNumeroDiplomaLegalAfastamento(linha.substring(365, 374));
+						dadosFitaEspelho2.setDataPublicacaoDiplomaLegalAfastamento(linha.substring(374, 382));
+						dadosFitaEspelho2.setCodigoGrupoInatividade(Integer.parseInt(linha.substring(382, 384)));
+						dadosFitaEspelho2.setCodigoOcorrenciaInatividade(Integer.parseInt(linha.substring(384, 387)));
+						dadosFitaEspelho2.setDataInatividade(linha.substring(388, 395));
+						dadosFitaEspelho2.setCodigoDiplomaLegalInatividade(Integer.parseInt(linha.substring(395, 397)));
+						dadosFitaEspelho2.setNumeroDiplomaLegalInatividade(linha.substring(397, 406));
+						dadosFitaEspelho2.setDataPublicacaoDiplomaLegalInatividade(linha.substring(406, 414));
+						dadosFitaEspelho2.setNumeroProcessoAposentadoria(linha.substring(414, 429));
+						dadosFitaEspelho2.setAnoPrevistoAposentadoria(Integer.parseInt(linha.substring(429, 433)));
+						dadosFitaEspelho2.setOpcaoAposentadoriaIntegral(linha.substring(433, 434));
+						dadosFitaEspelho2.setCodigoGrupoModifFuncional(Integer.parseInt(linha.substring(443, 445)));
+						dadosFitaEspelho2.setCodigoOcorrenciaModifFuncional(Integer.parseInt(linha.substring(445, 448)));
+						dadosFitaEspelho2.setDataModifFuncional(linha.substring(448, 456));
+						dadosFitaEspelho2.setCodigoDiplomaLegalModifFuncional(Integer.parseInt(linha.substring(456, 458)));
+						dadosFitaEspelho2.setNumeroDiplomaLegalModifFuncional(linha.substring(458, 467));
+						dadosFitaEspelho2.setDataPublicacaoDiplomaLegalModifFuncional(linha.substring(467, 475));
+						dadosFitaEspelho2.setCodigoRegimeJuridicoAnterior(linha.substring(475, 478));
+						dadosFitaEspelho2.setCodigoSituaçãoServidorAnterior(Integer.parseInt(linha.substring(478, 480)));
+						dadosFitaEspelho2.setCodigoOrgaoDestinoMudancaOrgao(Integer.parseInt(linha.substring(480, 485)));
+						dadosFitaEspelho2.setDataLiberacaoMudancaOrgao(linha.substring(485, 493));
+						dadosFitaEspelho2.setCodigoOrgaoOrigemMudancaOrgao(Integer.parseInt(linha.substring(493, 498)));
+						dadosFitaEspelho2.setCodigoOrgaoAnterior(Integer.parseInt(linha.substring(498, 503)));
+						dadosFitaEspelho2.setMatriculaAnterior(linha.substring(503, 510));
+						dadosFitaEspelho2.setCodigoOrgaoExtintoModificado(Integer.parseInt(linha.substring(510, 515)));
+						dadosFitaEspelho2.setMatriculaServidorExtintaModificada(linha.substring(515, 522));
+						dadosFitaEspelho2.setCodigoOrgaoAtual(Integer.parseInt(linha.substring(522, 527)));
+				    	dadosFitaEspelho2.setMatriculaAtual(linha.substring(527, 534));
 				    	//página 8
-						dadosFuncionaisTeste.setCodigoUpagMudancaUnidadePagadora(Integer.parseInt(linha.substring(534, 543)));
-						dadosFuncionaisTeste.setDataLiberacaoMudancaUnidadePagadora(linha.substring(543, 551));
-						dadosFuncionaisTeste.setMotivoMudancaUnidadePagadora(linha.substring(551, 552));
-						dadosFuncionaisTeste.setCodigoIndicadorDePagamentoServidor(Integer.parseInt(linha.substring(552, 553)));
-						dadosFuncionaisTeste.setCodigoTipoValeAlimentacao(linha.substring(642, 643));
-						dadosFuncionaisTeste.setDataInicioValeAlimentacao(linha.substring(643, 651));
-						dadosFuncionaisTeste.setDataFimValeAlimentacao(linha.substring(651, 659));
-						dadosFuncionaisTeste.setCodigoIndicadorDeOperadorDeRaioX(Integer.parseInt(linha.substring(659, 660)));
-						dadosFuncionaisTeste.setCodigoOrgaoRequisitante(Integer.parseInt(linha.substring(660, 665)));
-						dadosFuncionaisTeste.setCodigoDavaga(Integer.parseInt(linha.substring(665, 672)));
-						dadosFuncionaisTeste.setCodigoDoGrupoPosse(Integer.parseInt(linha.substring(679, 681)));
-						dadosFuncionaisTeste.setCodigoOcorrenciaPosse(Integer.parseInt(linha.substring(681, 684)));
-						dadosFuncionaisTeste.setDataPosse(linha.substring(684, 692));
-						dadosFuncionaisTeste.setCodigoDiplomaPosse(Integer.parseInt(linha.substring(692, 694)));
-						dadosFuncionaisTeste.setDataDiplomaPosse(linha.substring(694, 702));
-						dadosFuncionaisTeste.setNumeroDiplomaPosse(linha.substring(702, 711));
-						dadosFuncionaisTeste.setCodigoGrupoOcorrenciaGrupoReversaoAtividade(Integer.parseInt(linha.substring(711, 713)));
-						dadosFuncionaisTeste.setDataOcorrenciaGrupoReversaoAtividade(linha.substring(716, 724));
-						dadosFuncionaisTeste.setCodigoDiplomaGrupoReversaoAtividade(Integer.parseInt(linha.substring(724, 726)));
-						dadosFuncionaisTeste.setDataPublicacaoDiplomaGrupoReversaoAtividade(linha.substring(726, 734));
-						dadosFuncionaisTeste.setNumeroDiplomaGrupoReversaoAtividade(linha.substring(734, 743));
+						dadosFitaEspelho2.setCodigoUpagMudancaUnidadePagadora(Integer.parseInt(linha.substring(534, 543)));
+						dadosFitaEspelho2.setDataLiberacaoMudancaUnidadePagadora(linha.substring(543, 551));
+						dadosFitaEspelho2.setMotivoMudancaUnidadePagadora(linha.substring(551, 552));
+						dadosFitaEspelho2.setCodigoIndicadorDePagamentoServidor(Integer.parseInt(linha.substring(552, 553)));
+						dadosFitaEspelho2.setCodigoTipoValeAlimentacao(linha.substring(642, 643));
+						dadosFitaEspelho2.setDataInicioValeAlimentacao(linha.substring(643, 651));
+						dadosFitaEspelho2.setDataFimValeAlimentacao(linha.substring(651, 659));
+						dadosFitaEspelho2.setCodigoIndicadorDeOperadorDeRaioX(Integer.parseInt(linha.substring(659, 660)));
+						dadosFitaEspelho2.setCodigoOrgaoRequisitante(Integer.parseInt(linha.substring(660, 665)));
+						dadosFitaEspelho2.setCodigoDavaga(Integer.parseInt(linha.substring(665, 672)));
+						dadosFitaEspelho2.setCodigoDoGrupoPosse(Integer.parseInt(linha.substring(679, 681)));
+						dadosFitaEspelho2.setCodigoOcorrenciaPosse(Integer.parseInt(linha.substring(681, 684)));
+						dadosFitaEspelho2.setDataPosse(linha.substring(684, 692));
+						dadosFitaEspelho2.setCodigoDiplomaPosse(Integer.parseInt(linha.substring(692, 694)));
+						dadosFitaEspelho2.setDataDiplomaPosse(linha.substring(694, 702));
+						dadosFitaEspelho2.setNumeroDiplomaPosse(linha.substring(702, 711));
+						dadosFitaEspelho2.setCodigoGrupoOcorrenciaGrupoReversaoAtividade(Integer.parseInt(linha.substring(711, 713)));
+						dadosFitaEspelho2.setDataOcorrenciaGrupoReversaoAtividade(linha.substring(716, 724));
+						dadosFitaEspelho2.setCodigoDiplomaGrupoReversaoAtividade(Integer.parseInt(linha.substring(724, 726)));
+						dadosFitaEspelho2.setDataPublicacaoDiplomaGrupoReversaoAtividade(linha.substring(726, 734));
+						dadosFitaEspelho2.setNumeroDiplomaGrupoReversaoAtividade(linha.substring(734, 743));
 
-					dadosFuncionaisList.add(dadosFuncionaisTeste);
+						dadosFitaEspelhoList.add(dadosFitaEspelho2);
+						
 				}
+				
+				
 			}
 			br.close();
 		} catch (IOException ioe) {
