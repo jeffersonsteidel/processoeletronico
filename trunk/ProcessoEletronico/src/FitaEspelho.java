@@ -351,6 +351,8 @@ public class FitaEspelho {
 					 }
 					 else if(("341").equals(linha.substring(38,41))){
 						 html = html + "ITAU"; 
+					 }else{
+						 html = html + linha.substring(38,41); 
 					 }
 					html = html + "</td>";
 					
