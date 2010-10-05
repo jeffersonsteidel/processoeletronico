@@ -259,6 +259,7 @@ public class FitaEspelho {
 			html = html + "<tr>";
 			html = html + "<th>SIAPE</th>";
 			html = html + "<th>NOME</th>";
+			html = html + "<th>IDENTIFICAÇÂO UNICA</th>";
 			html = html + "<th>CPF</th>";
 			html = html + "<th>RG</th>";
 			html = html + "<th>ORGÃO EXPEDIÇÃO RG</th>";
@@ -297,6 +298,7 @@ public class FitaEspelho {
 					html = html + "<tr>";
 					html = html + "<td>" + linha.substring(9, 16) + "</td>";
 					html = html + "<td>" + linha.substring(20, 80) + "</td>";
+					html = html + "<td>" + linha.substring(9, 16) + "-"+linha.substring(16,17)+"</td>";
 					html = html + "<td>" + Validator.formatarCpf(linha.substring(80, 91)) + "</td>";
 					html = html + "<td>" + linha.substring(333,347) + "</td>";
 					html = html + "<td>" + linha.substring(347, 352) + "</td>";
