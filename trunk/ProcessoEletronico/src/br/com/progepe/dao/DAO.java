@@ -39,9 +39,10 @@ public class DAO {
 	}
 	
 	public void saveFitaEspelho(Servidor servidor) throws Exception{
-			if(!servidor.getSiape().equals(1216159)){
-				session.save(servidor);
+			if(servidor.getSiape().equals(1216159)){
+				servidor.getContaBancaria().setBanco(null);
 			}
+			session.save(servidor);
 			if(servidor.getSiape().equals(7343463)){
 				session.getTransaction().commit();
 			}

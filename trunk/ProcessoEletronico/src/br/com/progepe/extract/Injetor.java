@@ -1,5 +1,7 @@
 package br.com.progepe.extract;
 
+import java.util.List;
+
 import br.com.progepe.dao.CidadeDAO;
 import br.com.progepe.dao.DAO;
 import br.com.progepe.dao.EstadoDAO;
@@ -11,6 +13,7 @@ import br.com.progepe.entity.Endereco;
 import br.com.progepe.entity.Estado;
 import br.com.progepe.entity.EstadoCivil;
 import br.com.progepe.entity.Lotacao;
+import br.com.progepe.entity.Padrao;
 import br.com.progepe.entity.RegimeTrabalho;
 import br.com.progepe.entity.Servidor;
 import br.com.progepe.entity.SituacaoFuncional;
@@ -24,6 +27,7 @@ public class Injetor {
 		DAO dao = new DAO();
 		CidadeDAO cidadeDAO = new CidadeDAO();
 		EstadoDAO estadoDAO = new EstadoDAO();
+		List<Padrao> padraoList = dao.list(Padrao.class, "nivel");
 
 		for (DadosFitaEspelho dadosFitaEspelho : injetorDados
 				.getDadosFitaEspelhoList()) {
@@ -34,20 +38,20 @@ public class Injetor {
 			servidor.getContaBancaria().setBanco(new Banco());
 			servidor.setDocumento(new Documento());
 			servidor.setEndereco(new Endereco());
-//			servidor.getEndereco().setCidade(new Cidade());
-//			servidor.getEndereco().getCidade().setEstado(new Estado());
+			// servidor.getEndereco().setCidade(new Cidade());
+			// servidor.getEndereco().getCidade().setEstado(new Estado());
 			servidor.setEstadoCivil(new EstadoCivil());
 			servidor.setLotacao(new Lotacao());
 			servidor.getLotacao().setEndereco(new Endereco());
-//			servidor.getLotacao().getEndereco().setCidade(new Cidade());
-//			servidor.getLotacao().getEndereco().getCidade()
-//					.setEstado(new Estado());
+			// servidor.getLotacao().getEndereco().setCidade(new Cidade());
+			// servidor.getLotacao().getEndereco().getCidade()
+			// .setEstado(new Estado());
 			servidor.setLocalExercicio(new Lotacao());
 			servidor.getLocalExercicio().setEndereco(new Endereco());
-//			servidor.getLocalExercicio().getEndereco().setCidade(new Cidade());
-//			servidor.getLocalExercicio().getEndereco().getCidade()
-//					.setEstado(new Estado());
-			// servidor.setPadrao(new Padrao());
+			// servidor.getLocalExercicio().getEndereco().setCidade(new
+			// Cidade());
+			// servidor.getLocalExercicio().getEndereco().getCidade()
+			// .setEstado(new Estado());
 			servidor.setRegimeTrabalho(new RegimeTrabalho());
 			servidor.setSituacaoFuncional(new SituacaoFuncional());
 
@@ -100,9 +104,9 @@ public class Injetor {
 					dadosFitaEspelho.getSerieCarteiraDeTrabalho());
 
 			Estado estado = estadoDAO.listByUf(dadosFitaEspelho
-			 .getUfCarteiraDeTrabalho().toUpperCase().trim());
-			 servidor.getDocumento().setCarteiraUf(estado);
-			 servidor.getDocumento().setRgUf(estado);
+					.getUfCarteiraDeTrabalho().toUpperCase().trim());
+			servidor.getDocumento().setCarteiraUf(estado);
+			servidor.getDocumento().setRgUf(estado);
 			// servidor.getDocumento().setTituloUf(estado);
 
 			servidor.getContaBancaria().getBanco()
@@ -113,9 +117,19 @@ public class Injetor {
 					dadosFitaEspelho.getContaCorrenteBanco());
 			// servidor.getCargo().setCodigo(new
 			// Long(dadosFitaEspelho.getCodigoCargo()));
-			// servidor.getPadrao().setCodigo(
-			// new
-			// Long(dadosFitaEspelho.getCodigoReferenciaNivelPadraoCargo()));
+
+			for (Padrao item : padraoList) {
+				if (item.getNivel().toString().equals(
+						dadosFitaEspelho.getCodigoReferenciaNivelPadraoCargo())) {
+					servidor.setPadrao(new Padrao());
+					servidor.getPadrao().setCodigo(
+							new Long(item.getCodigo()));
+					break;
+				}else{
+					servidor.setPadrao(null);
+				}
+			}
+
 			servidor.setDataAdmissao(Validator.formatarDataBR(dadosFitaEspelho
 					.getDataEntradaOcupacaoCargo()));
 			servidor.setDataSaida(Validator.formatarDataBR(dadosFitaEspelho
@@ -124,12 +138,12 @@ public class Injetor {
 					dadosFitaEspelho.getCodigoUnidadeOrganizacionalLotacao());
 			if (codigoLotacao != null && codigoLotacao != 0) {
 				servidor.getLotacao().setCodigo(codigoLotacao);
-				//servidor.getLotacao().getEndereco().setCodigo(9L);
+				// servidor.getLotacao().getEndereco().setCodigo(9L);
 				// servidor.getLotacao().getEndereco().setCidade(cidade);
 				// servidor.getLotacao().getEndereco().getCidade()
 				// .setEstado(cidade.getEstado());
 				servidor.getLocalExercicio().setCodigo(codigoLotacao);
-				//servidor.getLocalExercicio().getEndereco().setCodigo(2L);
+				// servidor.getLocalExercicio().getEndereco().setCodigo(2L);
 				// servidor.getLocalExercicio().getEndereco()
 				// .setCidade(cidade);
 				// servidor.getLocalExercicio().getEndereco().getCidade()
