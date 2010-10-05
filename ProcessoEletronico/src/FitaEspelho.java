@@ -4,13 +4,14 @@ import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintStream;
+import java.text.ParseException;
 
 import br.com.progepe.validator.Validator;
 
 public class FitaEspelho {
 	
 	
-	public static void main(String[] args) {
+	public static void main(String[] args) throws ParseException {
 //		try {
 //			BufferedReader br = new BufferedReader(new FileReader(
 //					"C://FITA.txt"));
@@ -276,7 +277,8 @@ public class FitaEspelho {
 			html=html+"<th>CONTA CORRENTE</th>";
 			html = html + "<th>GRUPO/CARGO</th>";
 			html = html + "<th>LOTAÇÃO</th>";
-			html = html + "<th>DATA ADMISSÃO</th>";
+			html = html + "<th>DATA ADMISSÃO SERV. PUB.</th>";
+			html = html + "<th>DATA ADMISSÃO ORGÃO.</th>";
 			html = html + "<th>SITUAÇÃO</th>";
 			html = html + "</tr>";
 
@@ -297,7 +299,7 @@ public class FitaEspelho {
 					html = html + "<td>" + Validator.formatarPis(linha.substring(91,102))+ "</td>";
 					html = html + "<td>" + linha.substring(102, 152)+ "</td>";
 					html = html + "<td>" + linha.substring(152, 153)+ "</td>";
-					html = html + "<td>" + Validator.formatarData(linha.substring(153, 161))+ "</td>";
+					html = html + "<td>" + Validator.formatarData(linha.substring(153, 161)) + "</td>";
 					
 					if (teste.equals(1)) {
 						html = html + "<td>";
@@ -494,6 +496,10 @@ public class FitaEspelho {
 					html = html + "<td>" + linha.substring(283,285 ) + "/"
 							+ linha.substring(285, 287) + "/"
 							+ linha.substring(287, 291) + "</td>";
+					html = html + "<td>" + linha.substring(123,125 ) + "/"
+					+ linha.substring(125, 127) + "/"
+					+ linha.substring(127, 131) + "</td>";
+					
 					Integer situacao = Integer.parseInt(linha.substring(23,25));
 					if (situacao.equals(1)) {
 						html = html + "<td> ATIVO PERMANENTE </td>";

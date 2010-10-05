@@ -45,7 +45,7 @@ public class Injetor {
 //			servidor.getDocumento().setPis(Validator.formatarPis(pessoal.getPisPasef()));
 			servidor.setNomeMae(pessoal.getNomeMae());
 			servidor.setSexo(pessoal.getSexo());
-			servidor.setDataNascimento(Validator.formatarData(pessoal.getDataNascimento()));
+			servidor.setDataNascimento(Validator.formatarDataBR(pessoal.getDataNascimento()));
 			servidor.getEstadoCivil().setCodigo(new Long (pessoal.getEstadoCivil()));
 //			servidor.getDocumento().setDataPrimeiroEmprego(new Date(Validator.formatarData(pessoal.getDataPrimeiroEmprego())));
 			servidor.getEndereco().setRua(pessoal.getLogradouro());
@@ -78,8 +78,8 @@ public class Injetor {
 //					servidor.getContaBancaria().setNumeroConta(funcional.getContaCorrenteBanco());
 				//	servidor.getCargo().setCodigo(new Long (funcional.getCodigoCargo()));
 			//		servidor.getPadrao().setCodigo(new Long (funcional.getCodigoReferenciaNivelPadraoCargo()));
-					servidor.setDataAdmissao(Validator.formatarData(funcional.getDataEntradaOcupacaoCargo()));
-					servidor.setDataSaida(Validator.formatarData(funcional.getDataSaidaCargo()));
+					servidor.setDataAdmissao(Validator.formatarDataBR(funcional.getDataEntradaOcupacaoCargo()));
+					servidor.setDataSaida(Validator.formatarDataBR(funcional.getDataSaidaCargo()));
 					Long codigoLotacao = new Long(funcional.getCodigoUnidadeOrganizacionalLotacao());
 					if(codigoLotacao != null && codigoLotacao != 0){ 
 					//	servidor.getLotacao().setCodigo(codigoLotacao);

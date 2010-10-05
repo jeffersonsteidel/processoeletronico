@@ -51,9 +51,8 @@ public class Relatorio {
 				// "101")) {
 				System.out.print(servidorPessoal.getMatriculaSiape());
 				System.out.print("," + servidorPessoal.getNomeServidor());
-				data = Validator.formatarData(servidorFuncional
-						.getDataIngressoServPublico().toString());
-				System.out.print("," + data);
+				System.out.print("," + Validator.formatarData(servidorFuncional
+						.getDataIngressoServPublico()));
 				System.out.print(",PROF. ENS. BAS. TEC. TECNOL.");
 				System.out.print("," + servidorFuncional.getClasseCargo());
 				System.out.print(","

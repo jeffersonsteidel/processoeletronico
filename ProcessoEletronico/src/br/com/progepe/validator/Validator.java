@@ -1,6 +1,5 @@
 package br.com.progepe.validator;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.regex.Matcher;
@@ -165,14 +164,31 @@ public abstract class Validator {
 		}
 		return formatar(cnpj, "##.###.###/####-##");
 	}
-
-	public static Date formatarData(String data) throws ParseException {
-		if (data != null && !("00000000").equalsIgnoreCase(data)) {
-			SimpleDateFormat sf = new SimpleDateFormat("dd/MM/yyyy");
-			Date dataFormatada = sf.parse(data);
-			return dataFormatada;
+	
+	public static String formatarData(String data) {
+		if (data != null &&  !("00000000").equalsIgnoreCase(data)) {
+			while (data.length() < 8) {
+				data = "0" + data;
+			}
+			return formatar(data, "##/##/####");
 		} else {
-			return new Date();
+			return "01/01/2010";
 		}
 	}
+
+	public static Date formatarDataBR(String data) {
+		Date dataRetorno = null;
+		if (data != null) {
+			try {
+				SimpleDateFormat dataFormat = new SimpleDateFormat("ddMMyyyy");
+				dataRetorno = dataFormat.parse(data);
+			} catch (Exception e) {
+				System.err
+						.println("Erro: Não foi possivel converter a data recebida ("
+								+ data + ") !");
+			}
+		}
+		return dataRetorno;
+	}
+
 }
