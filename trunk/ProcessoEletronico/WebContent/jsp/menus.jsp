@@ -59,7 +59,7 @@
 					action="#{servidorController.cadastrar}" />
 					
 				<!-- ### LISTAR SERVIDOR### -->	
-				<a4j:commandButton value = "LISTAR SERVIDORES"
+				<a4j:commandButton image="../images/listarServidores.GIF"
 					action="#{servidorController.listar}" />
 
 			</rich:toolBar>
