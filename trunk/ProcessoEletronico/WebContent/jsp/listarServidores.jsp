@@ -12,14 +12,14 @@
 <f:view>
 	<center><a4j:form id="form">
 		<rich:panel header="Servidores"
-			style="width: 1100px;  position: absolute; left: 30px; top: auto;">
+			style="width: 1200px;  position: absolute; left: 30px; top: auto;">
 			<rich:messages layout="list">
 				<f:facet name="errorMarker">
 					<h:graphicImage value="../images/error.gif" />
 				</f:facet>
 			</rich:messages>
 			<rich:dataTable id="listaServidores" value="#{servidorController.servidores}"
-				var="list" width="1000px" columnClasses="center" rows="20"
+				var="list" width="1150px" columnClasses="center" rows="20"
 				reRender="ds">
 				<rich:column width="50px" sortBy="#{list.siape}"
 					filterBy="#{list.siape}" filterEvent="onkeyup">
@@ -29,7 +29,7 @@
 					<h:outputText value="#{list.siape}" />
 				</rich:column>
 				
-				<rich:column width="400px" sortBy="#{list.nome}"
+				<rich:column width="420px" sortBy="#{list.nome}"
 					filterBy="#{list.nome}" filterEvent="onkeyup">
 					<f:facet name="header">
 						<h:outputText value="Nome" />
