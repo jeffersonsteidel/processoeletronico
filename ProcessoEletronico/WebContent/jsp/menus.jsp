@@ -61,8 +61,12 @@
 				<!-- ### LISTAR SERVIDOR### -->	
 				<a4j:commandButton image="../images/listarServidores.GIF"
 					action="#{servidorController.listar}" />
-
 			</rich:toolBar>
+			<a4j:status>
+				<f:facet name="start">
+					<h:graphicImage value="../images/ajax-loader.gif" />
+				</f:facet>
+			</a4j:status>
 		</a4j:form>
 	</rich:panel></center>
 </f:subview></div>
