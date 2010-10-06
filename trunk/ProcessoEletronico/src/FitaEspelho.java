@@ -259,7 +259,6 @@ public class FitaEspelho {
 			html = html + "<tr>";
 			html = html + "<th>SIAPE</th>";
 			html = html + "<th>NOME</th>";
-			html = html + "<th>IDENTIFICAÇÂO UNICA</th>";
 			html = html + "<th>CPF</th>";
 			html = html + "<th>RG</th>";
 			html = html + "<th>ORGÃO EXPEDIÇÃO RG</th>";
@@ -293,12 +292,11 @@ public class FitaEspelho {
 
 			while (br.ready()) {
 				String linha = br.readLine().substring(0, 764);
-				Integer teste = Integer.parseInt(linha.substring(17, 18));
-				if (teste.equals(1)) {
+				Integer tipoRegistro = Integer.parseInt(linha.substring(17, 18));
+				if (tipoRegistro.equals(1)) {
 					html = html + "<tr>";
 					html = html + "<td>" + linha.substring(9, 16) + "</td>";
 					html = html + "<td>" + linha.substring(20, 80) + "</td>";
-					html = html + "<td>" + linha.substring(9, 16) + "-"+linha.substring(16,17)+"</td>";
 					html = html + "<td>" + Validator.formatarCpf(linha.substring(80, 91)) + "</td>";
 					html = html + "<td>" + linha.substring(333,347) + "</td>";
 					html = html + "<td>" + linha.substring(347, 352) + "</td>";
@@ -311,7 +309,7 @@ public class FitaEspelho {
 					html = html + "<td>" + linha.substring(152, 153)+ "</td>";
 					html = html + "<td>" + Validator.formatarData(linha.substring(153, 161)) + "</td>";
 					
-					if (teste.equals(1)) {
+					if (tipoRegistro.equals(1)) {
 						html = html + "<td>";
 						if (linha.substring(161, 162).equals("1")) {
 							html = html + "SOLTEIRO";
@@ -331,7 +329,7 @@ public class FitaEspelho {
 						html = html + "</td>";
 					}
 					
-					if (teste.equals(1)) {
+					if (tipoRegistro.equals(1)) {
 						html = html + "<td>"+linha.substring(201, 241)+"</td>";
 						html = html + "<td>"+linha.substring(241, 247)+"</td>";
 						html = html + "<td>"+linha.substring(247, 268)+"</td>";
@@ -342,7 +340,7 @@ public class FitaEspelho {
 					}
 
 				}
-				if (teste.equals(2)) {
+				if (tipoRegistro.equals(2)) {
 					html = html + "<td>" + linha.substring(20,23)+ "</td>";
 					html = html + "<td>" + linha.substring(90,92)+ "</td>";
 					html = html + "<td>";

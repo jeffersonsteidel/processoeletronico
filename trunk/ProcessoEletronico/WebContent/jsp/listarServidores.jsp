@@ -19,7 +19,7 @@
 				</f:facet>
 			</rich:messages>
 			<rich:dataTable id="listaServidores" value="#{servidorController.servidores}"
-				var="list" width="1000px" columnClasses="center" rows="30"
+				var="list" width="1000px" columnClasses="center" rows="20"
 				reRender="ds">
 				<rich:column width="50px" sortBy="#{list.siape}"
 					filterBy="#{list.siape}" filterEvent="onkeyup">
@@ -61,7 +61,19 @@
 					<h:outputText value="#{list.situacaoFuncional.descricao}" />
 				</rich:column>
 				
-				
+				<rich:column>
+					<f:facet name="header">
+						<h:outputText value="Editar" />
+					</f:facet>
+					<a4j:commandLink action="#{servidorController.carregar}"
+						reRender="listarServidores" ajaxSingle="true">
+						<h:graphicImage value="../images/edit.gif" style="border:0"
+							width="20" height="18" id="editar" />
+						<f:setPropertyActionListener value="#{list.codigo}"
+							target="#{servidorController.servidor.codigo}" />
+					</a4j:commandLink>
+					<rich:toolTip for="editar" value="Editar" />
+				</rich:column>
 				
 				
 				
