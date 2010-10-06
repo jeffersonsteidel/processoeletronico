@@ -359,7 +359,7 @@ public class ServidorController {
 	public List<SelectItem> listarLotacoes() {
 		lotacoes = new ArrayList<SelectItem>();
 		List<Lotacao> lotacaoList = new ArrayList<Lotacao>();
-		lotacaoList = dao.list(servidor.getLotacao().getClass(), "descricao");
+		lotacaoList = dao.list(Lotacao.class, "descricao");
 		for (Lotacao lotacao : lotacaoList) {
 			lotacoes.add(new SelectItem(lotacao.getCodigo(), lotacao
 					.getDescricao()));
@@ -419,7 +419,7 @@ public class ServidorController {
 	public List<SelectItem> listarBancos() {
 		bancos = new ArrayList<SelectItem>();
 		List<Banco> bancoList = new ArrayList<Banco>();
-		bancoList = dao.list(servidor.getContaBancaria().getBanco().getClass(),
+		bancoList = dao.list(Banco.class,
 				"descricao");
 		for (Banco banco : bancoList) {
 			bancos.add(new SelectItem(banco.getCodigo(), banco.getDescricao()));
@@ -547,11 +547,11 @@ public class ServidorController {
 	}
 	
 	public void carregar() throws IOException {
-		//listarBancos();
+		listarBancos();
 		listarEstados();
 		listarUfs();
 
-		//listarLotacoes();
+		listarLotacoes();
 		listarPadroes();
 		listarSituacoesFuncionais();
 		listarFuncoes();

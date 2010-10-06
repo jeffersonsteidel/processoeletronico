@@ -456,7 +456,7 @@
 			</rich:tab>
 		</rich:tabPanel>
 	</a4j:form></center>
-	<center><rich:modalPanel id="confirmPanel" autosized="false"
+	<center><rich:modalPanel id="confirmPanel" autosized="true"
 		style="overflow: auto;"
 		showWhenRendered="#{not empty facesContext.maximumSeverity}">
 		<f:facet name="header">

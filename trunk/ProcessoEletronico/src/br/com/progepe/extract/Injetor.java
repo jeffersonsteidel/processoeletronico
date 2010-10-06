@@ -6,6 +6,7 @@ import br.com.progepe.dao.CidadeDAO;
 import br.com.progepe.dao.DAO;
 import br.com.progepe.dao.EstadoDAO;
 import br.com.progepe.entity.Banco;
+import br.com.progepe.entity.Cargo;
 import br.com.progepe.entity.ContaBancaria;
 import br.com.progepe.entity.Documento;
 import br.com.progepe.entity.Endereco;
@@ -33,7 +34,7 @@ public class Injetor {
 				.getDadosFitaEspelhoList()) {
 
 			Servidor servidor = new Servidor();
-			// servidor.setCargo(new Cargo());
+			//servidor.setCargo(new Cargo());
 			servidor.setContaBancaria(new ContaBancaria());
 			servidor.getContaBancaria().setBanco(new Banco());
 			servidor.setDocumento(new Documento());
@@ -119,8 +120,10 @@ public class Injetor {
 					dadosFitaEspelho.getAgenciaBanco());
 			servidor.getContaBancaria().setNumeroConta(
 					dadosFitaEspelho.getContaCorrenteBanco());
-			// servidor.getCargo().setCodigo(new
-			// Long(dadosFitaEspelho.getCodigoCargo()));
+//			if(dadosFitaEspelho.getCodigoGrupoCargo().equals(701)){
+//				servidor.getCargo().setCodigo(new
+//						 Long(dadosFitaEspelho.getCodigoCargo()));
+//			}
 
 			for (Padrao item : padraoList) {
 				if (item.getNivel().toString().equals(
