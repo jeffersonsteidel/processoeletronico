@@ -579,4 +579,13 @@ public class ServidorController {
 			servidor.getDocumento().setCpf("");
 		}
 	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Servidor> listar() throws IOException {
+		servidor = new Servidor();
+		this.setServidores(dao.list(servidor.getClass(), "siape"));
+		FacesContext.getCurrentInstance().getExternalContext()
+				.redirect("listarServidores.jsp");
+		return this.getServidores();
+	}
 }
