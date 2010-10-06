@@ -57,6 +57,11 @@
 				<!-- ### CADASTRAR SERVIDOR### -->
 				<a4j:commandButton image="../images/bot_adicionarservidor.gif"
 					action="#{servidorController.cadastrar}" />
+					
+				<!-- ### LISTAR SERVIDOR### -->	
+				<a4j:commandButton value = "LISTAR SERVIDORES"
+					action="#{servidorController.listar}" />
+
 			</rich:toolBar>
 		</a4j:form>
 	</rich:panel></center>
