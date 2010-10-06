@@ -469,7 +469,7 @@ public class FitaEspelho {
 							html = html + "PROF. DO 1º E 2º GRAUS - SUB";
 						}
 					} else {
-						html = html + linha.substring(113, 116);
+						html = html +linha.substring(116, 119);
 					}
 					html = html + "</td>";
 					
