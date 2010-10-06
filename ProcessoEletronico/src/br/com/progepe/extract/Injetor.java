@@ -6,7 +6,6 @@ import br.com.progepe.dao.CidadeDAO;
 import br.com.progepe.dao.DAO;
 import br.com.progepe.dao.EstadoDAO;
 import br.com.progepe.entity.Banco;
-import br.com.progepe.entity.Cidade;
 import br.com.progepe.entity.ContaBancaria;
 import br.com.progepe.entity.Documento;
 import br.com.progepe.entity.Endereco;
@@ -27,6 +26,7 @@ public class Injetor {
 		DAO dao = new DAO();
 		CidadeDAO cidadeDAO = new CidadeDAO();
 		EstadoDAO estadoDAO = new EstadoDAO();
+		@SuppressWarnings("unchecked")
 		List<Padrao> padraoList = dao.list(Padrao.class, "nivel");
 
 		for (DadosFitaEspelho dadosFitaEspelho : injetorDados
@@ -109,8 +109,12 @@ public class Injetor {
 			servidor.getDocumento().setRgUf(estado);
 			// servidor.getDocumento().setTituloUf(estado);
 
+			if(servidor.getSiape().equals(1216159)){
+				servidor.getContaBancaria().setBanco(null);
+			}else{
 			servidor.getContaBancaria().getBanco()
 					.setCodigo(new Long(dadosFitaEspelho.getCodigoBanco()));
+			}
 			servidor.getContaBancaria().setAgencia(
 					dadosFitaEspelho.getAgenciaBanco());
 			servidor.getContaBancaria().setNumeroConta(
