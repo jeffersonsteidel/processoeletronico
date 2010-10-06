@@ -21,7 +21,6 @@ import br.com.progepe.entity.Endereco;
 import br.com.progepe.entity.Estado;
 import br.com.progepe.entity.EstadoCivil;
 import br.com.progepe.entity.Funcao;
-import br.com.progepe.entity.GrauParentesco;
 import br.com.progepe.entity.Grupo;
 import br.com.progepe.entity.GrupoSanguineo;
 import br.com.progepe.entity.Lotacao;
@@ -56,9 +55,6 @@ public class ServidorController {
 	private List<SelectItem> situacoesFuncionais = new ArrayList<SelectItem>();
 	private List<SelectItem> padroes = new ArrayList<SelectItem>();
 	private List<SelectItem> regimesTrabalhos = new ArrayList<SelectItem>();
-	private List<SelectItem> grauParentescos = new ArrayList<SelectItem>();
-	private List<SelectItem> titulacoes = new ArrayList<SelectItem>();
-	private List<SelectItem> areasConhecimentos = new ArrayList<SelectItem>();
 	private List<SelectItem> tipoFuncoes = new ArrayList<SelectItem>();
 
 	DAO dao = new DAO();
@@ -114,9 +110,6 @@ public class ServidorController {
 		this.lotacoes = lotacoes;
 	}
 
-	public List<SelectItem> getAreasConhecimentos() {
-		return areasConhecimentos;
-	}
 	
 	public List<SelectItem> getCidadesNascimento() {
 		return cidadesNascimento;
@@ -124,10 +117,6 @@ public class ServidorController {
 
 	public void setCidadesNascimento(List<SelectItem> cidadesNascimento) {
 		this.cidadesNascimento = cidadesNascimento;
-	}
-
-	public void setAreasConhecimentos(List<SelectItem> areasConhecimentos) {
-		this.areasConhecimentos = areasConhecimentos;
 	}
 
 	public List<SelectItem> getPaises() {
@@ -168,14 +157,6 @@ public class ServidorController {
 
 	public void setRegimesTrabalhos(List<SelectItem> regimesTrabalhos) {
 		this.regimesTrabalhos = regimesTrabalhos;
-	}
-
-	public List<SelectItem> getGrauParentescos() {
-		return grauParentescos;
-	}
-
-	public void setGrauParentescos(List<SelectItem> grauParentescos) {
-		this.grauParentescos = grauParentescos;
 	}
 
 	public List<SelectItem> getCargos() {
@@ -232,14 +213,6 @@ public class ServidorController {
 
 	public void setServidorEstrangeiro(Boolean servidorEstrangeiro) {
 		this.servidorEstrangeiro = servidorEstrangeiro;
-	}
-
-	public List<SelectItem> getTitulacoes() {
-		return titulacoes;
-	}
-
-	public void setTitulacoes(List<SelectItem> titulacoes) {
-		this.titulacoes = titulacoes;
 	}
 
 	public Boolean getIndPoupanca() {
@@ -312,13 +285,9 @@ public class ServidorController {
 		regimesTrabalhos = new ArrayList<SelectItem>();
 		situacoesFuncionais = new ArrayList<SelectItem>();
 		paises = new ArrayList<SelectItem>();
-		grauParentescos = new ArrayList<SelectItem>();
-		titulacoes = new ArrayList<SelectItem>();
-		areasConhecimentos = new ArrayList<SelectItem>();
 		tipoFuncoes = new ArrayList<SelectItem>();
 
 		listarBancos();
-		listarGrauParentesco();
 		listarEstados();
 		listarUfs();
 
@@ -420,18 +389,6 @@ public class ServidorController {
 					.getDescricao()));
 		}
 		return coresPeles;
-	}
-
-	@SuppressWarnings("unchecked")
-	public List<SelectItem> listarGrauParentesco() {
-		grauParentescos = new ArrayList<SelectItem>();
-		List<GrauParentesco> grauParentescoList = new ArrayList<GrauParentesco>();
-		grauParentescoList = dao.list(GrauParentesco.class, "descricao");
-		for (GrauParentesco grauParentesco : grauParentescoList) {
-			grauParentescos.add(new SelectItem(grauParentesco.getCodigo(),
-					grauParentesco.getDescricao()));
-		}
-		return grauParentescos;
 	}
 
 	@SuppressWarnings("unchecked")
@@ -587,5 +544,25 @@ public class ServidorController {
 		FacesContext.getCurrentInstance().getExternalContext()
 				.redirect("listarServidores.jsp");
 		return this.getServidores();
+	}
+	
+	public void carregar() throws IOException {
+		//listarBancos();
+		listarEstados();
+		listarUfs();
+
+		//listarLotacoes();
+		listarPadroes();
+		listarSituacoesFuncionais();
+		listarFuncoes();
+		listarCargos();
+		listarRegimesTrabalhos();
+
+		listarGrupoSanguineo();
+		listarCorPele();
+		listarEstadosCivis();
+		dao.refresh(servidor);
+		FacesContext.getCurrentInstance().getExternalContext()
+				.redirect("cadastrarServidor.jsp");
 	}
 }
