@@ -9,33 +9,8 @@ Config 1.1//EN"
 		<managed-bean-scope>session</managed-bean-scope>
 	</managed-bean>
 	<managed-bean>
-		<managed-bean-name>bancoController</managed-bean-name>
-		<managed-bean-class>br.com.progepe.controller.BancoController</managed-bean-class>
-		<managed-bean-scope>session</managed-bean-scope>
-	</managed-bean>
-	<managed-bean>
-		<managed-bean-name>cargoController</managed-bean-name>
-		<managed-bean-class>br.com.progepe.controller.CargoController</managed-bean-class>
-		<managed-bean-scope>session</managed-bean-scope>
-	</managed-bean>
-	<managed-bean>
-		<managed-bean-name>funcaoController</managed-bean-name>
-		<managed-bean-class>br.com.progepe.controller.FuncaoController</managed-bean-class>
-		<managed-bean-scope>session</managed-bean-scope>
-	</managed-bean>
-	<managed-bean>
-		<managed-bean-name>lotacaoController</managed-bean-name>
-		<managed-bean-class>br.com.progepe.controller.LotacaoController</managed-bean-class>
-		<managed-bean-scope>session</managed-bean-scope>
-	</managed-bean>
-	<managed-bean>
 		<managed-bean-name>servidorController</managed-bean-name>
 		<managed-bean-class>br.com.progepe.controller.ServidorController</managed-bean-class>
-		<managed-bean-scope>session</managed-bean-scope>
-	</managed-bean>
-	<managed-bean>
-		<managed-bean-name>tipoFuncaoController</managed-bean-name>
-		<managed-bean-class>br.com.progepe.controller.TipoFuncaoController</managed-bean-class>
 		<managed-bean-scope>session</managed-bean-scope>
 	</managed-bean>
 </faces-config>
