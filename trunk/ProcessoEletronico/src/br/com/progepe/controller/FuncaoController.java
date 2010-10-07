@@ -42,7 +42,7 @@ public class FuncaoController {
 	}
 
 	public void carregarFuncao() throws IOException {
-		dao.refresh(funcao);
+		dao.refresh(funcao.getCodigo());
 		FacesContext.getCurrentInstance().getExternalContext()
 				.redirect("cadastrarFuncao.jsp");
 	}

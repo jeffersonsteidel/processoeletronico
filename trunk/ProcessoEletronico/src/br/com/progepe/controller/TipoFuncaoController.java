@@ -43,7 +43,7 @@ public class TipoFuncaoController {
 	}
 
 	public void carregar() throws IOException {
-		dao.refresh(tipoFuncao);
+		dao.refresh(tipoFuncao.getCodigo());
 		FacesContext.getCurrentInstance().getExternalContext()
 				.redirect("cadastrarTipoFuncao.jsp");
 	}

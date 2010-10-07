@@ -1,12 +1,11 @@
 package br.com.progepe.controller;
 
 import java.io.IOException;
-import java.util.List; 
+import java.util.List;
 
 import javax.faces.context.FacesContext;
 
 import br.com.progepe.dao.DAO;
-
 import br.com.progepe.entity.Grupo;
 
 public class GrupoController {
@@ -44,7 +43,7 @@ public class GrupoController {
 	}
 
 	public void carregar() throws IOException {
-		dao.refresh(grupo);
+		dao.refresh(grupo.getCodigo());
 		FacesContext.getCurrentInstance().getExternalContext()
 				.redirect("cadastrarGrupo.jsp");
 	}

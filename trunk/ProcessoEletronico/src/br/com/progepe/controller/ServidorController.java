@@ -454,7 +454,7 @@ public class ServidorController {
 	public void carregarClasse() {
 		servidor.getCargo().setClasse(new Classe());
 		Cargo cargo = servidor.getCargo();
-		dao.refresh(cargo);
+		dao.getById(cargo.getCodigo(), Cargo.class);
 		servidor.setCargo(cargo);
 	}
 
@@ -540,7 +540,7 @@ public class ServidorController {
 	@SuppressWarnings("unchecked")
 	public List<Servidor> listar() throws IOException {
 		servidor = new Servidor();
-		this.setServidores(dao.list(servidor.getClass(), "siape"));
+		this.setServidores(dao.list(Servidor.class));
 		FacesContext.getCurrentInstance().getExternalContext()
 				.redirect("listarServidores.jsp");
 		return this.getServidores();

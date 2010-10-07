@@ -1,7 +1,7 @@
 package br.com.progepe.controller;
 
 import java.io.IOException;
-import java.util.List; 
+import java.util.List;
 
 import javax.faces.context.FacesContext;
 
@@ -44,7 +44,7 @@ public class BancoController {
 	}
 
 	public void carregar() throws IOException {
-		dao.refresh(banco);
+		dao.refresh(banco.getCodigo());
 		FacesContext.getCurrentInstance().getExternalContext()
 				.redirect("cadastrarBanco.jsp");
 	}

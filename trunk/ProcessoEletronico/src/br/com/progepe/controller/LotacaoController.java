@@ -73,7 +73,7 @@ public class LotacaoController {
 	}
 
 	public void carregar() throws IOException {
-		dao.refresh(lotacao);
+		dao.refresh(lotacao.getCodigo());
 		listarEstados();
 		listarCidades();
 		FacesContext.getCurrentInstance().getExternalContext()
