@@ -1,88 +1,78 @@
 package br.com.progepe.dao;
 
+import java.io.Serializable;
 import java.util.List;
 
-import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
-
 import org.hibernate.Criteria;
-import org.hibernate.Session;
+import org.hibernate.criterion.Example;
 import org.hibernate.criterion.Order;
 
 import br.com.progepe.entity.Servidor;
 
-public class DAO {
+public class DAO implements BaseDAO {
 
-	private static Session session = HibernateUtility.getSessionFactory()
-			.getCurrentSession();
-
-	public DAO() {
-		session.beginTransaction();
-		session.flush();
+	public Serializable save(Object objeto) {
+		HibernateUtility.beginTransaction();
+		return HibernateUtility.getSession().save(objeto);
 	}
 
-	public void save(Object object) {
-		try {
-			session.saveOrUpdate(object);
-			session.getTransaction().commit();
-			FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO,
-					"Item salvo com sucesso!", "Item salvo com sucesso!");
-			FacesContext.getCurrentInstance().addMessage("", message);
-		} catch (Exception e) {
-			session.getTransaction().rollback();
-			FacesMessage message = new FacesMessage(
-					FacesMessage.SEVERITY_ERROR,
-					"Erro ao comunicar com o servidor!",
-					"Erro ao comunicar com o servidor!");
-			FacesContext.getCurrentInstance().addMessage("", message);
-		}
-	}
-	
-	public void saveFitaEspelho(Servidor servidor) throws Exception{
-			session.save(servidor);
-			if(servidor.getSiape().equals(7343463)){
-				session.getTransaction().commit();
-			}
+	public void update(Object objeto) {
+		HibernateUtility.beginTransaction();
+		HibernateUtility.getSession().update(objeto);
 	}
 
-
-	public void delete(Object object) {
-		try {
-			session.delete(object);
-			session.getTransaction().commit();
-			FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO,
-					"Item excluído com sucesso!", "Item excluído com sucesso!");
-			FacesContext.getCurrentInstance().addMessage("", message);
-		} catch (Exception e) {
-			session.getTransaction().rollback();
-			FacesMessage message = new FacesMessage(
-					FacesMessage.SEVERITY_ERROR,
-					"Erro ao comunicar com o servidor!",
-					"Erro ao comunicar com o servidor!");
-			FacesContext.getCurrentInstance().addMessage("", message);
-		}
-	}
-
-	public Object refresh(Object object) {
-		try {
-			session.clear();
-			session.refresh(object);
-		} catch (Exception e) {
-			session.getTransaction().rollback();
-			FacesMessage message = new FacesMessage(
-					FacesMessage.SEVERITY_ERROR,
-					"Erro ao comunicar com o servidor!",
-					"Erro ao comunicar com o servidor!");
-			FacesContext.getCurrentInstance().addMessage("", message);
-		}
-		return object;
+	public void delete(Object objeto) {
+		HibernateUtility.beginTransaction();
+		HibernateUtility.getSession().delete(objeto);
 	}
 
 	@SuppressWarnings("rawtypes")
-	public List list(Class objectClass, String ordenarPor) {
-		Criteria c = session.createCriteria(objectClass).addOrder(
-				Order.asc(ordenarPor));
-		return c.list();
+	public List list(Class clazz, String ordenarPor) {
+		return HibernateUtility.getSession().createCriteria(clazz)
+				.addOrder(Order.asc(ordenarPor)).list();
 	}
 
+	@SuppressWarnings("rawtypes")
+	public List list(Class clazz, int firstResult, int maxResults) {
+		Criteria criteria = HibernateUtility.getSession().createCriteria(clazz);
+		criteria.setFirstResult(firstResult);
+		criteria.setMaxResults(maxResults);
+		return criteria.list();
+	}
+
+	@SuppressWarnings("rawtypes")
+	public List listByExample(Object example) {
+		Criteria criteria = HibernateUtility.getSession().createCriteria(
+				example.getClass());
+		Example sample = Example.create(example);
+		sample.enableLike();
+		sample.excludeZeroes();
+		criteria.add(sample);
+		return criteria.list();
+	}
+
+	@SuppressWarnings("rawtypes")
+	public Object getById(Serializable id, Class clazz) {
+		HibernateUtility.beginTransaction();
+		return HibernateUtility.getSession().get(clazz, id);
+	}
+
+	public void saveFitaEspelho(Servidor servidor) throws Exception {
+		HibernateUtility.beginTransaction();
+		HibernateUtility.getSession().save(servidor);
+		if (servidor.getSiape().equals(7343463)) {
+			HibernateUtility.getSession().getTransaction().commit();
+		}
+	}
+
+	@SuppressWarnings("rawtypes")
+	public List list(Class clazz) {
+		return HibernateUtility.getSession().createCriteria(clazz).list();
+	}
+
+	public Object refresh(Object object) {
+		HibernateUtility.getSession().flush();
+		HibernateUtility.getSession().refresh(object);
+		return object;
+	}
 }
