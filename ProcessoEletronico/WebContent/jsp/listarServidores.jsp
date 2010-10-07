@@ -57,6 +57,15 @@
 					</f:facet>
 					<h:outputText value="#{list.documento.cpf}" />
 				</rich:column>
+				
+				<rich:column width="280px" sortBy="#{list.cargo.descricao}"
+					filterBy="#{list.cargo.descricao}" filterEvent="onkeyup">
+					<f:facet name="header">
+						<h:outputText value="Cargo" />
+					</f:facet>
+					<h:outputText value="#{list.cargo.descricao}" />
+				</rich:column>
+				
 
 				<rich:column width="250px"
 					sortBy="#{list.situacaoFuncional.descricao}"
