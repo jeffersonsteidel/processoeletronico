@@ -24,7 +24,7 @@
 		<property name="telefone" column="SERV_TEL_FIXO" />
 		<property name="celular" column="SERV_TEL_CEL" />
 		<many-to-one name="cargo" class="br.com.progepe.entity.Cargo"
-			column="CARG_COD" />
+			column="CARG_COD" lazy="false"/>
 		<many-to-one name="lotacao" class="br.com.progepe.entity.Lotacao"
 			column="LOT_COD" />
 		<many-to-one name="localExercicio" class="br.com.progepe.entity.Lotacao"
