@@ -3,6 +3,9 @@ package br.com.progepe.dao;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
+
 import org.hibernate.Criteria;
 import org.hibernate.criterion.Example;
 import org.hibernate.criterion.Order;
@@ -11,19 +14,67 @@ import br.com.progepe.entity.Servidor;
 
 public class DAO implements BaseDAO {
 
-	public Serializable save(Object objeto) {
-		HibernateUtility.beginTransaction();
-		return HibernateUtility.getSession().save(objeto);
+	public void save(Object objeto) {
+		try {
+			HibernateUtility.beginTransaction();
+			HibernateUtility.getSession().save(objeto);
+			HibernateUtility.commitTransaction();
+			HibernateUtility.closeSession();
+			FacesMessage message = new FacesMessage(
+					FacesMessage.SEVERITY_INFO, "Item salvo com sucesso!",
+					"Item salvo com sucesso!");
+			FacesContext.getCurrentInstance().addMessage("", message);
+		} catch (Exception e) {
+			HibernateUtility.rollbackTransaction();
+			HibernateUtility.closeSession();
+			FacesMessage message = new FacesMessage(
+					FacesMessage.SEVERITY_ERROR,
+					"Erro ao comunicar com o servidor!",
+					"Erro ao comunicar com o servidor!");
+			FacesContext.getCurrentInstance().addMessage("", message);
+		}
 	}
 
 	public void update(Object objeto) {
-		HibernateUtility.beginTransaction();
-		HibernateUtility.getSession().update(objeto);
+		try {
+			HibernateUtility.beginTransaction();
+			HibernateUtility.getSession().update(objeto);
+			HibernateUtility.commitTransaction();
+			HibernateUtility.closeSession();
+			FacesMessage message = new FacesMessage(
+					FacesMessage.SEVERITY_INFO, "Item atualizado com sucesso!",
+					"Item atualizado com sucesso!");
+			FacesContext.getCurrentInstance().addMessage("", message);
+		} catch (Exception e) {
+			HibernateUtility.rollbackTransaction();
+			HibernateUtility.closeSession();
+			FacesMessage message = new FacesMessage(
+					FacesMessage.SEVERITY_ERROR,
+					"Erro ao comunicar com o servidor!",
+					"Erro ao comunicar com o servidor!");
+			FacesContext.getCurrentInstance().addMessage("", message);
+		}
 	}
 
 	public void delete(Object objeto) {
-		HibernateUtility.beginTransaction();
-		HibernateUtility.getSession().delete(objeto);
+		try {
+			HibernateUtility.beginTransaction();
+			HibernateUtility.getSession().delete(objeto);
+			HibernateUtility.commitTransaction();
+			HibernateUtility.closeSession();
+			FacesMessage message = new FacesMessage(
+					FacesMessage.SEVERITY_INFO, "Item excluído com sucesso!",
+					"Item excluído com sucesso!");
+			FacesContext.getCurrentInstance().addMessage("", message);
+		} catch (Exception e) {
+			HibernateUtility.rollbackTransaction();
+			HibernateUtility.closeSession();
+			FacesMessage message = new FacesMessage(
+					FacesMessage.SEVERITY_ERROR,
+					"Erro ao comunicar com o servidor!",
+					"Erro ao comunicar com o servidor!");
+			FacesContext.getCurrentInstance().addMessage("", message);
+		}
 	}
 
 	@SuppressWarnings("rawtypes")
@@ -71,7 +122,7 @@ public class DAO implements BaseDAO {
 	}
 
 	public Object refresh(Object object) {
-		HibernateUtility.getSession().flush();
+		HibernateUtility.beginTransaction();
 		HibernateUtility.getSession().refresh(object);
 		return object;
 	}

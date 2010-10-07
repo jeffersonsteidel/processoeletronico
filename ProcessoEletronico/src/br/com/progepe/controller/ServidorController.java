@@ -110,7 +110,6 @@ public class ServidorController {
 		this.lotacoes = lotacoes;
 	}
 
-	
 	public List<SelectItem> getCidadesNascimento() {
 		return cidadesNascimento;
 	}
@@ -419,8 +418,7 @@ public class ServidorController {
 	public List<SelectItem> listarBancos() {
 		bancos = new ArrayList<SelectItem>();
 		List<Banco> bancoList = new ArrayList<Banco>();
-		bancoList = dao.list(Banco.class,
-				"descricao");
+		bancoList = dao.list(Banco.class, "descricao");
 		for (Banco banco : bancoList) {
 			bancos.add(new SelectItem(banco.getCodigo(), banco.getDescricao()));
 		}
@@ -454,7 +452,7 @@ public class ServidorController {
 	public void carregarClasse() {
 		servidor.getCargo().setClasse(new Classe());
 		Cargo cargo = servidor.getCargo();
-		dao.getById(cargo.getCodigo(), Cargo.class);
+		dao.refresh(cargo);
 		servidor.setCargo(cargo);
 	}
 
@@ -528,15 +526,15 @@ public class ServidorController {
 	}
 
 	public void validarCPF() {
-		if (!Validator.validarCNPJCPF(servidor.getDocumento().getCpf())) {
-			FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR,
-					"Campo CPF inválido!",
+		if (!Validator.validaCPF(servidor.getDocumento().getCpf())) {
+			FacesMessage message = new FacesMessage(
+					FacesMessage.SEVERITY_ERROR, "Campo CPF inválido!",
 					"Campo CPF inválido!");
 			FacesContext.getCurrentInstance().addMessage("", message);
 			servidor.getDocumento().setCpf("");
 		}
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	public List<Servidor> listar() throws IOException {
 		servidor = new Servidor();
@@ -545,8 +543,26 @@ public class ServidorController {
 				.redirect("listarServidores.jsp");
 		return this.getServidores();
 	}
-	
+
 	public void carregar() throws IOException {
+		cargos = new ArrayList<SelectItem>();
+		classes = new ArrayList<SelectItem>();
+		ufs = new ArrayList<SelectItem>();
+		cidadesNascimento = new ArrayList<SelectItem>();
+		cidades = new ArrayList<SelectItem>();
+		estados = new ArrayList<SelectItem>();
+		bancos = new ArrayList<SelectItem>();
+		coresPeles = new ArrayList<SelectItem>();
+		estadosCivis = new ArrayList<SelectItem>();
+		funcoes = new ArrayList<SelectItem>();
+		lotacoes = new ArrayList<SelectItem>();
+		gruposSanguineos = new ArrayList<SelectItem>();
+		padroes = new ArrayList<SelectItem>();
+		regimesTrabalhos = new ArrayList<SelectItem>();
+		situacoesFuncionais = new ArrayList<SelectItem>();
+		paises = new ArrayList<SelectItem>();
+		tipoFuncoes = new ArrayList<SelectItem>();
+
 		listarBancos();
 		listarEstados();
 		listarUfs();
@@ -561,7 +577,9 @@ public class ServidorController {
 		listarGrupoSanguineo();
 		listarCorPele();
 		listarEstadosCivis();
+
 		dao.refresh(servidor);
+
 		FacesContext.getCurrentInstance().getExternalContext()
 				.redirect("cadastrarServidor.jsp");
 	}

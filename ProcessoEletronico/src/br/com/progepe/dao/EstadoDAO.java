@@ -4,10 +4,10 @@ import org.hibernate.criterion.Restrictions;
 
 import br.com.progepe.entity.Estado;
 
-public class EstadoDAO {
+public class EstadoDAO extends DAO{
 
 	public Estado listByUf(String ufEstado) {
-		HibernateUtility.getSession().beginTransaction();
+		HibernateUtility.beginTransaction();
 		return (Estado) HibernateUtility.getSession().createCriteria(Estado.class).add(
 				Restrictions.like("uf", ufEstado)).uniqueResult();
 	}
