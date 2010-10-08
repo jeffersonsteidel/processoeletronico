@@ -55,7 +55,6 @@
 
 			<rich:dataTable id="listaServidores"
 				value="#{servidorController.servidoresList}" var="list"
-				rendered="#{not empty servidorController.servidoresList}"
 				width="1150px" columnClasses="center" rows="20" reRender="ds">
 				<rich:column width="50px" sortBy="#{list.siape}">
 					<f:facet name="header">
