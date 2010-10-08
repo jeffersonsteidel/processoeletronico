@@ -577,8 +577,12 @@ public class ServidorController {
 		listarGrupoSanguineo();
 		listarCorPele();
 		listarEstadosCivis();
-
+		
 		dao.refresh(servidor);
+		
+		if(servidor.getCidadeNascimento() != null && servidor.getCidadeNascimento().getEstado().getCodigo() != 0){
+			listarCidadesNascimentoServidor();
+		}
 
 		FacesContext.getCurrentInstance().getExternalContext()
 				.redirect("cadastrarServidor.jsp");
