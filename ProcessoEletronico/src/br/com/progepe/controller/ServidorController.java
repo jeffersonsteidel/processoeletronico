@@ -239,7 +239,7 @@ public class ServidorController {
 	public void setTipoFuncoes(List<SelectItem> tipoFuncoes) {
 		this.tipoFuncoes = tipoFuncoes;
 	}
-	
+
 	public List<Servidor> getServidoresList() {
 		return servidoresList;
 	}
@@ -531,8 +531,12 @@ public class ServidorController {
 	}
 
 	public void salvar() throws IOException {
-		dao.save(servidor);
-		servidor = new Servidor();
+		try {
+			dao.save(servidor);
+			servidor = new Servidor();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	public void validarCPF() {
@@ -587,54 +591,57 @@ public class ServidorController {
 		listarGrupoSanguineo();
 		listarCorPele();
 		listarEstadosCivis();
-		
+
 		dao.refresh(servidor);
-		
-		if(servidor.getCidadeNascimento() != null && servidor.getCidadeNascimento().getEstado().getCodigo() != 0){
+
+		if (servidor.getCidadeNascimento() != null
+				&& servidor.getCidadeNascimento().getEstado().getCodigo() != 0) {
 			listarCidadesNascimentoServidor();
 		}
-		if(servidor.getEndereco() != null && servidor.getEndereco().getCidade().getCodigo() != 0){
+		if (servidor.getEndereco() != null
+				&& servidor.getEndereco().getCidade().getCodigo() != 0) {
 			listarCidadesContato();
 		}
-		
+
 		FacesContext.getCurrentInstance().getExternalContext()
 				.redirect("cadastrarServidor.jsp");
 	}
-	
-	public void pesquisarServidores()throws IOException {
+
+	public void pesquisarServidores() throws IOException {
 		servidor = new Servidor();
 		servidor.setLotacao(new Lotacao());
 		servidor.setCargo(new Cargo());
 		cargos = new ArrayList<SelectItem>();
 		lotacoes = new ArrayList<SelectItem>();
-		
+
 		listarLotacoes();
 		listarCargos();
-		
-		if(servidor.getCidadeNascimento() != null && servidor.getCidadeNascimento().getEstado().getCodigo() != 0){
+
+		if (servidor.getCidadeNascimento() != null
+				&& servidor.getCidadeNascimento().getEstado().getCodigo() != 0) {
 			listarCidadesNascimentoServidor();
 		}
-		if(servidor.getEndereco() != null && servidor.getEndereco().getCidade().getCodigo() != 0){
+		if (servidor.getEndereco() != null
+				&& servidor.getEndereco().getCidade().getCodigo() != 0) {
 			listarCidadesContato();
 		}
-		
+
 		FacesContext.getCurrentInstance().getExternalContext()
 				.redirect("listarServidoresFilter.jsp");
 	}
-	
+
 	public List<Servidor> listarServidoresFiltro() {
-		ServidorDAO servidorDAO = new ServidorDAO(); 
+		ServidorDAO servidorDAO = new ServidorDAO();
 		servidoresList = new ArrayList<Servidor>();
 		setServidoresList(servidorDAO.listByFilter(servidor));
-		if (getServidoresList().size() == 0){
-			FacesMessage message = new FacesMessage(
-					FacesMessage.SEVERITY_WARN,
+		if (getServidoresList().size() == 0) {
+			FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_WARN,
 					"Nenhum registro para o filtro informado!",
 					"Nenhum registro para o filtro informado!");
 			FacesContext.getCurrentInstance().addMessage("", message);
-			
+
 		}
 		return servidoresList;
 	}
-	
+
 }
