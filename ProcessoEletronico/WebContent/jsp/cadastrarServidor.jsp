@@ -197,6 +197,7 @@
 						<f:selectItems value="#{servidorController.regimesTrabalhos}" />
 					</h:selectOneMenu>
 
+<!--
 					<h:outputText value="Função: " />
 					<h:selectOneMenu
 						value="#{servidorController.servidor.funcao.codigo}">
@@ -210,7 +211,7 @@
 						<f:selectItem itemLabel="SELECIONE" itemValue="" />
 						<f:selectItems value="#{servidorController.tipoFuncoes}" />
 					</h:selectOneMenu>
-
+-->
 					<h:outputText value="Situação Funcional: " />
 					<h:selectOneMenu
 						value="#{servidorController.servidor.situacaoFuncional.codigo}"

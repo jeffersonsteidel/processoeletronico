@@ -21,6 +21,8 @@
 		<property name="nomeMae" column="SERV_NOME_MAE" />
 		<property name="indEstrangeiro" column="SERV_IND_ESTRAN"
 			type="boolean" />
+		<property name="dataUltimaAlteracao" column="DT_ULT_ALTERACAO" />
+		<property name="dadosValidados" column="DAD_VALIDADO" type="boolean" />
 		<property name="telefone" column="SERV_TEL_FIXO" />
 		<property name="celular" column="SERV_TEL_CEL" />
 		<many-to-one name="cargo" class="br.com.progepe.entity.Cargo"

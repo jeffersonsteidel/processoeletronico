@@ -42,6 +42,9 @@ public class Servidor implements Serializable {
 	private Date dataAdmServicoPublico;
 	private Pais pais;
 	
+	private Date dataUltimaAlteracao;
+	private Boolean dadosValidados;
+	
 	public Long getCodigo() {
 		return codigo;
 	}
@@ -297,5 +300,20 @@ public class Servidor implements Serializable {
 	public void setPais(Pais pais) {
 		this.pais = pais;
 	}
-	
+
+	public Date getDataUltimaAlteracao() {
+		return dataUltimaAlteracao;
+	}
+
+	public void setDataUltimaAlteracao(Date dataUltimaAlteracao) {
+		this.dataUltimaAlteracao = dataUltimaAlteracao;
+	}
+
+	public Boolean getDadosValidados() {
+		return dadosValidados;
+	}
+
+	public void setDadosValidados(Boolean dadosValidados) {
+		this.dadosValidados = dadosValidados;
+	}
 }
