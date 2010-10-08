@@ -583,7 +583,10 @@ public class ServidorController {
 		if(servidor.getCidadeNascimento() != null && servidor.getCidadeNascimento().getEstado().getCodigo() != 0){
 			listarCidadesNascimentoServidor();
 		}
-
+		if(servidor.getEndereco() != null && servidor.getEndereco().getCidade().getCodigo() != 0){
+			listarCidadesContato();
+		}
+		
 		FacesContext.getCurrentInstance().getExternalContext()
 				.redirect("cadastrarServidor.jsp");
 	}
