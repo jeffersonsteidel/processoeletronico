@@ -10,7 +10,7 @@
 </head>
 <body>
 <f:view>
-<a4j:loadScript src="../js/script.js" />
+	<a4j:loadScript src="../js/script.js" />
 	<center><a4j:form id="form">
 		<a4j:status>
 			<f:facet name="start">
@@ -19,16 +19,11 @@
 		</a4j:status>
 		<rich:panel header="Servidores"
 			style="width: 1200px;  position: absolute; left: 30px; top: auto;">
-			<rich:messages layout="list">
-				<f:facet name="errorMarker">
-					<h:graphicImage value="../images/error.gif" />
-				</f:facet>
-			</rich:messages>
-
 			<h:panelGrid columns="9">
 				<h:outputText value="Siape: ">
 				</h:outputText>
-				<h:inputText value="#{servidorController.servidor.siape}" size="10" maxlength="7" onkeyup="mascara(this, soNumeros);">
+				<h:inputText value="#{servidorController.servidor.siape}" size="10"
+					maxlength="7" onkeyup="mascara(this, soNumeros);">
 				</h:inputText>
 				<h:outputText value="Nome: ">
 				</h:outputText>
@@ -50,12 +45,18 @@
 				<a4j:commandButton value="Pesquisar"
 					action="#{servidorController.listarServidoresFiltro}"
 					reRender="listaServidores" />
-
 			</h:panelGrid>
 
+			<rich:messages layout="list">
+				<f:facet name="errorMarker">
+					<h:graphicImage value="../images/error.gif" />
+				</f:facet>
+			</rich:messages>
+
 			<rich:dataTable id="listaServidores"
-				value="#{servidorController.servidoresList}" var="list" width="1150px"
-				columnClasses="center" rows="20" reRender="ds">
+				value="#{servidorController.servidoresList}" var="list"
+				rendered="#{not empty servidorController.servidoresList}"
+				width="1150px" columnClasses="center" rows="20" reRender="ds">
 				<rich:column width="50px" sortBy="#{list.siape}">
 					<f:facet name="header">
 						<h:outputText value="Siape" />
