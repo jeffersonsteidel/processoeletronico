@@ -2,6 +2,7 @@ package br.com.progepe.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.faces.application.FacesMessage;
@@ -30,7 +31,6 @@ import br.com.progepe.entity.Pais;
 import br.com.progepe.entity.RegimeTrabalho;
 import br.com.progepe.entity.Servidor;
 import br.com.progepe.entity.SituacaoFuncional;
-import br.com.progepe.entity.TipoFuncao;
 import br.com.progepe.validator.Validator;
 
 public class ServidorController {
@@ -265,8 +265,8 @@ public class ServidorController {
 		servidor.getEndereco().setCidade(new Cidade());
 		servidor.getEndereco().getCidade().setEstado(new Estado());
 		servidor.setEstadoCivil(new EstadoCivil());
-		servidor.setFuncao(new Funcao());
-		servidor.getFuncao().setTipoFuncao(new TipoFuncao());
+//		servidor.setFuncao(new Funcao());
+//		servidor.getFuncao().setTipoFuncao(new TipoFuncao());
 		servidor.setGrupo(new Grupo());
 		servidor.setGrupoSanguineo(new GrupoSanguineo());
 		servidor.setLotacao(new Lotacao());
@@ -532,6 +532,8 @@ public class ServidorController {
 
 	public void salvar() throws IOException {
 		try {
+			servidor.setDataUltimaAlteracao(new Date());
+			servidor.setDadosValidados(false);
 			dao.save(servidor);
 			servidor = new Servidor();
 		} catch (Exception e) {
