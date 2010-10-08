@@ -10,6 +10,7 @@ import javax.faces.model.SelectItem;
 
 import br.com.progepe.dao.CidadeDAO;
 import br.com.progepe.dao.DAO;
+import br.com.progepe.dao.ServidorDAO;
 import br.com.progepe.entity.Banco;
 import br.com.progepe.entity.Cargo;
 import br.com.progepe.entity.Cidade;
@@ -38,6 +39,7 @@ public class ServidorController {
 
 	private Servidor servidor;
 	private List<Servidor> servidores;
+	private List<Servidor> servidoresList;
 
 	private List<SelectItem> cargos = new ArrayList<SelectItem>();
 	private List<SelectItem> classes = new ArrayList<SelectItem>();
@@ -236,6 +238,14 @@ public class ServidorController {
 
 	public void setTipoFuncoes(List<SelectItem> tipoFuncoes) {
 		this.tipoFuncoes = tipoFuncoes;
+	}
+	
+	public List<Servidor> getServidoresList() {
+		return servidoresList;
+	}
+
+	public void setServidoresList(List<Servidor> servidoresList) {
+		this.servidoresList = servidoresList;
 	}
 
 	public void cadastrar() throws IOException {
@@ -590,4 +600,33 @@ public class ServidorController {
 		FacesContext.getCurrentInstance().getExternalContext()
 				.redirect("cadastrarServidor.jsp");
 	}
+	
+	public void pesquisarServidores()throws IOException {
+		servidor = new Servidor();
+		servidor.setLotacao(new Lotacao());
+		servidor.setCargo(new Cargo());
+		cargos = new ArrayList<SelectItem>();
+		lotacoes = new ArrayList<SelectItem>();
+		
+		listarLotacoes();
+		listarCargos();
+		
+		if(servidor.getCidadeNascimento() != null && servidor.getCidadeNascimento().getEstado().getCodigo() != 0){
+			listarCidadesNascimentoServidor();
+		}
+		if(servidor.getEndereco() != null && servidor.getEndereco().getCidade().getCodigo() != 0){
+			listarCidadesContato();
+		}
+		
+		FacesContext.getCurrentInstance().getExternalContext()
+				.redirect("listarServidoresFilter.jsp");
+	}
+	
+	public List<Servidor> listarServidoresFiltro() {
+		ServidorDAO servidorDAO = new ServidorDAO(); 
+		servidoresList = new ArrayList<Servidor>();
+		setServidoresList(servidorDAO.listByFilter(servidor));
+		return servidoresList;
+	}
+	
 }
