@@ -626,6 +626,14 @@ public class ServidorController {
 		ServidorDAO servidorDAO = new ServidorDAO(); 
 		servidoresList = new ArrayList<Servidor>();
 		setServidoresList(servidorDAO.listByFilter(servidor));
+		if (getServidoresList().size() == 0){
+			FacesMessage message = new FacesMessage(
+					FacesMessage.SEVERITY_WARN,
+					"Nenhum registro para o filtro informado!",
+					"Nenhum registro para o filtro informado!");
+			FacesContext.getCurrentInstance().addMessage("", message);
+			
+		}
 		return servidoresList;
 	}
 	
