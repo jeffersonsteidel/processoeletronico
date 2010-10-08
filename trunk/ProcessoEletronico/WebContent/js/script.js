@@ -39,7 +39,7 @@ function cep(v) {
 	return v;
 }
 
-function idUnica(v) {
+function digitoVerificador(v) {
 	v = v.replace(/\D/g, ""); // Remove tudo o que no dgito
 	v = v.replace(/(\d{7})(\d)/, "$1-$2");
 	return v;

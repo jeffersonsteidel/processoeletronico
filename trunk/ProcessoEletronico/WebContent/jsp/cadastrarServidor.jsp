@@ -19,7 +19,7 @@
 			<rich:tab label="Dados Pessoais">
 				<h:panelGrid columns="4">
 					<h:outputText value="Nome: " />
-					<h:inputText value="#{servidorController.servidor.nome}" size="40"
+					<h:inputText value="#{servidorController.servidor.nome}" size="50"
 						maxlength="100" required="false"
 						requiredMessage="Campo Nome obrigatório!"></h:inputText>
 					<h:outputText value="Sexo: " />
@@ -431,12 +431,12 @@
 					<h:outputText value="Número da Conta: " />
 					<h:inputText
 						value="#{servidorController.servidor.contaBancaria.numeroConta}"
-						size="15" maxlength="12" required="false"
+						size="15" maxlength="12" required="false" 
 						requiredMessage="Campo Número da Conta obrigatório!"></h:inputText>
 					<h:outputText value="Agência: " />
 					<h:inputText
 						value="#{servidorController.servidor.contaBancaria.agencia}"
-						size="10" maxlength="8" required="false"
+						size="10" maxlength="8" required="false" 
 						requiredMessage="Campo Agência obrigatório!"></h:inputText>
 
 					<h:outputText value="Poupança:" />
