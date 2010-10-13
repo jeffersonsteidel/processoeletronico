@@ -258,9 +258,9 @@ public class ServidorController {
 		servidor.getContaBancaria().setBanco(new Banco());
 		servidor.setCorPele(new CorPele());
 		servidor.setDocumento(new Documento());
-		servidor.getDocumento().setCarteiraUf(new Estado());
-		servidor.getDocumento().setRgUf(new Estado());
-		servidor.getDocumento().setTituloUf(new Estado());
+//		servidor.getDocumento().setCarteiraUf(new Estado());
+//		servidor.getDocumento().setRgUf(new Estado());
+//		servidor.getDocumento().setTituloUf(new Estado());
 		servidor.setEndereco(new Endereco());
 		servidor.getEndereco().setCidade(new Cidade());
 		servidor.getEndereco().getCidade().setEstado(new Estado());

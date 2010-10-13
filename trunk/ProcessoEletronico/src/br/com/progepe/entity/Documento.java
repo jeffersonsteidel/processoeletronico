@@ -12,11 +12,11 @@ public class Documento implements Serializable {
 	private Long codigo;
 	private String cpf;
 	private String rg;
-	private Estado rgUf;
+	private Long rgUf;
 	private String rgOrgaoEmissor;
 	private Date rgDataExpedicao;
 	private String tituloEleitor;
-	private Estado tituloUf;
+	private Long tituloUf;
 	private Integer tituloZona;
 	private Integer tituloSecao;
 	private Date tituloDataEmissao;
@@ -25,7 +25,7 @@ public class Documento implements Serializable {
 	private String certificadoSerie;
 	private String carteiraTrabalho;
 	private String carteiraSerie;
-	private Estado carteiraUf;
+	private Long carteiraUf;
 	private String pis;
 	private Date dataPrimeiroEmprego;
 
@@ -53,11 +53,11 @@ public class Documento implements Serializable {
 		this.rg = rg;
 	}
 
-	public Estado getRgUf() {
+	public Long getRgUf() {
 		return rgUf;
 	}
 
-	public void setRgUf(Estado rgUf) {
+	public void setRgUf(Long rgUf) {
 		this.rgUf = rgUf;
 	}
 
@@ -77,11 +77,11 @@ public class Documento implements Serializable {
 		this.rgDataExpedicao = rgDataExpedicao;
 	}
 
-	public Estado getTituloUf() {
+	public Long getTituloUf() {
 		return tituloUf;
 	}
 
-	public void setTituloUf(Estado tituloUf) {
+	public void setTituloUf(Long tituloUf) {
 		this.tituloUf = tituloUf;
 	}
 
@@ -149,11 +149,11 @@ public class Documento implements Serializable {
 		this.carteiraSerie = carteiraSerie;
 	}
 
-	public Estado getCarteiraUf() {
+	public Long getCarteiraUf() {
 		return carteiraUf;
 	}
 
-	public void setCarteiraUf(Estado carteiraUf) {
+	public void setCarteiraUf(Long carteiraUf) {
 		this.carteiraUf = carteiraUf;
 	}
 

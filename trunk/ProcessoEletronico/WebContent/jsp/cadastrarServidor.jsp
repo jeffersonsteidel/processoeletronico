@@ -246,7 +246,7 @@
 						requiredMessage="Campo RG obrigatório!"></h:inputText>
 					<h:outputText value="UF do RG: " />
 					<h:selectOneMenu
-						value="#{servidorController.servidor.documento.rgUf.codigo}"
+						value="#{servidorController.servidor.documento.rgUf}"
 						required="false" requiredMessage="Campo UF do RG é obrigatório!">
 						<f:selectItem itemLabel="SELECIONE" itemValue="" />
 						<f:selectItems value="#{servidorController.ufs}" />
@@ -286,7 +286,7 @@
 						requiredMessage="Campo Título de Eleitor Sessão obrigatório!"></h:inputText>
 					<h:outputText value="UF do Título de Eleitor: " />
 					<h:selectOneMenu
-						value="#{servidorController.servidor.documento.tituloUf.codigo}"
+						value="#{servidorController.servidor.documento.tituloUf}"
 						required="false"
 						requiredMessage="Campo UF do Título de Eleitor é obrigatório!">
 						<f:selectItem itemLabel="SELECIONE" itemValue="" />
@@ -323,7 +323,7 @@
 						requiredMessage="Campo Carteira de Trabalho Série obrigatório!"></h:inputText>
 					<h:outputText value="UF da Carteira de Trabalho: " />
 					<h:selectOneMenu
-						value="#{servidorController.servidor.documento.carteiraUf.codigo}"
+						value="#{servidorController.servidor.documento.carteiraUf}"
 						required="false"
 						requiredMessage="Campo UF da Carteira de Trabalho é obrigatório!">
 						<f:selectItem itemLabel="SELECIONE" itemValue="" />
