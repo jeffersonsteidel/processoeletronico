@@ -2,23 +2,19 @@ package br.com.progepe.controller;
 
 import java.io.IOException;
 import java.io.Serializable;
-import java.util.ArrayList;
 
 import javax.faces.context.FacesContext;
-import javax.faces.model.SelectItem;
 import javax.servlet.http.HttpSession;
 
 import br.com.progepe.dao.DAOAutenticacao;
 import br.com.progepe.entity.Autenticacao;
-import br.com.progepe.entity.Cargo;
-import br.com.progepe.entity.Documento;
-import br.com.progepe.entity.Lotacao;
-import br.com.progepe.entity.Servidor;
 
 public class AutenticacaoController implements Serializable {
 	private static final long serialVersionUID = -333995781063775201L;
 
 	private Autenticacao autenticacao;
+	private String novaSenha;
+	private String confirmarSenha;
 
 	public Autenticacao getAutenticacao() {
 		return autenticacao;
@@ -28,30 +24,45 @@ public class AutenticacaoController implements Serializable {
 		this.autenticacao = autenticacao;
 	}
 
+	public String getNovaSenha() {
+		return novaSenha;
+	}
+
+	public void setNovaSenha(String novaSenha) {
+		this.novaSenha = novaSenha;
+	}
+
+	public String getConfirmarSenha() {
+		return confirmarSenha;
+	}
+
+	public void setConfirmarSenha(String confirmarSenha) {
+		this.confirmarSenha = confirmarSenha;
+	}
+
 	public AutenticacaoController() {
 
 		if (this.autenticacao == null) {
 			this.autenticacao = new Autenticacao();
-			autenticacao.setServidor(new Servidor());
-			autenticacao.getServidor().setDocumento(new Documento());
+//			autenticacao.setServidor(new Servidor());
+//			autenticacao.getServidor().setDocumento(new Documento());
 		}
 	}
 	
 	public void alterarSenha() throws IOException {
-		
 		autenticacao = new Autenticacao();
-
 		FacesContext.getCurrentInstance().getExternalContext()
 				.redirect("alterarSenha.jsp");
 	}
 
+	
 	public void login() throws Exception {
 		boolean logado = false;
 		HttpSession session = (HttpSession) FacesContext.getCurrentInstance()
 				.getExternalContext().getSession(false);
 		DAOAutenticacao daoAutenticacao = new DAOAutenticacao();
-		logado = daoAutenticacao.autentica(this.autenticacao.getServidor(),
-				this.autenticacao.getSenha());
+//		logado = daoAutenticacao.autentica(this.autenticacao,
+//				this.autenticacao.getSenha());
 
 		if (logado) {
 			session.setAttribute("user", logado);

@@ -8,21 +8,17 @@ public class Autenticacao implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private Servidor servidor;
+	private Integer siape;
 	private String senha;
-
-	public Servidor getServidor() {
-		return servidor;
+	public Integer getSiape() {
+		return siape;
 	}
-
-	public void setServidor(Servidor servidor) {
-		this.servidor = servidor;
+	public void setSiape(Integer siape) {
+		this.siape = siape;
 	}
-
 	public String getSenha() {
 		return senha;
 	}
-
 	public void setSenha(String senha) {
 		this.senha = senha;
 	}
