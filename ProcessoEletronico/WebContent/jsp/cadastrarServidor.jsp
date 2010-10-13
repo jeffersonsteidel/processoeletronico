@@ -125,7 +125,7 @@
 						value="#{servidorController.servidor.identificacaoUnica}"
 						size="10" maxlength="9" required="false"
 						requiredMessage="Campo Id Única obrigatório!"
-						onkeypress="mascara(this,idUnica);"></h:inputText>
+						onkeypress="mascara(this,digitoVerificador);"></h:inputText>
 
 					<h:outputText value="Data de Admissão no Órgão: " />
 					<rich:calendar value="#{servidorController.servidor.dataAdmissao}"

@@ -144,8 +144,10 @@ public class DAO implements BaseDAO {
 	}
 
 	public Object refresh(Object object) {
+		HibernateUtility.getSession().clear();
 		HibernateUtility.beginTransaction();
 		HibernateUtility.getSession().refresh(object);
 		return object;
 	}
+	
 }
