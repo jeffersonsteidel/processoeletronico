@@ -452,6 +452,9 @@
 				<a4j:commandButton value="Salvar"
 					action="#{servidorController.salvar}" reRender="form"
 					oncomplete="#{rich:component('confirmPanel')}.show()" />
+						<!-- ### PESQUISAR SERVIDOR### -->	
+				<a4j:commandButton image="../images/pesquisarServidores.GIF"
+					action="#{servidorController.pesquisarServidores}" />
 			</rich:tab>
 		</rich:tabPanel>
 	</a4j:form></center>
