@@ -197,7 +197,7 @@
 						<f:selectItems value="#{servidorController.regimesTrabalhos}" />
 					</h:selectOneMenu>
 
-<!--
+<!--<%--
 					<h:outputText value="Função: " />
 					<h:selectOneMenu
 						value="#{servidorController.servidor.funcao.codigo}">
@@ -210,7 +210,7 @@
 						value="#{servidorController.servidor.funcao.tipoFuncao.codigo}">
 						<f:selectItem itemLabel="SELECIONE" itemValue="" />
 						<f:selectItems value="#{servidorController.tipoFuncoes}" />
-					</h:selectOneMenu>
+					</h:selectOneMenu>--%>
 -->
 					<h:outputText value="Situação Funcional: " />
 					<h:selectOneMenu
@@ -242,7 +242,7 @@
 					</h:inputText>
 					<h:outputText value="RG: " />
 					<h:inputText value="#{servidorController.servidor.documento.rg}"
-						size="16" maxlength="11" required="false"
+						size="16" maxlength="13" required="false"
 						requiredMessage="Campo RG obrigatório!"></h:inputText>
 					<h:outputText value="UF do RG: " />
 					<h:selectOneMenu

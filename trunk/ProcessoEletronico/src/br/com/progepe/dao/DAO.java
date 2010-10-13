@@ -35,6 +35,28 @@ public class DAO implements BaseDAO {
 		}
 	}
 
+	public void saveOrUpdate(Object objeto) {
+		try {
+			HibernateUtility.beginTransaction();
+			HibernateUtility.getSession().saveOrUpdate(objeto);
+			HibernateUtility.commitTransaction();
+			HibernateUtility.closeSession();
+			FacesMessage message = new FacesMessage(
+					FacesMessage.SEVERITY_INFO, "Item salvo com sucesso!",
+					"Item salvo com sucesso!");
+			FacesContext.getCurrentInstance().addMessage("", message);
+		} catch (Exception e) {
+			HibernateUtility.rollbackTransaction();
+			HibernateUtility.closeSession();
+			FacesMessage message = new FacesMessage(
+					FacesMessage.SEVERITY_ERROR,
+					"Erro ao comunicar com o servidor!",
+					"Erro ao comunicar com o servidor!");
+			FacesContext.getCurrentInstance().addMessage("", message);
+		}
+	}
+
+	
 	public void update(Object objeto) {
 		try {
 			HibernateUtility.beginTransaction();
