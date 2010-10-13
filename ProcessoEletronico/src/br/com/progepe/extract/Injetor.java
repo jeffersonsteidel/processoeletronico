@@ -2,13 +2,19 @@ package br.com.progepe.extract;
 
 import br.com.progepe.dao.DAO;
 import br.com.progepe.entity.Banco;
+import br.com.progepe.entity.Cargo;
 import br.com.progepe.entity.Cidade;
 import br.com.progepe.entity.ContaBancaria;
+import br.com.progepe.entity.CorPele;
 import br.com.progepe.entity.Documento;
 import br.com.progepe.entity.Endereco;
 import br.com.progepe.entity.Estado;
 import br.com.progepe.entity.EstadoCivil;
+import br.com.progepe.entity.Grupo;
+import br.com.progepe.entity.GrupoSanguineo;
 import br.com.progepe.entity.Lotacao;
+import br.com.progepe.entity.Padrao;
+import br.com.progepe.entity.Pais;
 import br.com.progepe.entity.RegimeTrabalho;
 import br.com.progepe.entity.Servidor;
 import br.com.progepe.entity.SituacaoFuncional;
@@ -25,21 +31,34 @@ public class Injetor {
 				.getDadosFitaEspelhoList()) {
 
 			Servidor servidor = new Servidor();
+			servidor.setCargo(new Cargo());
+			servidor.setCidadeNascimento(new Cidade());
+			servidor.getCidadeNascimento().setEstado(new Estado());
 			servidor.setContaBancaria(new ContaBancaria());
 			servidor.getContaBancaria().setBanco(new Banco());
+			servidor.setCorPele(new CorPele());
 			servidor.setDocumento(new Documento());
+			servidor.getDocumento().setCarteiraUf(new Estado());
+			servidor.getDocumento().setRgUf(new Estado());
+			servidor.getDocumento().setTituloUf(new Estado());
 			servidor.setEndereco(new Endereco());
 			servidor.getEndereco().setCidade(new Cidade());
 			servidor.getEndereco().getCidade().setEstado(new Estado());
 			servidor.setEstadoCivil(new EstadoCivil());
+//			servidor.setFuncao(new Funcao());
+//			servidor.getFuncao().setTipoFuncao(new TipoFuncao());
+			servidor.setGrupo(new Grupo());
+			servidor.setGrupoSanguineo(new GrupoSanguineo());
 			servidor.setLotacao(new Lotacao());
-			servidor.getLotacao().setEndereco(new Endereco());
-			 servidor.getLotacao().getEndereco().setCidade(new Cidade());
-			 servidor.getLotacao().getEndereco().getCidade()
-			 .setEstado(new Estado());
 			servidor.setLocalExercicio(new Lotacao());
+			servidor.setEndereco(new Endereco());
+			servidor.getEndereco().setCidade(new Cidade());
+			servidor.getEndereco().getCidade().setEstado(new Estado());
+			servidor.setPadrao(new Padrao());
 			servidor.setRegimeTrabalho(new RegimeTrabalho());
 			servidor.setSituacaoFuncional(new SituacaoFuncional());
+			servidor.setPais(new Pais());
+		
 			servidor.setSiape(dadosFitaEspelho.getMatriculaSiape());
 			servidor.setNome(dadosFitaEspelho.getNomeServidor());
 			servidor.getDocumento().setCpf(
@@ -66,8 +85,14 @@ public class Injetor {
 			servidor.getEndereco().setCep(
 					Validator.formatarCep(dadosFitaEspelho.getCep()));
 			
+			servidor.getCidadeNascimento().setCodigo(5915L);
+				
 			servidor.getEndereco().getCidade().setCodigo(5915L);
 			servidor.getEndereco().getCidade().getEstado().setCodigo(18L);
+			
+			servidor.getDocumento().getCarteiraUf().setCodigo(18L);
+			servidor.getDocumento().getRgUf().setCodigo(18L);
+			servidor.getDocumento().getTituloUf().setCodigo(18L);
 			
 			 servidor.getDocumento().setRg(
 					dadosFitaEspelho.getNumeroRegistroGeral());
@@ -83,7 +108,7 @@ public class Injetor {
 			servidor.getDocumento().setCarteiraSerie(
 					dadosFitaEspelho.getSerieCarteiraDeTrabalho());
 			if (servidor.getSiape().equals(1216159)) {
-				servidor.getContaBancaria().setBanco(null);
+				servidor.getContaBancaria().getBanco().setCodigo(1L);
 			} else {
 				servidor.getContaBancaria().getBanco()
 						.setCodigo(new Long(dadosFitaEspelho.getCodigoBanco()));
@@ -107,9 +132,15 @@ public class Injetor {
 				servidor.getLotacao().setCodigo(codigoLotacao);
 				servidor.getLocalExercicio().setCodigo(codigoLotacao);
 			} else {
-				servidor.getLotacao().setCodigo(3L);
-				servidor.getLocalExercicio().setCodigo(3L);
+				servidor.getLotacao().setCodigo(12L);
+				servidor.getLocalExercicio().setCodigo(12L);
 			}
+			servidor.getPadrao().setCodigo(69L);
+			servidor.getGrupoSanguineo().setCodigo(7L);
+			servidor.getEstadoCivil().setCodigo(1L);
+			servidor.getCorPele().setCodigo(1L);
+			servidor.getCargo().setCodigo(1L);
+			servidor.getPais().setCodigo(24L);
 			try{
 			dao.saveFitaEspelho(servidor);
 			}catch (Exception e) {

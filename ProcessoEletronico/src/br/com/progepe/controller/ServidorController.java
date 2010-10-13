@@ -277,6 +277,7 @@ public class ServidorController {
 		servidor.setPadrao(new Padrao());
 		servidor.setRegimeTrabalho(new RegimeTrabalho());
 		servidor.setSituacaoFuncional(new SituacaoFuncional());
+		servidor.setPais(new Pais());
 
 		cargos = new ArrayList<SelectItem>();
 		classes = new ArrayList<SelectItem>();
@@ -534,7 +535,7 @@ public class ServidorController {
 		try {
 			servidor.setDataUltimaAlteracao(new Date());
 			servidor.setDadosValidados(false);
-			dao.save(servidor);
+			dao.saveOrUpdate(servidor);
 			servidor = new Servidor();
 		} catch (Exception e) {
 			e.printStackTrace();
