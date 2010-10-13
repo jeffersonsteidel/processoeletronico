@@ -25,8 +25,11 @@
 					
 				<!-- ### PESQUISAR SERVIDOR### -->	
 				<a4j:commandButton image="../images/pesquisarServidores.GIF"
-					action="#{servidorController.pesquisarServidores}" />	
+					action="#{servidorController.pesquisarServidores}" />
 					
+				<!-- ### ALTERAR SENHA### -->
+				<a4j:commandButton image="../images/bot_alterarsenha.gif"
+					action="#{autenticacaoController.alterarSenha}" /> 
 					
 			</rich:toolBar>			
 			<a4j:status>

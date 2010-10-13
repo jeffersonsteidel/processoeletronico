@@ -2,13 +2,17 @@ package br.com.progepe.controller;
 
 import java.io.IOException;
 import java.io.Serializable;
+import java.util.ArrayList;
 
 import javax.faces.context.FacesContext;
+import javax.faces.model.SelectItem;
 import javax.servlet.http.HttpSession;
 
 import br.com.progepe.dao.DAOAutenticacao;
 import br.com.progepe.entity.Autenticacao;
+import br.com.progepe.entity.Cargo;
 import br.com.progepe.entity.Documento;
+import br.com.progepe.entity.Lotacao;
 import br.com.progepe.entity.Servidor;
 
 public class AutenticacaoController implements Serializable {
@@ -31,6 +35,14 @@ public class AutenticacaoController implements Serializable {
 			autenticacao.setServidor(new Servidor());
 			autenticacao.getServidor().setDocumento(new Documento());
 		}
+	}
+	
+	public void alterarSenha() throws IOException {
+		
+		autenticacao = new Autenticacao();
+
+		FacesContext.getCurrentInstance().getExternalContext()
+				.redirect("alterarSenha.jsp");
 	}
 
 	public void login() throws Exception {
