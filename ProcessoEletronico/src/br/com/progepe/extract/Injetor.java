@@ -137,7 +137,7 @@ public class Injetor {
 			}
 			servidor.getPadrao().setCodigo(69L);
 			servidor.getGrupoSanguineo().setCodigo(7L);
-			servidor.getEstadoCivil().setCodigo(1L);
+			servidor.getEstadoCivil().setCodigo(new Long(dadosFitaEspelho.getEstadoCivil()));
 			servidor.getCorPele().setCodigo(1L);
 			servidor.getCargo().setCodigo(1L);
 			servidor.getPais().setCodigo(24L);
