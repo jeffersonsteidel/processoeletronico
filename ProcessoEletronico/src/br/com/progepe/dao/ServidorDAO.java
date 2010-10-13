@@ -13,6 +13,7 @@ public class ServidorDAO extends DAO{
 
 	@SuppressWarnings("unchecked")
 	public List<Servidor> listByFilter(Servidor servidor) {
+		HibernateUtility.getSession().clear();
 		HibernateUtility.beginTransaction();
 		
 		Criteria c = HibernateUtility.getSession().createCriteria(Servidor.class);

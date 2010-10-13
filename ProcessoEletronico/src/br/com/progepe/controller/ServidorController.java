@@ -607,6 +607,10 @@ public class ServidorController {
 			listarCidadesContato();
 		}
 
+		if((new Long(104)).equals(servidor.getContaBancaria().getBanco().getCodigo())){
+			indPoupanca = true;
+		}
+		
 		FacesContext.getCurrentInstance().getExternalContext()
 				.redirect("cadastrarServidor.jsp");
 	}
