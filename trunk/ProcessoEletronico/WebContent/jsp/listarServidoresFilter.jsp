@@ -44,7 +44,7 @@
 
 				<a4j:commandButton value="Pesquisar"
 					action="#{servidorController.listarServidoresFiltro}"
-					reRender="listaServidores" />
+					reRender="listaServidores" type="submit" />
 			</h:panelGrid>
 
 			<rich:messages layout="list">

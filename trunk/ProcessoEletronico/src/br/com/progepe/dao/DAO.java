@@ -16,6 +16,7 @@ public class DAO implements BaseDAO {
 
 	public void save(Object objeto) {
 		try {
+			HibernateUtility.getSession().clear();
 			HibernateUtility.beginTransaction();
 			HibernateUtility.getSession().save(objeto);
 			HibernateUtility.commitTransaction();
@@ -37,6 +38,7 @@ public class DAO implements BaseDAO {
 
 	public void saveOrUpdate(Object objeto) {
 		try {
+			HibernateUtility.getSession().clear();
 			HibernateUtility.beginTransaction();
 			HibernateUtility.getSession().saveOrUpdate(objeto);
 			HibernateUtility.commitTransaction();
@@ -59,6 +61,7 @@ public class DAO implements BaseDAO {
 	
 	public void update(Object objeto) {
 		try {
+			HibernateUtility.getSession().clear();
 			HibernateUtility.beginTransaction();
 			HibernateUtility.getSession().update(objeto);
 			HibernateUtility.commitTransaction();
@@ -80,6 +83,7 @@ public class DAO implements BaseDAO {
 
 	public void delete(Object objeto) {
 		try {
+			HibernateUtility.getSession().clear();
 			HibernateUtility.beginTransaction();
 			HibernateUtility.getSession().delete(objeto);
 			HibernateUtility.commitTransaction();
@@ -101,12 +105,14 @@ public class DAO implements BaseDAO {
 
 	@SuppressWarnings("rawtypes")
 	public List list(Class clazz, String ordenarPor) {
+		HibernateUtility.getSession().clear();
 		return HibernateUtility.getSession().createCriteria(clazz)
 				.addOrder(Order.asc(ordenarPor)).list();
 	}
 
 	@SuppressWarnings("rawtypes")
 	public List list(Class clazz, int firstResult, int maxResults) {
+		HibernateUtility.getSession().clear();
 		Criteria criteria = HibernateUtility.getSession().createCriteria(clazz);
 		criteria.setFirstResult(firstResult);
 		criteria.setMaxResults(maxResults);
@@ -115,6 +121,7 @@ public class DAO implements BaseDAO {
 
 	@SuppressWarnings("rawtypes")
 	public List listByExample(Object example) {
+		HibernateUtility.getSession().clear();
 		Criteria criteria = HibernateUtility.getSession().createCriteria(
 				example.getClass());
 		Example sample = Example.create(example);
@@ -127,10 +134,12 @@ public class DAO implements BaseDAO {
 	@SuppressWarnings("rawtypes")
 	public Object getById(Serializable id, Class clazz) {
 		HibernateUtility.beginTransaction();
+		HibernateUtility.getSession().clear();
 		return HibernateUtility.getSession().get(clazz, id);
 	}
 
 	public void saveFitaEspelho(Servidor servidor) throws Exception {
+		HibernateUtility.getSession().clear();
 		HibernateUtility.beginTransaction();
 		HibernateUtility.getSession().save(servidor);
 		if (servidor.getSiape().equals(7343463)) {
@@ -140,6 +149,7 @@ public class DAO implements BaseDAO {
 
 	@SuppressWarnings("rawtypes")
 	public List list(Class clazz) {
+		HibernateUtility.getSession().clear();
 		return HibernateUtility.getSession().createCriteria(clazz).list();
 	}
 
