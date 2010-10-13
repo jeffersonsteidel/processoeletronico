@@ -22,7 +22,7 @@
 
 		<mapping resource="Acao.hbm.xml" />
 		<mapping resource="AreaConhecimento.hbm.xml" />
-		<mapping resource="Autenticacao.hbm.xml" />
+		<!-- <mapping resource="Autenticacao.hbm.xml" /> -->
 		<mapping resource="Banco.hbm.xml" />
 		<mapping resource="Cargo.hbm.xml" />
 		<mapping resource="Cidade.hbm.xml" />
