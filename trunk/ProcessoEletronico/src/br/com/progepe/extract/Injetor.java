@@ -121,11 +121,11 @@ public class Injetor {
 					.getDataEntradaOcupacaoCargo()));
 			servidor.setDataAdmServicoPublico(Validator.formatarDataBR(dadosFitaEspelho
 					.getDataIngressoServPublico()));
-			if(dadosFitaEspelho
-					.getDataSaidaCargo().equals("00000000")){
-				servidor.setDataSaida(Validator.formatarDataBR(dadosFitaEspelho
-					.getDataSaidaCargo()));
-			}
+//			if(dadosFitaEspelho
+//					.getDataSaidaCargo().equals("00000000")){
+//				servidor.setDataSaida(Validator.formatarDataBR(dadosFitaEspelho
+//					.getDataSaidaCargo()));
+//			}
 			Long codigoLotacao = new Long(
 					dadosFitaEspelho.getCodigoUnidadeOrganizacionalLotacao());
 			if (codigoLotacao != null && codigoLotacao != 0) {

@@ -461,8 +461,9 @@ public class ServidorController {
 	}
 
 	public void carregarClasse() {
-		servidor.getCargo().setClasse(new Classe());
 		Cargo cargo = servidor.getCargo();
+		servidor.setCargo(new Cargo());
+		servidor.getCargo().setClasse(new Classe());
 		dao.refresh(cargo);
 		servidor.setCargo(cargo);
 	}
@@ -616,6 +617,7 @@ public class ServidorController {
 		servidor.setCargo(new Cargo());
 		cargos = new ArrayList<SelectItem>();
 		lotacoes = new ArrayList<SelectItem>();
+		servidoresList = new ArrayList<Servidor>();
 
 		listarLotacoes();
 		listarCargos();
