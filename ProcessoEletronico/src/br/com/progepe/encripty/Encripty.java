@@ -4,7 +4,7 @@ import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
-public abstract class Enclipty {
+public abstract class Encripty {
 
 	public static String criptografaSenha(String senha)
 			throws NoSuchAlgorithmException {

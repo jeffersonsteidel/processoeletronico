@@ -7,6 +7,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Instituto Federal do Paraná</title>
+<link rel="StyleSheet" type="text/css" href="../css/messages-style.css"
+	media="screen" />
 </head>
 <body>
 <f:view>
@@ -17,38 +19,51 @@
 				<h:graphicImage value="../images/ajax-loader.gif" />
 			</f:facet>
 		</a4j:status>
-		<center>
-		<rich:panel header="Alterar Senha"
-			style="width: 350px; top: auto;">
+		<center><rich:panel header="Alterar Senha"
+			style="width: 450px; top: auto;">
+			<rich:messages layout="list" errorLabelClass="errorLabel"
+				style="top:auto;" infoLabelClass="infoLabel">
+				<f:facet name="infoMarker">
+					<h:graphicImage value="../images/passed.gif" />
+				</f:facet>
+				<f:facet name="errorMarker">
+					<h:graphicImage value="../images/error.gif" />
+				</f:facet>
+			</rich:messages>
+
 			<h:panelGrid columns="2">
 
-				<h:outputText value="Senha atual: ">
+
+				<h:outputText value="Senha Atual: ">
 				</h:outputText>
-				<h:inputSecret value="#" size="12" maxlength="6">
+				<h:inputSecret required="true"
+					requiredMessage="Campo 'Senha Atual' é obrigatório!"
+					value="#{autenticacaoController.autenticacao.senha}" size="12"
+					maxlength="6">
 				</h:inputSecret>
 
 				<h:outputText value="Nova Senha: ">
 				</h:outputText>
-				<h:inputSecret value="#" size="12" maxlength="6">
+				<h:inputSecret required="true"
+					requiredMessage="Campo 'Nova Senha' é obrigatório!"
+					value="#{autenticacaoController.novaSenha }" size="12"
+					maxlength="6">
 				</h:inputSecret>
 
 				<h:outputText value="Confirmação Nova Senha: ">
 				</h:outputText>
-				<h:inputSecret value="#" size="12" maxlength="6">
+				<h:inputSecret required="true"
+					requiredMessage="Campo 'Confirmação Nova Senha' é obrigatório!"
+					value="#{autenticacaoController.confirmarSenha}" size="12"
+					maxlength="6">
 				</h:inputSecret>
 
 
 			</h:panelGrid>
 
-			<a4j:commandButton value="Enviar" action="#" />
-
-			<rich:messages layout="list">
-				<f:facet name="errorMarker">
-					<h:graphicImage value="../images/error.gif" />
-				</f:facet>
-			</rich:messages>
-		</rich:panel>
-		</center>
+			<a4j:commandButton value="Enviar"
+				action="#{autenticacaoController.verificarSenha}" />
+		</rich:panel></center>
 	</a4j:form>
 </f:view>
 </body>

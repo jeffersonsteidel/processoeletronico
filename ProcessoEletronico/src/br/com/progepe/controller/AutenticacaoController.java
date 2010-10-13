@@ -2,11 +2,14 @@ package br.com.progepe.controller;
 
 import java.io.IOException;
 import java.io.Serializable;
+import java.security.NoSuchAlgorithmException;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
 
 import br.com.progepe.dao.DAOAutenticacao;
+import br.com.progepe.encripty.Encripty;
 import br.com.progepe.entity.Autenticacao;
 
 public class AutenticacaoController implements Serializable {
@@ -44,25 +47,39 @@ public class AutenticacaoController implements Serializable {
 
 		if (this.autenticacao == null) {
 			this.autenticacao = new Autenticacao();
-//			autenticacao.setServidor(new Servidor());
-//			autenticacao.getServidor().setDocumento(new Documento());
+			// autenticacao.setServidor(new Servidor());
+			// autenticacao.getServidor().setDocumento(new Documento());
 		}
 	}
-	
+
 	public void alterarSenha() throws IOException {
 		autenticacao = new Autenticacao();
 		FacesContext.getCurrentInstance().getExternalContext()
 				.redirect("alterarSenha.jsp");
 	}
 
-	
+	public void verificarSenha() throws NoSuchAlgorithmException {
+
+		if (novaSenha.equals(confirmarSenha)) {
+			Encripty.criptografaSenha(novaSenha);
+		}
+
+		else {			
+			FacesMessage message = new FacesMessage(
+					FacesMessage.SEVERITY_ERROR,
+					"Os campos 'Nova Senha' e 'Confirmação nova senha' devem ser iguais!",
+					"Os campos 'Nova Senha' e 'Confirmação nova senha' devem ser iguais!");
+			FacesContext.getCurrentInstance().addMessage("", message);
+		}
+	}
+
 	public void login() throws Exception {
 		boolean logado = false;
 		HttpSession session = (HttpSession) FacesContext.getCurrentInstance()
 				.getExternalContext().getSession(false);
 		DAOAutenticacao daoAutenticacao = new DAOAutenticacao();
-//		logado = daoAutenticacao.autentica(this.autenticacao,
-//				this.autenticacao.getSenha());
+		// logado = daoAutenticacao.autentica(this.autenticacao,
+		// this.autenticacao.getSenha());
 
 		if (logado) {
 			session.setAttribute("user", logado);
