@@ -47,11 +47,32 @@ public class AutenticacaoController implements Serializable {
 
 		if (this.autenticacao == null) {
 			this.autenticacao = new Autenticacao();
-			// autenticacao.setServidor(new Servidor());
-			// autenticacao.getServidor().setDocumento(new Documento());
 		}
 	}
 
+	public void login() throws Exception {
+		Autenticacao siapeAutenticado;
+		HttpSession session = (HttpSession) FacesContext.getCurrentInstance()
+				.getExternalContext().getSession(false);
+		DAOAutenticacao daoAutenticacao = new DAOAutenticacao();
+		siapeAutenticado = daoAutenticacao.autentica(autenticacao);
+
+		if (siapeAutenticado.getSiape() != null && siapeAutenticado.getSiape() != 0) {
+			session.setAttribute("user", siapeAutenticado);
+			FacesContext.getCurrentInstance().getExternalContext()
+					.redirect("menus.jsp");
+		} else {
+			session.setAttribute("user", null);
+			session.removeAttribute("user");
+			FacesMessage message = new FacesMessage(
+					FacesMessage.SEVERITY_ERROR,
+					"Siape ou Senha inválida!",
+					"Siape ou Senha inválida!");
+			FacesContext.getCurrentInstance().addMessage("", message);
+		}
+	}
+
+	
 	public void alterarSenha() throws IOException {
 		autenticacao = new Autenticacao();
 		FacesContext.getCurrentInstance().getExternalContext()
@@ -73,25 +94,6 @@ public class AutenticacaoController implements Serializable {
 		}
 	}
 
-	public void login() throws Exception {
-		boolean logado = false;
-		HttpSession session = (HttpSession) FacesContext.getCurrentInstance()
-				.getExternalContext().getSession(false);
-		DAOAutenticacao daoAutenticacao = new DAOAutenticacao();
-		// logado = daoAutenticacao.autentica(this.autenticacao,
-		// this.autenticacao.getSenha());
-
-		if (logado) {
-			session.setAttribute("user", logado);
-			FacesContext.getCurrentInstance().getExternalContext()
-					.redirect("menus.jsp");
-		} else {
-			session.setAttribute("user", null);
-			session.removeAttribute("user");
-			FacesContext.getCurrentInstance().getExternalContext()
-					.redirect("login.jsp");
-		}
-	}
 
 	public void logout() {
 		FacesContext facesContext = FacesContext.getCurrentInstance();
