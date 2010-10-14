@@ -32,8 +32,7 @@ public class Injetor {
 
 			Servidor servidor = new Servidor();
 			servidor.setCargo(new Cargo());
-			servidor.setCidadeNascimento(new Cidade());
-			servidor.getCidadeNascimento().setEstado(new Estado());
+			servidor.setEstadoNascimento(new Estado());
 			servidor.setContaBancaria(new ContaBancaria());
 			servidor.getContaBancaria().setBanco(new Banco());
 			servidor.setCorPele(new CorPele());
@@ -85,7 +84,7 @@ public class Injetor {
 			servidor.getEndereco().setCep(
 					Validator.formatarCep(dadosFitaEspelho.getCep()));
 			
-			servidor.getCidadeNascimento().setCodigo(5915L);
+			servidor.setCidadeNascimento(5915L);
 				
 			servidor.getEndereco().getCidade().setCodigo(5915L);
 			servidor.getEndereco().getCidade().getEstado().setCodigo(18L);

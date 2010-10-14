@@ -39,8 +39,9 @@
 			column="CONT_BAN_COD" unique="true" cascade="all" />
 		<many-to-one name="grupoSanguineo" class="br.com.progepe.entity.GrupoSanguineo"
 			column="GRUPO_SANG_COD" />
-		<many-to-one name="cidadeNascimento" class="br.com.progepe.entity.Cidade"
-			column="CID_COD_NASC_SERV" lazy="false" />
+		<property name="cidadeNascimento" column="CID_COD_NASC_SERV" />
+		<!--<many-to-one name="cidadeNascimento" class="br.com.progepe.entity.Cidade"
+			column="CID_COD_NASC_SERV" lazy="false" />-->
 		<many-to-one name="estadoCivil" class="br.com.progepe.entity.EstadoCivil"
 			column="EST_CIV_COD" lazy="false" />
 		<many-to-one name="corPele" class="br.com.progepe.entity.CorPele"

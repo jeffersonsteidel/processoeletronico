@@ -53,7 +53,7 @@
 						size="40" maxlength="100"></h:inputText>
 					<h:outputText value="Estado de Nascimento: " />
 					<h:selectOneMenu
-						value="#{servidorController.servidor.cidadeNascimento.estado.codigo}"
+						value="#{servidorController.servidor.estadoNascimento.codigo}"
 						required="false"
 						requiredMessage="Campo Estado de Nascimento é obrigatório!">
 						<f:selectItem itemLabel="SELECIONE" itemValue="" />
@@ -64,7 +64,7 @@
 					</h:selectOneMenu>
 					<h:outputText value="Cidade de Nascimento: " />
 					<h:selectOneMenu id="cidadeNascimentoServidor"
-						value="#{servidorController.servidor.cidadeNascimento.codigo}"
+						value="#{servidorController.servidor.cidadeNascimento}"
 						required="false"
 						requiredMessage="Campo Cidade de Nascimento é obrigatório!">
 						<f:selectItem itemLabel="SELECIONE" itemValue="" />
