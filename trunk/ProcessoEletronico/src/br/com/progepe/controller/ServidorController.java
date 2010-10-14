@@ -270,7 +270,7 @@ public class ServidorController {
 		servidor.setGrupo(new Grupo());
 		servidor.setGrupoSanguineo(new GrupoSanguineo());
 		servidor.setLotacao(new Lotacao());
-		servidor.setLocalExercicio(new Lotacao());
+//		servidor.setLocalExercicio(new Lotacao());
 		servidor.setEndereco(new Endereco());
 		servidor.getEndereco().setCidade(new Cidade());
 		servidor.getEndereco().getCidade().setEstado(new Estado());

@@ -15,7 +15,7 @@ public class Servidor implements Serializable {
 	private Cargo cargo;
 	private Date dataAdmissao;
 	private Lotacao lotacao;
-	private Lotacao localExercicio;
+	//private Lotacao localExercicio;
 	private Integer ramal;
 	private Documento documento;
 	private Padrao padrao;
@@ -269,13 +269,13 @@ public class Servidor implements Serializable {
 		this.identificacaoUnica = identificacaoUnica;
 	}
 
-	public Lotacao getLocalExercicio() {
-		return localExercicio;
-	}
-
-	public void setLocalExercicio(Lotacao localExercicio) {
-		this.localExercicio = localExercicio;
-	}
+//	public Lotacao getLocalExercicio() {
+//		return localExercicio;
+//	}
+//
+//	public void setLocalExercicio(Lotacao localExercicio) {
+//		this.localExercicio = localExercicio;
+//	}
 
 	public Date getDataAdmServicoPublico() {
 		return dataAdmServicoPublico;

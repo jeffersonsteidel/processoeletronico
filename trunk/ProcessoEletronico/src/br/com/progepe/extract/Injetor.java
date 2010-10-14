@@ -38,9 +38,9 @@ public class Injetor {
 			servidor.getContaBancaria().setBanco(new Banco());
 			servidor.setCorPele(new CorPele());
 			servidor.setDocumento(new Documento());
-			servidor.getDocumento().setCarteiraUf(new Estado());
-			servidor.getDocumento().setRgUf(new Estado());
-			servidor.getDocumento().setTituloUf(new Estado());
+//			servidor.getDocumento().setCarteiraUf(new Estado());
+//			servidor.getDocumento().setRgUf(new Estado());
+//			servidor.getDocumento().setTituloUf(new Estado());
 			servidor.setEndereco(new Endereco());
 			servidor.getEndereco().setCidade(new Cidade());
 			servidor.getEndereco().getCidade().setEstado(new Estado());
@@ -90,9 +90,9 @@ public class Injetor {
 			servidor.getEndereco().getCidade().setCodigo(5915L);
 			servidor.getEndereco().getCidade().getEstado().setCodigo(18L);
 			
-			servidor.getDocumento().getCarteiraUf().setCodigo(18L);
-			servidor.getDocumento().getRgUf().setCodigo(18L);
-			servidor.getDocumento().getTituloUf().setCodigo(18L);
+//			servidor.getDocumento().getCarteiraUf().setCodigo(18L);
+//			servidor.getDocumento().getRgUf().setCodigo(18L);
+//			servidor.getDocumento().getTituloUf().setCodigo(18L);
 			
 			 servidor.getDocumento().setRg(
 					dadosFitaEspelho.getNumeroRegistroGeral());
