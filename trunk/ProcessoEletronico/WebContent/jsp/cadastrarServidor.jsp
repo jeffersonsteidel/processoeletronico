@@ -52,9 +52,10 @@
 					<h:inputText value="#{servidorController.servidor.nomePai}"
 						size="40" maxlength="100"></h:inputText>
 					<h:outputText value="Estado de Nascimento: " />
-					<h:selectOneMenu
+					<h:selectOneMenu id="estadoNascimentoServidor"
 						value="#{servidorController.servidor.estadoNascimento.codigo}"
 						required="false"
+						disabled="#{!servidorController.servidorBrasileiro}"
 						requiredMessage="Campo Estado de Nascimento é obrigatório!">
 						<f:selectItem itemLabel="SELECIONE" itemValue="" />
 						<f:selectItems value="#{servidorController.estados}" />
@@ -66,6 +67,7 @@
 					<h:selectOneMenu id="cidadeNascimentoServidor"
 						value="#{servidorController.servidor.cidadeNascimento}"
 						required="false"
+						disabled="#{!servidorController.servidorBrasileiro}"
 						requiredMessage="Campo Cidade de Nascimento é obrigatório!">
 						<f:selectItem itemLabel="SELECIONE" itemValue="" />
 						<f:selectItems value="#{servidorController.cidadesNascimento}" />
@@ -92,7 +94,7 @@
 						value="#{servidorController.servidor.indEstrangeiro}">
 						<a4j:support event="onchange"
 							action="#{servidorController.isEstrangeiro}" ajaxSingle="true"
-							reRender="data, dataCampo, pais, paisCampo"></a4j:support>
+							reRender="data, dataCampo, pais, paisCampo, estadoNascimentoServidor, cidadeNascimentoServidor"></a4j:support>
 					</h:selectBooleanCheckbox>
 
 					<h:outputText id="data" value="Data de Chegada no País: " />
@@ -103,7 +105,9 @@
 						inputSize="12" requiredMessage="Data de Chegada no País!" />
 
 					<h:outputText id="pais" value="País de Orgiem: " />
-					<h:selectOneMenu id="paisCampo" value="" required="false"
+					<h:selectOneMenu id="paisCampo"
+						value="#{servidorController.servidor.pais.codigo}"
+						required="false"
 						disabled="#{!servidorController.servidorEstrangeiro}"
 						requiredMessage="Campo País de Origem é obrigatório!">
 						<f:selectItem itemLabel="SELECIONE" itemValue="" />

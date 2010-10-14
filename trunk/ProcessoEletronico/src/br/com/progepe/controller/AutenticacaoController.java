@@ -19,7 +19,7 @@ public class AutenticacaoController implements Serializable {
 	private String novaSenha;
 	private String confirmarSenha;
 	private Autenticacao siapeAutenticado;
-	DAOAutenticacao daoAutenticacao; 
+	DAOAutenticacao daoAutenticacao;
 
 	public Autenticacao getAutenticacao() {
 		return autenticacao;
@@ -75,8 +75,7 @@ public class AutenticacaoController implements Serializable {
 			session.setAttribute("usuarioLogado", null);
 			session.removeAttribute("user");
 			FacesMessage message = new FacesMessage(
-					FacesMessage.SEVERITY_ERROR,
-					"Siape ou Senha inválida!",
+					FacesMessage.SEVERITY_ERROR, "Siape ou Senha inválida!",
 					"Siape ou Senha inválida!");
 			FacesContext.getCurrentInstance().addMessage("", message);
 		}
@@ -89,27 +88,33 @@ public class AutenticacaoController implements Serializable {
 	}
 
 	public void verificarSenha() throws NoSuchAlgorithmException {
-        siapeAutenticado = (Autenticacao) FacesContext.getCurrentInstance()
-                        .getExternalContext().getSessionMap().get("usuarioLogado");
-        String senhaAtual = Encripty.criptografaSenha(autenticacao.getSenha());
-        if (!siapeAutenticado.getSenha().equals(senhaAtual)) {
-                FacesMessage message = new FacesMessage(
-                                FacesMessage.SEVERITY_ERROR, "Senha Atual incorreta!",
-                                "Senha Atual incorreta!");
-                FacesContext.getCurrentInstance().addMessage("", message);
-        } else if (!this.getNovaSenha().equals(this.getConfirmarSenha())) {
-                FacesMessage message = new FacesMessage(
-                                FacesMessage.SEVERITY_ERROR,
-                                "Confirmar Nova Senha diferente!",
-                                "Confirmar Nova Senha diferente!");
-                FacesContext.getCurrentInstance().addMessage("", message);
-        } else {
-                String novaSenha = Encripty.criptografaSenha(this.getNovaSenha());
-                siapeAutenticado.setSenha(novaSenha);
-                daoAutenticacao.saveOrUpdate(siapeAutenticado);
-        }
-}
+		siapeAutenticado = (Autenticacao) FacesContext.getCurrentInstance()
+				.getExternalContext().getSessionMap().get("usuarioLogado");
+		String senhaAtual = Encripty.criptografaSenha(autenticacao.getSenha());
+		if (!siapeAutenticado.getSenha().equals(senhaAtual)) {
+			FacesMessage message = new FacesMessage(
+					FacesMessage.SEVERITY_ERROR, "Senha Atual incorreta!",
+					"Senha Atual incorreta!");
+			FacesContext.getCurrentInstance().addMessage("", message);
+		} else if (!this.getNovaSenha().equals(this.getConfirmarSenha())) {
+			FacesMessage message = new FacesMessage(
+					FacesMessage.SEVERITY_ERROR,
+					"Confirmar Nova Senha diferente!",
+					"Confirmar Nova Senha diferente!");
+			FacesContext.getCurrentInstance().addMessage("", message);
+		} else {
+			String novaSenha = Encripty.criptografaSenha(this.getNovaSenha());
+			siapeAutenticado.setSenha(novaSenha);
+			daoAutenticacao.saveOrUpdate(siapeAutenticado);
+		}
+	}
 
+	public void isAutenticado() throws IOException {
+		if (siapeAutenticado == null) {
+			FacesContext.getCurrentInstance().getExternalContext()
+					.redirect("login.jsp");
+		}
+	}
 
 	public void logout() {
 		FacesContext facesContext = FacesContext.getCurrentInstance();
