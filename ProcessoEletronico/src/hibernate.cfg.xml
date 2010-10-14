@@ -20,34 +20,35 @@
 		<property name="hibernate.use_sql_comments">true</property>
 
 
+		<!--
 		<mapping resource="AreaConhecimento.hbm.xml" />
-		<!-- <mapping resource="Autenticacao.hbm.xml" /> -->
+		<mapping resource="Conjuge.hbm.xml" />
+		<mapping resource="Dependente.hbm.xml" />
+		<mapping resource="Emprego.hbm.xml" />
+		<mapping resource="Funcao.hbm.xml" />
+		<mapping resource="GrauParentesco.hbm.xml" />
+		<mapping resource="Progressao.hbm.xml" />
+		<mapping resource="ServidorTitulacao.hbm.xml" />
+		<mapping resource="TipoFuncao.hbm.xml" />
+		<mapping resource="Titulacao.hbm.xml" />
+		-->
+		<mapping resource="Autenticacao.hbm.xml" /> 
 		<mapping resource="Banco.hbm.xml" />
 		<mapping resource="Cargo.hbm.xml" />
 		<mapping resource="Cidade.hbm.xml" />
 		<mapping resource="Classe.hbm.xml" />
-		<mapping resource="Conjuge.hbm.xml" />
 		<mapping resource="ContaBancaria.hbm.xml" />
 		<mapping resource="CorPele.hbm.xml" />
-		<mapping resource="Dependente.hbm.xml" />
 		<mapping resource="Documento.hbm.xml" />
 		<mapping resource="Endereco.hbm.xml" />
-		<mapping resource="Emprego.hbm.xml" />
 		<mapping resource="Estado.hbm.xml" />
 		<mapping resource="EstadoCivil.hbm.xml" />
-		<mapping resource="Funcao.hbm.xml" />
-		<mapping resource="GrauParentesco.hbm.xml" />
 		<mapping resource="GrupoSanguineo.hbm.xml" />
-		<mapping resource="Imigrante.hbm.xml" />
 		<mapping resource="Lotacao.hbm.xml" />
 		<mapping resource="Padrao.hbm.xml" />
 		<mapping resource="Pais.hbm.xml" />
-		<mapping resource="Progressao.hbm.xml" />
 		<mapping resource="RegimeTrabalho.hbm.xml" />
 		<mapping resource="Servidor.hbm.xml" />
-		<mapping resource="ServidorTitulacao.hbm.xml" />
 		<mapping resource="SituacaoFuncional.hbm.xml" />
-		<mapping resource="TipoFuncao.hbm.xml" />
-		<mapping resource="Titulacao.hbm.xml" />
 	</session-factory>
 </hibernate-configuration>

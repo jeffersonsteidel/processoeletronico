@@ -4,9 +4,9 @@
     "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
 	<class name="br.com.progepe.entity.Autenticacao" table="AUTENTICACAO">
-		<id name="servidor" column="SERV_COD">
+		<id name="siape" column="AUT_SIAPE">
 		</id>
 		<property name="senha" column="AUT_SENHA" />	
-		<property name="indAdministrador" column="AUT_IND_ADMINITRADOR" type="boolean"/>	
+		<property name="indAdministrador" column="AUT_IND_ADMINISTRADOR" type="boolean"/>	
 	</class>
 </hibernate-mapping>

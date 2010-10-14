@@ -26,9 +26,9 @@
 				</f:facet>
 			</rich:messages>
 			<h:panelGrid columns="2">
-				<h:outputText value="CPF: " />
+				<h:outputText value="SIAPE: " />
 				<h:inputText
-					value=""
+					value="#{autenticacaoController.autenticacao.siape}"
 					size="25" maxlength="20" required="true"
 					requiredMessage="Campo CPF obrigatório!"></h:inputText>
 				<h:outputText value="Senha: " />
