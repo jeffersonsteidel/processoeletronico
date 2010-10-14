@@ -97,12 +97,14 @@
 							reRender="data, dataCampo, pais, paisCampo, estadoNascimentoServidor, cidadeNascimentoServidor"></a4j:support>
 					</h:selectBooleanCheckbox>
 
+					<%-- 
 					<h:outputText id="data" value="Data de Chegada no País: " />
 					<rich:calendar id="dataCampo" value="" locale="" popup="true"
 						disabled="#{!servidorController.servidorEstrangeiro}"
 						datePattern="dd/MM/yyyy" showApplyButton="#" cellWidth="12px"
 						cellHeight="12px" style="width:80px" required="false"
 						inputSize="12" requiredMessage="Data de Chegada no País!" />
+--%>
 
 					<h:outputText id="pais" value="País de Orgiem: " />
 					<h:selectOneMenu id="paisCampo"
