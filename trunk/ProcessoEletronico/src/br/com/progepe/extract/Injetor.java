@@ -50,7 +50,7 @@ public class Injetor {
 			servidor.setGrupo(new Grupo());
 			servidor.setGrupoSanguineo(new GrupoSanguineo());
 			servidor.setLotacao(new Lotacao());
-			servidor.setLocalExercicio(new Lotacao());
+//			servidor.setLocalExercicio(new Lotacao());
 			servidor.setEndereco(new Endereco());
 			servidor.getEndereco().setCidade(new Cidade());
 			servidor.getEndereco().getCidade().setEstado(new Estado());
@@ -130,10 +130,10 @@ public class Injetor {
 					dadosFitaEspelho.getCodigoUnidadeOrganizacionalLotacao());
 			if (codigoLotacao != null && codigoLotacao != 0) {
 				servidor.getLotacao().setCodigo(codigoLotacao);
-				servidor.getLocalExercicio().setCodigo(codigoLotacao);
+//				servidor.getLocalExercicio().setCodigo(codigoLotacao);
 			} else {
 				servidor.getLotacao().setCodigo(12L);
-				servidor.getLocalExercicio().setCodigo(12L);
+//				servidor.getLocalExercicio().setCodigo(12L);
 			}
 			servidor.getPadrao().setCodigo(69L);
 			servidor.getGrupoSanguineo().setCodigo(7L);
