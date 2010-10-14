@@ -15,6 +15,7 @@ public class Servidor implements Serializable {
 	private Cargo cargo;
 	private Date dataAdmissao;
 	private Lotacao lotacao;
+	private Estado estadoNascimento;
 	//private Lotacao localExercicio;
 	private Integer ramal;
 	private Documento documento;
@@ -26,7 +27,7 @@ public class Servidor implements Serializable {
 	private GrupoSanguineo grupoSanguineo;
 	private String nomePai;
 	private String nomeMae;
-	private Cidade cidadeNascimento;
+	private Long cidadeNascimento;
 	private EstadoCivil estadoCivil;
 	private CorPele corPele;
 	private Date dataSaida;
@@ -173,11 +174,11 @@ public class Servidor implements Serializable {
 		this.nomeMae = nomeMae;
 	}
 
-	public Cidade getCidadeNascimento() {
+	public Long getCidadeNascimento() {
 		return cidadeNascimento;
 	}
 
-	public void setCidadeNascimento(Cidade cidadeNascimento) {
+	public void setCidadeNascimento(Long cidadeNascimento) {
 		this.cidadeNascimento = cidadeNascimento;
 	}
 
@@ -316,4 +317,13 @@ public class Servidor implements Serializable {
 	public void setDadosValidados(Boolean dadosValidados) {
 		this.dadosValidados = dadosValidados;
 	}
+
+	public Estado getEstadoNascimento() {
+		return estadoNascimento;
+	}
+
+	public void setEstadoNascimento(Estado estadoNascimento) {
+		this.estadoNascimento = estadoNascimento;
+	}
+	
 }

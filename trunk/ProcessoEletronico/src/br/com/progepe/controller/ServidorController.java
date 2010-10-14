@@ -252,8 +252,7 @@ public class ServidorController {
 		servidor = new Servidor();
 		servidor.setCargo(new Cargo());
 		servidor.getCargo().setClasse(new Classe());
-		servidor.setCidadeNascimento(new Cidade());
-		servidor.getCidadeNascimento().setEstado(new Estado());
+		servidor.setEstadoNascimento(new Estado());
 		servidor.setContaBancaria(new ContaBancaria());
 		servidor.getContaBancaria().setBanco(new Banco());
 		servidor.setCorPele(new CorPele());
@@ -343,8 +342,7 @@ public class ServidorController {
 		CidadeDAO cidadeDAO = new CidadeDAO();
 		cidadesNascimento = new ArrayList<SelectItem>();
 		List<Cidade> cidadeList = new ArrayList<Cidade>();
-		cidadeList = cidadeDAO.listByEstado(servidor.getCidadeNascimento()
-				.getEstado());
+		cidadeList = cidadeDAO.listByEstado(servidor.getEstadoNascimento());
 		for (Cidade cidade : cidadeList) {
 			cidadesNascimento.add(new SelectItem(cidade.getCodigo(), cidade
 					.getDescricao()));
@@ -598,8 +596,13 @@ public class ServidorController {
 
 		dao.refresh(servidor);
 
-		if (servidor.getCidadeNascimento() != null
-				&& servidor.getCidadeNascimento().getEstado().getCodigo() != 0) {
+		if (servidor.getCidadeNascimento() != null) {
+			Cidade cidade = new Cidade();
+			servidor.setEstadoNascimento(new Estado());
+			cidade.setCodigo(servidor.getCidadeNascimento());
+			dao.refresh(cidade);
+			servidor.setEstadoNascimento(cidade.getEstado());
+			servidor.setCidadeNascimento(cidade.getCodigo());
 			listarCidadesNascimentoServidor();
 		}
 		if (servidor.getEndereco() != null
@@ -626,8 +629,13 @@ public class ServidorController {
 		listarLotacoes();
 		listarCargos();
 
-		if (servidor.getCidadeNascimento() != null
-				&& servidor.getCidadeNascimento().getEstado().getCodigo() != 0) {
+		if (servidor.getCidadeNascimento() != null) {
+			Cidade cidade = new Cidade();
+			servidor.setEstadoNascimento(new Estado());
+			cidade.setCodigo(servidor.getCidadeNascimento());
+			dao.refresh(cidade);
+			servidor.setEstadoNascimento(cidade.getEstado());
+			servidor.setCidadeNascimento(cidade.getCodigo());
 			listarCidadesNascimentoServidor();
 		}
 		if (servidor.getEndereco() != null
