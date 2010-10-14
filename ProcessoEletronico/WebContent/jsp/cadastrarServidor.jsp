@@ -87,7 +87,6 @@
 						<f:selectItems value="#{servidorController.coresPeles}" />
 					</h:selectOneMenu>
 
-
 					<h:outputText value="Estrangeiro: " />
 					<h:selectBooleanCheckbox
 						value="#{servidorController.servidor.indEstrangeiro}">
@@ -149,7 +148,7 @@
 						<f:selectItem itemLabel="SELECIONE" itemValue="" />
 						<f:selectItems value="#{servidorController.lotacoes}" />
 					</h:selectOneMenu>
-
+<%--
 					<h:outputText value="Local de Exercício: " />
 					<h:selectOneMenu
 						value="#{servidorController.servidor.localExercicio.codigo}"
@@ -158,6 +157,7 @@
 						<f:selectItem itemLabel="SELECIONE" itemValue="" />
 						<f:selectItems value="#{servidorController.lotacoes}" />
 					</h:selectOneMenu>
+ --%>					
 
 					<h:outputText value="Ramal: " />
 					<h:inputText value="#{servidorController.servidor.ramal}" size="8"
