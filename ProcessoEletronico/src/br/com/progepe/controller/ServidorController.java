@@ -61,6 +61,7 @@ public class ServidorController {
 	DAO dao = new DAO();
 
 	private Boolean servidorEstrangeiro = false;
+	private Boolean servidorBrasileiro = true;
 	private Boolean indPoupanca = false;
 
 	public Servidor getPessoa() {
@@ -245,6 +246,14 @@ public class ServidorController {
 
 	public void setServidoresList(List<Servidor> servidoresList) {
 		this.servidoresList = servidoresList;
+	}
+
+	public Boolean getServidorBrasileiro() {
+		return servidorBrasileiro;
+	}
+
+	public void setServidorBrasileiro(Boolean servidorBrasileiro) {
+		this.servidorBrasileiro = servidorBrasileiro;
 	}
 
 	public void cadastrar() throws IOException {
@@ -514,8 +523,12 @@ public class ServidorController {
 		if (servidor.getIndEstrangeiro()) {
 			servidorEstrangeiro = true;
 			listarPais();
+			servidor.setCidadeNascimento(null);
+			servidor.setEstadoNascimento(null);
+			servidorBrasileiro = false;
 		} else {
 			servidorEstrangeiro = false;
+			servidorBrasileiro = true;
 		}
 	}
 
@@ -612,6 +625,15 @@ public class ServidorController {
 			indPoupanca = true;
 		}else{
 			indPoupanca = false;
+		}
+		
+		if(servidor.getIndEstrangeiro()){
+			listarPais();
+			servidorEstrangeiro = Boolean.TRUE;
+			servidorBrasileiro = Boolean.FALSE;
+		}else{
+			servidorEstrangeiro = Boolean.FALSE;
+			servidorBrasileiro = Boolean.TRUE;
 		}
 		
 		FacesContext.getCurrentInstance().getExternalContext()

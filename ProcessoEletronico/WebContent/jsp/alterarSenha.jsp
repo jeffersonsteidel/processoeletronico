@@ -14,11 +14,6 @@
 <f:view>
 	<a4j:loadScript src="../js/script.js" />
 	<a4j:form id="form">
-		<a4j:status>
-			<f:facet name="start">
-				<h:graphicImage value="../images/ajax-loader.gif" />
-			</f:facet>
-		</a4j:status>
 		<center><rich:panel header="Alterar Senha"
 			style="width: 450px; top: auto;">
 			<rich:messages layout="list" errorLabelClass="errorLabel"
@@ -32,35 +27,28 @@
 			</rich:messages>
 
 			<h:panelGrid columns="2">
-
-
 				<h:outputText value="Senha Atual: ">
 				</h:outputText>
 				<h:inputSecret required="true"
-					requiredMessage="Campo 'Senha Atual' é obrigatório!"
+					requiredMessage="Campo Senha Atual é obrigatório!"
 					value="#{autenticacaoController.autenticacao.senha}" size="12"
 					maxlength="6">
 				</h:inputSecret>
-
 				<h:outputText value="Nova Senha: ">
 				</h:outputText>
 				<h:inputSecret required="true"
-					requiredMessage="Campo 'Nova Senha' é obrigatório!"
+					requiredMessage="Campo Nova Senha é obrigatório!"
 					value="#{autenticacaoController.novaSenha }" size="12"
 					maxlength="6">
 				</h:inputSecret>
-
-				<h:outputText value="Confirmação Nova Senha: ">
+				<h:outputText value="Confirmar Nova Senha: ">
 				</h:outputText>
 				<h:inputSecret required="true"
-					requiredMessage="Campo 'Confirmação Nova Senha' é obrigatório!"
+					requiredMessage="Campo Confirmar Nova Senha é obrigatório!"
 					value="#{autenticacaoController.confirmarSenha}" size="12"
 					maxlength="6">
 				</h:inputSecret>
-
-
 			</h:panelGrid>
-
 			<a4j:commandButton value="Enviar"
 				action="#{autenticacaoController.verificarSenha}" />
 		</rich:panel></center>

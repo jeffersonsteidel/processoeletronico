@@ -6,11 +6,13 @@
 
 <link rel="StyleSheet" type="text/css" href="../css/messages-style.css"
 	media="screen" />
-<body>
+<body onload="verificarAutenticacao()">
 <div id="non-printable"><f:subview id="Menu">
 	<center><rich:panel header="INSTITUTO FEDERAL DO PARANÁ"
 		style="height:auto;">
 		<a4j:form>
+			<a4j:jsFunction action="#{autenticacaoController.isAutenticado}"
+				name="verificarAutenticacao" />
 			<h:graphicImage value="../images/ifpr_logo.png" />
 			<BR />
 			<font size="4"><b>PROGEPE - PROCESSO ELETRÔNICO</b></font>
