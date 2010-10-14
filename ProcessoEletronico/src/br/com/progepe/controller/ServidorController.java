@@ -522,11 +522,14 @@ public class ServidorController {
 	public void isEstrangeiro() {
 		if (servidor.getIndEstrangeiro()) {
 			servidorEstrangeiro = true;
+			servidor.setPais(new Pais());
 			listarPais();
 			servidor.setCidadeNascimento(null);
-			servidor.setEstadoNascimento(null);
+			servidor.setEstadoNascimento(new Estado());
 			servidorBrasileiro = false;
 		} else {
+			servidor.setPais(null);
+			servidor.setEstadoNascimento(new Estado());
 			servidorEstrangeiro = false;
 			servidorBrasileiro = true;
 		}
