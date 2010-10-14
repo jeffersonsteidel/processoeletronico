@@ -26,7 +26,7 @@ public class ServidorDAO extends DAO{
 		}
 		
 		if (servidor.getNome() != null && servidor.getNome() != "" ){
-			c.add(Restrictions.like("nome", servidor.getNome().toUpperCase(), MatchMode.START));			
+			c.add(Restrictions.like("nome", servidor.getNome().toUpperCase(), MatchMode.ANYWHERE));			
 		}
 		
 		if (servidor.getCargo().getCodigo() != 0){

@@ -35,7 +35,6 @@ public class Servidor implements Serializable {
 	private Funcao funcao;
 	private RegimeTrabalho regimeTrabalho;
 	private SituacaoFuncional situacaoFuncional;
-	private Grupo grupo;
 	private Endereco endereco;
 	private String telefone;
 	private String celular;
@@ -228,14 +227,6 @@ public class Servidor implements Serializable {
 
 	public void setSituacaoFuncional(SituacaoFuncional situacaoFuncional) {
 		this.situacaoFuncional = situacaoFuncional;
-	}
-
-	public Grupo getGrupo() {
-		return grupo;
-	}
-
-	public void setGrupo(Grupo grupo) {
-		this.grupo = grupo;
 	}
 
 	public Endereco getEndereco() {

@@ -7,5 +7,6 @@
 		<id name="servidor" column="SERV_COD">
 		</id>
 		<property name="senha" column="AUT_SENHA" />	
+		<property name="indAdministrador" column="AUT_IND_ADMINITRADOR" type="boolean"/>	
 	</class>
 </hibernate-mapping>

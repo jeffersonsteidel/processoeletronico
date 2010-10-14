@@ -10,6 +10,8 @@ public class Autenticacao implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private Integer siape;
 	private String senha;
+	private Boolean indAdministrador;
+	
 	public Integer getSiape() {
 		return siape;
 	}
@@ -21,5 +23,11 @@ public class Autenticacao implements Serializable {
 	}
 	public void setSenha(String senha) {
 		this.senha = senha;
+	}
+	public Boolean getIndAdministrador() {
+		return indAdministrador;
+	}
+	public void setIndAdministrador(Boolean indAdministrador) {
+		this.indAdministrador = indAdministrador;
 	}
 }
