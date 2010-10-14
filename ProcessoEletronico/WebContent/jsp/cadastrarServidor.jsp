@@ -148,7 +148,7 @@
 						<f:selectItem itemLabel="SELECIONE" itemValue="" />
 						<f:selectItems value="#{servidorController.lotacoes}" />
 					</h:selectOneMenu>
-<%--
+					<%--
 					<h:outputText value="Local de Exercício: " />
 					<h:selectOneMenu
 						value="#{servidorController.servidor.localExercicio.codigo}"
@@ -157,7 +157,7 @@
 						<f:selectItem itemLabel="SELECIONE" itemValue="" />
 						<f:selectItems value="#{servidorController.lotacoes}" />
 					</h:selectOneMenu>
- --%>					
+ --%>
 
 					<h:outputText value="Ramal: " />
 					<h:inputText value="#{servidorController.servidor.ramal}" size="8"
@@ -197,7 +197,7 @@
 						<f:selectItems value="#{servidorController.regimesTrabalhos}" />
 					</h:selectOneMenu>
 
-<!--<%--
+					<!--<%--
 					<h:outputText value="Função: " />
 					<h:selectOneMenu
 						value="#{servidorController.servidor.funcao.codigo}">
@@ -432,12 +432,12 @@
 					<h:outputText value="Número da Conta: " />
 					<h:inputText
 						value="#{servidorController.servidor.contaBancaria.numeroConta}"
-						size="15" maxlength="12" required="false" 
+						size="15" maxlength="12" required="false"
 						requiredMessage="Campo Número da Conta obrigatório!"></h:inputText>
 					<h:outputText value="Agência: " />
 					<h:inputText
 						value="#{servidorController.servidor.contaBancaria.agencia}"
-						size="10" maxlength="8" required="false" 
+						size="10" maxlength="8" required="false"
 						requiredMessage="Campo Agência obrigatório!"></h:inputText>
 
 					<h:outputText value="Poupança:" />
@@ -449,9 +449,17 @@
 			</rich:tab>
 
 			<rich:tab label="SALVAR">
-				<a4j:commandButton value="Salvar"
-					action="#{servidorController.salvar}" reRender="form"
-					oncomplete="#{rich:component('confirmPanel')}.show()" />
+				<h:panelGrid columns="2">
+					<a4j:commandButton value="Salvar"
+						action="#{servidorController.salvar}" reRender="form"
+						oncomplete="#{rich:component('confirmPanel')}.show()" />
+					<h:outputText
+						rendered="#{!servidorController.servidor.dadosValidados}"
+						value="Dados ainda não validados pela PROGEPE!"></h:outputText>
+					<h:outputText
+						rendered="#{servidorController.servidor.dadosValidados}"
+						value="Dados validados pela PROGEPE!"></h:outputText>
+				</h:panelGrid>
 			</rich:tab>
 		</rich:tabPanel>
 	</a4j:form></center>

@@ -23,7 +23,6 @@ import br.com.progepe.entity.Endereco;
 import br.com.progepe.entity.Estado;
 import br.com.progepe.entity.EstadoCivil;
 import br.com.progepe.entity.Funcao;
-import br.com.progepe.entity.Grupo;
 import br.com.progepe.entity.GrupoSanguineo;
 import br.com.progepe.entity.Lotacao;
 import br.com.progepe.entity.Padrao;
@@ -266,7 +265,6 @@ public class ServidorController {
 		servidor.setEstadoCivil(new EstadoCivil());
 //		servidor.setFuncao(new Funcao());
 //		servidor.getFuncao().setTipoFuncao(new TipoFuncao());
-		servidor.setGrupo(new Grupo());
 		servidor.setGrupoSanguineo(new GrupoSanguineo());
 		servidor.setLotacao(new Lotacao());
 //		servidor.setLocalExercicio(new Lotacao());
@@ -612,6 +610,8 @@ public class ServidorController {
 
 		if((new Long(104)).equals(servidor.getContaBancaria().getBanco().getCodigo())){
 			indPoupanca = true;
+		}else{
+			indPoupanca = false;
 		}
 		
 		FacesContext.getCurrentInstance().getExternalContext()

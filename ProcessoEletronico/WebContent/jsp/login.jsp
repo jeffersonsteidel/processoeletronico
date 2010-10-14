@@ -28,7 +28,7 @@
 			<h:panelGrid columns="2">
 				<h:outputText value="CPF: " />
 				<h:inputText
-					value="#{autenticacaoController.autenticacao.servidor.documento.cpf}"
+					value=""
 					size="25" maxlength="20" required="true"
 					requiredMessage="Campo CPF obrigatório!"></h:inputText>
 				<h:outputText value="Senha: " />

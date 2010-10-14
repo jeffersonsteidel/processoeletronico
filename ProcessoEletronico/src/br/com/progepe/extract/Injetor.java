@@ -10,7 +10,6 @@ import br.com.progepe.entity.Documento;
 import br.com.progepe.entity.Endereco;
 import br.com.progepe.entity.Estado;
 import br.com.progepe.entity.EstadoCivil;
-import br.com.progepe.entity.Grupo;
 import br.com.progepe.entity.GrupoSanguineo;
 import br.com.progepe.entity.Lotacao;
 import br.com.progepe.entity.Padrao;
@@ -46,7 +45,6 @@ public class Injetor {
 			servidor.setEstadoCivil(new EstadoCivil());
 //			servidor.setFuncao(new Funcao());
 //			servidor.getFuncao().setTipoFuncao(new TipoFuncao());
-			servidor.setGrupo(new Grupo());
 			servidor.setGrupoSanguineo(new GrupoSanguineo());
 			servidor.setLotacao(new Lotacao());
 //			servidor.setLocalExercicio(new Lotacao());
