@@ -6,7 +6,7 @@
 
 <link rel="StyleSheet" type="text/css" href="../css/messages-style.css"
 	media="screen" />
-<body>
+<body onload="verificarAutenticacao()">
 <style>
 .pic {
 	margin-bottom: -4px;
@@ -17,6 +17,8 @@
 <div id="non-printable"><f:subview id="Menu">
 	<center>
 		<a4j:form>
+		<a4j:jsFunction action="#{autenticacaoController.isAutenticado}"
+				name="verificarAutenticacao" />
 		<h:graphicImage value="../images/ifpr_logo.png" />
 			<BR />
 			<font size="4"><b>PROGEPE - PROCESSO ELETRÔNICO</b></font>

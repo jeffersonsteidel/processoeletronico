@@ -10,9 +10,8 @@
 </head>
 <body>
 <f:view>
-	<a4j:loadScript src="../js/script.js" />
+	<jsp:directive.include file="menus.jsp"/>
 	<center><a4j:form id="form">
-			<jsp:directive.include file="menus.jsp"/>
 			<rich:panel>
 			<h:panelGrid columns="9">
 				<h:outputText value="Siape: ">

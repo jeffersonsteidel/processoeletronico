@@ -112,7 +112,7 @@ public class AutenticacaoController implements Serializable {
 	public void isAutenticado() throws IOException {
 		if (siapeAutenticado == null) {
 			FacesContext.getCurrentInstance().getExternalContext()
-					.redirect("menus.jsp");
+					.redirect("login.jsp");
 		}
 	}
 
