@@ -470,7 +470,7 @@ public class ServidorController {
 		Cargo cargo = servidor.getCargo();
 		servidor.setCargo(new Cargo());
 		servidor.getCargo().setClasse(new Classe());
-		dao.refresh(cargo);
+		cargo = (Cargo) dao.refresh(cargo);
 		servidor.setCargo(cargo);
 	}
 
@@ -612,8 +612,8 @@ public class ServidorController {
 		servidor = (Servidor) dao.refresh(servidor);
 		
 		if (servidor.getCidadeNascimento() != null) {
-			Cidade cidade = new Cidade();
 			servidor.setEstadoNascimento(new Estado());
+			Cidade cidade = new Cidade();
 			cidade.setCodigo(servidor.getCidadeNascimento());
 			cidade = (Cidade) dao.refresh(cidade);
 			servidor.setEstadoNascimento(cidade.getEstado());
@@ -659,7 +659,7 @@ public class ServidorController {
 			Cidade cidade = new Cidade();
 			servidor.setEstadoNascimento(new Estado());
 			cidade.setCodigo(servidor.getCidadeNascimento());
-			dao.refresh(cidade);
+			cidade = (Cidade)dao.refresh(cidade);
 			servidor.setEstadoNascimento(cidade.getEstado());
 			servidor.setCidadeNascimento(cidade.getCodigo());
 			listarCidadesNascimentoServidor();
@@ -760,7 +760,7 @@ public class ServidorController {
 			Cidade cidade = new Cidade();
 			servidor.setEstadoNascimento(new Estado());
 			cidade.setCodigo(servidor.getCidadeNascimento());
-			dao.refresh(cidade);
+			cidade = (Cidade) dao.refresh(cidade);
 			servidor.setEstadoNascimento(cidade.getEstado());
 			servidor.setCidadeNascimento(cidade.getCodigo());
 			listarCidadesNascimentoServidor();
