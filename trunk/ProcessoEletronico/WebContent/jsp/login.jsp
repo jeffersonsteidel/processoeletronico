@@ -30,7 +30,7 @@
 				<h:inputText
 					value="#{autenticacaoController.autenticacao.siape}"
 					size="25" maxlength="20" required="true"
-					requiredMessage="Campo CPF obrigatório!"></h:inputText>
+					requiredMessage="Campo SIAPE obrigatório!"></h:inputText>
 				<h:outputText value="Senha: " />
 				<h:inputSecret value="#{autenticacaoController.autenticacao.senha}"
 					size="25" maxlength="12" required="true"
