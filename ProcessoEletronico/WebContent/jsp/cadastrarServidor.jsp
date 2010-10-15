@@ -12,8 +12,9 @@
 </head>
 <body>
 <f:view>
+	<jsp:directive.include file="menus02.jsp" />
 	<a4j:loadScript src="../js/script.js" />
-	<center><h:graphicImage value="../images/alterarDados02.GIF" />
+	<center>
 	<a4j:form id="form">
 		<rich:tabPanel switchType="client" width="860">
 			<rich:tab label="Dados Pessoais">

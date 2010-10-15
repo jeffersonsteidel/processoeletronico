@@ -12,6 +12,7 @@
 </head>
 <body>
 <f:view>
+	<jsp:directive.include file="menus02.jsp" />
 	<a4j:loadScript src="../js/script.js" />
 	<a4j:form id="form">
 		<center><rich:panel header="Alterar Senha"

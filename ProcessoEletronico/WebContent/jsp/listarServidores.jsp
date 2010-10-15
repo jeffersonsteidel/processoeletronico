@@ -10,6 +10,7 @@
 </head>
 <body>
 <f:view>
+	<jsp:directive.include file="menus02.jsp"/>
 	<center><a4j:form id="form">
 		<a4j:status>
 			<f:facet name="start">

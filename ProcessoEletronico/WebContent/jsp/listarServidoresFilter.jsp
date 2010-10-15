@@ -12,13 +12,9 @@
 <f:view>
 	<a4j:loadScript src="../js/script.js" />
 	<center><a4j:form id="form">
-		<a4j:status>
-			<f:facet name="start">
-				<h:graphicImage value="../images/ajax-loader.gif" />
-			</f:facet>
-		</a4j:status>
-		<rich:panel header="Servidores"
-			style="width: 1200px;  position: absolute; left: 30px; top: auto;">
+		
+			<jsp:directive.include file="menus02.jsp"/>
+			<rich:panel>
 			<h:panelGrid columns="9">
 				<h:outputText value="Siape: ">
 				</h:outputText>
