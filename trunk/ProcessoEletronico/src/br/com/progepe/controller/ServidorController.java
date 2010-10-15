@@ -1,6 +1,7 @@
 package br.com.progepe.controller;
 
 import java.io.IOException;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -65,6 +66,7 @@ public class ServidorController {
 	private Boolean servidorBrasileiro = true;
 	private Boolean indPoupanca = false;
 	private Boolean indFeminino = false;
+	private String dataUltimaAlteracao;
 
 	public Servidor getPessoa() {
 		return servidor;
@@ -264,6 +266,14 @@ public class ServidorController {
 
 	public void setIndFeminino(Boolean indFeminino) {
 		this.indFeminino = indFeminino;
+	}
+
+	public String getDataUltimaAlteracao() {
+		return dataUltimaAlteracao;
+	}
+
+	public void setDataUltimaAlteracao(String dataUltimaAlteracao) {
+		this.dataUltimaAlteracao = dataUltimaAlteracao;
 	}
 
 	public void cadastrar() throws IOException {
@@ -592,7 +602,7 @@ public class ServidorController {
 		return this.getServidores();
 	}
 
-	public void carregar() throws IOException {
+	public void carregar() throws IOException, ParseException {
 		cargos = new ArrayList<SelectItem>();
 		classes = new ArrayList<SelectItem>();
 		ufs = new ArrayList<SelectItem>();
@@ -659,6 +669,11 @@ public class ServidorController {
 			servidorBrasileiro = Boolean.TRUE;
 		}
 		
+		if (servidor.getDataUltimaAlteracao() != null) {
+			this.setDataUltimaAlteracao(Validator.formatarDataHoraBR(servidor
+					.getDataUltimaAlteracao()));
+		}
+		
 		FacesContext.getCurrentInstance().getExternalContext()
 				.redirect("cadastrarServidor.jsp");
 	}
@@ -706,7 +721,7 @@ public class ServidorController {
 		return servidoresList;
 	}
 	
-	public void buscarServidorLogado() throws IOException{
+	public void buscarServidorLogado() throws IOException, ParseException{
 		servidor = new Servidor();
 		servidor.setCargo(new Cargo());
 		servidor.getCargo().setClasse(new Classe());
@@ -804,6 +819,11 @@ public class ServidorController {
 		}else{
 			servidorEstrangeiro = Boolean.FALSE;
 			servidorBrasileiro = Boolean.TRUE;
+		}
+		
+		if (servidor.getDataUltimaAlteracao() != null) {
+			this.setDataUltimaAlteracao(Validator.formatarDataHoraBR(servidor
+					.getDataUltimaAlteracao()));
 		}
 		
 		FacesContext.getCurrentInstance().getExternalContext()

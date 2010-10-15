@@ -1,5 +1,6 @@
 package br.com.progepe.validator;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.regex.Matcher;
@@ -214,6 +215,12 @@ public abstract class Validator {
 			}
 		}
 		return dataRetorno;
+	}
+	
+	public static String formatarDataHoraBR(Date data) throws ParseException {
+		SimpleDateFormat fmt = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");       
+		String str = fmt.format(data);
+		return str;
 	}
 
 	 public static boolean validaCPF(String cpf) { 

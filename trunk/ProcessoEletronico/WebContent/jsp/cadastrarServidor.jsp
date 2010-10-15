@@ -476,7 +476,7 @@
 					<h:outputText 
 						value="Data da última atualização!"></h:outputText>	
 					<h:outputText
-						value="#{servidorController.servidor.dataUltimaAlteracao}"></h:outputText>	
+						value="#{servidorController.dataUltimaAlteracao}"></h:outputText>	
 					</h:panelGrid>	
 				</h:panelGrid>
 			</rich:tab>

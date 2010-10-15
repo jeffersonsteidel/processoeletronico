@@ -15,8 +15,7 @@
 	<jsp:directive.include file="menus.jsp" />
 	<a4j:loadScript src="../js/script.js" />
 	<a4j:form id="form">
-		<center><rich:panel header="Alterar Senha"
-			style="width: 450px; top: auto;">
+		<center><rich:panel>
 			<rich:messages layout="list" errorLabelClass="errorLabel"
 				style="top:auto;" infoLabelClass="infoLabel">
 				<f:facet name="infoMarker">
@@ -50,7 +49,7 @@
 					maxlength="6">
 				</h:inputSecret>
 			</h:panelGrid>
-			<a4j:commandButton value="Enviar"
+			<a4j:commandButton value="Salvar"
 				action="#{autenticacaoController.verificarSenha}" />
 		</rich:panel></center>
 	</a4j:form>
