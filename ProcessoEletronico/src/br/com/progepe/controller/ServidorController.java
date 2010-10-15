@@ -610,12 +610,12 @@ public class ServidorController {
 		listarEstadosCivis();
 
 		servidor = (Servidor) dao.refresh(servidor);
-
+		
 		if (servidor.getCidadeNascimento() != null) {
 			Cidade cidade = new Cidade();
 			servidor.setEstadoNascimento(new Estado());
 			cidade.setCodigo(servidor.getCidadeNascimento());
-			dao.refresh(cidade);
+			cidade = (Cidade) dao.refresh(cidade);
 			servidor.setEstadoNascimento(cidade.getEstado());
 			servidor.setCidadeNascimento(cidade.getCodigo());
 			listarCidadesNascimentoServidor();
