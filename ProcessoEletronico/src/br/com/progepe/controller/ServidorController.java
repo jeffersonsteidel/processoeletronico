@@ -12,6 +12,7 @@ import javax.faces.model.SelectItem;
 import br.com.progepe.dao.CidadeDAO;
 import br.com.progepe.dao.DAO;
 import br.com.progepe.dao.ServidorDAO;
+import br.com.progepe.entity.Autenticacao;
 import br.com.progepe.entity.Banco;
 import br.com.progepe.entity.Cargo;
 import br.com.progepe.entity.Cidade;
@@ -608,7 +609,7 @@ public class ServidorController {
 		listarCorPele();
 		listarEstadosCivis();
 
-		dao.refresh(servidor);
+		servidor = (Servidor) dao.refresh(servidor);
 
 		if (servidor.getCidadeNascimento() != null) {
 			Cidade cidade = new Cidade();
@@ -684,6 +685,109 @@ public class ServidorController {
 
 		}
 		return servidoresList;
+	}
+	
+	public void buscarServidorLogado() throws IOException{
+		servidor = new Servidor();
+		servidor.setCargo(new Cargo());
+		servidor.getCargo().setClasse(new Classe());
+		servidor.setEstadoNascimento(new Estado());
+		servidor.setContaBancaria(new ContaBancaria());
+		servidor.getContaBancaria().setBanco(new Banco());
+		servidor.setCorPele(new CorPele());
+		servidor.setDocumento(new Documento());
+//		servidor.getDocumento().setCarteiraUf(new Estado());
+//		servidor.getDocumento().setRgUf(new Estado());
+//		servidor.getDocumento().setTituloUf(new Estado());
+		servidor.setEndereco(new Endereco());
+		servidor.getEndereco().setCidade(new Cidade());
+		servidor.getEndereco().getCidade().setEstado(new Estado());
+		servidor.setEstadoCivil(new EstadoCivil());
+//		servidor.setFuncao(new Funcao());
+//		servidor.getFuncao().setTipoFuncao(new TipoFuncao());
+		servidor.setGrupoSanguineo(new GrupoSanguineo());
+		servidor.setLotacao(new Lotacao());
+//		servidor.setLocalExercicio(new Lotacao());
+		servidor.setEndereco(new Endereco());
+		servidor.getEndereco().setCidade(new Cidade());
+		servidor.getEndereco().getCidade().setEstado(new Estado());
+		servidor.setPadrao(new Padrao());
+		servidor.setRegimeTrabalho(new RegimeTrabalho());
+		servidor.setSituacaoFuncional(new SituacaoFuncional());
+		servidor.setPais(new Pais());
+		
+		cargos = new ArrayList<SelectItem>();
+		classes = new ArrayList<SelectItem>();
+		ufs = new ArrayList<SelectItem>();
+		cidadesNascimento = new ArrayList<SelectItem>();
+		cidades = new ArrayList<SelectItem>();
+		estados = new ArrayList<SelectItem>();
+		bancos = new ArrayList<SelectItem>();
+		coresPeles = new ArrayList<SelectItem>();
+		estadosCivis = new ArrayList<SelectItem>();
+		funcoes = new ArrayList<SelectItem>();
+		lotacoes = new ArrayList<SelectItem>();
+		gruposSanguineos = new ArrayList<SelectItem>();
+		padroes = new ArrayList<SelectItem>();
+		regimesTrabalhos = new ArrayList<SelectItem>();
+		situacoesFuncionais = new ArrayList<SelectItem>();
+		paises = new ArrayList<SelectItem>();
+		tipoFuncoes = new ArrayList<SelectItem>();
+
+		listarBancos();
+		listarEstados();
+		listarUfs();
+
+		listarLotacoes();
+		listarPadroes();
+		listarSituacoesFuncionais();
+		listarFuncoes();
+		listarCargos();
+		listarRegimesTrabalhos();
+
+		listarGrupoSanguineo();
+		listarCorPele();
+		listarEstadosCivis();
+		
+		Autenticacao siapeAutenticado = (Autenticacao) FacesContext.getCurrentInstance()
+		.getExternalContext().getSessionMap().get("usuarioLogado");
+
+		servidor.setSiape(siapeAutenticado.getSiape());
+		ServidorDAO servidorDAO = new ServidorDAO();
+		servidor =  servidorDAO.refreshBySiape(servidor);
+
+		if (servidor.getCidadeNascimento() != null) {
+			Cidade cidade = new Cidade();
+			servidor.setEstadoNascimento(new Estado());
+			cidade.setCodigo(servidor.getCidadeNascimento());
+			dao.refresh(cidade);
+			servidor.setEstadoNascimento(cidade.getEstado());
+			servidor.setCidadeNascimento(cidade.getCodigo());
+			listarCidadesNascimentoServidor();
+		}
+		if (servidor.getEndereco() != null
+				&& servidor.getEndereco().getCidade().getCodigo() != 0) {
+			listarCidadesContato();
+		}
+
+		if((new Long(104)).equals(servidor.getContaBancaria().getBanco().getCodigo())){
+			indPoupanca = true;
+		}else{
+			indPoupanca = false;
+		}
+		
+		if(servidor.getIndEstrangeiro()){
+			listarPais();
+			servidorEstrangeiro = Boolean.TRUE;
+			servidorBrasileiro = Boolean.FALSE;
+		}else{
+			servidorEstrangeiro = Boolean.FALSE;
+			servidorBrasileiro = Boolean.TRUE;
+		}
+		
+		FacesContext.getCurrentInstance().getExternalContext()
+				.redirect("cadastrarServidor.jsp");
+		
 	}
 
 }

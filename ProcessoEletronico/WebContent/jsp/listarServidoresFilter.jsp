@@ -12,8 +12,7 @@
 <f:view>
 	<a4j:loadScript src="../js/script.js" />
 	<center><a4j:form id="form">
-		
-			<jsp:directive.include file="menus02.jsp"/>
+			<jsp:directive.include file="menus.jsp"/>
 			<rich:panel>
 			<h:panelGrid columns="9">
 				<h:outputText value="Siape: ">
@@ -51,7 +50,7 @@
 
 			<rich:dataTable id="listaServidores"
 				value="#{servidorController.servidoresList}" var="list"
-				width="1150px" columnClasses="center" rows="20" reRender="ds">
+				width="1150px" columnClasses="center" rows="15" reRender="ds">
 				<rich:column width="50px" sortBy="#{list.siape}">
 					<f:facet name="header">
 						<h:outputText value="Siape" />

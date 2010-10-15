@@ -12,7 +12,7 @@
 </head>
 <body>
 <f:view>
-	<jsp:directive.include file="menus02.jsp" />
+	<jsp:directive.include file="menus.jsp" />
 	<a4j:loadScript src="../js/script.js" />
 	<center>
 	<a4j:form id="form">
@@ -21,11 +21,11 @@
 				<h:panelGrid columns="4">
 					<h:outputText value="Nome: " />
 					<h:inputText value="#{servidorController.servidor.nome}" size="50"
-						maxlength="100" required="false"
+						maxlength="100" required="true"
 						requiredMessage="Campo Nome obrigatório!"></h:inputText>
 					<h:outputText value="Sexo: " />
 					<h:selectOneMenu value="#{servidorController.servidor.sexo}"
-						required="false" requiredMessage="Campo Sexo é obrigatório!">
+						required="true" requiredMessage="Campo Sexo é obrigatório!">
 						<f:selectItem itemLabel="SELECIONE" itemValue="" />
 						<f:selectItem itemLabel="FEMININO" itemValue="F" />
 						<f:selectItem itemLabel="MASCULINO" itemValue="M" />
@@ -35,7 +35,7 @@
 						value="#{servidorController.servidor.dataNascimento}" locale=""
 						popup="true" datePattern="dd/MM/yyyy" showApplyButton="#"
 						cellWidth="12px" cellHeight="12px" style="width:80px"
-						required="false" inputSize="12"
+						required="true" inputSize="12"
 						requiredMessage="Campo Data de Nascimento!" />
 					<h:outputText value="Grupo Sanguíneo: " />
 					<h:selectOneMenu
@@ -47,7 +47,7 @@
 					</h:selectOneMenu>
 					<h:outputText value="Nome da Mãe: " />
 					<h:inputText value="#{servidorController.servidor.nomeMae}"
-						size="40" maxlength="100" required="false"
+						size="40" maxlength="100" required="true"
 						requiredMessage="Campo Nome da Mãe obrigatório!"></h:inputText>
 					<h:outputText value="Nome do do Pai: " />
 					<h:inputText value="#{servidorController.servidor.nomePai}"

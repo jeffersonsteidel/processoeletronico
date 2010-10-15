@@ -41,23 +41,23 @@
 				<rich:dropDownMenu>
 					<f:facet name="label">
 						<h:panelGroup>
-							<h:outputText value="ALTERAR MEUS DADOS" />
+							<h:outputText value="ATUALIZAR MEUS DADOS" />
+						</h:panelGroup>
+					</f:facet>
+					<rich:menuItem submitMode="ajax" value="Atualizar Dados"
+						action="#{servidorController.buscarServidorLogado}"
+						icon="../images/ATUALIZARDADOS.gif" />
+				</rich:dropDownMenu>
+				
+				<rich:dropDownMenu>
+					<f:facet name="label">
+						<h:panelGroup>
+							<h:outputText value="ALTERAR SENHA" />
 						</h:panelGroup>
 					</f:facet>
 					<rich:menuItem submitMode="ajax" value="Alterar Senha"
 						action="#{autenticacaoController.alterarSenha}"
 						icon="../images/ALTERARSENHA.gif" />
-				</rich:dropDownMenu>
-
-				<rich:dropDownMenu>
-					<f:facet name="label">
-						<h:panelGroup>
-							<h:outputText value="ATUALIZAR MEUS DADOS" />
-						</h:panelGroup>
-					</f:facet>
-					<rich:menuItem submitMode="ajax" value="Atualizar Dados"
-						action="#"
-						icon="../images/ATUALIZARDADOS.gif" />
 				</rich:dropDownMenu>
 
 				<rich:toolBarGroup location="right">
@@ -67,7 +67,7 @@
 								<h:outputText value="SAIR" />
 							</h:panelGroup>
 						</f:facet>
-						<rich:menuItem submitMode="ajax" value="SAIR" action="#"
+						<rich:menuItem submitMode="ajax" value="SAIR" action="#{autenticacaoController.logout}"
 							icon="../images/SAIR.gif" />
 					</rich:dropDownMenu>
 				</rich:toolBarGroup>
