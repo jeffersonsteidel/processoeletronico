@@ -26,7 +26,7 @@
 				</f:facet>
 			</rich:messages>
 			<h:panelGrid columns="2">
-				<h:outputText value="SIAPE: " />
+				<h:outputText value="Siape: " />
 				<h:inputText
 					value="#{autenticacaoController.autenticacao.siape}"
 					size="25" maxlength="20" required="true"
