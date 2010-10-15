@@ -14,8 +14,7 @@
 <f:view>
 	<jsp:directive.include file="menus.jsp" />
 	<a4j:loadScript src="../js/script.js" />
-	<center>
-	<a4j:form id="form">
+	<center><a4j:form id="form">
 		<rich:tabPanel switchType="client" width="860">
 			<rich:tab label="Dados Pessoais">
 				<h:panelGrid columns="4">
@@ -29,6 +28,9 @@
 						<f:selectItem itemLabel="SELECIONE" itemValue="" />
 						<f:selectItem itemLabel="FEMININO" itemValue="F" />
 						<f:selectItem itemLabel="MASCULINO" itemValue="M" />
+						<a4j:support event="onchange"
+							action="#{servidorController.isFeminino}" ajaxSingle="true"
+							reRender="certificadoMilitar, certificadoMilitarOrgao, certificadoMilitarSerio"></a4j:support>
 					</h:selectOneMenu>
 					<h:outputText value="Data de Nascimento: " />
 					<rich:calendar
@@ -40,7 +42,7 @@
 					<h:outputText value="Grupo Sanguíneo: " />
 					<h:selectOneMenu
 						value="#{servidorController.servidor.grupoSanguineo.codigo}"
-						required="false"
+						required="true"
 						requiredMessage="Campo Grupo Sanguíneo é obrigatório!">
 						<f:selectItem itemLabel="SELECIONE" itemValue="" />
 						<f:selectItems value="#{servidorController.gruposSanguineos}" />
@@ -55,7 +57,7 @@
 					<h:outputText value="Estado de Nascimento: " />
 					<h:selectOneMenu id="estadoNascimentoServidor"
 						value="#{servidorController.servidor.estadoNascimento.codigo}"
-						required="false"
+						required="true"
 						disabled="#{!servidorController.servidorBrasileiro}"
 						requiredMessage="Campo Estado de Nascimento é obrigatório!">
 						<f:selectItem itemLabel="SELECIONE" itemValue="" />
@@ -67,7 +69,7 @@
 					<h:outputText value="Cidade de Nascimento: " />
 					<h:selectOneMenu id="cidadeNascimentoServidor"
 						value="#{servidorController.servidor.cidadeNascimento}"
-						required="false"
+						required="true"
 						disabled="#{!servidorController.servidorBrasileiro}"
 						requiredMessage="Campo Cidade de Nascimento é obrigatório!">
 						<f:selectItem itemLabel="SELECIONE" itemValue="" />
@@ -76,7 +78,7 @@
 					<h:outputText value="Estado Civil: " />
 					<h:selectOneMenu
 						value="#{servidorController.servidor.estadoCivil.codigo}"
-						required="false"
+						required="true"
 						requiredMessage="Campo Estado Civil é obrigatório!">
 						<f:selectItem itemLabel="SELECIONE" itemValue="" />
 						<f:selectItems value="#{servidorController.estadosCivis}" />
@@ -85,32 +87,33 @@
 					<h:outputText value="Cor da Pele: " />
 					<h:selectOneMenu
 						value="#{servidorController.servidor.corPele.codigo}"
-						required="false" requiredMessage="Campo Cor Pele é obrigatório!">
+						required="true" requiredMessage="Campo Cor Pele é obrigatório!">
 						<f:selectItem itemLabel="SELECIONE" itemValue="" />
 						<f:selectItems value="#{servidorController.coresPeles}" />
 					</h:selectOneMenu>
 
 					<h:outputText value="Estrangeiro: " />
-					<h:selectBooleanCheckbox
+					<h:selectBooleanCheckbox id="estrangeiro"
+						title="Marcar esta opção caso seja imigrante!"
 						value="#{servidorController.servidor.indEstrangeiro}">
 						<a4j:support event="onchange"
 							action="#{servidorController.isEstrangeiro}" ajaxSingle="true"
 							reRender="data, dataCampo, pais, paisCampo, estadoNascimentoServidor, cidadeNascimentoServidor"></a4j:support>
 					</h:selectBooleanCheckbox>
 
+
 					<%-- 
 					<h:outputText id="data" value="Data de Chegada no País: " />
 					<rich:calendar id="dataCampo" value="" locale="" popup="true"
 						disabled="#{!servidorController.servidorEstrangeiro}"
 						datePattern="dd/MM/yyyy" showApplyButton="#" cellWidth="12px"
-						cellHeight="12px" style="width:80px" required="false"
+						cellHeight="12px" style="width:80px" required="true"
 						inputSize="12" requiredMessage="Data de Chegada no País!" />
 --%>
 
 					<h:outputText id="pais" value="País de Orgiem: " />
 					<h:selectOneMenu id="paisCampo"
-						value="#{servidorController.servidor.pais.codigo}"
-						required="false"
+						value="#{servidorController.servidor.pais.codigo}" required="true"
 						disabled="#{!servidorController.servidorEstrangeiro}"
 						requiredMessage="Campo País de Origem é obrigatório!">
 						<f:selectItem itemLabel="SELECIONE" itemValue="" />
@@ -123,13 +126,14 @@
 				<h:panelGrid columns="4">
 					<h:outputText value="SIAPE: " />
 					<h:inputText value="#{servidorController.servidor.siape}" size="10"
-						maxlength="7" required="false"
+						maxlength="7" required="true"
 						requiredMessage="Campo SIAPE obrigatório!"
 						onkeypress="mascara(this,soNumeros);"></h:inputText>
 					<h:outputText value="Id Única: " />
 					<h:inputText
+						title="A Id Única pode ser encontrada no contra-cheque!"
 						value="#{servidorController.servidor.identificacaoUnica}"
-						size="10" maxlength="9" required="false"
+						size="10" maxlength="9" required="true"
 						requiredMessage="Campo Id Única obrigatório!"
 						onkeypress="mascara(this,digitoVerificador);"></h:inputText>
 
@@ -137,7 +141,7 @@
 					<rich:calendar value="#{servidorController.servidor.dataAdmissao}"
 						locale="" popup="true" datePattern="dd/MM/yyyy"
 						showApplyButton="#" cellWidth="12px" cellHeight="12px"
-						style="width:80px" required="false" inputSize="12"
+						style="width:80px" required="true" inputSize="12"
 						requiredMessage="Campo Data de Admissão no Órgão obrigatório!" />
 
 					<h:outputText value="Data de Admissão no Serviço Público: " />
@@ -145,13 +149,13 @@
 						value="#{servidorController.servidor.dataAdmServicoPublico}"
 						locale="" popup="true" datePattern="dd/MM/yyyy"
 						showApplyButton="#" cellWidth="12px" cellHeight="12px"
-						style="width:80px" required="false" inputSize="12"
+						style="width:80px" required="true" inputSize="12"
 						requiredMessage="Campo Data de Admissão no Serviço Público obrigatório!" />
 
 					<h:outputText value="Lotação: " />
 					<h:selectOneMenu
 						value="#{servidorController.servidor.lotacao.codigo}"
-						required="false" requiredMessage="Campo Lotação é obrigatório!">
+						required="true" requiredMessage="Campo Lotação é obrigatório!">
 						<f:selectItem itemLabel="SELECIONE" itemValue="" />
 						<f:selectItems value="#{servidorController.lotacoes}" />
 					</h:selectOneMenu>
@@ -159,7 +163,7 @@
 					<h:outputText value="Local de Exercício: " />
 					<h:selectOneMenu
 						value="#{servidorController.servidor.localExercicio.codigo}"
-						required="false"
+						required="true"
 						requiredMessage="Campo Local de Exercício é obrigatório!">
 						<f:selectItem itemLabel="SELECIONE" itemValue="" />
 						<f:selectItems value="#{servidorController.lotacoes}" />
@@ -168,14 +172,14 @@
 
 					<h:outputText value="Ramal: " />
 					<h:inputText value="#{servidorController.servidor.ramal}" size="8"
-						maxlength="4" required="false"
+						maxlength="4" required="true"
 						requiredMessage="Campo Ramal obrigatório!"
 						onkeypress="mascara(this, soNumeros);"></h:inputText>
 
 					<h:outputText value="Cargo: " />
 					<h:selectOneMenu
 						value="#{servidorController.servidor.cargo.codigo}"
-						required="false" requiredMessage="Campo Cargo é obrigatório!">
+						required="true" requiredMessage="Campo Cargo é obrigatório!">
 						<f:selectItem itemLabel="SELECIONE" itemValue="" />
 						<f:selectItems value="#{servidorController.cargos}" />
 						<a4j:support event="onchange"
@@ -190,7 +194,7 @@
 					<h:outputText value="Padrão: " />
 					<h:selectOneMenu
 						value="#{servidorController.servidor.padrao.codigo}"
-						required="false" requiredMessage="Campo Padrão é obrigatório!">
+						required="true" requiredMessage="Campo Padrão é obrigatório!">
 						<f:selectItem itemLabel="SELECIONE" itemValue="" />
 						<f:selectItems value="#{servidorController.padroes}" />
 					</h:selectOneMenu>
@@ -198,7 +202,7 @@
 					<h:outputText value="Regime de Trabalho: " />
 					<h:selectOneMenu
 						value="#{servidorController.servidor.regimeTrabalho.codigo}"
-						required="false"
+						required="true"
 						requiredMessage="Campo Regime de Trabalho é obrigatório!">
 						<f:selectItem itemLabel="SELECIONE" itemValue="" />
 						<f:selectItems value="#{servidorController.regimesTrabalhos}" />
@@ -222,7 +226,7 @@
 					<h:outputText value="Situação Funcional: " />
 					<h:selectOneMenu
 						value="#{servidorController.servidor.situacaoFuncional.codigo}"
-						required="false"
+						required="true"
 						requiredMessage="Campo Situação Funcional é obrigatório!">
 						<f:selectItem itemLabel="SELECIONE" itemValue="" />
 						<f:selectItems value="#{servidorController.situacoesFuncionais}" />
@@ -240,7 +244,7 @@
 				<h:panelGrid columns="4">
 					<h:outputText value="CPF: " />
 					<h:inputText value="#{servidorController.servidor.documento.cpf}"
-						size="16" maxlength="14" required="false" id="cpf"
+						size="16" maxlength="14" required="true" id="cpf"
 						requiredMessage="Campo CPF obrigatório!"
 						onkeypress="mascara(this,cpf);">
 						<a4j:support event="onchange"
@@ -249,31 +253,31 @@
 					</h:inputText>
 					<h:outputText value="RG: " />
 					<h:inputText value="#{servidorController.servidor.documento.rg}"
-						size="16" maxlength="13" required="false"
+						size="16" maxlength="13" required="true"
 						requiredMessage="Campo RG obrigatório!"></h:inputText>
 					<h:outputText value="UF do RG: " />
 					<h:selectOneMenu
 						value="#{servidorController.servidor.documento.rgUf}"
-						required="false" requiredMessage="Campo UF do RG é obrigatório!">
+						required="true" requiredMessage="Campo UF do RG é obrigatório!">
 						<f:selectItem itemLabel="SELECIONE" itemValue="" />
 						<f:selectItems value="#{servidorController.ufs}" />
 					</h:selectOneMenu>
 					<h:outputText value="Orgão Emissor do RG: " />
 					<h:inputText
 						value="#{servidorController.servidor.documento.rgOrgaoEmissor}"
-						size="16" maxlength="8" required="false"
+						size="16" maxlength="8" required="true"
 						requiredMessage="Campo Orgão Emissor do RG obrigatório!"></h:inputText>
 					<h:outputText value="Data de Expedição do RG: " />
 					<rich:calendar
 						value="#{servidorController.servidor.documento.rgDataExpedicao}"
 						locale="" popup="true" datePattern="dd/MM/yyyy"
 						showApplyButton="#" cellWidth="12px" cellHeight="12px"
-						style="width:80px" required="false" inputSize="12"
+						style="width:80px" required="true" inputSize="12"
 						requiredMessage="Campo Data de Expedição do RG obrigatório!" />
 					<h:outputText value="Título de Eleitor: " />
 					<h:inputText
 						value="#{servidorController.servidor.documento.tituloEleitor}"
-						size="16" maxlength="13" required="false"
+						size="16" maxlength="13" required="true"
 						onkeypress="mascara(this,tituloEleitor);"
 						validatorMessage="O campo Título de Eleitor deve ter 13 caracteres"
 						requiredMessage="Campo Título de Eleitor obrigatório!">
@@ -282,19 +286,19 @@
 					<h:outputText value="Título de Eleitor Zona: " />
 					<h:inputText
 						value="#{servidorController.servidor.documento.tituloZona}"
-						size="10" maxlength="3" required="false"
+						size="10" maxlength="3" required="true"
 						onkeypress="mascara(this,soNumeros);"
 						requiredMessage="Campo Título de Eleitor Sessão obrigatório!"></h:inputText>
 					<h:outputText value="Título de Eleitor Sessão: " />
 					<h:inputText
 						value="#{servidorController.servidor.documento.tituloSecao}"
-						size="10" maxlength="4" required="false"
+						size="10" maxlength="4" required="true"
 						onkeypress="mascara(this,soNumeros);"
 						requiredMessage="Campo Título de Eleitor Sessão obrigatório!"></h:inputText>
 					<h:outputText value="UF do Título de Eleitor: " />
 					<h:selectOneMenu
 						value="#{servidorController.servidor.documento.tituloUf}"
-						required="false"
+						required="true"
 						requiredMessage="Campo UF do Título de Eleitor é obrigatório!">
 						<f:selectItem itemLabel="SELECIONE" itemValue="" />
 						<f:selectItems value="#{servidorController.ufs}" />
@@ -304,41 +308,41 @@
 						value="#{servidorController.servidor.documento.tituloDataEmissao}"
 						locale="" popup="true" datePattern="dd/MM/yyyy"
 						showApplyButton="#" cellWidth="12px" cellHeight="12px"
-						style="width:80px" required="false" inputSize="12"
+						style="width:80px" required="true" inputSize="12"
 						requiredMessage="Campo Data de Emissão do Título de Eleitor obrigatório!" />
 					<h:outputText value="Certificado Militar: " />
-					<h:inputText
+					<h:inputText disabled="#{servidorController.indFeminino}" id="certificadoMilitar"
 						value="#{servidorController.servidor.documento.certificadoMilitar}"
 						size="16" maxlength="6" onkeypress="mascara(this, soNumeros);"></h:inputText>
 					<h:outputText value="Certificado Militar Orgão Emissor: " />
-					<h:inputText
+					<h:inputText disabled="#{servidorController.indFeminino}" id="certificadoMilitarOrgao"
 						value="#{servidorController.servidor.documento.certificadoOrgaoEmissor}"
 						size="16" maxlength="8"></h:inputText>
 					<h:outputText value="Certificado Militar Série: " />
-					<h:inputText
+					<h:inputText disabled="#{servidorController.indFeminino}" id="certificadoMilitarSerio"
 						value="#{servidorController.servidor.documento.certificadoSerie}"
 						size="7" maxlength="1"></h:inputText>
 					<h:outputText value="Carteira de Trabalho: " />
 					<h:inputText
 						value="#{servidorController.servidor.documento.carteiraTrabalho}"
-						size="16" maxlength="7" required="false"
+						size="16" maxlength="7" required="true"
 						requiredMessage="Campo Carteira de Trabalho obrigatório!"></h:inputText>
 					<h:outputText value="Carteira de Trabalho Série: " />
 					<h:inputText
 						value="#{servidorController.servidor.documento.carteiraSerie}"
-						size="10" maxlength="5" required="false"
+						size="10" maxlength="5" required="true"
 						requiredMessage="Campo Carteira de Trabalho Série obrigatório!"></h:inputText>
 					<h:outputText value="UF da Carteira de Trabalho: " />
 					<h:selectOneMenu
 						value="#{servidorController.servidor.documento.carteiraUf}"
-						required="false"
+						required="true"
 						requiredMessage="Campo UF da Carteira de Trabalho é obrigatório!">
 						<f:selectItem itemLabel="SELECIONE" itemValue="" />
 						<f:selectItems value="#{servidorController.ufs}" />
 					</h:selectOneMenu>
 					<h:outputText value="PIS/PASEP: " />
 					<h:inputText value="#{servidorController.servidor.documento.pis}"
-						size="16" maxlength="14" required="false"
+						size="16" maxlength="14" required="true"
 						validatorMessage="O campo PIS/PASEP deve ter 14 caracteres!"
 						onkeypress="mascara(this, pis);"
 						requiredMessage="Campo PIS/PASEP obrigatório!">
@@ -357,17 +361,17 @@
 				<h:panelGrid columns="4">
 					<h:outputText value="Endereço: " />
 					<h:inputText value="#{servidorController.servidor.endereco.rua}"
-						size="50" maxlength="120" required="false"
+						size="50" maxlength="120" required="true"
 						requiredMessage="Campo Endereço obrigatório!"></h:inputText>
 
 					<h:outputText value="Número: " />
 					<h:inputText value="#{servidorController.servidor.endereco.numero}"
-						size="5" maxlength="7" required="false"
+						size="5" maxlength="7" required="true"
 						requiredMessage="Campo Número obrigatório!"></h:inputText>
 
 					<h:outputText value="Bairro: " />
 					<h:inputText value="#{servidorController.servidor.endereco.bairro}"
-						size="30" maxlength="80" required="false"
+						size="30" maxlength="80" required="true"
 						requiredMessage="Campo Bairro obrigatório!"></h:inputText>
 
 					<h:outputText value="Complemento: " />
@@ -377,7 +381,7 @@
 
 					<h:outputText value="CEP: " />
 					<h:inputText value="#{servidorController.servidor.endereco.cep}"
-						size="20" maxlength="9" required="false"
+						size="20" maxlength="9" required="true"
 						requiredMessage="Campo CEP obrigatório!"
 						validatorMessage="Campo CEP deve ter no mínimo 9 caracateres!"
 						onkeypress="mascara(this,cep)">
@@ -387,7 +391,7 @@
 					<h:outputText value="Estado: " />
 					<h:selectOneMenu id="estado"
 						value="#{servidorController.servidor.endereco.cidade.estado.codigo}"
-						required="false" requiredMessage="Campo Estado é obrigatório!">
+						required="true" requiredMessage="Campo Estado é obrigatório!">
 						<f:selectItem itemLabel="SELECIONE" itemValue="" />
 						<f:selectItems value="#{servidorController.estados}" />
 						<a4j:support event="onchange"
@@ -398,14 +402,14 @@
 					<h:outputText value="Cidade: " />
 					<h:selectOneMenu id="cidade"
 						value="#{servidorController.servidor.endereco.cidade.codigo}"
-						required="false" requiredMessage="Campo Cidade é obrigatório!">
+						required="true" requiredMessage="Campo Cidade é obrigatório!">
 						<f:selectItem itemLabel="SELECIONE" itemValue="" />
 						<f:selectItems value="#{servidorController.cidades}" />
 					</h:selectOneMenu>
 
 					<h:outputText value="Telefone: " />
 					<h:inputText value="#{servidorController.servidor.telefone}"
-						size="16" maxlength="13" required="false"
+						size="16" maxlength="13" required="true"
 						requiredMessage="Campo Telefone obrigatório!"
 						onkeypress="mascara(this,telefone);"
 						validatorMessage="Campo Telefone deve ter no mínimo 13 caracteres!">
@@ -421,6 +425,7 @@
 
 					<h:outputText value="E-mail: " />
 					<h:inputText value="#{servidorController.servidor.email}" size="40"
+						title="Colocar de preferencial o e-mail institucional!"
 						maxlength="150"></h:inputText>
 				</h:panelGrid>
 			</rich:tab>
@@ -439,16 +444,17 @@
 					<h:outputText value="Número da Conta: " />
 					<h:inputText
 						value="#{servidorController.servidor.contaBancaria.numeroConta}"
-						size="15" maxlength="12" required="false"
+						size="15" maxlength="12" required="true"
 						requiredMessage="Campo Número da Conta obrigatório!"></h:inputText>
 					<h:outputText value="Agência: " />
 					<h:inputText
 						value="#{servidorController.servidor.contaBancaria.agencia}"
-						size="10" maxlength="8" required="false"
+						size="10" maxlength="8" required="true"
 						requiredMessage="Campo Agência obrigatório!"></h:inputText>
 
 					<h:outputText value="Poupança:" />
 					<h:selectBooleanCheckbox id="poupanca"
+						title="A opção poupança é exclusiva de servidores que recebem pela Caixa Econômica Federal!"
 						disabled="#{!servidorController.indPoupanca}"
 						value="#{servidorController.servidor.contaBancaria.indPoupanca}">
 					</h:selectBooleanCheckbox>
