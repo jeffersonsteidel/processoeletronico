@@ -36,4 +36,16 @@ public class ServidorDAO extends DAO{
 		return c.list();
 	}
 	
-}
+	public Servidor refresBySiape(Servidor servidor) {
+		HibernateUtility.getSession().clear();
+		HibernateUtility.beginTransaction();
+		
+		Criteria c = HibernateUtility.getSession().createCriteria(Servidor.class);
+		if (servidor.getSiape() != null && servidor.getSiape() != 0 ){
+		c.add(Restrictions.like("siape", servidor.getSiape()));
+		}
+		
+		return (Servidor) c.uniqueResult();
+	}
+	
+} 
