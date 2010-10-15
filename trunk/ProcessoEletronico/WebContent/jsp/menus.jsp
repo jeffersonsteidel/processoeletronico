@@ -23,7 +23,7 @@
 			<BR />
 			<font size="4"><b>PROGEPE - PROCESSO ELETRÔNICO</b></font>
 			<rich:toolBar>
-				<rich:dropDownMenu>
+				<rich:dropDownMenu rendered="#{autenticacaoController.siapeAutenticado.indAdministrador}">
 					<f:facet name="label">
 						<h:panelGroup>
 							<h:outputText value="SERVIDOR" />

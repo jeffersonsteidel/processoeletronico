@@ -466,12 +466,18 @@
 					<a4j:commandButton value="Salvar"
 						action="#{servidorController.salvar}" reRender="form"
 						oncomplete="#{rich:component('confirmPanel')}.show()" />
+					<h:panelGrid columns="4" rendered="#{autenticacaoController.siapeAutenticado.indAdministrador}">	
 					<h:outputText
 						rendered="#{!servidorController.servidor.dadosValidados}"
 						value="Dados ainda não validados pela PROGEPE!"></h:outputText>
-					<h:outputText
+					<h:outputText 
 						rendered="#{servidorController.servidor.dadosValidados}"
 						value="Dados validados pela PROGEPE!"></h:outputText>
+					<h:outputText 
+						value="Data da última atualização!"></h:outputText>	
+					<h:outputText
+						value="#{servidorController.servidor.dataUltimaAlteracao}"></h:outputText>	
+					</h:panelGrid>	
 				</h:panelGrid>
 			</rich:tab>
 		</rich:tabPanel>
