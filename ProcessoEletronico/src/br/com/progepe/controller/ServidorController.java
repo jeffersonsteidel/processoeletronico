@@ -64,6 +64,7 @@ public class ServidorController {
 	private Boolean servidorEstrangeiro = false;
 	private Boolean servidorBrasileiro = true;
 	private Boolean indPoupanca = false;
+	private Boolean indFeminino = false;
 
 	public Servidor getPessoa() {
 		return servidor;
@@ -255,6 +256,14 @@ public class ServidorController {
 
 	public void setServidorBrasileiro(Boolean servidorBrasileiro) {
 		this.servidorBrasileiro = servidorBrasileiro;
+	}
+	
+	public Boolean getIndFeminino() {
+		return indFeminino;
+	}
+
+	public void setIndFeminino(Boolean indFeminino) {
+		this.indFeminino = indFeminino;
 	}
 
 	public void cadastrar() throws IOException {
@@ -535,6 +544,14 @@ public class ServidorController {
 			servidorBrasileiro = true;
 		}
 	}
+	
+	public void isFeminino() {
+		if (("M").equals(servidor.getSexo())) {
+			indFeminino = false;
+		} else {
+			indFeminino = true;
+		}
+	}
 
 	public void isPoupanca() {
 		if ((CAIXA_ECONOMICA_FEDERAL).equals(servidor.getContaBancaria()
@@ -630,6 +647,8 @@ public class ServidorController {
 		}else{
 			indPoupanca = false;
 		}
+		
+		isFeminino();
 		
 		if(servidor.getIndEstrangeiro()){
 			listarPais();
@@ -775,6 +794,8 @@ public class ServidorController {
 		}else{
 			indPoupanca = false;
 		}
+		
+		isFeminino();
 		
 		if(servidor.getIndEstrangeiro()){
 			listarPais();
