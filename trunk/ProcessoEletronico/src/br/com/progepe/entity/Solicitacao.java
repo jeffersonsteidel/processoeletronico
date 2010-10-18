@@ -4,16 +4,15 @@ import java.io.Serializable;
 import java.util.Date;
 
 public class Solicitacao implements Serializable {
-	/**
-	 * 
-	 */
+	
+	private static final long serialVersionUID = 1L;
 	
 	private Long codigo;
 	private TipoSolicitacao	tipoSolicitacao;
-	private Date cataAbertura;
+	private Date dataAbertura;
 	private Date inicioAtendimento;
 	private Servidor solicitante;
-	private int atendente; // SIAPE
+	private Integer atendente; // SIAPE
 	private Date dataDeFechamento;
 	private StatusSolicitacao statusSolicitacao;
 	private String justificativa;
@@ -30,11 +29,11 @@ public class Solicitacao implements Serializable {
 	public void setTipoSolicitacao(TipoSolicitacao tipoSolicitacao) {
 		this.tipoSolicitacao = tipoSolicitacao;
 	}
-	public Date getCataAbertura() {
-		return cataAbertura;
+	public Date getDataAbertura() {
+		return dataAbertura;
 	}
-	public void setCataAbertura(Date cataAbertura) {
-		this.cataAbertura = cataAbertura;
+	public void setDataAbertura(Date dataAbertura) {
+		this.dataAbertura = dataAbertura;
 	}
 	public Date getInicioAtendimento() {
 		return inicioAtendimento;
@@ -48,10 +47,10 @@ public class Solicitacao implements Serializable {
 	public void setSolicitante(Servidor solicitante) {
 		this.solicitante = solicitante;
 	}
-	public int getAtendente() {
+	public Integer getAtendente() {
 		return atendente;
 	}
-	public void setAtendente(int atendente) {
+	public void setAtendente(Integer atendente) {
 		this.atendente = atendente;
 	}
 	public Date getDataDeFechamento() {

@@ -2,9 +2,6 @@ package br.com.progepe.entity;
 
 public class SolicitacaoContaBancaria extends Solicitacao {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private String numeroConta;
 	private String agencia;
