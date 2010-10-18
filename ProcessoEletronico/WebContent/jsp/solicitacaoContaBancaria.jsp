@@ -63,7 +63,7 @@
 				<h:outputText value="Novo Banco: " />
 				<h:selectOneMenu required="true"
 					requiredMessage="Campo Novo Banco obrigatório!"
-					value="#{solicitacaoContaBancariaController.solicitacaoContaBancaria.contaBancaria.banco.codigo}">
+					value="#{solicitacaoContaBancariaController.solicitacaoContaBancaria.novoBanco.codigo}">
 					<f:selectItem itemLabel="SELECIONE" itemValue="" />
 					<f:selectItems value="#{solicitacaoContaBancariaController.bancos}" />
 					<a4j:support event="onchange"
@@ -72,12 +72,12 @@
 				</h:selectOneMenu>
 				<h:outputText value="Novo Número da Conta: " />
 				<h:inputText
-					value="#{solicitacaoContaBancariaController.solicitacaoContaBancaria.contaBancaria.numeroConta}"
+					value="#{solicitacaoContaBancariaController.solicitacaoContaBancaria.novoNumeroConta}"
 					size="15" maxlength="12" required="true"
 					requiredMessage="Campo Novo Número da Conta obrigatório!"></h:inputText>
 				<h:outputText value="Nova Agência: " />
 				<h:inputText
-					value="#{solicitacaoContaBancariaController.solicitacaoContaBancaria.contaBancaria.agencia}"
+					value="#{solicitacaoContaBancariaController.solicitacaoContaBancaria.novaAgencia}"
 					size="10" maxlength="8" required="true"
 					requiredMessage="Campo Nova Agência obrigatório!"></h:inputText>
 
@@ -85,10 +85,10 @@
 				<h:selectBooleanCheckbox id="poupanca"
 					title="A opção poupança é exclusiva de solicitacaoContaBancariaes que recebem pela Caixa Econômica Federal!"
 					disabled="#{!solicitacaoContaBancariaController.indPoupanca}"
-					value="#{solicitacaoContaBancariaController.solicitacaoContaBancaria.contaBancaria.indPoupanca}">
+					value="#{solicitacaoContaBancariaController.solicitacaoContaBancaria.novoIndPoupanca}">
 				</h:selectBooleanCheckbox>
 			</h:panelGrid>
-			<a4j:commandButton value="Salvar" action="#" />
+			<a4j:commandButton value="Salvar" action="#{solicitacaoContaBancariaController.salvar}" />
 		</rich:panel></center>
 	</a4j:form>
 </f:view>

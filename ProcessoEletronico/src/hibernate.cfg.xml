@@ -50,5 +50,9 @@
 		<mapping resource="RegimeTrabalho.hbm.xml" />
 		<mapping resource="Servidor.hbm.xml" />
 		<mapping resource="SituacaoFuncional.hbm.xml" />
+		<mapping resource="Solicitacao.hbm.xml" />
+		<mapping resource="SolicitacaoContaBancaria.hbm.xml" />
+		<mapping resource="StatusSolicitacao.hbm.xml" />
+		<mapping resource="TipoSolicitacao.hbm.xml" />
 	</session-factory>
 </hibernate-configuration>

@@ -3,7 +3,7 @@ package br.com.progepe.entity;
 import java.io.Serializable;
 import java.util.Date;
 
-public class Solicitacao implements Serializable {
+public  abstract class Solicitacao implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 	
@@ -13,7 +13,7 @@ public class Solicitacao implements Serializable {
 	private Date dataAtendimento;
 	private Servidor solicitante;
 	private Integer atendente; // SIAPE
-	private Date dataDeFechamento;
+	private Date dataFechamento;
 	private StatusSolicitacao statusSolicitacao;
 	private String justificativa;
 	
@@ -53,11 +53,11 @@ public class Solicitacao implements Serializable {
 	public void setAtendente(Integer atendente) {
 		this.atendente = atendente;
 	}
-	public Date getDataDeFechamento() {
-		return dataDeFechamento;
+	public Date getDataFechamento() {
+		return dataFechamento;
 	}
-	public void setDataDeFechamento(Date dataDeFechamento) {
-		this.dataDeFechamento = dataDeFechamento;
+	public void setDataFechamento(Date dataFechamento) {
+		this.dataFechamento = dataFechamento;
 	}
 	public StatusSolicitacao getStatusSolicitacao() {
 		return statusSolicitacao;
