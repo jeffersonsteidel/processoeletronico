@@ -61,6 +61,17 @@
 						action="#{autenticacaoController.alterarSenha}"
 						icon="../images/ALTERARSENHA.gif" />
 				</rich:dropDownMenu>
+				
+				<rich:dropDownMenu>
+					<f:facet name="label">
+						<h:panelGroup>
+							<h:outputText value="SOLICITAÇÕES" />
+						</h:panelGroup>
+					</f:facet>
+					<rich:menuItem submitMode="ajax" value="Alterar Conta Bancária"
+						action="#{solicitacaoContaBancariaController.abrirSolicitacaoContaBancaria}"
+						icon="../images/ALTERARCONTABANCARIA.GIF" />
+				</rich:dropDownMenu>
 
 				<rich:toolBarGroup location="right">
 					<rich:dropDownMenu>
