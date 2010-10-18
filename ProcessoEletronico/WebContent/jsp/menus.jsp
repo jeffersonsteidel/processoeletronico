@@ -73,7 +73,8 @@
 					icon="../images/ALTERARCONTABANCARIA.GIF" />
 				<rich:menuItem submitMode="ajax" value="Listar Solicitações"
 					rendered="#{autenticacaoController.siapeAutenticado.indAdministrador}"
-					action="#" icon="../images/LISTARSOLICITACOES.gif" />
+					action="#{solicitacaoController.abrirPesquisarSolicitacoes}"
+					icon="../images/LISTARSOLICITACOES.gif" />
 				<rich:menuItem submitMode="ajax" value="Minhas Solicitações"
 					action="#" icon="../images/MINHASSOLICITACOES.GIF" />
 			</rich:dropDownMenu>
