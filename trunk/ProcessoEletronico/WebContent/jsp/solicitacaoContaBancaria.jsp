@@ -28,7 +28,7 @@
 
 			<h:panelGrid columns="1">
 				<h:outputText
-					value="#{solicitacaoContaBancariaController.solicitacaoContaBancaria.solicitante.siape - solicitacaoContaBancariaController.solicitacaoContaBancaria.solicitante.nome}">
+					value="#{solicitacaoContaBancariaController.solicitacaoContaBancaria.solicitante.siape} - #{solicitacaoContaBancariaController.solicitacaoContaBancaria.solicitante.nome}">
 				</h:outputText>
 			</h:panelGrid>
 
