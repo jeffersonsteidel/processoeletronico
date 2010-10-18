@@ -10,7 +10,7 @@ public class Solicitacao implements Serializable {
 	private Long codigo;
 	private TipoSolicitacao	tipoSolicitacao;
 	private Date dataAbertura;
-	private Date inicioAtendimento;
+	private Date dataAtendimento;
 	private Servidor solicitante;
 	private Integer atendente; // SIAPE
 	private Date dataDeFechamento;
@@ -35,11 +35,11 @@ public class Solicitacao implements Serializable {
 	public void setDataAbertura(Date dataAbertura) {
 		this.dataAbertura = dataAbertura;
 	}
-	public Date getInicioAtendimento() {
-		return inicioAtendimento;
+	public Date getDataAtendimento() {
+		return dataAtendimento;
 	}
-	public void setInicioAtendimento(Date inicioAtendimento) {
-		this.inicioAtendimento = inicioAtendimento;
+	public void setDataAtendimento(Date dataAtendimento) {
+		this.dataAtendimento = dataAtendimento;
 	}
 	public Servidor getSolicitante() {
 		return solicitante;

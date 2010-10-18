@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping 
+	PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="br.com.progepe.entity.Solicitacao" table="SOLICITACAO">
+		<id name="codigo" column="SOLIC_COD">
+			<generator class="increment"></generator>
+		</id>
+		<property name="dataAbertura" column="SOLIC_DT_ABERTURA" />
+		<property name="dataAtendimento" column="SOLIC_DT_ATENDIMENTO" />
+		<property name="dataFechamento" column="SOLIC_DT_FECHAMENTO" />
+		<property name="justificativa" column="SOLIC_JUSTIFICATIVA" />
+		<property name="atendente" column="SERV_COD_ATENDENTE" />
+		<many-to-one name="solicitante" class="br.com.progepe.entity.Servidor"
+			column="SERV_COD_SOLIC"  lazy="false" />
+		<many-to-one name="tipoSoliciacao" class="br.com.progepe.entity.TipoSolicitacao"
+			column="TIPO_SOLIC_COD"  lazy="false" />
+		<many-to-one name="statusSoliciacao" class="br.com.progepe.entity.StatusSoliciacao"
+			column="STA_SOLIC_COD"  lazy="false" />		
+	</class>
+</hibernate-mapping>
