@@ -14,9 +14,9 @@
 		<property name="atendente" column="SERV_COD_ATENDENTE" />
 		<many-to-one name="solicitante" class="br.com.progepe.entity.Servidor"
 			column="SERV_COD_SOLIC"  lazy="false" />
-		<many-to-one name="tipoSoliciacao" class="br.com.progepe.entity.TipoSolicitacao"
+		<many-to-one name="tipoSolicitacao" class="br.com.progepe.entity.TipoSolicitacao"
 			column="TIPO_SOLIC_COD"  lazy="false" />
-		<many-to-one name="statusSoliciacao" class="br.com.progepe.entity.StatusSoliciacao"
+		<many-to-one name="statusSolicitacao" class="br.com.progepe.entity.StatusSolicitacao"
 			column="STA_SOLIC_COD"  lazy="false" />		
 	</class>
 </hibernate-mapping>

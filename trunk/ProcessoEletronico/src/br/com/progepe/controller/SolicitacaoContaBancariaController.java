@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.faces.context.FacesContext;
@@ -16,6 +17,8 @@ import br.com.progepe.entity.Banco;
 import br.com.progepe.entity.ContaBancaria;
 import br.com.progepe.entity.Servidor;
 import br.com.progepe.entity.SolicitacaoContaBancaria;
+import br.com.progepe.entity.StatusSolicitacao;
+import br.com.progepe.entity.TipoSolicitacao;
 
 public class SolicitacaoContaBancariaController implements Serializable {
 	private static final long serialVersionUID = -333995781063775201L;
@@ -53,9 +56,11 @@ public class SolicitacaoContaBancariaController implements Serializable {
 
 	public void abrirSolicitacaoContaBancaria() throws ParseException {
 		try {
-			buscarServidorLogado();
+			solicitacaoContaBancaria = new SolicitacaoContaBancaria();
+			solicitacaoContaBancaria.setNovoBanco(new Banco());
 			solicitacaoContaBancaria.setContaBancaria(new ContaBancaria());
 			solicitacaoContaBancaria.getContaBancaria().setBanco(new Banco());
+			buscarServidorLogado();
 			listarBancos();
 			FacesContext.getCurrentInstance().getExternalContext()
 					.redirect("solicitacaoContaBancaria.jsp");
@@ -76,8 +81,7 @@ public class SolicitacaoContaBancariaController implements Serializable {
 	}
 	
 	public void isPoupanca() {
-		if ((CAIXA_ECONOMICA_FEDERAL).equals(solicitacaoContaBancaria.getContaBancaria()
-				.getBanco().getCodigo())) {
+		if ((CAIXA_ECONOMICA_FEDERAL).equals(solicitacaoContaBancaria.getNovoBanco().getCodigo())) {
 			indPoupanca = true;
 		} else {
 			indPoupanca = false;
@@ -85,7 +89,6 @@ public class SolicitacaoContaBancariaController implements Serializable {
 	}
 	
 	public void buscarServidorLogado() throws IOException, ParseException{
-		solicitacaoContaBancaria = new SolicitacaoContaBancaria();
 		solicitacaoContaBancaria.setSolicitante(new Servidor());
 		solicitacaoContaBancaria.getSolicitante().setContaBancaria(new ContaBancaria());
 		solicitacaoContaBancaria.getSolicitante().getContaBancaria().setBanco(new Banco());
@@ -96,11 +99,15 @@ public class SolicitacaoContaBancariaController implements Serializable {
 		solicitacaoContaBancaria.getSolicitante().setSiape(siapeAutenticado.getSiape());
 		ServidorDAO servidorDAO = new ServidorDAO();
 		solicitacaoContaBancaria.setSolicitante(servidorDAO.refreshBySiape(solicitacaoContaBancaria.getSolicitante()));
-
-		if((new Long(104)).equals(solicitacaoContaBancaria.getSolicitante().getContaBancaria().getBanco().getCodigo())){
-			indPoupanca = true;
-		}else{
-			indPoupanca = false;
-		}
+	}
+	
+	public void salvar(){
+		solicitacaoContaBancaria.setDataAbertura(new Date());
+		solicitacaoContaBancaria.setDataAtendimento(null);
+		solicitacaoContaBancaria.setTipoSolicitacao(new TipoSolicitacao());
+		solicitacaoContaBancaria.getTipoSolicitacao().setCodigo(1L);
+		solicitacaoContaBancaria.setStatusSolicitacao(new StatusSolicitacao());
+		solicitacaoContaBancaria.getStatusSolicitacao().setCodigo(1L);
+		dao.saveOrUpdate(solicitacaoContaBancaria);
 	}
 }

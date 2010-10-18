@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping 
+	PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<joined-subclass name="br.com.progepe.entity.SolicitacaoContaBancaria" extends="br.com.progepe.entity.Solicitacao">
+		<key column="SOLIC_COD"></key>
+		<property name="novoNumeroConta" column="SOLIC_CONT_BAN_NUMERO" />
+		<property name="novaAgencia" column="SOLIC_CONT_BAN_AGENCIA" />
+		<property name="novoIndPoupanca" column="SOLIC_CONT_BAN_IND_POUPANCA" />
+		<many-to-one name="novoBanco" class="br.com.progepe.entity.Banco"
+			column="BAN_COD"  lazy="false" />
+	</joined-subclass>
+</hibernate-mapping>
