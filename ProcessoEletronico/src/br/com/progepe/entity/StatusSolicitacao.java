@@ -3,9 +3,8 @@ package br.com.progepe.entity;
 import java.io.Serializable;
 
 public class StatusSolicitacao implements Serializable {
-	/**
-	 * 
-	 */
+	
+	private static final long serialVersionUID = 1L;
 	
 	private Long codigo;
 	private String descricao;

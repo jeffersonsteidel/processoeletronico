@@ -433,7 +433,8 @@
 			<rich:tab label="Conta Bancária">
 				<h:panelGrid columns="6">
 					<h:outputText value="Banco: " />
-					<h:selectOneMenu
+					<h:selectOneMenu required="true"
+						requiredMessage="Campo Banco é obrigatório!"
 						value="#{servidorController.servidor.contaBancaria.banco.codigo}">
 						<f:selectItem itemLabel="SELECIONE" itemValue="" />
 						<f:selectItems value="#{servidorController.bancos}" />
