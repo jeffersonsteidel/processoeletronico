@@ -10,29 +10,53 @@
 </head>
 <body>
 <f:view>
-	<jsp:directive.include file="menus.jsp"/>
+	<jsp:directive.include file="menus.jsp" />
 	<center><a4j:form id="form">
-			<rich:panel>
-			<h:panelGrid columns="9">
-				<h:outputText value="Siape: ">
+		<rich:panel>
+			<h:panelGrid columns="6">
+				<h:outputText value="Siape do Solicitante: ">
 				</h:outputText>
-				<h:inputText value="#{servidorController.servidor.siape}" size="10"
-					maxlength="7" onkeyup="mascara(this, soNumeros);">
+				<h:inputText
+					value="#{solicitacaoController.solicitacao.solicitante.siape}"
+					size="10" maxlength="7" onkeyup="mascara(this, soNumeros);">
 				</h:inputText>
-				<h:outputText value="Nome: ">
+				<h:outputText value="Nome do Solicitante: ">
 				</h:outputText>
-				<h:inputText value="#{servidorController.servidor.nome}" size="80">
+				<h:inputText
+					value="#{solicitacaoController.solicitacao.solicitante.nome}"
+					size="80">
 				</h:inputText>
-				
-				<h:outputText value="Status: " />
-				<h:selectOneMenu value="#{solicitacaoController.solicitacao.statusSolicitacao.descricao}">
+
+				<h:outputText value="Tipo Solicitação: " />
+				<h:selectOneMenu
+					value="#{solicitacaoController.solicitacao.tipoSolicitacao.codigo}">
 					<f:selectItem itemLabel="SELECIONE" itemValue="" />
-					<f:selectItems value="#{solicitacaoController.solicitacoes}" />
+					<f:selectItems value="#{solicitacaoController.tiposSolicitacoes}" />
 				</h:selectOneMenu>
 
+				<h:outputText value="Status: " />
+				<h:selectOneMenu
+					value="#{solicitacaoController.solicitacao.statusSolicitacao.codigo}">
+					<f:selectItem itemLabel="SELECIONE" itemValue="" />
+					<f:selectItems value="#{solicitacaoController.statusSolicitacoes}" />
+				</h:selectOneMenu>
+
+				<h:outputText value="Data de Abertura Entre: " />
+				<h:panelGrid columns="3">
+					<rich:calendar value="#{solicitacaoController.dataAberturaInicial}"
+						locale="" popup="true" datePattern="dd/MM/yyyy"
+						showApplyButton="#" cellWidth="16px" cellHeight="22px"
+						style="width:200px" />
+					<h:outputText value="a" />
+					<rich:calendar value="#{solicitacaoController.dataAberturaFinal}"
+						locale="" popup="true" datePattern="dd/MM/yyyy"
+						showApplyButton="#" cellWidth="16px" cellHeight="22px"
+						style="width:200px" />
+				</h:panelGrid>
+
 				<a4j:commandButton value="Pesquisar"
-					action="#"
-					reRender="#" type="submit" />
+					action="#{solicitacaoController.pesquisarSolicitacoes}"
+					reRender="listaSolicitacoes" type="submit" />
 			</h:panelGrid>
 
 			<rich:messages layout="list">
@@ -46,36 +70,45 @@
 				width="1150px" columnClasses="center" rows="15" reRender="ds">
 				<rich:column width="50px" sortBy="#{list.solicitante.siape}">
 					<f:facet name="header">
-						<h:outputText value="Siape" />
+						<h:outputText value="Siape do Solicitante" />
 					</f:facet>
 					<h:outputText value="#{list.solicitante.siape}" />
 				</rich:column>
-
+				
 				<rich:column width="420px" sortBy="#{list.solicitante.nome}">
 					<f:facet name="header">
-						<h:outputText value="Nome" />
+						<h:outputText value="Nome do Solicitante" />
 					</f:facet>
 					<h:outputText value="#{list.solicitante.nome}" />
 				</rich:column>
 
-				<rich:column width="280px" sortBy="#{list.statusSolicitacao.descricao}">
+				<rich:column width="280px"
+					sortBy="#{list.tipoSolicitacao.descricao}">
+					<f:facet name="header">
+						<h:outputText value="Tipo Solicitação" />
+					</f:facet>
+					<h:outputText value="#{list.tipoSolicitacao.descricao}" />
+				</rich:column>
+
+				
+
+				<rich:column width="280px"
+					sortBy="#{list.statusSolicitacao.descricao}">
 					<f:facet name="header">
 						<h:outputText value="Status" />
 					</f:facet>
 					<h:outputText value="#{list.statusSolicitacao.descricao}" />
 				</rich:column>
 
-				
+
 				<rich:column>
 					<f:facet name="header">
 						<h:outputText value="Editar" />
 					</f:facet>
-					<a4j:commandLink action="#"
-						reRender="#" ajaxSingle="true">
+					<a4j:commandLink action="#" reRender="#" ajaxSingle="true">
 						<h:graphicImage value="../images/edit.gif" style="border:0"
 							width="20" height="18" id="editar" />
-						<f:setPropertyActionListener value="#"
-							target="#" />
+						<f:setPropertyActionListener value="#" target="#" />
 					</a4j:commandLink>
 					<rich:toolTip for="editar" value="Editar" />
 				</rich:column>
