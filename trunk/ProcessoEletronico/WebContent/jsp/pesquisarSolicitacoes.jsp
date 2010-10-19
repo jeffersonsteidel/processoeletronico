@@ -39,13 +39,13 @@
 				<h:panelGrid columns="3">
 					<rich:calendar value="#{solicitacaoController.dataAberturaInicial}"
 						locale="" popup="true" datePattern="dd/MM/yyyy"
-						showApplyButton="#" cellWidth="16px" cellHeight="22px"
-						style="width:200px" />
+						showApplyButton="#" cellWidth="12px" cellHeight="12px"
+						style="width:80px" />
 					<h:outputText value="a" />
 					<rich:calendar value="#{solicitacaoController.dataAberturaFinal}"
 						locale="" popup="true" datePattern="dd/MM/yyyy"
-						showApplyButton="#" cellWidth="16px" cellHeight="22px"
-						style="width:200px" />
+						showApplyButton="#" cellWidth="12px" cellHeight="12px"
+						style="width:80px" />
 				</h:panelGrid>
 
 				<a4j:commandButton value="Pesquisar"
@@ -62,21 +62,21 @@
 			<rich:dataTable id="listaSolicitacoes"
 				value="#{solicitacaoController.solicitacoes}" var="list"
 				width="1150px" columnClasses="center" rows="15" reRender="ds">
-				<rich:column width="50px" sortBy="#{list.solicitante.siape}">
+				<rich:column width="40px" sortBy="#{list.solicitante.siape}">
 					<f:facet name="header">
 						<h:outputText value="Siape do Solicitante" />
 					</f:facet>
 					<h:outputText value="#{list.solicitante.siape}" />
 				</rich:column>
 
-				<rich:column width="420px" sortBy="#{list.solicitante.nome}">
+				<rich:column width="430px" sortBy="#{list.solicitante.nome}">
 					<f:facet name="header">
 						<h:outputText value="Nome do Solicitante" />
 					</f:facet>
 					<h:outputText value="#{list.solicitante.nome}" />
 				</rich:column>
 
-				<rich:column width="420px" sortBy="#{list.dataAbertura}">
+				<rich:column width="350px" sortBy="#{list.dataAbertura}">
 					<f:facet name="header">
 						<h:outputText value="Data Abertura" />
 					</f:facet>
@@ -85,7 +85,7 @@
 					</h:outputText>
 				</rich:column>
 				
-				<rich:column width="420px" sortBy="#{list.dataAtentimento}">
+				<rich:column width="350px" sortBy="#{list.dataAtentimento}">
 					<f:facet name="header">
 						<h:outputText value="Data Atendimento" />
 					</f:facet>
@@ -95,7 +95,7 @@
 					<h:outputText value="-" rendered="#{list.dataAtendimento == null}"/>
 				</rich:column>
 				
-				<rich:column width="420px" sortBy="#{list.dataFechamento}">
+				<rich:column width="350px" sortBy="#{list.dataFechamento}">
 					<f:facet name="header">
 						<h:outputText value="Data Fechamento" />
 					</f:facet>
@@ -105,15 +105,13 @@
 					<h:outputText value="-" rendered="#{list.dataFechamento == null}"/>
 				</rich:column>
 
-				<rich:column width="280px"
+				<rich:column width="400px"
 					sortBy="#{list.tipoSolicitacao.descricao}">
 					<f:facet name="header">
 						<h:outputText value="Tipo Solicitação" />
 					</f:facet>
 					<h:outputText value="#{list.tipoSolicitacao.descricao}" />
 				</rich:column>
-
-
 
 				<rich:column width="280px"
 					sortBy="#{list.statusSolicitacao.descricao}">
