@@ -7,12 +7,14 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
 
 import br.com.progepe.dao.DAO;
 import br.com.progepe.dao.ServidorDAO;
 import br.com.progepe.dao.SolicitacaoDAO;
+import br.com.progepe.entity.Autenticacao;
 import br.com.progepe.entity.Servidor;
 import br.com.progepe.entity.Solicitacao;
 import br.com.progepe.entity.StatusSolicitacao;
@@ -20,15 +22,16 @@ import br.com.progepe.entity.TipoSolicitacao;
 
 public class SolicitacaoController implements Serializable {
 	private static final long serialVersionUID = -333995781063775201L;
-	
+
 	private Solicitacao solicitacao;
 	private Date dataAberturaInicial;
 	private Date dataAberturaFinal;
 	private List<SelectItem> tiposSolicitacoes = new ArrayList<SelectItem>();
 	private List<SelectItem> statusSolicitacoes = new ArrayList<SelectItem>();
 	private List<Solicitacao> solicitacoes = new ArrayList<Solicitacao>();
+	private List<Solicitacao> minhasSolicitacoes = new ArrayList<Solicitacao>();
 	DAO dao = new DAO();
-	
+
 	public Solicitacao getSolicitacao() {
 		return solicitacao;
 	}
@@ -44,7 +47,7 @@ public class SolicitacaoController implements Serializable {
 	public void setSolicitacoes(List<Solicitacao> solicitacoes) {
 		this.solicitacoes = solicitacoes;
 	}
-	
+
 	public Date getDataAberturaInicial() {
 		return dataAberturaInicial;
 	}
@@ -77,9 +80,17 @@ public class SolicitacaoController implements Serializable {
 		this.statusSolicitacoes = statusSolicitacoes;
 	}
 
+	public List<Solicitacao> getMinhasSolicitacoes() {
+		return minhasSolicitacoes;
+	}
+
+	public void setMinhasSolicitacoes(List<Solicitacao> minhasSolicitacoes) {
+		this.minhasSolicitacoes = minhasSolicitacoes;
+	}
+
 	public void abrirPesquisarSolicitacoes() throws ParseException {
 		try {
-			solicitacao = new Solicitacao(); 
+			solicitacao = new Solicitacao();
 			solicitacao.setSolicitante(new Servidor());
 			solicitacao.setStatusSolicitacao(new StatusSolicitacao());
 			solicitacao.setTipoSolicitacao(new TipoSolicitacao());
@@ -93,40 +104,72 @@ public class SolicitacaoController implements Serializable {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public List<Solicitacao> pesquisarSolicitacoes() throws ParseException {
 		SolicitacaoDAO solicitacaoDAO = new SolicitacaoDAO();
-		if(solicitacao.getSolicitante().getSiape() != 0){
+		if (solicitacao.getSolicitante().getSiape() != 0) {
 			ServidorDAO servidorDAO = new ServidorDAO();
-			solicitacao.setSolicitante(servidorDAO.refreshByFilter(solicitacao.getSolicitante()));
+			solicitacao.setSolicitante(servidorDAO.refreshByFilter(solicitacao
+					.getSolicitante()));
 		}
-		this.setSolicitacoes(solicitacaoDAO.listByFilter(solicitacao, dataAberturaInicial, dataAberturaFinal));
+		this.setSolicitacoes(solicitacaoDAO.listByFilter(solicitacao,
+				dataAberturaInicial, dataAberturaFinal));
 		return this.getSolicitacoes();
 	}
-	
-	
-	
+
 	@SuppressWarnings("unchecked")
 	public List<SelectItem> listarStatusSolicitacoes() {
 		statusSolicitacoes = new ArrayList<SelectItem>();
 		List<StatusSolicitacao> statusSolicitacoesList = new ArrayList<StatusSolicitacao>();
 		statusSolicitacoesList = dao.list(StatusSolicitacao.class, "descricao");
 		for (StatusSolicitacao statusSolicitacao : statusSolicitacoesList) {
-			statusSolicitacoes.add(new SelectItem(statusSolicitacao.getCodigo(), statusSolicitacao
-					.getDescricao()));
+			statusSolicitacoes.add(new SelectItem(
+					statusSolicitacao.getCodigo(), statusSolicitacao
+							.getDescricao()));
 		}
 		return statusSolicitacoes;
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	public List<SelectItem> listarTiposSolicitacoes() {
 		tiposSolicitacoes = new ArrayList<SelectItem>();
 		List<TipoSolicitacao> tipoSolicitacoesList = new ArrayList<TipoSolicitacao>();
 		tipoSolicitacoesList = dao.list(TipoSolicitacao.class, "descricao");
 		for (TipoSolicitacao tipoSolicitacao : tipoSolicitacoesList) {
-			tiposSolicitacoes.add(new SelectItem(tipoSolicitacao.getCodigo(), tipoSolicitacao
-					.getDescricao()));
+			tiposSolicitacoes.add(new SelectItem(tipoSolicitacao.getCodigo(),
+					tipoSolicitacao.getDescricao()));
 		}
 		return tiposSolicitacoes;
+	}
+
+	public List<Solicitacao> abrirMinhasSolicitacoes() throws ParseException {
+		try {
+			SolicitacaoDAO solicitacaoDAO = new SolicitacaoDAO();
+			solicitacao = new Solicitacao();
+			solicitacao.setSolicitante(new Servidor());
+			solicitacao.setStatusSolicitacao(new StatusSolicitacao());
+			solicitacao.setTipoSolicitacao(new TipoSolicitacao());
+
+			Autenticacao siapeAutenticado = (Autenticacao) FacesContext
+					.getCurrentInstance().getExternalContext().getSessionMap()
+					.get("usuarioLogado");
+			ServidorDAO servidorDAO = new ServidorDAO();
+			solicitacao.getSolicitante().setSiape(siapeAutenticado.getSiape());
+			solicitacao.setSolicitante(servidorDAO.refreshByFilter(solicitacao
+					.getSolicitante()));
+			this.setMinhasSolicitacoes(solicitacaoDAO.listByFilter(solicitacao,
+					null, null));
+			FacesContext.getCurrentInstance().getExternalContext()
+					.redirect("listarMinhasSolicitacoes.jsp");
+			if (this.getMinhasSolicitacoes() != null && this.getMinhasSolicitacoes().size() == 0) {
+				FacesMessage message = new FacesMessage(
+						FacesMessage.SEVERITY_ERROR, "Não há nenhuma solicitação!",
+						"Não há nenhuma solicitação!");
+				FacesContext.getCurrentInstance().addMessage("", message);
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return this.getMinhasSolicitacoes();
 	}
 }
