@@ -10,6 +10,7 @@ import java.util.List;
 import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
 
+import br.com.progepe.constantes.Constantes;
 import br.com.progepe.dao.DAO;
 import br.com.progepe.dao.ServidorDAO;
 import br.com.progepe.entity.Autenticacao;
@@ -26,7 +27,6 @@ public class SolicitacaoContaBancariaController implements Serializable {
 	private SolicitacaoContaBancaria solicitacaoContaBancaria;
 	private List<SelectItem> bancos = new ArrayList<SelectItem>();
 	DAO dao = new DAO();
-	public static final Long CAIXA_ECONOMICA_FEDERAL = 104L;
 	private Boolean indPoupanca = false;
 
 	public SolicitacaoContaBancaria getSolicitacaoContaBancaria() {
@@ -81,7 +81,7 @@ public class SolicitacaoContaBancariaController implements Serializable {
 	}
 	
 	public void isPoupanca() {
-		if ((CAIXA_ECONOMICA_FEDERAL).equals(solicitacaoContaBancaria.getNovoBanco().getCodigo())) {
+		if ((Constantes.CAIXA_ECONOMICA_FEDERAL).equals(solicitacaoContaBancaria.getNovoBanco().getCodigo())) {
 			indPoupanca = true;
 		} else {
 			indPoupanca = false;
@@ -105,9 +105,9 @@ public class SolicitacaoContaBancariaController implements Serializable {
 		solicitacaoContaBancaria.setDataAbertura(new Date());
 		solicitacaoContaBancaria.setDataAtendimento(null);
 		solicitacaoContaBancaria.setTipoSolicitacao(new TipoSolicitacao());
-		solicitacaoContaBancaria.getTipoSolicitacao().setCodigo(1L);
+		solicitacaoContaBancaria.getTipoSolicitacao().setCodigo(Constantes.TIPO_SOLICITACAO_ALTERAR_CONTA_BANCARIA);
 		solicitacaoContaBancaria.setStatusSolicitacao(new StatusSolicitacao());
-		solicitacaoContaBancaria.getStatusSolicitacao().setCodigo(1L);
+		solicitacaoContaBancaria.getStatusSolicitacao().setCodigo(Constantes.STATUS_SOLICITACAO_AGUARDANDO);
 		dao.saveOrUpdate(solicitacaoContaBancaria);
 	}
 }

@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
 
@@ -161,12 +160,6 @@ public class SolicitacaoController implements Serializable {
 					null, null));
 			FacesContext.getCurrentInstance().getExternalContext()
 					.redirect("listarMinhasSolicitacoes.jsp");
-			if (this.getMinhasSolicitacoes() != null && this.getMinhasSolicitacoes().size() == 0) {
-				FacesMessage message = new FacesMessage(
-						FacesMessage.SEVERITY_ERROR, "Não há nenhuma solicitação!",
-						"Não há nenhuma solicitação!");
-				FacesContext.getCurrentInstance().addMessage("", message);
-			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

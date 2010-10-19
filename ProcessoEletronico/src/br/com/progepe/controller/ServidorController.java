@@ -10,6 +10,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
 
+import br.com.progepe.constantes.Constantes;
 import br.com.progepe.dao.CidadeDAO;
 import br.com.progepe.dao.DAO;
 import br.com.progepe.dao.ServidorDAO;
@@ -36,7 +37,6 @@ import br.com.progepe.validator.Validator;
 
 public class ServidorController {
 
-	public static final Long CAIXA_ECONOMICA_FEDERAL = 104L;
 
 	private Servidor servidor;
 	private List<Servidor> servidores;
@@ -564,7 +564,7 @@ public class ServidorController {
 	}
 
 	public void isPoupanca() {
-		if ((CAIXA_ECONOMICA_FEDERAL).equals(servidor.getContaBancaria()
+		if ((Constantes.CAIXA_ECONOMICA_FEDERAL).equals(servidor.getContaBancaria()
 				.getBanco().getCodigo())) {
 			indPoupanca = true;
 		} else {
