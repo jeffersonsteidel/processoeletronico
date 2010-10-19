@@ -13,20 +13,14 @@
 	<jsp:directive.include file="menus.jsp" />
 	<center><a4j:form id="form">
 		<rich:panel>
-			<h:panelGrid columns="6">
+			<h:panelGrid columns="11">
 				<h:outputText value="Siape do Solicitante: ">
 				</h:outputText>
 				<h:inputText
 					value="#{solicitacaoController.solicitacao.solicitante.siape}"
 					size="10" maxlength="7" onkeyup="mascara(this, soNumeros);">
 				</h:inputText>
-				<h:outputText value="Nome do Solicitante: ">
-				</h:outputText>
-				<h:inputText
-					value="#{solicitacaoController.solicitacao.solicitante.nome}"
-					size="80">
-				</h:inputText>
-
+					
 				<h:outputText value="Tipo Solicitação: " />
 				<h:selectOneMenu
 					value="#{solicitacaoController.solicitacao.tipoSolicitacao.codigo}">
