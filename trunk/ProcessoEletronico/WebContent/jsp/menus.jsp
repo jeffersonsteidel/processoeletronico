@@ -60,14 +60,18 @@
 				<rich:menuItem submitMode="ajax" value="Alterar Conta Bancária"
 					action="#{solicitacaoContaBancariaController.abrirSolicitacaoContaBancaria}"
 					icon="../images/ALTERARCONTABANCARIA.GIF" />
+				<rich:menuItem submitMode="ajax" value="Auxílio Tranporte"
+					action="#{solicitacaoController.abrirMinhasSolicitacoes}"
+					icon="../images/SOLICITACAOAUTOMOVEIS.gif" />
 				<rich:menuItem submitMode="ajax" value="Listar Solicitações"
 					rendered="#{autenticacaoController.siapeAutenticado.indAdministrador}"
 					action="#{solicitacaoController.abrirPesquisarSolicitacoes}"
 					icon="../images/LISTARSOLICITACOES.gif" />
 				<rich:menuItem submitMode="ajax" value="Minhas Solicitações"
-					action="#{solicitacaoController.abrirMinhasSolicitacoes}" icon="../images/MINHASSOLICITACOES.GIF" />
+					action="#{solicitacaoController.abrirMinhasSolicitacoes}"
+					icon="../images/MINHASSOLICITACOES.GIF" />
 			</rich:dropDownMenu>
-			
+
 			<rich:dropDownMenu>
 				<f:facet name="label">
 					<h:panelGroup>
@@ -78,7 +82,7 @@
 					action="#{autenticacaoController.alterarSenha}"
 					icon="../images/ALTERARSENHA.gif" />
 			</rich:dropDownMenu>
-			
+
 			<rich:toolBarGroup location="right">
 				<rich:dropDownMenu>
 					<f:facet name="label">
