@@ -18,7 +18,7 @@ public class SolicitacaoDAO extends DAO {
 		Criteria c = HibernateUtility.getSession().createCriteria(
 				Solicitacao.class);
 		if (solicitacao.getSolicitante().getSiape() != null && solicitacao.getSolicitante().getSiape() != 0) {
-			c.add(Restrictions.like("solitante", solicitacao.getSolicitante()));
+			c.add(Restrictions.like("solicitante", solicitacao.getSolicitante()));
 		}
 		if (dataSolicitacaoInicial!= null && dataSolicitacaoFinal!=null) {
 			c.add(Restrictions.between("dataAbertura", dataSolicitacaoInicial,dataSolicitacaoFinal));

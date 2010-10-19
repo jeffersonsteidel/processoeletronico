@@ -96,7 +96,7 @@ public class SolicitacaoController implements Serializable {
 	
 	public List<Solicitacao> pesquisarSolicitacoes() throws ParseException {
 		SolicitacaoDAO solicitacaoDAO = new SolicitacaoDAO();
-		if(solicitacao.getSolicitante().getCodigo() != 0 || solicitacao.getSolicitante().getNome() != ""){
+		if(solicitacao.getSolicitante().getSiape() != 0){
 			ServidorDAO servidorDAO = new ServidorDAO();
 			solicitacao.setSolicitante(servidorDAO.refreshByFilter(solicitacao.getSolicitante()));
 		}
