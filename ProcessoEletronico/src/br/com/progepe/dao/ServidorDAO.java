@@ -47,4 +47,23 @@ public class ServidorDAO extends DAO {
 		return (Servidor) c.uniqueResult();
 	}
 	
+
+	public Servidor refreshByFilter(Servidor servidor) {
+		HibernateUtility.getSession().clear();
+		HibernateUtility.beginTransaction();
+
+		Criteria c = HibernateUtility.getSession().createCriteria(
+				Servidor.class);
+		if (servidor.getSiape() != null && servidor.getSiape() != 0) {
+			c.add(Restrictions.like("siape", servidor.getSiape()));
+		}
+
+		if (servidor.getNome() != null && servidor.getNome() != "") {
+			c.add(Restrictions.like("nome", servidor.getNome().toUpperCase(),
+					MatchMode.ANYWHERE));
+		}
+
+		return (Servidor) c.uniqueResult();
+	}
+	
 } 

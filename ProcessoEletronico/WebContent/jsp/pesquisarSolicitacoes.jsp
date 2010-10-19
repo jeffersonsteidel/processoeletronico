@@ -74,12 +74,41 @@
 					</f:facet>
 					<h:outputText value="#{list.solicitante.siape}" />
 				</rich:column>
-				
+
 				<rich:column width="420px" sortBy="#{list.solicitante.nome}">
 					<f:facet name="header">
 						<h:outputText value="Nome do Solicitante" />
 					</f:facet>
 					<h:outputText value="#{list.solicitante.nome}" />
+				</rich:column>
+
+				<rich:column width="420px" sortBy="#{list.dataAbertura}">
+					<f:facet name="header">
+						<h:outputText value="Data Abertura" />
+					</f:facet>
+					<h:outputText value="#{list.dataAbertura}">
+						<f:convertDateTime locale="pt_BR" pattern="dd/MM/yyyy - HH:mm:ss" />
+					</h:outputText>
+				</rich:column>
+				
+				<rich:column width="420px" sortBy="#{list.dataAtentimento}">
+					<f:facet name="header">
+						<h:outputText value="Data Atendimento" />
+					</f:facet>
+					<h:outputText value="#{list.dataAtendimento}" rendered="#{list.dataAtendimento != null}">
+						<f:convertDateTime locale="pt_BR" pattern="dd/MM/yyyy - HH:mm:ss" />
+					</h:outputText>
+					<h:outputText value="-" rendered="#{list.dataAtendimento == null}"/>
+				</rich:column>
+				
+				<rich:column width="420px" sortBy="#{list.dataFechamento}">
+					<f:facet name="header">
+						<h:outputText value="Data Fechamento" />
+					</f:facet>
+					<h:outputText value="#{list.dataFechamento}" rendered="#{list.dataFechamento != null}">
+						<f:convertDateTime locale="pt_BR" pattern="dd/MM/yyyy - HH:mm:ss" />
+					</h:outputText>
+					<h:outputText value="-" rendered="#{list.dataFechamento == null}"/>
 				</rich:column>
 
 				<rich:column width="280px"
@@ -90,7 +119,7 @@
 					<h:outputText value="#{list.tipoSolicitacao.descricao}" />
 				</rich:column>
 
-				
+
 
 				<rich:column width="280px"
 					sortBy="#{list.statusSolicitacao.descricao}">

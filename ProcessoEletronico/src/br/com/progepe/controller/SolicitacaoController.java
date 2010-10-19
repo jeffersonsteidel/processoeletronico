@@ -11,6 +11,7 @@ import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
 
 import br.com.progepe.dao.DAO;
+import br.com.progepe.dao.ServidorDAO;
 import br.com.progepe.dao.SolicitacaoDAO;
 import br.com.progepe.entity.Servidor;
 import br.com.progepe.entity.Solicitacao;
@@ -95,6 +96,10 @@ public class SolicitacaoController implements Serializable {
 	
 	public List<Solicitacao> pesquisarSolicitacoes() throws ParseException {
 		SolicitacaoDAO solicitacaoDAO = new SolicitacaoDAO();
+		if(solicitacao.getSolicitante().getCodigo() != 0 || solicitacao.getSolicitante().getNome() != ""){
+			ServidorDAO servidorDAO = new ServidorDAO();
+			solicitacao.setSolicitante(servidorDAO.refreshByFilter(solicitacao.getSolicitante()));
+		}
 		this.setSolicitacoes(solicitacaoDAO.listByFilter(solicitacao, dataAberturaInicial, dataAberturaFinal));
 		return this.getSolicitacoes();
 	}
