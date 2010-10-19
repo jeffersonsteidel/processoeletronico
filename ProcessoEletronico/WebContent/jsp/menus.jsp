@@ -76,7 +76,7 @@
 					action="#{solicitacaoController.abrirPesquisarSolicitacoes}"
 					icon="../images/LISTARSOLICITACOES.gif" />
 				<rich:menuItem submitMode="ajax" value="Minhas Solicitações"
-					action="#" icon="../images/MINHASSOLICITACOES.GIF" />
+					action="#{solicitacaoController.abrirMinhasSolicitacoes}" icon="../images/MINHASSOLICITACOES.GIF" />
 			</rich:dropDownMenu>
 
 			<rich:toolBarGroup location="right">
