@@ -24,12 +24,12 @@ public class SolicitacaoDAO extends DAO {
 			c.add(Restrictions.between("dataAbertura", dataSolicitacaoInicial,dataSolicitacaoFinal));
 		}
 
-		if (solicitacao.getStatusSolicitacao().getCodigo() != null) {
-			c.add(Restrictions.like("statusSolicitacao", solicitacao.getStatusSolicitacao().getCodigo()));
+		if (solicitacao.getStatusSolicitacao().getCodigo() != null && solicitacao.getStatusSolicitacao().getCodigo() != 0) {
+			c.add(Restrictions.like("statusSolicitacao", solicitacao.getStatusSolicitacao()));
 		}
 		
-		if (solicitacao.getTipoSolicitacao().getCodigo()!= null) {
-			c.add(Restrictions.like("tipoSolicitacao", solicitacao.getCodigo()));
+		if (solicitacao.getTipoSolicitacao().getCodigo()!= null && solicitacao.getTipoSolicitacao().getCodigo()!= 0) {
+			c.add(Restrictions.like("tipoSolicitacao", solicitacao.getTipoSolicitacao()));
 		}
 		
 		return c.list();
