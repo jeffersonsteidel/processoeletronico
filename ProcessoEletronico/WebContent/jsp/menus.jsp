@@ -54,17 +54,6 @@
 			<rich:dropDownMenu>
 				<f:facet name="label">
 					<h:panelGroup>
-						<h:outputText value="ALTERAR SENHA" />
-					</h:panelGroup>
-				</f:facet>
-				<rich:menuItem submitMode="ajax" value="Alterar Senha"
-					action="#{autenticacaoController.alterarSenha}"
-					icon="../images/ALTERARSENHA.gif" />
-			</rich:dropDownMenu>
-
-			<rich:dropDownMenu>
-				<f:facet name="label">
-					<h:panelGroup>
 						<h:outputText value="SOLICITAÇÕES" />
 					</h:panelGroup>
 				</f:facet>
@@ -78,7 +67,18 @@
 				<rich:menuItem submitMode="ajax" value="Minhas Solicitações"
 					action="#{solicitacaoController.abrirMinhasSolicitacoes}" icon="../images/MINHASSOLICITACOES.GIF" />
 			</rich:dropDownMenu>
-
+			
+			<rich:dropDownMenu>
+				<f:facet name="label">
+					<h:panelGroup>
+						<h:outputText value="ALTERAR SENHA" />
+					</h:panelGroup>
+				</f:facet>
+				<rich:menuItem submitMode="ajax" value="Alterar Senha"
+					action="#{autenticacaoController.alterarSenha}"
+					icon="../images/ALTERARSENHA.gif" />
+			</rich:dropDownMenu>
+			
 			<rich:toolBarGroup location="right">
 				<rich:dropDownMenu>
 					<f:facet name="label">
