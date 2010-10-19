@@ -89,6 +89,7 @@ public class SolicitacaoController implements Serializable {
 
 	public void abrirPesquisarSolicitacoes() throws ParseException {
 		try {
+			solicitacoes = new ArrayList<Solicitacao>();
 			solicitacao = new Solicitacao();
 			solicitacao.setSolicitante(new Servidor());
 			solicitacao.setStatusSolicitacao(new StatusSolicitacao());
