@@ -60,8 +60,8 @@
 				<rich:menuItem submitMode="ajax" value="Alterar Conta Bancária"
 					action="#{solicitacaoContaBancariaController.abrirSolicitacaoContaBancaria}"
 					icon="../images/ALTERARCONTABANCARIA.GIF" />
-				<rich:menuItem submitMode="ajax" value="Auxílio Tranporte"
-					action="#{solicitacaoController.abrirMinhasSolicitacoes}"
+				<rich:menuItem submitMode="ajax" value="Auxílio Transporte"
+					action="#"
 					icon="../images/SOLICITACAOAUTOMOVEIS.gif" />
 				<rich:menuItem submitMode="ajax" value="Listar Solicitações"
 					rendered="#{autenticacaoController.siapeAutenticado.indAdministrador}"
