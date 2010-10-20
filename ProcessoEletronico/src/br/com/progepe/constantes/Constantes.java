@@ -7,4 +7,6 @@ public class Constantes {
 	public static final Long STATUS_SOLICITACAO_DEFERIDO = 3L;
 	public static final Long STATUS_SOLICITACAO_INDEFERIDO = 4L;
 	public static final Long TIPO_SOLICITACAO_ALTERAR_CONTA_BANCARIA = 1L;
+	public static final Long TIPO_SOLICITACAO_AUXILIO_ALIMENTACAO = 1L;
+	
 }
