@@ -4,7 +4,7 @@ public class SolicitacaoAlimentacao extends Solicitacao {
 
 	private static final long serialVersionUID = 1L;
 		
-	private Boolean indAlimentacao;
+	private Boolean indAlimentacao = false;
 
 	public Boolean getIndAlimentacao() {
 		return indAlimentacao;
