@@ -23,4 +23,9 @@ Config 1.1//EN"
 		<managed-bean-class>br.com.progepe.controller.SolicitacaoContaBancariaController</managed-bean-class>
 		<managed-bean-scope>session</managed-bean-scope>
 	</managed-bean>
+		<managed-bean>
+		<managed-bean-name>solicitacaoAlimentacaoController</managed-bean-name>
+		<managed-bean-class>br.com.progepe.controller.SolicitacaoAlimentacaoController</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
 </faces-config>
