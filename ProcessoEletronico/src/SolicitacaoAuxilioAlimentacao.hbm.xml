@@ -3,7 +3,7 @@
 	PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
     "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
-	<joined-subclass name="br.com.progepe.entity.SolicitacaoContaBancaria" extends="br.com.progepe.entity.Solicitacao">
+	<joined-subclass name="br.com.progepe.entity.SolicitacaoAlimentacao" extends="br.com.progepe.entity.Solicitacao">
 		<key column="SOLIC_COD"></key>
 		<property name="indAlimentacao" column="solic_alim_ind" />
 	</joined-subclass>

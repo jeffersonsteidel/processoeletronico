@@ -35,6 +35,7 @@ public class SolicitacaoAlimentacaoController implements Serializable {
 		try {
 			solicitacaoAlimentacao = new SolicitacaoAlimentacao();
 			buscarServidorLogado();
+			solicitacaoAlimentacao.setIndAlimentacao(false);
 			FacesContext.getCurrentInstance().getExternalContext()
 					.redirect("solicitacaoAlimentacao.jsp");
 		} catch (IOException e) {
@@ -69,6 +70,7 @@ public class SolicitacaoAlimentacaoController implements Serializable {
 	public void salvar() {
 		solicitacaoAlimentacao.setDataAbertura(new Date());
 		solicitacaoAlimentacao.setDataAtendimento(null);
+	//	solicitacaoAlimentacao.setIndAlimentacao(new Boolean(false));    // não funciona sem o botão =P
 		solicitacaoAlimentacao.setTipoSolicitacao(new TipoSolicitacao());
 		solicitacaoAlimentacao.getTipoSolicitacao().setCodigo(
 				Constantes.TIPO_SOLICITACAO_AUXILIO_ALIMENTACAO);
