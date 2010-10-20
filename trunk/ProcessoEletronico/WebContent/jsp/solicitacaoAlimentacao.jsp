@@ -31,20 +31,58 @@
 					value="#{solicitacaoAlimentacaoController.solicitacaoAlimentacao.solicitante.siape} - #{solicitacaoAlimentacaoController.solicitacaoAlimentacao.solicitante.nome}">
 				</h:outputText>
 				<h:outputText
-					value="#{solicitacaoAlimentacaoController.solicitante.regimeTrabalho.descricao}">
+					value="#{solicitacaoAlimentacaoController.solicitacaoAlimentacao.solicitante.regimeTrabalho.descricao}">
 				</h:outputText>
 			</h:panelGrid>
-
+			
+			
+			
 			<h:panelGrid columns="2">
 				<h:outputText value="Incluir Auxílio"></h:outputText>
-				<h:selectBooleanCheckbox
+				D
+					<h:selectOneRadio id="indAlimentacao" value="#{solicitacaoAlimentacaoController.solicitacaoAlimentacao.indAlimentacao}"
+						title="Incluir Auxílio" 
+						border="1">
+						<f:selectItem id="true" itemLabel="Incluir" itemValue="true" />
+						<f:selectItem id="false" itemLabel="Cancelae" itemValue="false" />
+					</h:selectOneRadio>
+
+				<!--				<h:selectOneRadio id="indAlimentacaoTrue"-->
+<!--					value="#{solicitacaoAlimentacaoController.solicitacaoAlimentacao.indAlimentacao}">-->
+<!--					<f:selectItem itemValue="true" itemLabel="Inclusão" />-->
+<!--					<f:selectItem itemValue="false" itemLabel="Alteração" />-->
+<!--				</h:selectOneRadio>-->
+<!--								<h:selectOneRadio  id="indAlimentacaoFalse"-->
+<!--					value="#{solicitacaoAlimentacaoController.solicitacaoAlimentacao.indAlimentacao}">-->
+<!--					<f:selectItem itemValue="true" itemLabel="Inclusão" />-->
+<!--					<f:selectItem itemValue="false" itemLabel="Alteração" />-->
+<!--				</h:selectOneRadio>-->
+<!--				-->
+			</h:panelGrid>
+
+<!--			<h:panelGrid columns="2">-->
+<!--				<h:outputText value="Incluir Auxílio"></h:outputText>-->
+<!--				<h:selectOneRadio styleClass="selectOneRadio" id="indAlimentacao"-->
+<!--					value="#{solicitacaoAlimentacaoController.solicitacaoAlimentacao.indAlimentacao}">-->
+<!--					<f:selectItem itemValue="true" itemLabel="Inclusão" />-->
+<!--					<f:selectItem itemValue="false" itemLabel="Alteração" />-->
+<!--				</h:selectOneRadio>-->
+<!--			</h:panelGrid>-->
+				<!-- 		<h:selectBooleanCheckbox
 					value="{solicitacaoAlimentacaoController.solicitacaoAlimentacao.indAlimentacao}">
 				</h:selectBooleanCheckbox>
 				<h:selectBooleanCheckbox
-					value="{solicitacaoAlimentacaoController.solicitacaoAlimentacao.indAlimentacao}"></h:selectBooleanCheckbox>
-			</h:panelGrid>
+					value="{solicitacaoAlimentacaoController.solicitacaoAlimentacao.indAlimentacao}"></h:selectBooleanCheckbox>-->
+<!--			</h:panelGrid>-->
+<!--				<-->
+<!--					value="{solicitacaoAlimentacaoController.solicitacaoAlimentacao.indAlimentacao}">-->
+<!--				</h:radioButtonGroup>-->
+<!--				<h:radioButtonGroup-->
+<!--					value="{solicitacaoAlimentacaoController.solicitacaoAlimentacao.indAlimentacao}">-->
+<!--					</h:radioButtonGroup>-->
+			
 			<a4j:commandButton value="Salvar"
-				action="#{solicitacaoContaBancariaController.salvar}" />
+				action="#{solicitacaoAlimentacaoController.salvar}" />
 		</rich:panel></center>
 	</a4j:form>
 </f:view>
