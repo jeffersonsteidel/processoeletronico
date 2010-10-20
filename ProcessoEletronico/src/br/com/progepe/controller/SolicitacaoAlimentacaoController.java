@@ -18,12 +18,9 @@ import br.com.progepe.entity.TipoSolicitacao;
 
 public class SolicitacaoAlimentacaoController implements Serializable {
 	private static final long serialVersionUID = -333995781063775201L;
-	
+
 	private SolicitacaoAlimentacao solicitacaoAlimentacao;
 	DAO dao = new DAO();
-	private Boolean indAlimentacao = false;
-
-	
 
 	public SolicitacaoAlimentacao getSolicitacaoAlimentacao() {
 		return solicitacaoAlimentacao;
@@ -34,18 +31,9 @@ public class SolicitacaoAlimentacaoController implements Serializable {
 		this.solicitacaoAlimentacao = solicitacaoAlimentacao;
 	}
 
-	public Boolean getIndAlimentacao() {
-		return indAlimentacao;
-	}
-
-	public void setIndAlimentacao(Boolean indAlimentacao) {
-		this.indAlimentacao = indAlimentacao;
-	}
-
 	public void abrirSolicitacaoAlimentacao() throws ParseException {
 		try {
 			solicitacaoAlimentacao = new SolicitacaoAlimentacao();
-			solicitacaoAlimentacao.setIndAlimentacao(indAlimentacao);
 			buscarServidorLogado();
 			FacesContext.getCurrentInstance().getExternalContext()
 					.redirect("solicitacaoAlimentacao.jsp");
@@ -53,34 +41,40 @@ public class SolicitacaoAlimentacaoController implements Serializable {
 			e.printStackTrace();
 		}
 	}
-	
-	
-//	public void isPoupanca() {
-//		if ((Constantes.CAIXA_ECONOMICA_FEDERAL).equals(solicitacaoContaBancaria.getNovoBanco().getCodigo())) {
-//			indPoupanca = true;
-//		} else {
-//			indPoupanca = false;
-//		}
-//	}
-	
-	public void buscarServidorLogado() throws IOException, ParseException{
-		solicitacaoAlimentacao.setSolicitante(new Servidor());
-		
-		Autenticacao siapeAutenticado = (Autenticacao) FacesContext.getCurrentInstance()
-		.getExternalContext().getSessionMap().get("usuarioLogado");
 
-		solicitacaoAlimentacao.getSolicitante().setSiape(siapeAutenticado.getSiape());
+	// public void isPoupanca() {
+	// if
+	// ((Constantes.CAIXA_ECONOMICA_FEDERAL).equals(solicitacaoContaBancaria.getNovoBanco().getCodigo()))
+	// {
+	// indPoupanca = true;
+	// } else {
+	// indPoupanca = false;
+	// }
+	// }
+
+	public void buscarServidorLogado() throws IOException, ParseException {
+		solicitacaoAlimentacao.setSolicitante(new Servidor());
+
+		Autenticacao siapeAutenticado = (Autenticacao) FacesContext
+				.getCurrentInstance().getExternalContext().getSessionMap()
+				.get("usuarioLogado");
+
+		solicitacaoAlimentacao.getSolicitante().setSiape(
+				siapeAutenticado.getSiape());
 		ServidorDAO servidorDAO = new ServidorDAO();
-		solicitacaoAlimentacao.setSolicitante(servidorDAO.refreshBySiape(solicitacaoAlimentacao.getSolicitante()));
+		solicitacaoAlimentacao.setSolicitante(servidorDAO
+				.refreshBySiape(solicitacaoAlimentacao.getSolicitante()));
 	}
-	
-	public void salvar(){
+
+	public void salvar() {
 		solicitacaoAlimentacao.setDataAbertura(new Date());
 		solicitacaoAlimentacao.setDataAtendimento(null);
 		solicitacaoAlimentacao.setTipoSolicitacao(new TipoSolicitacao());
-		solicitacaoAlimentacao.getTipoSolicitacao().setCodigo(Constantes.TIPO_SOLICITACAO_AUXILIO_ALIMENTACAO);
+		solicitacaoAlimentacao.getTipoSolicitacao().setCodigo(
+				Constantes.TIPO_SOLICITACAO_AUXILIO_ALIMENTACAO);
 		solicitacaoAlimentacao.setStatusSolicitacao(new StatusSolicitacao());
-		solicitacaoAlimentacao.getStatusSolicitacao().setCodigo(Constantes.STATUS_SOLICITACAO_AGUARDANDO);
+		solicitacaoAlimentacao.getStatusSolicitacao().setCodigo(
+				Constantes.STATUS_SOLICITACAO_AGUARDANDO);
 		dao.saveOrUpdate(solicitacaoAlimentacao);
 	}
 }

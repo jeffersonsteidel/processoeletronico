@@ -31,18 +31,17 @@
 					value="#{solicitacaoAlimentacaoController.solicitacaoAlimentacao.solicitante.siape} - #{solicitacaoAlimentacaoController.solicitacaoAlimentacao.solicitante.nome}">
 				</h:outputText>
 				<h:outputText
-					value="#{solicitacaoAlimentacaoController.regimeTrabalho.descricao}">
+					value="#{solicitacaoAlimentacaoController.solicitante.regimeTrabalho.descricao}">
 				</h:outputText>
 			</h:panelGrid>
 
 			<h:panelGrid columns="2">
-				<h:selectBooleanCheckbox value="Incluir Auxílio">
+				<h:outputText value="Incluir Auxílio"></h:outputText>
+				<h:selectBooleanCheckbox
+					value="{solicitacaoAlimentacaoController.solicitacaoAlimentacao.indAlimentacao}">
 				</h:selectBooleanCheckbox>
-				<h:outputText value="Incluir Auxílio2: ">
-				</h:outputText>
-				<h:outputText
-					value="#{solicitacaoContaBancariaController.solicitacaoContaBancaria.solicitante.contaBancaria.banco.descricao}">
-				</h:outputText>
+				<h:selectBooleanCheckbox
+					value="{solicitacaoAlimentacaoController.solicitacaoAlimentacao.indAlimentacao}"></h:selectBooleanCheckbox>
 			</h:panelGrid>
 			<a4j:commandButton value="Salvar"
 				action="#{solicitacaoContaBancariaController.salvar}" />
