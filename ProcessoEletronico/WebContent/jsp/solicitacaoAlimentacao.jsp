@@ -42,7 +42,7 @@
 				</h:selectOneRadio>  
 			</h:panelGrid>
 			<a4j:commandButton value="Salvar"
-				action="#{solicitacaoAlimentacaoController.salvar}" />
+				action="#{solicitacaoAlimentacaoController.salvar}" reRender="form" />
 		</rich:panel></center>
 	</a4j:form>
 </f:view>
