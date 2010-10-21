@@ -60,6 +60,9 @@
 				<rich:menuItem submitMode="ajax" value="Alterar Conta Bancária"
 					action="#{solicitacaoContaBancariaController.abrirSolicitacaoContaBancaria}"
 					icon="../images/ALTERARCONTABANCARIA.GIF" />
+				<rich:menuItem submitMode="ajax" value="Alterar Férias"
+					action="#{solicitacaoAlteracaoFeriasController.abrirSolicitacaoAlteracaoFerias}"
+					icon="../images/alteracaoferias.gif" />					
 				<rich:menuItem submitMode="ajax" value="Auxílio Alimentação"
 					action="#{solicitacaoAlimentacaoController.abrirSolicitacaoAlimentacao}"
 					icon="../images/auxilioalimentacao.gif" />

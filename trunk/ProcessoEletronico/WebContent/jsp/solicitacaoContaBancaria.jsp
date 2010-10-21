@@ -88,7 +88,7 @@
 					value="#{solicitacaoContaBancariaController.solicitacaoContaBancaria.novoIndPoupanca}">
 				</h:selectBooleanCheckbox>
 			</h:panelGrid>
-			<a4j:commandButton value="Salvar" action="#{solicitacaoContaBancariaController.salvar}" />
+			<a4j:commandButton value="Salvar" action="#{solicitacaoContaBancariaController.salvar}"  reRender="form"/>
 		</rich:panel></center>
 	</a4j:form>
 </f:view>
