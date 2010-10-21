@@ -101,7 +101,7 @@ public class SolicitacaoContaBancariaController implements Serializable {
 		solicitacaoContaBancaria.setSolicitante(servidorDAO.refreshBySiape(solicitacaoContaBancaria.getSolicitante()));
 	}
 	
-	public void salvar(){
+	public void salvar() throws IOException, ParseException{
 		solicitacaoContaBancaria.setDataAbertura(new Date());
 		solicitacaoContaBancaria.setDataAtendimento(null);
 		solicitacaoContaBancaria.setTipoSolicitacao(new TipoSolicitacao());
@@ -109,5 +109,9 @@ public class SolicitacaoContaBancariaController implements Serializable {
 		solicitacaoContaBancaria.setStatusSolicitacao(new StatusSolicitacao());
 		solicitacaoContaBancaria.getStatusSolicitacao().setCodigo(Constantes.STATUS_SOLICITACAO_AGUARDANDO);
 		dao.saveOrUpdate(solicitacaoContaBancaria);
+		solicitacaoContaBancaria = new SolicitacaoContaBancaria();
+		solicitacaoContaBancaria.setContaBancaria(new ContaBancaria());
+		solicitacaoContaBancaria.getContaBancaria().setBanco(new Banco());
+		buscarServidorLogado();
 	}
 }
