@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping 
+	PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<joined-subclass name="br.com.progepe.entity.SolicitacaoAuxilioPaternidade" extends="br.com.progepe.entity.Solicitacao">
+		<key column="SOLIC_COD"></key>
+		<property name="dataInicial" column="SOLIC_DATA_INICIAL" />
+		<property name="dataFinal" column="SOLIC_DATA_FINAL" />
+		<property name="documentoValidado" column="SOLIC_DOC_VALIDADO" />
+		<property name="certidaoNascimento" column="SOLIC_CERTIDAO" />
+	</joined-subclass>
+</hibernate-mapping>

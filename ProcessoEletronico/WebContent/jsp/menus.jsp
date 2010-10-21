@@ -66,6 +66,9 @@
 				<rich:menuItem submitMode="ajax" value="Auxílio Alimentação"
 					action="#{solicitacaoAlimentacaoController.abrirSolicitacaoAlimentacao}"
 					icon="../images/auxilioalimentacao.gif" />
+				<rich:menuItem submitMode="ajax" value="Auxílio Paternidade"
+					action="#{solicitacaoAuxilioPaternidadeController.abrirSolicitacaoPaternidade}"
+					icon="../images/auxiliopaternidade.gif" />	
 				<rich:menuItem submitMode="ajax" value="Auxílio Transporte"
 					action="#" icon="../images/SOLICITACAOAUTOMOVEIS.gif" />
 				<rich:menuItem submitMode="ajax" value="Listar Solicitações"

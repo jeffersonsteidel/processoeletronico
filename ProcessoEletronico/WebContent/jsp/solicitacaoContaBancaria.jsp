@@ -26,6 +26,7 @@
 				</f:facet>
 			</rich:messages>
 
+			<font size="2"><b>ALTERAÇÃO DE CONTA BANCÁRIA</b></font>
 			<h:panelGrid columns="1">
 				<h:outputText
 					value="#{solicitacaoContaBancariaController.solicitacaoContaBancaria.solicitante.siape} - #{solicitacaoContaBancariaController.solicitacaoContaBancaria.solicitante.nome}">
