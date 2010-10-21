@@ -76,9 +76,11 @@ public class SolicitacaoAlimentacaoController implements Serializable {
 	
 	public void isAlimentacao(){
 		if(indCancelarAlimentacao){
-			indIncluirAlimentacao = false;
+			indIncluirAlimentacao = true;
+			indCancelarAlimentacao = false;
 			solicitacaoAlimentacao.setIndAlimentacao(false);
 		}else{
+			indIncluirAlimentacao = false;
 			indCancelarAlimentacao = true;
 			solicitacaoAlimentacao.setIndAlimentacao(true);
 		}

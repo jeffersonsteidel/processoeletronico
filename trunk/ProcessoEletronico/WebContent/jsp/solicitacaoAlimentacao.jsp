@@ -36,23 +36,13 @@
 			</h:panelGrid>
 
 			<h:panelGrid columns="2">
-				<h:selectBooleanCheckbox id="incluirAuxilio"
-					value="#{solicitacaoAlimentacaoController.indIncluirAlimentacao}">
-					<a4j:support event="onclick" ajaxSingle="true" 
-						action="#{solicitacaoAlimentacaoController.isAlimentacao}"
-						reRender="incluirAuxilio, cancelarAuxilio"></a4j:support>
-				</h:selectBooleanCheckbox>
-				<h:outputText value="Incluir Auxílio"></h:outputText>
-				<h:selectBooleanCheckbox id="cancelarAuxilio"
-					value="#{solicitacaoAlimentacaoController.indCancelarAlimentacao}">
-					<a4j:support event="onclick" ajaxSingle="true"
-						action="#{solicitacaoAlimentacaoController.isAlimentacao}"
-						reRender="incluirAuxilio, cancelarAuxilio"></a4j:support>
-				</h:selectBooleanCheckbox>
-				<h:outputText value="Cancelar Auxílio"></h:outputText>
+			<h:selectOneRadio id="radios" value="#{solicitacaoAlimentacaoController.solicitacaoAlimentacao.indAlimentacao}">  
+					<f:selectItem itemValue="true" itemLabel="Incluir Auxílio"/>
+					<f:selectItem itemValue="false" itemLabel="Cancelar Auxílio"/>  
+				</h:selectOneRadio>  
 			</h:panelGrid>
 			<a4j:commandButton value="Salvar"
-				action="#{solicitacaoContaBancariaController.salvar}" />
+				action="#{solicitacaoAlimentacaoController.salvar}" />
 		</rich:panel></center>
 	</a4j:form>
 </f:view>
