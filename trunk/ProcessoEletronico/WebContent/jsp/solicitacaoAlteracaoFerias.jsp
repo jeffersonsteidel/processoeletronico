@@ -25,7 +25,8 @@
 					<h:graphicImage value="../images/error.gif" />
 				</f:facet>
 			</rich:messages>
-
+			
+			<font size="2"><b>ALTERAÇÃO DE FÉRIAS</b></font>
 			<h:panelGrid columns="1">
 				<h:outputText
 					value="#{solicitacaoAlteracaoFeriasController.solicitacaoAlteracaoFerias.solicitante.siape} - #{solicitacaoAlteracaoFeriasController.solicitacaoAlteracaoFerias.solicitante.nome}">

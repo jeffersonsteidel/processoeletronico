@@ -26,6 +26,7 @@
 				</f:facet>
 			</rich:messages>
 
+			<font size="2"><b>AUXÍLIO ALIMENTAÇÃO</b></font>
 			<h:panelGrid columns="1">
 				<h:outputText
 					value="#{solicitacaoAlimentacaoController.solicitacaoAlimentacao.solicitante.siape} - #{solicitacaoAlimentacaoController.solicitacaoAlimentacao.solicitante.nome}">
