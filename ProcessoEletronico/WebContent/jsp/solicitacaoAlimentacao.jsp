@@ -31,19 +31,28 @@
 					value="#{solicitacaoAlimentacaoController.solicitacaoAlimentacao.solicitante.siape} - #{solicitacaoAlimentacaoController.solicitacaoAlimentacao.solicitante.nome}">
 				</h:outputText>
 				<h:outputText
-					value="#{solicitacaoAlimentacaoController.solicitacaoAlimentacao.solicitante.regimeTrabalho.descricao}">
+					value="Regime de Trabalho - #{solicitacaoAlimentacaoController.solicitacaoAlimentacao.solicitante.regimeTrabalho.descricao}">
 				</h:outputText>
 			</h:panelGrid>
-			
-			
-			
-			<h:panelGrid columns="2">
-				<h:outputText value="Incluir Auxílio"></h:outputText>
-			</h:panelGrid>
 
-		
+			<h:panelGrid columns="2">
+				<h:selectBooleanCheckbox id="incluirAuxilio"
+					value="#{solicitacaoAlimentacaoController.indIncluirAlimentacao}">
+					<a4j:support event="onclick" ajaxSingle="true" 
+						action="#{solicitacaoAlimentacaoController.isAlimentacao}"
+						reRender="incluirAuxilio, cancelarAuxilio"></a4j:support>
+				</h:selectBooleanCheckbox>
+				<h:outputText value="Incluir Auxílio"></h:outputText>
+				<h:selectBooleanCheckbox id="cancelarAuxilio"
+					value="#{solicitacaoAlimentacaoController.indCancelarAlimentacao}">
+					<a4j:support event="onclick" ajaxSingle="true"
+						action="#{solicitacaoAlimentacaoController.isAlimentacao}"
+						reRender="incluirAuxilio, cancelarAuxilio"></a4j:support>
+				</h:selectBooleanCheckbox>
+				<h:outputText value="Cancelar Auxílio"></h:outputText>
+			</h:panelGrid>
 			<a4j:commandButton value="Salvar"
-				action="#{solicitacaoAlimentacaoController.salvar}" />
+				action="#{solicitacaoContaBancariaController.salvar}" />
 		</rich:panel></center>
 	</a4j:form>
 </f:view>

@@ -49,7 +49,7 @@
 		<!-- <many-to-one name="funcao" class="br.com.progepe.entity.Funcao" column="FUN_COD" 
 			/> -->
 		<many-to-one name="regimeTrabalho" class="br.com.progepe.entity.RegimeTrabalho"
-			column="REG_TRAB_COD" />
+			column="REG_TRAB_COD" lazy="false"/>
 		<many-to-one name="situacaoFuncional"
 			class="br.com.progepe.entity.SituacaoFuncional" column="SIT_FUN_COD" />
 		<many-to-one name="endereco" class="br.com.progepe.entity.Endereco"
