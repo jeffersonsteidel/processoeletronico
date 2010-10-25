@@ -3,7 +3,8 @@
 	PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
     "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
-	<joined-subclass name="br.com.progepe.entity.SolicitacaoAlteracaoFerias" extends="br.com.progepe.entity.Solicitacao">
+	<joined-subclass name="br.com.progepe.entity.SolicitacaoAlteracaoFerias"
+		extends="br.com.progepe.entity.Solicitacao">
 		<key column="SOLIC_COD"></key>
 		<property name="dataInicio" column="SOLIC_DATA_INICIO" />
 		<property name="dataFinal" column="SOLIC_DATA_FINAL" />
