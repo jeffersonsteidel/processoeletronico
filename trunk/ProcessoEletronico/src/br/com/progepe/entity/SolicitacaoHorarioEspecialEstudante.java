@@ -3,16 +3,33 @@ package br.com.progepe.entity;
 public class SolicitacaoHorarioEspecialEstudante extends Solicitacao {
 
 	private static final long serialVersionUID = 1L;
-		
-	private Boolean indAlimentacao = false;
 
-	public Boolean getIndAlimentacao() {
-		return indAlimentacao;
+	private String curso;
+	private String instituicao;
+	private String motivo;
+
+	public String getCurso() {
+		return curso;
 	}
 
-	public void setIndAlimentacao(Boolean indAlimentacao) {
-		this.indAlimentacao = indAlimentacao;
+	public void setCurso(String curso) {
+		this.curso = curso;
 	}
-	
-	
+
+	public String getInstituicao() {
+		return instituicao;
+	}
+
+	public void setInstituicao(String instituicao) {
+		this.instituicao = instituicao;
+	}
+
+	public String getMotivo() {
+		return motivo;
+	}
+
+	public void setMotivo(String motivo) {
+		this.motivo = motivo;
+	}
+
 }
