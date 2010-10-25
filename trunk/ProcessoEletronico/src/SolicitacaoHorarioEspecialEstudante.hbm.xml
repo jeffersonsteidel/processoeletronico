@@ -9,5 +9,7 @@
 		<property name="curso" column="SOLIC_HOR_ESP_EST_CURSO" />
 		<property name="instituicao" column="SOLIC_HOR_ESP_EST_INST" />
 		<property name="motivo" column="SOLIC_HOR_ESP_EST_MOTIVO" />
+		<property name="declaracaoMatricula" column="SOLIC_HOR_ESP_EST_DEC_MAT" />
+		<property name="documentoValidado" column="SOLIC_HOR_ESP_EST_DOC_VALIDADO" />
 	</joined-subclass>
 </hibernate-mapping>
