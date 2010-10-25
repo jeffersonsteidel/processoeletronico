@@ -2,7 +2,7 @@ package br.com.progepe.entity;
 
 import java.util.Date;
 
-public class SolicitacaoAuxilioPaternidade extends Solicitacao {
+public class SolicitacaoLicencaPaternidade extends Solicitacao {
 
 	private static final long serialVersionUID = 1L;
 	

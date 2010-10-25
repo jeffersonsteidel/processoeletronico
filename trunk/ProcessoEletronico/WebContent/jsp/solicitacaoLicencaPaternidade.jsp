@@ -26,18 +26,18 @@
 				</f:facet>
 			</rich:messages>
 
-			<font size="2"><b>AUXÍLIO PATERNIDADE</b></font>
+			<font size="2"><b>LICENÇA PATERNIDADE</b></font>
 
 			<h:panelGrid columns="1">
 				<h:outputText
-					value="#{solicitacaoAuxilioPaternidadeController.solicitacaoAuxilioPaternidade.solicitante.siape} - #{solicitacaoAuxilioPaternidadeController.solicitacaoAuxilioPaternidade.solicitante.nome}">
+					value="#{solicitacaoLicencaPaternidadeController.solicitacaoLicencaPaternidade.solicitante.siape} - #{solicitacaoLicencaPaternidadeController.solicitacaoLicencaPaternidade.solicitante.nome}">
 				</h:outputText>
 			</h:panelGrid>
 
 			<h:panelGrid columns="4">
 				<h:outputText value="Período: "></h:outputText>
 				<rich:calendar
-					value="#{solicitacaoAuxilioPaternidadeController.solicitacaoAuxilioPaternidade.dataInicial}"
+					value="#{solicitacaoLicencaPaternidadeController.solicitacaoLicencaPaternidade.dataInicial}"
 					locale="" popup="true" datePattern="dd/MM/yyyy" showApplyButton="#"
 					cellWidth="12px" cellHeight="12px" style="width:80px"
 					required="true" inputSize="12"
@@ -45,7 +45,7 @@
 
 				<h:outputText value=" a "></h:outputText>
 				<rich:calendar
-					value="#{solicitacaoAuxilioPaternidadeController.solicitacaoAuxilioPaternidade.dataFinal}"
+					value="#{solicitacaoLicencaPaternidadeController.solicitacaoLicencaPaternidade.dataFinal}"
 					locale="" popup="true" datePattern="dd/MM/yyyy" showApplyButton="#"
 					cellWidth="12px" cellHeight="12px" style="width:80px"
 					required="true" inputSize="12"
@@ -54,7 +54,7 @@
 
 			<h:panelGrid columns="1">
 				<rich:fileUpload addControlLabel="Adicionar Certidao de Nascimento"
-					fileUploadListener="#{solicitacaoAuxilioPaternidadeController.listener}"
+					fileUploadListener="#{solicitacaoLicencaPaternidadeController.listener}"
 					id="upload" required="true"
 					requiredMessage="É necessario anexar o Certidão de  Nascimento do Filho!"
 					immediate="false" allowFlash="false" clearAllControlLabel="Limpar"
@@ -70,15 +70,15 @@
 				</rich:fileUpload>
 				<h:panelGroup id="info">
 					<a4j:mediaOutput element="img"
-						createContent="#{solicitacaoAuxilioPaternidadeController.paint}"
-						value="#{solicitacaoAuxilioPaternidadeController.solicitacaoAuxilioPaternidade.certidaoNascimento}"
+						createContent="#{solicitacaoLicencaPaternidadeController.paint}"
+						value="#{solicitacaoLicencaPaternidadeController.solicitacaoLicencaPaternidade.certidaoNascimento}"
 						style="width:100px; height:200px;" cacheable="false">
 					</a4j:mediaOutput>
 				</h:panelGroup>
 			</h:panelGrid>
 
 			<a4j:commandButton value="Salvar"
-				action="#{solicitacaoAuxilioPaternidadeController.salvar}"
+				action="#{solicitacaoLicencaPaternidadeController.salvar}"
 				reRender="form" />
 		</rich:panel></center>
 	</a4j:form>
