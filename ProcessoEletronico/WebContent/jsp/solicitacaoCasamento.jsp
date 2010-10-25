@@ -26,7 +26,7 @@
 				</f:facet>
 			</rich:messages>
 
-			<font size="2"><b>SOLICITAÇÃO DA LICENÇA DE CASAMENTO</b></font>
+			<font size="2"><b>LICENÇA DE CASAMENTO</b></font>
 			<h:panelGrid columns="1">
 				<h:outputText
 					value="#{solicitacaoCasamentoController.solicitacaoCasamento.solicitante.siape} - #{solicitacaoCasamentoController.solicitacaoCasamento.solicitante.nome}">
