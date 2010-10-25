@@ -6,8 +6,8 @@
 	<joined-subclass name="br.com.progepe.entity.SolicitacaoHorarioEspecialEstudante"
 		extends="br.com.progepe.entity.Solicitacao">
 		<key column="SOLIC_COD"></key>
-		<property name="curso" column="SOLIC_HOR_EPS_EST_CURSO" />
-		<property name="instituicao" column="SOLIC_HOR_EPS_EST_INST" />
-		<property name="motivo" column="SOLIC_HOR_EPS_EST_MOTIVO" />
+		<property name="curso" column="SOLIC_HOR_ESP_EST_CURSO" />
+		<property name="instituicao" column="SOLIC_HOR_ESP_EST_INST" />
+		<property name="motivo" column="SOLIC_HOR_ESP_EST_MOTIVO" />
 	</joined-subclass>
 </hibernate-mapping>
