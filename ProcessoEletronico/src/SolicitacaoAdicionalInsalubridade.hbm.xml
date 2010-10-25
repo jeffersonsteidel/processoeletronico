@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping 
+	PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<joined-subclass
+		name="br.com.progepe.entity.SolicitacaoAdicionalInsalubridade"
+		extends="br.com.progepe.entity.Solicitacao">
+		<key column="SOLIC_COD"></key>
+		<property name="tarefasDiarias" column="SOLIC_ADC_INS_TAREFAS_DIARIAS" />
+		<property name="tarefasSemanais" column="SOLIC_ADC_INS_TAREFAS_SEMANAIS" />
+		<property name="tarefasMensais" column="SOLIC_ADC_INS_TAREFAS_MENSAIS" />
+		<property name="indRiscosFisicos" column="SOLIC_ADC_INS_RISCO_FISICO_IND" />
+		<property name="justRiscosFisicos" column="SOLIC_ADC_INS_RISCO_FISICO_JUST" />
+		<property name="indRiscosQuimicos" column="SOLIC_ADC_INS_RISCO_QUIMICO_IND" />
+		<property name="justRiscosQuimicos" column="SOLIC_ADC_INS_RISCO_QUIMICO_JUST" />
+		<property name="indRiscosBiologicos" column="SOLIC_ADC_INS_RISCO_BIOLOGICO_IND" />
+		<property name="justRiscosBiologicos" column="SOLIC_ADC_INS_RISCO_BIOLOGICO_JUST" />
+		<property name="indRiscosIrradiacaoIonizante" column="SOLIC_ADC_INS_RISCO_IRRADIACAO_IONIZANTE_IND" />
+		<property name="justRiscosIrradiacaoIonizante"
+			column="SOLIC_ADC_INS_RISCO_IRRADIACAO_IONIZANTE_JUST" />
+	</joined-subclass>
+</hibernate-mapping>
