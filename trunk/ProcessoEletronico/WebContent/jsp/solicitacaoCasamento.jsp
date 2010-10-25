@@ -26,7 +26,7 @@
 				</f:facet>
 			</rich:messages>
 
-			<font size="2"><b>SOLICITAÇÃO DA LINCENÇA DE CASAMENTO</b></font>
+			<font size="2"><b>SOLICITAÇÃO DA LICENÇA DE CASAMENTO</b></font>
 			<h:panelGrid columns="1">
 				<h:outputText
 					value="#{solicitacaoCasamentoController.solicitacaoCasamento.solicitante.siape} - #{solicitacaoCasamentoController.solicitacaoCasamento.solicitante.nome}">
@@ -42,10 +42,11 @@
 				</h:inputText>
 
 				<h:outputText value="Número da certidão de Casamento: " />
-				<h:inputText 
+				<h:inputText
 					value="#{solicitacaoCasamentoController.solicitacaoCasamento.numeroCertidao}"
-					size="20" maxlength="9" required="true" onkeypress="mascara(this,soNumeros);"
-					requiredMessage="Campo Número da certidão de Casamento é obrigatório!">
+					size="20" maxlength="9" required="true"
+					onkeypress="mascara(this,soNumeros);"
+					requiredMessage="Campo Número da Certidão de Casamento é obrigatório!">
 				</h:inputText>
 
 				<h:outputText value="Livro: " />
@@ -68,8 +69,9 @@
 					size="20" maxlength="20" required="true"
 					requiredMessage="Campo Cartório é obrigatório!">
 				</h:inputText>
-				
-				<h:panelGrid columns="1">
+			</h:panelGrid>
+
+			<h:panelGrid columns="1">
 				<rich:fileUpload addControlLabel="Adicionar Certidao de Casamento"
 					fileUploadListener="#{solicitacaoCasamentoController.listener}"
 					id="upload" required="true"
@@ -94,7 +96,6 @@
 				</h:panelGroup>
 			</h:panelGrid>
 
-			</h:panelGrid>
 			<a4j:commandButton value="Salvar"
 				action="#{solicitacaoCasamentoController.salvar}" reRender="form" />
 		</rich:panel></center>
