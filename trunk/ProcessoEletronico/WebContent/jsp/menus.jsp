@@ -69,8 +69,8 @@
 				<rich:menuItem submitMode="ajax" value="Licença de Casamento"
 					action="#{solicitacaoCasamentoController.abrirSolicitacaoCasamento}"
 					icon="../images/casamento.gif" />
-				<rich:menuItem submitMode="ajax" value="Auxílio Paternidade"
-					action="#{solicitacaoAuxilioPaternidadeController.abrirSolicitacaoPaternidade}"
+				<rich:menuItem submitMode="ajax" value="Licença Paternidade"
+					action="#{solicitacaoLicencaPaternidadeController.abrirSolicitacaoPaternidade}"
 					icon="../images/auxiliopaternidade.gif" />
 				<rich:menuItem submitMode="ajax" value="Auxílio Transporte"
 					action="#" icon="../images/SOLICITACAOAUTOMOVEIS.gif" />
