@@ -38,4 +38,9 @@ Config 1.1//EN"
 		<managed-bean-class>br.com.progepe.controller.SolicitacaoAuxilioPaternidadeController</managed-bean-class>
 		<managed-bean-scope>session</managed-bean-scope>
 	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>solicitacaoCasamentoController</managed-bean-name>
+		<managed-bean-class>br.com.progepe.controller.SolicitacaoCasamentoController</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
 </faces-config>

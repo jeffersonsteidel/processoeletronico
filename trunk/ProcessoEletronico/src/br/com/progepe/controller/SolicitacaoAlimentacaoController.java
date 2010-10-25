@@ -21,8 +21,8 @@ public class SolicitacaoAlimentacaoController implements Serializable {
 	private static final long serialVersionUID = -333995781063775201L;
 
 	private SolicitacaoAlimentacao solicitacaoAlimentacao;
-	private Boolean indCancelarAlimentacao =false;
-	private Boolean indIncluirAlimentacao = true;
+	private Boolean indCancelarAlimentacao=false;
+	private Boolean indIncluirAlimentacao=true;
 	DAO dao = new DAO();
 
 	public SolicitacaoAlimentacao getSolicitacaoAlimentacao() {

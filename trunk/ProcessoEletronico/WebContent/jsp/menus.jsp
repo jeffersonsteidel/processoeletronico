@@ -62,13 +62,16 @@
 					icon="../images/ALTERARCONTABANCARIA.GIF" />
 				<rich:menuItem submitMode="ajax" value="Alterar Férias"
 					action="#{solicitacaoAlteracaoFeriasController.abrirSolicitacaoAlteracaoFerias}"
-					icon="../images/alteracaoferias.gif" />					
+					icon="../images/alteracaoferias.gif" />
 				<rich:menuItem submitMode="ajax" value="Auxílio Alimentação"
 					action="#{solicitacaoAlimentacaoController.abrirSolicitacaoAlimentacao}"
 					icon="../images/auxilioalimentacao.gif" />
+				<rich:menuItem submitMode="ajax" value="Licença de Casamento"
+					action="#{solicitacaoCasamentoController.abrirSolicitacaoCasamento}"
+					icon="../images/casamento.gif" />
 				<rich:menuItem submitMode="ajax" value="Auxílio Paternidade"
 					action="#{solicitacaoAuxilioPaternidadeController.abrirSolicitacaoPaternidade}"
-					icon="../images/auxiliopaternidade.gif" />	
+					icon="../images/auxiliopaternidade.gif" />
 				<rich:menuItem submitMode="ajax" value="Auxílio Transporte"
 					action="#" icon="../images/SOLICITACAOAUTOMOVEIS.gif" />
 				<rich:menuItem submitMode="ajax" value="Listar Solicitações"

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping 
+	PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<joined-subclass name="br.com.progepe.entity.SolicitacaoCasamento"
+		extends="br.com.progepe.entity.Solicitacao">
+		<key column="SOLIC_COD"></key>
+		<property name="nomeConjuge" column="SOLIC_NOME_CONJUGE" />
+		<property name="numeroCertidao" column="SOLIC_NUM_CERT_CASAMENTO" />
+		<property name="livro" column="SOLIC_LIVRO" />
+		<property name="folhas" column="SOLIC_FOLHAS" />
+		<property name="cartorio" column="SOLIC_CARTORIO" />
+		<property name="certidaoCasamento" column="SOLIC_CERTIDAO" />
+		<property name="documentoValidado" column="SOLIC_DOC_VALIDADO" type="boolean"/>
+	</joined-subclass>
+</hibernate-mapping>
