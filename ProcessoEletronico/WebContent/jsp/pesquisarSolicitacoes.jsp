@@ -20,7 +20,7 @@
 					value="#{solicitacaoController.solicitacao.solicitante.siape}"
 					size="10" maxlength="7" onkeyup="mascara(this, soNumeros);">
 				</h:inputText>
-					
+
 				<h:outputText value="Tipo Solicitação: " />
 				<h:selectOneMenu
 					value="#{solicitacaoController.solicitacao.tipoSolicitacao.codigo}">
@@ -84,25 +84,27 @@
 						<f:convertDateTime locale="pt_BR" pattern="dd/MM/yyyy - HH:mm:ss" />
 					</h:outputText>
 				</rich:column>
-				
+
 				<rich:column width="350px" sortBy="#{list.dataAtentimento}">
 					<f:facet name="header">
 						<h:outputText value="Data Atendimento" />
 					</f:facet>
-					<h:outputText value="#{list.dataAtendimento}" rendered="#{list.dataAtendimento != null}">
+					<h:outputText value="#{list.dataAtendimento}"
+						rendered="#{list.dataAtendimento != null}">
 						<f:convertDateTime locale="pt_BR" pattern="dd/MM/yyyy - HH:mm:ss" />
 					</h:outputText>
-					<h:outputText value="-" rendered="#{list.dataAtendimento == null}"/>
+					<h:outputText value="-" rendered="#{list.dataAtendimento == null}" />
 				</rich:column>
-				
+
 				<rich:column width="350px" sortBy="#{list.dataFechamento}">
 					<f:facet name="header">
 						<h:outputText value="Data Fechamento" />
 					</f:facet>
-					<h:outputText value="#{list.dataFechamento}" rendered="#{list.dataFechamento != null}">
+					<h:outputText value="#{list.dataFechamento}"
+						rendered="#{list.dataFechamento != null}">
 						<f:convertDateTime locale="pt_BR" pattern="dd/MM/yyyy - HH:mm:ss" />
 					</h:outputText>
-					<h:outputText value="-" rendered="#{list.dataFechamento == null}"/>
+					<h:outputText value="-" rendered="#{list.dataFechamento == null}" />
 				</rich:column>
 
 				<rich:column width="400px"
@@ -126,10 +128,15 @@
 					<f:facet name="header">
 						<h:outputText value="Editar" />
 					</f:facet>
-					<a4j:commandLink action="#" reRender="#" ajaxSingle="true">
+					<a4j:commandLink
+						action="#{solicitacaoController.carregarSolicitacao}"
+						reRender="listaSolicitacoes" ajaxSingle="true">
 						<h:graphicImage value="../images/edit.gif" style="border:0"
 							width="20" height="18" id="editar" />
-						<f:setPropertyActionListener value="#" target="#" />
+						<f:setPropertyActionListener value="#{list.codigo}"
+							target="#{solicitacaoController.codigoSolicitacao}" />
+						<f:setPropertyActionListener value="#{list.tipoSolicitacao.codigo}"
+							target="#{solicitacaoController.tipoSolicitacao}" />	
 					</a4j:commandLink>
 					<rich:toolTip for="editar" value="Editar" />
 				</rich:column>

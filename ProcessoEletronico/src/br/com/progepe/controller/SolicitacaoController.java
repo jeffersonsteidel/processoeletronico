@@ -10,12 +10,16 @@ import java.util.List;
 import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
 
+import br.com.progepe.constantes.Constantes;
 import br.com.progepe.dao.DAO;
 import br.com.progepe.dao.ServidorDAO;
 import br.com.progepe.dao.SolicitacaoDAO;
 import br.com.progepe.entity.Autenticacao;
+import br.com.progepe.entity.Banco;
+import br.com.progepe.entity.ContaBancaria;
 import br.com.progepe.entity.Servidor;
 import br.com.progepe.entity.Solicitacao;
+import br.com.progepe.entity.SolicitacaoContaBancaria;
 import br.com.progepe.entity.StatusSolicitacao;
 import br.com.progepe.entity.TipoSolicitacao;
 
@@ -29,6 +33,10 @@ public class SolicitacaoController implements Serializable {
 	private List<SelectItem> statusSolicitacoes = new ArrayList<SelectItem>();
 	private List<Solicitacao> solicitacoes = new ArrayList<Solicitacao>();
 	private List<Solicitacao> minhasSolicitacoes = new ArrayList<Solicitacao>();
+	
+	private Long codigoSolicitacao;
+	private Long tipoSolicitacao;
+	
 	DAO dao = new DAO();
 
 	public Solicitacao getSolicitacao() {
@@ -85,6 +93,22 @@ public class SolicitacaoController implements Serializable {
 
 	public void setMinhasSolicitacoes(List<Solicitacao> minhasSolicitacoes) {
 		this.minhasSolicitacoes = minhasSolicitacoes;
+	}
+	
+	public Long getCodigoSolicitacao() {
+		return codigoSolicitacao;
+	}
+
+	public void setCodigoSolicitacao(Long codigoSolicitacao) {
+		this.codigoSolicitacao = codigoSolicitacao;
+	}
+
+	public Long getTipoSolicitacao() {
+		return tipoSolicitacao;
+	}
+
+	public void setTipoSolicitacao(Long tipoSolicitacao) {
+		this.tipoSolicitacao = tipoSolicitacao;
 	}
 
 	public void abrirPesquisarSolicitacoes() throws ParseException {
@@ -165,5 +189,19 @@ public class SolicitacaoController implements Serializable {
 			e.printStackTrace();
 		}
 		return this.getMinhasSolicitacoes();
+	}
+	
+	public void carregarSolicitacao() {
+		if(Constantes.TIPO_SOLICITACAO_ALTERAR_CONTA_BANCARIA.equals(tipoSolicitacao)){
+			SolicitacaoContaBancaria solicitacaoContaBancaria= new SolicitacaoContaBancaria();
+			solicitacaoContaBancaria.setSolicitante(new Servidor());
+			solicitacaoContaBancaria.getSolicitante().setContaBancaria(new ContaBancaria());
+			solicitacaoContaBancaria.getSolicitante().getContaBancaria().setBanco(new Banco());
+			solicitacaoContaBancaria.setStatusSolicitacao(new StatusSolicitacao());
+			solicitacaoContaBancaria.setTipoSolicitacao(new TipoSolicitacao());
+			solicitacaoContaBancaria.setNovoBanco(new Banco());
+			solicitacaoContaBancaria.setCodigo(codigoSolicitacao);
+			solicitacaoContaBancaria = (SolicitacaoContaBancaria) dao.refresh(solicitacao);
+		}
 	}
 }
