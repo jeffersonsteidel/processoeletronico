@@ -37,24 +37,50 @@
 				<h:outputText value="Curso: " />
 				<h:inputText
 					value="#{solicitacaoHorarioEspecialEstudanteController.solicitacaoHorarioEspecialEstudante.curso}"
-					size="50" maxlength="80" required="true"
+					size="53" maxlength="80" required="true"
 					requiredMessage="Campo Curso é obrigatório!">
 				</h:inputText>
 
 				<h:outputText value="Instituição: " />
-				<h:inputText 
+				<h:inputText
 					value="#{solicitacaoHorarioEspecialEstudanteController.solicitacaoHorarioEspecialEstudante.instituicao}"
-					size="50" maxlength="120" required="true"
+					size="53" maxlength="120" required="true"
 					requiredMessage="Campo Instituição é obrigatório!">
 				</h:inputText>
 
 				<h:outputText value="Motivo: " />
 				<h:inputTextarea
 					value="#{solicitacaoHorarioEspecialEstudanteController.solicitacaoHorarioEspecialEstudante.motivo}"
-					 cols="50" rows="5" required="true"
+					cols="50" rows="5" required="true"
 					requiredMessage="Campo Motivo é obrigatório!">
 				</h:inputTextarea>
 			</h:panelGrid>
+			<h:panelGrid columns="1">
+				<rich:fileUpload addControlLabel="Adicionar Declaracao de Matricula"
+					fileUploadListener="#{solicitacaoHorarioEspecialEstudanteController.listener}"
+					id="upload" required="true" 
+					requiredMessage="É necessario anexar a Declaracao de Matricula!"
+					immediate="false" allowFlash="false" clearAllControlLabel="Limpar"
+					clearControlLabel="" cancelEntryControlLabel=""
+					doneLabel="Finalizada" stopButtonClassDisabled="true"
+					transferErrorLabel="Falha Ao realizar Transferência"
+					doneLabelClass="Finalizada" autoclear="true"
+					acceptedTypes="jpg, gif, png, bmp" maxFilesQuantity="1"
+					listWidth="300px" stopControlLabel="Parar" stopEntryControlLabel=""
+					sizeErrorLabel="Foto muito grande" uploadControlLabel="Carregar"
+					listHeight="70px">
+					<a4j:support event="onuploadcomplete" reRender="info" />
+				</rich:fileUpload>
+				<h:panelGroup id="info">
+					<a4j:mediaOutput element="img"
+						createContent="#{solicitacaoHorarioEspecialEstudanteController.paint}"
+						value="#{solicitacaoHorarioEspecialEstudanteController.solicitacaoHorarioEspecialEstudante.declaracaoMatricula}"
+						style="width:100px; height:200px;" cacheable="false">
+					</a4j:mediaOutput>
+				</h:panelGroup>
+			</h:panelGrid>
+
+
 			<a4j:commandButton value="Salvar"
 				action="#{solicitacaoHorarioEspecialEstudanteController.salvar}" reRender="form" />
 		</rich:panel></center>

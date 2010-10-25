@@ -1,11 +1,15 @@
 package br.com.progepe.controller;
 
 import java.io.IOException;
+import java.io.OutputStream;
 import java.io.Serializable;
 import java.text.ParseException;
 import java.util.Date;
 
 import javax.faces.context.FacesContext;
+
+import org.richfaces.event.UploadEvent;
+import org.richfaces.model.UploadItem;
 
 import br.com.progepe.constantes.Constantes;
 import br.com.progepe.dao.DAO;
@@ -51,6 +55,15 @@ public class SolicitacaoHorarioEspecialEstudanteController implements Serializab
 		ServidorDAO servidorDAO = new ServidorDAO();
 		solicitacaoHorarioEspecialEstudante.setSolicitante(servidorDAO
 				.refreshBySiape(solicitacaoHorarioEspecialEstudante.getSolicitante()));
+	}
+	
+	public void listener(UploadEvent event) throws Exception {
+		UploadItem item = event.getUploadItem();
+		solicitacaoHorarioEspecialEstudante.setDeclaracaoMatricula(item.getData());
+	}
+
+	public void paint(OutputStream stream, Object object) throws IOException {
+			stream.write(this.solicitacaoHorarioEspecialEstudante.getDeclaracaoMatricula());
 	}
 	
 	public void salvar() throws IOException, ParseException {

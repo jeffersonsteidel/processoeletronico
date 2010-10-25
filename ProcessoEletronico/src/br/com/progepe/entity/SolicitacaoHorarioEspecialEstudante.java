@@ -7,6 +7,8 @@ public class SolicitacaoHorarioEspecialEstudante extends Solicitacao {
 	private String curso;
 	private String instituicao;
 	private String motivo;
+	private byte[] declaracaoMatricula;
+	private Boolean documentoValidado = false;
 
 	public String getCurso() {
 		return curso;
@@ -30,6 +32,22 @@ public class SolicitacaoHorarioEspecialEstudante extends Solicitacao {
 
 	public void setMotivo(String motivo) {
 		this.motivo = motivo;
+	}
+
+	public byte[] getDeclaracaoMatricula() {
+		return declaracaoMatricula;
+	}
+
+	public void setDeclaracaoMatricula(byte[] certidaoNascimento) {
+		this.declaracaoMatricula = certidaoNascimento;
+	}
+
+	public Boolean getDocumentoValidado() {
+		return documentoValidado;
+	}
+
+	public void setDocumentoValidado(Boolean documentoValidado) {
+		this.documentoValidado = documentoValidado;
 	}
 
 }
