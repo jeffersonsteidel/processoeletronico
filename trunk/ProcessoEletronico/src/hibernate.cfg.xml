@@ -26,7 +26,6 @@
 		<mapping resource="Dependente.hbm.xml" />
 		<mapping resource="Emprego.hbm.xml" />
 		<mapping resource="Funcao.hbm.xml" />
-		<mapping resource="GrauParentesco.hbm.xml" />
 		<mapping resource="Progressao.hbm.xml" />
 		<mapping resource="ServidorTitulacao.hbm.xml" />
 		<mapping resource="TipoFuncao.hbm.xml" />
@@ -43,6 +42,7 @@
 		<mapping resource="Endereco.hbm.xml" />
 		<mapping resource="Estado.hbm.xml" />
 		<mapping resource="EstadoCivil.hbm.xml" />
+		<mapping resource="GrauParentesco.hbm.xml" />
 		<mapping resource="GrupoSanguineo.hbm.xml" />
 		<mapping resource="Lotacao.hbm.xml" />
 		<mapping resource="Padrao.hbm.xml" />

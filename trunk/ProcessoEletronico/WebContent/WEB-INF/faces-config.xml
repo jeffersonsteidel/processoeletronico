@@ -48,4 +48,9 @@ Config 1.1//EN"
 		<managed-bean-class>br.com.progepe.controller.SolicitacaoLicencaPaternidadeController</managed-bean-class>
 		<managed-bean-scope>session</managed-bean-scope>
 	</managed-bean>
+		<managed-bean>
+		<managed-bean-name>solicitacaoObitoController</managed-bean-name>
+		<managed-bean-class>br.com.progepe.controller.SolicitacaoObitoController</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
 </faces-config>

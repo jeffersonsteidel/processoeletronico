@@ -13,4 +13,5 @@ public class Constantes {
 	public static final Long TIPO_SOLICITACAO_LICENCA_CASAMENTO = 5L;	
 	public static final Long TIPO_SOLICITACAO_HORARIO_ESPECIAL_ESTUDANTE = 6L;
 	public static final Long TIPO_SOLICITACAO_AUXILIO_INSALUBRIDADE = 7L;
+	public static final Long TIPO_SOLICITACAO_OBITO = 8L;
 }
