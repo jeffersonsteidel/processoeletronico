@@ -10,5 +10,6 @@
 		<property name="dataFinal" column="SOLIC_DATA_FINAL" />
 		<property name="documentoValidado" column="SOLIC_DOC_VALIDADO" />
 		<property name="certidaoNascimento" column="SOLIC_CERTIDAO" />
+		<property name="dataNascimento" column="SOLIC_DATA_NASCIMENTO" />
 	</joined-subclass>
 </hibernate-mapping>
