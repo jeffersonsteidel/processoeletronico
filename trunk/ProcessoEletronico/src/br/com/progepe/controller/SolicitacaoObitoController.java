@@ -82,7 +82,7 @@ public class SolicitacaoObitoController implements Serializable {
 				Constantes.TIPO_SOLICITACAO_OBITO);
 		solicitacaoObito.setStatusSolicitacao(new StatusSolicitacao());
 		solicitacaoObito.getStatusSolicitacao().setCodigo(
-				Constantes.STATUS_SOLICITACAO_AGUARDANDO);
+				Constantes.STATUS_SOLICITACAO_ENCAMINHADO);
 		dao.saveOrUpdate(solicitacaoObito);
 		solicitacaoObito = new SolicitacaoObito();
 		buscarServidorLogado();
