@@ -65,7 +65,7 @@ public class SolicitacaoAlteracaoFeriasController implements Serializable {
 				Constantes.TIPO_SOLICITACAO_ALTERACAO_FERIAS);
 		solicitacaoAlteracaoFerias.setStatusSolicitacao(new StatusSolicitacao());
 		solicitacaoAlteracaoFerias.getStatusSolicitacao().setCodigo(
-				Constantes.STATUS_SOLICITACAO_AGUARDANDO);
+				Constantes.STATUS_SOLICITACAO_ENCAMINHADO);
 		dao.saveOrUpdate(solicitacaoAlteracaoFerias);
 		solicitacaoAlteracaoFerias = new SolicitacaoAlteracaoFerias();
 		buscarServidorLogado();

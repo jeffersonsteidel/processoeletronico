@@ -107,7 +107,7 @@ public class SolicitacaoContaBancariaController implements Serializable {
 		solicitacaoContaBancaria.setTipoSolicitacao(new TipoSolicitacao());
 		solicitacaoContaBancaria.getTipoSolicitacao().setCodigo(Constantes.TIPO_SOLICITACAO_ALTERAR_CONTA_BANCARIA);
 		solicitacaoContaBancaria.setStatusSolicitacao(new StatusSolicitacao());
-		solicitacaoContaBancaria.getStatusSolicitacao().setCodigo(Constantes.STATUS_SOLICITACAO_AGUARDANDO);
+		solicitacaoContaBancaria.getStatusSolicitacao().setCodigo(Constantes.STATUS_SOLICITACAO_ENCAMINHADO);
 		dao.saveOrUpdate(solicitacaoContaBancaria);
 		solicitacaoContaBancaria = new SolicitacaoContaBancaria();
 		solicitacaoContaBancaria.setContaBancaria(new ContaBancaria());

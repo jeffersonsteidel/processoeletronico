@@ -74,7 +74,7 @@ public class SolicitacaoHorarioEspecialEstudanteController implements Serializab
 				Constantes.TIPO_SOLICITACAO_HORARIO_ESPECIAL_ESTUDANTE);
 		solicitacaoHorarioEspecialEstudante.setStatusSolicitacao(new StatusSolicitacao());
 		solicitacaoHorarioEspecialEstudante.getStatusSolicitacao().setCodigo(
-				Constantes.STATUS_SOLICITACAO_AGUARDANDO);
+				Constantes.STATUS_SOLICITACAO_ENCAMINHADO);
 		dao.saveOrUpdate(solicitacaoHorarioEspecialEstudante);
 		solicitacaoHorarioEspecialEstudante = new SolicitacaoHorarioEspecialEstudante();
 		buscarServidorLogado();

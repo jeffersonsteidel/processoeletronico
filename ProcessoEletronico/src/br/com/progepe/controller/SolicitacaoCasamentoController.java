@@ -65,7 +65,7 @@ public class SolicitacaoCasamentoController implements Serializable {
 				Constantes.TIPO_SOLICITACAO_LICENCA_CASAMENTO);
 		solicitacaoCasamento.setStatusSolicitacao(new StatusSolicitacao());
 		solicitacaoCasamento.getStatusSolicitacao().setCodigo(
-				Constantes.STATUS_SOLICITACAO_AGUARDANDO);
+				Constantes.STATUS_SOLICITACAO_ENCAMINHADO);
 		dao.saveOrUpdate(solicitacaoCasamento);
 		solicitacaoCasamento = new SolicitacaoCasamento();
 		buscarServidorLogado();

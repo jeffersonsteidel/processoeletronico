@@ -7,6 +7,7 @@ import java.text.ParseException;
 import java.util.Date;
 
 import javax.faces.context.FacesContext;
+import javax.faces.event.ValueChangeEvent;
 
 import org.richfaces.event.UploadEvent;
 import org.richfaces.model.UploadItem;
@@ -19,6 +20,7 @@ import br.com.progepe.entity.Servidor;
 import br.com.progepe.entity.SolicitacaoLicencaPaternidade;
 import br.com.progepe.entity.StatusSolicitacao;
 import br.com.progepe.entity.TipoSolicitacao;
+import br.com.progepe.validator.Validator;
 
 public class SolicitacaoLicencaPaternidadeController implements Serializable {
 	private static final long serialVersionUID = -333995781063775201L;
@@ -69,6 +71,10 @@ public class SolicitacaoLicencaPaternidadeController implements Serializable {
 			stream.write(this.solicitacaoLicencaPaternidade.getCertidaoNascimento());
 	}
 
+	public void calcularPeriodo(ValueChangeEvent event){
+		Validator.somaData(solicitacaoLicencaPaternidade.getDataNascimento().toString(), 5);
+	}
+	
 	public void salvar() throws IOException, ParseException {
 		solicitacaoLicencaPaternidade.setDataAbertura(new Date());
 		solicitacaoLicencaPaternidade.setDataAtendimento(null);
@@ -78,7 +84,7 @@ public class SolicitacaoLicencaPaternidadeController implements Serializable {
 		solicitacaoLicencaPaternidade
 				.setStatusSolicitacao(new StatusSolicitacao());
 		solicitacaoLicencaPaternidade.getStatusSolicitacao().setCodigo(
-				Constantes.STATUS_SOLICITACAO_AGUARDANDO);
+				Constantes.STATUS_SOLICITACAO_ENCAMINHADO);
 		dao.saveOrUpdate(solicitacaoLicencaPaternidade);
 		solicitacaoLicencaPaternidade = new SolicitacaoLicencaPaternidade();
 		buscarServidorLogado();
