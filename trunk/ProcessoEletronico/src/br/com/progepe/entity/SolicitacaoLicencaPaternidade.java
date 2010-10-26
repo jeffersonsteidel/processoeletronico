@@ -10,6 +10,7 @@ public class SolicitacaoLicencaPaternidade extends Solicitacao {
 	private Date dataFinal;
 	private byte[] certidaoNascimento;
 	private Boolean documentoValidado = false; 
+	private Date dataNascimento;
 	
 	public Date getDataInicial() {
 		return dataInicial;
@@ -34,5 +35,11 @@ public class SolicitacaoLicencaPaternidade extends Solicitacao {
 	}
 	public void setDocumentoValidado(Boolean documentoValidado) {
 		this.documentoValidado = documentoValidado;
+	}
+	public Date getDataNascimento() {
+		return dataNascimento;
+	}
+	public void setDataNascimento(Date dataNascimento) {
+		this.dataNascimento = dataNascimento;
 	}
 }

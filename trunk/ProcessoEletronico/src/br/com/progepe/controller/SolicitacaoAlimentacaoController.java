@@ -94,7 +94,7 @@ public class SolicitacaoAlimentacaoController implements Serializable {
 				Constantes.TIPO_SOLICITACAO_AUXILIO_ALIMENTACAO);
 		solicitacaoAlimentacao.setStatusSolicitacao(new StatusSolicitacao());
 		solicitacaoAlimentacao.getStatusSolicitacao().setCodigo(
-				Constantes.STATUS_SOLICITACAO_AGUARDANDO);
+				Constantes.STATUS_SOLICITACAO_ENCAMINHADO);
 		dao.saveOrUpdate(solicitacaoAlimentacao);
 		solicitacaoAlimentacao = new SolicitacaoAlimentacao();
 		buscarServidorLogado();

@@ -34,22 +34,24 @@
 				</h:outputText>
 			</h:panelGrid>
 
+			<h:panelGrid columns="2">
+				<h:outputText value="Date de Nascimento do Filho(a): "></h:outputText>
+				<rich:calendar
+					value="#{solicitacaoLicencaPaternidadeController.solicitacaoLicencaPaternidade.dataNascimento}"
+					locale="" popup="true" datePattern="dd/MM/yyyy" showApplyButton="#"
+					cellWidth="12px" cellHeight="12px" style="width:80px" 
+					required="true" inputSize="12"
+					requiredMessage="Campo Date de Nascimento do Filho(a) é obrigatório!">
+				</rich:calendar>
+			</h:panelGrid>
+
 			<h:panelGrid columns="4">
 				<h:outputText value="Período: "></h:outputText>
-				<rich:calendar
-					value="#{solicitacaoLicencaPaternidadeController.solicitacaoLicencaPaternidade.dataInicial}"
-					locale="" popup="true" datePattern="dd/MM/yyyy" showApplyButton="#"
-					cellWidth="12px" cellHeight="12px" style="width:80px"
-					required="true" inputSize="12"
-					requiredMessage="Campo Período (Início do Período) é obrigatório!" />
-
+				<h:outputText id="dataInicial"
+					value="#{solicitacaoLicencaPaternidadeController.solicitacaoLicencaPaternidade.dataInicial}"></h:outputText>
 				<h:outputText value=" a "></h:outputText>
-				<rich:calendar
-					value="#{solicitacaoLicencaPaternidadeController.solicitacaoLicencaPaternidade.dataFinal}"
-					locale="" popup="true" datePattern="dd/MM/yyyy" showApplyButton="#"
-					cellWidth="12px" cellHeight="12px" style="width:80px"
-					required="true" inputSize="12"
-					requiredMessage="Campo Período (Fim do Período) é obrigatório!" />
+				<h:outputText id="dataFinal"
+					value="#{solicitacaoLicencaPaternidadeController.solicitacaoLicencaPaternidade.dataFinal}"></h:outputText>
 			</h:panelGrid>
 
 			<h:panelGrid columns="1">

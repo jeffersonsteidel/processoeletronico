@@ -141,8 +141,6 @@
 					<rich:toolTip for="editar" value="Editar" />
 				</rich:column>
 
-
-
 				<f:facet name="footer">
 					<rich:datascroller id="ds"></rich:datascroller>
 				</f:facet>

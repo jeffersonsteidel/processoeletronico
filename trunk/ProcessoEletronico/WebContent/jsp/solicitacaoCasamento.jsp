@@ -41,7 +41,7 @@
 					requiredMessage="Campo Nome do Cônjuge é obrigatório!">
 				</h:inputText>
 
-				<h:outputText value="Número da certidão de Casamento: " />
+				<h:outputText value="Número da Certidão de Casamento: " />
 				<h:inputText
 					value="#{solicitacaoCasamentoController.solicitacaoCasamento.numeroCertidao}"
 					size="20" maxlength="9" required="true"
