@@ -40,39 +40,43 @@
 					value="#{solicitacaoLicencaPaternidadeController.solicitacaoLicencaPaternidade.dataNascimento}"
 					locale="" popup="true" datePattern="dd/MM/yyyy" showApplyButton="#"
 					cellWidth="12px" cellHeight="12px" style="width:80px"
-					required="true" inputSize="12" ajaxSingle="true" 
+					required="true" inputSize="12" ajaxSingle="true"
 					requiredMessage="Campo Date de Nascimento do Filho(a) é obrigatório!">
 				</rich:calendar>
 			</h:panelGrid>
-
-			<h:panelGrid columns="1">
-				<rich:fileUpload addControlLabel="Adicionar Certidao de Nascimento"
-					fileUploadListener="#{solicitacaoLicencaPaternidadeController.listener}"
-					id="upload" required="true"
-					requiredMessage="É necessario anexar o Certidão de  Nascimento do Filho!"
-					immediate="false" allowFlash="false" clearAllControlLabel="Limpar"
-					clearControlLabel="" cancelEntryControlLabel=""
-					doneLabel="Finalizada" stopButtonClassDisabled="true"
-					transferErrorLabel="Falha Ao realizar Transferência"
-					doneLabelClass="Finalizada" autoclear="true"
-					acceptedTypes="jpg, gif, png, bmp" maxFilesQuantity="1"
-					listWidth="270px" stopControlLabel="Parar" stopEntryControlLabel=""
-					sizeErrorLabel="Foto muito grande" uploadControlLabel="Carregar"
-					listHeight="70px">
-					<a4j:support event="onuploadcomplete" reRender="info" />
-				</rich:fileUpload>
-				<h:panelGroup id="info">
-					<a4j:mediaOutput element="img"
-						createContent="#{solicitacaoLicencaPaternidadeController.paint}"
-						value="#{solicitacaoLicencaPaternidadeController.solicitacaoLicencaPaternidade.certidaoNascimento}"
-						style="width:100px; height:200px;" cacheable="false">
-					</a4j:mediaOutput>
-				</h:panelGroup>
-			</h:panelGrid>
-
+			<rich:fileUpload
+				fileUploadListener="#{solicitacaoLicencaPaternidadeController.listener}"
+				maxFilesQuantity="1"
+				addControlLabel="Adicionar Certidao de Nascimento" id="upload"
+				transferErrorLabel="Falha Ao realizar Transferência"
+				doneLabelClass="Finalizada" autoclear="true" immediateUpload="true"
+				listWidth="270px" stopControlLabel="Parar"
+				acceptedTypes="jpg, gif, png, bmp" allowFlash="true"
+				sizeErrorLabel="Foto muito grande" uploadControlLabel="Carregar"
+				listHeight="70px">
+				<a4j:support event="onuploadcomplete" reRender="info" />
+			</rich:fileUpload>
 			<a4j:commandButton value="Salvar"
 				action="#{solicitacaoLicencaPaternidadeController.salvar}"
 				reRender="form" />
+
+			<h:panelGroup id="info">
+				<rich:panel bodyClass="info">
+					<rich:dataGrid columns="1"
+						value="#{solicitacaoLicencaPaternidadeController.files}"
+						var="file" rowKeyVar="row">
+						<rich:panel bodyClass="rich-laguna-panel-no-header">
+							<h:panelGrid columns="2">
+								<a4j:mediaOutput element="img"
+									createContent="#{solicitacaoLicencaPaternidadeController.paint}"
+									value="#{row}" style="width:600px; height:800px;"
+									cacheable="false">
+								</a4j:mediaOutput>
+							</h:panelGrid>
+						</rich:panel>
+					</rich:dataGrid>
+				</rich:panel>
+			</h:panelGroup>
 		</rich:panel></center>
 	</a4j:form>
 </f:view>
