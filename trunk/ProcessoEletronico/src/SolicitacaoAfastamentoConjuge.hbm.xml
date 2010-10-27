@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping 
+	PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<joined-subclass name="br.com.progepe.entity.SolicitacaoAfastamentoConjuge"
+		extends="br.com.progepe.entity.Solicitacao">
+		<key column="SOLIC_COD"></key>
+		<property name="tipo" column="SOLIC_TIPO" />
+		<property name="dataInicio" column="SOLIC_DATA_INICIO" />
+		<property name="local" column="SOLIC_LOCAL" />
+		<property name="remuneracao" column="SOLIC_REMUNERACAO" />
+		<property name="unidReceptora" column="SOLIC_UNID_RECEPTORA" />
+		<property name="telefone" column="SOLIC_TELEFONE" />
+	</joined-subclass>
+</hibernate-mapping>
