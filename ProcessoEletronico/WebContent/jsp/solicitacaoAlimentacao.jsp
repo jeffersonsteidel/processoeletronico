@@ -37,10 +37,11 @@
 			</h:panelGrid>
 
 			<h:panelGrid columns="2">
-			<h:selectOneRadio id="radios" value="#{solicitacaoAlimentacaoController.solicitacaoAlimentacao.indAlimentacao}">  
-					<f:selectItem itemValue="true" itemLabel="Incluir Auxílio"/>
-					<f:selectItem itemValue="false" itemLabel="Cancelar Auxílio"/>  
-				</h:selectOneRadio>  
+				<h:selectOneRadio id="radios"
+					value="#{solicitacaoAlimentacaoController.solicitacaoAlimentacao.indAlimentacao}">
+					<f:selectItem itemValue="true" itemLabel="Incluir Auxílio" />
+					<f:selectItem itemValue="false" itemLabel="Cancelar Auxílio" />
+				</h:selectOneRadio>
 			</h:panelGrid>
 			<a4j:commandButton value="Salvar"
 				action="#{solicitacaoAlimentacaoController.salvar}" reRender="form" />
