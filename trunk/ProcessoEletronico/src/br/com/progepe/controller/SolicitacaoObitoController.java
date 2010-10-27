@@ -28,7 +28,7 @@ public class SolicitacaoObitoController implements Serializable {
 	private static final long serialVersionUID = -333995781063775201L;
 
 	private SolicitacaoObito solicitacaoObito;
-	
+	private ArrayList<SolicitacaoObito> files = new ArrayList<SolicitacaoObito>();
 	private List<SelectItem> grausParentescos = new ArrayList<SelectItem>();
 	
 	DAO dao = new DAO();
@@ -49,6 +49,14 @@ public class SolicitacaoObitoController implements Serializable {
 		this.grausParentescos = grausParentescos;
 	}
 	
+	public ArrayList<SolicitacaoObito> getFiles() {
+		return files;
+	}
+
+	public void setFiles(ArrayList<SolicitacaoObito> files) {
+		this.files = files;
+	}
+
 	public void abrirSolicitacaoObito() throws ParseException {
 		try {
 			solicitacaoObito = new SolicitacaoObito();
@@ -85,16 +93,18 @@ public class SolicitacaoObitoController implements Serializable {
 				Constantes.STATUS_SOLICITACAO_ENCAMINHADO);
 		dao.saveOrUpdate(solicitacaoObito);
 		solicitacaoObito = new SolicitacaoObito();
+		files = new ArrayList<SolicitacaoObito>();
 		buscarServidorLogado();
 	}
 	
+	public void paint(OutputStream stream, Object object) throws IOException {
+		stream.write(getFiles().get((Integer) object).getCertidaoObito());
+	}
+
 	public void listener(UploadEvent event) throws Exception {
 		UploadItem item = event.getUploadItem();
 		solicitacaoObito.setCertidaoObito(item.getData());
-	}
-
-	public void paint(OutputStream stream, Object object) throws IOException {
-			stream.write(this.solicitacaoObito.getCertidaoObito());
+		files.add(solicitacaoObito);
 	}
 	
 	
