@@ -26,7 +26,8 @@
 				</f:facet>
 			</rich:messages>
 
-			<font size="2"><b>SOLICITAÇÃO DE HORÁRIO ESPECIAL PARA ESTUDANTE</b></font>
+			<font size="2"><b>SOLICITAÇÃO DE HORÁRIO ESPECIAL PARA
+			ESTUDANTE</b></font>
 			<h:panelGrid columns="1">
 				<h:outputText
 					value="#{solicitacaoHorarioEspecialEstudanteController.solicitacaoHorarioEspecialEstudante.solicitante.siape} - #{solicitacaoHorarioEspecialEstudanteController.solicitacaoHorarioEspecialEstudante.solicitante.nome}">
@@ -55,34 +56,40 @@
 					requiredMessage="Campo Motivo é obrigatório!">
 				</h:inputTextarea>
 			</h:panelGrid>
-			<h:panelGrid columns="1">
-				<rich:fileUpload addControlLabel="Adicionar Declaracao de Matricula"
-					fileUploadListener="#{solicitacaoHorarioEspecialEstudanteController.listener}"
-					id="upload" required="true" 
-					requiredMessage="É necessario anexar a Declaracao de Matricula!"
-					immediate="false" allowFlash="false" clearAllControlLabel="Limpar"
-					clearControlLabel="" cancelEntryControlLabel=""
-					doneLabel="Finalizada" stopButtonClassDisabled="true"
-					transferErrorLabel="Falha Ao realizar Transferência"
-					doneLabelClass="Finalizada" autoclear="true"
-					acceptedTypes="jpg, gif, png, bmp" maxFilesQuantity="1"
-					listWidth="300px" stopControlLabel="Parar" stopEntryControlLabel=""
-					sizeErrorLabel="Foto muito grande" uploadControlLabel="Carregar"
-					listHeight="70px">
-					<a4j:support event="onuploadcomplete" reRender="info" />
-				</rich:fileUpload>
-				<h:panelGroup id="info">
-					<a4j:mediaOutput element="img"
-						createContent="#{solicitacaoHorarioEspecialEstudanteController.paint}"
-						value="#{solicitacaoHorarioEspecialEstudanteController.solicitacaoHorarioEspecialEstudante.declaracaoMatricula}"
-						style="width:100px; height:200px;" cacheable="false">
-					</a4j:mediaOutput>
-				</h:panelGroup>
-			</h:panelGrid>
 
-
+			<rich:fileUpload
+				fileUploadListener="#{solicitacaoHorarioEspecialEstudanteController.listener}"
+				maxFilesQuantity="1"
+				addControlLabel="Adicionar Declaracao de Matricula" id="upload"
+				transferErrorLabel="Falha Ao realizar Transferência"
+				doneLabelClass="Finalizada" autoclear="true" immediateUpload="true"
+				listWidth="270px" stopControlLabel="Parar"
+				acceptedTypes="jpg, gif, png, bmp" allowFlash="true"
+				sizeErrorLabel="Foto muito grande" uploadControlLabel="Carregar"
+				listHeight="70px">
+				<a4j:support event="onuploadcomplete" reRender="info" />
+			</rich:fileUpload>
 			<a4j:commandButton value="Salvar"
-				action="#{solicitacaoHorarioEspecialEstudanteController.salvar}" reRender="form" />
+				action="#{solicitacaoHorarioEspecialEstudanteController.salvar}"
+				reRender="form" />
+
+			<h:panelGroup id="info">
+				<rich:panel bodyClass="info">
+					<rich:dataGrid columns="1"
+						value="#{solicitacaoHorarioEspecialEstudanteController.files}"
+						var="file" rowKeyVar="row">
+						<rich:panel bodyClass="rich-laguna-panel-no-header">
+							<h:panelGrid columns="2">
+								<a4j:mediaOutput element="img"
+									createContent="#{solicitacaoHorarioEspecialEstudanteController.paint}"
+									value="#{row}" style="width:600px; height:800px;"
+									cacheable="false">
+								</a4j:mediaOutput>
+							</h:panelGrid>
+						</rich:panel>
+					</rich:dataGrid>
+				</rich:panel>
+			</h:panelGroup>
 		</rich:panel></center>
 	</a4j:form>
 </f:view>
