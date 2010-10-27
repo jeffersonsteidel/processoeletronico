@@ -59,7 +59,7 @@ public class SolicitacaoLicencaPaternidadeController implements Serializable {
 						.refreshBySiape(solicitacaoLicencaPaternidade
 								.getSolicitante()));
 	}
-
+	
 	public void listener(UploadEvent event) throws Exception {
 		UploadItem item = event.getUploadItem();
 		solicitacaoLicencaPaternidade.setCertidaoNascimento(item.getData());

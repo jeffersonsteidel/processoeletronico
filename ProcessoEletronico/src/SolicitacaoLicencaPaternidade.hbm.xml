@@ -6,8 +6,6 @@
 	<joined-subclass name="br.com.progepe.entity.SolicitacaoLicencaPaternidade"
 		extends="br.com.progepe.entity.Solicitacao">
 		<key column="SOLIC_COD"></key>
-		<property name="dataInicial" column="SOLIC_DATA_INICIAL" />
-		<property name="dataFinal" column="SOLIC_DATA_FINAL" />
 		<property name="documentoValidado" column="SOLIC_DOC_VALIDADO" />
 		<property name="certidaoNascimento" column="SOLIC_CERTIDAO" />
 		<property name="dataNascimento" column="SOLIC_DATA_NASCIMENTO" />

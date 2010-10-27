@@ -8,9 +8,6 @@
 		<key column="SOLIC_COD"></key>
 		<property name="nomeConjuge" column="SOLIC_NOME_CONJUGE" />
 		<property name="numeroCertidao" column="SOLIC_NUM_CERT_CASAMENTO" />
-		<property name="livro" column="SOLIC_LIVRO" />
-		<property name="folhas" column="SOLIC_FOLHAS" />
-		<property name="cartorio" column="SOLIC_CARTORIO" />
 		<property name="certidaoCasamento" column="SOLIC_CERTIDAO" />
 		<property name="documentoValidado" column="SOLIC_DOC_VALIDADO" type="boolean"/>
 	</joined-subclass>

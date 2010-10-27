@@ -292,12 +292,8 @@ public abstract class Validator {
 	}
 
 	@SuppressWarnings("deprecation")
-	public static String somaData(String data, int somaDias) {
-		Date dt = new Date(verificaMascaraData(data));
-		String formato = "dd/MM/yyyy";
-		dt.setDate(dt.getDate() + somaDias);
-
-		SimpleDateFormat dataFormatada = new SimpleDateFormat(formato);
-		return dataFormatada.format(dt);
+	public static Date somaData(Date data, int somaDias) {
+		data.setDate(data.getDate() + somaDias);
+		return data;
 	}
 }
