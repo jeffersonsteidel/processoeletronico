@@ -48,27 +48,6 @@
 					onkeypress="mascara(this,soNumeros);"
 					requiredMessage="Campo Número da Certidão de Casamento é obrigatório!">
 				</h:inputText>
-
-				<h:outputText value="Livro: " />
-				<h:inputText
-					value="#{solicitacaoCasamentoController.solicitacaoCasamento.livro}"
-					size="20" maxlength="20" required="true"
-					requiredMessage="Campo Livro é obrigatório!">
-				</h:inputText>
-
-				<h:outputText value="Folhas: " />
-				<h:inputText
-					value="#{solicitacaoCasamentoController.solicitacaoCasamento.folhas}"
-					size="20" maxlength="20" required="true"
-					requiredMessage="Campo Folhas é obrigatório!">
-				</h:inputText>
-
-				<h:outputText value="Cartório: " />
-				<h:inputText
-					value="#{solicitacaoCasamentoController.solicitacaoCasamento.cartorio}"
-					size="20" maxlength="20" required="true"
-					requiredMessage="Campo Cartório é obrigatório!">
-				</h:inputText>
 			</h:panelGrid>
 
 			<h:panelGrid columns="1">

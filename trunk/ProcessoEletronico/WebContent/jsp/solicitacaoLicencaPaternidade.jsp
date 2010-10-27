@@ -39,19 +39,10 @@
 				<rich:calendar
 					value="#{solicitacaoLicencaPaternidadeController.solicitacaoLicencaPaternidade.dataNascimento}"
 					locale="" popup="true" datePattern="dd/MM/yyyy" showApplyButton="#"
-					cellWidth="12px" cellHeight="12px" style="width:80px" 
-					required="true" inputSize="12"
+					cellWidth="12px" cellHeight="12px" style="width:80px"
+					required="true" inputSize="12" ajaxSingle="true" 
 					requiredMessage="Campo Date de Nascimento do Filho(a) é obrigatório!">
 				</rich:calendar>
-			</h:panelGrid>
-
-			<h:panelGrid columns="4">
-				<h:outputText value="Período: "></h:outputText>
-				<h:outputText id="dataInicial"
-					value="#{solicitacaoLicencaPaternidadeController.solicitacaoLicencaPaternidade.dataInicial}"></h:outputText>
-				<h:outputText value=" a "></h:outputText>
-				<h:outputText id="dataFinal"
-					value="#{solicitacaoLicencaPaternidadeController.solicitacaoLicencaPaternidade.dataFinal}"></h:outputText>
 			</h:panelGrid>
 
 			<h:panelGrid columns="1">

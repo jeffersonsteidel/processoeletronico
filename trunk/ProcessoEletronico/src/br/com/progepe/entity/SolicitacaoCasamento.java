@@ -6,9 +6,6 @@ public class SolicitacaoCasamento extends Solicitacao {
 
 	private String nomeConjuge;
 	private Integer numeroCertidao;
-	private String livro;
-	private String folhas;
-	private String cartorio;
 	private byte[] certidaoCasamento;
 	private Boolean documentoValidado = false;
 
@@ -26,30 +23,6 @@ public class SolicitacaoCasamento extends Solicitacao {
 
 	public void setNumeroCertidao(Integer numeroCertidao) {
 		this.numeroCertidao = numeroCertidao;
-	}
-
-	public String getLivro() {
-		return livro;
-	}
-
-	public void setLivro(String livro) {
-		this.livro = livro;
-	}
-
-	public String getFolhas() {
-		return folhas;
-	}
-
-	public void setFolhas(String folhas) {
-		this.folhas = folhas;
-	}
-
-	public String getCartorio() {
-		return cartorio;
-	}
-
-	public void setCartorio(String cartorio) {
-		this.cartorio = cartorio;
 	}
 
 	public byte[] getCertidaoCasamento() {
