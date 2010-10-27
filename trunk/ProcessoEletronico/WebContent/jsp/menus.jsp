@@ -85,7 +85,7 @@
 					icon="../images/SOLICITACAOHORARIOESPECIALESTUDANTE.gif" />
 				<rich:menuItem submitMode="ajax" value="Adicional de Insalubridade"
 					action="#{solicitacaoAdicionalInsalubridadeController.abrirSolicitacaoAdicionalInsalubridade}"
-					icon="../images/auxiliopaternidade.gif" />
+					icon="../images/insalubridade.gif" />
 				<rich:menuItem submitMode="ajax" value="Listar Solicitações"
 					rendered="#{autenticacaoController.siapeAutenticado.indAdministrador}"
 					action="#{solicitacaoController.abrirPesquisarSolicitacoes}"
