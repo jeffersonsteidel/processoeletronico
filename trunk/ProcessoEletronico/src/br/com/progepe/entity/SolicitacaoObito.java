@@ -7,10 +7,9 @@ public class SolicitacaoObito extends Solicitacao {
 	private String nomeFalecido;
 	private GrauParentesco grauParentesco;
 	private Integer numeroCertidao;
-	private String livro;
-	private String folhas;
-	private String cartorio;
 	private byte[] certidaoObito;
+	private boolean documentoValidado = false;
+	
 	
 	public String getNomeFalecido() {
 		return nomeFalecido;
@@ -30,24 +29,6 @@ public class SolicitacaoObito extends Solicitacao {
 	public void setNumeroCertidao(Integer numeroCertidao) {
 		this.numeroCertidao = numeroCertidao;
 	}
-	public String getLivro() {
-		return livro;
-	}
-	public void setLivro(String livro) {
-		this.livro = livro;
-	}
-	public String getFolhas() {
-		return folhas;
-	}
-	public void setFolhas(String folhas) {
-		this.folhas = folhas;
-	}
-	public String getCartorio() {
-		return cartorio;
-	}
-	public void setCartorio(String cartorio) {
-		this.cartorio = cartorio;
-	}
 	public byte[] getCertidaoObito() {
 		return certidaoObito;
 	}
@@ -60,11 +41,5 @@ public class SolicitacaoObito extends Solicitacao {
 	public void setDocumentoValidado(Boolean documentoValidado) {
 		this.documentoValidado = documentoValidado;
 	}
-	private Boolean documentoValidado = false;
 	
-	
-	
-
-
-
 }

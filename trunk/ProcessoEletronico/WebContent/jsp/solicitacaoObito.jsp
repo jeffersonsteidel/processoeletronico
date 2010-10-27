@@ -51,7 +51,7 @@
 						value="#{solicitacaoObitoController.grausParentescos}" />
 				</h:selectOneMenu>
 
-				<h:outputText value="Número da certidão de Óbito: " />
+				<h:outputText value="Número/Termo da certidão de Óbito: " />
 				<h:inputText
 					value="#{solicitacaoObitoController.solicitacaoObito.numeroCertidao}"
 					size="20" maxlength="9" required="true"
@@ -61,7 +61,7 @@
 			</h:panelGrid>
 
 			<h:panelGrid columns="1">
-				<rich:fileUpload addControlLabel="Adicionar Certidao de óbito"
+				<rich:fileUpload addControlLabel="Adicionar Certidao de Obito"
 					fileUploadListener="#{solicitacaoObitoController.listener}"
 					id="upload" required="true"
 					requiredMessage="É necessario anexar o Certidão de Óbito!"

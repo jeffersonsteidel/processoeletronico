@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping 
+	PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<joined-subclass name="br.com.progepe.entity.SolicitacaoObito"
+		extends="br.com.progepe.entity.Solicitacao">
+		<key column="SOLIC_COD"></key>
+		<property name="nomeFalecido" column="SOLIC_NOME_FALECIDO" />
+		<property name="numeroCertidao" column="SOLIC_NUMERO_CERTIDAO" />
+		<property name="certidaoObito" column="SOLIC_CERTIDAO_OBITO" />
+		<property name="documentoValidado" column="SOLIC_DOC_VALIDADO" type="boolean"/>
+		<many-to-one name="grauParentesco" class="br.com.progepe.entity.GrauParentesco"
+			column="GRAU_PAR_COD" />
+	</joined-subclass>
+</hibernate-mapping>
