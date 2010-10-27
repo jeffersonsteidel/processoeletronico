@@ -1,3 +1,4 @@
+
  <!DOCTYPE hibernate-configuration PUBLIC
 	"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
 	"http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
@@ -51,6 +52,7 @@
 		<mapping resource="Servidor.hbm.xml" />
 		<mapping resource="SituacaoFuncional.hbm.xml" />
 		<mapping resource="Solicitacao.hbm.xml" />
+		<mapping resource="SolicitacaoAdicionalInsalubridade.hbm.xml" />
 		<mapping resource="SolicitacaoAfastamentoConjuge.hbm.xml" />
 		<mapping resource="SolicitacaoAlteracaoFerias.hbm.xml" />
 		<mapping resource="SolicitacaoAuxilioAlimentacao.hbm.xml" />

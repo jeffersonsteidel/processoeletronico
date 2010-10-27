@@ -83,6 +83,9 @@
 				<rich:menuItem submitMode="ajax" value="Horário Especial para Estudante"
 					action="#{solicitacaoHorarioEspecialEstudanteController.abrirSolicitacaoHorarioEspecialEstudante}"
 					icon="../images/SOLICITACAOHORARIOESPECIALESTUDANTE.gif" />
+				<rich:menuItem submitMode="ajax" value="Adicional de Insalubridade"
+					action="#{solicitacaoAdicionalInsalubridadeController.abrirSolicitacaoAdicionalInsalubridade}"
+					icon="../images/auxiliopaternidade.gif" />
 				<rich:menuItem submitMode="ajax" value="Listar Solicitações"
 					rendered="#{autenticacaoController.siapeAutenticado.indAdministrador}"
 					action="#{solicitacaoController.abrirPesquisarSolicitacoes}"
