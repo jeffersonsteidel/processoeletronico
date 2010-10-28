@@ -85,7 +85,7 @@
 					icon="../images/SOLICITACAOHORARIOESPECIALESTUDANTE.gif" />
 				<rich:menuItem submitMode="ajax" value="Adicional de Insalubridade"
 					action="#{solicitacaoAdicionalInsalubridadeController.abrirSolicitacaoAdicionalInsalubridade}"
-					icon="../images/insalubridade.gif" />
+					icon="../images/insalubridade.jpg" />
 				<rich:menuItem submitMode="ajax" value="Listar Solicitações"
 					rendered="#{autenticacaoController.siapeAutenticado.indAdministrador}"
 					action="#{solicitacaoController.abrirPesquisarSolicitacoes}"
@@ -113,7 +113,7 @@
 					</h:panelGroup>
 				</f:facet>
 				<rich:menuItem submitMode="ajax" value="Portarias"
-					action="#"
+					action="#{portariaController.abrirPortaria }"
 					icon="../images/portarias.gif" />
 			</rich:dropDownMenu>
 
