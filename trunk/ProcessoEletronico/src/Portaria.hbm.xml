@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping 
+	PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="br.com.progepe.entity.Portaria" table="PORTARIA">
+		<id name="codigo" column="PORT_COD">
+			<generator class="increment"></generator>
+		</id>
+		<property name="numero" column="PORT_VALIDADO" />
+		<property name="pdf" column="PORT_PDF" />
+		<property name="nome" column="PORT_NOME" />
+		<property name="data" column="PORT_DATA" />
+		<property name="descricao" column="PORT_DESC" />
+		<property name="local" column="PORT_LOCAL" />
+		<many-to-one name="tipo" class="br.com.progepe.entity.TipoPortaria"
+			column="TIPO_PORT_COD" lazy="false" />
+	</class>
+</hibernate-mapping>
