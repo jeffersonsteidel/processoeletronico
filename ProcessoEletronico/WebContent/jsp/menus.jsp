@@ -105,6 +105,17 @@
 					action="#{autenticacaoController.alterarSenha}"
 					icon="../images/ALTERARSENHA.gif" />
 			</rich:dropDownMenu>
+			
+			<rich:dropDownMenu>
+				<f:facet name="label">
+					<h:panelGroup>
+						<h:outputText value="PORTARIAS" />
+					</h:panelGroup>
+				</f:facet>
+				<rich:menuItem submitMode="ajax" value="Portarias"
+					action="#"
+					icon="../images/portarias.gif" />
+			</rich:dropDownMenu>
 
 			<rich:toolBarGroup location="right">
 				<rich:dropDownMenu>
@@ -118,6 +129,7 @@
 						icon="../images/SAIR.gif" />
 				</rich:dropDownMenu>
 			</rich:toolBarGroup>
+			
 		</rich:toolBar>
 
 		<a4j:status>
