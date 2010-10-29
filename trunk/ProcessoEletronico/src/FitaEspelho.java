@@ -283,8 +283,8 @@ public class FitaEspelho {
 			html = html + "<th>AGENCIA</th>";
 			html = html + "<th>CONTA CORRENTE</th>";
 			html = html + "<th>GRUPO/CARGO</th>";
-			html = html + "<th>CLASSE</th>";
 			html = html + "<th>PADRÃO</th>";
+			html = html + "<th>CLASSE</th>";
 			html = html + "<th>LOTAÇÃO</th>";
 			html = html + "<th>DATA ADMISSÃO SERV. PUB.</th>";
 			html = html + "<th>DATA ADMISSÃO ORGÃO.</th>";
