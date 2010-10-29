@@ -44,15 +44,11 @@
 					</h:outputText>
 				</rich:column>
 
-				<rich:column width="280px" sortBy="#{list.atendente}">
+				<rich:column width="280px" sortBy="#{list.atendenteLogado}">
 					<f:facet name="header">
 						<h:outputText value="Atendente" />
 					</f:facet>
-					<h:outputText value="#{list.atendente}"
-						rendered="#{list.atendente!=null}">
-					</h:outputText>
-					<h:outputText value="-" rendered="#{list.atendente==null}">
-
+					<h:outputText value="#{list.atendenteLogado.nome}">
 					</h:outputText>
 				</rich:column>
 

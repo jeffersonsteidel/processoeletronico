@@ -17,6 +17,8 @@ public class Solicitacao implements Serializable {
 	private StatusSolicitacao statusSolicitacao;
 	private String justificativa;
 	
+	private Servidor atendenteLogado;
+	
 	public Long getCodigo() {
 		return codigo;
 	}
@@ -71,11 +73,10 @@ public class Solicitacao implements Serializable {
 	public void setJustificativa(String justificativa) {
 		this.justificativa = justificativa;
 	}
-	
-	
-	
-	
-	
-
-	
+	public Servidor getAtendenteLogado() {
+		return atendenteLogado;
+	}
+	public void setAtendenteLogado(Servidor atendenteLogado) {
+		this.atendenteLogado = atendenteLogado;
+	}
 }

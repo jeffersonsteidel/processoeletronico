@@ -128,7 +128,7 @@
 					<f:facet name="header">
 						<h:outputText value="Editar" />
 					</f:facet>
-					<a4j:commandLink
+					<a4j:commandLink rendered="#{list.statusSolicitacao.codigo != 2}"
 						action="#{solicitacaoController.carregarSolicitacao}"
 						reRender="listaSolicitacoes" ajaxSingle="true">
 						<h:graphicImage value="../images/edit.gif" style="border:0"

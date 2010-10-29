@@ -8,7 +8,7 @@ import org.hibernate.criterion.Restrictions;
 import br.com.progepe.encripty.Encripty;
 import br.com.progepe.entity.Autenticacao;
 
-public class DAOAutenticacao extends  DAO {
+public class AutenticacaoDAO extends  DAO {
 
 	public Autenticacao autentica(Autenticacao autenticacao)
 			throws NoSuchAlgorithmException {
