@@ -15,8 +15,6 @@ import br.com.progepe.dao.DAO;
 import br.com.progepe.dao.ServidorDAO;
 import br.com.progepe.dao.SolicitacaoDAO;
 import br.com.progepe.entity.Autenticacao;
-import br.com.progepe.entity.Banco;
-import br.com.progepe.entity.ContaBancaria;
 import br.com.progepe.entity.Servidor;
 import br.com.progepe.entity.Solicitacao;
 import br.com.progepe.entity.SolicitacaoContaBancaria;
@@ -33,10 +31,10 @@ public class SolicitacaoController implements Serializable {
 	private List<SelectItem> statusSolicitacoes = new ArrayList<SelectItem>();
 	private List<Solicitacao> solicitacoes = new ArrayList<Solicitacao>();
 	private List<Solicitacao> minhasSolicitacoes = new ArrayList<Solicitacao>();
-	
+
 	private Long codigoSolicitacao;
 	private Long tipoSolicitacao;
-	
+
 	DAO dao = new DAO();
 
 	public Solicitacao getSolicitacao() {
@@ -94,7 +92,7 @@ public class SolicitacaoController implements Serializable {
 	public void setMinhasSolicitacoes(List<Solicitacao> minhasSolicitacoes) {
 		this.minhasSolicitacoes = minhasSolicitacoes;
 	}
-	
+
 	public Long getCodigoSolicitacao() {
 		return codigoSolicitacao;
 	}
@@ -169,20 +167,28 @@ public class SolicitacaoController implements Serializable {
 	public List<Solicitacao> abrirMinhasSolicitacoes() throws ParseException {
 		try {
 			SolicitacaoDAO solicitacaoDAO = new SolicitacaoDAO();
+			ServidorDAO servidorDAO = new ServidorDAO();
 			solicitacao = new Solicitacao();
 			solicitacao.setSolicitante(new Servidor());
 			solicitacao.setStatusSolicitacao(new StatusSolicitacao());
 			solicitacao.setTipoSolicitacao(new TipoSolicitacao());
-
+			
 			Autenticacao siapeAutenticado = (Autenticacao) FacesContext
 					.getCurrentInstance().getExternalContext().getSessionMap()
 					.get("usuarioLogado");
-			ServidorDAO servidorDAO = new ServidorDAO();
 			solicitacao.getSolicitante().setSiape(siapeAutenticado.getSiape());
 			solicitacao.setSolicitante(servidorDAO.refreshByFilter(solicitacao
 					.getSolicitante()));
 			this.setMinhasSolicitacoes(solicitacaoDAO.listByFilter(solicitacao,
 					null, null));
+			for (Solicitacao item : this.getMinhasSolicitacoes()) {
+				servidorDAO = new ServidorDAO();
+				Servidor servidor = new Servidor();
+				servidor.setSiape(item.getAtendente());
+				if(item.getAtendente() != null){
+					item.setAtendenteLogado(servidorDAO.refreshBySiape(servidor));
+				}
+			}
 			FacesContext.getCurrentInstance().getExternalContext()
 					.redirect("listarMinhasSolicitacoes.jsp");
 		} catch (IOException e) {
@@ -190,18 +196,31 @@ public class SolicitacaoController implements Serializable {
 		}
 		return this.getMinhasSolicitacoes();
 	}
-	
-	public void carregarSolicitacao() {
-		if(Constantes.TIPO_SOLICITACAO_ALTERAR_CONTA_BANCARIA.equals(tipoSolicitacao)){
-			SolicitacaoContaBancaria solicitacaoContaBancaria= new SolicitacaoContaBancaria();
-			solicitacaoContaBancaria.setSolicitante(new Servidor());
-			solicitacaoContaBancaria.getSolicitante().setContaBancaria(new ContaBancaria());
-			solicitacaoContaBancaria.getSolicitante().getContaBancaria().setBanco(new Banco());
-			solicitacaoContaBancaria.setStatusSolicitacao(new StatusSolicitacao());
-			solicitacaoContaBancaria.setTipoSolicitacao(new TipoSolicitacao());
-			solicitacaoContaBancaria.setNovoBanco(new Banco());
+
+	public void carregarSolicitacao() throws IOException, ParseException {
+		SolicitacaoDAO solicitacaoDAO = new SolicitacaoDAO();
+		Autenticacao siapeAutenticado = (Autenticacao) FacesContext
+				.getCurrentInstance().getExternalContext().getSessionMap()
+				.get("usuarioLogado");
+		Servidor servidor = new Servidor();
+		servidor.setSiape(siapeAutenticado.getSiape());
+
+		if (Constantes.TIPO_SOLICITACAO_ALTERAR_CONTA_BANCARIA
+				.equals(tipoSolicitacao)) {
+			SolicitacaoContaBancaria solicitacaoContaBancaria = new SolicitacaoContaBancaria();
+			SolicitacaoContaBancariaController contaBancariaController = new SolicitacaoContaBancariaController();
 			solicitacaoContaBancaria.setCodigo(codigoSolicitacao);
-			solicitacaoContaBancaria = (SolicitacaoContaBancaria) dao.refresh(solicitacao);
+			solicitacaoContaBancaria = (SolicitacaoContaBancaria) solicitacaoDAO
+					.carregarSoliciacaoContaBancaria(codigoSolicitacao);
+			contaBancariaController
+					.setSolicitacaoContaBancaria(solicitacaoContaBancaria);
+			solicitacaoContaBancaria.getStatusSolicitacao().setCodigo(
+					Constantes.STATUS_SOLICITACAO_EM_ANALISE);
+			solicitacaoContaBancaria.setDataAtendimento(new Date());
+			solicitacaoContaBancaria.setAtendente(siapeAutenticado.getSiape());
+			solicitacaoContaBancaria.setAtendenteLogado(new Servidor());
+			solicitacaoContaBancaria.setAtendenteLogado(servidor);
+			dao.saveOrUpdate(solicitacaoContaBancaria);
 		}
 	}
 }

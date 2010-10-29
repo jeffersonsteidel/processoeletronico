@@ -8,7 +8,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
 
-import br.com.progepe.dao.DAOAutenticacao;
+import br.com.progepe.dao.AutenticacaoDAO;
 import br.com.progepe.encripty.Encripty;
 import br.com.progepe.entity.Autenticacao;
 
@@ -19,7 +19,7 @@ public class AutenticacaoController implements Serializable {
 	private String novaSenha;
 	private String confirmarSenha;
 	private Autenticacao siapeAutenticado;
-	DAOAutenticacao daoAutenticacao;
+	AutenticacaoDAO daoAutenticacao;
 
 	public Autenticacao getAutenticacao() {
 		return autenticacao;
@@ -64,7 +64,7 @@ public class AutenticacaoController implements Serializable {
 		siapeAutenticado = new Autenticacao();
 		HttpSession session = (HttpSession) FacesContext.getCurrentInstance()
 				.getExternalContext().getSession(false);
-		daoAutenticacao = new DAOAutenticacao();
+		daoAutenticacao = new AutenticacaoDAO();
 		siapeAutenticado = daoAutenticacao.autentica(autenticacao);
 
 		if (siapeAutenticado != null) {

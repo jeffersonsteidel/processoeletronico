@@ -114,4 +114,18 @@ public class SolicitacaoContaBancariaController implements Serializable {
 		solicitacaoContaBancaria.getContaBancaria().setBanco(new Banco());
 		buscarServidorLogado();
 	}
+	
+	public void carregar(SolicitacaoContaBancaria solicitacaoContaBancaria) throws IOException, ParseException {
+		bancos = new ArrayList<SelectItem>();
+		listarBancos();
+		
+//		if((new Long(104)).equals(solicitacaoContaBancaria.getContaBancaria().getBanco().getCodigo())){
+//			indPoupanca = true;
+//		}else{
+//			indPoupanca = false;
+//		}
+		this.solicitacaoContaBancaria = solicitacaoContaBancaria ;
+		FacesContext.getCurrentInstance().getExternalContext()
+				.redirect("solicitacaoContaBancaria.jsp");
+	}
 }
