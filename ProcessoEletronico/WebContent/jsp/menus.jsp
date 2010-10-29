@@ -74,13 +74,14 @@
 					icon="../images/afastamentoconjuge.gif" />
 				<rich:menuItem submitMode="ajax" value="Licença de Óbito"
 					action="#{solicitacaoObitoController.abrirSolicitacaoObito}"
-					icon="../images/obito.gif" />	
+					icon="../images/obito.gif" />
 				<rich:menuItem submitMode="ajax" value="Licença Paternidade"
 					action="#{solicitacaoLicencaPaternidadeController.abrirSolicitacaoPaternidade}"
 					icon="../images/auxiliopaternidade.gif" />
 				<rich:menuItem submitMode="ajax" value="Auxílio Transporte"
 					action="#" icon="../images/SOLICITACAOAUTOMOVEIS.gif" />
-				<rich:menuItem submitMode="ajax" value="Horário Especial para Estudante"
+				<rich:menuItem submitMode="ajax"
+					value="Horário Especial para Estudante"
 					action="#{solicitacaoHorarioEspecialEstudanteController.abrirSolicitacaoHorarioEspecialEstudante}"
 					icon="../images/SOLICITACAOHORARIOESPECIALESTUDANTE.gif" />
 				<rich:menuItem submitMode="ajax" value="Adicional de Insalubridade"
@@ -98,23 +99,23 @@
 			<rich:dropDownMenu>
 				<f:facet name="label">
 					<h:panelGroup>
-						<h:outputText value="ALTERAR SENHA" />
-					</h:panelGroup>
-				</f:facet>
-				<rich:menuItem submitMode="ajax" value="Alterar Senha"
-					action="#{autenticacaoController.alterarSenha}"
-					icon="../images/ALTERARSENHA.gif" />
-			</rich:dropDownMenu>
-			
-			<rich:dropDownMenu>
-				<f:facet name="label">
-					<h:panelGroup>
 						<h:outputText value="PORTARIAS" />
 					</h:panelGroup>
 				</f:facet>
 				<rich:menuItem submitMode="ajax" value="Portarias"
 					action="#{portariaController.abrirPortaria }"
 					icon="../images/portarias.gif" />
+			</rich:dropDownMenu>
+
+			<rich:dropDownMenu>
+				<f:facet name="label">
+					<h:panelGroup>
+						<h:outputText value="ALTERAR SENHA" />
+					</h:panelGroup>
+				</f:facet>
+				<rich:menuItem submitMode="ajax" value="Alterar Senha"
+					action="#{autenticacaoController.alterarSenha}"
+					icon="../images/ALTERARSENHA.gif" />
 			</rich:dropDownMenu>
 
 			<rich:toolBarGroup location="right">
@@ -129,7 +130,7 @@
 						icon="../images/SAIR.gif" />
 				</rich:dropDownMenu>
 			</rich:toolBarGroup>
-			
+
 		</rich:toolBar>
 
 		<a4j:status>
