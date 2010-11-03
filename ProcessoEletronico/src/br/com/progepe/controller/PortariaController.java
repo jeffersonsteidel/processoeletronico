@@ -14,7 +14,12 @@ import org.richfaces.event.UploadEvent;
 import org.richfaces.model.UploadItem;
 
 import br.com.progepe.dao.DAO;
+import br.com.progepe.entity.Cargo;
+import br.com.progepe.entity.Cidade;
+import br.com.progepe.entity.Estado;
+import br.com.progepe.entity.Lotacao;
 import br.com.progepe.entity.Portaria;
+import br.com.progepe.entity.Servidor;
 import br.com.progepe.entity.TipoPortaria;
 
 public class PortariaController implements Serializable {
@@ -118,5 +123,23 @@ public class PortariaController implements Serializable {
 		FacesContext.getCurrentInstance().getExternalContext()
 				.redirect("listarPortarias.jsp");
 	}
+	
+	public void pesquisarServidores() throws IOException {
+		//??? está certo?
+	
+		portaria = new Portaria();
+		portaria.setNumero(portaria.getNumero());
+		portaria.setNome(portaria.getNome());
+		portaria.setData(portaria.getData());
+		portaria.setTipo(portaria.getTipo());
+		portaria.setLocal(portaria.getLocal());
+
+//		listarLotacoes();
+//		listarCargos();
+
+		FacesContext.getCurrentInstance().getExternalContext()
+				.redirect("listarServidoresFilter.jsp");
+	}
+	
 
 }
