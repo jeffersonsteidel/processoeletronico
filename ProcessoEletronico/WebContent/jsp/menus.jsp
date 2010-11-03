@@ -104,6 +104,9 @@
 				</f:facet>
 				<rich:menuItem submitMode="ajax" value="Portarias"
 					action="#{portariaController.abrirPortaria }"
+					icon="../images/novaPortaria.gif" />
+				<rich:menuItem submitMode="ajax" value="Listar Portarias"
+					action="#{portariaController.carregarPagina}"
 					icon="../images/portarias.gif" />
 			</rich:dropDownMenu>
 
