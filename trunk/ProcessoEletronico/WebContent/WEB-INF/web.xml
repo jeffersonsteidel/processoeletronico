@@ -20,7 +20,7 @@
 	<!-- "Blue Sky" skin para o projeto -->
 	<context-param>
 		<param-name>org.richfaces.SKIN</param-name>
-		<param-value>ruby</param-value>
+		<param-value>wine</param-value>
 	</context-param>
 	<!-- Making the RichFaces skin spread to standard HTML controls -->
 	<context-param>
