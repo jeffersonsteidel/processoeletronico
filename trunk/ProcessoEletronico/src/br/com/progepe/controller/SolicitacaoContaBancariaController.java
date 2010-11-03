@@ -120,13 +120,7 @@ public class SolicitacaoContaBancariaController implements Serializable {
 	}
 
 	public void carregar(SolicitacaoContaBancaria codigoSolicitacaoContaBancaria) throws IOException{
-		solicitacaoContaBancaria = new SolicitacaoContaBancaria();
-		solicitacaoContaBancaria.setNovoBanco(new Banco());
-		solicitacaoContaBancaria = codigoSolicitacaoContaBancaria;
-		System.out.println(solicitacaoContaBancaria.getNovoBanco().getDescricao());
-		System.out.println(solicitacaoContaBancaria.getNovoNumeroConta());
-		System.out.println(solicitacaoContaBancaria.getNovaAgencia());
-		System.out.println(solicitacaoContaBancaria.getNovoIndPoupanca());
+		solicitacaoContaBancaria = (SolicitacaoContaBancaria) dao.refresh(codigoSolicitacaoContaBancaria);
 		FacesContext.getCurrentInstance().getExternalContext()
 				.redirect("solicitacaoContaBancariaAprovar.jsp");
 	}
