@@ -15,22 +15,41 @@ import org.richfaces.model.UploadItem;
 
 import br.com.progepe.dao.DAO;
 import br.com.progepe.entity.Portaria;
+import br.com.progepe.entity.TipoPortaria;
 
 public class PortariaController implements Serializable {
 	private static final long serialVersionUID = -333995781063775201L;
 
 	Portaria portaria;
-	private ArrayList<Portaria> files = new ArrayList<Portaria>();
+	private Date dataInicio;
+	private Date dataFinal;
 	DAO dao = new DAO();
+	private ArrayList<Portaria> files = new ArrayList<Portaria>();
+	private ArrayList<Portaria> portariaList = new ArrayList<Portaria>();
 	private List<SelectItem> tiposPortaria = new ArrayList<SelectItem>();
 
 	public Portaria getPortaria() {
 		return portaria;
 	}
 
-	public void setPortaria(
-			Portaria portaria) {
+	public void setPortaria(Portaria portaria) {
 		this.portaria = portaria;
+	}
+
+	public Date getDataInicio() {
+		return dataInicio;
+	}
+
+	public void setDataInicio(Date dataInicio) {
+		this.dataInicio = dataInicio;
+	}
+
+	public Date getDataFinal() {
+		return dataFinal;
+	}
+
+	public void setDataFinal(Date dataFinal) {
+		this.dataFinal = dataFinal;
 	}
 
 	public ArrayList<Portaria> getFiles() {
@@ -39,6 +58,22 @@ public class PortariaController implements Serializable {
 
 	public void setFiles(ArrayList<Portaria> files) {
 		this.files = files;
+	}
+
+	public List<SelectItem> getTiposPortaria() {
+		return tiposPortaria;
+	}
+
+	public void setTiposPortaria(List<SelectItem> tiposPortaria) {
+		this.tiposPortaria = tiposPortaria;
+	}
+
+	public ArrayList<Portaria> getPortariaList() {
+		return portariaList;
+	}
+
+	public void setPortariaList(ArrayList<Portaria> portariaList) {
+		this.portariaList = portariaList;
 	}
 
 	public void abrirPortaria() throws ParseException {
@@ -52,7 +87,6 @@ public class PortariaController implements Serializable {
 		}
 	}
 
-
 	public void listener(UploadEvent event) throws Exception {
 		UploadItem item = event.getUploadItem();
 		portaria.setPdf(item.getData());
@@ -65,4 +99,24 @@ public class PortariaController implements Serializable {
 		portaria = new Portaria();
 		files = new ArrayList<Portaria>();
 	}
+
+	@SuppressWarnings("unchecked")
+	public List<SelectItem> listarPortarias() {
+		tiposPortaria = new ArrayList<SelectItem>();
+		List<TipoPortaria> tipoPortariaList = new ArrayList<TipoPortaria>();
+		tipoPortariaList = dao.list(TipoPortaria.class, "descricao");
+		for (TipoPortaria tipoPortaria : tipoPortariaList) {
+			tiposPortaria.add(new SelectItem(tipoPortaria.getCodigo(),
+					tipoPortaria.getDescricao()));
+		}
+		return tiposPortaria;
+	}
+
+	@SuppressWarnings("unchecked")
+	public void carregarPagina() throws IOException {
+		portaria = new Portaria();
+		FacesContext.getCurrentInstance().getExternalContext()
+				.redirect("listarPortarias.jsp");
+	}
+
 }
