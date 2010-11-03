@@ -1,6 +1,8 @@
 package br.com.progepe.controller;
 
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.io.Serializable;
 import java.text.ParseException;
 import java.util.ArrayList;
@@ -14,12 +16,7 @@ import org.richfaces.event.UploadEvent;
 import org.richfaces.model.UploadItem;
 
 import br.com.progepe.dao.DAO;
-import br.com.progepe.entity.Cargo;
-import br.com.progepe.entity.Cidade;
-import br.com.progepe.entity.Estado;
-import br.com.progepe.entity.Lotacao;
 import br.com.progepe.entity.Portaria;
-import br.com.progepe.entity.Servidor;
 import br.com.progepe.entity.TipoPortaria;
 
 public class PortariaController implements Serializable {
@@ -81,9 +78,24 @@ public class PortariaController implements Serializable {
 		this.portariaList = portariaList;
 	}
 
+	@SuppressWarnings("unchecked")
+	public List<SelectItem> listarTiposPortaria() {
+		tiposPortaria = new ArrayList<SelectItem>();
+		List<TipoPortaria> tiposPortariaList = new ArrayList<TipoPortaria>();
+		tiposPortariaList = dao.list(TipoPortaria.class, "descricao");
+		for (TipoPortaria tipoPortaria: tiposPortariaList) {
+			tiposPortaria.add(new SelectItem(tipoPortaria.getCodigo(),
+					tipoPortaria.getDescricao()));
+		}
+		return tiposPortaria;
+	}
+	
 	public void abrirPortaria() throws ParseException {
 		try {
 			portaria = new Portaria();
+			portaria.setTipo(new TipoPortaria());
+			tiposPortaria = new ArrayList<SelectItem>();
+			listarTiposPortaria();
 			files.clear();
 			FacesContext.getCurrentInstance().getExternalContext()
 					.redirect("portaria.jsp");
@@ -97,46 +109,38 @@ public class PortariaController implements Serializable {
 		portaria.setPdf(item.getData());
 		files.add(portaria);
 	}
-
+	
+	public void paint(OutputStream out, Object data) throws IOException {
+		if (data instanceof String) {
+			InputStream file = FacesContext.getCurrentInstance()
+					.getExternalContext().getResourceAsStream((String) data);
+			int size = file.available();
+			byte[] pdf = new byte[size];
+			file.read(pdf);
+			file.close();
+			out.write(pdf);
+		}
+	}
+	
 	public void salvar() throws IOException, ParseException {
-		portaria.setData(new Date());
 		dao.saveOrUpdate(portaria);
 		portaria = new Portaria();
 		files = new ArrayList<Portaria>();
 	}
 
-	@SuppressWarnings("unchecked")
-	public List<SelectItem> listarPortarias() {
-		tiposPortaria = new ArrayList<SelectItem>();
-		List<TipoPortaria> tipoPortariaList = new ArrayList<TipoPortaria>();
-		tipoPortariaList = dao.list(TipoPortaria.class, "descricao");
-		for (TipoPortaria tipoPortaria : tipoPortariaList) {
-			tiposPortaria.add(new SelectItem(tipoPortaria.getCodigo(),
-					tipoPortaria.getDescricao()));
-		}
-		return tiposPortaria;
-	}
-
-	@SuppressWarnings("unchecked")
 	public void carregarPagina() throws IOException {
 		portaria = new Portaria();
 		FacesContext.getCurrentInstance().getExternalContext()
 				.redirect("listarPortarias.jsp");
 	}
 	
-	public void pesquisarServidores() throws IOException {
-		//??? está certo?
-	
+	public void pesquisarPortarias() throws IOException {
 		portaria = new Portaria();
 		portaria.setNumero(portaria.getNumero());
 		portaria.setNome(portaria.getNome());
 		portaria.setData(portaria.getData());
 		portaria.setTipo(portaria.getTipo());
 		portaria.setLocal(portaria.getLocal());
-
-//		listarLotacoes();
-//		listarCargos();
-
 		FacesContext.getCurrentInstance().getExternalContext()
 				.redirect("listarServidoresFilter.jsp");
 	}
