@@ -98,8 +98,9 @@ public class SolicitacaoLicencaPaternidadeController implements Serializable {
 	}
 	
 	public void carregar(SolicitacaoLicencaPaternidade codigoSolicitacaoLicencaPaternidade) throws IOException{
-		solicitacaoLicencaPaternidade = (SolicitacaoLicencaPaternidade) dao.refresh(codigoSolicitacaoLicencaPaternidade);
+		solicitacaoLicencaPaternidade = codigoSolicitacaoLicencaPaternidade; //(SolicitacaoLicencaPaternidade) dao.refresh(codigoSolicitacaoLicencaPaternidade);
+		System.out.println(solicitacaoLicencaPaternidade.getDataNascimento());
 		FacesContext.getCurrentInstance().getExternalContext()
-				.redirect("solicitacaoLicencaPatenidadeAprovar.jsp");
+				.redirect("solicitacaoLicencaPaternidadeAprovar.jsp");
 	}
 }

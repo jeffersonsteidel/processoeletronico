@@ -10,12 +10,11 @@
 <link rel="StyleSheet" type="text/css" href="../css/messages-style.css"
 	media="screen" />
 </head>
-<body>
+<body style="background-image: url('../images/tela01_processo_verde.jpg');">
 <f:view>
 	<center><h:form id="form">
-		<h:graphicImage value="../images/ifpr_logo.png" />
-		<rich:panel header="INSTITUTO FEDERAL DO PARANÁ - PROGEPE"
-			style="width: 500px; position: absolute; left: 380px; top: 220px">
+		<rich:panel header="PROGEPE"
+			style="width: 250px; position: absolute; left: 720px; top: 330px">
 			<rich:messages layout="list" errorLabelClass="errorLabel"
 				infoLabelClass="infoLabel">
 				<f:facet name="infoMarker">
