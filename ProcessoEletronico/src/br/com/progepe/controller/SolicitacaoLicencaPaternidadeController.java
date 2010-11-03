@@ -96,4 +96,10 @@ public class SolicitacaoLicencaPaternidadeController implements Serializable {
 		files = new ArrayList<SolicitacaoLicencaPaternidade>();
 		buscarServidorLogado();
 	}
+	
+	public void carregar(SolicitacaoLicencaPaternidade codigoSolicitacaoLicencaPaternidade) throws IOException{
+		solicitacaoLicencaPaternidade = (SolicitacaoLicencaPaternidade) dao.refresh(codigoSolicitacaoLicencaPaternidade);
+		FacesContext.getCurrentInstance().getExternalContext()
+				.redirect("solicitacaoLicencaPatenidadeAprovar.jsp");
+	}
 }

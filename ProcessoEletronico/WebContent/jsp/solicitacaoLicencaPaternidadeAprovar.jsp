@@ -36,30 +36,10 @@
 
 			<h:panelGrid columns="2">
 				<h:outputText value="Data de Nascimento do Filho(a): "></h:outputText>
-				<rich:calendar
-					value="#{solicitacaoLicencaPaternidadeController.solicitacaoLicencaPaternidade.dataNascimento}"
-					locale="" popup="true" datePattern="dd/MM/yyyy" showApplyButton="#"
-					cellWidth="12px" cellHeight="12px" style="width:80px"
-					required="true" inputSize="12" ajaxSingle="true"
-					requiredMessage="Campo Date de Nascimento do Filho(a) é obrigatório!">
-				</rich:calendar>
+				<h:outputText
+					value="#{solicitacaoLicencaPaternidadeController.solicitacaoLicencaPaternidade.dataNascimento}">
+				</h:outputText>
 			</h:panelGrid>
-			<rich:fileUpload
-				fileUploadListener="#{solicitacaoLicencaPaternidadeController.listener}"
-				maxFilesQuantity="1"
-				addControlLabel="Adicionar Certidao de Nascimento" id="upload"
-				transferErrorLabel="Falha Ao realizar Transferência"
-				doneLabelClass="Finalizada" autoclear="true" immediateUpload="true"
-				listWidth="270px" stopControlLabel="Parar"
-				acceptedTypes="jpg, gif, png, bmp" allowFlash="true"
-				sizeErrorLabel="Foto muito grande" uploadControlLabel="Carregar"
-				listHeight="70px">
-				<a4j:support event="onuploadcomplete" reRender="info" />
-			</rich:fileUpload>
-			<a4j:commandButton value="Salvar"
-				action="#{solicitacaoLicencaPaternidadeController.salvar}"
-				reRender="form" />
-
 			<h:panelGroup id="info">
 				<rich:panel bodyClass="info">
 					<rich:dataGrid columns="1"

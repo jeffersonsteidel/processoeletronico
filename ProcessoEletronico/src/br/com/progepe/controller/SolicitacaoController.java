@@ -20,6 +20,7 @@ import br.com.progepe.entity.ContaBancaria;
 import br.com.progepe.entity.Servidor;
 import br.com.progepe.entity.Solicitacao;
 import br.com.progepe.entity.SolicitacaoContaBancaria;
+import br.com.progepe.entity.SolicitacaoLicencaPaternidade;
 import br.com.progepe.entity.StatusSolicitacao;
 import br.com.progepe.entity.TipoSolicitacao;
 
@@ -228,6 +229,25 @@ public class SolicitacaoController implements Serializable {
 			dao.saveOrUpdate(solicitacaoContaBancaria);
 			SolicitacaoContaBancariaController solicitacaoContaBancariaController = new SolicitacaoContaBancariaController();
 			solicitacaoContaBancariaController.carregar(solicitacaoContaBancaria);
+		}
+		if (Constantes.TIPO_SOLICITACAO_LICENCA_PATERNIDADE
+				.equals(tipoSolicitacao)) {
+			SolicitacaoLicencaPaternidade solicitacaoLicencaPaternidade = new SolicitacaoLicencaPaternidade();
+			solicitacaoLicencaPaternidade.setSolicitante(new Servidor());
+			solicitacaoLicencaPaternidade.getSolicitante().setContaBancaria(new ContaBancaria());
+			solicitacaoLicencaPaternidade.getSolicitante().getContaBancaria().setBanco(new Banco());
+			solicitacaoLicencaPaternidade.setCodigo(codigoSolicitacao);
+			solicitacaoLicencaPaternidade = (SolicitacaoLicencaPaternidade) solicitacaoDAO
+					.carregarSoliciacaoLicencaPaternidade(codigoSolicitacao);
+			solicitacaoLicencaPaternidade.getStatusSolicitacao().setCodigo(
+					Constantes.STATUS_SOLICITACAO_EM_ANALISE);
+			solicitacaoLicencaPaternidade.setDataAtendimento(new Date());
+			solicitacaoLicencaPaternidade.setAtendente(siapeAutenticado.getSiape());
+			solicitacaoLicencaPaternidade.setAtendenteLogado(new Servidor());
+			solicitacaoLicencaPaternidade.setAtendenteLogado(servidor);
+			dao.saveOrUpdate(solicitacaoLicencaPaternidade);
+			SolicitacaoLicencaPaternidadeController solicitacaoLicencaPaternidadeController = new SolicitacaoLicencaPaternidadeController();
+			solicitacaoLicencaPaternidadeController.carregar(solicitacaoLicencaPaternidade);
 		}
 	}
 }
