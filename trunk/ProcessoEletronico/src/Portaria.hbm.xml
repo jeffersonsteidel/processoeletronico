@@ -7,7 +7,7 @@
 		<id name="codigo" column="PORT_COD">
 			<generator class="increment"></generator>
 		</id>
-		<property name="numero" column="PORT_VALIDADO" />
+		<property name="numero" column="PORT_NUMERO" />
 		<property name="pdf" column="PORT_PDF" />
 		<property name="nome" column="PORT_NOME" />
 		<property name="data" column="PORT_DATA" />

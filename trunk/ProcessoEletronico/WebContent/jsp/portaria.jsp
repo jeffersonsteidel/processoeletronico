@@ -37,7 +37,7 @@
 				</h:inputText>
 				<h:outputText value="Numero da Portaria: "></h:outputText>
 				<h:inputText value="#{portariaController.portaria.numero}" size="53"
-					maxlength="11" required="true"
+					maxlength="11" required="true" onkeypress="mascara(this,soNumeros);"
 					requiredMessage="Campo Numero da Portaria é obrigatório!">
 				</h:inputText>
 				<h:outputText value="Data da Portaria: "></h:outputText>
@@ -50,14 +50,10 @@
 				<h:outputText value="Tipo da Portaria: "></h:outputText>
 				<h:selectOneMenu value="#{portariaController.portaria.tipo.codigo}"
 					required="true"
-					requiredMessage="Campo Grupo Sanguíneo é obrigatório!">
-					<f:selectItem itemLabel="SELECIONE" itemValue="" />
-					<f:selectItems value="#{servidorController.tiposPortaria}" />
-				</h:selectOneMenu>
-				<h:inputText value="#{portariaController.portaria.tipo.descricao}"
-					size="53" maxlength="120" required="true"
 					requiredMessage="Campo Tipo da Portaria é obrigatório!">
-				</h:inputText>
+					<f:selectItem itemLabel="SELECIONE" itemValue="" />
+					<f:selectItems value="#{portariaController.tiposPortaria}" />
+				</h:selectOneMenu>
 				<h:outputText value="Local da Portaria: "></h:outputText>
 				<h:selectOneMenu value="#{portariaController.portaria.local}"
 					required="true"
@@ -67,18 +63,21 @@
 					<f:selectItem itemLabel="REITORIA" itemValue="REITORIA" />
 				</h:selectOneMenu>
 				<h:outputText value="Descrição da Portaria: "></h:outputText>
-				<h:inputTextarea value="#{portariaController.portaria.numero}"
+				<h:inputTextarea value="#{portariaController.portaria.descricao}"
 					rows="10" cols="50">
 				</h:inputTextarea>
 			</h:panelGrid>
-			<rich:fileUpload fileUploadListener="#{portariaController.listener}"
-				maxFilesQuantity="1" addControlLabel="Adicionar Portaria"
-				id="upload" transferErrorLabel="Falha Ao realizar Transferência"
+			<rich:fileUpload
+				fileUploadListener="#{portariaController.listener}"
+				maxFilesQuantity="1"
+				addControlLabel="Adicionar Declaracao de Matricula" id="upload"
+				transferErrorLabel="Falha Ao realizar Transferência"
 				doneLabelClass="Finalizada" autoclear="true" immediateUpload="true"
-				listWidth="270px" stopControlLabel="Parar" acceptedTypes="pdf"
-				allowFlash="true" sizeErrorLabel="PDF muito grande"
-				uploadControlLabel="Carregar" listHeight="70px">
-				<a4j:support event="onuploadcomplete" reRender="info" />
+				listWidth="270px" stopControlLabel="Parar"
+				acceptedTypes="pdf" allowFlash="true"
+				sizeErrorLabel="Foto muito grande" uploadControlLabel="Carregar"
+				listHeight="70px" >
+				<a4j:support event="onuploadcomplete" />
 			</rich:fileUpload>
 			<a4j:commandButton value="Salvar"
 				action="#{portariaController.salvar}" reRender="form" />
