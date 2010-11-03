@@ -168,6 +168,7 @@ public class SolicitacaoController implements Serializable {
 
 	public List<Solicitacao> abrirMinhasSolicitacoes() throws ParseException {
 		try {
+			this.setMinhasSolicitacoes(new ArrayList<Solicitacao>());
 			SolicitacaoDAO solicitacaoDAO = new SolicitacaoDAO();
 			ServidorDAO servidorDAO = new ServidorDAO();
 			solicitacao = new Solicitacao();
