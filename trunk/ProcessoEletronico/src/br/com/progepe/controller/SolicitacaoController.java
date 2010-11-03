@@ -15,6 +15,8 @@ import br.com.progepe.dao.DAO;
 import br.com.progepe.dao.ServidorDAO;
 import br.com.progepe.dao.SolicitacaoDAO;
 import br.com.progepe.entity.Autenticacao;
+import br.com.progepe.entity.Banco;
+import br.com.progepe.entity.ContaBancaria;
 import br.com.progepe.entity.Servidor;
 import br.com.progepe.entity.Solicitacao;
 import br.com.progepe.entity.SolicitacaoContaBancaria;
@@ -172,7 +174,7 @@ public class SolicitacaoController implements Serializable {
 			solicitacao.setSolicitante(new Servidor());
 			solicitacao.setStatusSolicitacao(new StatusSolicitacao());
 			solicitacao.setTipoSolicitacao(new TipoSolicitacao());
-			
+
 			Autenticacao siapeAutenticado = (Autenticacao) FacesContext
 					.getCurrentInstance().getExternalContext().getSessionMap()
 					.get("usuarioLogado");
@@ -185,8 +187,9 @@ public class SolicitacaoController implements Serializable {
 				servidorDAO = new ServidorDAO();
 				Servidor servidor = new Servidor();
 				servidor.setSiape(item.getAtendente());
-				if(item.getAtendente() != null){
-					item.setAtendenteLogado(servidorDAO.refreshBySiape(servidor));
+				if (item.getAtendente() != null) {
+					item.setAtendenteLogado(servidorDAO
+							.refreshBySiape(servidor));
 				}
 			}
 			FacesContext.getCurrentInstance().getExternalContext()
@@ -197,23 +200,24 @@ public class SolicitacaoController implements Serializable {
 		return this.getMinhasSolicitacoes();
 	}
 
-	public void carregarSolicitacao() throws IOException, ParseException {
-		SolicitacaoDAO solicitacaoDAO = new SolicitacaoDAO();
+	public void carregarSolicitacao() throws IOException, ParseException{
 		Autenticacao siapeAutenticado = (Autenticacao) FacesContext
 				.getCurrentInstance().getExternalContext().getSessionMap()
 				.get("usuarioLogado");
+		SolicitacaoDAO solicitacaoDAO = new SolicitacaoDAO();
 		Servidor servidor = new Servidor();
 		servidor.setSiape(siapeAutenticado.getSiape());
-
+		
 		if (Constantes.TIPO_SOLICITACAO_ALTERAR_CONTA_BANCARIA
 				.equals(tipoSolicitacao)) {
 			SolicitacaoContaBancaria solicitacaoContaBancaria = new SolicitacaoContaBancaria();
-			SolicitacaoContaBancariaController contaBancariaController = new SolicitacaoContaBancariaController();
+			solicitacaoContaBancaria.setSolicitante(new Servidor());
+			solicitacaoContaBancaria.getSolicitante().setContaBancaria(new ContaBancaria());
+			solicitacaoContaBancaria.getSolicitante().getContaBancaria().setBanco(new Banco());
+			solicitacaoContaBancaria.setNovoBanco(new Banco());
 			solicitacaoContaBancaria.setCodigo(codigoSolicitacao);
 			solicitacaoContaBancaria = (SolicitacaoContaBancaria) solicitacaoDAO
 					.carregarSoliciacaoContaBancaria(codigoSolicitacao);
-			contaBancariaController
-					.setSolicitacaoContaBancaria(solicitacaoContaBancaria);
 			solicitacaoContaBancaria.getStatusSolicitacao().setCodigo(
 					Constantes.STATUS_SOLICITACAO_EM_ANALISE);
 			solicitacaoContaBancaria.setDataAtendimento(new Date());
@@ -221,6 +225,8 @@ public class SolicitacaoController implements Serializable {
 			solicitacaoContaBancaria.setAtendenteLogado(new Servidor());
 			solicitacaoContaBancaria.setAtendenteLogado(servidor);
 			dao.saveOrUpdate(solicitacaoContaBancaria);
+			SolicitacaoContaBancariaController solicitacaoContaBancariaController = new SolicitacaoContaBancariaController();
+			solicitacaoContaBancariaController.carregar(solicitacaoContaBancaria);
 		}
 	}
 }

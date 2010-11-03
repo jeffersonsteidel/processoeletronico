@@ -23,7 +23,7 @@ import br.com.progepe.entity.TipoSolicitacao;
 
 public class SolicitacaoContaBancariaController implements Serializable {
 	private static final long serialVersionUID = -333995781063775201L;
-	
+
 	private SolicitacaoContaBancaria solicitacaoContaBancaria;
 	private List<SelectItem> bancos = new ArrayList<SelectItem>();
 	DAO dao = new DAO();
@@ -37,15 +37,15 @@ public class SolicitacaoContaBancariaController implements Serializable {
 			SolicitacaoContaBancaria solicitacaoContaBancaria) {
 		this.solicitacaoContaBancaria = solicitacaoContaBancaria;
 	}
-	
+
 	public List<SelectItem> getBancos() {
 		return bancos;
 	}
 
 	public void setBancos(List<SelectItem> bancos) {
 		this.bancos = bancos;
-	}	
-	
+	}
+
 	public Boolean getIndPoupanca() {
 		return indPoupanca;
 	}
@@ -58,8 +58,6 @@ public class SolicitacaoContaBancariaController implements Serializable {
 		try {
 			solicitacaoContaBancaria = new SolicitacaoContaBancaria();
 			solicitacaoContaBancaria.setNovoBanco(new Banco());
-			solicitacaoContaBancaria.setContaBancaria(new ContaBancaria());
-			solicitacaoContaBancaria.getContaBancaria().setBanco(new Banco());
 			buscarServidorLogado();
 			listarBancos();
 			FacesContext.getCurrentInstance().getExternalContext()
@@ -68,7 +66,7 @@ public class SolicitacaoContaBancariaController implements Serializable {
 			e.printStackTrace();
 		}
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	public List<SelectItem> listarBancos() {
 		bancos = new ArrayList<SelectItem>();
@@ -79,53 +77,57 @@ public class SolicitacaoContaBancariaController implements Serializable {
 		}
 		return bancos;
 	}
-	
+
 	public void isPoupanca() {
-		if ((Constantes.CAIXA_ECONOMICA_FEDERAL).equals(solicitacaoContaBancaria.getNovoBanco().getCodigo())) {
+		if ((Constantes.CAIXA_ECONOMICA_FEDERAL)
+				.equals(solicitacaoContaBancaria.getNovoBanco().getCodigo())) {
 			indPoupanca = true;
 		} else {
 			indPoupanca = false;
 		}
 	}
-	
-	public void buscarServidorLogado() throws IOException, ParseException{
-		solicitacaoContaBancaria.setSolicitante(new Servidor());
-		solicitacaoContaBancaria.getSolicitante().setContaBancaria(new ContaBancaria());
-		solicitacaoContaBancaria.getSolicitante().getContaBancaria().setBanco(new Banco());
-		
-		Autenticacao siapeAutenticado = (Autenticacao) FacesContext.getCurrentInstance()
-		.getExternalContext().getSessionMap().get("usuarioLogado");
 
-		solicitacaoContaBancaria.getSolicitante().setSiape(siapeAutenticado.getSiape());
+	public void buscarServidorLogado() throws IOException, ParseException {
+		solicitacaoContaBancaria.setSolicitante(new Servidor());
+		solicitacaoContaBancaria.getSolicitante().setContaBancaria(
+				new ContaBancaria());
+		solicitacaoContaBancaria.getSolicitante().getContaBancaria()
+				.setBanco(new Banco());
+
+		Autenticacao siapeAutenticado = (Autenticacao) FacesContext
+				.getCurrentInstance().getExternalContext().getSessionMap()
+				.get("usuarioLogado");
+
+		solicitacaoContaBancaria.getSolicitante().setSiape(
+				siapeAutenticado.getSiape());
 		ServidorDAO servidorDAO = new ServidorDAO();
-		solicitacaoContaBancaria.setSolicitante(servidorDAO.refreshBySiape(solicitacaoContaBancaria.getSolicitante()));
+		solicitacaoContaBancaria.setSolicitante(servidorDAO
+				.refreshBySiape(solicitacaoContaBancaria.getSolicitante()));
 	}
-	
-	public void salvar() throws IOException, ParseException{
+
+	public void salvar() throws IOException, ParseException {
 		solicitacaoContaBancaria.setDataAbertura(new Date());
 		solicitacaoContaBancaria.setDataAtendimento(null);
 		solicitacaoContaBancaria.setTipoSolicitacao(new TipoSolicitacao());
-		solicitacaoContaBancaria.getTipoSolicitacao().setCodigo(Constantes.TIPO_SOLICITACAO_ALTERAR_CONTA_BANCARIA);
+		solicitacaoContaBancaria.getTipoSolicitacao().setCodigo(
+				Constantes.TIPO_SOLICITACAO_ALTERAR_CONTA_BANCARIA);
 		solicitacaoContaBancaria.setStatusSolicitacao(new StatusSolicitacao());
-		solicitacaoContaBancaria.getStatusSolicitacao().setCodigo(Constantes.STATUS_SOLICITACAO_ENCAMINHADO);
+		solicitacaoContaBancaria.getStatusSolicitacao().setCodigo(
+				Constantes.STATUS_SOLICITACAO_ENCAMINHADO);
 		dao.saveOrUpdate(solicitacaoContaBancaria);
 		solicitacaoContaBancaria = new SolicitacaoContaBancaria();
-		solicitacaoContaBancaria.setContaBancaria(new ContaBancaria());
-		solicitacaoContaBancaria.getContaBancaria().setBanco(new Banco());
 		buscarServidorLogado();
 	}
-	
-	public void carregar(SolicitacaoContaBancaria solicitacaoContaBancaria) throws IOException, ParseException {
-		bancos = new ArrayList<SelectItem>();
-		listarBancos();
-		
-//		if((new Long(104)).equals(solicitacaoContaBancaria.getContaBancaria().getBanco().getCodigo())){
-//			indPoupanca = true;
-//		}else{
-//			indPoupanca = false;
-//		}
-		this.solicitacaoContaBancaria = solicitacaoContaBancaria ;
+
+	public void carregar(SolicitacaoContaBancaria codigoSolicitacaoContaBancaria) throws IOException{
+		solicitacaoContaBancaria = new SolicitacaoContaBancaria();
+		solicitacaoContaBancaria.setNovoBanco(new Banco());
+		solicitacaoContaBancaria = codigoSolicitacaoContaBancaria;
+		System.out.println(solicitacaoContaBancaria.getNovoBanco().getDescricao());
+		System.out.println(solicitacaoContaBancaria.getNovoNumeroConta());
+		System.out.println(solicitacaoContaBancaria.getNovaAgencia());
+		System.out.println(solicitacaoContaBancaria.getNovoIndPoupanca());
 		FacesContext.getCurrentInstance().getExternalContext()
-				.redirect("solicitacaoContaBancaria.jsp");
+				.redirect("solicitacaoContaBancariaAprovar.jsp");
 	}
 }
