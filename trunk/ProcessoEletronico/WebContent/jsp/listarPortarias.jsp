@@ -107,7 +107,7 @@
 						<h:outputText value="Editar" />
 					</f:facet>
 					<a4j:commandLink action="#{portariaController.carregar}"
-						reRender="listarPortarias" ajaxSingle="true">
+						reRender="listaPortarias" ajaxSingle="true">
 						<h:graphicImage value="../images/edit.gif" style="border:0"
 							width="20" height="18" id="editar" />
 						<f:setPropertyActionListener value="#{list.codigo}"
@@ -120,7 +120,7 @@
 						<h:outputText value="Visualizar" />
 					</f:facet>
 					<a4j:commandLink action="#{portariaController.visualizar}"
-						reRender="listarPortarias" ajaxSingle="true">
+						reRender="listaPortarias" ajaxSingle="true">
 						<h:graphicImage value="../images/pdf.gif" style="border:0"
 							width="20" height="18" id="visualizar" />
 						<f:setPropertyActionListener value="#{list.codigo}"
