@@ -22,23 +22,23 @@
 				
 				<h:outputText value="Nome: ">
 				</h:outputText>
-				<h:inputText value="#{portariaController.portaria.nome}" size="70">
+				<h:inputText value="#{portariaController.portaria.nome}" size="50">
 				</h:inputText>
 				
 				<h:outputText value="Data: " />
 				<rich:calendar
 					value="#{portariaController.dataInicio}"
 					locale="" popup="true" datePattern="dd/MM/yyyy" showApplyButton="#"
-					cellWidth="12px" cellHeight="12px" style="width:80px"/>
+					cellWidth="12px" cellHeight="12px" style="width:30px" inputSize="10" />
 					
 				<h:outputText value="à" />
 				<rich:calendar
 					value="#{portariaController.dataFinal}"
 					locale="" popup="true" datePattern="dd/MM/yyyy" showApplyButton="#"
-					cellWidth="12px" cellHeight="12px" style="width:80px"/>
+					cellWidth="12px" cellHeight="12px" style="width:30px" inputSize="10" />
 
 				<h:outputText value="Tipo Portaria: " />
-				<h:selectOneMenu value="#{portariaController.portaria.descricao}">
+				<h:selectOneMenu value="#{portariaController.portaria.tipo.codigo}">
 					<f:selectItem itemLabel="SELECIONE" itemValue="" />
 					<f:selectItems value="#{portariaController.tiposPortaria}" />
 				</h:selectOneMenu>
@@ -52,7 +52,7 @@
 				</h:selectOneMenu>
 				
 				<a4j:commandButton value="Pesquisar"
-					action="#{portariasController.listarPortarias}"
+					action="#{portariaController.pesquisarPortarias}"
 					reRender="listarPortarias" type="submit" />
 			</h:panelGrid>
 
@@ -79,25 +79,18 @@
 					<h:outputText value="#{list.nome}" />
 				</rich:column>
 
-				<rich:column width="280px" sortBy="#{list.dataInicio}">
+				<rich:column width="280px" sortBy="#{list.data}">
 					<f:facet name="header">
-						<h:outputText value="Data Inicio" />
+						<h:outputText value="Data" />
 					</f:facet>
-					<h:outputText value="#{list.dataInicio}" />
+					<h:outputText value="#{list.data}" />
 				</rich:column>
-				
-				<rich:column width="280px" sortBy="#{list.dataFinal}">
-					<f:facet name="header">
-						<h:outputText value="Data Final" />
-					</f:facet>
-					<h:outputText value="#{list.dataFinal}" />
-				</rich:column>
-
-				<rich:column width="280px" sortBy="#{list.tipoPortaria.tipo}">
+			
+				<rich:column width="280px" sortBy="#{list.tipo.descricao}">
 					<f:facet name="header">
 						<h:outputText value="Tipo" />
 					</f:facet>
-					<h:outputText value="#{list.tipoPortaria.tipo}" />
+					<h:outputText value="#{list.tipo.descricao}" />
 				</rich:column>
 
 				<rich:column width="280px" sortBy="#{list.local}">
