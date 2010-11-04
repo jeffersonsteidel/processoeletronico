@@ -101,6 +101,33 @@
 					</f:facet>
 					<h:outputText value="#{list.local}" />
 				</rich:column>
+				
+				<rich:column>
+					<f:facet name="header">
+						<h:outputText value="Editar" />
+					</f:facet>
+					<a4j:commandLink action="#{portariaController.carregar}"
+						reRender="listarPortarias" ajaxSingle="true">
+						<h:graphicImage value="../images/edit.gif" style="border:0"
+							width="20" height="18" id="editar" />
+						<f:setPropertyActionListener value="#{list.codigo}"
+							target="#{portariaController.portaria.codigo}" />
+					</a4j:commandLink>
+					<rich:toolTip for="editar" value="Editar" />
+				</rich:column>
+				<rich:column>
+					<f:facet name="header">
+						<h:outputText value="Visualizar" />
+					</f:facet>
+					<a4j:commandLink action="#{portariaController.visualizar}"
+						reRender="listarPortarias" ajaxSingle="true">
+						<h:graphicImage value="../images/pdf.gif" style="border:0"
+							width="20" height="18" id="visualizar" />
+						<f:setPropertyActionListener value="#{list.codigo}"
+							target="#{portariaController.portaria.codigo}" />
+					</a4j:commandLink>
+					<rich:toolTip for="visualizar" value="Visualizar" />
+				</rich:column>
 
 				<f:facet name="footer">
 					<rich:datascroller id="ds"></rich:datascroller>

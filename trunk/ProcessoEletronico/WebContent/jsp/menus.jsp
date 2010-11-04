@@ -102,7 +102,7 @@
 						<h:outputText value="PORTARIAS" />
 					</h:panelGroup>
 				</f:facet>
-				<rich:menuItem submitMode="ajax" value="Portarias"
+				<rich:menuItem submitMode="ajax" value="Adicionar Portaria"
 					action="#{portariaController.abrirPortaria }"
 					icon="../images/novaPortaria.gif" />
 				<rich:menuItem submitMode="ajax" value="Listar Portarias"

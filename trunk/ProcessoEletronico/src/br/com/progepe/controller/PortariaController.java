@@ -1,5 +1,9 @@
 package br.com.progepe.controller;
 
+import java.awt.Desktop;
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -145,5 +149,30 @@ public class PortariaController implements Serializable {
 				.redirect("listarPortarias.jsp");
 	}
 	
+	public void carregar() throws IOException, ParseException {
+		portaria = (Portaria) dao.refresh(portaria);
+		FacesContext.getCurrentInstance().getExternalContext()
+				.redirect("portaria.jsp");
+	}
+	
+	public boolean checarcodigo(){
+		portaria = (Portaria) dao.refresh(portaria);
+		if((!portaria.getCodigo().equals(null))||!(portaria.getCodigo().equals(0))){
+			return true;
+		}
+		return false;
+	}
+	
+	public void visualizar() throws IOException, ParseException{
+		File pdf = new File("arquivo.pdf");  
+		Desktop.getDesktop().open(pdf);
+//		File file = new File("ArquivoDestino.pdf");  
+//	    FileOutputStream fileout = new FileOutputStream(file);  
+//	    BufferedOutputStream buffer = new BufferedOutputStream(fileout);  
+//	    portaria = (Portaria) dao.refresh(portaria);
+//	    buffer.write(portaria.getPdf());  
+//	    buffer.flush();  
+//	    buffer.close();
+	}
 
 }
