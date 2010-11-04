@@ -10,32 +10,32 @@
 </head>
 <body>
 <f:view>
-	<jsp:directive.include file="menus.jsp"/>
+	<jsp:directive.include file="menus.jsp" />
 	<center><a4j:form id="form">
-			<rich:panel>
+		<rich:panel>
 			<h:panelGrid columns="13">
 				<h:outputText value="Número: ">
 				</h:outputText>
 				<h:inputText value="#{portariaController.portaria.numero}" size="10"
 					maxlength="7" onkeyup="mascara(this, soNumeros);">
 				</h:inputText>
-				
+
 				<h:outputText value="Nome: ">
 				</h:outputText>
 				<h:inputText value="#{portariaController.portaria.nome}" size="50">
 				</h:inputText>
-				
+
 				<h:outputText value="Data: " />
-				<rich:calendar
-					value="#{portariaController.dataInicio}"
-					locale="" popup="true" datePattern="dd/MM/yyyy" showApplyButton="#"
-					cellWidth="12px" cellHeight="12px" style="width:30px" inputSize="10" />
-					
+				<rich:calendar value="#{portariaController.dataInicio}" locale=""
+					popup="true" datePattern="dd/MM/yyyy" showApplyButton="#"
+					cellWidth="12px" cellHeight="12px" style="width:30px"
+					inputSize="10" />
+
 				<h:outputText value="à" />
-				<rich:calendar
-					value="#{portariaController.dataFinal}"
-					locale="" popup="true" datePattern="dd/MM/yyyy" showApplyButton="#"
-					cellWidth="12px" cellHeight="12px" style="width:30px" inputSize="10" />
+				<rich:calendar value="#{portariaController.dataFinal}" locale=""
+					popup="true" datePattern="dd/MM/yyyy" showApplyButton="#"
+					cellWidth="12px" cellHeight="12px" style="width:30px"
+					inputSize="10" />
 
 				<h:outputText value="Tipo Portaria: " />
 				<h:selectOneMenu value="#{portariaController.portaria.tipo.codigo}">
@@ -46,11 +46,11 @@
 				<h:outputText value="Local: ">
 				</h:outputText>
 				<h:selectOneMenu value="#{portariaController.portaria.local}">
-						<f:selectItem itemLabel="SELECIONE" itemValue="" />
-						<f:selectItem itemLabel="REITORIA" itemValue="reitoria" />
-						<f:selectItem itemLabel="PROGEPE" itemValue="progepe" />
+					<f:selectItem itemLabel="SELECIONE" itemValue="" />
+					<f:selectItem itemLabel="REITORIA" itemValue="reitoria" />
+					<f:selectItem itemLabel="PROGEPE" itemValue="progepe" />
 				</h:selectOneMenu>
-				
+
 				<a4j:commandButton value="Pesquisar"
 					action="#{portariaController.pesquisarPortarias}"
 					reRender="listarPortarias" type="submit" />
@@ -63,8 +63,8 @@
 			</rich:messages>
 
 			<rich:dataTable id="listaPortarias"
-				value="#{portariaController.portariaList}" var="list"
-				width="1150px" columnClasses="center" rows="15" reRender="ds">
+				value="#{portariaController.portariaList}" var="list" width="1150px"
+				columnClasses="center" rows="15" reRender="ds">
 				<rich:column width="50px" sortBy="#{list.numero}">
 					<f:facet name="header">
 						<h:outputText value="Numero" />
@@ -83,9 +83,11 @@
 					<f:facet name="header">
 						<h:outputText value="Data" />
 					</f:facet>
-					<h:outputText value="#{list.data}" />
+					<h:outputText value="#{list.data}">
+						<f:convertDateTime locale="pt_BR" pattern="dd/MM/yyyy" />
+					</h:outputText>
 				</rich:column>
-			
+
 				<rich:column width="280px" sortBy="#{list.tipo.descricao}">
 					<f:facet name="header">
 						<h:outputText value="Tipo" />

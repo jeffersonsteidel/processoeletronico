@@ -10,11 +10,11 @@
 <link rel="StyleSheet" type="text/css" href="../css/messages-style.css"
 	media="screen" />
 </head>
-<body style="background-image: url('../images/tela01_processo_verde.jpg');">
+<body style="background-image: url('../images/tela01_processo_verde.gif');">
 <f:view>
 	<center><h:form id="form">
 		<rich:panel header="PROGEPE"
-			style="width: 250px; position: absolute; left: 720px; top: 330px">
+			style="width: 250px; position: absolute; left: 520px; top: 240px">
 			<rich:messages layout="list" errorLabelClass="errorLabel"
 				infoLabelClass="infoLabel">
 				<f:facet name="infoMarker">
