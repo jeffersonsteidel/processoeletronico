@@ -106,7 +106,7 @@
 					action="#{portariaController.abrirPortaria }"
 					icon="../images/novaPortaria.gif" />
 				<rich:menuItem submitMode="ajax" value="Listar Portarias"
-					action="#{portariaController.carregarPagina}"
+					action="#{portariaController.listarPortarias}"
 					icon="../images/portarias.gif" />
 			</rich:dropDownMenu>
 

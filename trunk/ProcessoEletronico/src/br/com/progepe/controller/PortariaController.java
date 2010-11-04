@@ -16,6 +16,7 @@ import org.richfaces.event.UploadEvent;
 import org.richfaces.model.UploadItem;
 
 import br.com.progepe.dao.DAO;
+import br.com.progepe.dao.PortariaDAO;
 import br.com.progepe.entity.Portaria;
 import br.com.progepe.entity.TipoPortaria;
 
@@ -27,7 +28,7 @@ public class PortariaController implements Serializable {
 	private Date dataFinal;
 	DAO dao = new DAO();
 	private ArrayList<Portaria> files = new ArrayList<Portaria>();
-	private ArrayList<Portaria> portariaList = new ArrayList<Portaria>();
+	private List<Portaria> portariaList = new ArrayList<Portaria>();
 	private List<SelectItem> tiposPortaria = new ArrayList<SelectItem>();
 
 	public Portaria getPortaria() {
@@ -70,11 +71,11 @@ public class PortariaController implements Serializable {
 		this.tiposPortaria = tiposPortaria;
 	}
 
-	public ArrayList<Portaria> getPortariaList() {
+	public List<Portaria> getPortariaList() {
 		return portariaList;
 	}
 
-	public void setPortariaList(ArrayList<Portaria> portariaList) {
+	public void setPortariaList(List<Portaria> portariaList) {
 		this.portariaList = portariaList;
 	}
 
@@ -128,21 +129,20 @@ public class PortariaController implements Serializable {
 		files = new ArrayList<Portaria>();
 	}
 
-	public void carregarPagina() throws IOException {
+	public void listarPortarias() throws IOException {
+		portariaList = new ArrayList<Portaria>();
 		portaria = new Portaria();
+		portaria.setTipo(new TipoPortaria());
+		listarTiposPortaria();
 		FacesContext.getCurrentInstance().getExternalContext()
 				.redirect("listarPortarias.jsp");
 	}
 	
 	public void pesquisarPortarias() throws IOException {
-		portaria = new Portaria();
-		portaria.setNumero(portaria.getNumero());
-		portaria.setNome(portaria.getNome());
-		portaria.setData(portaria.getData());
-		portaria.setTipo(portaria.getTipo());
-		portaria.setLocal(portaria.getLocal());
+		PortariaDAO portariaDAO = new PortariaDAO();
+		this.setPortariaList(portariaDAO.listByFilter(portaria, dataInicio, dataFinal));
 		FacesContext.getCurrentInstance().getExternalContext()
-				.redirect("listarServidoresFilter.jsp");
+				.redirect("listarPortarias.jsp");
 	}
 	
 
