@@ -67,10 +67,10 @@
 					rows="10" cols="50">
 				</h:inputTextarea>
 			</h:panelGrid>
-			<rich:fileUpload
+			<rich:fileUpload rendered="#{portariaController.portaria.codigo == null}"
 				fileUploadListener="#{portariaController.listener}"
 				maxFilesQuantity="1"
-				addControlLabel="Adicionar Declaracao de Matricula" id="upload"
+				addControlLabel="Adicionar Portaria" id="upload"
 				transferErrorLabel="Falha Ao realizar Transferência"
 				doneLabelClass="Finalizada" autoclear="true" immediateUpload="true"
 				listWidth="270px" stopControlLabel="Parar"
