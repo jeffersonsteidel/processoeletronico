@@ -128,17 +128,38 @@
 					<f:facet name="header">
 						<h:outputText value="Editar" />
 					</f:facet>
-					<a4j:commandLink rendered="#{list.statusSolicitacao.codigo != 2}"
+					<a4j:commandLink rendered="#{list.statusSolicitacao.codigo == 1}"
 						action="#{solicitacaoController.carregarSolicitacao}"
 						reRender="listaSolicitacoes" ajaxSingle="true">
-						<h:graphicImage value="../images/edit.gif" style="border:0"
-							width="20" height="18" id="editar" />
+						<h:graphicImage value="../images/encaminhado.gif" style="border:0"
+							width="20" height="18" id="encaminhado" />
 						<f:setPropertyActionListener value="#{list.codigo}"
 							target="#{solicitacaoController.codigoSolicitacao}" />
 						<f:setPropertyActionListener value="#{list.tipoSolicitacao.codigo}"
 							target="#{solicitacaoController.tipoSolicitacao}" />	
 					</a4j:commandLink>
-					<rich:toolTip for="editar" value="Editar" />
+					<a4j:commandLink rendered="#{list.statusSolicitacao.codigo == 2}"
+						action="#"
+						reRender="listaSolicitacoes" ajaxSingle="true">
+						<h:graphicImage value="../images/analize.gif" style="border:0"
+							width="20" height="18" id="emAnalise" />
+					</a4j:commandLink>
+					<a4j:commandLink rendered="#{list.statusSolicitacao.codigo == 3}"
+						action="#"
+						reRender="listaSolicitacoes" ajaxSingle="true">
+						<h:graphicImage value="../images/deferido.gif" style="border:0"
+							width="20" height="18" id="deferido" />
+					</a4j:commandLink>
+					<a4j:commandLink rendered="#{list.statusSolicitacao.codigo == 4}"
+						action="#"
+						reRender="listaSolicitacoes" ajaxSingle="true">
+						<h:graphicImage value="../images/indeferido.gif" style="border:0"
+							width="20" height="18" id="indeferido" />
+					</a4j:commandLink>
+					<rich:toolTip for="encaminhado" value="Encaminhado" />
+					<rich:toolTip for="emAnalise" value="Em Análise" />
+					<rich:toolTip for="deferido" value="Deferido" />
+					<rich:toolTip for="indeferido" value="Indeferido" />
 				</rich:column>
 
 				<f:facet name="footer">
