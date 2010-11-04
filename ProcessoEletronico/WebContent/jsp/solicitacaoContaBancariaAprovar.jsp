@@ -29,7 +29,7 @@
 			<font size="2"><b>ALTERAÇÃO DE CONTA BANCÁRIA</b></font>
 			<h:panelGrid columns="1">
 				<h:outputText
-					value="Solicitante: #{solicitacaoContaBancariaController.solicitacaoContaBancaria.solicitante.siape} - #{solicitacaoContaBancariaController.solicitacaoContaBancaria.solicitante.nome}">
+					value="Solicitante: #{solicitacaoController.solicitacaoContaBancaria.solicitante.siape} - #{solicitacaoController.solicitacaoContaBancaria.solicitante.nome}">
 				</h:outputText>
 			</h:panelGrid>
 
@@ -37,49 +37,107 @@
 				<h:outputText value="Banco Atual: ">
 				</h:outputText>
 				<h:outputText
-					value="#{solicitacaoContaBancariaController.solicitacaoContaBancaria.solicitante.contaBancaria.banco.descricao}">
+					value="#{solicitacaoController.solicitacaoContaBancaria.solicitante.contaBancaria.banco.descricao}">
 				</h:outputText>
 				<h:outputText value="Conta Atual: ">
 				</h:outputText>
 				<h:outputText
-					value="#{solicitacaoContaBancariaController.solicitacaoContaBancaria.solicitante.contaBancaria.numeroConta}">
+					value="#{solicitacaoController.solicitacaoContaBancaria.solicitante.contaBancaria.numeroConta}">
 				</h:outputText>
 				<h:outputText value="Agência Atual: ">
 				</h:outputText>
 				<h:outputText
-					value="#{solicitacaoContaBancariaController.solicitacaoContaBancaria.solicitante.contaBancaria.agencia}">
+					value="#{solicitacaoController.solicitacaoContaBancaria.solicitante.contaBancaria.agencia}">
 				</h:outputText>
 				<h:outputText value="Tipo da Conta: ">
 				</h:outputText>
 				<h:outputText value="Poupança"
-					rendered="#{solicitacaoContaBancariaController.solicitacaoContaBancaria.solicitante.contaBancaria.indPoupanca == true}">
+					rendered="#{solicitacaoController.solicitacaoContaBancaria.solicitante.contaBancaria.indPoupanca == true}">
 				</h:outputText>
 				<h:outputText value="Conta Corrente"
-					rendered="#{solicitacaoContaBancariaController.solicitacaoContaBancaria.solicitante.contaBancaria.indPoupanca == false}">
+					rendered="#{solicitacaoController.solicitacaoContaBancaria.solicitante.contaBancaria.indPoupanca == false}">
 				</h:outputText>
-				
+
 				<h:outputText value="Novo Banco: " />
 				<h:outputText
-					value="#{solicitacaoContaBancariaController.solicitacaoContaBancaria.novoBanco.descricao}">
+					value="#{solicitacaoController.solicitacaoContaBancaria.novoBanco.descricao}">
 				</h:outputText>
 				<h:outputText value="Novo Número da Conta: " />
 				<h:outputText
-					value="#{solicitacaoContaBancariaController.solicitacaoContaBancaria.novoNumeroConta}">
+					value="#{solicitacaoController.solicitacaoContaBancaria.novoNumeroConta}">
 				</h:outputText>
 				<h:outputText value="Nova Agência: " />
 				<h:outputText
-					value="#{solicitacaoContaBancariaController.solicitacaoContaBancaria.novaAgencia}">
+					value="#{solicitacaoController.solicitacaoContaBancaria.novaAgencia}">
 				</h:outputText>
-				<h:outputText value="Tipo da Conta: "/>
+				<h:outputText value="Tipo da Conta: " />
 				<h:outputText value="Poupança"
-					rendered="#{solicitacaoContaBancariaController.solicitacaoContaBancaria.novoIndPoupanca == true}">
+					rendered="#{solicitacaoController.solicitacaoContaBancaria.novoIndPoupanca == true}">
 				</h:outputText>
 				<h:outputText value="Conta Corrente"
-					rendered="#{solicitacaoContaBancariaController.solicitacaoContaBancaria.novoIndPoupanca == false}">
+					rendered="#{solicitacaoController.solicitacaoContaBancaria.novoIndPoupanca == false}">
 				</h:outputText>
-				
+			</h:panelGrid>
+			<h:panelGrid columns="2">
+				<a4j:commandButton value="Deferir" reRender="form"
+					oncomplete="#{rich:component('confirmPanel')}.show()"
+					rendered="#{solicitacaoController.solicitacaoContaBancaria.statusSolicitacao.codigo == 2}" />
+				<a4j:commandButton value="Indeferir" reRender="form"
+					oncomplete="#{rich:component('indeferidoPanel')}.show()"
+					rendered="#{solicitacaoController.solicitacaoContaBancaria.statusSolicitacao.codigo == 2}" />
+				<a4j:commandButton value="Voltar"
+					action="#{solicitacaoController.abrirPesquisarSolicitacoes}"
+					reRender="form"
+					rendered="#{solicitacaoController.solicitacaoContaBancaria.statusSolicitacao.codigo != 2}" />
 			</h:panelGrid>
 		</rich:panel></center>
+
+		<rich:modalPanel id="confirmPanel" autosized="true" width="200">
+			<f:facet name="header">
+				<h:outputText value="Confirma este deferimento?"
+					style="padding-right:15px;" />
+			</f:facet>
+			<h:form>
+				<table width="100%">
+					<tbody>
+						<tr>
+							<td align="center" width="50%"><a4j:commandButton
+								value="Sim" ajaxSingle="true"
+								action="#{solicitacaoController.deferirSolicitacao}"
+								oncomplete="#{rich:component('confirmPanel')}.hide();"
+								reRender="form" /></td>
+							<td align="center" width="50%"><a4j:commandButton
+								value="Não"
+								onclick="#{rich:component('confirmPanel')}.hide();return false;" />
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</h:form>
+		</rich:modalPanel>
+		<rich:modalPanel id="indeferidoPanel" autosized="true" width="200">
+			<table width="100%">
+				<a4j:form>
+					<tbody>
+						<tr>
+							<h:outputText value="Justificativa: " />
+							<h:inputTextarea
+								value="#{solicitacaoController.solicitacaoContaBancaria.justificativa}"
+								cols="50" rows="5"></h:inputTextarea>
+							<td align="center" width="50%"><a4j:commandButton
+								value="Indeferir" ajaxSingle="true"
+								action="#{solicitacaoController.indeferirSolicitacao}"
+								oncomplete="#{rich:component('indeferidoPanel')}.hide();"
+								reRender="messages" /></td>
+							<td align="center" width="50%"><a4j:commandButton
+								value="Cancelar"
+								onclick="#{rich:component('indeferidoPanel')}.hide();return false;" />
+							</td>
+						</tr>
+					</tbody>
+				</a4j:form>
+			</table>
+		</rich:modalPanel>
 	</a4j:form>
 </f:view>
 </body>

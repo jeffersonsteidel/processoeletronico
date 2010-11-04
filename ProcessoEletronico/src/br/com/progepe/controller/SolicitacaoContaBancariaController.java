@@ -118,9 +118,4 @@ public class SolicitacaoContaBancariaController implements Serializable {
 		solicitacaoContaBancaria = new SolicitacaoContaBancaria();
 		buscarServidorLogado();
 	}
-
-	public void carregar(SolicitacaoContaBancaria codigoSolicitacaoContaBancaria) throws IOException{
-		solicitacaoContaBancaria = codigoSolicitacaoContaBancaria;//(SolicitacaoContaBancaria) dao.refresh(codigoSolicitacaoContaBancaria);
-		System.out.println(solicitacaoContaBancaria.getNovoNumeroConta());
-	}
 }

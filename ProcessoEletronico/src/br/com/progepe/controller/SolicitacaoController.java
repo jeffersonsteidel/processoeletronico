@@ -7,8 +7,10 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
+import javax.servlet.http.HttpServletResponse;
 
 import br.com.progepe.constantes.Constantes;
 import br.com.progepe.dao.DAO;
@@ -34,11 +36,13 @@ public class SolicitacaoController implements Serializable {
 	private List<SelectItem> statusSolicitacoes = new ArrayList<SelectItem>();
 	private List<Solicitacao> solicitacoes = new ArrayList<Solicitacao>();
 	private List<Solicitacao> minhasSolicitacoes = new ArrayList<Solicitacao>();
+	private SolicitacaoContaBancaria solicitacaoContaBancaria;
 
 	private Long codigoSolicitacao;
 	private Long tipoSolicitacao;
 
 	DAO dao = new DAO();
+	SolicitacaoDAO solicitacaoDAO = new SolicitacaoDAO();
 
 	public Solicitacao getSolicitacao() {
 		return solicitacao;
@@ -111,6 +115,15 @@ public class SolicitacaoController implements Serializable {
 	public void setTipoSolicitacao(Long tipoSolicitacao) {
 		this.tipoSolicitacao = tipoSolicitacao;
 	}
+	
+	public SolicitacaoContaBancaria getSolicitacaoContaBancaria() {
+		return solicitacaoContaBancaria;
+	}
+
+	public void setSolicitacaoContaBancaria(
+			SolicitacaoContaBancaria solicitacaoContaBancaria) {
+		this.solicitacaoContaBancaria = solicitacaoContaBancaria;
+	}
 
 	public void abrirPesquisarSolicitacoes() throws ParseException {
 		try {
@@ -131,7 +144,6 @@ public class SolicitacaoController implements Serializable {
 	}
 
 	public List<Solicitacao> pesquisarSolicitacoes() throws ParseException {
-		SolicitacaoDAO solicitacaoDAO = new SolicitacaoDAO();
 		if (solicitacao.getSolicitante().getSiape() != 0) {
 			ServidorDAO servidorDAO = new ServidorDAO();
 			solicitacao.setSolicitante(servidorDAO.refreshByFilter(solicitacao
@@ -170,7 +182,6 @@ public class SolicitacaoController implements Serializable {
 	public List<Solicitacao> abrirMinhasSolicitacoes() throws ParseException {
 		try {
 			this.setMinhasSolicitacoes(new ArrayList<Solicitacao>());
-			SolicitacaoDAO solicitacaoDAO = new SolicitacaoDAO();
 			ServidorDAO servidorDAO = new ServidorDAO();
 			solicitacao = new Solicitacao();
 			solicitacao.setSolicitante(new Servidor());
@@ -202,17 +213,23 @@ public class SolicitacaoController implements Serializable {
 		return this.getMinhasSolicitacoes();
 	}
 
+	public void carregarSolicitacaoCaontaBancaria(SolicitacaoContaBancaria codigoSolicitacaoContaBancaria) throws IOException{
+		solicitacaoContaBancaria = (SolicitacaoContaBancaria) dao.refresh(codigoSolicitacaoContaBancaria);
+		FacesContext context = FacesContext.getCurrentInstance();
+		HttpServletResponse response = (HttpServletResponse)context.getExternalContext().getResponse();
+		response.sendRedirect("solicitacaoContaBancariaAprovar.jsp ");
+	}
+	
 	public void carregarSolicitacao() throws IOException, ParseException{
 		Autenticacao siapeAutenticado = (Autenticacao) FacesContext
 				.getCurrentInstance().getExternalContext().getSessionMap()
 				.get("usuarioLogado");
-		SolicitacaoDAO solicitacaoDAO = new SolicitacaoDAO();
 		Servidor servidor = new Servidor();
 		servidor.setSiape(siapeAutenticado.getSiape());
 		
 		if (Constantes.TIPO_SOLICITACAO_ALTERAR_CONTA_BANCARIA
 				.equals(tipoSolicitacao)) {
-			SolicitacaoContaBancaria solicitacaoContaBancaria = new SolicitacaoContaBancaria();
+			solicitacaoContaBancaria = new SolicitacaoContaBancaria();
 			solicitacaoContaBancaria.setSolicitante(new Servidor());
 			solicitacaoContaBancaria.getSolicitante().setContaBancaria(new ContaBancaria());
 			solicitacaoContaBancaria.getSolicitante().getContaBancaria().setBanco(new Banco());
@@ -227,8 +244,7 @@ public class SolicitacaoController implements Serializable {
 			solicitacaoContaBancaria.setAtendenteLogado(new Servidor());
 			solicitacaoContaBancaria.setAtendenteLogado(servidor);
 			dao.saveOrUpdate(solicitacaoContaBancaria);
-			SolicitacaoContaBancariaController solicitacaoContaBancariaController = new SolicitacaoContaBancariaController();
-			solicitacaoContaBancariaController.carregar(solicitacaoContaBancaria);
+			this.carregarSolicitacaoCaontaBancaria(solicitacaoContaBancaria);
 		}
 		if (Constantes.TIPO_SOLICITACAO_LICENCA_PATERNIDADE
 				.equals(tipoSolicitacao)) {
@@ -248,6 +264,38 @@ public class SolicitacaoController implements Serializable {
 			dao.saveOrUpdate(solicitacaoLicencaPaternidade);
 			SolicitacaoLicencaPaternidadeController solicitacaoLicencaPaternidadeController = new SolicitacaoLicencaPaternidadeController();
 			solicitacaoLicencaPaternidadeController.carregar(solicitacaoLicencaPaternidade);
+		}
+	}
+	
+	public void deferirSolicitacao() throws IOException, ParseException{
+		if (Constantes.TIPO_SOLICITACAO_ALTERAR_CONTA_BANCARIA
+				.equals(tipoSolicitacao)) {
+			solicitacaoContaBancaria.getStatusSolicitacao().setCodigo(
+					Constantes.STATUS_SOLICITACAO_DEFERIDO);
+			solicitacaoContaBancaria.setDataFechamento(new Date());
+			solicitacaoDAO.updateSolicitacao(solicitacaoContaBancaria);
+			solicitacaoContaBancaria.getSolicitante().getContaBancaria().setBanco(solicitacaoContaBancaria.getNovoBanco());
+			solicitacaoContaBancaria.getSolicitante().getContaBancaria().setNumeroConta(solicitacaoContaBancaria.getNovoNumeroConta());
+			solicitacaoContaBancaria.getSolicitante().getContaBancaria().setAgencia(solicitacaoContaBancaria.getNovaAgencia());
+			solicitacaoContaBancaria.getSolicitante().getContaBancaria().setIndPoupanca(solicitacaoContaBancaria.getNovoIndPoupanca());	
+			dao.update(solicitacaoContaBancaria.getSolicitante());
+		}
+	}
+	
+	public void indeferirSolicitacao() throws IOException, ParseException{
+		if (Constantes.TIPO_SOLICITACAO_ALTERAR_CONTA_BANCARIA
+				.equals(tipoSolicitacao)) {
+			solicitacaoContaBancaria.getStatusSolicitacao().setCodigo(
+					Constantes.STATUS_SOLICITACAO_INDEFERIDO);
+			solicitacaoContaBancaria.setDataFechamento(new Date());
+			if(solicitacaoContaBancaria.getJustificativa() != null && solicitacaoContaBancaria.getJustificativa() != ""){
+				solicitacaoDAO.saveOrUpdate(solicitacaoContaBancaria);
+			}else{
+				FacesMessage message = new FacesMessage(
+						FacesMessage.SEVERITY_ERROR, "O campo Justificativa é obrigatório!",
+						"O campo Justificativa é obrigatório!!");
+				FacesContext.getCurrentInstance().addMessage("", message);
+			}
 		}
 	}
 }

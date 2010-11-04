@@ -3,6 +3,9 @@ package br.com.progepe.dao;
 import java.util.Date;
 import java.util.List;
 
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
+
 import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.criterion.Restrictions;
@@ -47,21 +50,36 @@ public class SolicitacaoDAO extends DAO {
 
 	public SolicitacaoContaBancaria carregarSoliciacaoContaBancaria(Long codigo) {
 		HibernateUtility.getSession().clear();
-		Query query = HibernateUtility
-				.getSession()
-				.createQuery(
-						"from SolicitacaoContaBancaria  s where s.codigo= :codigo");
+		Query query = HibernateUtility.getSession().createQuery(
+				"from SolicitacaoContaBancaria  s where s.codigo= :codigo");
 		query.setParameter("codigo", codigo);
 		return (SolicitacaoContaBancaria) query.uniqueResult();
 	}
-	
-	public SolicitacaoLicencaPaternidade carregarSoliciacaoLicencaPaternidade(Long codigo) {
+
+	public SolicitacaoLicencaPaternidade carregarSoliciacaoLicencaPaternidade(
+			Long codigo) {
 		HibernateUtility.getSession().clear();
-		Query query = HibernateUtility
-				.getSession()
-				.createQuery(
-						"from SolicitacaoLicencaPaternidade s where s.codigo= :codigo");
+		Query query = HibernateUtility.getSession().createQuery(
+				"from SolicitacaoLicencaPaternidade s where s.codigo= :codigo");
 		query.setParameter("codigo", codigo);
 		return (SolicitacaoLicencaPaternidade) query.uniqueResult();
+	}
+
+	public void updateSolicitacao(Object objeto) {
+		try {
+			HibernateUtility.getSession().clear();
+			HibernateUtility.beginTransaction();
+			HibernateUtility.getSession().saveOrUpdate(objeto);
+			HibernateUtility.commitTransaction();
+			HibernateUtility.closeSession();
+		} catch (Exception e) {
+			HibernateUtility.rollbackTransaction();
+			HibernateUtility.closeSession();
+			FacesMessage message = new FacesMessage(
+					FacesMessage.SEVERITY_ERROR,
+					"Erro ao comunicar com o servidor!",
+					"Erro ao comunicar com o servidor!");
+			FacesContext.getCurrentInstance().addMessage("", message);
+		}
 	}
 }
