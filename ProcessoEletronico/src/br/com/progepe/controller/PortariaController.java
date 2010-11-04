@@ -1,9 +1,5 @@
 package br.com.progepe.controller;
 
-import java.awt.Desktop;
-import java.io.BufferedOutputStream;
-import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -15,6 +11,9 @@ import java.util.List;
 
 import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
+import javax.servlet.http.HttpServletResponse;
+
+import net.sf.jasperreports.view.JasperViewer;
 
 import org.richfaces.event.UploadEvent;
 import org.richfaces.model.UploadItem;
@@ -88,13 +87,13 @@ public class PortariaController implements Serializable {
 		tiposPortaria = new ArrayList<SelectItem>();
 		List<TipoPortaria> tiposPortariaList = new ArrayList<TipoPortaria>();
 		tiposPortariaList = dao.list(TipoPortaria.class, "descricao");
-		for (TipoPortaria tipoPortaria: tiposPortariaList) {
+		for (TipoPortaria tipoPortaria : tiposPortariaList) {
 			tiposPortaria.add(new SelectItem(tipoPortaria.getCodigo(),
 					tipoPortaria.getDescricao()));
 		}
 		return tiposPortaria;
 	}
-	
+
 	public void abrirPortaria() throws ParseException {
 		try {
 			portaria = new Portaria();
@@ -114,7 +113,7 @@ public class PortariaController implements Serializable {
 		portaria.setPdf(item.getData());
 		files.add(portaria);
 	}
-	
+
 	public void paint(OutputStream out, Object data) throws IOException {
 		if (data instanceof String) {
 			InputStream file = FacesContext.getCurrentInstance()
@@ -126,7 +125,7 @@ public class PortariaController implements Serializable {
 			out.write(pdf);
 		}
 	}
-	
+
 	public void salvar() throws IOException, ParseException {
 		dao.saveOrUpdate(portaria);
 		portaria = new Portaria();
@@ -141,38 +140,45 @@ public class PortariaController implements Serializable {
 		FacesContext.getCurrentInstance().getExternalContext()
 				.redirect("listarPortarias.jsp");
 	}
-	
+
 	public void pesquisarPortarias() throws IOException {
 		PortariaDAO portariaDAO = new PortariaDAO();
-		this.setPortariaList(portariaDAO.listByFilter(portaria, dataInicio, dataFinal));
+		this.setPortariaList(portariaDAO.listByFilter(portaria, dataInicio,
+				dataFinal));
 		FacesContext.getCurrentInstance().getExternalContext()
 				.redirect("listarPortarias.jsp");
 	}
-	
+
 	public void carregar() throws IOException, ParseException {
 		portaria = (Portaria) dao.refresh(portaria);
 		FacesContext.getCurrentInstance().getExternalContext()
 				.redirect("portaria.jsp");
 	}
-	
-	public boolean checarcodigo(){
+
+	public boolean checarcodigo() {
 		portaria = (Portaria) dao.refresh(portaria);
-		if((!portaria.getCodigo().equals(null))||!(portaria.getCodigo().equals(0))){
+		if ((!portaria.getCodigo().equals(null))
+				|| !(portaria.getCodigo().equals(0))) {
 			return true;
 		}
 		return false;
 	}
-	
-	public void visualizar() throws IOException, ParseException{
-		File pdf = new File("arquivo.pdf");  
-		Desktop.getDesktop().open(pdf);
-//		File file = new File("ArquivoDestino.pdf");  
-//	    FileOutputStream fileout = new FileOutputStream(file);  
-//	    BufferedOutputStream buffer = new BufferedOutputStream(fileout);  
-//	    portaria = (Portaria) dao.refresh(portaria);
-//	    buffer.write(portaria.getPdf());  
-//	    buffer.flush();  
-//	    buffer.close();
-	}
 
+	public void visualizar() throws IOException, ParseException {
+		portaria = (Portaria) dao.refresh(portaria);
+		FacesContext context = FacesContext.getCurrentInstance();
+		HttpServletResponse response = (HttpServletResponse) context
+				.getExternalContext().getResponse();
+		response.setContentType("application/pdf");
+		response.setHeader("Cache-control", "no-cache");  
+		try {
+			response.getOutputStream().write(portaria.getPdf());
+			response.getOutputStream().flush();
+			response.getOutputStream().close();
+		    FacesContext.getCurrentInstance().responseComplete();
+		    
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 }
