@@ -78,17 +78,19 @@
 					rendered="#{solicitacaoController.solicitacaoContaBancaria.novoIndPoupanca == false}">
 				</h:outputText>
 			</h:panelGrid>
+
+			<h:panelGrid columns="2">
+				<h:outputText value="Justificativa: " />
+				<h:inputTextarea
+					value="#{solicitacaoController.solicitacaoContaBancaria.justificativa}"
+					cols="50" rows="5"></h:inputTextarea>
+			</h:panelGrid>
+
 			<h:panelGrid columns="2">
 				<a4j:commandButton value="Deferir" reRender="form"
-					oncomplete="#{rich:component('confirmPanel')}.show()"
-					rendered="#{solicitacaoController.solicitacaoContaBancaria.statusSolicitacao.codigo == 2}" />
+					oncomplete="#{rich:component('confirmPanel')}.show()"/>
 				<a4j:commandButton value="Indeferir" reRender="form"
-					oncomplete="#{rich:component('indeferidoPanel')}.show()"
-					rendered="#{solicitacaoController.solicitacaoContaBancaria.statusSolicitacao.codigo == 2}" />
-				<a4j:commandButton value="Voltar"
-					action="#{solicitacaoController.abrirPesquisarSolicitacoes}"
-					reRender="form"
-					rendered="#{solicitacaoController.solicitacaoContaBancaria.statusSolicitacao.codigo != 2}" />
+					oncomplete="#{rich:component('confirmPanel02')}.show()"/>
 			</h:panelGrid>
 		</rich:panel></center>
 
@@ -115,28 +117,28 @@
 				</table>
 			</h:form>
 		</rich:modalPanel>
-		<rich:modalPanel id="indeferidoPanel" autosized="true" width="200">
-			<table width="100%">
-				<a4j:form>
+		<rich:modalPanel id="confirmPanel02" autosized="true" width="200">
+			<f:facet name="header">
+				<h:outputText value="Confirma este indeferimento?"
+					style="padding-right:15px;" />
+			</f:facet>
+			<h:form>
+				<table width="100%">
 					<tbody>
 						<tr>
-							<h:outputText value="Justificativa: " />
-							<h:inputTextarea
-								value="#{solicitacaoController.solicitacaoContaBancaria.justificativa}"
-								cols="50" rows="5"></h:inputTextarea>
 							<td align="center" width="50%"><a4j:commandButton
-								value="Indeferir" ajaxSingle="true"
+								value="Sim" ajaxSingle="true"
 								action="#{solicitacaoController.indeferirSolicitacao}"
-								oncomplete="#{rich:component('indeferidoPanel')}.hide();"
-								reRender="messages" /></td>
+								oncomplete="#{rich:component('confirmPanel02')}.hide();"
+								reRender="form" /></td>
 							<td align="center" width="50%"><a4j:commandButton
-								value="Cancelar"
-								onclick="#{rich:component('indeferidoPanel')}.hide();return false;" />
+								value="Não"
+								onclick="#{rich:component('confirmPanel02')}.hide();return false;" />
 							</td>
 						</tr>
 					</tbody>
-				</a4j:form>
-			</table>
+				</table>
+			</h:form>
 		</rich:modalPanel>
 	</a4j:form>
 </f:view>
