@@ -16,7 +16,7 @@
 	<a4j:loadScript src="../js/script.js" />
 	<center><a4j:form id="form">
 		<rich:panel>
-			<rich:tabPanel switchType="client" width="700">
+			<rich:tabPanel switchType="client" width="750">
 				<rich:tab label="Dados Pessoais">
 					<h:panelGrid columns="4">
 						<h:outputText value="Nome: " />

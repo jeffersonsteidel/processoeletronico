@@ -6,66 +6,66 @@ Config 1.1//EN"
 	<managed-bean>
 		<managed-bean-name>autenticacaoController</managed-bean-name>
 		<managed-bean-class>br.com.progepe.controller.AutenticacaoController</managed-bean-class>
-		<managed-bean-scope>session</managed-bean-scope>
+		<managed-bean-scope>application</managed-bean-scope>
 	</managed-bean>
 	<managed-bean>
 		<managed-bean-name>portariaController</managed-bean-name>
 		<managed-bean-class>br.com.progepe.controller.PortariaController</managed-bean-class>
-		<managed-bean-scope>session</managed-bean-scope>
+		<managed-bean-scope>application</managed-bean-scope>
 	</managed-bean>
 	<managed-bean>
 		<managed-bean-name>servidorController</managed-bean-name>
 		<managed-bean-class>br.com.progepe.controller.ServidorController</managed-bean-class>
-		<managed-bean-scope>session</managed-bean-scope>
+		<managed-bean-scope>application</managed-bean-scope>
 	</managed-bean>
 	<managed-bean>
 		<managed-bean-name>solicitacaoController</managed-bean-name>
 		<managed-bean-class>br.com.progepe.controller.SolicitacaoController</managed-bean-class>
-		<managed-bean-scope>session</managed-bean-scope>
+		<managed-bean-scope>application</managed-bean-scope>
 	</managed-bean>
 	<managed-bean>
 		<managed-bean-name>solicitacaoContaBancariaController</managed-bean-name>
 		<managed-bean-class>br.com.progepe.controller.SolicitacaoContaBancariaController</managed-bean-class>
-		<managed-bean-scope>session</managed-bean-scope>
+		<managed-bean-scope>application</managed-bean-scope>
 	</managed-bean>
 	<managed-bean>
 		<managed-bean-name>solicitacaoAlimentacaoController</managed-bean-name>
 		<managed-bean-class>br.com.progepe.controller.SolicitacaoAlimentacaoController</managed-bean-class>
-		<managed-bean-scope>session</managed-bean-scope>
+		<managed-bean-scope>application</managed-bean-scope>
 	</managed-bean>
 	<managed-bean>
 		<managed-bean-name>solicitacaoAlteracaoFeriasController</managed-bean-name>
 		<managed-bean-class>br.com.progepe.controller.SolicitacaoAlteracaoFeriasController</managed-bean-class>
-		<managed-bean-scope>session</managed-bean-scope>
+		<managed-bean-scope>application</managed-bean-scope>
 	</managed-bean>
 	<managed-bean>
 		<managed-bean-name>solicitacaoCasamentoController</managed-bean-name>
 		<managed-bean-class>br.com.progepe.controller.SolicitacaoCasamentoController</managed-bean-class>
-		<managed-bean-scope>session</managed-bean-scope>
+		<managed-bean-scope>application</managed-bean-scope>
 	</managed-bean>
 	<managed-bean>
 		<managed-bean-name>solicitacaoHorarioEspecialEstudanteController</managed-bean-name>
 		<managed-bean-class>br.com.progepe.controller.SolicitacaoHorarioEspecialEstudanteController</managed-bean-class>
-		<managed-bean-scope>session</managed-bean-scope>
+		<managed-bean-scope>application</managed-bean-scope>
 	</managed-bean>
 	<managed-bean>
 		<managed-bean-name>solicitacaoLicencaPaternidadeController</managed-bean-name>
 		<managed-bean-class>br.com.progepe.controller.SolicitacaoLicencaPaternidadeController</managed-bean-class>
-		<managed-bean-scope>session</managed-bean-scope>
+		<managed-bean-scope>application</managed-bean-scope>
 	</managed-bean>
 	<managed-bean>
 		<managed-bean-name>solicitacaoObitoController</managed-bean-name>
 		<managed-bean-class>br.com.progepe.controller.SolicitacaoObitoController</managed-bean-class>
-		<managed-bean-scope>session</managed-bean-scope>
+		<managed-bean-scope>application</managed-bean-scope>
 	</managed-bean>
 	<managed-bean>
 		<managed-bean-name>solicitacaoAfastamentoConjugeController</managed-bean-name>
 		<managed-bean-class>br.com.progepe.controller.SolicitacaoAfastamentoConjugeController</managed-bean-class>
-		<managed-bean-scope>session</managed-bean-scope>
+		<managed-bean-scope>application</managed-bean-scope>
 	</managed-bean>
 	<managed-bean>
 		<managed-bean-name>solicitacaoAdicionalInsalubridadeController</managed-bean-name>
 		<managed-bean-class>br.com.progepe.controller.SolicitacaoAdicionalInsalubridadeController</managed-bean-class>
-		<managed-bean-scope>session</managed-bean-scope>
+		<managed-bean-scope>application</managed-bean-scope>
 	</managed-bean>
 </faces-config>
