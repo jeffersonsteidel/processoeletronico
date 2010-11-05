@@ -322,8 +322,8 @@ public class SolicitacaoController implements Serializable {
 				.equals(tipoSolicitacao)) {
 			solicitacaoLicencaPaternidade.getStatusSolicitacao().setCodigo(
 					Constantes.STATUS_SOLICITACAO_DEFERIDO);
-			solicitacaoContaBancaria.setDataFechamento(new Date());
-			solicitacaoDAO.updateSolicitacao(solicitacaoLicencaPaternidade);
+			solicitacaoLicencaPaternidade.setDataFechamento(new Date());
+			dao.update(solicitacaoLicencaPaternidade);
 		}
 	}
 

@@ -36,9 +36,12 @@
 
 			<h:panelGrid columns="2">
 				<h:outputText value="Data de Nascimento do Filho(a): "></h:outputText>
-				<h:outputText
-					value="#{solicitacaoController.solicitacaoLicencaPaternidade.dataNascimento}">
-				</h:outputText>
+				<rich:calendar
+					value="#{solicitacaoController.solicitacaoLicencaPaternidade.dataNascimento}"
+					datePattern="dd/MM/yyyy" showApplyButton="#"
+					cellWidth="12px" cellHeight="12px" style="width:80px"
+					inputSize="12" ajaxSingle="true" disabled="true">
+				</rich:calendar>
 			</h:panelGrid>
 			<h:panelGroup id="info">
 				<rich:panel bodyClass="info">
@@ -57,7 +60,67 @@
 					</rich:dataGrid>
 				</rich:panel>
 			</h:panelGroup>
+		<h:panelGrid columns="2">
+				<h:outputText value="Justificativa: " />
+				<h:inputTextarea
+					value="#{solicitacaoController.solicitacaoLicencaPaternidade.justificativa}"
+					cols="50" rows="5"></h:inputTextarea>
+			</h:panelGrid>
+
+			<h:panelGrid columns="2">
+				<a4j:commandButton value="Deferir" reRender="form"
+					oncomplete="#{rich:component('confirmPanel')}.show()"/>
+				<a4j:commandButton value="Indeferir" reRender="form"
+					oncomplete="#{rich:component('confirmPanel02')}.show()"/>
+			</h:panelGrid>
 		</rich:panel></center>
+
+		<rich:modalPanel id="confirmPanel" autosized="true" width="200">
+			<f:facet name="header">
+				<h:outputText value="Confirma este deferimento?"
+					style="padding-right:15px;" />
+			</f:facet>
+			<h:form>
+				<table width="100%">
+					<tbody>
+						<tr>
+							<td align="center" width="50%"><a4j:commandButton
+								value="Sim" ajaxSingle="true"
+								action="#{solicitacaoController.deferirSolicitacao}"
+								oncomplete="#{rich:component('confirmPanel')}.hide();"
+								reRender="form" /></td>
+							<td align="center" width="50%"><a4j:commandButton
+								value="Não"
+								onclick="#{rich:component('confirmPanel')}.hide();return false;" />
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</h:form>
+		</rich:modalPanel>
+		<rich:modalPanel id="confirmPanel02" autosized="true" width="200">
+			<f:facet name="header">
+				<h:outputText value="Confirma este indeferimento?"
+					style="padding-right:15px;" />
+			</f:facet>
+			<h:form>
+				<table width="100%">
+					<tbody>
+						<tr>
+							<td align="center" width="50%"><a4j:commandButton
+								value="Sim" ajaxSingle="true"
+								action="#{solicitacaoController.indeferirSolicitacao}"
+								oncomplete="#{rich:component('confirmPanel02')}.hide();"
+								reRender="form" /></td>
+							<td align="center" width="50%"><a4j:commandButton
+								value="Não"
+								onclick="#{rich:component('confirmPanel02')}.hide();return false;" />
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</h:form>
+		</rich:modalPanel>
 	</a4j:form>
 </f:view>
 </body>
