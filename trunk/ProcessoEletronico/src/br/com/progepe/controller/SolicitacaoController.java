@@ -181,7 +181,7 @@ public class SolicitacaoController implements Serializable {
 
 	public List<Solicitacao> abrirMinhasSolicitacoes() throws ParseException {
 		try {
-			this.setMinhasSolicitacoes(new ArrayList<Solicitacao>());
+			minhasSolicitacoes =  new ArrayList<Solicitacao>();
 			ServidorDAO servidorDAO = new ServidorDAO();
 			solicitacao = new Solicitacao();
 			solicitacao.setSolicitante(new Servidor());
@@ -213,7 +213,7 @@ public class SolicitacaoController implements Serializable {
 		return this.getMinhasSolicitacoes();
 	}
 
-	public void carregarSolicitacaoCaontaBancaria(SolicitacaoContaBancaria codigoSolicitacaoContaBancaria) throws IOException{
+	public void carregarSolicitacaoContaBancaria(SolicitacaoContaBancaria codigoSolicitacaoContaBancaria) throws IOException{
 		solicitacaoContaBancaria = (SolicitacaoContaBancaria) dao.refresh(codigoSolicitacaoContaBancaria);
 		FacesContext context = FacesContext.getCurrentInstance();
 		HttpServletResponse response = (HttpServletResponse)context.getExternalContext().getResponse();
@@ -244,7 +244,7 @@ public class SolicitacaoController implements Serializable {
 			solicitacaoContaBancaria.setAtendenteLogado(new Servidor());
 			solicitacaoContaBancaria.setAtendenteLogado(servidor);
 			dao.saveOrUpdate(solicitacaoContaBancaria);
-			this.carregarSolicitacaoCaontaBancaria(solicitacaoContaBancaria);
+			this.carregarSolicitacaoContaBancaria(solicitacaoContaBancaria);
 		}
 		if (Constantes.TIPO_SOLICITACAO_LICENCA_PATERNIDADE
 				.equals(tipoSolicitacao)) {
