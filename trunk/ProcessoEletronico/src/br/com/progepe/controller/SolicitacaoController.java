@@ -1,6 +1,7 @@
 package br.com.progepe.controller;
 
 import java.io.IOException;
+import java.io.OutputStream;
 import java.io.Serializable;
 import java.text.ParseException;
 import java.util.ArrayList;
@@ -37,6 +38,7 @@ public class SolicitacaoController implements Serializable {
 	private List<Solicitacao> solicitacoes = new ArrayList<Solicitacao>();
 	private List<Solicitacao> minhasSolicitacoes = new ArrayList<Solicitacao>();
 	private SolicitacaoContaBancaria solicitacaoContaBancaria;
+	private SolicitacaoLicencaPaternidade solicitacaoLicencaPaternidade;
 
 	private Long codigoSolicitacao;
 	private Long tipoSolicitacao;
@@ -115,7 +117,7 @@ public class SolicitacaoController implements Serializable {
 	public void setTipoSolicitacao(Long tipoSolicitacao) {
 		this.tipoSolicitacao = tipoSolicitacao;
 	}
-	
+
 	public SolicitacaoContaBancaria getSolicitacaoContaBancaria() {
 		return solicitacaoContaBancaria;
 	}
@@ -123,6 +125,15 @@ public class SolicitacaoController implements Serializable {
 	public void setSolicitacaoContaBancaria(
 			SolicitacaoContaBancaria solicitacaoContaBancaria) {
 		this.solicitacaoContaBancaria = solicitacaoContaBancaria;
+	}
+
+	public SolicitacaoLicencaPaternidade getSolicitacaoLicencaPaternidade() {
+		return solicitacaoLicencaPaternidade;
+	}
+
+	public void setSolicitacaoLicencaPaternidade(
+			SolicitacaoLicencaPaternidade solicitacaoLicencaPaternidade) {
+		this.solicitacaoLicencaPaternidade = solicitacaoLicencaPaternidade;
 	}
 
 	public void abrirPesquisarSolicitacoes() throws ParseException {
@@ -182,7 +193,7 @@ public class SolicitacaoController implements Serializable {
 
 	public List<Solicitacao> abrirMinhasSolicitacoes() throws ParseException {
 		try {
-			minhasSolicitacoes =  new ArrayList<Solicitacao>();
+			minhasSolicitacoes = new ArrayList<Solicitacao>();
 			ServidorDAO servidorDAO = new ServidorDAO();
 			solicitacao = new Solicitacao();
 			solicitacao.setSolicitante(new Servidor());
@@ -214,26 +225,45 @@ public class SolicitacaoController implements Serializable {
 		return this.getMinhasSolicitacoes();
 	}
 
-	public void carregarSolicitacaoContaBancaria(SolicitacaoContaBancaria codigoSolicitacaoContaBancaria) throws IOException{
-		solicitacaoContaBancaria = (SolicitacaoContaBancaria) dao.refresh(codigoSolicitacaoContaBancaria);
+	public void carregarSolicitacaoContaBancaria(
+			SolicitacaoContaBancaria codigoSolicitacaoContaBancaria)
+			throws IOException {
+		solicitacaoContaBancaria = (SolicitacaoContaBancaria) dao
+				.refresh(codigoSolicitacaoContaBancaria);
 		FacesContext context = FacesContext.getCurrentInstance();
-		HttpServletResponse response = (HttpServletResponse)context.getExternalContext().getResponse();
+		HttpServletResponse response = (HttpServletResponse) context
+				.getExternalContext().getResponse();
 		response.sendRedirect("solicitacaoContaBancariaAprovar.jsp ");
 	}
-	
-	public void carregarSolicitacao() throws IOException, ParseException{
+
+	public void carregarSolicitacaoLicencaPaternidade(
+			SolicitacaoLicencaPaternidade codigoSolicitacaoLicencaPaternidade)
+			throws IOException {
+		solicitacaoLicencaPaternidade = (SolicitacaoLicencaPaternidade) dao
+				.refresh(codigoSolicitacaoLicencaPaternidade);
+		solicitacaoLicencaPaternidade.getFiles().add(
+				solicitacaoLicencaPaternidade);
+		FacesContext context = FacesContext.getCurrentInstance();
+		HttpServletResponse response = (HttpServletResponse) context
+				.getExternalContext().getResponse();
+		response.sendRedirect("solicitacaoLicencaPaternidadeAprovar.jsp ");
+	}
+
+	public void carregarSolicitacao() throws IOException, ParseException {
 		Autenticacao siapeAutenticado = (Autenticacao) FacesContext
 				.getCurrentInstance().getExternalContext().getSessionMap()
 				.get("usuarioLogado");
 		Servidor servidor = new Servidor();
 		servidor.setSiape(siapeAutenticado.getSiape());
-		
+
 		if (Constantes.TIPO_SOLICITACAO_ALTERAR_CONTA_BANCARIA
 				.equals(tipoSolicitacao)) {
 			solicitacaoContaBancaria = new SolicitacaoContaBancaria();
 			solicitacaoContaBancaria.setSolicitante(new Servidor());
-			solicitacaoContaBancaria.getSolicitante().setContaBancaria(new ContaBancaria());
-			solicitacaoContaBancaria.getSolicitante().getContaBancaria().setBanco(new Banco());
+			solicitacaoContaBancaria.getSolicitante().setContaBancaria(
+					new ContaBancaria());
+			solicitacaoContaBancaria.getSolicitante().getContaBancaria()
+					.setBanco(new Banco());
 			solicitacaoContaBancaria.setNovoBanco(new Banco());
 			solicitacaoContaBancaria.setCodigo(codigoSolicitacao);
 			solicitacaoContaBancaria = (SolicitacaoContaBancaria) solicitacaoDAO
@@ -249,54 +279,93 @@ public class SolicitacaoController implements Serializable {
 		}
 		if (Constantes.TIPO_SOLICITACAO_LICENCA_PATERNIDADE
 				.equals(tipoSolicitacao)) {
-			SolicitacaoLicencaPaternidade solicitacaoLicencaPaternidade = new SolicitacaoLicencaPaternidade();
+			solicitacaoLicencaPaternidade = new SolicitacaoLicencaPaternidade();
 			solicitacaoLicencaPaternidade.setSolicitante(new Servidor());
-			solicitacaoLicencaPaternidade.getSolicitante().setContaBancaria(new ContaBancaria());
-			solicitacaoLicencaPaternidade.getSolicitante().getContaBancaria().setBanco(new Banco());
 			solicitacaoLicencaPaternidade.setCodigo(codigoSolicitacao);
 			solicitacaoLicencaPaternidade = (SolicitacaoLicencaPaternidade) solicitacaoDAO
-					.carregarSoliciacaoLicencaPaternidade(codigoSolicitacao);
+					.carregarSolicitacaoLicencaPaternidade(codigoSolicitacao);
 			solicitacaoLicencaPaternidade.getStatusSolicitacao().setCodigo(
 					Constantes.STATUS_SOLICITACAO_EM_ANALISE);
 			solicitacaoLicencaPaternidade.setDataAtendimento(new Date());
-			solicitacaoLicencaPaternidade.setAtendente(siapeAutenticado.getSiape());
+			solicitacaoLicencaPaternidade.setAtendente(siapeAutenticado
+					.getSiape());
 			solicitacaoLicencaPaternidade.setAtendenteLogado(new Servidor());
 			solicitacaoLicencaPaternidade.setAtendenteLogado(servidor);
 			dao.saveOrUpdate(solicitacaoLicencaPaternidade);
-			SolicitacaoLicencaPaternidadeController solicitacaoLicencaPaternidadeController = new SolicitacaoLicencaPaternidadeController();
-			solicitacaoLicencaPaternidadeController.carregar(solicitacaoLicencaPaternidade);
+			this.carregarSolicitacaoLicencaPaternidade(solicitacaoLicencaPaternidade);
 		}
 	}
-	
-	public void deferirSolicitacao() throws IOException, ParseException{
+
+	public void deferirSolicitacao() throws IOException, ParseException {
 		if (Constantes.TIPO_SOLICITACAO_ALTERAR_CONTA_BANCARIA
 				.equals(tipoSolicitacao)) {
 			solicitacaoContaBancaria.getStatusSolicitacao().setCodigo(
 					Constantes.STATUS_SOLICITACAO_DEFERIDO);
 			solicitacaoContaBancaria.setDataFechamento(new Date());
 			solicitacaoDAO.updateSolicitacao(solicitacaoContaBancaria);
-			solicitacaoContaBancaria.getSolicitante().getContaBancaria().setBanco(solicitacaoContaBancaria.getNovoBanco());
-			solicitacaoContaBancaria.getSolicitante().getContaBancaria().setNumeroConta(solicitacaoContaBancaria.getNovoNumeroConta());
-			solicitacaoContaBancaria.getSolicitante().getContaBancaria().setAgencia(solicitacaoContaBancaria.getNovaAgencia());
-			solicitacaoContaBancaria.getSolicitante().getContaBancaria().setIndPoupanca(solicitacaoContaBancaria.getNovoIndPoupanca());	
+			solicitacaoContaBancaria.getSolicitante().getContaBancaria()
+					.setBanco(solicitacaoContaBancaria.getNovoBanco());
+			solicitacaoContaBancaria
+					.getSolicitante()
+					.getContaBancaria()
+					.setNumeroConta(
+							solicitacaoContaBancaria.getNovoNumeroConta());
+			solicitacaoContaBancaria.getSolicitante().getContaBancaria()
+					.setAgencia(solicitacaoContaBancaria.getNovaAgencia());
+			solicitacaoContaBancaria
+					.getSolicitante()
+					.getContaBancaria()
+					.setIndPoupanca(
+							solicitacaoContaBancaria.getNovoIndPoupanca());
 			dao.update(solicitacaoContaBancaria.getSolicitante());
+		} else if (Constantes.TIPO_SOLICITACAO_LICENCA_PATERNIDADE
+				.equals(tipoSolicitacao)) {
+			solicitacaoLicencaPaternidade.getStatusSolicitacao().setCodigo(
+					Constantes.STATUS_SOLICITACAO_DEFERIDO);
+			solicitacaoContaBancaria.setDataFechamento(new Date());
+			solicitacaoDAO.updateSolicitacao(solicitacaoLicencaPaternidade);
 		}
 	}
-	
-	public void indeferirSolicitacao() throws IOException, ParseException{
+
+	public void indeferirSolicitacao() throws IOException, ParseException {
 		if (Constantes.TIPO_SOLICITACAO_ALTERAR_CONTA_BANCARIA
 				.equals(tipoSolicitacao)) {
 			solicitacaoContaBancaria.getStatusSolicitacao().setCodigo(
 					Constantes.STATUS_SOLICITACAO_INDEFERIDO);
 			solicitacaoContaBancaria.setDataFechamento(new Date());
-			if(solicitacaoContaBancaria.getJustificativa() != null && solicitacaoContaBancaria.getJustificativa() != ""){
+			if (solicitacaoContaBancaria.getJustificativa() != null
+					&& solicitacaoContaBancaria.getJustificativa() != "") {
 				solicitacaoDAO.saveOrUpdate(solicitacaoContaBancaria);
-			}else{
+			} else {
 				FacesMessage message = new FacesMessage(
-						FacesMessage.SEVERITY_ERROR, "O campo Justificativa é obrigatório!",
+						FacesMessage.SEVERITY_ERROR,
+						"O campo Justificativa é obrigatório!",
 						"O campo Justificativa é obrigatório!!");
 				FacesContext.getCurrentInstance().addMessage("", message);
 			}
+		} else if (Constantes.TIPO_SOLICITACAO_LICENCA_PATERNIDADE
+				.equals(tipoSolicitacao)) {
+			solicitacaoLicencaPaternidade.getStatusSolicitacao().setCodigo(
+					Constantes.STATUS_SOLICITACAO_INDEFERIDO);
+			solicitacaoLicencaPaternidade.setDataFechamento(new Date());
+			if (solicitacaoLicencaPaternidade.getJustificativa() != null
+					&& solicitacaoLicencaPaternidade.getJustificativa() != "") {
+				solicitacaoDAO.saveOrUpdate(solicitacaoLicencaPaternidade);
+			} else {
+				FacesMessage message = new FacesMessage(
+						FacesMessage.SEVERITY_ERROR,
+						"O campo Justificativa é obrigatório!",
+						"O campo Justificativa é obrigatório!!");
+				FacesContext.getCurrentInstance().addMessage("", message);
+			}
+		}
+	}
+
+	public void paint(OutputStream stream, Object object) throws IOException {
+		if (Constantes.TIPO_SOLICITACAO_LICENCA_PATERNIDADE
+				.equals(tipoSolicitacao)) {
+			stream.write(solicitacaoLicencaPaternidade.getFiles()
+					.get((Integer) object).getCertidaoNascimento());
 		}
 	}
 }

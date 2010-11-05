@@ -56,7 +56,7 @@ public class SolicitacaoDAO extends DAO {
 		return (SolicitacaoContaBancaria) query.uniqueResult();
 	}
 
-	public SolicitacaoLicencaPaternidade carregarSoliciacaoLicencaPaternidade(
+	public SolicitacaoLicencaPaternidade carregarSolicitacaoLicencaPaternidade(
 			Long codigo) {
 		HibernateUtility.getSession().clear();
 		Query query = HibernateUtility.getSession().createQuery(

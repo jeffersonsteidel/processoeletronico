@@ -18,7 +18,7 @@
 	<center><a4j:form>
 		<a4j:jsFunction action="#{autenticacaoController.isAutenticado}"
 			name="verificarAutenticacao" />
-		<h:graphicImage value="../images/banner_topo.gif" width="1265px" />
+		<h:graphicImage value="../images/banner_topo.gif" />
 		<BR />
 		<rich:toolBar>
 			<rich:dropDownMenu
