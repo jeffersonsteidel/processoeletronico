@@ -25,7 +25,7 @@ public class SolicitacaoLicencaPaternidadeController implements Serializable {
 	private static final long serialVersionUID = -333995781063775201L;
 
 	SolicitacaoLicencaPaternidade solicitacaoLicencaPaternidade;
-	private ArrayList<SolicitacaoLicencaPaternidade> files = new ArrayList<SolicitacaoLicencaPaternidade>();
+
 	DAO dao = new DAO();
 
 	public SolicitacaoLicencaPaternidade getSolicitacaoLicencaPaternidade() {
@@ -37,18 +37,11 @@ public class SolicitacaoLicencaPaternidadeController implements Serializable {
 		this.solicitacaoLicencaPaternidade = solicitacaoLicencaPaternidade;
 	}
 
-	public ArrayList<SolicitacaoLicencaPaternidade> getFiles() {
-		return files;
-	}
-
-	public void setFiles(ArrayList<SolicitacaoLicencaPaternidade> files) {
-		this.files = files;
-	}
 
 	public void abrirSolicitacaoPaternidade() throws ParseException {
 		try {
 			solicitacaoLicencaPaternidade = new SolicitacaoLicencaPaternidade();
-			files.clear();
+			solicitacaoLicencaPaternidade.getFiles().clear();
 			buscarServidorLogado();
 			FacesContext.getCurrentInstance().getExternalContext()
 					.redirect("solicitacaoLicencaPaternidade.jsp");
@@ -72,13 +65,13 @@ public class SolicitacaoLicencaPaternidadeController implements Serializable {
 	}
 
 	public void paint(OutputStream stream, Object object) throws IOException {
-		stream.write(getFiles().get((Integer)object).getCertidaoNascimento());
+		stream.write(solicitacaoLicencaPaternidade.getFiles().get((Integer)object).getCertidaoNascimento());
 	}
 
 	public void listener(UploadEvent event) throws Exception {
 		UploadItem item = event.getUploadItem();
 		solicitacaoLicencaPaternidade.setCertidaoNascimento(item.getData());
-		files.add(solicitacaoLicencaPaternidade);
+		solicitacaoLicencaPaternidade.getFiles().add(solicitacaoLicencaPaternidade);
 	}
 
 	public void salvar() throws IOException, ParseException {
@@ -93,7 +86,7 @@ public class SolicitacaoLicencaPaternidadeController implements Serializable {
 				Constantes.STATUS_SOLICITACAO_ENCAMINHADO);
 		dao.saveOrUpdate(solicitacaoLicencaPaternidade);
 		solicitacaoLicencaPaternidade = new SolicitacaoLicencaPaternidade();
-		files = new ArrayList<SolicitacaoLicencaPaternidade>();
+		solicitacaoLicencaPaternidade.setFiles(new ArrayList<SolicitacaoLicencaPaternidade>());
 		buscarServidorLogado();
 	}
 	

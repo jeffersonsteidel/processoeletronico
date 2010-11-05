@@ -1,5 +1,6 @@
 package br.com.progepe.entity;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 public class SolicitacaoLicencaPaternidade extends Solicitacao {
@@ -9,6 +10,7 @@ public class SolicitacaoLicencaPaternidade extends Solicitacao {
 	private byte[] certidaoNascimento;
 	private Boolean documentoValidado = false; 
 	private Date dataNascimento;
+	private ArrayList<SolicitacaoLicencaPaternidade> files = new ArrayList<SolicitacaoLicencaPaternidade>();
 	
 	public byte[] getCertidaoNascimento() {
 		return certidaoNascimento;
@@ -28,4 +30,12 @@ public class SolicitacaoLicencaPaternidade extends Solicitacao {
 	public void setDataNascimento(Date dataNascimento) {
 		this.dataNascimento = dataNascimento;
 	}
+	public ArrayList<SolicitacaoLicencaPaternidade> getFiles() {
+		return files;
+	}
+
+	public void setFiles(ArrayList<SolicitacaoLicencaPaternidade> files) {
+		this.files = files;
+	}
 }
+

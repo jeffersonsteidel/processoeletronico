@@ -30,25 +30,25 @@
 
 			<h:panelGrid columns="1">
 				<h:outputText
-					value="#{solicitacaoLicencaPaternidadeController.solicitacaoLicencaPaternidade.solicitante.siape} - #{solicitacaoLicencaPaternidadeController.solicitacaoLicencaPaternidade.solicitante.nome}">
+					value="#{solicitacaoController.solicitacaoLicencaPaternidade.solicitante.siape} - #{solicitacaoController.solicitacaoLicencaPaternidade.solicitante.nome}">
 				</h:outputText>
 			</h:panelGrid>
 
 			<h:panelGrid columns="2">
 				<h:outputText value="Data de Nascimento do Filho(a): "></h:outputText>
 				<h:outputText
-					value="#{solicitacaoLicencaPaternidadeController.solicitacaoLicencaPaternidade.dataNascimento}">
+					value="#{solicitacaoController.solicitacaoLicencaPaternidade.dataNascimento}">
 				</h:outputText>
 			</h:panelGrid>
 			<h:panelGroup id="info">
 				<rich:panel bodyClass="info">
 					<rich:dataGrid columns="1"
-						value="#{solicitacaoLicencaPaternidadeController.files}"
+						value="#{solicitacaoController.solicitacaoLicencaPaternidade.files}"
 						var="file" rowKeyVar="row">
 						<rich:panel bodyClass="rich-laguna-panel-no-header">
 							<h:panelGrid columns="2">
 								<a4j:mediaOutput element="img"
-									createContent="#{solicitacaoLicencaPaternidadeController.paint}"
+									createContent="#{solicitacaoController.paint}"
 									value="#{row}" style="width:600px; height:800px;"
 									cacheable="false">
 								</a4j:mediaOutput>
