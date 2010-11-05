@@ -18,9 +18,8 @@
 	<center><a4j:form>
 		<a4j:jsFunction action="#{autenticacaoController.isAutenticado}"
 			name="verificarAutenticacao" />
-		<h:graphicImage value="../images/ifpr_logo.png" />
+		<h:graphicImage value="../images/banner_topo.gif" width="1265px" />
 		<BR />
-		<font size="4"><b>PROGEPE - PROCESSO ELETRÔNICO</b></font>
 		<rich:toolBar>
 			<rich:dropDownMenu
 				rendered="#{autenticacaoController.siapeAutenticado.indAdministrador}">

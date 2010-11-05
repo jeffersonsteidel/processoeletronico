@@ -14,7 +14,7 @@
 <f:view>
 	<center><h:form id="form">
 		<rich:panel header="PROGEPE"
-			style="width: 250px; position: absolute; left: 520px; top: 240px">
+			style="width: 250px; position: absolute; left: 580px; top: 240px">
 			<rich:messages layout="list" errorLabelClass="errorLabel"
 				infoLabelClass="infoLabel">
 				<f:facet name="infoMarker">
