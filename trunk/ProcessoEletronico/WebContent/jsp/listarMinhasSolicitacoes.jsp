@@ -28,7 +28,7 @@
 						<h:outputText value="Data Abertura" />
 					</f:facet>
 					<h:outputText value="#{list.dataAbertura}">
-						<f:convertDateTime locale="pt_BR" pattern="dd/MM/yyyy - HH:mm:ss" />
+						<f:convertDateTime pattern="dd/MM/yyyy - HH:mm:ss" />
 					</h:outputText>
 				</rich:column>
 
@@ -38,7 +38,7 @@
 					</f:facet>
 					<h:outputText value="#{list.dataAtendimento}"
 						rendered="#{list.dataAtendimento!=null}">
-						<f:convertDateTime locale="pt_BR" pattern="dd/MM/yyyy - HH:mm:ss" />
+						<f:convertDateTime pattern="dd/MM/yyyy - HH:mm:ss" />
 					</h:outputText>
 					<h:outputText value="-" rendered="#{list.dataAtendimento==null}">
 					</h:outputText>
@@ -58,7 +58,7 @@
 					</f:facet>
 					<h:outputText value="#{list.dataFechamento}"
 						rendered="#{list.dataFechamento!=null}">
-						<f:convertDateTime locale="pt_BR" pattern="dd/MM/yyyy - HH:mm:ss" />
+						<f:convertDateTime pattern="dd/MM/yyyy - HH:mm:ss" />
 					</h:outputText>
 					<h:outputText value="-" rendered="#{list.dataFechamento==null}">
 					</h:outputText>
