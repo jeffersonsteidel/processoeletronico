@@ -153,14 +153,6 @@ public class PortariaController implements Serializable {
 				.redirect("portaria.jsp");
 	}
 
-	public boolean checarcodigo() {
-		portaria = (Portaria) dao.refresh(portaria);
-		if ((!portaria.getCodigo().equals(null))
-				|| !(portaria.getCodigo().equals(0))) {
-			return true;
-		}
-		return false;
-	}
 
 	public void visualizar() throws IOException, ParseException {
 		portaria = (Portaria) dao.refresh(portaria);
@@ -173,9 +165,8 @@ public class PortariaController implements Serializable {
 		
 	}
 	
-	public void excluir(){
-		portariaList.remove(portaria);
-		System.out.println(portaria.getCodigo());
+	public void excluir() throws IOException{
 		dao.delete(portaria);
+		listarPortarias();
 	}
 }

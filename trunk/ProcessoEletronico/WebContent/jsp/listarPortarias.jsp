@@ -115,13 +115,13 @@
 					</a4j:commandLink>
 					<rich:toolTip for="editar" value="Editar" />
 				</rich:column>
-				
+
 				<rich:column>
 					<f:facet name="header">
 						<h:outputText value="Excluir" />
 					</f:facet>
-					<a4j:commandLink reRender="listaPortarias" ajaxSingle="true"
-						id="delete" oncomplete="#{rich:component('deletePanel')}.show()">
+					<a4j:commandLink ajaxSingle="true" id="delete"
+						oncomplete="#{rich:component('deletePanel')}.show()">
 						<h:graphicImage id="excluir" value="../images/delete.gif"
 							style="border:0" />
 						<f:setPropertyActionListener value="#{list.codigo}"
@@ -129,6 +129,7 @@
 					</a4j:commandLink>
 					<rich:toolTip for="excluir" value="Excluir" />
 				</rich:column>
+
 				<rich:column>
 					<f:facet name="header">
 						<h:outputText value="Visualizar" />
@@ -148,31 +149,27 @@
 				</f:facet>
 			</rich:dataTable>
 		</rich:panel>
-	</a4j:form>
-		<rich:modalPanel id="deletePanel" autosized="true" width="200">
-			<f:facet name="header">
-				<h:outputText value="Deseja realmente deletar este item?"
-					style="padding-right:15px;" />
-			</f:facet>
-			<h:form>
-				<table width="100%">
-					<tbody>
-						<tr>
-							<td align="center" width="50%"><a4j:commandButton
-								value="Sim" ajaxSingle="true"
-								action="#{portariaController.excluir}"
-								oncomplete="#{rich:component('deletePanel')}.hide();"
-								reRender="listaPortarias, form" /></td>
-							<td align="center" width="50%"><a4j:commandButton
-								value="Não"
-								onclick="#{rich:component('deletePanel')}.hide();return false;" />
-							</td>
-						</tr>
-					</tbody>
-				</table>
-			</h:form>
-		</rich:modalPanel>
-</center>
+	</a4j:form> <rich:modalPanel id="deletePanel" autosized="true" width="200">
+		<f:facet name="header">
+			<h:outputText value="Deseja realmente deletar este item?"
+				style="padding-right:15px;" />
+		</f:facet>
+		<h:form>
+			<table width="100%">
+				<tbody>
+					<tr>
+						<td align="center" width="50%"><a4j:commandButton value="Sim"
+							ajaxSingle="true" action="#{portariaController.excluir}"
+							oncomplete="#{rich:component('deletePanel')}.hide();"
+							reRender="listaEstado, form" /></td>
+						<td align="center" width="50%"><a4j:commandButton value="Não"
+							onclick="#{rich:component('deletePanel')}.hide();return false;" />
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</h:form>
+	</rich:modalPanel></center>
 </f:view>
 </body>
 </html>
