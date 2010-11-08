@@ -172,4 +172,10 @@ public class PortariaController implements Serializable {
 		Runtime.getRuntime().runFinalization();
 		
 	}
+	
+	public void excluir(){
+		portariaList.remove(portaria);
+		System.out.println(portaria.getCodigo());
+		dao.delete(portaria);
+	}
 }
