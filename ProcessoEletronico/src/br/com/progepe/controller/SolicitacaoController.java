@@ -23,6 +23,7 @@ import br.com.progepe.entity.ContaBancaria;
 import br.com.progepe.entity.Servidor;
 import br.com.progepe.entity.Solicitacao;
 import br.com.progepe.entity.SolicitacaoContaBancaria;
+import br.com.progepe.entity.SolicitacaoHorarioEspecialEstudante;
 import br.com.progepe.entity.SolicitacaoLicencaPaternidade;
 import br.com.progepe.entity.StatusSolicitacao;
 import br.com.progepe.entity.TipoSolicitacao;
@@ -39,6 +40,7 @@ public class SolicitacaoController implements Serializable {
 	private List<Solicitacao> minhasSolicitacoes = new ArrayList<Solicitacao>();
 	private SolicitacaoContaBancaria solicitacaoContaBancaria;
 	private SolicitacaoLicencaPaternidade solicitacaoLicencaPaternidade;
+	private SolicitacaoHorarioEspecialEstudante solicitacaoHorarioEspecialEstudante;
 
 	private Long codigoSolicitacao;
 	private Long tipoSolicitacao;
@@ -134,6 +136,15 @@ public class SolicitacaoController implements Serializable {
 	public void setSolicitacaoLicencaPaternidade(
 			SolicitacaoLicencaPaternidade solicitacaoLicencaPaternidade) {
 		this.solicitacaoLicencaPaternidade = solicitacaoLicencaPaternidade;
+	}
+
+	public SolicitacaoHorarioEspecialEstudante getSolicitacaoHorarioEspecialEstudante() {
+		return solicitacaoHorarioEspecialEstudante;
+	}
+
+	public void setSolicitacaoHorarioEspecialEstudante(
+			SolicitacaoHorarioEspecialEstudante solicitacaoHorarioEspecialEstudante) {
+		this.solicitacaoHorarioEspecialEstudante = solicitacaoHorarioEspecialEstudante;
 	}
 
 	public void abrirPesquisarSolicitacoes() throws ParseException {
@@ -248,6 +259,19 @@ public class SolicitacaoController implements Serializable {
 				.getExternalContext().getResponse();
 		response.sendRedirect("solicitacaoLicencaPaternidadeAprovar.jsp ");
 	}
+	
+	public void carregarSolicitacaoHorarioEspecialEstudante(
+			SolicitacaoHorarioEspecialEstudante codigoSolicitacaoHorarioEspecialEstudante)
+			throws IOException {
+		solicitacaoHorarioEspecialEstudante = (SolicitacaoHorarioEspecialEstudante) dao
+				.refresh(codigoSolicitacaoHorarioEspecialEstudante);
+		solicitacaoHorarioEspecialEstudante.getFiles().add(
+				solicitacaoHorarioEspecialEstudante);
+		FacesContext context = FacesContext.getCurrentInstance();
+		HttpServletResponse response = (HttpServletResponse) context
+				.getExternalContext().getResponse();
+		response.sendRedirect("solicitacaoHorarioEspecialEstudanteAprovar.jsp ");
+	}
 
 	public void carregarSolicitacao() throws IOException, ParseException {
 		Autenticacao siapeAutenticado = (Autenticacao) FacesContext
@@ -277,7 +301,7 @@ public class SolicitacaoController implements Serializable {
 			dao.saveOrUpdate(solicitacaoContaBancaria);
 			this.carregarSolicitacaoContaBancaria(solicitacaoContaBancaria);
 		}
-		if (Constantes.TIPO_SOLICITACAO_LICENCA_PATERNIDADE
+		else if (Constantes.TIPO_SOLICITACAO_LICENCA_PATERNIDADE
 				.equals(tipoSolicitacao)) {
 			solicitacaoLicencaPaternidade = new SolicitacaoLicencaPaternidade();
 			solicitacaoLicencaPaternidade.setFiles(new ArrayList<SolicitacaoLicencaPaternidade>());
@@ -294,6 +318,24 @@ public class SolicitacaoController implements Serializable {
 			solicitacaoLicencaPaternidade.setAtendenteLogado(servidor);
 			dao.saveOrUpdate(solicitacaoLicencaPaternidade);
 			this.carregarSolicitacaoLicencaPaternidade(solicitacaoLicencaPaternidade);
+		}
+		else if (Constantes.TIPO_SOLICITACAO_HORARIO_ESPECIAL_ESTUDANTE
+				.equals(tipoSolicitacao)) {
+			solicitacaoHorarioEspecialEstudante = new SolicitacaoHorarioEspecialEstudante();
+			solicitacaoHorarioEspecialEstudante.setFiles(new ArrayList<SolicitacaoHorarioEspecialEstudante>());
+			solicitacaoHorarioEspecialEstudante.setSolicitante(new Servidor());
+			solicitacaoHorarioEspecialEstudante.setCodigo(codigoSolicitacao);
+			solicitacaoHorarioEspecialEstudante = (SolicitacaoHorarioEspecialEstudante) solicitacaoDAO
+					.carregarSolicitacaoHorarioEspecialEstudante(codigoSolicitacao);
+			solicitacaoHorarioEspecialEstudante.getStatusSolicitacao().setCodigo(
+					Constantes.STATUS_SOLICITACAO_EM_ANALISE);
+			solicitacaoHorarioEspecialEstudante.setDataAtendimento(new Date());
+			solicitacaoHorarioEspecialEstudante.setAtendente(siapeAutenticado
+					.getSiape());
+			solicitacaoHorarioEspecialEstudante.setAtendenteLogado(new Servidor());
+			solicitacaoHorarioEspecialEstudante.setAtendenteLogado(servidor);
+			dao.saveOrUpdate(solicitacaoHorarioEspecialEstudante);
+			this.carregarSolicitacaoHorarioEspecialEstudante(solicitacaoHorarioEspecialEstudante);
 		}
 	}
 
@@ -325,6 +367,12 @@ public class SolicitacaoController implements Serializable {
 					Constantes.STATUS_SOLICITACAO_DEFERIDO);
 			solicitacaoLicencaPaternidade.setDataFechamento(new Date());
 			dao.update(solicitacaoLicencaPaternidade);
+		}  else if (Constantes.TIPO_SOLICITACAO_HORARIO_ESPECIAL_ESTUDANTE
+				.equals(tipoSolicitacao)) {
+			solicitacaoHorarioEspecialEstudante.getStatusSolicitacao().setCodigo(
+					Constantes.STATUS_SOLICITACAO_DEFERIDO);
+			solicitacaoHorarioEspecialEstudante.setDataFechamento(new Date());
+			dao.update(solicitacaoHorarioEspecialEstudante);
 		}
 	}
 
@@ -359,6 +407,21 @@ public class SolicitacaoController implements Serializable {
 						"O campo Justificativa é obrigatório!!");
 				FacesContext.getCurrentInstance().addMessage("", message);
 			}
+		} else if (Constantes.TIPO_SOLICITACAO_HORARIO_ESPECIAL_ESTUDANTE
+				.equals(tipoSolicitacao)) {
+			solicitacaoHorarioEspecialEstudante.getStatusSolicitacao().setCodigo(
+					Constantes.STATUS_SOLICITACAO_INDEFERIDO);
+			solicitacaoHorarioEspecialEstudante.setDataFechamento(new Date());
+			if (solicitacaoHorarioEspecialEstudante.getJustificativa() != null
+					&& solicitacaoHorarioEspecialEstudante.getJustificativa() != "") {
+				solicitacaoDAO.saveOrUpdate(solicitacaoHorarioEspecialEstudante);
+			} else {
+				FacesMessage message = new FacesMessage(
+						FacesMessage.SEVERITY_ERROR,
+						"O campo Justificativa é obrigatório!",
+						"O campo Justificativa é obrigatório!!");
+				FacesContext.getCurrentInstance().addMessage("", message);
+			}
 		}
 	}
 
@@ -367,6 +430,10 @@ public class SolicitacaoController implements Serializable {
 				.equals(tipoSolicitacao)) {
 			stream.write(solicitacaoLicencaPaternidade.getFiles()
 					.get((Integer) object).getCertidaoNascimento());
+		}else if (Constantes.TIPO_SOLICITACAO_HORARIO_ESPECIAL_ESTUDANTE
+				.equals(tipoSolicitacao)) {
+			stream.write(solicitacaoHorarioEspecialEstudante.getFiles()
+					.get((Integer) object).getDeclaracaoMatricula());
 		}
 	}
 }
