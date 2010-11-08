@@ -36,26 +36,38 @@
 
 			<h:panelGrid columns="2">
 				<h:outputText value="Curso: " />
-				<h:inputText
-					value="#{solicitacaoController.solicitacaoHorarioEspecialEstudante.curso}"
-					size="53" maxlength="80" required="true"
-					requiredMessage="Campo Curso é obrigatório!">
-				</h:inputText>
+				<h:outputText
+					value="#{solicitacaoController.solicitacaoHorarioEspecialEstudante.curso}">
+				</h:outputText>
 
 				<h:outputText value="Instituição: " />
-				<h:inputText
-					value="#{solicitacaoController.solicitacaoHorarioEspecialEstudante.instituicao}"
-					size="53" maxlength="120" required="true"
-					requiredMessage="Campo Instituição é obrigatório!">
-				</h:inputText>
+				<h:outputText
+					value="#{solicitacaoController.solicitacaoHorarioEspecialEstudante.instituicao}">
+				</h:outputText>
 
 				<h:outputText value="Motivo: " />
-				<h:inputTextarea
-					value="#{solicitacaoController.solicitacaoHorarioEspecialEstudante.motivo}"
-					cols="50" rows="5" required="true"
-					requiredMessage="Campo Motivo é obrigatório!">
-				</h:inputTextarea>
+				<h:outputText
+					value="#{solicitacaoController.solicitacaoHorarioEspecialEstudante.motivo}">
+				</h:outputText>
 			</h:panelGrid>
+			
+			<h:panelGroup id="info">
+				<rich:panel bodyClass="info">
+					<rich:dataGrid columns="1"
+						value="#{solicitacaoController.solicitacaoHorarioEspecialEstudante.files}"
+						var="file" rowKeyVar="row">
+						<rich:panel bodyClass="rich-laguna-panel-no-header">
+							<h:panelGrid columns="2">
+								<a4j:mediaOutput element="img"
+									createContent="#{solicitacaoController.paint}"
+									value="#{row}" style="width:600px; height:800px;"
+									cacheable="false">
+								</a4j:mediaOutput>
+							</h:panelGrid>
+						</rich:panel>
+					</rich:dataGrid>
+				</rich:panel>
+			</h:panelGroup>
 
 			<h:panelGrid columns="2">
 				<h:outputText value="Justificativa: " />
