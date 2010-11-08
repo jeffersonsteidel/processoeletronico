@@ -71,6 +71,7 @@ public class AutenticacaoController implements Serializable {
 			session.setAttribute("usuarioLogado", siapeAutenticado);
 			FacesContext.getCurrentInstance().getExternalContext()
 					.redirect("menus.jsp");
+			autenticacao = new Autenticacao();
 		} else {
 			session.setAttribute("usuarioLogado", null);
 			session.removeAttribute("user");
