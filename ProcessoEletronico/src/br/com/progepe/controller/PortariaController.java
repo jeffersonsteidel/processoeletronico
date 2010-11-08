@@ -1,5 +1,6 @@
 package br.com.progepe.controller;
 
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -11,9 +12,6 @@ import java.util.List;
 
 import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
-import javax.servlet.http.HttpServletResponse;
-
-import net.sf.jasperreports.view.JasperViewer;
 
 import org.richfaces.event.UploadEvent;
 import org.richfaces.model.UploadItem;
@@ -166,19 +164,12 @@ public class PortariaController implements Serializable {
 
 	public void visualizar() throws IOException, ParseException {
 		portaria = (Portaria) dao.refresh(portaria);
-		FacesContext context = FacesContext.getCurrentInstance();
-		HttpServletResponse response = (HttpServletResponse) context
-				.getExternalContext().getResponse();
-		response.setContentType("application/pdf");
-		response.setHeader("Cache-control", "no-cache");  
-		try {
-			response.getOutputStream().write(portaria.getPdf());
-			response.getOutputStream().flush();
-			response.getOutputStream().close();
-		    FacesContext.getCurrentInstance().responseComplete();
-		    
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		OutputStream out = new FileOutputStream("c:\\portaria.pdf");
+		out.write(portaria.getPdf()); 
+	    Runtime.getRuntime().exec("cmd.exe /C c:\\portaria.pdf");
+		out.flush();
+		out.close();
+		Runtime.getRuntime().runFinalization();
+		
 	}
 }
