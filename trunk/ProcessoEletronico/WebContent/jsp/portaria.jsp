@@ -75,7 +75,7 @@
 				doneLabelClass="Finalizada" autoclear="true" immediateUpload="true"
 				listWidth="270px" stopControlLabel="Parar"
 				acceptedTypes="pdf" allowFlash="true"
-				sizeErrorLabel="Foto muito grande" uploadControlLabel="Carregar"
+				sizeErrorLabel="PDF muito grande" uploadControlLabel="Carregar"
 				listHeight="70px" >
 				<a4j:support event="onuploadcomplete" />
 			</rich:fileUpload>
