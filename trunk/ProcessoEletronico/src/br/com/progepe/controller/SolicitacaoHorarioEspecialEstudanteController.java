@@ -26,7 +26,6 @@ public class SolicitacaoHorarioEspecialEstudanteController implements
 	private static final long serialVersionUID = -333995781063775201L;
 
 	private SolicitacaoHorarioEspecialEstudante solicitacaoHorarioEspecialEstudante;
-	private ArrayList<SolicitacaoHorarioEspecialEstudante> files = new ArrayList<SolicitacaoHorarioEspecialEstudante>();
 	DAO dao = new DAO();
 
 	public SolicitacaoHorarioEspecialEstudante getSolicitacaoHorarioEspecialEstudante() {
@@ -38,18 +37,11 @@ public class SolicitacaoHorarioEspecialEstudanteController implements
 		this.solicitacaoHorarioEspecialEstudante = solicitacaoHorarioEspecialEstudante;
 	}
 
-	public ArrayList<SolicitacaoHorarioEspecialEstudante> getFiles() {
-		return files;
-	}
-
-	public void setFiles(ArrayList<SolicitacaoHorarioEspecialEstudante> files) {
-		this.files = files;
-	}
-
 	public void abrirSolicitacaoHorarioEspecialEstudante()
 			throws ParseException {
 		try {
 			solicitacaoHorarioEspecialEstudante = new SolicitacaoHorarioEspecialEstudante();
+			solicitacaoHorarioEspecialEstudante.setFiles(new ArrayList<SolicitacaoHorarioEspecialEstudante>());
 			buscarServidorLogado();
 			FacesContext.getCurrentInstance().getExternalContext()
 					.redirect("solicitacaoHorarioEspecialEstudante.jsp");
@@ -72,13 +64,13 @@ public class SolicitacaoHorarioEspecialEstudanteController implements
 	}
 
 	public void paint(OutputStream stream, Object object) throws IOException {
-		stream.write(getFiles().get((Integer) object).getDeclaracaoMatricula());
+		stream.write(solicitacaoHorarioEspecialEstudante.getFiles().get((Integer) object).getDeclaracaoMatricula());
 	}
 
 	public void listener(UploadEvent event) throws Exception {
 		UploadItem item = event.getUploadItem();
 		solicitacaoHorarioEspecialEstudante.setDeclaracaoMatricula(item.getData());
-		files.add(solicitacaoHorarioEspecialEstudante);
+		solicitacaoHorarioEspecialEstudante.getFiles().add(solicitacaoHorarioEspecialEstudante);
 	}
 
 	public void salvar() throws IOException, ParseException {
@@ -94,7 +86,7 @@ public class SolicitacaoHorarioEspecialEstudanteController implements
 				Constantes.STATUS_SOLICITACAO_ENCAMINHADO);
 		dao.saveOrUpdate(solicitacaoHorarioEspecialEstudante);
 		solicitacaoHorarioEspecialEstudante = new SolicitacaoHorarioEspecialEstudante();
-		files = new ArrayList<SolicitacaoHorarioEspecialEstudante>();
+		solicitacaoHorarioEspecialEstudante.setFiles(new ArrayList<SolicitacaoHorarioEspecialEstudante>());
 		buscarServidorLogado();
 	}
 

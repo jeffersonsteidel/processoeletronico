@@ -1,5 +1,7 @@
 package br.com.progepe.entity;
 
+import java.util.ArrayList;
+
 public class SolicitacaoHorarioEspecialEstudante extends Solicitacao {
 
 	private static final long serialVersionUID = 1L;
@@ -9,6 +11,15 @@ public class SolicitacaoHorarioEspecialEstudante extends Solicitacao {
 	private String motivo;
 	private byte[] declaracaoMatricula;
 	private Boolean documentoValidado = false;
+	private ArrayList<SolicitacaoHorarioEspecialEstudante> files = new ArrayList<SolicitacaoHorarioEspecialEstudante>();
+	
+	public ArrayList<SolicitacaoHorarioEspecialEstudante> getFiles() {
+		return files;
+	}
+
+	public void setFiles(ArrayList<SolicitacaoHorarioEspecialEstudante> files) {
+		this.files = files;
+	}
 
 	public String getCurso() {
 		return curso;

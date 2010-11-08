@@ -12,6 +12,7 @@ import org.hibernate.criterion.Restrictions;
 
 import br.com.progepe.entity.Solicitacao;
 import br.com.progepe.entity.SolicitacaoContaBancaria;
+import br.com.progepe.entity.SolicitacaoHorarioEspecialEstudante;
 import br.com.progepe.entity.SolicitacaoLicencaPaternidade;
 
 public class SolicitacaoDAO extends DAO {
@@ -63,6 +64,15 @@ public class SolicitacaoDAO extends DAO {
 				"from SolicitacaoLicencaPaternidade s where s.codigo= :codigo");
 		query.setParameter("codigo", codigo);
 		return (SolicitacaoLicencaPaternidade) query.uniqueResult();
+	}
+	
+	public SolicitacaoHorarioEspecialEstudante carregarSolicitacaoHorarioEspecialEstudante(
+			Long codigo) {
+		HibernateUtility.getSession().clear();
+		Query query = HibernateUtility.getSession().createQuery(
+				"from SolicitacaoHorarioEspecialEstudante s where s.codigo= :codigo");
+		query.setParameter("codigo", codigo);
+		return (SolicitacaoHorarioEspecialEstudante) query.uniqueResult();
 	}
 
 	public void updateSolicitacao(Object objeto) {
