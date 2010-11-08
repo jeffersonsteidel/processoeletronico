@@ -83,6 +83,7 @@
 				action="#{portariaController.salvar}" reRender="form" />
 
 		</rich:panel></center>
+		
 	</a4j:form>
 </f:view>
 </body>
