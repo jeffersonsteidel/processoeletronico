@@ -280,6 +280,7 @@ public class SolicitacaoController implements Serializable {
 		if (Constantes.TIPO_SOLICITACAO_LICENCA_PATERNIDADE
 				.equals(tipoSolicitacao)) {
 			solicitacaoLicencaPaternidade = new SolicitacaoLicencaPaternidade();
+			solicitacaoLicencaPaternidade.setFiles(new ArrayList<SolicitacaoLicencaPaternidade>());
 			solicitacaoLicencaPaternidade.setSolicitante(new Servidor());
 			solicitacaoLicencaPaternidade.setCodigo(codigoSolicitacao);
 			solicitacaoLicencaPaternidade = (SolicitacaoLicencaPaternidade) solicitacaoDAO
