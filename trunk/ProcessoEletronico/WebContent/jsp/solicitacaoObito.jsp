@@ -63,7 +63,7 @@
 			<rich:fileUpload
 				fileUploadListener="#{solicitacaoObitoController.listener}"
 				maxFilesQuantity="1"
-				addControlLabel="Adicionar Certidao de Óbito" id="upload"
+				addControlLabel="Adicionar Certidao de Obito" id="upload"
 				transferErrorLabel="Falha Ao realizar Transferência"
 				doneLabelClass="Finalizada" autoclear="true" immediateUpload="true"
 				listWidth="270px" stopControlLabel="Parar"
