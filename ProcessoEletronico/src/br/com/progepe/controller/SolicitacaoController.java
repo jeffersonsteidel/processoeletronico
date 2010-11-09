@@ -50,6 +50,7 @@ public class SolicitacaoController implements Serializable {
 
 	private Long codigoSolicitacao;
 	private Long tipoSolicitacao;
+	private Boolean desabilitaBotao = true;
 
 	DAO dao = new DAO();
 	SolicitacaoDAO solicitacaoDAO = new SolicitacaoDAO();
@@ -177,6 +178,14 @@ public class SolicitacaoController implements Serializable {
 	public void setSolicitacaoAlimentacao(
 			SolicitacaoAlimentacao solicitacaoAlimentacao) {
 		this.solicitacaoAlimentacao = solicitacaoAlimentacao;
+	}
+
+	public Boolean getDesabilitaBotao() {
+		return desabilitaBotao;
+	}
+
+	public void setDesabilitaBotao(Boolean desabilitaBotao) {
+		this.desabilitaBotao = desabilitaBotao;
 	}
 
 	public void abrirPesquisarSolicitacoes() throws ParseException {
@@ -360,6 +369,7 @@ public class SolicitacaoController implements Serializable {
 			if (Constantes.STATUS_SOLICITACAO_ENCAMINHADO
 					.equals(solicitacaoContaBancaria.getStatusSolicitacao()
 							.getCodigo())) {
+				this.setDesabilitaBotao(false);
 				solicitacaoContaBancaria.getStatusSolicitacao().setCodigo(
 						Constantes.STATUS_SOLICITACAO_EM_ANALISE);
 				solicitacaoContaBancaria.setDataAtendimento(new Date());
@@ -382,6 +392,7 @@ public class SolicitacaoController implements Serializable {
 			if (Constantes.STATUS_SOLICITACAO_ENCAMINHADO
 					.equals(solicitacaoLicencaPaternidade
 							.getStatusSolicitacao().getCodigo())) {
+				this.setDesabilitaBotao(false);
 				solicitacaoLicencaPaternidade.getStatusSolicitacao().setCodigo(
 						Constantes.STATUS_SOLICITACAO_EM_ANALISE);
 				solicitacaoLicencaPaternidade.setDataAtendimento(new Date());
@@ -405,6 +416,7 @@ public class SolicitacaoController implements Serializable {
 			if (Constantes.STATUS_SOLICITACAO_ENCAMINHADO
 					.equals(solicitacaoHorarioEspecialEstudante
 							.getStatusSolicitacao().getCodigo())) {
+				this.setDesabilitaBotao(false);
 				solicitacaoHorarioEspecialEstudante.getStatusSolicitacao()
 						.setCodigo(Constantes.STATUS_SOLICITACAO_EM_ANALISE);
 				solicitacaoHorarioEspecialEstudante
@@ -427,6 +439,7 @@ public class SolicitacaoController implements Serializable {
 					.carregarSolicitacaoObito(codigoSolicitacao);
 			if (Constantes.STATUS_SOLICITACAO_ENCAMINHADO
 					.equals(solicitacaoObito.getStatusSolicitacao().getCodigo())) {
+				this.setDesabilitaBotao(false);
 				solicitacaoObito.getStatusSolicitacao().setCodigo(
 						Constantes.STATUS_SOLICITACAO_EM_ANALISE);
 				solicitacaoObito.setDataAtendimento(new Date());
@@ -448,6 +461,7 @@ public class SolicitacaoController implements Serializable {
 			if (Constantes.STATUS_SOLICITACAO_ENCAMINHADO
 					.equals(solicitacaoCasamento.getStatusSolicitacao()
 							.getCodigo())) {
+				this.setDesabilitaBotao(false);
 				solicitacaoCasamento.getStatusSolicitacao().setCodigo(
 						Constantes.STATUS_SOLICITACAO_EM_ANALISE);
 				solicitacaoCasamento.setDataAtendimento(new Date());
@@ -467,6 +481,7 @@ public class SolicitacaoController implements Serializable {
 			if (Constantes.STATUS_SOLICITACAO_ENCAMINHADO
 					.equals(solicitacaoAlimentacao.getStatusSolicitacao()
 							.getCodigo())) {
+				this.setDesabilitaBotao(false);
 				solicitacaoAlimentacao.getStatusSolicitacao().setCodigo(
 						Constantes.STATUS_SOLICITACAO_EM_ANALISE);
 				solicitacaoAlimentacao.setDataAtendimento(new Date());
@@ -502,35 +517,41 @@ public class SolicitacaoController implements Serializable {
 					.setIndPoupanca(
 							solicitacaoContaBancaria.getNovoIndPoupanca());
 			dao.update(solicitacaoContaBancaria.getSolicitante());
+			this.setDesabilitaBotao(true);
 		} else if (Constantes.TIPO_SOLICITACAO_LICENCA_PATERNIDADE
 				.equals(tipoSolicitacao)) {
 			solicitacaoLicencaPaternidade.getStatusSolicitacao().setCodigo(
 					Constantes.STATUS_SOLICITACAO_DEFERIDO);
 			solicitacaoLicencaPaternidade.setDataFechamento(new Date());
 			dao.update(solicitacaoLicencaPaternidade);
+			this.setDesabilitaBotao(true);
 		} else if (Constantes.TIPO_SOLICITACAO_HORARIO_ESPECIAL_ESTUDANTE
 				.equals(tipoSolicitacao)) {
 			solicitacaoHorarioEspecialEstudante.getStatusSolicitacao()
 					.setCodigo(Constantes.STATUS_SOLICITACAO_DEFERIDO);
 			solicitacaoHorarioEspecialEstudante.setDataFechamento(new Date());
 			dao.update(solicitacaoHorarioEspecialEstudante);
+			this.setDesabilitaBotao(true);
 		} else if (Constantes.TIPO_SOLICITACAO_OBITO.equals(tipoSolicitacao)) {
 			solicitacaoObito.getStatusSolicitacao().setCodigo(
 					Constantes.STATUS_SOLICITACAO_DEFERIDO);
 			solicitacaoObito.setDataFechamento(new Date());
 			dao.update(solicitacaoObito);
+			this.setDesabilitaBotao(true);
 		} else if (Constantes.TIPO_SOLICITACAO_LICENCA_CASAMENTO
 				.equals(tipoSolicitacao)) {
 			solicitacaoCasamento.getStatusSolicitacao().setCodigo(
 					Constantes.STATUS_SOLICITACAO_DEFERIDO);
 			solicitacaoCasamento.setDataFechamento(new Date());
 			dao.update(solicitacaoCasamento);
+			this.setDesabilitaBotao(true);
 		} else if (Constantes.TIPO_SOLICITACAO_AUXILIO_ALIMENTACAO
 				.equals(tipoSolicitacao)) {
 			solicitacaoAlimentacao.getStatusSolicitacao().setCodigo(
 					Constantes.STATUS_SOLICITACAO_DEFERIDO);
 			solicitacaoAlimentacao.setDataFechamento(new Date());
 			dao.update(solicitacaoAlimentacao);
+			this.setDesabilitaBotao(true);
 		}
 	}
 
@@ -543,6 +564,7 @@ public class SolicitacaoController implements Serializable {
 			if (solicitacaoContaBancaria.getJustificativa() != null
 					&& solicitacaoContaBancaria.getJustificativa() != "") {
 				solicitacaoDAO.saveOrUpdate(solicitacaoContaBancaria);
+				this.setDesabilitaBotao(true);
 			} else {
 				FacesMessage message = new FacesMessage(
 						FacesMessage.SEVERITY_ERROR,
@@ -558,6 +580,7 @@ public class SolicitacaoController implements Serializable {
 			if (solicitacaoLicencaPaternidade.getJustificativa() != null
 					&& solicitacaoLicencaPaternidade.getJustificativa() != "") {
 				solicitacaoDAO.saveOrUpdate(solicitacaoLicencaPaternidade);
+				this.setDesabilitaBotao(true);
 			} else {
 				FacesMessage message = new FacesMessage(
 						FacesMessage.SEVERITY_ERROR,
@@ -574,6 +597,7 @@ public class SolicitacaoController implements Serializable {
 					&& solicitacaoHorarioEspecialEstudante.getJustificativa() != "") {
 				solicitacaoDAO
 						.saveOrUpdate(solicitacaoHorarioEspecialEstudante);
+				this.setDesabilitaBotao(true);
 			} else {
 				FacesMessage message = new FacesMessage(
 						FacesMessage.SEVERITY_ERROR,
@@ -588,6 +612,7 @@ public class SolicitacaoController implements Serializable {
 			if (solicitacaoObito.getJustificativa() != null
 					&& solicitacaoObito.getJustificativa() != "") {
 				solicitacaoDAO.saveOrUpdate(solicitacaoObito);
+				this.setDesabilitaBotao(true);
 			} else {
 				FacesMessage message = new FacesMessage(
 						FacesMessage.SEVERITY_ERROR,
@@ -603,6 +628,7 @@ public class SolicitacaoController implements Serializable {
 			if (solicitacaoCasamento.getJustificativa() != null
 					&& solicitacaoCasamento.getJustificativa() != "") {
 				solicitacaoDAO.saveOrUpdate(solicitacaoCasamento);
+				this.setDesabilitaBotao(true);
 			} else {
 				FacesMessage message = new FacesMessage(
 						FacesMessage.SEVERITY_ERROR,
@@ -618,6 +644,7 @@ public class SolicitacaoController implements Serializable {
 			if (solicitacaoAlimentacao.getJustificativa() != null
 					&& solicitacaoAlimentacao.getJustificativa() != "") {
 				solicitacaoDAO.saveOrUpdate(solicitacaoAlimentacao);
+				this.setDesabilitaBotao(true);
 			} else {
 				FacesMessage message = new FacesMessage(
 						FacesMessage.SEVERITY_ERROR,
