@@ -51,6 +51,9 @@
 				<rich:menuItem submitMode="ajax" value="Adicionar Dependentes"
 					action="#{dependenteController.abrirAdicionarDependentes}"
 					icon="../images/ATUALIZARDADOS.gif" />
+					<rich:menuItem submitMode="ajax" value="Adicionar Titulações"
+					action="#{servidorTitulacaoController.abrirAdicionarServidorTitulacao}"
+					icon="../images/ATUALIZARDADOS.gif" />
 			</rich:dropDownMenu>
 
 			<rich:dropDownMenu>
