@@ -168,7 +168,7 @@
 							target="#{solicitacaoController.tipoSolicitacao}" />
 					</a4j:commandLink>
 					<rich:toolTip for="encaminhado" value="Encaminhado" />
-					<rich:toolTip for="emAnalise" value="Em Análise" />
+					<rich:toolTip for="emAnalise" value="Você não pode abrir uma solicitação que está em Análise!" />
 					<rich:toolTip for="deferido" value="Deferido" />
 					<rich:toolTip for="indeferido" value="Indeferido" />
 				</rich:column>
