@@ -87,9 +87,9 @@
 			</h:panelGrid>
 
 			<h:panelGrid columns="2">
-				<a4j:commandButton value="Deferir" reRender="form"
+				<a4j:commandButton value="Deferir" reRender="form" rendered="#{solicitacaoController.solicitacaoContaBancaria.statusSolicitacao.codigo==2}"
 					oncomplete="#{rich:component('confirmPanel')}.show()"/>
-				<a4j:commandButton value="Indeferir" reRender="form"
+				<a4j:commandButton value="Indeferir" reRender="form" rendered="#{solicitacaoController.solicitacaoContaBancaria.statusSolicitacao.codigo==2}"
 					oncomplete="#{rich:component('confirmPanel02')}.show()"/>
 			</h:panelGrid>
 		</rich:panel></center>
