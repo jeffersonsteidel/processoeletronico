@@ -22,7 +22,7 @@
 						<h:outputText value="Nome: " />
 						<h:inputText value="#{servidorController.servidor.nome}" size="50"
 							maxlength="100" required="true"
-							requiredMessage="Campo Nome obrigatório!"></h:inputText>
+							requiredMessage="Campo Nome é obrigatório!"></h:inputText>
 						<h:outputText value="Sexo: " />
 						<h:selectOneMenu value="#{servidorController.servidor.sexo}"
 							required="true" requiredMessage="Campo Sexo é obrigatório!">
@@ -39,7 +39,7 @@
 							popup="true" datePattern="dd/MM/yyyy" showApplyButton="#"
 							cellWidth="12px" cellHeight="12px" style="width:80px"
 							required="true" inputSize="12"
-							requiredMessage="Campo Data de Nascimento!" />
+							requiredMessage="Campo Data de Nascimento é obrigatório!" />
 						<h:outputText value="Grupo Sanguíneo: " />
 						<h:selectOneMenu
 							value="#{servidorController.servidor.grupoSanguineo.codigo}"
@@ -51,7 +51,7 @@
 						<h:outputText value="Nome da Mãe: " />
 						<h:inputText value="#{servidorController.servidor.nomeMae}"
 							size="40" maxlength="100" required="true"
-							requiredMessage="Campo Nome da Mãe obrigatório!"></h:inputText>
+							requiredMessage="Campo Nome da Mãe é obrigatório!"></h:inputText>
 						<h:outputText value="Nome do do Pai: " />
 						<h:inputText value="#{servidorController.servidor.nomePai}"
 							size="40" maxlength="100"></h:inputText>
@@ -129,14 +129,14 @@
 						<h:outputText value="SIAPE: " />
 						<h:inputText value="#{servidorController.servidor.siape}"
 							size="10" maxlength="7" required="true"
-							requiredMessage="Campo SIAPE obrigatório!"
+							requiredMessage="Campo SIAPE é obrigatório!"
 							onkeypress="mascara(this,soNumeros);"></h:inputText>
 						<h:outputText value="Id Única: " />
 						<h:inputText
 							title="A Id Única pode ser encontrada no contra-cheque!"
 							value="#{servidorController.servidor.identificacaoUnica}"
 							size="10" maxlength="9" required="true"
-							requiredMessage="Campo Id Única obrigatório!"
+							requiredMessage="Campo Id Única é obrigatório!"
 							onkeypress="mascara(this,digitoVerificador);"></h:inputText>
 
 						<h:outputText value="Data de Admissão no Órgão: " />
@@ -144,7 +144,7 @@
 							locale="" popup="true" datePattern="dd/MM/yyyy"
 							showApplyButton="#" cellWidth="12px" cellHeight="12px"
 							style="width:80px" required="true" inputSize="12"
-							requiredMessage="Campo Data de Admissão no Órgão obrigatório!" />
+							requiredMessage="Campo Data de Admissão no Órgão é obrigatório!" />
 
 						<h:outputText value="Data de Admissão no Serviço Público: " />
 						<rich:calendar
@@ -152,7 +152,7 @@
 							locale="" popup="true" datePattern="dd/MM/yyyy"
 							showApplyButton="#" cellWidth="12px" cellHeight="12px"
 							style="width:80px" required="true" inputSize="12"
-							requiredMessage="Campo Data de Admissão no Serviço Público obrigatório!" />
+							requiredMessage="Campo Data de Admissão no Serviço Público é obrigatório!" />
 
 						<h:outputText value="Lotação: " />
 						<h:selectOneMenu
@@ -175,7 +175,7 @@
 						<h:outputText value="Ramal: " />
 						<h:inputText value="#{servidorController.servidor.ramal}" size="8"
 							maxlength="4" required="true"
-							requiredMessage="Campo Ramal obrigatório!"
+							requiredMessage="Campo Ramal é obrigatório!"
 							onkeypress="mascara(this, soNumeros);"></h:inputText>
 
 						<h:outputText value="Cargo: " />
@@ -247,7 +247,7 @@
 						<h:outputText value="CPF: " />
 						<h:inputText value="#{servidorController.servidor.documento.cpf}"
 							size="16" maxlength="14" required="true" id="cpf"
-							requiredMessage="Campo CPF obrigatório!"
+							requiredMessage="Campo CPF é obrigatório!"
 							onkeypress="mascara(this,cpf);">
 							<a4j:support event="onchange"
 								action="#{servidorController.validarCPF}" ajaxSingle="true"
@@ -256,7 +256,7 @@
 						<h:outputText value="RG: " />
 						<h:inputText value="#{servidorController.servidor.documento.rg}"
 							size="16" maxlength="13" required="true"
-							requiredMessage="Campo RG obrigatório!"></h:inputText>
+							requiredMessage="Campo RG é obrigatório!"></h:inputText>
 						<h:outputText value="UF do RG: " />
 						<h:selectOneMenu
 							value="#{servidorController.servidor.documento.rgUf}"
@@ -275,14 +275,14 @@
 							locale="" popup="true" datePattern="dd/MM/yyyy"
 							showApplyButton="#" cellWidth="12px" cellHeight="12px"
 							style="width:80px" required="true" inputSize="12"
-							requiredMessage="Campo Data de Expedição do RG obrigatório!" />
+							requiredMessage="Campo Data de Expedição do RG é obrigatório!" />
 						<h:outputText value="Título de Eleitor: " />
 						<h:inputText
 							value="#{servidorController.servidor.documento.tituloEleitor}"
 							size="16" maxlength="13" required="true"
 							onkeypress="mascara(this,tituloEleitor);"
 							validatorMessage="O campo Título de Eleitor deve ter 13 caracteres"
-							requiredMessage="Campo Título de Eleitor obrigatório!">
+							requiredMessage="Campo Título de Eleitor é obrigatório!">
 							<f:validateLength minimum="13" />
 						</h:inputText>
 						<h:outputText value="Título de Eleitor Zona: " />
@@ -290,13 +290,13 @@
 							value="#{servidorController.servidor.documento.tituloZona}"
 							size="10" maxlength="3" required="true"
 							onkeypress="mascara(this,soNumeros);"
-							requiredMessage="Campo Título de Eleitor Sessão obrigatório!"></h:inputText>
+							requiredMessage="Campo Título de Eleitor Sessão é obrigatório!"></h:inputText>
 						<h:outputText value="Título de Eleitor Sessão: " />
 						<h:inputText
 							value="#{servidorController.servidor.documento.tituloSecao}"
 							size="10" maxlength="4" required="true"
 							onkeypress="mascara(this,soNumeros);"
-							requiredMessage="Campo Título de Eleitor Sessão obrigatório!"></h:inputText>
+							requiredMessage="Campo Título de Eleitor Sessão é obrigatório!"></h:inputText>
 						<h:outputText value="UF do Título de Eleitor: " />
 						<h:selectOneMenu
 							value="#{servidorController.servidor.documento.tituloUf}"
@@ -311,7 +311,7 @@
 							locale="" popup="true" datePattern="dd/MM/yyyy"
 							showApplyButton="#" cellWidth="12px" cellHeight="12px"
 							style="width:80px" required="true" inputSize="12"
-							requiredMessage="Campo Data de Emissão do Título de Eleitor obrigatório!" />
+							requiredMessage="Campo Data de Emissão do Título de Eleitor é obrigatório!" />
 						<h:outputText value="Certificado Militar: " />
 						<h:inputText disabled="#{servidorController.indFeminino}"
 							id="certificadoMilitar"
@@ -331,12 +331,12 @@
 						<h:inputText
 							value="#{servidorController.servidor.documento.carteiraTrabalho}"
 							size="16" maxlength="7" required="true"
-							requiredMessage="Campo Carteira de Trabalho obrigatório!"></h:inputText>
+							requiredMessage="Campo Carteira de Trabalho é obrigatório!"></h:inputText>
 						<h:outputText value="Carteira de Trabalho Série: " />
 						<h:inputText
 							value="#{servidorController.servidor.documento.carteiraSerie}"
 							size="10" maxlength="5" required="true"
-							requiredMessage="Campo Carteira de Trabalho Série obrigatório!"></h:inputText>
+							requiredMessage="Campo Carteira de Trabalho Série é obrigatório!"></h:inputText>
 						<h:outputText value="UF da Carteira de Trabalho: " />
 						<h:selectOneMenu
 							value="#{servidorController.servidor.documento.carteiraUf}"
@@ -350,7 +350,7 @@
 							size="16" maxlength="14" required="true"
 							validatorMessage="O campo PIS/PASEP deve ter 14 caracteres!"
 							onkeypress="mascara(this, pis);"
-							requiredMessage="Campo PIS/PASEP obrigatório!">
+							requiredMessage="Campo PIS/PASEP é obrigatório!">
 							<f:validateLength minimum="14" />
 						</h:inputText>
 						<h:outputText value="Data do 1º Emprego: " />
@@ -367,19 +367,19 @@
 						<h:outputText value="Endereço: " />
 						<h:inputText value="#{servidorController.servidor.endereco.rua}"
 							size="50" maxlength="120" required="true"
-							requiredMessage="Campo Endereço obrigatório!"></h:inputText>
+							requiredMessage="Campo Endereço é obrigatório!"></h:inputText>
 
 						<h:outputText value="Número: " />
 						<h:inputText
 							value="#{servidorController.servidor.endereco.numero}" size="5"
 							maxlength="7" required="true"
-							requiredMessage="Campo Número obrigatório!"></h:inputText>
+							requiredMessage="Campo Número é obrigatório!"></h:inputText>
 
 						<h:outputText value="Bairro: " />
 						<h:inputText
 							value="#{servidorController.servidor.endereco.bairro}" size="30"
 							maxlength="80" required="true"
-							requiredMessage="Campo Bairro obrigatório!"></h:inputText>
+							requiredMessage="Campo Bairro é obrigatório!"></h:inputText>
 
 						<h:outputText value="Complemento: " />
 						<h:inputText
@@ -389,7 +389,7 @@
 						<h:outputText value="CEP: " />
 						<h:inputText value="#{servidorController.servidor.endereco.cep}"
 							size="20" maxlength="9" required="true"
-							requiredMessage="Campo CEP obrigatório!"
+							requiredMessage="Campo CEP é obrigatório!"
 							validatorMessage="Campo CEP deve ter no mínimo 9 caracateres!"
 							onkeypress="mascara(this,cep)">
 							<f:validateLength minimum="9" />
@@ -417,7 +417,7 @@
 						<h:outputText value="Telefone: " />
 						<h:inputText value="#{servidorController.servidor.telefone}"
 							size="16" maxlength="13" required="true"
-							requiredMessage="Campo Telefone obrigatório!"
+							requiredMessage="Campo Telefone é obrigatório!"
 							onkeypress="mascara(this,telefone);"
 							validatorMessage="Campo Telefone deve ter no mínimo 13 caracteres!">
 							<f:validateLength minimum="13" />
@@ -453,12 +453,12 @@
 						<h:inputText
 							value="#{servidorController.servidor.contaBancaria.numeroConta}"
 							size="15" maxlength="12" required="true"
-							requiredMessage="Campo Número da Conta obrigatório!"></h:inputText>
+							requiredMessage="Campo Número da Conta é obrigatório!"></h:inputText>
 						<h:outputText value="Agência: " />
 						<h:inputText
 							value="#{servidorController.servidor.contaBancaria.agencia}"
 							size="10" maxlength="8" required="true"
-							requiredMessage="Campo Agência obrigatório!"></h:inputText>
+							requiredMessage="Campo Agência é obrigatório!"></h:inputText>
 
 						<h:outputText value="Poupança:" />
 						<h:selectBooleanCheckbox id="poupanca"
