@@ -63,7 +63,7 @@
 			<rich:fileUpload
 				fileUploadListener="#{solicitacaoObitoController.listener}"
 				maxFilesQuantity="1"
-				addControlLabel="Adicionar Certidao de Nascimento" id="upload"
+				addControlLabel="Adicionar Certidao de Óbito" id="upload"
 				transferErrorLabel="Falha Ao realizar Transferência"
 				doneLabelClass="Finalizada" autoclear="true" immediateUpload="true"
 				listWidth="270px" stopControlLabel="Parar"
@@ -79,7 +79,7 @@
 			<h:panelGroup id="info">
 				<rich:panel bodyClass="info">
 					<rich:dataGrid columns="1"
-						value="#{solicitacaoObitoController.files}"
+						value="#{solicitacaoObitoController.solicitacaoObito.files}"
 						var="file" rowKeyVar="row">
 						<rich:panel bodyClass="rich-laguna-panel-no-header">
 							<h:panelGrid columns="2">

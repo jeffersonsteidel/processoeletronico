@@ -1,5 +1,7 @@
 package br.com.progepe.entity;
 
+import java.util.ArrayList;
+
 public class SolicitacaoObito extends Solicitacao {
 
 	private static final long serialVersionUID = 1L;
@@ -8,6 +10,7 @@ public class SolicitacaoObito extends Solicitacao {
 	private GrauParentesco grauParentesco;
 	private Integer numeroCertidao;
 	private byte[] certidaoObito;
+	private ArrayList<SolicitacaoObito> files = new ArrayList<SolicitacaoObito>();
 	private boolean documentoValidado = false;
 	
 	
@@ -42,4 +45,11 @@ public class SolicitacaoObito extends Solicitacao {
 		this.documentoValidado = documentoValidado;
 	}
 	
+	public ArrayList<SolicitacaoObito> getFiles() {
+		return files;
+	}
+
+	public void setFiles(ArrayList<SolicitacaoObito> files) {
+		this.files = files;
+	}
 }
