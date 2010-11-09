@@ -29,7 +29,7 @@
 			<font size="2"><b>LICENÇA DE ÓBITO</b></font>
 			<h:panelGrid columns="1">
 				<h:outputText
-					value="#{solicitacaoController.solicitacaoObito.solicitante.siape} - #{solicitacaoController.solicitacaoObito.solicitante.nome}">
+					value="Solicitante: #{solicitacaoController.solicitacaoObito.solicitante.siape} - #{solicitacaoController.solicitacaoObito.solicitante.nome}">
 				</h:outputText>
 			</h:panelGrid>
 

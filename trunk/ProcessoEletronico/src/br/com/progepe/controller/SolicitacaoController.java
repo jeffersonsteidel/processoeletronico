@@ -22,6 +22,7 @@ import br.com.progepe.entity.Banco;
 import br.com.progepe.entity.ContaBancaria;
 import br.com.progepe.entity.Servidor;
 import br.com.progepe.entity.Solicitacao;
+import br.com.progepe.entity.SolicitacaoAlimentacao;
 import br.com.progepe.entity.SolicitacaoCasamento;
 import br.com.progepe.entity.SolicitacaoContaBancaria;
 import br.com.progepe.entity.SolicitacaoHorarioEspecialEstudante;
@@ -45,6 +46,7 @@ public class SolicitacaoController implements Serializable {
 	private SolicitacaoHorarioEspecialEstudante solicitacaoHorarioEspecialEstudante;
 	private SolicitacaoObito solicitacaoObito;
 	private SolicitacaoCasamento solicitacaoCasamento;
+	private SolicitacaoAlimentacao solicitacaoAlimentacao;
 
 	private Long codigoSolicitacao;
 	private Long tipoSolicitacao;
@@ -166,6 +168,15 @@ public class SolicitacaoController implements Serializable {
 	public void setSolicitacaoCasamento(SolicitacaoCasamento solicitacaoCasamento) {
 		this.solicitacaoCasamento = solicitacaoCasamento;
 	}
+	
+	public SolicitacaoAlimentacao getSolicitacaoAlimentacao() {
+		return solicitacaoAlimentacao;
+	}
+
+	public void setSolicitacaoAlimentacao(
+			SolicitacaoAlimentacao solicitacaoAlimentacao) {
+		this.solicitacaoAlimentacao = solicitacaoAlimentacao;
+	}
 
 	public void abrirPesquisarSolicitacoes() throws ParseException {
 		try {
@@ -265,6 +276,17 @@ public class SolicitacaoController implements Serializable {
 		HttpServletResponse response = (HttpServletResponse) context
 				.getExternalContext().getResponse();
 		response.sendRedirect("solicitacaoContaBancariaAprovar.jsp ");
+	}
+	
+	public void carregarSolicitacaoAlimentacao(
+			SolicitacaoAlimentacao codigoSolicitacaoAlimentacao)
+			throws IOException {
+		solicitacaoAlimentacao = (SolicitacaoAlimentacao) dao
+				.refresh(codigoSolicitacaoAlimentacao);
+		FacesContext context = FacesContext.getCurrentInstance();
+		HttpServletResponse response = (HttpServletResponse) context
+				.getExternalContext().getResponse();
+		response.sendRedirect("solicitacaoAlimentacaoAprovar.jsp ");
 	}
 
 	public void carregarSolicitacaoLicencaPaternidade(
@@ -419,6 +441,23 @@ public class SolicitacaoController implements Serializable {
 			dao.saveOrUpdate(solicitacaoCasamento);
 			this.carregarSolicitacaoCasamento(solicitacaoCasamento);
 		}
+		else if (Constantes.TIPO_SOLICITACAO_AUXILIO_ALIMENTACAO
+				.equals(tipoSolicitacao)) {
+			solicitacaoAlimentacao= new SolicitacaoAlimentacao();
+			solicitacaoAlimentacao.setSolicitante(new Servidor());
+			solicitacaoAlimentacao.setCodigo(codigoSolicitacao);
+			solicitacaoAlimentacao = (SolicitacaoAlimentacao) solicitacaoDAO
+					.carregarSolicitacaoAlimentacao(codigoSolicitacao);
+			solicitacaoAlimentacao.getStatusSolicitacao().setCodigo(
+					Constantes.STATUS_SOLICITACAO_EM_ANALISE);
+			solicitacaoAlimentacao.setDataAtendimento(new Date());
+			solicitacaoAlimentacao.setAtendente(siapeAutenticado
+					.getSiape());
+			solicitacaoAlimentacao.setAtendenteLogado(new Servidor());
+			solicitacaoAlimentacao.setAtendenteLogado(servidor);
+			dao.saveOrUpdate(solicitacaoAlimentacao);
+			this.carregarSolicitacaoAlimentacao(solicitacaoAlimentacao);
+		}
 	}
 
 	public void deferirSolicitacao() throws IOException, ParseException {
@@ -467,6 +506,12 @@ public class SolicitacaoController implements Serializable {
 					Constantes.STATUS_SOLICITACAO_DEFERIDO);
 			solicitacaoCasamento.setDataFechamento(new Date());
 			dao.update(solicitacaoCasamento);
+		} else if (Constantes.TIPO_SOLICITACAO_AUXILIO_ALIMENTACAO
+				.equals(tipoSolicitacao)) {
+			solicitacaoAlimentacao.getStatusSolicitacao().setCodigo(
+					Constantes.STATUS_SOLICITACAO_DEFERIDO);
+			solicitacaoAlimentacao.setDataFechamento(new Date());
+			dao.update(solicitacaoAlimentacao);
 		}
 	}
 
@@ -539,6 +584,21 @@ public class SolicitacaoController implements Serializable {
 			if (solicitacaoCasamento.getJustificativa() != null
 					&& solicitacaoCasamento.getJustificativa() != "") {
 				solicitacaoDAO.saveOrUpdate(solicitacaoCasamento);
+			} else {
+				FacesMessage message = new FacesMessage(
+						FacesMessage.SEVERITY_ERROR,
+						"O campo Justificativa é obrigatório!",
+						"O campo Justificativa é obrigatório!!");
+				FacesContext.getCurrentInstance().addMessage("", message);
+			}
+		}   else if (Constantes.TIPO_SOLICITACAO_AUXILIO_ALIMENTACAO
+				.equals(tipoSolicitacao)) {
+			solicitacaoAlimentacao.getStatusSolicitacao().setCodigo(
+					Constantes.STATUS_SOLICITACAO_INDEFERIDO);
+			solicitacaoAlimentacao.setDataFechamento(new Date());
+			if (solicitacaoAlimentacao.getJustificativa() != null
+					&& solicitacaoAlimentacao.getJustificativa() != "") {
+				solicitacaoDAO.saveOrUpdate(solicitacaoAlimentacao);
 			} else {
 				FacesMessage message = new FacesMessage(
 						FacesMessage.SEVERITY_ERROR,
