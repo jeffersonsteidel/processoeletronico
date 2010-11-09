@@ -47,10 +47,11 @@ public class SolicitacaoController implements Serializable {
 	private SolicitacaoObito solicitacaoObito;
 	private SolicitacaoCasamento solicitacaoCasamento;
 	private SolicitacaoAlimentacao solicitacaoAlimentacao;
+	
 
 	private Long codigoSolicitacao;
 	private Long tipoSolicitacao;
-
+	
 	DAO dao = new DAO();
 	SolicitacaoDAO solicitacaoDAO = new SolicitacaoDAO();
 
@@ -177,7 +178,7 @@ public class SolicitacaoController implements Serializable {
 			SolicitacaoAlimentacao solicitacaoAlimentacao) {
 		this.solicitacaoAlimentacao = solicitacaoAlimentacao;
 	}
-
+	
 	public void abrirPesquisarSolicitacoes() throws ParseException {
 		try {
 			solicitacoes = new ArrayList<Solicitacao>();
