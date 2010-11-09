@@ -68,7 +68,7 @@
 			</h:panelGroup>
 			<h:panelGrid columns="2">
 				<h:outputText value="Justificativa: " />
-				<h:inputTextarea
+				<h:inputTextarea disabled="#{solicitacaoController.desabilitaBotao}"
 					value="#{solicitacaoController.solicitacaoObito.justificativa}"
 					cols="50" rows="5"></h:inputTextarea>
 			</h:panelGrid>
