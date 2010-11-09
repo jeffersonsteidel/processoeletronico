@@ -14,13 +14,13 @@ public class Dependente implements Serializable {
 	private String sexo;
 	private Date dataNascimento;
 	private GrauParentesco grauParentesco;
-	private Boolean indNecessidadesEspeciais;
-	private Boolean indEstudante;
-	private Boolean indIr;
+	private Boolean indNecessidadesEspeciais = false;
+	private Boolean indEstudante = false;
+	private Boolean indIr = false;
 	private Documento documento;
 	private String curso;
 	private String faculdade;
-	private String dataFormacao;
+	private Date dataFormacao;
 	// Variavel auxiliar
 	private Integer indentificador;
 	private Servidor servidor;
@@ -113,11 +113,11 @@ public class Dependente implements Serializable {
 		this.faculdade = faculdade;
 	}
 
-	public String getDataFormacao() {
+	public Date getDataFormacao() {
 		return dataFormacao;
 	}
 
-	public void setDataFormacao(String dataFormacao) {
+	public void setDataFormacao(Date dataFormacao) {
 		this.dataFormacao = dataFormacao;
 	}
 
