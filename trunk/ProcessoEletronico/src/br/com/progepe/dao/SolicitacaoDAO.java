@@ -11,6 +11,7 @@ import org.hibernate.Query;
 import org.hibernate.criterion.Restrictions;
 
 import br.com.progepe.entity.Solicitacao;
+import br.com.progepe.entity.SolicitacaoAfastamentoConjuge;
 import br.com.progepe.entity.SolicitacaoAlimentacao;
 import br.com.progepe.entity.SolicitacaoCasamento;
 import br.com.progepe.entity.SolicitacaoContaBancaria;
@@ -84,6 +85,16 @@ public class SolicitacaoDAO extends DAO {
 		query.setParameter("codigo", codigo);
 		return (SolicitacaoLicencaPaternidade) query.uniqueResult();
 	}
+	
+	public SolicitacaoAfastamentoConjuge carregarSolicitacaoAfastamentoConjuge(
+			Long codigo) {
+		HibernateUtility.getSession().clear();
+		Query query = HibernateUtility.getSession().createQuery(
+				"from SolicitacaoAfastamentoConjuge s where s.codigo= :codigo");
+		query.setParameter("codigo", codigo);
+		return (SolicitacaoAfastamentoConjuge) query.uniqueResult();
+	}
+	
 	
 	public SolicitacaoHorarioEspecialEstudante carregarSolicitacaoHorarioEspecialEstudante(
 			Long codigo) {

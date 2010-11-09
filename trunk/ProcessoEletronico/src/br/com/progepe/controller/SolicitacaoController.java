@@ -22,6 +22,7 @@ import br.com.progepe.entity.Banco;
 import br.com.progepe.entity.ContaBancaria;
 import br.com.progepe.entity.Servidor;
 import br.com.progepe.entity.Solicitacao;
+import br.com.progepe.entity.SolicitacaoAfastamentoConjuge;
 import br.com.progepe.entity.SolicitacaoAlimentacao;
 import br.com.progepe.entity.SolicitacaoCasamento;
 import br.com.progepe.entity.SolicitacaoContaBancaria;
@@ -47,6 +48,7 @@ public class SolicitacaoController implements Serializable {
 	private SolicitacaoObito solicitacaoObito;
 	private SolicitacaoCasamento solicitacaoCasamento;
 	private SolicitacaoAlimentacao solicitacaoAlimentacao;
+	private SolicitacaoAfastamentoConjuge solicitacaoAfastamentoConjuge;
 
 	private Long codigoSolicitacao;
 	private Long tipoSolicitacao;
@@ -188,6 +190,15 @@ public class SolicitacaoController implements Serializable {
 		this.desabilitaBotao = desabilitaBotao;
 	}
 
+	public SolicitacaoAfastamentoConjuge getSolicitacaoAfastamentoConjuge() {
+		return solicitacaoAfastamentoConjuge;
+	}
+
+	public void setSolicitacaoAfastamentoConjuge(
+			SolicitacaoAfastamentoConjuge solicitacaoAfastamentoConjuge) {
+		this.solicitacaoAfastamentoConjuge = solicitacaoAfastamentoConjuge;
+	}
+
 	public void abrirPesquisarSolicitacoes() throws ParseException {
 		try {
 			solicitacoes = new ArrayList<Solicitacao>();
@@ -297,6 +308,17 @@ public class SolicitacaoController implements Serializable {
 		HttpServletResponse response = (HttpServletResponse) context
 				.getExternalContext().getResponse();
 		response.sendRedirect("solicitacaoAlimentacaoAprovar.jsp ");
+	}
+
+	public void carregarSolicitacaoAfasatamentoConjuge(
+			SolicitacaoAfastamentoConjuge codigoSolicitacaoAfastamentoConjuge)
+			throws IOException {
+		solicitacaoAfastamentoConjuge = (SolicitacaoAfastamentoConjuge) dao
+				.refresh(codigoSolicitacaoAfastamentoConjuge);
+		FacesContext context = FacesContext.getCurrentInstance();
+		HttpServletResponse response = (HttpServletResponse) context
+				.getExternalContext().getResponse();
+		response.sendRedirect("solicitacaoAfastamentoConjugeAprovar.jsp ");
 	}
 
 	public void carregarSolicitacaoLicencaPaternidade(
@@ -492,6 +514,28 @@ public class SolicitacaoController implements Serializable {
 				dao.saveOrUpdate(solicitacaoAlimentacao);
 			}
 			this.carregarSolicitacaoAlimentacao(solicitacaoAlimentacao);
+		} else if (Constantes.TIPO_SOLICITACAO_AFASTAMENTO_CONJUGE
+				.equals(tipoSolicitacao)) {
+			solicitacaoAfastamentoConjuge = new SolicitacaoAfastamentoConjuge();
+			solicitacaoAfastamentoConjuge.setSolicitante(new Servidor());
+			solicitacaoAfastamentoConjuge.setCodigo(codigoSolicitacao);
+			solicitacaoAfastamentoConjuge = (SolicitacaoAfastamentoConjuge) solicitacaoDAO
+					.carregarSolicitacaoAfastamentoConjuge(codigoSolicitacao);
+			if (Constantes.STATUS_SOLICITACAO_ENCAMINHADO
+					.equals(solicitacaoAfastamentoConjuge.getStatusSolicitacao()
+							.getCodigo())) {
+				this.setDesabilitaBotao(false);
+				solicitacaoAfastamentoConjuge.getStatusSolicitacao().setCodigo(
+						Constantes.STATUS_SOLICITACAO_EM_ANALISE);
+				solicitacaoAfastamentoConjuge.setDataAtendimento(new Date());
+				solicitacaoAfastamentoConjuge.setAtendente(siapeAutenticado
+						.getSiape());
+				solicitacaoAfastamentoConjuge
+						.setAtendenteLogado(new Servidor());
+				solicitacaoAfastamentoConjuge.setAtendenteLogado(servidor);
+				dao.saveOrUpdate(solicitacaoAfastamentoConjuge);
+			}
+			this.carregarSolicitacaoAfasatamentoConjuge(solicitacaoAfastamentoConjuge);
 		}
 	}
 
@@ -551,6 +595,13 @@ public class SolicitacaoController implements Serializable {
 					Constantes.STATUS_SOLICITACAO_DEFERIDO);
 			solicitacaoAlimentacao.setDataFechamento(new Date());
 			dao.update(solicitacaoAlimentacao);
+			this.setDesabilitaBotao(true);
+		} else if (Constantes.TIPO_SOLICITACAO_AFASTAMENTO_CONJUGE
+				.equals(tipoSolicitacao)) {
+			solicitacaoAfastamentoConjuge.getStatusSolicitacao().setCodigo(
+					Constantes.STATUS_SOLICITACAO_DEFERIDO);
+			solicitacaoAfastamentoConjuge.setDataFechamento(new Date());
+			dao.update(solicitacaoAfastamentoConjuge);
 			this.setDesabilitaBotao(true);
 		}
 	}
@@ -644,6 +695,22 @@ public class SolicitacaoController implements Serializable {
 			if (solicitacaoAlimentacao.getJustificativa() != null
 					&& solicitacaoAlimentacao.getJustificativa() != "") {
 				solicitacaoDAO.saveOrUpdate(solicitacaoAlimentacao);
+				this.setDesabilitaBotao(true);
+			} else {
+				FacesMessage message = new FacesMessage(
+						FacesMessage.SEVERITY_ERROR,
+						"O campo Justificativa é obrigatório!",
+						"O campo Justificativa é obrigatório!!");
+				FacesContext.getCurrentInstance().addMessage("", message);
+			}
+		} else if (Constantes.TIPO_SOLICITACAO_AFASTAMENTO_CONJUGE
+				.equals(tipoSolicitacao)) {
+			solicitacaoAfastamentoConjuge.getStatusSolicitacao().setCodigo(
+					Constantes.STATUS_SOLICITACAO_INDEFERIDO);
+			solicitacaoAfastamentoConjuge.setDataFechamento(new Date());
+			if (solicitacaoAfastamentoConjuge.getJustificativa() != null
+					&& solicitacaoAfastamentoConjuge.getJustificativa() != "") {
+				solicitacaoDAO.saveOrUpdate(solicitacaoAfastamentoConjuge);
 				this.setDesabilitaBotao(true);
 			} else {
 				FacesMessage message = new FacesMessage(
