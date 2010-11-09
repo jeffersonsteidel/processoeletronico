@@ -22,16 +22,15 @@
 
 
 		<!--
-		<mapping resource="AreaConhecimento.hbm.xml" />
 		<mapping resource="Conjuge.hbm.xml" />
 		<mapping resource="Dependente.hbm.xml" />
 		<mapping resource="Emprego.hbm.xml" />
 		<mapping resource="Funcao.hbm.xml" />
 		<mapping resource="Progressao.hbm.xml" />
-		<mapping resource="ServidorTitulacao.hbm.xml" />
+		
 		<mapping resource="TipoFuncao.hbm.xml" />
-		<mapping resource="Titulacao.hbm.xml" />
 		-->
+		<mapping resource="AreaConhecimento.hbm.xml" />
 		<mapping resource="Autenticacao.hbm.xml" /> 
 		<mapping resource="Banco.hbm.xml" />
 		<mapping resource="Cargo.hbm.xml" />
@@ -51,6 +50,7 @@
 		<mapping resource="Portaria.hbm.xml" />
 		<mapping resource="RegimeTrabalho.hbm.xml" />
 		<mapping resource="Servidor.hbm.xml" />
+		<mapping resource="ServidorTitulacao.hbm.xml" />
 		<mapping resource="SituacaoFuncional.hbm.xml" />
 		<mapping resource="Solicitacao.hbm.xml" />
 		<mapping resource="SolicitacaoAdicionalInsalubridade.hbm.xml" />
@@ -65,5 +65,6 @@
 		<mapping resource="StatusSolicitacao.hbm.xml" />
 		<mapping resource="TipoPortaria.hbm.xml" />
 		<mapping resource="TipoSolicitacao.hbm.xml" />
+		<mapping resource="Titulacao.hbm.xml" />
 	</session-factory>
 </hibernate-configuration>
