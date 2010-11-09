@@ -1,5 +1,7 @@
 package br.com.progepe.entity;
 
+import java.util.ArrayList;
+
 public class SolicitacaoCasamento extends Solicitacao {
 
 	private static final long serialVersionUID = 1L;
@@ -8,6 +10,7 @@ public class SolicitacaoCasamento extends Solicitacao {
 	private Integer numeroCertidao;
 	private byte[] certidaoCasamento;
 	private Boolean documentoValidado = false;
+	private ArrayList<SolicitacaoCasamento> files = new ArrayList<SolicitacaoCasamento>();
 
 	public String getNomeConjuge() {
 		return nomeConjuge;
@@ -40,5 +43,12 @@ public class SolicitacaoCasamento extends Solicitacao {
 	public void setDocumentoValidado(Boolean documentoValidado) {
 		this.documentoValidado = documentoValidado;
 	}
+	
+	public ArrayList<SolicitacaoCasamento> getFiles() {
+		return files;
+	}
 
+	public void setFiles(ArrayList<SolicitacaoCasamento> files) {
+		this.files = files;
+	}
 }

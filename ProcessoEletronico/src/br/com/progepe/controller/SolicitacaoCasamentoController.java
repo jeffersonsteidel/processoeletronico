@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.io.Serializable;
 import java.text.ParseException;
-import java.util.ArrayList;
 import java.util.Date;
 
 import javax.faces.context.FacesContext;
@@ -25,7 +24,6 @@ public class SolicitacaoCasamentoController implements Serializable {
 	private static final long serialVersionUID = -333995781063775201L;
 
 	private SolicitacaoCasamento solicitacaoCasamento;
-	private ArrayList<SolicitacaoCasamento> files = new ArrayList<SolicitacaoCasamento>();
 	DAO dao = new DAO();
 
 	public SolicitacaoCasamento getSolicitacaoCasamento() {
@@ -34,14 +32,6 @@ public class SolicitacaoCasamentoController implements Serializable {
 
 	public void setSolicitacaoCasamento(SolicitacaoCasamento solicitacaoCasamento) {
 		this.solicitacaoCasamento = solicitacaoCasamento;
-	}
-
-	public ArrayList<SolicitacaoCasamento> getFiles() {
-		return files;
-	}
-
-	public void setFiles(ArrayList<SolicitacaoCasamento> files) {
-		this.files = files;
 	}
 
 	public void abrirSolicitacaoCasamento() throws ParseException {
@@ -82,12 +72,12 @@ public class SolicitacaoCasamentoController implements Serializable {
 	}
 	
 	public void paint(OutputStream stream, Object object) throws IOException {
-		stream.write(getFiles().get((Integer) object).getCertidaoCasamento());
+		stream.write(solicitacaoCasamento.getFiles().get((Integer) object).getCertidaoCasamento());
 	}
 
 	public void listener(UploadEvent event) throws Exception {
 		UploadItem item = event.getUploadItem();
 		solicitacaoCasamento.setCertidaoCasamento(item.getData());
-		files.add(solicitacaoCasamento);
+		solicitacaoCasamento.getFiles().add(solicitacaoCasamento);
 	}
 }
