@@ -22,6 +22,7 @@ import br.com.progepe.entity.Banco;
 import br.com.progepe.entity.ContaBancaria;
 import br.com.progepe.entity.Servidor;
 import br.com.progepe.entity.Solicitacao;
+import br.com.progepe.entity.SolicitacaoCasamento;
 import br.com.progepe.entity.SolicitacaoContaBancaria;
 import br.com.progepe.entity.SolicitacaoHorarioEspecialEstudante;
 import br.com.progepe.entity.SolicitacaoLicencaPaternidade;
@@ -43,6 +44,7 @@ public class SolicitacaoController implements Serializable {
 	private SolicitacaoLicencaPaternidade solicitacaoLicencaPaternidade;
 	private SolicitacaoHorarioEspecialEstudante solicitacaoHorarioEspecialEstudante;
 	private SolicitacaoObito solicitacaoObito;
+	private SolicitacaoCasamento solicitacaoCasamento;
 
 	private Long codigoSolicitacao;
 	private Long tipoSolicitacao;
@@ -155,6 +157,14 @@ public class SolicitacaoController implements Serializable {
 
 	public void setSolicitacaoObito(SolicitacaoObito solicitacaoObito) {
 		this.solicitacaoObito = solicitacaoObito;
+	}
+	
+	public SolicitacaoCasamento getSolicitacaoCasamento() {
+		return solicitacaoCasamento;
+	}
+
+	public void setSolicitacaoCasamento(SolicitacaoCasamento solicitacaoCasamento) {
+		this.solicitacaoCasamento = solicitacaoCasamento;
 	}
 
 	public void abrirPesquisarSolicitacoes() throws ParseException {
@@ -296,6 +306,19 @@ public class SolicitacaoController implements Serializable {
 		response.sendRedirect("solicitacaoObitoAprovar.jsp ");
 	}
 	
+	public void carregarSolicitacaoCasamento(
+			SolicitacaoCasamento codigoSolicitacaoCasamento)
+			throws IOException {
+		solicitacaoCasamento = (SolicitacaoCasamento) dao
+				.refresh(codigoSolicitacaoCasamento);
+		solicitacaoCasamento.getFiles().add(
+				solicitacaoCasamento);
+		FacesContext context = FacesContext.getCurrentInstance();
+		HttpServletResponse response = (HttpServletResponse) context
+				.getExternalContext().getResponse();
+		response.sendRedirect("solicitacaoCasamentoAprovar.jsp ");
+	}
+	
 	public void carregarSolicitacao() throws IOException, ParseException {
 		Autenticacao siapeAutenticado = (Autenticacao) FacesContext
 				.getCurrentInstance().getExternalContext().getSessionMap()
@@ -377,6 +400,24 @@ public class SolicitacaoController implements Serializable {
 			solicitacaoObito.setAtendenteLogado(servidor);
 			dao.saveOrUpdate(solicitacaoObito);
 			this.carregarSolicitacaoObito(solicitacaoObito);
+		} 
+		else if (Constantes.TIPO_SOLICITACAO_LICENCA_CASAMENTO
+				.equals(tipoSolicitacao)) {
+			solicitacaoCasamento = new SolicitacaoCasamento();
+			solicitacaoCasamento.setFiles(new ArrayList<SolicitacaoCasamento>());
+			solicitacaoCasamento.setSolicitante(new Servidor());
+			solicitacaoCasamento.setCodigo(codigoSolicitacao);
+			solicitacaoCasamento = (SolicitacaoCasamento) solicitacaoDAO
+					.carregarSolicitacaoCasamento(codigoSolicitacao);
+			solicitacaoCasamento.getStatusSolicitacao().setCodigo(
+					Constantes.STATUS_SOLICITACAO_EM_ANALISE);
+			solicitacaoCasamento.setDataAtendimento(new Date());
+			solicitacaoCasamento.setAtendente(siapeAutenticado
+					.getSiape());
+			solicitacaoCasamento.setAtendenteLogado(new Servidor());
+			solicitacaoCasamento.setAtendenteLogado(servidor);
+			dao.saveOrUpdate(solicitacaoCasamento);
+			this.carregarSolicitacaoCasamento(solicitacaoCasamento);
 		}
 	}
 
@@ -420,6 +461,12 @@ public class SolicitacaoController implements Serializable {
 					Constantes.STATUS_SOLICITACAO_DEFERIDO);
 			solicitacaoObito.setDataFechamento(new Date());
 			dao.update(solicitacaoObito);
+		} else if (Constantes.TIPO_SOLICITACAO_LICENCA_CASAMENTO
+				.equals(tipoSolicitacao)) {
+			solicitacaoCasamento.getStatusSolicitacao().setCodigo(
+					Constantes.STATUS_SOLICITACAO_DEFERIDO);
+			solicitacaoCasamento.setDataFechamento(new Date());
+			dao.update(solicitacaoCasamento);
 		}
 	}
 
@@ -484,6 +531,21 @@ public class SolicitacaoController implements Serializable {
 						"O campo Justificativa é obrigatório!!");
 				FacesContext.getCurrentInstance().addMessage("", message);
 			}
+		} else if (Constantes.TIPO_SOLICITACAO_LICENCA_CASAMENTO
+				.equals(tipoSolicitacao)) {
+			solicitacaoCasamento.getStatusSolicitacao().setCodigo(
+					Constantes.STATUS_SOLICITACAO_INDEFERIDO);
+			solicitacaoCasamento.setDataFechamento(new Date());
+			if (solicitacaoCasamento.getJustificativa() != null
+					&& solicitacaoCasamento.getJustificativa() != "") {
+				solicitacaoDAO.saveOrUpdate(solicitacaoCasamento);
+			} else {
+				FacesMessage message = new FacesMessage(
+						FacesMessage.SEVERITY_ERROR,
+						"O campo Justificativa é obrigatório!",
+						"O campo Justificativa é obrigatório!!");
+				FacesContext.getCurrentInstance().addMessage("", message);
+			}
 		}
 	}
 
@@ -500,6 +562,10 @@ public class SolicitacaoController implements Serializable {
 				.equals(tipoSolicitacao)) {
 			stream.write(solicitacaoObito.getFiles()
 					.get((Integer) object).getCertidaoObito());
+		} else if (Constantes.TIPO_SOLICITACAO_LICENCA_CASAMENTO
+				.equals(tipoSolicitacao)) {
+			stream.write(solicitacaoCasamento.getFiles()
+					.get((Integer) object).getCertidaoCasamento());
 		}
 	}
 }
