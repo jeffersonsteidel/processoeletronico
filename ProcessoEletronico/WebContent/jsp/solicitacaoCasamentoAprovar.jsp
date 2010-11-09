@@ -69,9 +69,9 @@
 			</h:panelGrid>
 
 			<h:panelGrid columns="2">
-				<a4j:commandButton value="Deferir" reRender="form"
+				<a4j:commandButton value="Deferir" reRender="form" disabled="#{solicitacaoController.desabilitaBotao}"
 					oncomplete="#{rich:component('confirmPanel')}.show()" />
-				<a4j:commandButton value="Indeferir" reRender="form"
+				<a4j:commandButton value="Indeferir" reRender="form" disabled="#{solicitacaoController.desabilitaBotao}"
 					oncomplete="#{rich:component('confirmPanel02')}.show()" />
 			</h:panelGrid>
 		</rich:panel></center>
@@ -109,7 +109,7 @@
 					<tbody>
 						<tr>
 							<td align="center" width="50%"><a4j:commandButton
-								value="Sim" ajaxSingle="true"
+								value="Sim" ajaxSingle="true" 
 								action="#{solicitacaoController.indeferirSolicitacao}"
 								oncomplete="#{rich:component('confirmPanel02')}.hide();"
 								reRender="form" /></td>
