@@ -30,7 +30,7 @@
 			ESTUDANTE</b></font>
 			<h:panelGrid columns="1">
 				<h:outputText
-					value="#{solicitacaoController.solicitacaoHorarioEspecialEstudante.solicitante.siape} - #{solicitacaoController.solicitacaoHorarioEspecialEstudante.solicitante.nome}">
+					value="Solicitante: #{solicitacaoController.solicitacaoHorarioEspecialEstudante.solicitante.siape} - #{solicitacaoController.solicitacaoHorarioEspecialEstudante.solicitante.nome}">
 				</h:outputText>
 			</h:panelGrid>
 

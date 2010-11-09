@@ -26,52 +26,36 @@
 				</f:facet>
 			</rich:messages>
 
-			<font size="2"><b>LICENÇA PATERNIDADE</b></font>
-
+			<font size="2"><b>AUXÍLIO ALIMENTAÇÃO</b></font>
 			<h:panelGrid columns="1">
 				<h:outputText
-					value="Solicitante: #{solicitacaoController.solicitacaoLicencaPaternidade.solicitante.siape} - #{solicitacaoController.solicitacaoLicencaPaternidade.solicitante.nome}">
+					value="Solicitante: #{solicitacaoController.solicitacaoAlimentacao.solicitante.siape} - #{solicitacaoController.solicitacaoAlimentacao.solicitante.nome}">
+				</h:outputText>
+				<h:outputText
+					value="Regime de Trabalho - #{solicitacaoController.solicitacaoAlimentacao.solicitante.regimeTrabalho.descricao}">
 				</h:outputText>
 			</h:panelGrid>
 
 			<h:panelGrid columns="2">
-				<h:outputText value="Data de Nascimento do Filho(a): "></h:outputText>
-				<rich:calendar
-					value="#{solicitacaoController.solicitacaoLicencaPaternidade.dataNascimento}"
-					datePattern="dd/MM/yyyy" showApplyButton="#"
-					cellWidth="12px" cellHeight="12px" style="width:80px"
-					inputSize="12" ajaxSingle="true" disabled="true">
-				</rich:calendar>
+				<h:selectOneRadio id="radios" disabled="true"
+					value="#{solicitacaoController.solicitacaoAlimentacao.indAlimentacao}">
+					<f:selectItem itemValue="true" itemLabel="Incluir Auxílio" />
+					<f:selectItem itemValue="false" itemLabel="Cancelar Auxílio" />
+				</h:selectOneRadio>
 			</h:panelGrid>
-			<h:panelGroup id="info">
-				<rich:panel bodyClass="info">
-					<rich:dataGrid columns="1"
-						value="#{solicitacaoController.solicitacaoLicencaPaternidade.files}"
-						var="file" rowKeyVar="row">
-						<rich:panel bodyClass="rich-laguna-panel-no-header">
-							<h:panelGrid columns="2">
-								<a4j:mediaOutput element="img"
-									createContent="#{solicitacaoController.paint}"
-									value="#{row}" style="width:600px; height:800px;"
-									cacheable="false">
-								</a4j:mediaOutput>
-							</h:panelGrid>
-						</rich:panel>
-					</rich:dataGrid>
-				</rich:panel>
-			</h:panelGroup>
-		<h:panelGrid columns="2">
+
+			<h:panelGrid columns="2">
 				<h:outputText value="Justificativa: " />
 				<h:inputTextarea
-					value="#{solicitacaoController.solicitacaoLicencaPaternidade.justificativa}"
+					value="#{solicitacaoController.solicitacaoAlimentacao.justificativa}"
 					cols="50" rows="5"></h:inputTextarea>
 			</h:panelGrid>
 
 			<h:panelGrid columns="2">
 				<a4j:commandButton value="Deferir" reRender="form"
-					oncomplete="#{rich:component('confirmPanel')}.show()"/>
+					oncomplete="#{rich:component('confirmPanel')}.show()" />
 				<a4j:commandButton value="Indeferir" reRender="form"
-					oncomplete="#{rich:component('confirmPanel02')}.show()"/>
+					oncomplete="#{rich:component('confirmPanel02')}.show()" />
 			</h:panelGrid>
 		</rich:panel></center>
 

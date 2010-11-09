@@ -29,7 +29,7 @@
 			<font size="2"><b>LICENÇA DE CASAMENTO</b></font>
 			<h:panelGrid columns="1">
 				<h:outputText
-					value="#{solicitacaoController.solicitacaoCasamento.solicitante.siape} - #{solicitacaoController.solicitacaoCasamento.solicitante.nome}">
+					value="Solicitante: #{solicitacaoController.solicitacaoCasamento.solicitante.siape} - #{solicitacaoController.solicitacaoCasamento.solicitante.nome}">
 				</h:outputText>
 			</h:panelGrid>
 
