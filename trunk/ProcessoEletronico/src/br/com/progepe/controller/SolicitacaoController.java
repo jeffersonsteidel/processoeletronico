@@ -25,6 +25,7 @@ import br.com.progepe.entity.Solicitacao;
 import br.com.progepe.entity.SolicitacaoContaBancaria;
 import br.com.progepe.entity.SolicitacaoHorarioEspecialEstudante;
 import br.com.progepe.entity.SolicitacaoLicencaPaternidade;
+import br.com.progepe.entity.SolicitacaoObito;
 import br.com.progepe.entity.StatusSolicitacao;
 import br.com.progepe.entity.TipoSolicitacao;
 
@@ -41,6 +42,7 @@ public class SolicitacaoController implements Serializable {
 	private SolicitacaoContaBancaria solicitacaoContaBancaria;
 	private SolicitacaoLicencaPaternidade solicitacaoLicencaPaternidade;
 	private SolicitacaoHorarioEspecialEstudante solicitacaoHorarioEspecialEstudante;
+	private SolicitacaoObito solicitacaoObito;
 
 	private Long codigoSolicitacao;
 	private Long tipoSolicitacao;
@@ -145,6 +147,14 @@ public class SolicitacaoController implements Serializable {
 	public void setSolicitacaoHorarioEspecialEstudante(
 			SolicitacaoHorarioEspecialEstudante solicitacaoHorarioEspecialEstudante) {
 		this.solicitacaoHorarioEspecialEstudante = solicitacaoHorarioEspecialEstudante;
+	}
+
+	public SolicitacaoObito getSolicitacaoObito() {
+		return solicitacaoObito;
+	}
+
+	public void setSolicitacaoObito(SolicitacaoObito solicitacaoObito) {
+		this.solicitacaoObito = solicitacaoObito;
 	}
 
 	public void abrirPesquisarSolicitacoes() throws ParseException {
@@ -273,6 +283,19 @@ public class SolicitacaoController implements Serializable {
 		response.sendRedirect("solicitacaoHorarioEspecialEstudanteAprovar.jsp ");
 	}
 
+	public void carregarSolicitacaoObito(
+			SolicitacaoObito codigoSolicitacaoObito)
+			throws IOException {
+		solicitacaoObito = (SolicitacaoObito) dao
+				.refresh(codigoSolicitacaoObito);
+		solicitacaoObito.getFiles().add(
+				solicitacaoObito);
+		FacesContext context = FacesContext.getCurrentInstance();
+		HttpServletResponse response = (HttpServletResponse) context
+				.getExternalContext().getResponse();
+		response.sendRedirect("solicitacaoObitoAprovar.jsp ");
+	}
+	
 	public void carregarSolicitacao() throws IOException, ParseException {
 		Autenticacao siapeAutenticado = (Autenticacao) FacesContext
 				.getCurrentInstance().getExternalContext().getSessionMap()
@@ -337,6 +360,24 @@ public class SolicitacaoController implements Serializable {
 			dao.saveOrUpdate(solicitacaoHorarioEspecialEstudante);
 			this.carregarSolicitacaoHorarioEspecialEstudante(solicitacaoHorarioEspecialEstudante);
 		}
+		else if (Constantes.TIPO_SOLICITACAO_OBITO
+				.equals(tipoSolicitacao)) {
+			solicitacaoObito = new SolicitacaoObito();
+			solicitacaoObito.setFiles(new ArrayList<SolicitacaoObito>());
+			solicitacaoObito.setSolicitante(new Servidor());
+			solicitacaoObito.setCodigo(codigoSolicitacao);
+			solicitacaoObito = (SolicitacaoObito) solicitacaoDAO
+					.carregarSolicitacaoObito(codigoSolicitacao);
+			solicitacaoObito.getStatusSolicitacao().setCodigo(
+					Constantes.STATUS_SOLICITACAO_EM_ANALISE);
+			solicitacaoObito.setDataAtendimento(new Date());
+			solicitacaoObito.setAtendente(siapeAutenticado
+					.getSiape());
+			solicitacaoObito.setAtendenteLogado(new Servidor());
+			solicitacaoObito.setAtendenteLogado(servidor);
+			dao.saveOrUpdate(solicitacaoObito);
+			this.carregarSolicitacaoObito(solicitacaoObito);
+		}
 	}
 
 	public void deferirSolicitacao() throws IOException, ParseException {
@@ -373,6 +414,12 @@ public class SolicitacaoController implements Serializable {
 					Constantes.STATUS_SOLICITACAO_DEFERIDO);
 			solicitacaoHorarioEspecialEstudante.setDataFechamento(new Date());
 			dao.update(solicitacaoHorarioEspecialEstudante);
+		}  else if (Constantes.TIPO_SOLICITACAO_OBITO
+				.equals(tipoSolicitacao)) {
+			solicitacaoObito.getStatusSolicitacao().setCodigo(
+					Constantes.STATUS_SOLICITACAO_DEFERIDO);
+			solicitacaoObito.setDataFechamento(new Date());
+			dao.update(solicitacaoObito);
 		}
 	}
 
@@ -422,6 +469,21 @@ public class SolicitacaoController implements Serializable {
 						"O campo Justificativa é obrigatório!!");
 				FacesContext.getCurrentInstance().addMessage("", message);
 			}
+		} else if (Constantes.TIPO_SOLICITACAO_OBITO
+				.equals(tipoSolicitacao)) {
+			solicitacaoObito.getStatusSolicitacao().setCodigo(
+					Constantes.STATUS_SOLICITACAO_INDEFERIDO);
+			solicitacaoObito.setDataFechamento(new Date());
+			if (solicitacaoObito.getJustificativa() != null
+					&& solicitacaoObito.getJustificativa() != "") {
+				solicitacaoDAO.saveOrUpdate(solicitacaoObito);
+			} else {
+				FacesMessage message = new FacesMessage(
+						FacesMessage.SEVERITY_ERROR,
+						"O campo Justificativa é obrigatório!",
+						"O campo Justificativa é obrigatório!!");
+				FacesContext.getCurrentInstance().addMessage("", message);
+			}
 		}
 	}
 
@@ -434,6 +496,10 @@ public class SolicitacaoController implements Serializable {
 				.equals(tipoSolicitacao)) {
 			stream.write(solicitacaoHorarioEspecialEstudante.getFiles()
 					.get((Integer) object).getDeclaracaoMatricula());
+		}else if (Constantes.TIPO_SOLICITACAO_OBITO
+				.equals(tipoSolicitacao)) {
+			stream.write(solicitacaoObito.getFiles()
+					.get((Integer) object).getCertidaoObito());
 		}
 	}
 }

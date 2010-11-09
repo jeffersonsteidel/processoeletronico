@@ -14,6 +14,7 @@ import br.com.progepe.entity.Solicitacao;
 import br.com.progepe.entity.SolicitacaoContaBancaria;
 import br.com.progepe.entity.SolicitacaoHorarioEspecialEstudante;
 import br.com.progepe.entity.SolicitacaoLicencaPaternidade;
+import br.com.progepe.entity.SolicitacaoObito;
 
 public class SolicitacaoDAO extends DAO {
 
@@ -74,7 +75,16 @@ public class SolicitacaoDAO extends DAO {
 		query.setParameter("codigo", codigo);
 		return (SolicitacaoHorarioEspecialEstudante) query.uniqueResult();
 	}
-
+	
+	public SolicitacaoObito carregarSolicitacaoObito(
+			Long codigo) {
+		HibernateUtility.getSession().clear();
+		Query query = HibernateUtility.getSession().createQuery(
+				"from SolicitacaoObito s where s.codigo= :codigo");
+		query.setParameter("codigo", codigo);
+		return (SolicitacaoObito) query.uniqueResult();
+	}
+	
 	public void updateSolicitacao(Object objeto) {
 		try {
 			HibernateUtility.getSession().clear();
