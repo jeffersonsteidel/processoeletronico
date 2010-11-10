@@ -78,4 +78,8 @@ Config 1.1//EN"
 		<managed-bean-class>br.com.progepe.controller.SolicitacaoAdicionalInsalubridadeController</managed-bean-class>
 		<managed-bean-scope>session</managed-bean-scope>
 	</managed-bean>
+	<lifecycle>
+		<phase-listener id="nocache">br.com.progepe.controller.CacheControlPhaseListener</phase-listener>
+	</lifecycle>
+
 </faces-config>
