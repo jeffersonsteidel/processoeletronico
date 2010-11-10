@@ -202,6 +202,7 @@ public class SolicitacaoController implements Serializable {
 	public void abrirPesquisarSolicitacoes() throws ParseException {
 		try {
 			solicitacoes = new ArrayList<Solicitacao>();
+			solicitacoes.clear();
 			solicitacao = new Solicitacao();
 			solicitacao.setSolicitante(new Servidor());
 			solicitacao.setStatusSolicitacao(new StatusSolicitacao());
@@ -219,6 +220,7 @@ public class SolicitacaoController implements Serializable {
 
 	public List<Solicitacao> pesquisarSolicitacoes() throws ParseException {
 		solicitacoes = new ArrayList<Solicitacao>();
+		solicitacoes.clear();
 		if (solicitacao.getSolicitante().getSiape() != 0) {
 			ServidorDAO servidorDAO = new ServidorDAO();
 			solicitacao.setSolicitante(servidorDAO.refreshByFilter(solicitacao
@@ -257,6 +259,7 @@ public class SolicitacaoController implements Serializable {
 	public List<Solicitacao> abrirMinhasSolicitacoes() throws ParseException {
 		try {
 			minhasSolicitacoes = new ArrayList<Solicitacao>();
+			minhasSolicitacoes.clear();
 			ServidorDAO servidorDAO = new ServidorDAO();
 			solicitacao = new Solicitacao();
 			solicitacao.setSolicitante(new Servidor());
