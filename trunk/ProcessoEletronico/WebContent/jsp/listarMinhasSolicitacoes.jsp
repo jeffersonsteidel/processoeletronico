@@ -48,8 +48,10 @@
 					<f:facet name="header">
 						<h:outputText value="Atendente" />
 					</f:facet>
-					<h:outputText value="#{list.atendenteLogado.nome}">
+					<h:outputText value="#{list.atendenteLogado.nome}" rendered="#{list.atendenteLogado.nome!=null}">
 					</h:outputText>
+					<h:outputText value="-"
+						rendered="#{list.atendenteLogado.nome==null}"></h:outputText>
 				</rich:column>
 
 				<rich:column width="250px" sortBy="#{list.dataFechamento}">
@@ -64,7 +66,8 @@
 					</h:outputText>
 				</rich:column>
 
-				<rich:column width="350px" sortBy="#{list.tipoSolicitacao.descricao}"
+				<rich:column width="350px"
+					sortBy="#{list.tipoSolicitacao.descricao}"
 					filterBy="#{list.tipoSolicitacao.descricao}" filterEvent="onkeyup">
 					<f:facet name="header">
 						<h:outputText value="Tipo Solicitação" />
@@ -81,20 +84,18 @@
 					</f:facet>
 					<h:outputText value="#{list.statusSolicitacao.descricao}" />
 				</rich:column>
-				
+
 				<rich:column>
 					<f:facet name="header">
 						<h:outputText value="Visualizar" />
 					</f:facet>
 					<a4j:commandLink rendered="#{list.statusSolicitacao.codigo == 1}"
-						action="#"
-						reRender="listaSolicitacoes" ajaxSingle="true">
+						action="#" reRender="listaSolicitacoes" ajaxSingle="true">
 						<h:graphicImage value="../images/encaminhado.png" style="border:0"
 							width="20" height="18" id="encaminhado" />
 					</a4j:commandLink>
 					<a4j:commandLink rendered="#{list.statusSolicitacao.codigo == 2}"
-						action="#"
-						reRender="listaSolicitacoes" ajaxSingle="true">
+						action="#" reRender="listaSolicitacoes" ajaxSingle="true">
 						<h:graphicImage value="../images/analize.gif" style="border:0"
 							width="20" height="18" id="emAnalise" />
 					</a4j:commandLink>
@@ -120,8 +121,10 @@
 							value="#{list.tipoSolicitacao.codigo}"
 							target="#{solicitacaoController.tipoSolicitacao}" />
 					</a4j:commandLink>
-					<rich:toolTip for="encaminhado" value="Você somente pode ver solicitações Deferidas ou Indeferidas!" />
-					<rich:toolTip for="emAnalise" value="Você somente pode ver solicitações Deferidas ou Indeferidas!" />
+					<rich:toolTip for="encaminhado"
+						value="Você somente pode ver solicitações Deferidas ou Indeferidas!" />
+					<rich:toolTip for="emAnalise"
+						value="Você somente pode ver solicitações Deferidas ou Indeferidas!" />
 					<rich:toolTip for="deferido" value="Deferido" />
 					<rich:toolTip for="indeferido" value="Indeferido" />
 				</rich:column>
