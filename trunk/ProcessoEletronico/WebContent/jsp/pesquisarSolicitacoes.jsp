@@ -126,7 +126,7 @@
 
 				<rich:column>
 					<f:facet name="header">
-						<h:outputText value="Editar" />
+						<h:outputText value="Visualizar" />
 					</f:facet>
 					<a4j:commandLink rendered="#{list.statusSolicitacao.codigo == 1}"
 						action="#{solicitacaoController.carregarSolicitacao}"
