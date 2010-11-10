@@ -132,6 +132,7 @@ public class PortariaController implements Serializable {
 
 	public void listarPortarias() throws IOException {
 		portariaList = new ArrayList<Portaria>();
+		portariaList.clear();
 		portaria = new Portaria();
 		portaria.setTipo(new TipoPortaria());
 		listarTiposPortaria();
