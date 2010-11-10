@@ -23,7 +23,7 @@ import br.com.progepe.entity.Titulacao;
 
 public class ServidorTitulacaoController implements Serializable {
 	private static final long serialVersionUID = -333995781063775201L;
-	private ArrayList<ServidorTitulacao> listaServidorTitulacaos = new ArrayList<ServidorTitulacao>();
+	private List<ServidorTitulacao> listaServidorTitulacoes = new ArrayList<ServidorTitulacao>();
 	private ServidorTitulacao servidorTitulacao;
 	private List<SelectItem> areasConhecimento = new ArrayList<SelectItem>();
 	private List<SelectItem> paises = new ArrayList<SelectItem>();
@@ -34,13 +34,13 @@ public class ServidorTitulacaoController implements Serializable {
 	private Boolean indTitulacaoEstrangeira = false;
 	DAO dao = new DAO();
 
-	public ArrayList<ServidorTitulacao> getListaServidorTitulacaos() {
-		return listaServidorTitulacaos;
+	public List<ServidorTitulacao> getListaServidorTitulacoes() {
+		return listaServidorTitulacoes;
 	}
 
-	public void setListaServidorTitulacaos(
-			ArrayList<ServidorTitulacao> listaServidorTitulacaos) {
-		this.listaServidorTitulacaos = listaServidorTitulacaos;
+	public void setListaServidorTitulacoes(
+			List<ServidorTitulacao> listaServidorTitulacoes) {
+		this.listaServidorTitulacoes = listaServidorTitulacoes;
 	}
 
 	public ServidorTitulacao getServidorTitulacao() {
@@ -51,12 +51,12 @@ public class ServidorTitulacaoController implements Serializable {
 		this.servidorTitulacao = servidorTitulacao;
 	}
 
-	public Boolean getIndTitulacaoEstrangeira() {
-		return indTitulacaoEstrangeira;
+	public List<SelectItem> getAreasConhecimento() {
+		return areasConhecimento;
 	}
 
-	public void setIndTitulacaoEstrangeira(Boolean indTitulacaoEstrangeira) {
-		this.indTitulacaoEstrangeira = indTitulacaoEstrangeira;
+	public void setAreasConhecimento(List<SelectItem> areasConhecimento) {
+		this.areasConhecimento = areasConhecimento;
 	}
 
 	public List<SelectItem> getPaises() {
@@ -65,14 +65,6 @@ public class ServidorTitulacaoController implements Serializable {
 
 	public void setPaises(List<SelectItem> paises) {
 		this.paises = paises;
-	}
-
-	public List<SelectItem> getAreasConhecimento() {
-		return areasConhecimento;
-	}
-
-	public void setAreasConhecimento(List<SelectItem> areasConhecimento) {
-		this.areasConhecimento = areasConhecimento;
 	}
 
 	public List<SelectItem> getCidadesEstabelecimento() {
@@ -108,6 +100,14 @@ public class ServidorTitulacaoController implements Serializable {
 		this.ufs = ufs;
 	}
 
+	public Boolean getIndTitulacaoEstrangeira() {
+		return indTitulacaoEstrangeira;
+	}
+
+	public void setIndTitulacaoEstrangeira(Boolean indTitulacaoEstrangeira) {
+		this.indTitulacaoEstrangeira = indTitulacaoEstrangeira;
+	}
+
 	public void buscarServidorLogado() throws IOException, ParseException {
 		servidorTitulacao.setServidor(new Servidor());
 		Autenticacao siapeAutenticado = (Autenticacao) FacesContext
@@ -121,20 +121,14 @@ public class ServidorTitulacaoController implements Serializable {
 
 	public void abrirAdicionarServidorTitulacao() throws ParseException {
 		try {
-			servidorTitulacao = new ServidorTitulacao();
-			servidorTitulacao.setEstadoOrgaoEmissor(new Estado());
-			servidorTitulacao.setAreaConhecimento(new AreaConhecimento());
-			servidorTitulacao.setCidadeEstabelecimentoEnsino(new Cidade());
-			servidorTitulacao.getCidadeEstabelecimentoEnsino().setEstado(
-					new Estado());
-			servidorTitulacao.setServidor(new Servidor());
-			servidorTitulacao.setTitulacao(new Titulacao());
+			inicializarServidorTitulacao();
 			buscarServidorLogado();
 			listarAreaConhecimento();
 			listarEstados();
 			listarTitulacoes();
 			listarEstados();
 			listarUf();
+			listarTitulacoesExistentes();
 			FacesContext.getCurrentInstance().getExternalContext()
 					.redirect("adicionarTitulacao.jsp");
 		} catch (IOException e) {
@@ -142,14 +136,9 @@ public class ServidorTitulacaoController implements Serializable {
 		}
 	}
 
-	public void adicionarTitulacao() throws IOException, ParseException {
-		listaServidorTitulacaos.add(servidorTitulacao);
-		servidorTitulacao = new ServidorTitulacao();
-	}
-
-	public void salvar() throws IOException, ParseException {
-		dao.saveOrUpdate(servidorTitulacao);
-		servidorTitulacao = new ServidorTitulacao();
+	@SuppressWarnings("unchecked")
+	public void listarTitulacoesExistentes() {
+		listaServidorTitulacoes = dao.list(ServidorTitulacao.class);
 	}
 
 	public void isTitulacaoEstrangeira() {
@@ -235,4 +224,28 @@ public class ServidorTitulacaoController implements Serializable {
 		}
 		return ufs;
 	}
+
+	public void salvarTitulacao() {
+		dao.saveOrUpdate(servidorTitulacao);
+		listarTitulacoesExistentes();
+		inicializarServidorTitulacao();
+	}
+
+	public void remover() {
+		dao.delete(servidorTitulacao);
+		listarTitulacoesExistentes();
+		inicializarServidorTitulacao();
+	}
+
+	public void inicializarServidorTitulacao() {
+		servidorTitulacao = new ServidorTitulacao();
+		servidorTitulacao.setEstadoOrgaoEmissor(new Estado());
+		servidorTitulacao.setAreaConhecimento(new AreaConhecimento());
+		servidorTitulacao.setCidadeEstabelecimentoEnsino(new Cidade());
+		servidorTitulacao.getCidadeEstabelecimentoEnsino().setEstado(
+				new Estado());
+		servidorTitulacao.setServidor(new Servidor());
+		servidorTitulacao.setTitulacao(new Titulacao());
+	}
+
 }

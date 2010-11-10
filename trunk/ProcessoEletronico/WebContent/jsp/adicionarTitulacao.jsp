@@ -16,134 +16,217 @@
 	<a4j:loadScript src="../js/script.js" />
 	<a4j:form id="form">
 		<center><rich:panel>
-			<rich:messages layout="list" errorLabelClass="errorLabel"
-				style="top:auto;" infoLabelClass="infoLabel">
-				<f:facet name="infoMarker">
-					<h:graphicImage value="../images/passed.gif" />
-				</f:facet>
-				<f:facet name="errorMarker">
-					<h:graphicImage value="../images/error.gif" />
-				</f:facet>
-			</rich:messages>
+			<a4j:region>
+				<h:panelGrid columns="4">
 
-			<h:panelGrid columns="4">
+					<h:outputText value="Tiulação: " />
 
-				<h:outputText value="Tiulação: " />
+					<h:selectOneMenu id="titulacao"
+						value="#{servidorTitulacaoController.servidorTitulacao.titulacao.codigo}"
+						required="true" requiredMessage="Campo Titulação é obrigatório!">
+						<f:selectItem itemLabel="SELECIONE" itemValue="" />
+						<f:selectItems value="#{servidorTitulacaoController.titulacoes}" />
+					</h:selectOneMenu>
 
-				<h:selectOneMenu
-					value="#{servidorTitulacaoController.servidorTitulacao.titulacao.codigo}"
-					required="true" requiredMessage="Campo Titulação é obrigatório!">
-					<f:selectItem itemLabel="SELECIONE" itemValue="" />
-					<f:selectItems
-						value="#{servidorTitulacaoController.titulacoes}" />
-				</h:selectOneMenu>
+					<h:outputText value="Estabelecimento de Ensino: " />
 
-				<h:outputText value="Estabelecimento de Ensino: " />
+					<h:inputText id="estabelecimentoEnsino"
+						value="#{servidorTitulacaoController.servidorTitulacao.estabelecimentoEnsino}"
+						size="40" maxlength="100"></h:inputText>
 
-				<h:inputText
-					value="#{servidorTitulacaoController.servidorTitulacao.estabelecimentoEnsino}"
-					size="40" maxlength="100"></h:inputText>
+					<h:outputText value="Curso: " />
 
-				<h:outputText value="Curso: " />
+					<h:inputText id="curso"
+						value="#{servidorTitulacaoController.servidorTitulacao.curso}"
+						size="40" maxlength="100"></h:inputText>
 
-				<h:inputText
-					value="#{servidorTitulacaoController.servidorTitulacao.curso}"
-					size="40" maxlength="100"></h:inputText>
+					<h:outputText value="Area de Conhecimento: " />
 
-				<h:outputText value="Area de Conhecimento: " />
+					<h:selectOneMenu id="areaConhecimento"
+						value="#{servidorTitulacaoController.servidorTitulacao.areaConhecimento.codigo}"
+						required="true"
+						requiredMessage="Campo Area de COnhecimento é obrigatório!">
+						<f:selectItem itemLabel="SELECIONE" itemValue="" />
+						<f:selectItems
+							value="#{servidorTitulacaoController.areasConhecimento}" />
+					</h:selectOneMenu>
 
-				<h:selectOneMenu
-					value="#{servidorTitulacaoController.servidorTitulacao.areaConhecimento.codigo}"
-					required="true"
-					requiredMessage="Campo Area de COnhecimento é obrigatório!">
-					<f:selectItem itemLabel="SELECIONE" itemValue="" />
-					<f:selectItems
-						value="#{servidorTitulacaoController.areasConhecimento}" />
-				</h:selectOneMenu>
+					<h:outputText value="Estado do Estabelecimento: " />
+					<h:selectOneMenu id="estadoEstabelecimento"
+						value="#{servidorTitulacaoController.servidorTitulacao.cidadeEstabelecimentoEnsino.estado.codigo}"
+						required="true"
+						disabled="#{servidorTitulacaoController.indTitulacaoEstrangeira}"
+						requiredMessage="Campo Estado de Estabelecimento é obrigatório!">
+						<f:selectItem itemLabel="SELECIONE" itemValue="" />
+						<f:selectItems value="#{servidorTitulacaoController.estados}" />
+						<a4j:support event="onchange"
+							action="#{servidorTitulacaoController.listarCidadesEstabelecimento}"
+							ajaxSingle="true" reRender="cidadeEstabelecimento"></a4j:support>
+					</h:selectOneMenu>
+					<h:outputText value="Cidade de Estabelecimento de Ensino: " />
+					<h:selectOneMenu id="cidadeEstabelecimento"
+						value="#{servidorTitulacaoController.servidorTitulacao.cidadeEstabelecimentoEnsino.codigo}"
+						required="true"
+						disabled="#{servidorTitulacaoController.indTitulacaoEstrangeira}"
+						requiredMessage="Campo Cidade de Nascimento é obrigatório!">
+						<f:selectItem itemLabel="SELECIONE" itemValue="" />
+						<f:selectItems
+							value="#{servidorTitulacaoController.cidadesEstabelecimento}" />
+					</h:selectOneMenu>
 
-				<h:outputText value="Estado do Estabelecimento: " />
-				<h:selectOneMenu id="estadoEstabelecimento"
-					value="#{servidorTitulacaoController.servidorTitulacao.cidadeEstabelecimentoEnsino.estado.codigo}"
-					required="true"
-					disabled="#{servidorTitulacaoController.indTitulacaoEstrangeira}"
-					requiredMessage="Campo Estado de Estabelecimento é obrigatório!">
-					<f:selectItem itemLabel="SELECIONE" itemValue="" />
-					<f:selectItems
-						value="#{servidorTitulacaoController.estados}" />
-					<a4j:support event="onchange"
-						action="#{servidorTitulacaoController.listarCidadesEstabelecimento}"
-						ajaxSingle="true" reRender="cidadeEstabelecimento"></a4j:support>
-				</h:selectOneMenu>
-				<h:outputText value="Cidade de Estabelecimento de Ensino: " />
-				<h:selectOneMenu id="cidadeEstabelecimento"
-					value="#{servidorTitulacaoController.servidorTitulacao.cidadeEstabelecimentoEnsino.codigo}"
-					required="true"
-					disabled="#{servidorTitulacaoController.indTitulacaoEstrangeira}"
-					requiredMessage="Campo Cidade de Nascimento é obrigatório!">
-					<f:selectItem itemLabel="SELECIONE" itemValue="" />
-					<f:selectItems
-						value="#{servidorTitulacaoController.cidadesEstabelecimento}" />
-				</h:selectOneMenu>
+					<h:outputText value="Carga Horária: " />
 
-				<h:outputText value="Carga Horária: " />
+					<h:inputText id="cargaHoraria"
+						value="#{servidorTitulacaoController.servidorTitulacao.cargaHoraria}"
+						size="40" maxlength="4" onkeypress="mascara(this,soNumeros);"></h:inputText>
 
-				<h:inputText
-					value="#{servidorTitulacaoController.servidorTitulacao.cargaHoraria}"
-					size="40" maxlength="4" onkeypress="mascara(this,soNumeros);"></h:inputText>
+					<h:outputText value="Ano de Conclusão: " />
 
-				<h:outputText value="Ano de Conclusão: " />
+					<h:inputText id="anoConclusao"
+						value="#{servidorTitulacaoController.servidorTitulacao.anoConclusao}"
+						size="40" maxlength="4" onkeypress="mascara(this,soNumeros);"></h:inputText>
 
-				<h:inputText
-					value="#{servidorTitulacaoController.servidorTitulacao.anoConclusao}"
-					size="40" maxlength="4" onkeypress="mascara(this,soNumeros);"></h:inputText>
+					<h:outputText value="Registro no Concelho: " />
 
-				<h:outputText value="Registro no Concelho: " />
+					<h:inputText id="registroConcelho"
+						value="#{servidorTitulacaoController.servidorTitulacao.registroConselho}"
+						size="40" maxlength="11" onkeypress="mascara(this,soNumeros);"></h:inputText>
 
-				<h:inputText
-					value="#{servidorTitulacaoController.servidorTitulacao.registroConselho}"
-					size="40" maxlength="11" onkeypress="mascara(this,soNumeros);"></h:inputText>
+					<h:outputText value="Orgão Emissor do Registro: " />
 
-				<h:outputText value="Orgão Emissor do Registro: " />
+					<h:inputText id="orgaoEmissor"
+						value="#{servidorTitulacaoController.servidorTitulacao.orgaoEmissor}"
+						size="40" maxlength="8"></h:inputText>
 
-				<h:inputText
-					value="#{servidorTitulacaoController.servidorTitulacao.orgaoEmissor}"
-					size="40" maxlength="8"></h:inputText>
+					<h:outputText value="Estado do Orgão Emissor: " />
+					<h:selectOneMenu id="estadoEmissor"
+						value="#{servidorTitulacaoController.servidorTitulacao.estadoOrgaoEmissor.codigo}"
+						required="true"
+						requiredMessage="Campo Estado de Estabelecimento é obrigatório!">
+						<f:selectItem itemLabel="SELECIONE" itemValue="" />
+						<f:selectItems value="#{servidorTitulacaoController.ufs}" />
+					</h:selectOneMenu>
 
-				<h:outputText value="Estado do Orgão Emissor: " />
-				<h:selectOneMenu id="estadoEmissor"
-					value="#{servidorTitulacaoController.servidorTitulacao.estadoOrgaoEmissor.codigo}"
-					required="true"
-					requiredMessage="Campo Estado de Estabelecimento é obrigatório!">
-					<f:selectItem itemLabel="SELECIONE" itemValue="" />
-					<f:selectItems
-						value="#{servidorTitulacaoController.ufs}" />
-				</h:selectOneMenu>
+					<h:outputText value="Titulação Estrangeira: " />
+					<h:selectBooleanCheckbox id="titulacaoEstrangeira"
+						title="Marcar esta opção caso tenha titulação estrangeira!"
+						value="#{servidorTitulacaoController.indTitulacaoEstrangeira}">
+						<a4j:support event="onchange"
+							action="#{servidorTitulacaoController.isTitulacaoEstrangeira}"
+							ajaxSingle="true"
+							reRender="estadoEstabelecimento, pais, cidadeEstabelecimento"></a4j:support>
+					</h:selectBooleanCheckbox>
 
-				<h:outputText value="Titulação Estrangeira: " />
-				<h:selectBooleanCheckbox id="estrangeiro"
-					title="Marcar esta opção caso tenha titulação estrangeira!"
-					value="#{servidorTitulacaoController.indTitulacaoEstrangeira}">
-					<a4j:support event="onchange"
-						action="#{servidorTitulacaoController.isTitulacaoEstrangeira}"
-						ajaxSingle="true"
-						reRender="estadoEstabelecimento, pais, cidadeEstabelecimento"></a4j:support>
-				</h:selectBooleanCheckbox>
+					<h:outputText value="País: " />
+					<h:selectOneMenu id="pais"
+						value="#{servidorTitulacaoController.servidorTitulacao.pais.codigo}"
+						required="true"
+						disabled="#{!servidorTitulacaoController.indTitulacaoEstrangeira}"
+						requiredMessage="Campo País de Origem é obrigatório!">
+						<f:selectItem itemLabel="SELECIONE" itemValue="" />
+						<f:selectItems value="#{servidorTitulacaoController.paises}" />
+					</h:selectOneMenu>
 
-				<h:outputText value="País: " />
-				<h:selectOneMenu id="pais"  
-					value="#{servidorTitulacaoController.servidorTitulacao.pais.codigo}"
-					required="true"
-					disabled="#{!servidorTitulacaoController.indTitulacaoEstrangeira}"
-					requiredMessage="Campo País de Origem é obrigatório!">
-					<f:selectItem itemLabel="SELECIONE" itemValue="" />
-					<f:selectItems value="#{servidorTitulacaoController.paises}" />
-				</h:selectOneMenu>
-
-			</h:panelGrid>
-			<a4j:commandButton value="Salvar"
-				action="#{servidorTitulacaoController.salvar}" />
+					<a4j:commandButton value="Adicionar"
+						action="#{servidorTitulacaoController.salvarTitulacao}"
+						reRender="listaTitulacoes, titulacao, estabelecimentoEnsino, curso, areaConhecimento, estadoEstabelecimento,
+					 cidadeEstabelecimento, cargaHoraria, anoConclusao, registroConcelho, orgaoEmissor, estadoEmissor, titulacaoEstrangeira, pais, listaTitulacoes"
+						oncomplete="#{rich:component('confirmPanel')}.show()" />
+				</h:panelGrid>
+				<rich:dataTable id="listaTitulacoes"
+					value="#{servidorTitulacaoController.listaServidorTitulacoes}"
+					var="list" width="1150px" columnClasses="center" rows="15"
+					reRender="ds">
+					<rich:column width="500px" sortBy="#{list.titulacao.descricao}">
+						<f:facet name="header">
+							<h:outputText value="Titulacao" />
+						</f:facet>
+						<h:outputText value="#{list.titulacao.descricao}" />
+					</rich:column>
+					<rich:column width="400px" sortBy="#{list.curso}">
+						<f:facet name="header">
+							<h:outputText value="Curso" />
+						</f:facet>
+						<h:outputText value="#{list.curso}" />
+					</rich:column>
+					<rich:column width="200px" sortBy="#{list.anoConclusao}">
+						<f:facet name="header">
+							<h:outputText value="Ano de Conclusao" />
+						</f:facet>
+						<h:outputText value="#{list.anoConclusao}" />
+					</rich:column>
+					<rich:column>
+						<f:facet name="header">
+							<h:outputText value="Excluir" />
+						</f:facet>
+						<a4j:commandLink ajaxSingle="true" id="delete"
+							oncomplete="#{rich:component('deletePanel')}.show()">
+							<h:graphicImage id="excluir" value="../images/delete.gif"
+								style="border:0" />
+							<f:setPropertyActionListener value="#{list.codigo}"
+								target="#{servidorTitulacaoController.servidorTitulacao.codigo}" />
+						</a4j:commandLink>
+						<rich:toolTip for="excluir" value="Excluir" />
+					</rich:column>
+					<f:facet name="footer">
+						<rich:datascroller id="ds"></rich:datascroller>
+					</f:facet>
+				</rich:dataTable>
+			</a4j:region>
 		</rich:panel></center>
 	</a4j:form>
+	<center><rich:modalPanel id="confirmPanel" autosized="false"
+		style="overflow: auto;"
+		showWhenRendered="#{not empty facesContext.maximumSeverity}">
+		<f:facet name="header">
+			<h:panelGroup>
+				<h:outputText value="Verificar Campos"></h:outputText>
+			</h:panelGroup>
+		</f:facet>
+		<f:facet name="controls">
+			<h:panelGroup>
+				<h:graphicImage value="../images/close.gif"
+					onclick="#{rich:component('confirmPanel')}.hide();" />
+			</h:panelGroup>
+		</f:facet>
+		<h:form>
+			<table width="100%" height="100%">
+				<tbody>
+					<tr>
+						<td><rich:messages layout="list" errorLabelClass="errorLabel"
+							style="top:auto;" infoLabelClass="infoLabel">
+							<f:facet name="infoMarker">
+								<h:graphicImage value="../images/passed.gif" />
+							</f:facet>
+							<f:facet name="errorMarker">
+								<h:graphicImage value="../images/error.gif" />
+							</f:facet>
+						</rich:messages></td>
+					</tr>
+				</tbody>
+			</table>
+		</h:form>
+	</rich:modalPanel> <rich:modalPanel id="deletePanel" autosized="true" width="200">
+		<f:facet name="header">
+			<h:outputText value="Deseja realmente deletar este item?"
+				style="padding-right:15px;" />
+		</f:facet>
+		<h:form>
+			<table width="100%">
+				<tbody>
+					<tr>
+						<td align="center" width="50%"><a4j:commandButton value="Sim"
+							ajaxSingle="true" action="#{servidorTitulacaoController.remover}"
+							oncomplete="#{rich:component('deletePanel')}.hide();"
+							reRender="listaTitulacoes, form" /></td>
+						<td align="center" width="50%"><a4j:commandButton value="Não"
+							onclick="#{rich:component('deletePanel')}.hide();return false;" />
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</h:form>
+	</rich:modalPanel></center>
 </f:view>
 </body>
 </html>
