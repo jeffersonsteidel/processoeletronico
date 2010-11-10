@@ -50,7 +50,7 @@
 					icon="../images/ATUALIZARDADOS.gif" />
 				<rich:menuItem submitMode="ajax" value="Adicionar Dependentes"
 					action="#{dependenteController.abrirAdicionarDependentes}"
-					icon="../images/ATUALIZARDADOS.gif" />
+					icon="../images/dependente.gif" />
 					<rich:menuItem submitMode="ajax" value="Adicionar Titulações"
 					action="#{servidorTitulacaoController.abrirAdicionarServidorTitulacao}"
 					icon="../images/titulacoes.gif" />
