@@ -131,7 +131,7 @@
 					<a4j:commandLink rendered="#{list.statusSolicitacao.codigo == 1}"
 						action="#{solicitacaoController.carregarSolicitacao}"
 						reRender="listaSolicitacoes" ajaxSingle="true">
-						<h:graphicImage value="../images/encaminhado.gif" style="border:0"
+						<h:graphicImage value="../images/encaminhado.png" style="border:0"
 							width="20" height="18" id="encaminhado" />
 						<f:setPropertyActionListener value="#{list.codigo}"
 							target="#{solicitacaoController.codigoSolicitacao}" />
