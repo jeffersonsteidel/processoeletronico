@@ -53,7 +53,7 @@
 					icon="../images/ATUALIZARDADOS.gif" />
 					<rich:menuItem submitMode="ajax" value="Adicionar Titulações"
 					action="#{servidorTitulacaoController.abrirAdicionarServidorTitulacao}"
-					icon="../images/ATUALIZARDADOS.gif" />
+					icon="../images/titulacoes.gif" />
 			</rich:dropDownMenu>
 
 			<rich:dropDownMenu>
