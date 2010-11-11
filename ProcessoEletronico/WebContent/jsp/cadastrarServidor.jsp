@@ -161,16 +161,6 @@
 							<f:selectItem itemLabel="SELECIONE" itemValue="" />
 							<f:selectItems value="#{servidorController.lotacoes}" />
 						</h:selectOneMenu>
-						<%--
-					<h:outputText value="Local de Exercício: " />
-					<h:selectOneMenu
-						value="#{servidorController.servidor.localExercicio.codigo}"
-						required="true"
-						requiredMessage="Campo Local de Exercício é obrigatório!">
-						<f:selectItem itemLabel="SELECIONE" itemValue="" />
-						<f:selectItems value="#{servidorController.lotacoes}" />
-					</h:selectOneMenu>
- --%>
 
 						<h:outputText value="Ramal: " />
 						<h:inputText value="#{servidorController.servidor.ramal}" size="8"
@@ -210,21 +200,6 @@
 							<f:selectItems value="#{servidorController.regimesTrabalhos}" />
 						</h:selectOneMenu>
 
-						<!--<%--
-					<h:outputText value="Função: " />
-					<h:selectOneMenu
-						value="#{servidorController.servidor.funcao.codigo}">
-						<f:selectItem itemLabel="SELECIONE" itemValue="" />
-						<f:selectItems value="#{servidorController.funcoes}" />
-					</h:selectOneMenu>
-
-					<h:outputText value="Tipo Função: " />
-					<h:selectOneMenu
-						value="#{servidorController.servidor.funcao.tipoFuncao.codigo}">
-						<f:selectItem itemLabel="SELECIONE" itemValue="" />
-						<f:selectItems value="#{servidorController.tipoFuncoes}" />
-					</h:selectOneMenu>--%>
--->
 						<h:outputText value="Situação Funcional: " />
 						<h:selectOneMenu
 							value="#{servidorController.servidor.situacaoFuncional.codigo}"
@@ -478,17 +453,27 @@
 							rendered="#{autenticacaoController.siapeAutenticado.indAdministrador}"
 							action="#{servidorController.aprovar}" reRender="form"
 							oncomplete="#{rich:component('confirmPanel')}.show()" /></center>
-						<h:panelGrid columns="1"
+						<h:panelGrid columns="2"
 							rendered="#{autenticacaoController.siapeAutenticado.indAdministrador}">
+							<h:graphicImage value="../images/indeferido.gif" style="border:0"
+								width="20" height="18"
+								rendered="#{!servidorController.servidor.dadosValidados}" />
 							<h:outputText
 								rendered="#{!servidorController.servidor.dadosValidados}"
 								value="Dados ainda não validados pela PROGEPE!"></h:outputText>
+							<h:graphicImage value="../images/deferido.gif" style="border:0"
+								width="20" height="18"
+								rendered="#{servidorController.servidor.dadosValidados}" />
 							<h:outputText
 								rendered="#{servidorController.servidor.dadosValidados}"
 								value="Dados validados pela PROGEPE!"></h:outputText>
-							<h:outputText value="Data da última atualização realizada pelo servidor!"></h:outputText>
+						</h:panelGrid>
+						<h:panelGrid
+							columns="2">	
+							<h:outputText
+								value="Data da última atualização realizada pelo servidor:"></h:outputText>
 							<h:outputText value="#{servidorController.dataUltimaAlteracao}"></h:outputText>
-							<h:outputText value="Data da última aprovação!"></h:outputText>
+							<h:outputText value="Data da última aprovação:"></h:outputText>
 							<h:outputText value="#{servidorController.dataUltimaAprovacao}"></h:outputText>
 						</h:panelGrid>
 					</h:panelGrid>
