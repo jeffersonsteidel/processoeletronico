@@ -6,6 +6,7 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
 
@@ -137,19 +138,11 @@ public class ServidorTitulacaoController implements Serializable {
 		try {
 			listaServidorTitulacoes.clear();
 			servidorTitulacao = new ServidorTitulacao();
-			servidorTitulacao.setEstadoOrgaoEmissor(new Estado());
+			servidorTitulacao.setServidor(new Servidor());
 			servidorTitulacao.setAreaConhecimento(new AreaConhecimento());
-			servidorTitulacao.setCidadeEstabelecimentoEnsino(new Cidade());
-			servidorTitulacao.getCidadeEstabelecimentoEnsino().setEstado(
-					new Estado());
 			servidorTitulacao.setTitulacao(new Titulacao());
-			buscarServidorLogado();
 			listarAreaConhecimento();
-			listarEstados();
 			listarTitulacoes();
-			listarEstados();
-			listarUf();
-			listarTitulacoesServidorLogado();
 			FacesContext.getCurrentInstance().getExternalContext()
 					.redirect("listarTitulacoes.jsp");
 		} catch (IOException e) {
@@ -259,8 +252,8 @@ public class ServidorTitulacaoController implements Serializable {
 	}
 
 	public void salvarTitulacao() throws Exception {
-		if(servidorTitulacao.getEstadoOrgaoEmissor().getCodigo().equals(0)){
-			servidorTitulacao.getEstadoOrgaoEmissor().setCodigo(null);
+		if(new Long(0).equals(servidorTitulacao.getEstadoOrgaoEmissor().getCodigo())){
+			servidorTitulacao.setEstadoOrgaoEmissor(null);
 		}
 		dao.saveOrUpdate(servidorTitulacao);
 		listarTitulacoesServidorLogado();
@@ -294,5 +287,21 @@ public class ServidorTitulacaoController implements Serializable {
 	}
 	FacesContext.getCurrentInstance().getExternalContext()
 			.redirect("adicionarTitulacao.jsp");
+	}
+	
+	public List<ServidorTitulacao> listarTitulacoesFiltro() {
+		ServidorTitulacaoDAO servidorTitulacaoDAO = new ServidorTitulacaoDAO();
+		listaServidorTitulacoes = new ArrayList<ServidorTitulacao>();
+		ServidorDAO servidorDAO = new ServidorDAO();
+		servidorTitulacao.setServidor(servidorDAO.refreshByFilter(servidorTitulacao.getServidor()));
+		setListaServidorTitulacoes(servidorTitulacaoDAO.listByFilter(servidorTitulacao));
+		if (getListaServidorTitulacoes().size() == 0) {
+			FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_WARN,
+					"Nenhum registro para o filtro informado!",
+					"Nenhum registro para o filtro informado!");
+			FacesContext.getCurrentInstance().addMessage("", message);
+
+		}
+		return listaServidorTitulacoes;
 	}
 }
