@@ -112,6 +112,7 @@ public class ServidorTitulacaoController implements Serializable {
 
 	public void abrirAdicionarServidorTitulacao() throws Exception {
 		try {
+			listaServidorTitulacoes.clear();
 			servidorTitulacao = new ServidorTitulacao();
 			servidorTitulacao.setEstadoOrgaoEmissor(new Estado());
 			servidorTitulacao.setAreaConhecimento(new AreaConhecimento());
@@ -125,7 +126,7 @@ public class ServidorTitulacaoController implements Serializable {
 			listarTitulacoes();
 			listarEstados();
 			listarUf();
-			listarTitulacoesServidor();
+			listarTitulacoesServidorLogado();
 			FacesContext.getCurrentInstance().getExternalContext()
 					.redirect("adicionarTitulacao.jsp");
 		} catch (IOException e) {
@@ -145,7 +146,7 @@ public class ServidorTitulacaoController implements Serializable {
 	}
 
 
-	public void listarTitulacoesServidor() throws Exception{
+	public void listarTitulacoesServidorLogado() throws Exception{
 		buscarServidorLogado();
 		listaServidorTitulacoes = servidorTitulacaoDAO.listByServidor(servidorTitulacao);
 	}
@@ -236,7 +237,7 @@ public class ServidorTitulacaoController implements Serializable {
 
 	public void salvarTitulacao() throws Exception {
 		dao.saveOrUpdate(servidorTitulacao);
-		listarTitulacoesServidor();
+		listarTitulacoesServidorLogado();
 		servidorTitulacao = new ServidorTitulacao();
 		servidorTitulacao.setEstadoOrgaoEmissor(new Estado());
 		servidorTitulacao.setAreaConhecimento(new AreaConhecimento());
@@ -249,7 +250,7 @@ public class ServidorTitulacaoController implements Serializable {
 	public void remover() throws Exception {
 		dao.refresh(servidorTitulacao);
 		dao.delete(servidorTitulacao);
-		listarTitulacoesServidor();
+		listarTitulacoesServidorLogado();
 		servidorTitulacao = new ServidorTitulacao();
 		servidorTitulacao.setEstadoOrgaoEmissor(new Estado());
 		servidorTitulacao.setAreaConhecimento(new AreaConhecimento());
@@ -262,6 +263,9 @@ public class ServidorTitulacaoController implements Serializable {
 	
 	public void carregar() throws Exception{
 	servidorTitulacao = (ServidorTitulacao) dao.refresh(servidorTitulacao);
+	if(servidorTitulacao.getCidadeEstabelecimentoEnsino().getCodigo()!=null){
+		listarCidadesEstabelecimento();
+	}
 	FacesContext.getCurrentInstance().getExternalContext()
 			.redirect("adicionarTitulacao.jsp");
 	}
