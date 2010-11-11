@@ -139,6 +139,8 @@
 						reRender="listaTitulacoes, titulacao, estabelecimentoEnsino, curso, areaConhecimento, estadoEstabelecimento,
 					 cidadeEstabelecimento, cargaHoraria, anoConclusao, registroConcelho, orgaoEmissor, estadoEmissor, titulacaoEstrangeira, pais, listaTitulacoes"
 						oncomplete="#{rich:component('confirmPanel')}.show()" />
+					<a4j:commandButton value="Novo"
+						action="#{servidorTitulacaoController.abrirAdicionarServidorTitulacao}"/>
 				</h:panelGrid>
 				<rich:dataTable id="listaTitulacoes"
 					value="#{servidorTitulacaoController.listaServidorTitulacoes}"
@@ -173,7 +175,7 @@
 					<f:facet name="header">
 						<h:outputText value="Editar" />
 					</f:facet>
-					<a4j:commandLink action="#{servidorTitulacaoController.preencher}"
+					<a4j:commandLink action="#{servidorTitulacaoController.carregar}"
 						reRender="listaTitulacoes" ajaxSingle="true">
 						<h:graphicImage value="../images/edit.gif" style="border:0"
 							width="20" height="18" id="editar" />

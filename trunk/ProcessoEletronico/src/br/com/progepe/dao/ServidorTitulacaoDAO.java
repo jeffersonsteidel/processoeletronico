@@ -22,5 +22,7 @@ public class ServidorTitulacaoDAO extends DAO {
 		}
 		return c.list();
 	}
+	
+	
 
 }
