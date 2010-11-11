@@ -206,7 +206,8 @@
 				</tbody>
 			</table>
 		</h:form>
-	</rich:modalPanel> <rich:modalPanel id="deletePanel" autosized="true" width="200">
+	</rich:modalPanel> 
+	<rich:modalPanel id="deletePanel" autosized="true" width="200">
 		<f:facet name="header">
 			<h:outputText value="Deseja realmente deletar este item?"
 				style="padding-right:15px;" />

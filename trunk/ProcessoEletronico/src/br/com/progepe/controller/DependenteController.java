@@ -37,7 +37,7 @@ public class DependenteController implements Serializable {
 	public void setFiles(ArrayList<Portaria> files) {
 		this.files = files;
 	}
-	
+
 	public ArrayList<Dependente> getListaDependentes() {
 		return listaDependentes;
 	}
@@ -118,7 +118,7 @@ public class DependenteController implements Serializable {
 		}
 		return ufs;
 	}
-	
+
 	public void validarCPF() {
 		if (!Validator.validaCPF(dependente.getDocumento().getCpf())) {
 			FacesMessage message = new FacesMessage(
@@ -128,10 +128,23 @@ public class DependenteController implements Serializable {
 			dependente.getDocumento().setCpf("");
 		}
 	}
-	
+
+	@SuppressWarnings("unchecked")
 	public void adicionarDependente() throws IOException, ParseException {
+		List<GrauParentesco> grauParentescos = dao.list(GrauParentesco.class);
+		for (GrauParentesco item : grauParentescos) {
+			if (item.getCodigo().equals(
+					dependente.getGrauParentesco().getCodigo())) {
+				dependente.setGrauParentesco(item);
+				break;
+			}
+		}
 		listaDependentes.add(dependente);
+		dao.saveOrUpdate(dependente);
 		dependente = new Dependente();
+		dependente.setDocumento(new Documento());
+		dependente.setGrauParentesco(new GrauParentesco());
+		abrirAdicionarDependentes();
 	}
 
 	public void salvar() throws IOException, ParseException {
@@ -139,6 +152,15 @@ public class DependenteController implements Serializable {
 		dependente = new Dependente();
 		files = new ArrayList<Portaria>();
 	}
-	
-	
+
+	// @SuppressWarnings("unchecked")
+	// public void listarDependentes() {
+	// listaDependentes = dao.list(Dependente.class);
+	// }
+
+	public void remover() throws ParseException {
+		dao.delete(dependente);
+		listaDependentes.remove(dependente);
+	}
+
 }

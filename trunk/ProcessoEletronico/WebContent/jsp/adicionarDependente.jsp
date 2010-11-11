@@ -120,31 +120,39 @@
 				<h:outputText value="Estudante Universitário? " />
 				<h:selectBooleanCheckbox id="estudanteUniversitario"
 					value="#{dependenteController.dependente.indEstudante}">
+					<a4j:support event="onchange" action="#" ajaxSingle="true"
+						reRender="faculdade, curso, dataFormacao"></a4j:support>
 				</h:selectBooleanCheckbox>
 
 				<h:outputText value="Estabelecimento de Ensino: ">
 				</h:outputText>
-				<h:inputText value="#{dependenteController.dependente.faculdade}"
-					size="50" maxlength="100" required="true"
+				<h:inputText id="faculdade"
+					value="#{dependenteController.dependente.faculdade}" size="50"
+					maxlength="100"
+					disabled="#{!dependenteController.dependente.indEstudante}"
+					required="true"
 					requiredMessage="Campo Estabelecimento de Ensino é obrigatório!"></h:inputText>
 
 				<h:outputText value="Curso: ">
 				</h:outputText>
-				<h:inputText value="#{dependenteController.dependente.curso}"
-					size="50" maxlength="100" required="true"
-					requiredMessage="Campo Curso é obrigatório!"></h:inputText>
+				<h:inputText id="curso"
+					value="#{dependenteController.dependente.curso}" size="50"
+					maxlength="100"
+					disabled="#{!dependenteController.dependente.indEstudante}"
+					required="true" requiredMessage="Campo Curso é obrigatório!"></h:inputText>
 
 				<h:outputText value="Previsão de Formação: " />
-				<rich:calendar
+				<rich:calendar id="dataFormacao"
 					value="#{dependenteController.dependente.dataFormacao}" locale=""
 					popup="true" datePattern="dd/MM/yyyy" showApplyButton="#"
 					cellWidth="12px" cellHeight="12px" style="width:80px"
+					disabled="#{!dependenteController.dependente.indEstudante}"
 					required="true" inputSize="12"
 					requiredMessage="Campo Previsão de Formação é obrigatório!" />
 
 			</h:panelGrid>
 
-			<a4j:commandButton value="Adicionar"
+			<a4j:commandButton value="Salvar"
 				action="#{dependenteController.adicionarDependente}" reRender="form" />
 
 			<rich:dataTable id="listaDependentes"
@@ -162,14 +170,36 @@
 					<f:facet name="header">
 						<h:outputText value="Grau Parentesco" />
 					</f:facet>
-					<h:outputText value="#{list.grauParentesco}" />
+					<h:outputText value="#{list.grauParentesco.descricao}" />
 				</rich:column>
 
-				<rich:column width="435px">
+				<rich:column>
+					<f:facet name="header">
+						<h:outputText value="Editar" />
+					</f:facet>
+					<a4j:commandLink action="#{dependenteController.abrirAdicionarDependentes}"
+						reRender="listaDependentes" ajaxSingle="true">
+						<h:graphicImage value="../images/edit.gif" style="border:0"
+							width="20" height="18" id="editar" />
+						<f:setPropertyActionListener value="#{list.codigo}"
+							target="#{dependenteController.dependente.codigo}" />
+					</a4j:commandLink>
+					<rich:toolTip for="editar" value="Editar" />
+
+				</rich:column>
+
+				<rich:column>
 					<f:facet name="header">
 						<h:outputText value="Excluir" />
 					</f:facet>
-					<h:outputText value="#" />
+					<a4j:commandLink ajaxSingle="true" id="delete" reRender="listaDependentes"
+						oncomplete="#{rich:component('deletePanel')}.show()">
+						<h:graphicImage id="excluir" value="../images/delete.gif"
+							style="border:0" />
+						<f:setPropertyActionListener value="#{list.codigo}"
+							target="#{dependenteController.dependente.codigo}" />
+					</a4j:commandLink>
+					<rich:toolTip for="excluir" value="Excluir" />
 				</rich:column>
 
 				<f:facet name="footer">
@@ -179,6 +209,29 @@
 
 		</rich:panel></center>
 	</a4j:form>
+
+	<center><rich:modalPanel id="deletePanel" autosized="true"
+		width="200">
+		<f:facet name="header">
+			<h:outputText value="Deseja realmente excluir este item?"
+				style="padding-right:15px;" />
+		</f:facet>
+		<h:form>
+			<table width="100%">
+				<tbody>
+					<tr>
+						<td align="center" width="50%"><a4j:commandButton value="Sim"
+							ajaxSingle="true" action="#{dependenteController.remover}"
+							oncomplete="#{rich:component('deletePanel')}.hide();"
+							reRender="listaDependentes, form" /></td>
+						<td align="center" width="50%"><a4j:commandButton value="Não"
+							onclick="#{rich:component('deletePanel')}.hide();return false;" />
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</h:form>
+	</rich:modalPanel></center>
 </f:view>
 </body>
 </html>
