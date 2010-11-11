@@ -16,6 +16,13 @@
 	<a4j:loadScript src="../js/script.js" />
 	<a4j:form id="form">
 		<center><rich:panel>
+		<font size="2"><b>ADICIONAR TITULAÇÃO</b></font>
+			<h:panelGrid columns="1">
+				<h:outputText id="siapeNome"
+					value="#{servidorTitulacaoController.servidorTitulacao.servidor.siape} - #{servidorTitulacaoController.servidorTitulacao.servidor.nome}">
+				</h:outputText>
+			</h:panelGrid>
+		
 			<a4j:region>
 				<h:panelGrid columns="4">
 
@@ -30,13 +37,13 @@
 
 					<h:outputText value="Estabelecimento de Ensino: " />
 
-					<h:inputText id="estabelecimentoEnsino"
+					<h:inputText id="estabelecimentoEnsino" requiredMessage="Campo Estabelecimento de Ensino é obrigatório!" required="true"
 						value="#{servidorTitulacaoController.servidorTitulacao.estabelecimentoEnsino}"
 						size="40" maxlength="100"></h:inputText>
 
 					<h:outputText value="Curso: " />
 
-					<h:inputText id="curso"
+					<h:inputText id="curso" required="true" requiredMessage="Campo Curso é obrigatório!"
 						value="#{servidorTitulacaoController.servidorTitulacao.curso}"
 						size="40" maxlength="100"></h:inputText>
 
@@ -45,18 +52,18 @@
 					<h:selectOneMenu id="areaConhecimento"
 						value="#{servidorTitulacaoController.servidorTitulacao.areaConhecimento.codigo}"
 						required="true"
-						requiredMessage="Campo Area de COnhecimento é obrigatório!">
+						requiredMessage="Campo Area de Conhecimento é obrigatório!">
 						<f:selectItem itemLabel="SELECIONE" itemValue="" />
 						<f:selectItems
 							value="#{servidorTitulacaoController.areasConhecimento}" />
 					</h:selectOneMenu>
 
-					<h:outputText value="Estado do Estabelecimento: " />
+					<h:outputText value="Estado do Estabelecimento de Ensino: " />
 					<h:selectOneMenu id="estadoEstabelecimento"
 						value="#{servidorTitulacaoController.servidorTitulacao.cidadeEstabelecimentoEnsino.estado.codigo}"
 						required="true"
 						disabled="#{servidorTitulacaoController.indTitulacaoEstrangeira}"
-						requiredMessage="Campo Estado de Estabelecimento é obrigatório!">
+						requiredMessage="Campo Estado do Estabelecimento de Ensino é obrigatório!">
 						<f:selectItem itemLabel="SELECIONE" itemValue="" />
 						<f:selectItems value="#{servidorTitulacaoController.estados}" />
 						<a4j:support event="onchange"
@@ -68,7 +75,7 @@
 						value="#{servidorTitulacaoController.servidorTitulacao.cidadeEstabelecimentoEnsino.codigo}"
 						required="true"
 						disabled="#{servidorTitulacaoController.indTitulacaoEstrangeira}"
-						requiredMessage="Campo Cidade de Nascimento é obrigatório!">
+						requiredMessage="Campo Cidade do Estabelecimento de Ensino é obrigatório!">
 						<f:selectItem itemLabel="SELECIONE" itemValue="" />
 						<f:selectItems
 							value="#{servidorTitulacaoController.cidadesEstabelecimento}" />
@@ -76,33 +83,33 @@
 
 					<h:outputText value="Carga Horária: " />
 
-					<h:inputText id="cargaHoraria"
+					<h:inputText id="cargaHoraria" required="true" requiredMessage="Campo Carga Horária é obrigatório!"
 						value="#{servidorTitulacaoController.servidorTitulacao.cargaHoraria}"
-						size="40" maxlength="4" onkeypress="mascara(this,soNumeros);"></h:inputText>
+						size="9" maxlength="4" onkeypress="mascara(this,soNumeros);"></h:inputText>
 
 					<h:outputText value="Ano de Conclusão: " />
 
-					<h:inputText id="anoConclusao"
+					<h:inputText id="anoConclusao" required="true" requiredMessage="Campo Ano de Conclusão é obrigatório!"
 						value="#{servidorTitulacaoController.servidorTitulacao.anoConclusao}"
-						size="40" maxlength="4" onkeypress="mascara(this,soNumeros);"></h:inputText>
+						size="9" maxlength="4" onkeypress="mascara(this,soNumeros);"></h:inputText>
 
 					<h:outputText value="Registro no Concelho: " />
 
-					<h:inputText id="registroConcelho"
+					<h:inputText id="registroConcelho" 
 						value="#{servidorTitulacaoController.servidorTitulacao.registroConselho}"
-						size="40" maxlength="11" onkeypress="mascara(this,soNumeros);"></h:inputText>
+						size="9" maxlength="10" ></h:inputText>
 
 					<h:outputText value="Orgão Emissor do Registro: " />
 
 					<h:inputText id="orgaoEmissor"
 						value="#{servidorTitulacaoController.servidorTitulacao.orgaoEmissor}"
-						size="40" maxlength="8"></h:inputText>
+						size="9" maxlength="8"></h:inputText>
 
 					<h:outputText value="Estado do Orgão Emissor: " />
 					<h:selectOneMenu id="estadoEmissor"
 						value="#{servidorTitulacaoController.servidorTitulacao.estadoOrgaoEmissor.codigo}"
 						required="true"
-						requiredMessage="Campo Estado de Estabelecimento é obrigatório!">
+						requiredMessage="Campo Estado do Orgão Emissor é obrigatório!">
 						<f:selectItem itemLabel="SELECIONE" itemValue="" />
 						<f:selectItems value="#{servidorTitulacaoController.ufs}" />
 					</h:selectOneMenu>
@@ -149,17 +156,38 @@
 						</f:facet>
 						<h:outputText value="#{list.curso}" />
 					</rich:column>
-					<rich:column width="200px" sortBy="#{list.anoConclusao}">
+					<rich:column width="400px" sortBy="#{list.areaConhecimento.descricao}">
+						<f:facet name="header">
+							<h:outputText value="Area de Conhecimento" />
+						</f:facet>
+						<h:outputText value="#{list.areaConhecimento.descricao}" />
+					</rich:column>
+					<rich:column width="100px" sortBy="#{list.anoConclusao}">
 						<f:facet name="header">
 							<h:outputText value="Ano de Conclusao" />
 						</f:facet>
 						<h:outputText value="#{list.anoConclusao}" />
 					</rich:column>
+					
+					<rich:column>
+					<f:facet name="header">
+						<h:outputText value="Editar" />
+					</f:facet>
+					<a4j:commandLink action="#{servidorTitulacaoController.preencher}"
+						reRender="listaTitulacoes" ajaxSingle="true">
+						<h:graphicImage value="../images/edit.gif" style="border:0"
+							width="20" height="18" id="editar" />
+						<f:setPropertyActionListener value="#{list.codigo}"
+							target="#{servidorTitulacaoController.servidorTitulacao.codigo}" />
+					</a4j:commandLink>
+					<rich:toolTip for="editar" value="Editar" />
+				</rich:column>
+					
 					<rich:column>
 						<f:facet name="header">
 							<h:outputText value="Excluir" />
 						</f:facet>
-						<a4j:commandLink ajaxSingle="true" id="delete"
+						<a4j:commandLink ajaxSingle="true" id="delete" reRender="form"
 							oncomplete="#{rich:component('deletePanel')}.show()">
 							<h:graphicImage id="excluir" value="../images/delete.gif"
 								style="border:0" />
