@@ -45,7 +45,7 @@
 						<h:outputText value="ATUALIZAR MEUS DADOS" />
 					</h:panelGroup>
 				</f:facet>
-				<rich:menuItem submitMode="ajax" value="Atualizar Dados"
+				<rich:menuItem submitMode="ajax" value="Atualizar Meus Dados"
 					action="#{servidorController.buscarServidorLogado}"
 					icon="../images/ATUALIZARDADOS.gif" />
 				<rich:menuItem submitMode="ajax" value="Adicionar Dependentes"
