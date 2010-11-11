@@ -470,11 +470,15 @@
 				</rich:tab>
 
 				<rich:tab label="SALVAR">
-					<h:panelGrid columns="2">
-						<a4j:commandButton value="Salvar"
+					<h:panelGrid columns="1">
+						<center><a4j:commandButton value="Salvar"
 							action="#{servidorController.salvar}" reRender="form"
-							oncomplete="#{rich:component('confirmPanel')}.show()" />
-						<h:panelGrid columns="4"
+							oncomplete="#{rich:component('confirmPanel')}.show()" /> <a4j:commandButton
+							value="Aprovar"
+							rendered="#{autenticacaoController.siapeAutenticado.indAdministrador}"
+							action="#{servidorController.aprovar}" reRender="form"
+							oncomplete="#{rich:component('confirmPanel')}.show()" /></center>
+						<h:panelGrid columns="1"
 							rendered="#{autenticacaoController.siapeAutenticado.indAdministrador}">
 							<h:outputText
 								rendered="#{!servidorController.servidor.dadosValidados}"
@@ -482,8 +486,10 @@
 							<h:outputText
 								rendered="#{servidorController.servidor.dadosValidados}"
 								value="Dados validados pela PROGEPE!"></h:outputText>
-							<h:outputText value="Data da última atualização!"></h:outputText>
+							<h:outputText value="Data da última atualização realizada pelo servidor!"></h:outputText>
 							<h:outputText value="#{servidorController.dataUltimaAlteracao}"></h:outputText>
+							<h:outputText value="Data da última aprovação!"></h:outputText>
+							<h:outputText value="#{servidorController.dataUltimaAprovacao}"></h:outputText>
 						</h:panelGrid>
 					</h:panelGrid>
 				</rich:tab>
