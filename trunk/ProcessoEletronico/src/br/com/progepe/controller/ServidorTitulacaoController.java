@@ -112,7 +112,13 @@ public class ServidorTitulacaoController implements Serializable {
 
 	public void abrirAdicionarServidorTitulacao() throws Exception {
 		try {
-			inicializarServidorTitulacao();
+			servidorTitulacao = new ServidorTitulacao();
+			servidorTitulacao.setEstadoOrgaoEmissor(new Estado());
+			servidorTitulacao.setAreaConhecimento(new AreaConhecimento());
+			servidorTitulacao.setCidadeEstabelecimentoEnsino(new Cidade());
+			servidorTitulacao.getCidadeEstabelecimentoEnsino().setEstado(
+					new Estado());
+			servidorTitulacao.setTitulacao(new Titulacao());
 			buscarServidorLogado();
 			listarAreaConhecimento();
 			listarEstados();
@@ -125,16 +131,6 @@ public class ServidorTitulacaoController implements Serializable {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-	}
-	
-	public void inicializarServidorTitulacao() {
-		servidorTitulacao = new ServidorTitulacao();
-		servidorTitulacao.setEstadoOrgaoEmissor(new Estado());
-		servidorTitulacao.setAreaConhecimento(new AreaConhecimento());
-		servidorTitulacao.setCidadeEstabelecimentoEnsino(new Cidade());
-		servidorTitulacao.getCidadeEstabelecimentoEnsino().setEstado(
-				new Estado());
-		servidorTitulacao.setTitulacao(new Titulacao());
 	}
 	
 	public void buscarServidorLogado() throws IOException, ParseException {
@@ -241,22 +237,30 @@ public class ServidorTitulacaoController implements Serializable {
 	public void salvarTitulacao() throws Exception {
 		dao.saveOrUpdate(servidorTitulacao);
 		listarTitulacoesServidor();
-		inicializarServidorTitulacao();
+		servidorTitulacao = new ServidorTitulacao();
+		servidorTitulacao.setEstadoOrgaoEmissor(new Estado());
+		servidorTitulacao.setAreaConhecimento(new AreaConhecimento());
+		servidorTitulacao.setCidadeEstabelecimentoEnsino(new Cidade());
+		servidorTitulacao.getCidadeEstabelecimentoEnsino().setEstado(
+				new Estado());
+		servidorTitulacao.setTitulacao(new Titulacao());
 	}
 
 	public void remover() throws Exception {
 		dao.refresh(servidorTitulacao);
 		dao.delete(servidorTitulacao);
 		listarTitulacoesServidor();
-		inicializarServidorTitulacao();
+		servidorTitulacao = new ServidorTitulacao();
+		servidorTitulacao.setEstadoOrgaoEmissor(new Estado());
+		servidorTitulacao.setAreaConhecimento(new AreaConhecimento());
+		servidorTitulacao.setCidadeEstabelecimentoEnsino(new Cidade());
+		servidorTitulacao.getCidadeEstabelecimentoEnsino().setEstado(
+				new Estado());
+		servidorTitulacao.setTitulacao(new Titulacao());
 		buscarServidorLogado();
 	}
 	
-//	public void preencher() throws Exception{
-//		dao.refresh(servidorTitulacao);
-//		listarTitulacoesServidor();
-//	}
-	public void preencher() throws Exception{
+	public void carregar() throws Exception{
 	servidorTitulacao = (ServidorTitulacao) dao.refresh(servidorTitulacao);
 	FacesContext.getCurrentInstance().getExternalContext()
 			.redirect("adicionarTitulacao.jsp");
