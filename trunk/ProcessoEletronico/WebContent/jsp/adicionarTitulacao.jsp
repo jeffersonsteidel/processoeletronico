@@ -16,13 +16,13 @@
 	<a4j:loadScript src="../js/script.js" />
 	<a4j:form id="form">
 		<center><rich:panel>
-		<font size="2"><b>ADICIONAR TITULAÇÃO</b></font>
+			<font size="2"><b>ADICIONAR TITULAÇÃO</b></font>
 			<h:panelGrid columns="1">
 				<h:outputText id="siapeNome"
 					value="#{servidorTitulacaoController.servidorTitulacao.servidor.siape} - #{servidorTitulacaoController.servidorTitulacao.servidor.nome}">
 				</h:outputText>
 			</h:panelGrid>
-		
+
 			<a4j:region>
 				<h:panelGrid columns="4">
 
@@ -37,13 +37,16 @@
 
 					<h:outputText value="Estabelecimento de Ensino: " />
 
-					<h:inputText id="estabelecimentoEnsino" requiredMessage="Campo Estabelecimento de Ensino é obrigatório!" required="true"
+					<h:inputText id="estabelecimentoEnsino"
+						requiredMessage="Campo Estabelecimento de Ensino é obrigatório!"
+						required="true"
 						value="#{servidorTitulacaoController.servidorTitulacao.estabelecimentoEnsino}"
 						size="40" maxlength="100"></h:inputText>
 
 					<h:outputText value="Curso: " />
 
-					<h:inputText id="curso" required="true" requiredMessage="Campo Curso é obrigatório!"
+					<h:inputText id="curso" required="true"
+						requiredMessage="Campo Curso é obrigatório!"
 						value="#{servidorTitulacaoController.servidorTitulacao.curso}"
 						size="40" maxlength="100"></h:inputText>
 
@@ -83,23 +86,26 @@
 
 					<h:outputText value="Carga Horária: " />
 
-					<h:inputText id="cargaHoraria" required="true" requiredMessage="Campo Carga Horária é obrigatório!"
+					<h:inputText id="cargaHoraria" required="true"
+						requiredMessage="Campo Carga Horária é obrigatório!"
 						value="#{servidorTitulacaoController.servidorTitulacao.cargaHoraria}"
 						size="9" maxlength="4" onkeypress="mascara(this,soNumeros);"></h:inputText>
 
 					<h:outputText value="Ano de Conclusão: " />
 
-					<h:inputText id="anoConclusao" required="true" requiredMessage="Campo Ano de Conclusão é obrigatório!"
+					<h:inputText id="anoConclusao" required="true"
+						requiredMessage="Campo Ano de Conclusão é obrigatório!"
 						value="#{servidorTitulacaoController.servidorTitulacao.anoConclusao}"
 						size="9" maxlength="4" onkeypress="mascara(this,soNumeros);"
 						validatorMessage="Campo Ano de Conclusão deve ter 4 digitos!">
-						<f:validateLength minimum="4" /></h:inputText>
+						<f:validateLength minimum="4" />
+					</h:inputText>
 
 					<h:outputText value="Registro no Concelho: " />
 
-					<h:inputText id="registroConcelho" 
+					<h:inputText id="registroConcelho"
 						value="#{servidorTitulacaoController.servidorTitulacao.registroConselho}"
-						size="9" maxlength="10" ></h:inputText>
+						size="9" maxlength="10"></h:inputText>
 
 					<h:outputText value="Orgão Emissor do Registro: " />
 
@@ -133,14 +139,15 @@
 						<f:selectItem itemLabel="SELECIONE" itemValue="" />
 						<f:selectItems value="#{servidorTitulacaoController.paises}" />
 					</h:selectOneMenu>
-
+				</h:panelGrid>
+				<h:panelGrid columns="2">
 					<a4j:commandButton value="Adicionar"
 						action="#{servidorTitulacaoController.salvarTitulacao}"
 						reRender="listaTitulacoes, titulacao, estabelecimentoEnsino, curso, areaConhecimento, estadoEstabelecimento,
 					 cidadeEstabelecimento, cargaHoraria, anoConclusao, registroConcelho, orgaoEmissor, estadoEmissor, titulacaoEstrangeira, pais, listaTitulacoes"
 						oncomplete="#{rich:component('confirmPanel')}.show()" />
 					<a4j:commandButton value="Novo"
-						action="#{servidorTitulacaoController.abrirAdicionarServidorTitulacao}"/>
+						action="#{servidorTitulacaoController.abrirAdicionarServidorTitulacao}" />
 				</h:panelGrid>
 				<rich:dataTable id="listaTitulacoes"
 					value="#{servidorTitulacaoController.listaServidorTitulacoes}"
@@ -158,7 +165,8 @@
 						</f:facet>
 						<h:outputText value="#{list.curso}" />
 					</rich:column>
-					<rich:column width="400px" sortBy="#{list.areaConhecimento.descricao}">
+					<rich:column width="400px"
+						sortBy="#{list.areaConhecimento.descricao}">
 						<f:facet name="header">
 							<h:outputText value="Area de Conhecimento" />
 						</f:facet>
@@ -170,21 +178,21 @@
 						</f:facet>
 						<h:outputText value="#{list.anoConclusao}" />
 					</rich:column>
-					
+
 					<rich:column>
-					<f:facet name="header">
-						<h:outputText value="Editar" />
-					</f:facet>
-					<a4j:commandLink action="#{servidorTitulacaoController.carregar}"
-						reRender="listaTitulacoes" ajaxSingle="true">
-						<h:graphicImage value="../images/edit.gif" style="border:0"
-							width="20" height="18" id="editar" />
-						<f:setPropertyActionListener value="#{list.codigo}"
-							target="#{servidorTitulacaoController.servidorTitulacao.codigo}" />
-					</a4j:commandLink>
-					<rich:toolTip for="editar" value="Editar" />
-				</rich:column>
-					
+						<f:facet name="header">
+							<h:outputText value="Editar" />
+						</f:facet>
+						<a4j:commandLink action="#{servidorTitulacaoController.carregar}"
+							reRender="listaTitulacoes" ajaxSingle="true">
+							<h:graphicImage value="../images/edit.gif" style="border:0"
+								width="20" height="18" id="editar" />
+							<f:setPropertyActionListener value="#{list.codigo}"
+								target="#{servidorTitulacaoController.servidorTitulacao.codigo}" />
+						</a4j:commandLink>
+						<rich:toolTip for="editar" value="Editar" />
+					</rich:column>
+
 					<rich:column>
 						<f:facet name="header">
 							<h:outputText value="Excluir" />
@@ -236,8 +244,7 @@
 				</tbody>
 			</table>
 		</h:form>
-	</rich:modalPanel> 
-	<rich:modalPanel id="deletePanel" autosized="true" width="200">
+	</rich:modalPanel> <rich:modalPanel id="deletePanel" autosized="true" width="200">
 		<f:facet name="header">
 			<h:outputText value="Deseja realmente deletar este item?"
 				style="padding-right:15px;" />
