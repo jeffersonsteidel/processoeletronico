@@ -17,7 +17,7 @@ public class ServidorTitulacao implements Serializable {
 	private AreaConhecimento areaConhecimento;
 	private Integer anoConclusao;
 	private Integer cargaHoraria;
-	private Integer registroConselho;
+	private String registroConselho;
 	private String orgaoEmissor;
 	private Estado estadoOrgaoEmissor;
 	private String curso;
@@ -89,11 +89,11 @@ public class ServidorTitulacao implements Serializable {
 		this.cargaHoraria = cargaHoraria;
 	}
 
-	public Integer getRegistroConselho() {
+	public String getRegistroConselho() {
 		return registroConselho;
 	}
 
-	public void setRegistroConselho(Integer registroConselho) {
+	public void setRegistroConselho(String registroConselho) {
 		this.registroConselho = registroConselho;
 	}
 

@@ -12,6 +12,7 @@ import javax.faces.model.SelectItem;
 import br.com.progepe.dao.CidadeDAO;
 import br.com.progepe.dao.DAO;
 import br.com.progepe.dao.ServidorDAO;
+import br.com.progepe.dao.ServidorTitulacaoDAO;
 import br.com.progepe.entity.AreaConhecimento;
 import br.com.progepe.entity.Autenticacao;
 import br.com.progepe.entity.Cidade;
@@ -33,6 +34,7 @@ public class ServidorTitulacaoController implements Serializable {
 	private List<SelectItem> ufs = new ArrayList<SelectItem>();
 	private Boolean indTitulacaoEstrangeira = false;
 	DAO dao = new DAO();
+	ServidorTitulacaoDAO servidorTitulacaoDAO = new ServidorTitulacaoDAO();
 
 	public List<ServidorTitulacao> getListaServidorTitulacoes() {
 		return listaServidorTitulacoes;
@@ -108,6 +110,33 @@ public class ServidorTitulacaoController implements Serializable {
 		this.indTitulacaoEstrangeira = indTitulacaoEstrangeira;
 	}
 
+	public void abrirAdicionarServidorTitulacao() throws Exception {
+		try {
+			inicializarServidorTitulacao();
+			buscarServidorLogado();
+			listarAreaConhecimento();
+			listarEstados();
+			listarTitulacoes();
+			listarEstados();
+			listarUf();
+			listarTitulacoesServidor();
+			FacesContext.getCurrentInstance().getExternalContext()
+					.redirect("adicionarTitulacao.jsp");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void inicializarServidorTitulacao() {
+		servidorTitulacao = new ServidorTitulacao();
+		servidorTitulacao.setEstadoOrgaoEmissor(new Estado());
+		servidorTitulacao.setAreaConhecimento(new AreaConhecimento());
+		servidorTitulacao.setCidadeEstabelecimentoEnsino(new Cidade());
+		servidorTitulacao.getCidadeEstabelecimentoEnsino().setEstado(
+				new Estado());
+		servidorTitulacao.setTitulacao(new Titulacao());
+	}
+	
 	public void buscarServidorLogado() throws IOException, ParseException {
 		servidorTitulacao.setServidor(new Servidor());
 		Autenticacao siapeAutenticado = (Autenticacao) FacesContext
@@ -119,26 +148,10 @@ public class ServidorTitulacaoController implements Serializable {
 				.refreshBySiape(servidorTitulacao.getServidor()));
 	}
 
-	public void abrirAdicionarServidorTitulacao() throws ParseException {
-		try {
-			inicializarServidorTitulacao();
-			buscarServidorLogado();
-			listarAreaConhecimento();
-			listarEstados();
-			listarTitulacoes();
-			listarEstados();
-			listarUf();
-			listarTitulacoesExistentes();
-			FacesContext.getCurrentInstance().getExternalContext()
-					.redirect("adicionarTitulacao.jsp");
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
 
-	@SuppressWarnings("unchecked")
-	public void listarTitulacoesExistentes() {
-		listaServidorTitulacoes = dao.list(ServidorTitulacao.class);
+	public void listarTitulacoesServidor() throws Exception{
+		buscarServidorLogado();
+		listaServidorTitulacoes = servidorTitulacaoDAO.listByServidor(servidorTitulacao);
 	}
 
 	public void isTitulacaoEstrangeira() {
@@ -225,27 +238,27 @@ public class ServidorTitulacaoController implements Serializable {
 		return ufs;
 	}
 
-	public void salvarTitulacao() {
+	public void salvarTitulacao() throws Exception {
 		dao.saveOrUpdate(servidorTitulacao);
-		listarTitulacoesExistentes();
+		listarTitulacoesServidor();
 		inicializarServidorTitulacao();
 	}
 
-	public void remover() {
+	public void remover() throws Exception {
+		dao.refresh(servidorTitulacao);
 		dao.delete(servidorTitulacao);
-		listarTitulacoesExistentes();
+		listarTitulacoesServidor();
 		inicializarServidorTitulacao();
+		buscarServidorLogado();
 	}
-
-	public void inicializarServidorTitulacao() {
-		servidorTitulacao = new ServidorTitulacao();
-		servidorTitulacao.setEstadoOrgaoEmissor(new Estado());
-		servidorTitulacao.setAreaConhecimento(new AreaConhecimento());
-		servidorTitulacao.setCidadeEstabelecimentoEnsino(new Cidade());
-		servidorTitulacao.getCidadeEstabelecimentoEnsino().setEstado(
-				new Estado());
-		servidorTitulacao.setServidor(new Servidor());
-		servidorTitulacao.setTitulacao(new Titulacao());
+	
+//	public void preencher() throws Exception{
+//		dao.refresh(servidorTitulacao);
+//		listarTitulacoesServidor();
+//	}
+	public void preencher() throws Exception{
+	servidorTitulacao = (ServidorTitulacao) dao.refresh(servidorTitulacao);
+	FacesContext.getCurrentInstance().getExternalContext()
+			.redirect("adicionarTitulacao.jsp");
 	}
-
 }
