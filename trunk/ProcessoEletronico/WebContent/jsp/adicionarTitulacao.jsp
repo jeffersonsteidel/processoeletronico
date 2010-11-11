@@ -91,7 +91,9 @@
 
 					<h:inputText id="anoConclusao" required="true" requiredMessage="Campo Ano de Conclusão é obrigatório!"
 						value="#{servidorTitulacaoController.servidorTitulacao.anoConclusao}"
-						size="9" maxlength="4" onkeypress="mascara(this,soNumeros);"></h:inputText>
+						size="9" maxlength="4" onkeypress="mascara(this,soNumeros);"
+						validatorMessage="Campo Ano de Conclusão deve ter 4 digitos!">
+						<f:validateLength minimum="4" /></h:inputText>
 
 					<h:outputText value="Registro no Concelho: " />
 
@@ -107,9 +109,7 @@
 
 					<h:outputText value="Estado do Orgão Emissor: " />
 					<h:selectOneMenu id="estadoEmissor"
-						value="#{servidorTitulacaoController.servidorTitulacao.estadoOrgaoEmissor.codigo}"
-						required="true"
-						requiredMessage="Campo Estado do Orgão Emissor é obrigatório!">
+						value="#{servidorTitulacaoController.servidorTitulacao.estadoOrgaoEmissor.codigo}">
 						<f:selectItem itemLabel="SELECIONE" itemValue="" />
 						<f:selectItems value="#{servidorTitulacaoController.ufs}" />
 					</h:selectOneMenu>
