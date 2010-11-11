@@ -85,6 +85,18 @@
 					</a4j:commandLink>
 					<rich:toolTip for="editar" value="Editar" />
 				</rich:column>
+				
+				<rich:column>
+					<f:facet name="header">
+						<h:outputText value="Validado" />
+					</f:facet>
+						<h:graphicImage id="deferido" value="../images/deferido.gif" style="border:0"
+							width="20" height="18" rendered="#{list.dadosValidados}"/>
+						<h:graphicImage id="indeferido" value="../images/indeferido.gif" style="border:0"
+							width="20" height="18" rendered="#{!list.dadosValidados}"/>	
+						<rich:toolTip for="deferido" value="Validado" />
+						<rich:toolTip for="indeferido" value="Não Validado" />	
+				</rich:column>
 
 				<f:facet name="footer">
 					<rich:datascroller id="ds"></rich:datascroller>
