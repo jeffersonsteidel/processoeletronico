@@ -1,4 +1,4 @@
-package br.com.progepe.controller;
+package br.com.progepe.jsfUtil;
 
 import java.io.IOException;
 
