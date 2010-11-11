@@ -581,6 +581,8 @@ public class ServidorController {
 			servidor.setDadosValidados(false);
 			dao.saveOrUpdate(servidor);
 			servidor = new Servidor();
+			servidor.setDataUltimaAlteracao(null);
+			servidor.setDataUltimaAprovacao(null);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -592,6 +594,8 @@ public class ServidorController {
 			servidor.setDadosValidados(true);
 			dao.update(servidor);
 			servidor = new Servidor();
+			servidor.setDataUltimaAlteracao(null);
+			servidor.setDataUltimaAprovacao(null);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
