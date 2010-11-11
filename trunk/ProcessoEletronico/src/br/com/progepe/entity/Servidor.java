@@ -16,7 +16,6 @@ public class Servidor implements Serializable {
 	private Date dataAdmissao;
 	private Lotacao lotacao;
 	private Estado estadoNascimento;
-	//private Lotacao localExercicio;
 	private Integer ramal;
 	private Documento documento;
 	private Padrao padrao;
@@ -32,7 +31,6 @@ public class Servidor implements Serializable {
 	private CorPele corPele;
 	private Date dataSaida;
 	private Boolean indEstrangeiro = false;
-	private Funcao funcao;
 	private RegimeTrabalho regimeTrabalho;
 	private SituacaoFuncional situacaoFuncional;
 	private Endereco endereco;
@@ -43,6 +41,7 @@ public class Servidor implements Serializable {
 	private Pais pais;
 	
 	private Date dataUltimaAlteracao;
+	private Date dataUltimaAprovacao;
 	private Boolean dadosValidados;
 	
 	public Long getCodigo() {
@@ -205,14 +204,6 @@ public class Servidor implements Serializable {
 		this.indEstrangeiro = indEstrangeiro;
 	}
 
-	public Funcao getFuncao() {
-		return funcao;
-	}
-
-	public void setFuncao(Funcao funcao) {
-		this.funcao = funcao;
-	}
-
 	public RegimeTrabalho getRegimeTrabalho() {
 		return regimeTrabalho;
 	}
@@ -316,5 +307,12 @@ public class Servidor implements Serializable {
 	public void setEstadoNascimento(Estado estadoNascimento) {
 		this.estadoNascimento = estadoNascimento;
 	}
-	
+
+	public Date getDataUltimaAprovacao() {
+		return dataUltimaAprovacao;
+	}
+
+	public void setDataUltimaAprovacao(Date dataUltimaAprovacao) {
+		this.dataUltimaAprovacao = dataUltimaAprovacao;
+	}
 }

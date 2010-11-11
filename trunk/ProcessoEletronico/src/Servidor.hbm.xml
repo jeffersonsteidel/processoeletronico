@@ -22,6 +22,7 @@
 		<property name="indEstrangeiro" column="SERV_IND_ESTRAN"
 			type="boolean" />
 		<property name="dataUltimaAlteracao" column="DT_ULT_ALTERACAO" />
+		<property name="dataUltimaAprovacao" column="DT_ULT_APROVACAO" />
 		<property name="dadosValidados" column="DAD_VALIDADO" type="boolean" />
 		<property name="telefone" column="SERV_TEL_FIXO" />
 		<property name="celular" column="SERV_TEL_CEL" />
@@ -29,8 +30,6 @@
 			column="CARG_COD" lazy="false" />
 		<many-to-one name="lotacao" class="br.com.progepe.entity.Lotacao"
 			column="LOT_COD" />
-		<!-- <many-to-one name="localExercicio" class="br.com.progepe.entity.Lotacao" 
-			column="LOT_COD_EXERC" /> -->
 		<many-to-one name="documento" class="br.com.progepe.entity.Documento"
 			column="DOC_COD" unique="true" cascade="all" />
 		<many-to-one name="padrao" class="br.com.progepe.entity.Padrao"
@@ -40,14 +39,10 @@
 		<many-to-one name="grupoSanguineo" class="br.com.progepe.entity.GrupoSanguineo"
 			column="GRUPO_SANG_COD" />
 		<property name="cidadeNascimento" column="CID_COD_NASC_SERV" />
-		<!--<many-to-one name="cidadeNascimento" class="br.com.progepe.entity.Cidade"
-			column="CID_COD_NASC_SERV" lazy="false" />-->
 		<many-to-one name="estadoCivil" class="br.com.progepe.entity.EstadoCivil"
 			column="EST_CIV_COD" lazy="false" />
 		<many-to-one name="corPele" class="br.com.progepe.entity.CorPele"
 			column="COR_PELE_COD" />
-		<!-- <many-to-one name="funcao" class="br.com.progepe.entity.Funcao" column="FUN_COD" 
-			/> -->
 		<many-to-one name="regimeTrabalho" class="br.com.progepe.entity.RegimeTrabalho"
 			column="REG_TRAB_COD" lazy="false"/>
 		<many-to-one name="situacaoFuncional"

@@ -67,6 +67,7 @@ public class ServidorController {
 	private Boolean indPoupanca = false;
 	private Boolean indFeminino = false;
 	private String dataUltimaAlteracao;
+	private String dataUltimaAprovacao;
 
 	public Servidor getPessoa() {
 		return servidor;
@@ -275,6 +276,14 @@ public class ServidorController {
 	public void setDataUltimaAlteracao(String dataUltimaAlteracao) {
 		this.dataUltimaAlteracao = dataUltimaAlteracao;
 	}
+	
+	public String getDataUltimaAprovacao() {
+		return dataUltimaAprovacao;
+	}
+
+	public void setDataUltimaAprovacao(String dataUltimaAprovacao) {
+		this.dataUltimaAprovacao = dataUltimaAprovacao;
+	}
 
 	public void cadastrar() throws IOException {
 		servidor = new Servidor();
@@ -285,18 +294,12 @@ public class ServidorController {
 		servidor.getContaBancaria().setBanco(new Banco());
 		servidor.setCorPele(new CorPele());
 		servidor.setDocumento(new Documento());
-//		servidor.getDocumento().setCarteiraUf(new Estado());
-//		servidor.getDocumento().setRgUf(new Estado());
-//		servidor.getDocumento().setTituloUf(new Estado());
 		servidor.setEndereco(new Endereco());
 		servidor.getEndereco().setCidade(new Cidade());
 		servidor.getEndereco().getCidade().setEstado(new Estado());
 		servidor.setEstadoCivil(new EstadoCivil());
-//		servidor.setFuncao(new Funcao());
-//		servidor.getFuncao().setTipoFuncao(new TipoFuncao());
 		servidor.setGrupoSanguineo(new GrupoSanguineo());
 		servidor.setLotacao(new Lotacao());
-//		servidor.setLocalExercicio(new Lotacao());
 		servidor.setEndereco(new Endereco());
 		servidor.getEndereco().setCidade(new Cidade());
 		servidor.getEndereco().getCidade().setEstado(new Estado());
@@ -582,6 +585,17 @@ public class ServidorController {
 			e.printStackTrace();
 		}
 	}
+	
+	public void aprovar() throws IOException {
+		try {
+			servidor.setDataUltimaAprovacao(new Date());
+			servidor.setDadosValidados(true);
+			dao.update(servidor);
+			servidor = new Servidor();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 
 	public void validarCPF() {
 		if (!Validator.validaCPF(servidor.getDocumento().getCpf())) {
@@ -730,18 +744,12 @@ public class ServidorController {
 		servidor.getContaBancaria().setBanco(new Banco());
 		servidor.setCorPele(new CorPele());
 		servidor.setDocumento(new Documento());
-//		servidor.getDocumento().setCarteiraUf(new Estado());
-//		servidor.getDocumento().setRgUf(new Estado());
-//		servidor.getDocumento().setTituloUf(new Estado());
 		servidor.setEndereco(new Endereco());
 		servidor.getEndereco().setCidade(new Cidade());
 		servidor.getEndereco().getCidade().setEstado(new Estado());
 		servidor.setEstadoCivil(new EstadoCivil());
-//		servidor.setFuncao(new Funcao());
-//		servidor.getFuncao().setTipoFuncao(new TipoFuncao());
 		servidor.setGrupoSanguineo(new GrupoSanguineo());
 		servidor.setLotacao(new Lotacao());
-//		servidor.setLocalExercicio(new Lotacao());
 		servidor.setEndereco(new Endereco());
 		servidor.getEndereco().setCidade(new Cidade());
 		servidor.getEndereco().getCidade().setEstado(new Estado());
@@ -824,6 +832,12 @@ public class ServidorController {
 		if (servidor.getDataUltimaAlteracao() != null) {
 			this.setDataUltimaAlteracao(Validator.formatarDataHoraBR(servidor
 					.getDataUltimaAlteracao()));
+		}
+		
+
+		if (servidor.getDataUltimaAprovacao() != null) {
+			this.setDataUltimaAprovacao(Validator.formatarDataHoraBR(servidor
+					.getDataUltimaAprovacao()));
 		}
 		
 		FacesContext.getCurrentInstance().getExternalContext()
