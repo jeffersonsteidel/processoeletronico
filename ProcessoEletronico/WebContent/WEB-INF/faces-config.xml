@@ -79,7 +79,7 @@ Config 1.1//EN"
 		<managed-bean-scope>session</managed-bean-scope>
 	</managed-bean>
 	<lifecycle>
-		<phase-listener id="nocache">br.com.progepe.controller.CacheControlPhaseListener</phase-listener>
+		<phase-listener id="nostore">br.com.progepe.jsfUtil.CacheControlPhaseListener</phase-listener>
 	</lifecycle>
 
 </faces-config>
