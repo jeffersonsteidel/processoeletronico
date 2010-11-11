@@ -133,6 +133,29 @@ public class ServidorTitulacaoController implements Serializable {
 			e.printStackTrace();
 		}
 	}
+	public void abrirListarServidorTitulacao() throws Exception {
+		try {
+			listaServidorTitulacoes.clear();
+			servidorTitulacao = new ServidorTitulacao();
+			servidorTitulacao.setEstadoOrgaoEmissor(new Estado());
+			servidorTitulacao.setAreaConhecimento(new AreaConhecimento());
+			servidorTitulacao.setCidadeEstabelecimentoEnsino(new Cidade());
+			servidorTitulacao.getCidadeEstabelecimentoEnsino().setEstado(
+					new Estado());
+			servidorTitulacao.setTitulacao(new Titulacao());
+			buscarServidorLogado();
+			listarAreaConhecimento();
+			listarEstados();
+			listarTitulacoes();
+			listarEstados();
+			listarUf();
+			listarTitulacoesServidorLogado();
+			FacesContext.getCurrentInstance().getExternalContext()
+					.redirect("listarTitulacoes.jsp");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 	
 	public void buscarServidorLogado() throws IOException, ParseException {
 		servidorTitulacao.setServidor(new Servidor());
@@ -236,6 +259,9 @@ public class ServidorTitulacaoController implements Serializable {
 	}
 
 	public void salvarTitulacao() throws Exception {
+		if(servidorTitulacao.getEstadoOrgaoEmissor().getCodigo().equals(0)){
+			servidorTitulacao.getEstadoOrgaoEmissor().setCodigo(null);
+		}
 		dao.saveOrUpdate(servidorTitulacao);
 		listarTitulacoesServidorLogado();
 		servidorTitulacao = new ServidorTitulacao();
