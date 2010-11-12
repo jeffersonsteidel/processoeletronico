@@ -20,7 +20,6 @@ public class SolicitacaoAfastamentoConjugeController implements Serializable {
 	private static final long serialVersionUID = -333995781063775201L;
 
 	private SolicitacaoAfastamentoConjuge solicitacaoAfastamentoConjuge;
-	DAO dao = new DAO();
 
 	public SolicitacaoAfastamentoConjuge getSolicitacaoAfastamentoConjuge() {
 		return solicitacaoAfastamentoConjuge;
@@ -49,8 +48,7 @@ public class SolicitacaoAfastamentoConjugeController implements Serializable {
 				.get("usuarioLogado");
 		solicitacaoAfastamentoConjuge.getSolicitante().setSiape(
 				siapeAutenticado.getSiape());
-		ServidorDAO servidorDAO = new ServidorDAO();
-		solicitacaoAfastamentoConjuge.setSolicitante(servidorDAO
+		solicitacaoAfastamentoConjuge.setSolicitante(ServidorDAO.getInstance()
 				.refreshBySiape(solicitacaoAfastamentoConjuge.getSolicitante()));
 	}
 	
@@ -63,7 +61,7 @@ public class SolicitacaoAfastamentoConjugeController implements Serializable {
 		solicitacaoAfastamentoConjuge.setStatusSolicitacao(new StatusSolicitacao());
 		solicitacaoAfastamentoConjuge.getStatusSolicitacao().setCodigo(
 				Constantes.STATUS_SOLICITACAO_ENCAMINHADO);
-		dao.saveOrUpdate(solicitacaoAfastamentoConjuge);
+		DAO.getInstance().saveOrUpdate(solicitacaoAfastamentoConjuge);
 		solicitacaoAfastamentoConjuge = new SolicitacaoAfastamentoConjuge();
 		buscarServidorLogado();
 	}

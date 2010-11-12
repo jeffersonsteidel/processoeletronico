@@ -19,7 +19,6 @@ public class AutenticacaoController implements Serializable {
 	private String novaSenha;
 	private String confirmarSenha;
 	private Autenticacao siapeAutenticado;
-	AutenticacaoDAO daoAutenticacao;
 
 	public Autenticacao getAutenticacao() {
 		return autenticacao;
@@ -64,8 +63,7 @@ public class AutenticacaoController implements Serializable {
 		siapeAutenticado = new Autenticacao();
 		HttpSession session = (HttpSession) FacesContext.getCurrentInstance()
 				.getExternalContext().getSession(false);
-		daoAutenticacao = new AutenticacaoDAO();
-		siapeAutenticado = daoAutenticacao.autentica(autenticacao);
+		siapeAutenticado = AutenticacaoDAO.getInstance().autentica(autenticacao);
 
 		if (siapeAutenticado != null) {
 			session.setAttribute("usuarioLogado", siapeAutenticado);
@@ -106,7 +104,7 @@ public class AutenticacaoController implements Serializable {
 		} else {
 			String novaSenha = Encripty.criptografaSenha(this.getNovaSenha());
 			siapeAutenticado.setSenha(novaSenha);
-			daoAutenticacao.saveOrUpdate(siapeAutenticado);
+			 AutenticacaoDAO.getInstance().saveOrUpdate(siapeAutenticado);
 		}
 	}
 

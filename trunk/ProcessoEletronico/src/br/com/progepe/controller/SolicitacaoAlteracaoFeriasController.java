@@ -20,7 +20,6 @@ public class SolicitacaoAlteracaoFeriasController implements Serializable {
 	private static final long serialVersionUID = -333995781063775201L;
 
 	private SolicitacaoAlteracaoFerias solicitacaoAlteracaoFerias;
-	DAO dao = new DAO();
 
 	public SolicitacaoAlteracaoFerias getSolicitacaoAlteracaoFerias() {
 		return solicitacaoAlteracaoFerias;
@@ -52,8 +51,7 @@ public class SolicitacaoAlteracaoFeriasController implements Serializable {
 
 		solicitacaoAlteracaoFerias.getSolicitante().setSiape(
 				siapeAutenticado.getSiape());
-		ServidorDAO servidorDAO = new ServidorDAO();
-		solicitacaoAlteracaoFerias.setSolicitante(servidorDAO
+		solicitacaoAlteracaoFerias.setSolicitante(ServidorDAO.getInstance()
 				.refreshBySiape(solicitacaoAlteracaoFerias.getSolicitante()));
 	}
 
@@ -66,7 +64,7 @@ public class SolicitacaoAlteracaoFeriasController implements Serializable {
 		solicitacaoAlteracaoFerias.setStatusSolicitacao(new StatusSolicitacao());
 		solicitacaoAlteracaoFerias.getStatusSolicitacao().setCodigo(
 				Constantes.STATUS_SOLICITACAO_ENCAMINHADO);
-		dao.saveOrUpdate(solicitacaoAlteracaoFerias);
+		DAO.getInstance().saveOrUpdate(solicitacaoAlteracaoFerias);
 		solicitacaoAlteracaoFerias = new SolicitacaoAlteracaoFerias();
 		buscarServidorLogado();
 	}

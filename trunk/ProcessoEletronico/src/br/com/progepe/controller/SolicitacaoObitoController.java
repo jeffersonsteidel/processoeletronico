@@ -30,8 +30,6 @@ public class SolicitacaoObitoController implements Serializable {
 	private SolicitacaoObito solicitacaoObito;
 	private List<SelectItem> grausParentescos = new ArrayList<SelectItem>();
 	
-	DAO dao = new DAO();
-
 	public SolicitacaoObito getSolicitacaoObito() {
 		return solicitacaoObito;
 	}
@@ -68,8 +66,7 @@ public class SolicitacaoObitoController implements Serializable {
 				.get("usuarioLogado");
 		solicitacaoObito.getSolicitante().setSiape(
 				siapeAutenticado.getSiape());
-		ServidorDAO servidorDAO = new ServidorDAO();
-		solicitacaoObito.setSolicitante(servidorDAO
+		solicitacaoObito.setSolicitante(ServidorDAO.getInstance()
 				.refreshBySiape(solicitacaoObito.getSolicitante()));
 	}
 	
@@ -82,7 +79,7 @@ public class SolicitacaoObitoController implements Serializable {
 		solicitacaoObito.setStatusSolicitacao(new StatusSolicitacao());
 		solicitacaoObito.getStatusSolicitacao().setCodigo(
 				Constantes.STATUS_SOLICITACAO_ENCAMINHADO);
-		dao.saveOrUpdate(solicitacaoObito);
+		DAO.getInstance().saveOrUpdate(solicitacaoObito);
 		solicitacaoObito = new SolicitacaoObito();
 		solicitacaoObito.setFiles(new ArrayList<SolicitacaoObito>());
 		buscarServidorLogado();
@@ -103,7 +100,7 @@ public class SolicitacaoObitoController implements Serializable {
 	public List<SelectItem> listarGrauParentesco() {
 		grausParentescos = new ArrayList<SelectItem>();
 		List<GrauParentesco> grauParentescosList = new ArrayList<GrauParentesco>();
-		grauParentescosList = dao.list(GrauParentesco.class, "descricao");
+		grauParentescosList = DAO.getInstance().list(GrauParentesco.class, "descricao");
 		for (GrauParentesco grauParentesco : grauParentescosList) {
 			grausParentescos.add(new SelectItem(grauParentesco.getCodigo(),
 					grauParentesco.getDescricao()));

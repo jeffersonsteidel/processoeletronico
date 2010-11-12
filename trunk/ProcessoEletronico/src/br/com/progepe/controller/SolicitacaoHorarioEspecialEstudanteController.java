@@ -26,7 +26,6 @@ public class SolicitacaoHorarioEspecialEstudanteController implements
 	private static final long serialVersionUID = -333995781063775201L;
 
 	private SolicitacaoHorarioEspecialEstudante solicitacaoHorarioEspecialEstudante;
-	DAO dao = new DAO();
 
 	public SolicitacaoHorarioEspecialEstudante getSolicitacaoHorarioEspecialEstudante() {
 		return solicitacaoHorarioEspecialEstudante;
@@ -57,8 +56,7 @@ public class SolicitacaoHorarioEspecialEstudanteController implements
 				.get("usuarioLogado");
 		solicitacaoHorarioEspecialEstudante.getSolicitante().setSiape(
 				siapeAutenticado.getSiape());
-		ServidorDAO servidorDAO = new ServidorDAO();
-		solicitacaoHorarioEspecialEstudante.setSolicitante(servidorDAO
+		solicitacaoHorarioEspecialEstudante.setSolicitante(ServidorDAO.getInstance()
 				.refreshBySiape(solicitacaoHorarioEspecialEstudante
 						.getSolicitante()));
 	}
@@ -84,7 +82,7 @@ public class SolicitacaoHorarioEspecialEstudanteController implements
 				.setStatusSolicitacao(new StatusSolicitacao());
 		solicitacaoHorarioEspecialEstudante.getStatusSolicitacao().setCodigo(
 				Constantes.STATUS_SOLICITACAO_ENCAMINHADO);
-		dao.saveOrUpdate(solicitacaoHorarioEspecialEstudante);
+		DAO.getInstance().saveOrUpdate(solicitacaoHorarioEspecialEstudante);
 		solicitacaoHorarioEspecialEstudante = new SolicitacaoHorarioEspecialEstudante();
 		solicitacaoHorarioEspecialEstudante.setFiles(new ArrayList<SolicitacaoHorarioEspecialEstudante>());
 		buscarServidorLogado();

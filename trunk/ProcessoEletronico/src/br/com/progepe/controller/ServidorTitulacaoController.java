@@ -34,8 +34,6 @@ public class ServidorTitulacaoController implements Serializable {
 	private List<SelectItem> titulacoes = new ArrayList<SelectItem>();
 	private List<SelectItem> ufs = new ArrayList<SelectItem>();
 	private Boolean indTitulacaoEstrangeira = false;
-	DAO dao = new DAO();
-	ServidorTitulacaoDAO servidorTitulacaoDAO = new ServidorTitulacaoDAO();
 
 	public List<ServidorTitulacao> getListaServidorTitulacoes() {
 		return listaServidorTitulacoes;
@@ -157,9 +155,8 @@ public class ServidorTitulacaoController implements Serializable {
 				.getCurrentInstance().getExternalContext().getSessionMap()
 				.get("usuarioLogado");
 		servidorTitulacao.getServidor().setSiape(siapeAutenticado.getSiape());
-		ServidorDAO servidorDAO = new ServidorDAO();
-		servidorTitulacao.setServidor(servidorDAO
-				.refreshBySiape(servidorTitulacao.getServidor()));
+		servidorTitulacao.setServidor(ServidorDAO.getInstance().refreshBySiape(
+				servidorTitulacao.getServidor()));
 	}
 
 	public void isTitulacaoEstrangeira() {
@@ -179,7 +176,7 @@ public class ServidorTitulacaoController implements Serializable {
 	public List<SelectItem> listarPais() {
 		paises = new ArrayList<SelectItem>();
 		List<Pais> paisList = new ArrayList<Pais>();
-		paisList = dao.list(Pais.class, "descricao");
+		paisList = DAO.getInstance().list(Pais.class, "descricao");
 		for (Pais pais : paisList) {
 			paises.add(new SelectItem(pais.getCodigo(), pais.getDescricao()));
 		}
@@ -190,7 +187,8 @@ public class ServidorTitulacaoController implements Serializable {
 	public List<SelectItem> listarAreaConhecimento() {
 		areasConhecimento = new ArrayList<SelectItem>();
 		List<AreaConhecimento> areaConhecimentos = new ArrayList<AreaConhecimento>();
-		areaConhecimentos = dao.list(AreaConhecimento.class, "descricao");
+		areaConhecimentos = DAO.getInstance().list(AreaConhecimento.class,
+				"descricao");
 		for (AreaConhecimento areaConhecimento : areaConhecimentos) {
 			areasConhecimento.add(new SelectItem(areaConhecimento.getCodigo(),
 					areaConhecimento.getDescricao()));
@@ -199,11 +197,10 @@ public class ServidorTitulacaoController implements Serializable {
 	}
 
 	public List<SelectItem> listarCidadesEstabelecimento() {
-		CidadeDAO cidadeDAO = new CidadeDAO();
 		cidadesEstabelecimento = new ArrayList<SelectItem>();
 		List<Cidade> cidadeList = new ArrayList<Cidade>();
-		cidadeList = cidadeDAO.listByEstado(servidorTitulacao
-				.getCidadeEstabelecimentoEnsino().getEstado());
+		cidadeList = CidadeDAO.getInstance().listByEstado(
+				servidorTitulacao.getCidadeEstabelecimentoEnsino().getEstado());
 		for (Cidade cidade : cidadeList) {
 			cidadesEstabelecimento.add(new SelectItem(cidade.getCodigo(),
 					cidade.getDescricao()));
@@ -215,7 +212,7 @@ public class ServidorTitulacaoController implements Serializable {
 	public List<SelectItem> listarEstados() {
 		estados = new ArrayList<SelectItem>();
 		List<Estado> estadoList = new ArrayList<Estado>();
-		estadoList = dao.list(Estado.class, "descricao");
+		estadoList = DAO.getInstance().list(Estado.class, "descricao");
 		for (Estado estado : estadoList) {
 			estados.add(new SelectItem(estado.getCodigo(), estado
 					.getDescricao()));
@@ -227,7 +224,7 @@ public class ServidorTitulacaoController implements Serializable {
 	public List<SelectItem> listarTitulacoes() {
 		titulacoes = new ArrayList<SelectItem>();
 		List<Titulacao> titulacaoList = new ArrayList<Titulacao>();
-		titulacaoList = dao.list(Titulacao.class, "descricao");
+		titulacaoList = DAO.getInstance().list(Titulacao.class, "descricao");
 		for (Titulacao titulacao : titulacaoList) {
 			titulacoes.add(new SelectItem(titulacao.getCodigo(), titulacao
 					.getDescricao()));
@@ -239,7 +236,7 @@ public class ServidorTitulacaoController implements Serializable {
 	public List<SelectItem> listarUf() {
 		ufs = new ArrayList<SelectItem>();
 		List<Estado> estadoList = new ArrayList<Estado>();
-		estadoList = dao.list(Estado.class, "descricao");
+		estadoList = DAO.getInstance().list(Estado.class, "descricao");
 		for (Estado estado : estadoList) {
 			ufs.add(new SelectItem(estado.getCodigo(), estado.getUf()));
 		}
@@ -251,7 +248,7 @@ public class ServidorTitulacaoController implements Serializable {
 				.getCodigo())) {
 			servidorTitulacao.setEstadoOrgaoEmissor(null);
 		}
-		dao.saveOrUpdate(servidorTitulacao);
+		DAO.getInstance().saveOrUpdate(servidorTitulacao);
 		listarTitulacoesServidorLogado();
 		servidorTitulacao = new ServidorTitulacao();
 		servidorTitulacao.setEstadoOrgaoEmissor(new Estado());
@@ -265,13 +262,13 @@ public class ServidorTitulacaoController implements Serializable {
 
 	public void listarTitulacoesServidorLogado() throws Exception {
 		buscarServidorLogado();
-		listaServidorTitulacoes = servidorTitulacaoDAO
+		listaServidorTitulacoes = ServidorTitulacaoDAO.getInstance()
 				.listByServidor(servidorTitulacao);
 	}
 
 	public void remover() throws Exception {
-		dao.refresh(servidorTitulacao);
-		dao.delete(servidorTitulacao);
+		DAO.getInstance().refresh(servidorTitulacao);
+		DAO.getInstance().delete(servidorTitulacao);
 		listarTitulacoesServidorLogado();
 		servidorTitulacao = new ServidorTitulacao();
 		servidorTitulacao.setEstadoOrgaoEmissor(new Estado());
@@ -284,7 +281,8 @@ public class ServidorTitulacaoController implements Serializable {
 	}
 
 	public void carregar() throws Exception {
-		servidorTitulacao = (ServidorTitulacao) dao.refresh(servidorTitulacao);
+		servidorTitulacao = (ServidorTitulacao) DAO.getInstance().refresh(
+				servidorTitulacao);
 		if (servidorTitulacao.getCidadeEstabelecimentoEnsino().getCodigo() != null) {
 			listarCidadesEstabelecimento();
 		}
@@ -293,12 +291,10 @@ public class ServidorTitulacaoController implements Serializable {
 	}
 
 	public List<ServidorTitulacao> listarTitulacoesFiltro() {
-		ServidorTitulacaoDAO servidorTitulacaoDAO = new ServidorTitulacaoDAO();
 		listaServidorTitulacoes = new ArrayList<ServidorTitulacao>();
-		ServidorDAO servidorDAO = new ServidorDAO();
-		servidorTitulacao.setServidor(servidorDAO
+		servidorTitulacao.setServidor(ServidorDAO.getInstance()
 				.refreshByFilter(servidorTitulacao.getServidor()));
-		setListaServidorTitulacoes(servidorTitulacaoDAO
+		setListaServidorTitulacoes(ServidorTitulacaoDAO.getInstance()
 				.listByFilter(servidorTitulacao));
 		if (getListaServidorTitulacoes().size() == 0) {
 			FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_WARN,
