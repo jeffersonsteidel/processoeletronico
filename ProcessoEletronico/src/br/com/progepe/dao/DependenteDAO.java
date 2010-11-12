@@ -8,7 +8,18 @@ import org.hibernate.criterion.Restrictions;
 import br.com.progepe.entity.Dependente;
 
 public class DependenteDAO extends DAO {
-
+	
+	private static DependenteDAO instance;
+	private DependenteDAO(){}
+	
+	
+	public static DependenteDAO getInstance(){
+		if(instance == null){
+			instance = new DependenteDAO();
+		}
+		return instance;
+	}
+	
 	@SuppressWarnings("unchecked")
 	public List<Dependente> listByServidor(Dependente dependente) {
 		HibernateUtility.getSession().clear();
