@@ -60,8 +60,6 @@ public class ServidorController {
 	private List<SelectItem> regimesTrabalhos = new ArrayList<SelectItem>();
 	private List<SelectItem> tipoFuncoes = new ArrayList<SelectItem>();
 
-	DAO dao = new DAO();
-
 	private Boolean servidorEstrangeiro = false;
 	private Boolean servidorBrasileiro = true;
 	private Boolean indPoupanca = false;
@@ -349,7 +347,7 @@ public class ServidorController {
 	public List<SelectItem> listarUfs() {
 		ufs = new ArrayList<SelectItem>();
 		List<Estado> estadoList = new ArrayList<Estado>();
-		estadoList = dao.list(Estado.class, "descricao");
+		estadoList = DAO.getInstance().list(Estado.class, "descricao");
 		for (Estado estado : estadoList) {
 			ufs.add(new SelectItem(estado.getCodigo(), estado.getUf()));
 		}
@@ -360,7 +358,7 @@ public class ServidorController {
 	public List<SelectItem> listarEstados() {
 		estados = new ArrayList<SelectItem>();
 		List<Estado> estadoList = new ArrayList<Estado>();
-		estadoList = dao.list(Estado.class, "descricao");
+		estadoList = DAO.getInstance().list(Estado.class, "descricao");
 		for (Estado estado : estadoList) {
 			estados.add(new SelectItem(estado.getCodigo(), estado
 					.getDescricao()));
@@ -369,10 +367,9 @@ public class ServidorController {
 	}
 
 	public List<SelectItem> listarCidadesNascimentoServidor() {
-		CidadeDAO cidadeDAO = new CidadeDAO();
 		cidadesNascimento = new ArrayList<SelectItem>();
 		List<Cidade> cidadeList = new ArrayList<Cidade>();
-		cidadeList = cidadeDAO.listByEstado(servidor.getEstadoNascimento());
+		cidadeList = CidadeDAO.getInstance().listByEstado(servidor.getEstadoNascimento());
 		for (Cidade cidade : cidadeList) {
 			cidadesNascimento.add(new SelectItem(cidade.getCodigo(), cidade
 					.getDescricao()));
@@ -381,10 +378,9 @@ public class ServidorController {
 	}
 
 	public List<SelectItem> listarCidadesContato() {
-		CidadeDAO cidadeDAO = new CidadeDAO();
 		cidades = new ArrayList<SelectItem>();
 		List<Cidade> cidadeList = new ArrayList<Cidade>();
-		cidadeList = cidadeDAO.listByEstado(servidor.getEndereco().getCidade()
+		cidadeList = CidadeDAO.getInstance().listByEstado(servidor.getEndereco().getCidade()
 				.getEstado());
 		for (Cidade cidade : cidadeList) {
 			cidades.add(new SelectItem(cidade.getCodigo(), cidade
@@ -397,7 +393,7 @@ public class ServidorController {
 	public List<SelectItem> listarLotacoes() {
 		lotacoes = new ArrayList<SelectItem>();
 		List<Lotacao> lotacaoList = new ArrayList<Lotacao>();
-		lotacaoList = dao.list(Lotacao.class, "descricao");
+		lotacaoList = DAO.getInstance().list(Lotacao.class, "descricao");
 		for (Lotacao lotacao : lotacaoList) {
 			lotacoes.add(new SelectItem(lotacao.getCodigo(), lotacao
 					.getDescricao()));
@@ -409,7 +405,7 @@ public class ServidorController {
 	public List<SelectItem> listarEstadosCivis() {
 		estadosCivis = new ArrayList<SelectItem>();
 		List<EstadoCivil> estadoCivilList = new ArrayList<EstadoCivil>();
-		estadoCivilList = dao.list(EstadoCivil.class, "descricao");
+		estadoCivilList = DAO.getInstance().list(EstadoCivil.class, "descricao");
 		for (EstadoCivil estadoCivil : estadoCivilList) {
 			estadosCivis.add(new SelectItem(estadoCivil.getCodigo(),
 					estadoCivil.getDescricao()));
@@ -421,7 +417,7 @@ public class ServidorController {
 	public List<SelectItem> listarCorPele() {
 		coresPeles = new ArrayList<SelectItem>();
 		List<CorPele> corPeleList = new ArrayList<CorPele>();
-		corPeleList = dao.list(CorPele.class, "descricao");
+		corPeleList = DAO.getInstance().list(CorPele.class, "descricao");
 		for (CorPele corPele : corPeleList) {
 			coresPeles.add(new SelectItem(corPele.getCodigo(), corPele
 					.getDescricao()));
@@ -433,7 +429,7 @@ public class ServidorController {
 	public List<SelectItem> listarGrupoSanguineo() {
 		gruposSanguineos = new ArrayList<SelectItem>();
 		List<GrupoSanguineo> grupoSanguineoList = new ArrayList<GrupoSanguineo>();
-		grupoSanguineoList = dao.list(GrupoSanguineo.class, "descricao");
+		grupoSanguineoList = DAO.getInstance().list(GrupoSanguineo.class, "descricao");
 		for (GrupoSanguineo grupoSanguineo : grupoSanguineoList) {
 			gruposSanguineos.add(new SelectItem(grupoSanguineo.getCodigo(),
 					grupoSanguineo.getDescricao()));
@@ -445,7 +441,7 @@ public class ServidorController {
 	public List<SelectItem> listarPadroes() {
 		padroes = new ArrayList<SelectItem>();
 		List<Padrao> padraoList = new ArrayList<Padrao>();
-		padraoList = dao.list(Padrao.class, "nivel");
+		padraoList = DAO.getInstance().list(Padrao.class, "nivel");
 		for (Padrao padrao : padraoList) {
 			padroes.add(new SelectItem(padrao.getCodigo(), padrao.getNivel()
 					.toString()));
@@ -457,7 +453,7 @@ public class ServidorController {
 	public List<SelectItem> listarBancos() {
 		bancos = new ArrayList<SelectItem>();
 		List<Banco> bancoList = new ArrayList<Banco>();
-		bancoList = dao.list(Banco.class, "descricao");
+		bancoList = DAO.getInstance().list(Banco.class, "descricao");
 		for (Banco banco : bancoList) {
 			bancos.add(new SelectItem(banco.getCodigo(), banco.getDescricao()));
 		}
@@ -468,7 +464,7 @@ public class ServidorController {
 	public List<SelectItem> listarFuncoes() {
 		funcoes = new ArrayList<SelectItem>();
 		List<Funcao> funcoesList = new ArrayList<Funcao>();
-		funcoesList = dao.list(Funcao.class, "descricao");
+		funcoesList = DAO.getInstance().list(Funcao.class, "descricao");
 		for (Funcao funcao : funcoesList) {
 			funcoes.add(new SelectItem(funcao.getCodigo(), funcao
 					.getDescricao()));
@@ -480,7 +476,7 @@ public class ServidorController {
 	public List<SelectItem> listarClasses() {
 		classes = new ArrayList<SelectItem>();
 		List<Classe> classeList = new ArrayList<Classe>();
-		classeList = dao.list(servidor.getCargo().getClasse().getClass(),
+		classeList = DAO.getInstance().list(servidor.getCargo().getClasse().getClass(),
 				"descricao");
 		for (Classe classe : classeList) {
 			classes.add(new SelectItem(classe.getCodigo(), classe.getSigla()));
@@ -492,7 +488,7 @@ public class ServidorController {
 		Cargo cargo = servidor.getCargo();
 		servidor.setCargo(new Cargo());
 		servidor.getCargo().setClasse(new Classe());
-		cargo = (Cargo) dao.refresh(cargo);
+		cargo = (Cargo) DAO.getInstance().refresh(cargo);
 		servidor.setCargo(cargo);
 	}
 
@@ -500,7 +496,7 @@ public class ServidorController {
 	public List<SelectItem> listarSituacoesFuncionais() {
 		situacoesFuncionais = new ArrayList<SelectItem>();
 		List<SituacaoFuncional> situacaoFuncionalList = new ArrayList<SituacaoFuncional>();
-		situacaoFuncionalList = dao.list(SituacaoFuncional.class, "descricao");
+		situacaoFuncionalList = DAO.getInstance().list(SituacaoFuncional.class, "descricao");
 		for (SituacaoFuncional situacaoFuncional : situacaoFuncionalList) {
 			situacoesFuncionais.add(new SelectItem(situacaoFuncional
 					.getCodigo(), situacaoFuncional.getDescricao()));
@@ -512,7 +508,7 @@ public class ServidorController {
 	public List<SelectItem> listarRegimesTrabalhos() {
 		regimesTrabalhos = new ArrayList<SelectItem>();
 		List<RegimeTrabalho> regimeTrabalhoList = new ArrayList<RegimeTrabalho>();
-		regimeTrabalhoList = dao.list(RegimeTrabalho.class, "descricao");
+		regimeTrabalhoList = DAO.getInstance().list(RegimeTrabalho.class, "descricao");
 		for (RegimeTrabalho regimeTrabalho : regimeTrabalhoList) {
 			regimesTrabalhos.add(new SelectItem(regimeTrabalho.getCodigo(),
 					regimeTrabalho.getDescricao()));
@@ -524,7 +520,7 @@ public class ServidorController {
 	public List<SelectItem> listarCargos() {
 		cargos = new ArrayList<SelectItem>();
 		List<Cargo> cargoList = new ArrayList<Cargo>();
-		cargoList = dao.list(Cargo.class, "descricao");
+		cargoList = DAO.getInstance().list(Cargo.class, "descricao");
 		for (Cargo cargo : cargoList) {
 			cargos.add(new SelectItem(cargo.getCodigo(), cargo.getDescricao()));
 		}
@@ -535,7 +531,7 @@ public class ServidorController {
 	public List<SelectItem> listarPais() {
 		paises = new ArrayList<SelectItem>();
 		List<Pais> paisList = new ArrayList<Pais>();
-		paisList = dao.list(Pais.class, "descricao");
+		paisList = DAO.getInstance().list(Pais.class, "descricao");
 		for (Pais pais : paisList) {
 			paises.add(new SelectItem(pais.getCodigo(), pais.getDescricao()));
 		}
@@ -579,10 +575,8 @@ public class ServidorController {
 		try {
 			servidor.setDataUltimaAlteracao(new Date());
 			servidor.setDadosValidados(false);
-			dao.saveOrUpdate(servidor);
-			servidor = new Servidor();
-			servidor.setDataUltimaAlteracao(null);
-			servidor.setDataUltimaAprovacao(null);
+			DAO.getInstance().saveOrUpdate(servidor);
+			cadastrar();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -592,7 +586,7 @@ public class ServidorController {
 		try {
 			servidor.setDataUltimaAprovacao(new Date());
 			servidor.setDadosValidados(true);
-			dao.update(servidor);
+			DAO.getInstance().update(servidor);
 			servidor = new Servidor();
 			servidor.setDataUltimaAlteracao(null);
 			servidor.setDataUltimaAprovacao(null);
@@ -614,7 +608,7 @@ public class ServidorController {
 	@SuppressWarnings("unchecked")
 	public List<Servidor> listar() throws IOException {
 		servidor = new Servidor();
-		this.setServidores(dao.list(Servidor.class));
+		this.setServidores(DAO.getInstance().list(Servidor.class));
 		FacesContext.getCurrentInstance().getExternalContext()
 				.redirect("listarServidores.jsp");
 		return this.getServidores();
@@ -654,13 +648,13 @@ public class ServidorController {
 		listarCorPele();
 		listarEstadosCivis();
 
-		servidor = (Servidor) dao.refresh(servidor);
+		servidor = (Servidor) DAO.getInstance().refresh(servidor);
 		
 		if (servidor.getCidadeNascimento() != null) {
 			servidor.setEstadoNascimento(new Estado());
 			Cidade cidade = new Cidade();
 			cidade.setCodigo(servidor.getCidadeNascimento());
-			cidade = (Cidade) dao.refresh(cidade);
+			cidade = (Cidade) DAO.getInstance().refresh(cidade);
 			servidor.setEstadoNascimento(cidade.getEstado());
 			servidor.setCidadeNascimento(cidade.getCodigo());
 			listarCidadesNascimentoServidor();
@@ -711,7 +705,7 @@ public class ServidorController {
 			Cidade cidade = new Cidade();
 			servidor.setEstadoNascimento(new Estado());
 			cidade.setCodigo(servidor.getCidadeNascimento());
-			cidade = (Cidade)dao.refresh(cidade);
+			cidade = (Cidade)DAO.getInstance().refresh(cidade);
 			servidor.setEstadoNascimento(cidade.getEstado());
 			servidor.setCidadeNascimento(cidade.getCodigo());
 			listarCidadesNascimentoServidor();
@@ -726,9 +720,8 @@ public class ServidorController {
 	}
 
 	public List<Servidor> listarServidoresFiltro() {
-		ServidorDAO servidorDAO = new ServidorDAO();
 		servidoresList = new ArrayList<Servidor>();
-		setServidoresList(servidorDAO.listByFilter(servidor));
+		setServidoresList(ServidorDAO.getInstance().listByFilter(servidor));
 		if (getServidoresList().size() == 0) {
 			FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_WARN,
 					"Nenhum registro para o filtro informado!",
@@ -799,14 +792,13 @@ public class ServidorController {
 		.getExternalContext().getSessionMap().get("usuarioLogado");
 
 		servidor.setSiape(siapeAutenticado.getSiape());
-		ServidorDAO servidorDAO = new ServidorDAO();
-		servidor =  servidorDAO.refreshBySiape(servidor);
+		servidor =  ServidorDAO.getInstance().refreshBySiape(servidor);
 
 		if (servidor.getCidadeNascimento() != null) {
 			Cidade cidade = new Cidade();
 			servidor.setEstadoNascimento(new Estado());
 			cidade.setCodigo(servidor.getCidadeNascimento());
-			cidade = (Cidade) dao.refresh(cidade);
+			cidade = (Cidade) DAO.getInstance().refresh(cidade);
 			servidor.setEstadoNascimento(cidade.getEstado());
 			servidor.setCidadeNascimento(cidade.getCodigo());
 			listarCidadesNascimentoServidor();

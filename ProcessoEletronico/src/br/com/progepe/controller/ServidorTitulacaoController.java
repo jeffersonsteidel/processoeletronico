@@ -260,6 +260,7 @@ public class ServidorTitulacaoController implements Serializable {
 		servidorTitulacao.getCidadeEstabelecimentoEnsino().setEstado(
 				new Estado());
 		servidorTitulacao.setTitulacao(new Titulacao());
+		cidadesEstabelecimento = new ArrayList<SelectItem>();
 	}
 
 	public void listarTitulacoesServidorLogado() throws Exception {

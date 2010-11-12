@@ -9,7 +9,18 @@ import br.com.progepe.encripty.Encripty;
 import br.com.progepe.entity.Autenticacao;
 
 public class AutenticacaoDAO extends  DAO {
-
+	
+	private static AutenticacaoDAO instance;
+	private AutenticacaoDAO(){}
+	
+	
+	public static AutenticacaoDAO getInstance(){
+		if(instance == null){
+			instance = new AutenticacaoDAO();
+		}
+		return instance;
+	}
+	
 	public Autenticacao autentica(Autenticacao autenticacao)
 			throws NoSuchAlgorithmException {
 		HibernateUtility.beginTransaction();

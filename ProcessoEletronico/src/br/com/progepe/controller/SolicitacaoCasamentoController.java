@@ -24,8 +24,6 @@ public class SolicitacaoCasamentoController implements Serializable {
 	private static final long serialVersionUID = -333995781063775201L;
 
 	private SolicitacaoCasamento solicitacaoCasamento;
-	DAO dao = new DAO();
-
 	public SolicitacaoCasamento getSolicitacaoCasamento() {
 		return solicitacaoCasamento;
 	}
@@ -52,8 +50,7 @@ public class SolicitacaoCasamentoController implements Serializable {
 				.get("usuarioLogado");
 		solicitacaoCasamento.getSolicitante().setSiape(
 				siapeAutenticado.getSiape());
-		ServidorDAO servidorDAO = new ServidorDAO();
-		solicitacaoCasamento.setSolicitante(servidorDAO
+		solicitacaoCasamento.setSolicitante(ServidorDAO.getInstance()
 				.refreshBySiape(solicitacaoCasamento.getSolicitante()));
 	}
 	
@@ -66,7 +63,7 @@ public class SolicitacaoCasamentoController implements Serializable {
 		solicitacaoCasamento.setStatusSolicitacao(new StatusSolicitacao());
 		solicitacaoCasamento.getStatusSolicitacao().setCodigo(
 				Constantes.STATUS_SOLICITACAO_ENCAMINHADO);
-		dao.saveOrUpdate(solicitacaoCasamento);
+		DAO.getInstance().saveOrUpdate(solicitacaoCasamento);
 		solicitacaoCasamento = new SolicitacaoCasamento();
 		buscarServidorLogado();
 	}

@@ -10,7 +10,17 @@ import br.com.progepe.entity.Estado;
 
 public class CidadeDAO extends DAO{
 
-
+	private static CidadeDAO instance;
+	private CidadeDAO(){}
+	
+	
+	public static CidadeDAO getInstance(){
+		if(instance == null){
+			instance = new CidadeDAO();
+		}
+		return instance;
+	}
+	
 	@SuppressWarnings("unchecked")
 	public List<Cidade> listByEstado(Estado estado) {
 		HibernateUtility.beginTransaction();

@@ -2,6 +2,8 @@ package br.com.progepe.constantes;
 
 public class Constantes {
 	public static final Long CAIXA_ECONOMICA_FEDERAL = 104L;
+	public static final Long ESTADO_CIVIL_CASADO = 2L;
+	
 	public static final Long STATUS_SOLICITACAO_ENCAMINHADO = 1L;
 	public static final Long STATUS_SOLICITACAO_EM_ANALISE = 2L;
 	public static final Long STATUS_SOLICITACAO_DEFERIDO = 3L;

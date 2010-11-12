@@ -21,6 +21,17 @@ import br.com.progepe.entity.SolicitacaoObito;
 
 public class SolicitacaoDAO extends DAO {
 
+	private static SolicitacaoDAO instance;
+	private SolicitacaoDAO(){}
+	
+	
+	public static SolicitacaoDAO getInstance(){
+		if(instance == null){
+			instance = new SolicitacaoDAO();
+		}
+		return instance;
+	}
+	
 	@SuppressWarnings("unchecked")
 	public List<Solicitacao> listByFilter(Solicitacao solicitacao,
 			Date dataSolicitacaoInicial, Date dataSolicitacaoFinal) {
