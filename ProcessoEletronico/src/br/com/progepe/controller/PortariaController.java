@@ -27,7 +27,6 @@ public class PortariaController implements Serializable {
 	Portaria portaria;
 	private Date dataInicio;
 	private Date dataFinal;
-	DAO dao = new DAO();
 	private ArrayList<Portaria> files = new ArrayList<Portaria>();
 	private List<Portaria> portariaList = new ArrayList<Portaria>();
 	private List<SelectItem> tiposPortaria = new ArrayList<SelectItem>();
@@ -84,7 +83,7 @@ public class PortariaController implements Serializable {
 	public List<SelectItem> listarTiposPortaria() {
 		tiposPortaria = new ArrayList<SelectItem>();
 		List<TipoPortaria> tiposPortariaList = new ArrayList<TipoPortaria>();
-		tiposPortariaList = dao.list(TipoPortaria.class, "descricao");
+		tiposPortariaList = DAO.getInstance().list(TipoPortaria.class, "descricao");
 		for (TipoPortaria tipoPortaria : tiposPortariaList) {
 			tiposPortaria.add(new SelectItem(tipoPortaria.getCodigo(),
 					tipoPortaria.getDescricao()));
@@ -125,7 +124,7 @@ public class PortariaController implements Serializable {
 	}
 
 	public void salvar() throws IOException, ParseException {
-		dao.saveOrUpdate(portaria);
+		 DAO.getInstance().saveOrUpdate(portaria);
 		portaria = new Portaria();
 		files = new ArrayList<Portaria>();
 	}
@@ -141,22 +140,21 @@ public class PortariaController implements Serializable {
 	}
 
 	public void pesquisarPortarias() throws IOException {
-		PortariaDAO portariaDAO = new PortariaDAO();
-		this.setPortariaList(portariaDAO.listByFilter(portaria, dataInicio,
+		this.setPortariaList(PortariaDAO.getInstance().listByFilter(portaria, dataInicio,
 				dataFinal));
 		FacesContext.getCurrentInstance().getExternalContext()
 				.redirect("listarPortarias.jsp");
 	}
 
 	public void carregar() throws IOException, ParseException {
-		portaria = (Portaria) dao.refresh(portaria);
+		portaria = (Portaria)  DAO.getInstance().refresh(portaria);
 		FacesContext.getCurrentInstance().getExternalContext()
 				.redirect("portaria.jsp");
 	}
 
 
 	public void visualizar() throws IOException, ParseException {
-		portaria = (Portaria) dao.refresh(portaria);
+		portaria = (Portaria)  DAO.getInstance().refresh(portaria);
 		OutputStream out = new FileOutputStream("c:\\portaria.pdf");
 		out.write(portaria.getPdf()); 
 	    Runtime.getRuntime().exec("cmd.exe /C c:\\portaria.pdf");
@@ -167,7 +165,7 @@ public class PortariaController implements Serializable {
 	}
 	
 	public void excluir() throws IOException{
-		dao.delete(portaria);
+		 DAO.getInstance().delete(portaria);
 		listarPortarias();
 	}
 }

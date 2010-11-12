@@ -26,7 +26,6 @@ public class SolicitacaoContaBancariaController implements Serializable {
 
 	private SolicitacaoContaBancaria solicitacaoContaBancaria;
 	private List<SelectItem> bancos = new ArrayList<SelectItem>();
-	DAO dao = new DAO();
 	private Boolean indPoupanca = false;
 
 	public SolicitacaoContaBancaria getSolicitacaoContaBancaria() {
@@ -71,7 +70,7 @@ public class SolicitacaoContaBancariaController implements Serializable {
 	public List<SelectItem> listarBancos() {
 		bancos = new ArrayList<SelectItem>();
 		List<Banco> bancoList = new ArrayList<Banco>();
-		bancoList = dao.list(Banco.class, "descricao");
+		bancoList = DAO.getInstance().list(Banco.class, "descricao");
 		for (Banco banco : bancoList) {
 			bancos.add(new SelectItem(banco.getCodigo(), banco.getDescricao()));
 		}
@@ -100,8 +99,7 @@ public class SolicitacaoContaBancariaController implements Serializable {
 
 		solicitacaoContaBancaria.getSolicitante().setSiape(
 				siapeAutenticado.getSiape());
-		ServidorDAO servidorDAO = new ServidorDAO();
-		solicitacaoContaBancaria.setSolicitante(servidorDAO
+		solicitacaoContaBancaria.setSolicitante(ServidorDAO.getInstance()
 				.refreshBySiape(solicitacaoContaBancaria.getSolicitante()));
 	}
 
@@ -114,7 +112,7 @@ public class SolicitacaoContaBancariaController implements Serializable {
 		solicitacaoContaBancaria.setStatusSolicitacao(new StatusSolicitacao());
 		solicitacaoContaBancaria.getStatusSolicitacao().setCodigo(
 				Constantes.STATUS_SOLICITACAO_ENCAMINHADO);
-		dao.saveOrUpdate(solicitacaoContaBancaria);
+		DAO.getInstance().saveOrUpdate(solicitacaoContaBancaria);
 		solicitacaoContaBancaria = new SolicitacaoContaBancaria();
 		buscarServidorLogado();
 	}

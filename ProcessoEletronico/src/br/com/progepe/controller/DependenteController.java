@@ -26,9 +26,7 @@ public class DependenteController implements Serializable {
 	private Dependente dependente;
 	private List<SelectItem> grausParentescos = new ArrayList<SelectItem>();
 	private List<SelectItem> ufs = new ArrayList<SelectItem>();
-	DependenteDAO dependenteDAO = new DependenteDAO();
 	private List<Dependente> listaDependentes;
-	DAO dao = new DAO();
 
 	public List<Dependente> getListaDependentes() {
 		return listaDependentes;
@@ -86,8 +84,7 @@ public class DependenteController implements Serializable {
 				.getCurrentInstance().getExternalContext().getSessionMap()
 				.get("usuarioLogado");
 		dependente.getServidor().setSiape(siapeAutenticado.getSiape());
-		ServidorDAO servidorDAO = new ServidorDAO();
-		dependente.setServidor(servidorDAO.refreshBySiape(dependente
+		dependente.setServidor(ServidorDAO.getInstance().refreshBySiape(dependente
 				.getServidor()));
 	}
 
@@ -95,7 +92,7 @@ public class DependenteController implements Serializable {
 	public List<SelectItem> listarGrauParentesco() {
 		grausParentescos = new ArrayList<SelectItem>();
 		List<GrauParentesco> grauParentescosList = new ArrayList<GrauParentesco>();
-		grauParentescosList = dao.list(GrauParentesco.class, "descricao");
+		grauParentescosList = DAO.getInstance().list(GrauParentesco.class, "descricao");
 		for (GrauParentesco grauParentesco : grauParentescosList) {
 			grausParentescos.add(new SelectItem(grauParentesco.getCodigo(),
 					grauParentesco.getDescricao()));
@@ -107,7 +104,7 @@ public class DependenteController implements Serializable {
 	public List<SelectItem> listarUfs() {
 		ufs = new ArrayList<SelectItem>();
 		List<Estado> estadoList = new ArrayList<Estado>();
-		estadoList = dao.list(Estado.class, "descricao");
+		estadoList = DAO.getInstance().list(Estado.class, "descricao");
 		for (Estado estado : estadoList) {
 			ufs.add(new SelectItem(estado.getCodigo(), estado.getUf()));
 		}
@@ -126,7 +123,7 @@ public class DependenteController implements Serializable {
 
 	@SuppressWarnings("unchecked")
 	public void salvarDependente() throws Exception {
-		List<GrauParentesco> grauParentescos = dao.list(GrauParentesco.class);
+		List<GrauParentesco> grauParentescos = DAO.getInstance().list(GrauParentesco.class);
 		for (GrauParentesco item : grauParentescos) {
 			if (item.getCodigo().equals(
 					dependente.getGrauParentesco().getCodigo())) {
@@ -138,7 +135,7 @@ public class DependenteController implements Serializable {
 			dependente.getDocumento().setRgUf(null);
 		}
 		this.getListaDependentes().add(dependente);
-		dao.saveOrUpdate(dependente);
+		DAO.getInstance().saveOrUpdate(dependente);
 		listarDependentesServidorLogado();
 		dependente = new Dependente();
 		dependente.setDocumento(new Documento());
@@ -148,7 +145,7 @@ public class DependenteController implements Serializable {
 
 	public void listarDependentesServidorLogado() throws Exception {
 		buscarServidorLogado();
-		listaDependentes = dependenteDAO.listByServidor(dependente);
+		listaDependentes = DependenteDAO.getInstance().listByServidor(dependente);
 		if(listaDependentes.isEmpty()){
 			listaDependentes = new ArrayList<Dependente>();
 		}
@@ -177,7 +174,7 @@ public class DependenteController implements Serializable {
 	public void remover() throws Exception {
 	//	dao.refresh(dependente);
 		listaDependentes.remove(dependente);
-		dao.delete(dependente);
+		DAO.getInstance().delete(dependente);
 		dependente = new Dependente();
 		dependente.setDocumento(new Documento());
 		dependente.setGrauParentesco(new GrauParentesco());

@@ -24,7 +24,6 @@ public class Injetor {
 	public void popularDados() throws Exception {
 		Extrator injetorDados = new Extrator();
 		injetorDados.carregarDados();
-		DAO dao = new DAO();
 
 		for (DadosFitaEspelho dadosFitaEspelho : injetorDados
 				.getDadosFitaEspelhoList()) {
@@ -139,7 +138,7 @@ public class Injetor {
 			servidor.getCargo().setCodigo(1L);
 			servidor.getPais().setCodigo(24L);
 			try{
-			dao.saveFitaEspelho(servidor);
+			DAO.getInstance().saveFitaEspelho(servidor);
 			}catch (Exception e) {
 				e.printStackTrace();
 			}

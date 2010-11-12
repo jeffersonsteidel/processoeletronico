@@ -11,8 +11,6 @@ import br.com.progepe.constantes.Constantes;
 import br.com.progepe.dao.DAO;
 import br.com.progepe.dao.ServidorDAO;
 import br.com.progepe.entity.Autenticacao;
-import br.com.progepe.entity.Estado;
-import br.com.progepe.entity.Pais;
 import br.com.progepe.entity.Servidor;
 import br.com.progepe.entity.SolicitacaoAdicionalInsalubridade;
 import br.com.progepe.entity.StatusSolicitacao;
@@ -23,7 +21,6 @@ public class SolicitacaoAdicionalInsalubridadeController implements
 	private static final long serialVersionUID = -333995781063775201L;
 
 	private SolicitacaoAdicionalInsalubridade solicitacaoAdicionalInsalubridade;
-	DAO dao = new DAO();
 
 	public SolicitacaoAdicionalInsalubridade getSolicitacaoAdicionalInsalubridade() {
 		return solicitacaoAdicionalInsalubridade;
@@ -61,8 +58,7 @@ public class SolicitacaoAdicionalInsalubridadeController implements
 				.get("usuarioLogado");
 		solicitacaoAdicionalInsalubridade.getSolicitante().setSiape(
 				siapeAutenticado.getSiape());
-		ServidorDAO servidorDAO = new ServidorDAO();
-		solicitacaoAdicionalInsalubridade.setSolicitante(servidorDAO
+		solicitacaoAdicionalInsalubridade.setSolicitante(ServidorDAO.getInstance()
 				.refreshBySiape(solicitacaoAdicionalInsalubridade
 						.getSolicitante()));
 	}
@@ -78,7 +74,7 @@ public class SolicitacaoAdicionalInsalubridadeController implements
 				.setStatusSolicitacao(new StatusSolicitacao());
 		solicitacaoAdicionalInsalubridade.getStatusSolicitacao().setCodigo(
 				Constantes.STATUS_SOLICITACAO_ENCAMINHADO);
-		dao.saveOrUpdate(solicitacaoAdicionalInsalubridade);
+		DAO.getInstance().saveOrUpdate(solicitacaoAdicionalInsalubridade);
 		solicitacaoAdicionalInsalubridade = new SolicitacaoAdicionalInsalubridade();
 		buscarServidorLogado();
 	}

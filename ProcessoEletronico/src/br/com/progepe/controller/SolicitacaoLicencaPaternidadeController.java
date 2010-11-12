@@ -26,8 +26,6 @@ public class SolicitacaoLicencaPaternidadeController implements Serializable {
 
 	SolicitacaoLicencaPaternidade solicitacaoLicencaPaternidade;
 
-	DAO dao = new DAO();
-
 	public SolicitacaoLicencaPaternidade getSolicitacaoLicencaPaternidade() {
 		return solicitacaoLicencaPaternidade;
 	}
@@ -57,9 +55,8 @@ public class SolicitacaoLicencaPaternidadeController implements Serializable {
 				.get("usuarioLogado");
 		solicitacaoLicencaPaternidade.getSolicitante().setSiape(
 				siapeAutenticado.getSiape());
-		ServidorDAO servidorDAO = new ServidorDAO();
 		solicitacaoLicencaPaternidade
-				.setSolicitante(servidorDAO
+				.setSolicitante(ServidorDAO.getInstance()
 						.refreshBySiape(solicitacaoLicencaPaternidade
 								.getSolicitante()));
 	}
@@ -84,7 +81,7 @@ public class SolicitacaoLicencaPaternidadeController implements Serializable {
 				.setStatusSolicitacao(new StatusSolicitacao());
 		solicitacaoLicencaPaternidade.getStatusSolicitacao().setCodigo(
 				Constantes.STATUS_SOLICITACAO_ENCAMINHADO);
-		dao.saveOrUpdate(solicitacaoLicencaPaternidade);
+		DAO.getInstance().saveOrUpdate(solicitacaoLicencaPaternidade);
 		solicitacaoLicencaPaternidade = new SolicitacaoLicencaPaternidade();
 		solicitacaoLicencaPaternidade.setFiles(new ArrayList<SolicitacaoLicencaPaternidade>());
 		buscarServidorLogado();

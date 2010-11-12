@@ -23,7 +23,6 @@ public class SolicitacaoAlimentacaoController implements Serializable {
 	private SolicitacaoAlimentacao solicitacaoAlimentacao;
 	private Boolean indCancelarAlimentacao=false;
 	private Boolean indIncluirAlimentacao=true;
-	DAO dao = new DAO();
 
 	public SolicitacaoAlimentacao getSolicitacaoAlimentacao() {
 		return solicitacaoAlimentacao;
@@ -69,8 +68,7 @@ public class SolicitacaoAlimentacaoController implements Serializable {
 				.get("usuarioLogado");
 		solicitacaoAlimentacao.getSolicitante().setSiape(
 				siapeAutenticado.getSiape());
-		ServidorDAO servidorDAO = new ServidorDAO();
-		solicitacaoAlimentacao.setSolicitante(servidorDAO
+		solicitacaoAlimentacao.setSolicitante(ServidorDAO.getInstance()
 				.refreshBySiape(solicitacaoAlimentacao.getSolicitante()));
 	}
 	
@@ -95,7 +93,7 @@ public class SolicitacaoAlimentacaoController implements Serializable {
 		solicitacaoAlimentacao.setStatusSolicitacao(new StatusSolicitacao());
 		solicitacaoAlimentacao.getStatusSolicitacao().setCodigo(
 				Constantes.STATUS_SOLICITACAO_ENCAMINHADO);
-		dao.saveOrUpdate(solicitacaoAlimentacao);
+		DAO.getInstance().saveOrUpdate(solicitacaoAlimentacao);
 		solicitacaoAlimentacao = new SolicitacaoAlimentacao();
 		buscarServidorLogado();
 	}
