@@ -11,6 +11,17 @@ import br.com.progepe.entity.Portaria;
 
 public class PortariaDAO extends DAO {
 
+	private static PortariaDAO instance;
+	private PortariaDAO(){}
+	
+	
+	public static PortariaDAO getInstance(){
+		if(instance == null){
+			instance = new PortariaDAO();
+		}
+		return instance;
+	}
+	
 	@SuppressWarnings("unchecked")
 	public List<Portaria> listByFilter(Portaria portaria, Date dataInicial,
 			Date dataFinal) {

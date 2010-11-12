@@ -8,7 +8,18 @@ import org.hibernate.criterion.Restrictions;
 import br.com.progepe.entity.ServidorTitulacao;
 
 public class ServidorTitulacaoDAO extends DAO {
-
+	
+	private static ServidorTitulacaoDAO instance;
+	private ServidorTitulacaoDAO(){}
+	
+	
+	public static ServidorTitulacaoDAO getInstance(){
+		if(instance == null){
+			instance = new ServidorTitulacaoDAO();
+		}
+		return instance;
+	}
+	
 	@SuppressWarnings("unchecked")
 	public List<ServidorTitulacao> listByServidor(
 			ServidorTitulacao servidorTitulacao) {
