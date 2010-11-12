@@ -11,38 +11,30 @@ import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
 
 import br.com.progepe.dao.DAO;
+import br.com.progepe.dao.DependenteDAO;
 import br.com.progepe.dao.ServidorDAO;
 import br.com.progepe.entity.Autenticacao;
 import br.com.progepe.entity.Dependente;
 import br.com.progepe.entity.Documento;
 import br.com.progepe.entity.Estado;
 import br.com.progepe.entity.GrauParentesco;
-import br.com.progepe.entity.Portaria;
 import br.com.progepe.entity.Servidor;
 import br.com.progepe.validator.Validator;
 
 public class DependenteController implements Serializable {
 	private static final long serialVersionUID = -333995781063775201L;
-	private ArrayList<Portaria> files = new ArrayList<Portaria>();
-	private ArrayList<Dependente> listaDependentes = new ArrayList<Dependente>();
 	private Dependente dependente;
 	private List<SelectItem> grausParentescos = new ArrayList<SelectItem>();
 	private List<SelectItem> ufs = new ArrayList<SelectItem>();
+	DependenteDAO dependenteDAO = new DependenteDAO();
+	private List<Dependente> listaDependentes;
 	DAO dao = new DAO();
 
-	public ArrayList<Portaria> getFiles() {
-		return files;
-	}
-
-	public void setFiles(ArrayList<Portaria> files) {
-		this.files = files;
-	}
-
-	public ArrayList<Dependente> getListaDependentes() {
+	public List<Dependente> getListaDependentes() {
 		return listaDependentes;
 	}
 
-	public void setListaDependentes(ArrayList<Dependente> listaDependentes) {
+	public void setListaDependentes(List<Dependente> listaDependentes) {
 		this.listaDependentes = listaDependentes;
 	}
 
@@ -70,13 +62,16 @@ public class DependenteController implements Serializable {
 		this.ufs = ufs;
 	}
 
-	public void abrirAdicionarDependentes() throws ParseException {
+	public void abrirAdicionarDependentes() throws Exception {
 		try {
 			dependente = new Dependente();
+			listaDependentes = new ArrayList<Dependente>();
+			listaDependentes.clear();
 			dependente.setDocumento(new Documento());
 			dependente.setGrauParentesco(new GrauParentesco());
 			buscarServidorLogado();
 			listarGrauParentesco();
+			listarDependentesServidorLogado();
 			listarUfs();
 			FacesContext.getCurrentInstance().getExternalContext()
 					.redirect("adicionarDependente.jsp");
@@ -130,7 +125,7 @@ public class DependenteController implements Serializable {
 	}
 
 	@SuppressWarnings("unchecked")
-	public void adicionarDependente() throws IOException, ParseException {
+	public void salvarDependente() throws Exception {
 		List<GrauParentesco> grauParentescos = dao.list(GrauParentesco.class);
 		for (GrauParentesco item : grauParentescos) {
 			if (item.getCodigo().equals(
@@ -139,28 +134,54 @@ public class DependenteController implements Serializable {
 				break;
 			}
 		}
-		listaDependentes.add(dependente);
+		if( 0 ==(dependente.getDocumento().getRgUf())){
+			dependente.getDocumento().setRgUf(null);
+		}
+		this.getListaDependentes().add(dependente);
 		dao.saveOrUpdate(dependente);
+		listarDependentesServidorLogado();
 		dependente = new Dependente();
 		dependente.setDocumento(new Documento());
 		dependente.setGrauParentesco(new GrauParentesco());
 		abrirAdicionarDependentes();
 	}
 
-	public void salvar() throws IOException, ParseException {
-		dao.saveOrUpdate(dependente);
-		dependente = new Dependente();
-		files = new ArrayList<Portaria>();
+	public void listarDependentesServidorLogado() throws Exception {
+		buscarServidorLogado();
+		listaDependentes = dependenteDAO.listByServidor(dependente);
+		if(listaDependentes.isEmpty()){
+			listaDependentes = new ArrayList<Dependente>();
+		}
 	}
+
+//	public void carregar() throws Exception {
+//		servidorTitulacao = (ServidorTitulacao) dao.refresh(servidorTitulacao);
+//		if (servidorTitulacao.getCidadeEstabelecimentoEnsino().getCodigo() != null) {
+//			listarCidadesEstabelecimento();
+//		}
+//		FacesContext.getCurrentInstance().getExternalContext()
+//				.redirect("adicionarTitulacao.jsp");
+//	}
+//	
+	// public void salvar() throws IOException, ParseException {
+	// dao.saveOrUpdate(dependente);
+	// dependente = new Dependente();
+	// files = new ArrayList<Portaria>();
+	// }
 
 	// @SuppressWarnings("unchecked")
 	// public void listarDependentes() {
 	// listaDependentes = dao.list(Dependente.class);
 	// }
 
-	public void remover() throws ParseException {
-		dao.delete(dependente);
+	public void remover() throws Exception {
+	//	dao.refresh(dependente);
 		listaDependentes.remove(dependente);
+		dao.delete(dependente);
+		dependente = new Dependente();
+		dependente.setDocumento(new Documento());
+		dependente.setGrauParentesco(new GrauParentesco());
+		abrirAdicionarDependentes();
 	}
 
 }
