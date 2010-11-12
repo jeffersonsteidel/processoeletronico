@@ -430,6 +430,8 @@ public class FitaEspelho {
 			html = html + "<th>DATA DE ENTRADA NA OCUPAÇÃO.</th>";
 			html = html + "<th>DATA ADMISSÃO ORGÃO.</th>";
 			html = html + "<th>SITUAÇÃO</th>";
+			html = html + "<th>GRUPO INGR. ORGÃO</th>";
+			html = html + "<th>OCORRENC. INGR. ORGÃO</th>";
 			html = html + "</tr>";
 
 			while (br.ready()) {
@@ -699,6 +701,10 @@ public class FitaEspelho {
 					} else {
 						html = html + "<td>" + situacao + "</td>";
 					}
+					
+					html = html + "<td>" + linha.substring(246,248)+" </td>";
+					html = html + "<td>" + linha.substring(248,251)+" </td>";
+
 					html = html + "</tr>";
 				}
 			}
