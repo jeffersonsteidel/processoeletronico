@@ -134,6 +134,7 @@ public class ServidorTitulacaoController implements Serializable {
 			e.printStackTrace();
 		}
 	}
+
 	public void abrirListarServidorTitulacao() throws Exception {
 		try {
 			listaServidorTitulacoes.clear();
@@ -149,7 +150,7 @@ public class ServidorTitulacaoController implements Serializable {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void buscarServidorLogado() throws IOException, ParseException {
 		servidorTitulacao.setServidor(new Servidor());
 		Autenticacao siapeAutenticado = (Autenticacao) FacesContext
@@ -159,12 +160,6 @@ public class ServidorTitulacaoController implements Serializable {
 		ServidorDAO servidorDAO = new ServidorDAO();
 		servidorTitulacao.setServidor(servidorDAO
 				.refreshBySiape(servidorTitulacao.getServidor()));
-	}
-
-
-	public void listarTitulacoesServidorLogado() throws Exception{
-		buscarServidorLogado();
-		listaServidorTitulacoes = servidorTitulacaoDAO.listByServidor(servidorTitulacao);
 	}
 
 	public void isTitulacaoEstrangeira() {
@@ -252,7 +247,8 @@ public class ServidorTitulacaoController implements Serializable {
 	}
 
 	public void salvarTitulacao() throws Exception {
-		if(new Long(0).equals(servidorTitulacao.getEstadoOrgaoEmissor().getCodigo())){
+		if (new Long(0).equals(servidorTitulacao.getEstadoOrgaoEmissor()
+				.getCodigo())) {
 			servidorTitulacao.setEstadoOrgaoEmissor(null);
 		}
 		dao.saveOrUpdate(servidorTitulacao);
@@ -264,6 +260,12 @@ public class ServidorTitulacaoController implements Serializable {
 		servidorTitulacao.getCidadeEstabelecimentoEnsino().setEstado(
 				new Estado());
 		servidorTitulacao.setTitulacao(new Titulacao());
+	}
+
+	public void listarTitulacoesServidorLogado() throws Exception {
+		buscarServidorLogado();
+		listaServidorTitulacoes = servidorTitulacaoDAO
+				.listByServidor(servidorTitulacao);
 	}
 
 	public void remover() throws Exception {
@@ -279,22 +281,24 @@ public class ServidorTitulacaoController implements Serializable {
 		servidorTitulacao.setTitulacao(new Titulacao());
 		buscarServidorLogado();
 	}
-	
-	public void carregar() throws Exception{
-	servidorTitulacao = (ServidorTitulacao) dao.refresh(servidorTitulacao);
-	if(servidorTitulacao.getCidadeEstabelecimentoEnsino().getCodigo()!=null){
-		listarCidadesEstabelecimento();
+
+	public void carregar() throws Exception {
+		servidorTitulacao = (ServidorTitulacao) dao.refresh(servidorTitulacao);
+		if (servidorTitulacao.getCidadeEstabelecimentoEnsino().getCodigo() != null) {
+			listarCidadesEstabelecimento();
+		}
+		FacesContext.getCurrentInstance().getExternalContext()
+				.redirect("adicionarTitulacao.jsp");
 	}
-	FacesContext.getCurrentInstance().getExternalContext()
-			.redirect("adicionarTitulacao.jsp");
-	}
-	
+
 	public List<ServidorTitulacao> listarTitulacoesFiltro() {
 		ServidorTitulacaoDAO servidorTitulacaoDAO = new ServidorTitulacaoDAO();
 		listaServidorTitulacoes = new ArrayList<ServidorTitulacao>();
 		ServidorDAO servidorDAO = new ServidorDAO();
-		servidorTitulacao.setServidor(servidorDAO.refreshByFilter(servidorTitulacao.getServidor()));
-		setListaServidorTitulacoes(servidorTitulacaoDAO.listByFilter(servidorTitulacao));
+		servidorTitulacao.setServidor(servidorDAO
+				.refreshByFilter(servidorTitulacao.getServidor()));
+		setListaServidorTitulacoes(servidorTitulacaoDAO
+				.listByFilter(servidorTitulacao));
 		if (getListaServidorTitulacoes().size() == 0) {
 			FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_WARN,
 					"Nenhum registro para o filtro informado!",

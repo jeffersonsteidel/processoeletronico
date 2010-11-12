@@ -13,14 +13,14 @@
 		<property name="curso" column="DEP_CURSO" />
 		<property name="faculdade" column="DEP_FACULDADE" />
 		<property name="dataFormacao" column="DEP_DATA_FORMACAO" />
-		<many-to-one name="grauParentesco" class="br.com.progepe.entity.GrauParentesco"
-			column="GRAU_PAR_COD_DEP" lazy="false" />
-		<property name="indNecessidadesEspeciais" column="DEP_IND_NEC_ESP"
-			type="boolean" />
 		<property name="indEstudante" column="DEP_IND_EST" type="boolean" />
 		<property name="indIr" column="DEP_IND_IR" type="boolean" />
+			<property name="indNecessidadesEspeciais" column="DEP_IND_NEC_ESP"
+			type="boolean" />
+		<many-to-one name="grauParentesco" class="br.com.progepe.entity.GrauParentesco"
+			column="GRAU_PAR_COD_DEP" lazy="false" />
 		<many-to-one name="documento" class="br.com.progepe.entity.Documento"
-			cascade="all" />
+			column="DOC_COD" unique="true" cascade="all" />
 		<many-to-one name="servidor" class="br.com.progepe.entity.Servidor"
 			column="SERV_COD" lazy="false" />
 	</class>

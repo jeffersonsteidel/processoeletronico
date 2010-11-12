@@ -149,6 +149,7 @@
 					<a4j:commandButton value="Novo"
 						action="#{servidorTitulacaoController.abrirAdicionarServidorTitulacao}" />
 				</h:panelGrid>
+				
 				<rich:dataTable id="listaTitulacoes"
 					value="#{servidorTitulacaoController.listaServidorTitulacoes}"
 					var="list" width="1150px" columnClasses="center" rows="15"
