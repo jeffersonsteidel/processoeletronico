@@ -13,7 +13,18 @@ import org.hibernate.criterion.Order;
 import br.com.progepe.entity.Servidor;
 
 public class DAO implements BaseDAO {
-
+	
+	private static DAO instance;
+	protected DAO(){}
+	
+	
+	public static DAO getInstance(){
+		if(instance == null){
+			instance = new DAO();
+		}
+		return instance;
+	}
+	
 	public void save(Object objeto) {
 		try {
 			HibernateUtility.getSession().clear();

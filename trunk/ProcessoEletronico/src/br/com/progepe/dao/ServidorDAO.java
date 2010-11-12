@@ -9,7 +9,18 @@ import org.hibernate.criterion.Restrictions;
 import br.com.progepe.entity.Servidor;
 
 public class ServidorDAO extends DAO {
-
+	
+	private static ServidorDAO instance;
+	private ServidorDAO(){}
+	
+	
+	public static ServidorDAO getInstance(){
+		if(instance == null){
+			instance = new ServidorDAO();
+		}
+		return instance;
+	}
+	
 	@SuppressWarnings("unchecked")
 	public List<Servidor> listByFilter(Servidor servidor) {
 		HibernateUtility.getSession().clear();
