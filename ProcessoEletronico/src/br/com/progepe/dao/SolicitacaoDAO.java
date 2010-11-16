@@ -35,7 +35,6 @@ public class SolicitacaoDAO extends DAO {
 	@SuppressWarnings("unchecked")
 	public List<Solicitacao> listByFilter(Solicitacao solicitacao,
 			Date dataSolicitacaoInicial, Date dataSolicitacaoFinal) {
-		HibernateUtility.getSession().flush();
 		HibernateUtility.getSession().clear();
 
 		Criteria c = HibernateUtility.getSession().createCriteria(
