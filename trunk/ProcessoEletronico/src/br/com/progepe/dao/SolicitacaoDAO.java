@@ -60,7 +60,7 @@ public class SolicitacaoDAO extends DAO {
 			c.add(Restrictions.like("tipoSolicitacao",
 					solicitacao.getTipoSolicitacao()));
 		}
-
+		HibernateUtility.commitTransaction();
 		return c.list();
 	}
 
@@ -128,13 +128,10 @@ public class SolicitacaoDAO extends DAO {
 	public void updateSolicitacao(Object objeto) {
 		try {
 			HibernateUtility.getSession().clear();
-			HibernateUtility.beginTransaction();
 			HibernateUtility.getSession().saveOrUpdate(objeto);
 			HibernateUtility.commitTransaction();
-			HibernateUtility.closeSession();
 		} catch (Exception e) {
 			HibernateUtility.rollbackTransaction();
-			HibernateUtility.closeSession();
 			FacesMessage message = new FacesMessage(
 					FacesMessage.SEVERITY_ERROR,
 					"Erro ao comunicar com o servidor!",

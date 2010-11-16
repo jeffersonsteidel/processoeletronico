@@ -26,6 +26,8 @@ public class HibernateUtility {
 	public static Session getSession() {
 		if (sessionThread.get() == null) {
 			Session session = factory.openSession();
+			session.clear();
+			session.flush();
 			sessionThread.set(session);
 		}
 		return (Session) sessionThread.get();

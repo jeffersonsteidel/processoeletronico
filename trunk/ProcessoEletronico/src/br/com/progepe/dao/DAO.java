@@ -31,14 +31,12 @@ public class DAO implements BaseDAO {
 			HibernateUtility.beginTransaction();
 			HibernateUtility.getSession().save(objeto);
 			HibernateUtility.commitTransaction();
-			HibernateUtility.closeSession();
 			FacesMessage message = new FacesMessage(
 					FacesMessage.SEVERITY_INFO, "Item salvo com sucesso!",
 					"Item salvo com sucesso!");
 			FacesContext.getCurrentInstance().addMessage("", message);
 		} catch (Exception e) {
 			HibernateUtility.rollbackTransaction();
-			HibernateUtility.closeSession();
 			FacesMessage message = new FacesMessage(
 					FacesMessage.SEVERITY_ERROR,
 					"Erro ao comunicar com o servidor!",
@@ -53,14 +51,12 @@ public class DAO implements BaseDAO {
 			HibernateUtility.beginTransaction();
 			HibernateUtility.getSession().saveOrUpdate(objeto);
 			HibernateUtility.commitTransaction();
-			HibernateUtility.closeSession();
 			FacesMessage message = new FacesMessage(
 					FacesMessage.SEVERITY_INFO, "Item salvo com sucesso!",
 					"Item salvo com sucesso!");
 			FacesContext.getCurrentInstance().addMessage("", message);
 		} catch (Exception e) {
 			HibernateUtility.rollbackTransaction();
-			HibernateUtility.closeSession();
 			FacesMessage message = new FacesMessage(
 					FacesMessage.SEVERITY_ERROR,
 					"Erro ao comunicar com o servidor!",
@@ -76,14 +72,12 @@ public class DAO implements BaseDAO {
 			HibernateUtility.beginTransaction();
 			HibernateUtility.getSession().update(objeto);
 			HibernateUtility.commitTransaction();
-			HibernateUtility.closeSession();
 			FacesMessage message = new FacesMessage(
 					FacesMessage.SEVERITY_INFO, "Item atualizado com sucesso!",
 					"Item atualizado com sucesso!");
 			FacesContext.getCurrentInstance().addMessage("", message);
 		} catch (Exception e) {
 			HibernateUtility.rollbackTransaction();
-			HibernateUtility.closeSession();
 			FacesMessage message = new FacesMessage(
 					FacesMessage.SEVERITY_ERROR,
 					"Erro ao comunicar com o servidor!",
@@ -98,14 +92,12 @@ public class DAO implements BaseDAO {
 			HibernateUtility.beginTransaction();
 			HibernateUtility.getSession().delete(objeto);
 			HibernateUtility.commitTransaction();
-			HibernateUtility.closeSession();
 			FacesMessage message = new FacesMessage(
 					FacesMessage.SEVERITY_INFO, "Item excluído com sucesso!",
 					"Item excluído com sucesso!");
 			FacesContext.getCurrentInstance().addMessage("", message);
 		} catch (Exception e) {
 			HibernateUtility.rollbackTransaction();
-			HibernateUtility.closeSession();
 			FacesMessage message = new FacesMessage(
 					FacesMessage.SEVERITY_ERROR,
 					"Erro ao comunicar com o servidor!",
@@ -170,5 +162,4 @@ public class DAO implements BaseDAO {
 		HibernateUtility.getSession().refresh(object);
 		return object;
 	}
-	
 }
