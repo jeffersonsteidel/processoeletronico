@@ -32,6 +32,7 @@ public class ConjugeDAO extends DAO {
 		if (conjuge.getServidor() != null) {
 			c.add(Restrictions.like("servidor", conjuge.getServidor()));
 		}
+		HibernateUtility.commitTransaction();
 		return c.list();
 	}
 
