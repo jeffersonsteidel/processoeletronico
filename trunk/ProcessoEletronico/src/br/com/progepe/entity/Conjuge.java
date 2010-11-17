@@ -16,6 +16,7 @@ public class Conjuge implements Serializable {
 	private Boolean indServidor;
 	private String local;
 	private String sexo;
+	private Servidor servidor;
 
 	public Long getCodigo() {
 		return codigo;
@@ -79,6 +80,14 @@ public class Conjuge implements Serializable {
 
 	public void setSexo(String sexo) {
 		this.sexo = sexo;
+	}
+
+	public Servidor getServidor() {
+		return servidor;
+	}
+
+	public void setServidor(Servidor servidor) {
+		this.servidor = servidor;
 	}
 
 }
