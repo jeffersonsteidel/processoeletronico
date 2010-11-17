@@ -44,7 +44,7 @@ public class ServidorDAO extends DAO {
 		if (servidor.getCargo().getCodigo() != 0) {
 			c.add(Restrictions.like("cargo", servidor.getCargo()));
 		}
-
+		HibernateUtility.commitTransaction();
 		return c.list();
 	}
 
@@ -55,6 +55,7 @@ public class ServidorDAO extends DAO {
 		if (servidor.getSiape() != null && servidor.getSiape() != 0 ){
 			c.add(Restrictions.like("siape", servidor.getSiape()));
 		}
+		HibernateUtility.commitTransaction();
 		return (Servidor) c.uniqueResult();
 	}
 	
@@ -73,7 +74,7 @@ public class ServidorDAO extends DAO {
 			c.add(Restrictions.like("nome", servidor.getNome().toUpperCase(),
 					MatchMode.ANYWHERE));
 		}
-
+		HibernateUtility.commitTransaction();
 		return (Servidor) c.uniqueResult();
 	}
 	

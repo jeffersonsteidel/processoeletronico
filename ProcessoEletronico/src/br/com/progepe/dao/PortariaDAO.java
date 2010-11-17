@@ -48,7 +48,7 @@ public class PortariaDAO extends DAO {
 			c.add(Restrictions.like("local", portaria.getLocal(),
 					MatchMode.ANYWHERE).ignoreCase());
 		}
-
+		HibernateUtility.commitTransaction();
 		return c.list();
 	}
 }

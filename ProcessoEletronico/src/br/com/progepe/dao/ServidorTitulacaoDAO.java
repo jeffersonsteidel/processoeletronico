@@ -31,6 +31,7 @@ public class ServidorTitulacaoDAO extends DAO {
 		if (servidorTitulacao.getServidor() != null) {
 			c.add(Restrictions.like("servidor", servidorTitulacao.getServidor()));
 		}
+		HibernateUtility.commitTransaction();
 		return c.list();
 	}
 
@@ -57,6 +58,7 @@ public class ServidorTitulacaoDAO extends DAO {
 			c.add(Restrictions.like("titulacao",
 					servidorTitulacao.getTitulacao()));
 		}
+		HibernateUtility.commitTransaction();
 		return c.list();
 	}
 }

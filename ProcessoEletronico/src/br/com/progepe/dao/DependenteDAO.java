@@ -30,6 +30,7 @@ public class DependenteDAO extends DAO {
 		if (dependente.getServidor() != null) {
 			c.add(Restrictions.like("servidor", dependente.getServidor()));
 		}
+		HibernateUtility.commitTransaction();
 		return c.list();
 	}
 
@@ -54,6 +55,7 @@ public class DependenteDAO extends DAO {
 	// servidorTitulacao.getTitulacao().getCodigo()!=0){
 	// c.add(Restrictions.like("titulacao", servidorTitulacao.getTitulacao()));
 	// }
+	// HibernateUtility.commitTransaction();
 	// return c.list();
 	// }
 }
