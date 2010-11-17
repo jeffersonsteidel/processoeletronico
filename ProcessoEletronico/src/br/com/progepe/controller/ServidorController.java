@@ -64,6 +64,7 @@ public class ServidorController {
 	private Boolean servidorBrasileiro = true;
 	private Boolean indPoupanca = false;
 	private Boolean indFeminino = false;
+	private Boolean indEstagiario = false;
 	private String dataUltimaAlteracao;
 	private String dataUltimaAprovacao;
 
@@ -282,6 +283,14 @@ public class ServidorController {
 	public void setDataUltimaAprovacao(String dataUltimaAprovacao) {
 		this.dataUltimaAprovacao = dataUltimaAprovacao;
 	}
+	
+	public Boolean getIndEstagiario() {
+		return indEstagiario;
+	}
+
+	public void setIndEstagiario(Boolean indEstagiario) {
+		this.indEstagiario = indEstagiario;
+	}
 
 	public void cadastrar() throws IOException {
 		servidor = new Servidor();
@@ -490,6 +499,13 @@ public class ServidorController {
 		servidor.getCargo().setClasse(new Classe());
 		cargo = (Cargo) DAO.getInstance().refresh(cargo);
 		servidor.setCargo(cargo);
+		if ((Constantes.CARGO_ESTAGIARIO).equals(servidor.getCargo().getCodigo())) {
+			indEstagiario = true;
+			servidor.getPadrao().setCodigo(Constantes.PADRAO_DEFAULT);
+			servidor.getCargo().getClasse().setCodigo(Constantes.CLASSE_DEFAULT);
+		} else {
+			indEstagiario = false;
+		}
 	}
 
 	@SuppressWarnings("unchecked")
@@ -562,6 +578,7 @@ public class ServidorController {
 		}
 	}
 
+	
 	public void isPoupanca() {
 		if ((Constantes.CAIXA_ECONOMICA_FEDERAL).equals(servidor.getContaBancaria()
 				.getBanco().getCodigo())) {
@@ -576,7 +593,7 @@ public class ServidorController {
 			servidor.setDataUltimaAlteracao(new Date());
 			servidor.setDadosValidados(false);
 			DAO.getInstance().saveOrUpdate(servidor);
-			cadastrar();
+			servidor = new Servidor();	
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
