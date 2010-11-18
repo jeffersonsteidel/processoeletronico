@@ -27,12 +27,12 @@
 			</rich:messages>
 
 			<font size="2"><b>AUXÍLIO ALIMENTAÇÃO</b></font>
-			<h:panelGrid columns="1">
+			<h:panelGrid columns="2">
 				<h:outputText
 					value="#{solicitacaoAlimentacaoController.solicitacaoAlimentacao.solicitante.siape} - #{solicitacaoAlimentacaoController.solicitacaoAlimentacao.solicitante.nome}">
 				</h:outputText>
 				<h:outputText
-					value="Regime de Trabalho - #{solicitacaoAlimentacaoController.solicitacaoAlimentacao.solicitante.regimeTrabalho.descricao}">
+					value=" - Regime de Trabalho - #{solicitacaoAlimentacaoController.solicitacaoAlimentacao.solicitante.regimeTrabalho.descricao}">
 				</h:outputText>
 			</h:panelGrid>
 
