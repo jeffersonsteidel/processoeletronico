@@ -9,6 +9,11 @@ Config 1.1//EN"
 		<managed-bean-scope>session</managed-bean-scope>
 	</managed-bean>
 	<managed-bean>
+		<managed-bean-name>conjugeController</managed-bean-name>
+		<managed-bean-class>br.com.progepe.controller.ConjugeController</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
 		<managed-bean-name>dependenteController</managed-bean-name>
 		<managed-bean-class>br.com.progepe.controller.DependenteController</managed-bean-class>
 		<managed-bean-scope>session</managed-bean-scope>
