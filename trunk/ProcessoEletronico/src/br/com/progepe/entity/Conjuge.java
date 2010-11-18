@@ -17,6 +17,8 @@ public class Conjuge implements Serializable {
 	private String local;
 	private String sexo;
 	private Servidor servidor;
+	private Pais pais;
+	private Boolean atual;
 
 	public Long getCodigo() {
 		return codigo;
@@ -90,4 +92,20 @@ public class Conjuge implements Serializable {
 		this.servidor = servidor;
 	}
 
+	public Pais getPais() {
+		return pais;
+	}
+
+	public void setPais(Pais pais) {
+		this.pais = pais;
+	}
+
+	public Boolean getAtual() {
+		return atual;
+	}
+
+	public void setAtual(Boolean atual) {
+		this.atual = atual;
+	}
+	
 }

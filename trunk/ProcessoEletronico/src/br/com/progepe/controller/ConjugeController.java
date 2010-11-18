@@ -10,13 +10,16 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
 
+import br.com.progepe.dao.CidadeDAO;
 import br.com.progepe.dao.ConjugeDAO;
 import br.com.progepe.dao.DAO;
 import br.com.progepe.dao.ServidorDAO;
 import br.com.progepe.entity.Autenticacao;
+import br.com.progepe.entity.Cidade;
 import br.com.progepe.entity.Conjuge;
 import br.com.progepe.entity.Documento;
 import br.com.progepe.entity.Estado;
+import br.com.progepe.entity.Pais;
 import br.com.progepe.entity.Servidor;
 import br.com.progepe.validator.Validator;
 
@@ -24,8 +27,16 @@ public class ConjugeController implements Serializable {
 	private static final long serialVersionUID = -333995781063775201L;
 
 	private Conjuge conjuge;
-	private List<SelectItem> ufs = new ArrayList<SelectItem>();
 	private List<Conjuge> conjugeList = new ArrayList<Conjuge>();
+	private List<SelectItem> paises = new ArrayList<SelectItem>();
+	private List<SelectItem> ufs = new ArrayList<SelectItem>();
+	private List<SelectItem> estados = new ArrayList<SelectItem>();
+	private List<SelectItem> cidadesNascimento = new ArrayList<SelectItem>();
+
+	private Estado estadoNascimento;
+	private Boolean conjugeEstrangeiro = false;
+	private Boolean conjugeBrasileiro = true;
+	private Boolean conjugeServidor = false;
 
 	public Conjuge getConjuge() {
 		return conjuge;
@@ -43,6 +54,14 @@ public class ConjugeController implements Serializable {
 		this.ufs = ufs;
 	}
 
+	public List<SelectItem> getEstados() {
+		return estados;
+	}
+
+	public void setEstados(List<SelectItem> estados) {
+		this.estados = estados;
+	}
+
 	public List<Conjuge> getConjugeList() {
 		return conjugeList;
 	}
@@ -51,9 +70,64 @@ public class ConjugeController implements Serializable {
 		this.conjugeList = conjugeList;
 	}
 
+	public List<SelectItem> getPaises() {
+		return paises;
+	}
+
+	public void setPaises(List<SelectItem> paises) {
+		this.paises = paises;
+	}
+
+	public List<SelectItem> getCidadesNascimento() {
+		return cidadesNascimento;
+	}
+
+	public void setCidadesNascimento(List<SelectItem> cidadesNascimento) {
+		this.cidadesNascimento = cidadesNascimento;
+	}
+
+	public Estado getEstadoNascimento() {
+		return estadoNascimento;
+	}
+
+	public void setEstadoNascimento(Estado estadoNascimento) {
+		this.estadoNascimento = estadoNascimento;
+	}
+
+	public Boolean getConjugeEstrangeiro() {
+		return conjugeEstrangeiro;
+	}
+
+	public void setConjugeEstrangeiro(Boolean conjugeEstrangeiro) {
+		this.conjugeEstrangeiro = conjugeEstrangeiro;
+	}
+
+	public Boolean getConjugeBrasileiro() {
+		return conjugeBrasileiro;
+	}
+
+	public void setConjugeBrasileiro(Boolean conjugeBrasileiro) {
+		this.conjugeBrasileiro = conjugeBrasileiro;
+	}
+
+	public Boolean getConjugeServidor() {
+		return conjugeServidor;
+	}
+
+	public void setConjugeServidor(Boolean conjugeServidor) {
+		this.conjugeServidor = conjugeServidor;
+	}
+
 	public void abrirConjuge() throws ParseException {
 		try {
 			conjuge = new Conjuge();
+			conjuge.setDocumento(new Documento());
+			conjuge.setCidadeNascimento(new Cidade());
+			conjuge.getCidadeNascimento().setEstado(new Estado());
+			conjuge.setPais(new Pais());
+			listarPais();
+			listarUfs();
+			listarEstados();
 			buscarServidorLogado();
 			FacesContext.getCurrentInstance().getExternalContext()
 					.redirect("conjuge.jsp");
@@ -62,14 +136,19 @@ public class ConjugeController implements Serializable {
 		}
 	}
 
-	@SuppressWarnings("unchecked")
 	public void salvarConjuge() throws Exception {
-		if (0 == (conjuge.getDocumento().getRgUf())) {
-			conjuge.getDocumento().setRgUf(null);
+
+		if (conjuge.getIndEstrangeiro() == false) {
+			conjuge.setPais(null);
+		} else {
+			conjuge.setCidadeNascimento(null);
 		}
-		this.conjugeList.add(conjuge);
-		DAO.getInstance().saveOrUpdate(conjuge);
+		
+		conjuge.setAtual(true);
 		listarConjugesServidorLogado();
+		
+		DAO.getInstance().saveOrUpdate(conjuge);
+		// add na lista de conjuges do servidor?
 		conjuge = new Conjuge();
 		conjuge.setDocumento(new Documento());
 		abrirConjuge();
@@ -80,6 +159,11 @@ public class ConjugeController implements Serializable {
 		conjugeList = ConjugeDAO.getInstance().listByServidor(conjuge);
 		if (conjugeList.isEmpty()) {
 			conjugeList = new ArrayList<Conjuge>();
+		}else{
+			for(Conjuge item: conjugeList){
+				item.setAtual(false);
+				DAO.getInstance().update(item);
+			}
 		}
 	}
 
@@ -106,6 +190,18 @@ public class ConjugeController implements Serializable {
 				.redirect("conjuge.jsp");
 	}
 
+	public List<SelectItem> listarCidadesNascimentoConjuge() {
+		cidadesNascimento = new ArrayList<SelectItem>();
+		List<Cidade> cidadeList = new ArrayList<Cidade>();
+		cidadeList = CidadeDAO.getInstance().listByEstado(
+				conjuge.getCidadeNascimento().getEstado());
+		for (Cidade cidade : cidadeList) {
+			cidadesNascimento.add(new SelectItem(cidade.getCodigo(), cidade
+					.getDescricao()));
+		}
+		return cidadesNascimento;
+	}
+
 	@SuppressWarnings("unchecked")
 	public List<SelectItem> listarUfs() {
 		ufs = new ArrayList<SelectItem>();
@@ -115,6 +211,29 @@ public class ConjugeController implements Serializable {
 			ufs.add(new SelectItem(estado.getCodigo(), estado.getUf()));
 		}
 		return ufs;
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<SelectItem> listarEstados() {
+		estados = new ArrayList<SelectItem>();
+		List<Estado> estadoList = new ArrayList<Estado>();
+		estadoList = DAO.getInstance().list(Estado.class, "descricao");
+		for (Estado estado : estadoList) {
+			estados.add(new SelectItem(estado.getCodigo(), estado
+					.getDescricao()));
+		}
+		return estados;
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<SelectItem> listarPais() {
+		paises = new ArrayList<SelectItem>();
+		List<Pais> paisList = new ArrayList<Pais>();
+		paisList = DAO.getInstance().list(Pais.class, "descricao");
+		for (Pais pais : paisList) {
+			paises.add(new SelectItem(pais.getCodigo(), pais.getDescricao()));
+		}
+		return paises;
 	}
 
 	public void validarCPF() {

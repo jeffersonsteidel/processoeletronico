@@ -6,7 +6,6 @@ import org.hibernate.Criteria;
 import org.hibernate.criterion.Restrictions;
 
 import br.com.progepe.entity.Conjuge;
-import br.com.progepe.entity.Dependente;
 
 public class ConjugeDAO extends DAO {
 
@@ -28,7 +27,7 @@ public class ConjugeDAO extends DAO {
 		HibernateUtility.beginTransaction();
 
 		Criteria c = HibernateUtility.getSession().createCriteria(
-				Dependente.class);
+				Conjuge.class);
 		if (conjuge.getServidor() != null) {
 			c.add(Restrictions.like("servidor", conjuge.getServidor()));
 		}

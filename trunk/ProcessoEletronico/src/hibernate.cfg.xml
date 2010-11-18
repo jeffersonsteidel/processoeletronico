@@ -24,11 +24,9 @@
 
 
 		<!--
-		<mapping resource="Conjuge.hbm.xml" />
 		<mapping resource="Emprego.hbm.xml" />
 		<mapping resource="Funcao.hbm.xml" />
 		<mapping resource="Progressao.hbm.xml" />
-		
 		<mapping resource="TipoFuncao.hbm.xml" />
 		-->
 		<mapping resource="AreaConhecimento.hbm.xml" />
@@ -37,6 +35,7 @@
 		<mapping resource="Cargo.hbm.xml" />
 		<mapping resource="Cidade.hbm.xml" />
 		<mapping resource="Classe.hbm.xml" />
+		<mapping resource="Conjuge.hbm.xml" />
 		<mapping resource="ContaBancaria.hbm.xml" />
 		<mapping resource="CorPele.hbm.xml" />
 		<mapping resource="Dependente.hbm.xml" />

@@ -51,10 +51,13 @@
 				<rich:menuItem submitMode="ajax" value="Adicionar Dependentes"
 					action="#{dependenteController.abrirAdicionarDependentes}"
 					icon="../images/dependente.gif" />
-					<rich:menuItem submitMode="ajax" value="Atualizar Titulações"
+				<rich:menuItem submitMode="ajax" value="Cadastrar Cônjuge"
+					action="#{conjugeController.abrirConjuge}"
+					icon="../images/dependente.gif" />
+				<rich:menuItem submitMode="ajax" value="Atualizar Titulações"
 					action="#{servidorTitulacaoController.abrirAdicionarServidorTitulacao}"
 					icon="../images/titulacoes.gif" />
-					<rich:menuItem submitMode="ajax" value="Listar Titulações"
+				<rich:menuItem submitMode="ajax" value="Listar Titulações"
 					action="#{servidorTitulacaoController.abrirListarServidorTitulacao}"
 					icon="../images/titulacoes.gif" />
 			</rich:dropDownMenu>
