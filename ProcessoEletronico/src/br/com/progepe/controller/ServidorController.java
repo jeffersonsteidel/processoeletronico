@@ -593,7 +593,6 @@ public class ServidorController {
 			servidor.setDataUltimaAlteracao(new Date());
 			servidor.setDadosValidados(false);
 			DAO.getInstance().saveOrUpdate(servidor);
-			servidor = new Servidor();	
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
