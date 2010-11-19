@@ -24,6 +24,7 @@ public class SolicitacaoCasamentoController implements Serializable {
 	private static final long serialVersionUID = -333995781063775201L;
 
 	private SolicitacaoCasamento solicitacaoCasamento;
+	private String texto;
 	public SolicitacaoCasamento getSolicitacaoCasamento() {
 		return solicitacaoCasamento;
 	}
@@ -32,8 +33,17 @@ public class SolicitacaoCasamentoController implements Serializable {
 		this.solicitacaoCasamento = solicitacaoCasamento;
 	}
 
+	public String getTexto() {
+		return texto;
+	}
+
+	public void setTexto(String texto) {
+		this.texto = texto;
+	}
+
 	public void abrirSolicitacaoCasamento() throws ParseException {
 		try {
+			texto = "";
 			solicitacaoCasamento = new SolicitacaoCasamento();
 			buscarServidorLogado();
 			FacesContext.getCurrentInstance().getExternalContext()
@@ -66,6 +76,7 @@ public class SolicitacaoCasamentoController implements Serializable {
 		DAO.getInstance().saveOrUpdate(solicitacaoCasamento);
 		solicitacaoCasamento = new SolicitacaoCasamento();
 		buscarServidorLogado();
+		texto = "ATENÇÃO para que sua solicitação seja deferida você deverá adicionar seu cônjuge.\n Para cadastrar clique aqui.";
 	}
 	
 	public void paint(OutputStream stream, Object object) throws IOException {
