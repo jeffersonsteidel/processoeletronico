@@ -37,6 +37,7 @@ public class ConjugeController implements Serializable {
 	private Boolean conjugeEstrangeiro = false;
 	private Boolean conjugeBrasileiro = true;
 	private Boolean conjugeServidor = false;
+	private String texto;
 
 	public Conjuge getConjuge() {
 		return conjuge;
@@ -118,7 +119,15 @@ public class ConjugeController implements Serializable {
 		this.conjugeServidor = conjugeServidor;
 	}
 
-	public void abrirConjuge() throws ParseException {
+	public String getTexto() {
+		return texto;
+	}
+
+	public void setTexto(String texto) {
+		this.texto = texto;
+	}
+
+	public void abrirCadastrarConjuge() throws ParseException {
 		try {
 			conjuge = new Conjuge();
 			conjuge.setDocumento(new Documento());
@@ -129,38 +138,44 @@ public class ConjugeController implements Serializable {
 			listarUfs();
 			listarEstados();
 			buscarServidorLogado();
+			conjugeList = new ArrayList<Conjuge>();
+			conjugeList = ConjugeDAO.getInstance().listByServidor(conjuge);
+			if (conjugeList.size() > 0) {
+				texto = "Você já possui cônjuge cadastrado, caso tenha separado cadastre o novo  cônjuge.";
+			}
 			FacesContext.getCurrentInstance().getExternalContext()
-					.redirect("conjuge.jsp");
+					.redirect("cadastrarConjuge.jsp");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
 
 	public void salvarConjuge() throws Exception {
-
 		if (conjuge.getIndEstrangeiro() == false) {
 			conjuge.setPais(null);
 		} else {
 			conjuge.setCidadeNascimento(null);
 		}
-		
 		conjuge.setAtual(true);
 		listarConjugesServidorLogado();
-		
 		DAO.getInstance().saveOrUpdate(conjuge);
-		// add na lista de conjuges do servidor?
 		conjuge = new Conjuge();
 		conjuge.setDocumento(new Documento());
-		abrirConjuge();
+		conjuge.setCidadeNascimento(new Cidade());
+		conjuge.getCidadeNascimento().setEstado(new Estado());
+		conjuge.setPais(new Pais());
+		listarPais();
+		listarUfs();
+		listarEstados();
+		buscarServidorLogado();
 	}
 
 	public void listarConjugesServidorLogado() throws Exception {
-		buscarServidorLogado();
 		conjugeList = ConjugeDAO.getInstance().listByServidor(conjuge);
 		if (conjugeList.isEmpty()) {
 			conjugeList = new ArrayList<Conjuge>();
-		}else{
-			for(Conjuge item: conjugeList){
+		} else {
+			for (Conjuge item : conjugeList) {
 				item.setAtual(false);
 				DAO.getInstance().update(item);
 			}

@@ -12,6 +12,8 @@ import java.util.List;
 
 import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
+import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServletResponse;
 
 import org.richfaces.event.UploadEvent;
 import org.richfaces.model.UploadItem;
@@ -154,14 +156,23 @@ public class PortariaController implements Serializable {
 
 
 	public void visualizar() throws IOException, ParseException {
-		portaria = (Portaria)  DAO.getInstance().refresh(portaria);
-		OutputStream out = new FileOutputStream("c:\\portaria.pdf");
-		out.write(portaria.getPdf()); 
-	    Runtime.getRuntime().exec("cmd.exe /C c:\\portaria.pdf");
-		out.flush();
-		out.close();
-		Runtime.getRuntime().runFinalization();
+//		portaria = (Portaria)  DAO.getInstance().refresh(portaria);
+//		OutputStream out = new FileOutputStream("c:\\portaria.pdf");
+//		out.write(portaria.getPdf()); 
+//	    Runtime.getRuntime().exec("cmd.exe /C c:\\portaria.pdf");
+//		out.flush();
+//		out.close();
+//		Runtime.getRuntime().runFinalization();
 		
+//	    HttpServletResponse response;{   
+//	    	  
+//	        response.setContentType("application/pdf");  
+//	        response.setContentLength(portaria.getPdf().length);  
+//	        ServletOutputStream ouputStream = response.getOutputStream();  
+//	        ouputStream.write(portaria.getPdf(), 0, portaria.getPdf().length);  
+//	        ouputStream.flush();  
+//	        ouputStream.close();  
+//	    }
 	}
 	
 	public void excluir() throws IOException{
