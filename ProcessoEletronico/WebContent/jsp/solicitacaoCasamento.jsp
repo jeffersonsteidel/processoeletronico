@@ -24,6 +24,11 @@
 				<f:facet name="errorMarker">
 					<h:graphicImage value="../images/error.gif" />
 				</f:facet>
+				<a4j:region>
+					<a4j:commandLink
+						action="#{conjugeController.abrirCadastrarConjuge}"
+						value="#{solicitacaoCasamentoController.texto}"></a4j:commandLink>
+				</a4j:region>
 			</rich:messages>
 
 			<font size="2"><b>LICENÇA DE CASAMENTO</b></font>
@@ -32,7 +37,6 @@
 					value="#{solicitacaoCasamentoController.solicitacaoCasamento.solicitante.siape} - #{solicitacaoCasamentoController.solicitacaoCasamento.solicitante.nome}">
 				</h:outputText>
 			</h:panelGrid>
-
 			<h:panelGrid columns="2">
 				<h:outputText value="Nome do Cônjuge: " />
 				<h:inputText
@@ -68,8 +72,8 @@
 			<h:panelGroup id="info">
 				<rich:panel bodyClass="info">
 					<rich:dataGrid columns="1"
-						value="#{solicitacaoCasamentoController.solicitacaoCasamento.files}" var="file"
-						rowKeyVar="row">
+						value="#{solicitacaoCasamentoController.solicitacaoCasamento.files}"
+						var="file" rowKeyVar="row">
 						<rich:panel bodyClass="rich-laguna-panel-no-header">
 							<h:panelGrid columns="2">
 								<a4j:mediaOutput element="img"
