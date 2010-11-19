@@ -33,8 +33,10 @@
 					value="#{conjugeController.conjuge.servidor.siape} - #{conjugeController.conjuge.servidor.nome}">
 				</h:outputText>
 			</h:panelGrid>
+			
+			<h:outputText value="#{conjugeController.texto}" />
+			
 			<h:panelGrid columns="4">
-
 				<h:outputText value="Nome do Cônjuge ">
 				</h:outputText>
 				<h:inputText value="#{conjugeController.conjuge.nome}" size="50"
@@ -57,7 +59,7 @@
 					requiredMessage="Campo CPF do Cônjuge é obrigatório!">
 					<a4j:support event="onchange"
 						action="#{conjugeController.validarCPF}" ajaxSingle="true"
-						reRender="cpf, confirmPanel, messages"></a4j:support>
+						reRender="cpf, messages"></a4j:support>
 				</h:inputText>
 
 				<h:outputText value="RG do Cônjuge: " />
@@ -112,8 +114,7 @@
 				<h:selectBooleanCheckbox id="estrangeiro"
 					title="Marcar esta opção caso seja imigrante!"
 					value="#{conjugeController.conjuge.indEstrangeiro}">
-					<a4j:support event="onchange"
-						action="#{conjugeController.isEstrangeiro}" ajaxSingle="true"
+					<a4j:support event="onchange" ajaxSingle="true"
 						reRender="paisNascimentoConjuge, estadoNascimentoConjuge, cidadeNascimentoConjuge"></a4j:support>
 				</h:selectBooleanCheckbox>
 
@@ -140,11 +141,11 @@
 					requiredMessage="Campo Órgão de atuação é obrigatório!"></h:inputText>
 
 			</h:panelGrid>
-			
+
 			<a4j:commandButton value="Salvar"
-					action="#{conjugeController.salvarConjuge}" reRender="form" />
-					
-		</rich:panel>
+				action="#{conjugeController.salvarConjuge}" reRender="form" />
+
+		</rich:panel></center>
 	</a4j:form>
 </f:view>
 </body>
