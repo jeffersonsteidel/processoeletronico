@@ -33,9 +33,9 @@
 					value="#{conjugeController.conjuge.servidor.siape} - #{conjugeController.conjuge.servidor.nome}">
 				</h:outputText>
 			</h:panelGrid>
-			
+
 			<h:outputText value="#{conjugeController.texto}" />
-			
+
 			<h:panelGrid columns="4">
 				<h:outputText value="Nome do Cônjuge ">
 				</h:outputText>
@@ -144,7 +144,8 @@
 
 			<a4j:commandButton value="Salvar"
 				action="#{conjugeController.salvarConjuge}" reRender="form" />
-
+			<a4j:commandButton value="Voltar" onclick="history.go(-1)">
+			</a4j:commandButton>
 		</rich:panel></center>
 	</a4j:form>
 </f:view>
