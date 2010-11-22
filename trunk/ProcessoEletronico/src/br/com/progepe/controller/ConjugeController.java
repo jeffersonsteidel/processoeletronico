@@ -205,6 +205,10 @@ public class ConjugeController implements Serializable {
 				.redirect("conjuge.jsp");
 	}
 
+	public void carregarConjugeSolicitante (Servidor servidor){
+		conjuge = (Conjuge) ConjugeDAO.getInstance().refreshBySolicitante(servidor);
+	}
+	
 	public List<SelectItem> listarCidadesNascimentoConjuge() {
 		cidadesNascimento = new ArrayList<SelectItem>();
 		List<Cidade> cidadeList = new ArrayList<Cidade>();
