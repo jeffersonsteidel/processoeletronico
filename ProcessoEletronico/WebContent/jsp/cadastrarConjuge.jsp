@@ -146,6 +146,58 @@
 				action="#{conjugeController.salvarConjuge}" reRender="form" />
 			<a4j:commandButton value="Voltar" onclick="history.go(-1)">
 			</a4j:commandButton>
+			<rich:dataTable id="listarConjugesSolicitante"
+			 	rendered="#{not empty conjugeController.conjugeList}"
+				value="#{conjugeController.conjugeList}" var="list" width="1160px"
+				columnClasses="center" rows="15" reRender="ds">
+
+
+				<rich:column width="435px" sortBy="#{list.nome}">
+					<f:facet name="header">
+						<h:outputText value="Nome" />
+					</f:facet>
+					<h:outputText value="#{list.nome}" />
+				</rich:column>
+
+				<rich:column width="280px" sortBy="#{list.documento.cpf}">
+					<f:facet name="header">
+						<h:outputText value="CPF" />
+					</f:facet>
+					<h:outputText value="#{list.documento.cpf}" />
+				</rich:column>
+
+				<rich:column width="280px" sortBy="#{list.atual}">
+					<f:facet name="header">
+						<h:outputText value="Atual" />
+					</f:facet>
+					<h:outputText value="Atual" rendered="#{list.atual}"/>
+					<h:outputText value="Ex" rendered="#{!list.atual}"/>
+				</rich:column>
+				
+				
+				<rich:column>
+					<f:facet name="header">
+						<h:outputText value="Editar" />
+					</f:facet>
+					<a4j:commandLink action="#{conjugeController.carregar}"
+						reRender="form" ajaxSingle="true">
+						<h:graphicImage value="../images/edit.gif" style="border:0"
+							width="20" height="18" id="editar" />
+						<f:setPropertyActionListener value="#{list.codigo}"
+							target="#{conjugeController.conjuge.codigo}" />
+					</a4j:commandLink>
+					<rich:toolTip for="editar" value="Editar" />
+				</rich:column>
+
+				<f:facet name="footer">
+					<rich:datascroller id="ds"></rich:datascroller>
+				</f:facet>
+			</rich:dataTable>
+
+
+
+
+
 		</rich:panel></center>
 	</a4j:form>
 </f:view>

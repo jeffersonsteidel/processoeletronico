@@ -6,6 +6,7 @@ import org.hibernate.Criteria;
 import org.hibernate.criterion.Restrictions;
 
 import br.com.progepe.entity.Conjuge;
+import br.com.progepe.entity.Servidor;
 
 public class ConjugeDAO extends DAO {
 
@@ -33,6 +34,20 @@ public class ConjugeDAO extends DAO {
 		}
 		HibernateUtility.commitTransaction();
 		return c.list();
+	}
+	
+	
+	public Conjuge refreshBySolicitante(Servidor servidor){		
+		HibernateUtility.getSession().clear();
+		HibernateUtility.beginTransaction();	
+		Criteria c = HibernateUtility.getSession().createCriteria(
+				Conjuge.class);
+		if (servidor != null) {
+			c.add(Restrictions.like("servidor", servidor));
+		}
+		c.add(Restrictions.like("atual", 1));
+		HibernateUtility.commitTransaction();
+		return (Conjuge)c.uniqueResult();
 	}
 
 }
