@@ -134,7 +134,8 @@
 					<f:facet name="header">
 						<h:outputText value="Visualizar" />
 					</f:facet>
-					<a4j:commandLink action="#{portariaController.visualizar}"
+					
+					<a4j:commandLink action="#{portariaController.carregarPortaria}"
 						reRender="listaPortarias" ajaxSingle="true">
 						<h:graphicImage value="../images/pdf.gif" style="border:0"
 							width="20" height="18" id="visualizar" />
@@ -170,6 +171,7 @@
 			</table>
 		</h:form>
 	</rich:modalPanel></center>
+	
 </f:view>
 </body>
 </html>

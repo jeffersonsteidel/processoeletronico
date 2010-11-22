@@ -51,4 +51,7 @@ public class PortariaDAO extends DAO {
 		HibernateUtility.commitTransaction();
 		return c.list();
 	}
+
+
+	
 }
