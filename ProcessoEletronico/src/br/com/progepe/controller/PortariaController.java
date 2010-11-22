@@ -1,8 +1,6 @@
 package br.com.progepe.controller;
 
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.Serializable;
 import java.text.ParseException;
@@ -12,7 +10,6 @@ import java.util.List;
 
 import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
-import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
 
 import org.richfaces.event.UploadEvent;
@@ -29,9 +26,11 @@ public class PortariaController implements Serializable {
 	Portaria portaria;
 	private Date dataInicio;
 	private Date dataFinal;
-	private ArrayList<Portaria> files = new ArrayList<Portaria>();
+	private List<Portaria> files = new ArrayList<Portaria>();
 	private List<Portaria> portariaList = new ArrayList<Portaria>();
 	private List<SelectItem> tiposPortaria = new ArrayList<SelectItem>();
+	private List<Portaria> portarias = new ArrayList<Portaria>();
+	private Integer quantidadeArquivos = 0;
 
 	public Portaria getPortaria() {
 		return portaria;
@@ -57,11 +56,11 @@ public class PortariaController implements Serializable {
 		this.dataFinal = dataFinal;
 	}
 
-	public ArrayList<Portaria> getFiles() {
+	public List<Portaria> getFiles() {
 		return files;
 	}
 
-	public void setFiles(ArrayList<Portaria> files) {
+	public void setFiles(List<Portaria> files) {
 		this.files = files;
 	}
 
@@ -81,11 +80,21 @@ public class PortariaController implements Serializable {
 		this.portariaList = portariaList;
 	}
 
+	public List<Portaria> getPortarias() {
+		return portarias;
+	}
+
+	public void setPortarias(List<Portaria> portarias) {
+		this.portarias = portarias;
+	}
+
+
 	@SuppressWarnings("unchecked")
 	public List<SelectItem> listarTiposPortaria() {
 		tiposPortaria = new ArrayList<SelectItem>();
 		List<TipoPortaria> tiposPortariaList = new ArrayList<TipoPortaria>();
-		tiposPortariaList = DAO.getInstance().list(TipoPortaria.class, "descricao");
+		tiposPortariaList = DAO.getInstance().list(TipoPortaria.class,
+				"descricao");
 		for (TipoPortaria tipoPortaria : tiposPortariaList) {
 			tiposPortaria.add(new SelectItem(tipoPortaria.getCodigo(),
 					tipoPortaria.getDescricao()));
@@ -107,26 +116,17 @@ public class PortariaController implements Serializable {
 		}
 	}
 
-	public void listener(UploadEvent event) throws Exception {
-		UploadItem item = event.getUploadItem();
-		portaria.setPdf(item.getData());
-		files.add(portaria);
-	}
-
-	public void paint(OutputStream out, Object data) throws IOException {
-		if (data instanceof String) {
-			InputStream file = FacesContext.getCurrentInstance()
-					.getExternalContext().getResourceAsStream((String) data);
-			int size = file.available();
-			byte[] pdf = new byte[size];
-			file.read(pdf);
-			file.close();
-			out.write(pdf);
-		}
+	public void carregarPortaria() throws Exception {
+		portaria = (Portaria) DAO.getInstance().refresh(portaria);
+		FacesContext context = FacesContext.getCurrentInstance();
+		HttpServletResponse response = (HttpServletResponse) context
+				.getExternalContext().getResponse();
+		response.sendRedirect("portariaVisualizar.jsp");
 	}
 
 	public void salvar() throws IOException, ParseException {
-		 DAO.getInstance().saveOrUpdate(portaria);
+
+		DAO.getInstance().saveOrUpdate(portaria);
 		portaria = new Portaria();
 		files = new ArrayList<Portaria>();
 	}
@@ -142,41 +142,57 @@ public class PortariaController implements Serializable {
 	}
 
 	public void pesquisarPortarias() throws IOException {
-		this.setPortariaList(PortariaDAO.getInstance().listByFilter(portaria, dataInicio,
-				dataFinal));
+		this.setPortariaList(PortariaDAO.getInstance().listByFilter(portaria,
+				dataInicio, dataFinal));
 		FacesContext.getCurrentInstance().getExternalContext()
 				.redirect("listarPortarias.jsp");
 	}
 
 	public void carregar() throws IOException, ParseException {
-		portaria = (Portaria)  DAO.getInstance().refresh(portaria);
+		portaria = (Portaria) DAO.getInstance().refresh(portaria);
 		FacesContext.getCurrentInstance().getExternalContext()
 				.redirect("portaria.jsp");
 	}
 
-
-	public void visualizar() throws IOException, ParseException {
-//		portaria = (Portaria)  DAO.getInstance().refresh(portaria);
-//		OutputStream out = new FileOutputStream("c:\\portaria.pdf");
-//		out.write(portaria.getPdf()); 
-//	    Runtime.getRuntime().exec("cmd.exe /C c:\\portaria.pdf");
-//		out.flush();
-//		out.close();
-//		Runtime.getRuntime().runFinalization();
-		
-//	    HttpServletResponse response;{   
-//	    	  
-//	        response.setContentType("application/pdf");  
-//	        response.setContentLength(portaria.getPdf().length);  
-//	        ServletOutputStream ouputStream = response.getOutputStream();  
-//	        ouputStream.write(portaria.getPdf(), 0, portaria.getPdf().length);  
-//	        ouputStream.flush();  
-//	        ouputStream.close();  
-//	    }
+	public void listener(UploadEvent event) throws Exception {
+		UploadItem item = event.getUploadItem();
+		quantidadeArquivos++;
+		if (quantidadeArquivos.equals(1)) {
+			portaria.setArquivo1(item.getData());
+		} else if (quantidadeArquivos == 2) {
+			portaria.setArquivo2(item.getData());
+		} else if (quantidadeArquivos == 3) {
+			portaria.setArquivo3(item.getData());
+		} else if (quantidadeArquivos == 4) {
+			portaria.setArquivo4(item.getData());
+		} else if (quantidadeArquivos == 5) {
+			portaria.setArquivo5(item.getData());
+		}
+		files.add(portaria);
 	}
-	
-	public void excluir() throws IOException{
-		 DAO.getInstance().delete(portaria);
+
+	public void paint1(OutputStream stream, Object object) throws IOException {
+		stream.write(portaria.getArquivo1());
+	}
+
+	public void paint2(OutputStream stream, Object object) throws IOException {
+		stream.write(portaria.getArquivo2());
+	}
+
+	public void paint3(OutputStream stream, Object object) throws IOException {
+		stream.write(portaria.getArquivo3());
+	}
+
+	public void paint4(OutputStream stream, Object object) throws IOException {
+		stream.write(portaria.getArquivo4());
+	}
+
+	public void paint5(OutputStream stream, Object object) throws IOException {
+		stream.write(portaria.getArquivo5());
+	}
+
+	public void excluir() throws IOException {
+		DAO.getInstance().delete(portaria);
 		listarPortarias();
 	}
 }

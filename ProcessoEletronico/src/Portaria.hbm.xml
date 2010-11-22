@@ -8,7 +8,11 @@
 			<generator class="increment"></generator>
 		</id>
 		<property name="numero" column="PORT_NUMERO" />
-		<property name="pdf" column="PORT_PDF" />
+		<property name="arquivo1" column="PORT_ARQUIVO1" />
+		<property name="arquivo2" column="PORT_ARQUIVO2" />
+		<property name="arquivo3" column="PORT_ARQUIVO3" />
+		<property name="arquivo4" column="PORT_ARQUIVO4" />
+		<property name="arquivo5" column="PORT_ARQUIVO5" />
 		<property name="nome" column="PORT_NOME" />
 		<property name="data" column="PORT_DATA" />
 		<property name="descricao" column="PORT_DESC" />
