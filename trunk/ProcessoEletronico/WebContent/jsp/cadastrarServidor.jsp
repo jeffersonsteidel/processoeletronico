@@ -112,7 +112,7 @@
 						inputSize="12" requiredMessage="Data de Chegada no País!" />
 --%>
 
-						<h:outputText id="pais" value="País de Orgiem: " />
+						<h:outputText id="pais" value="País de Origem: " />
 						<h:selectOneMenu id="paisCampo"
 							value="#{servidorController.servidor.pais.codigo}"
 							required="true"
