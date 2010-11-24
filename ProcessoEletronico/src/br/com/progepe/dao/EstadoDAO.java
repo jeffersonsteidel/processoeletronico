@@ -19,6 +19,7 @@ public class EstadoDAO extends DAO{
 	
 	public Estado listByUf(String ufEstado) {
 		HibernateUtility.beginTransaction();
+		HibernateUtility.commitTransaction();
 		return (Estado) HibernateUtility.getSession().createCriteria(Estado.class).add(
 				Restrictions.like("uf", ufEstado)).uniqueResult();
 	}

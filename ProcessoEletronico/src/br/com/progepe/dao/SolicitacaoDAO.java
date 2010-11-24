@@ -68,6 +68,7 @@ public class SolicitacaoDAO extends DAO {
 		Query query = HibernateUtility.getSession().createQuery(
 				"from SolicitacaoContaBancaria  s where s.codigo= :codigo");
 		query.setParameter("codigo", codigo);
+		HibernateUtility.commitTransaction();
 		return (SolicitacaoContaBancaria) query.uniqueResult();
 	}
 	
@@ -76,6 +77,7 @@ public class SolicitacaoDAO extends DAO {
 		Query query = HibernateUtility.getSession().createQuery(
 				"from SolicitacaoCasamento  s where s.codigo= :codigo");
 		query.setParameter("codigo", codigo);
+		HibernateUtility.commitTransaction();
 		return (SolicitacaoCasamento) query.uniqueResult();
 	}
 	
@@ -84,6 +86,7 @@ public class SolicitacaoDAO extends DAO {
 		Query query = HibernateUtility.getSession().createQuery(
 				"from SolicitacaoAlimentacao  s where s.codigo= :codigo");
 		query.setParameter("codigo", codigo);
+		HibernateUtility.commitTransaction();
 		return (SolicitacaoAlimentacao) query.uniqueResult();
 	}
 
@@ -93,6 +96,7 @@ public class SolicitacaoDAO extends DAO {
 		Query query = HibernateUtility.getSession().createQuery(
 				"from SolicitacaoLicencaPaternidade s where s.codigo= :codigo");
 		query.setParameter("codigo", codigo);
+		HibernateUtility.commitTransaction();
 		return (SolicitacaoLicencaPaternidade) query.uniqueResult();
 	}
 	
@@ -102,6 +106,7 @@ public class SolicitacaoDAO extends DAO {
 		Query query = HibernateUtility.getSession().createQuery(
 				"from SolicitacaoAfastamentoConjuge s where s.codigo= :codigo");
 		query.setParameter("codigo", codigo);
+		HibernateUtility.commitTransaction();
 		return (SolicitacaoAfastamentoConjuge) query.uniqueResult();
 	}
 	
@@ -112,6 +117,7 @@ public class SolicitacaoDAO extends DAO {
 		Query query = HibernateUtility.getSession().createQuery(
 				"from SolicitacaoHorarioEspecialEstudante s where s.codigo= :codigo");
 		query.setParameter("codigo", codigo);
+		HibernateUtility.commitTransaction();
 		return (SolicitacaoHorarioEspecialEstudante) query.uniqueResult();
 	}
 	
@@ -121,6 +127,7 @@ public class SolicitacaoDAO extends DAO {
 		Query query = HibernateUtility.getSession().createQuery(
 				"from SolicitacaoObito s where s.codigo= :codigo");
 		query.setParameter("codigo", codigo);
+		HibernateUtility.commitTransaction();
 		return (SolicitacaoObito) query.uniqueResult();
 	}
 	
