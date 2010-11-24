@@ -52,7 +52,7 @@
 						<h:inputText value="#{servidorController.servidor.nomeMae}"
 							size="40" maxlength="100" required="true"
 							requiredMessage="Campo Nome da Mãe é obrigatório!"></h:inputText>
-						<h:outputText value="Nome do do Pai: " />
+						<h:outputText value="Nome do Pai: " />
 						<h:inputText value="#{servidorController.servidor.nomePai}"
 							size="40" maxlength="100"></h:inputText>
 						<h:outputText value="Estado de Nascimento: " />

@@ -24,6 +24,7 @@ public class CidadeDAO extends DAO{
 	@SuppressWarnings("unchecked")
 	public List<Cidade> listByEstado(Estado estado) {
 		HibernateUtility.beginTransaction();
+		HibernateUtility.commitTransaction();
 		return HibernateUtility.getSession().createCriteria(Cidade.class).add(
 				Restrictions.like("estado", estado)).addOrder(
 				Order.asc("descricao")).list();
@@ -31,12 +32,14 @@ public class CidadeDAO extends DAO{
 	
 	public Cidade listByNome(String nomeCidade) {
 		HibernateUtility.beginTransaction();
+		HibernateUtility.commitTransaction();
 		return (Cidade) HibernateUtility.getSession().createCriteria(Cidade.class).add(
 				Restrictions.like("descricao", nomeCidade)).uniqueResult();
 	}
 	
 	public Cidade listByNomeAndUF(String nomeCidade, Estado estado) {
 		HibernateUtility.beginTransaction();
+		HibernateUtility.commitTransaction();
 		return (Cidade) HibernateUtility.getSession().createCriteria(Cidade.class).add(
 				Restrictions.like("descricao", nomeCidade)).add(Restrictions.like("estado", estado)).uniqueResult();
 	}
