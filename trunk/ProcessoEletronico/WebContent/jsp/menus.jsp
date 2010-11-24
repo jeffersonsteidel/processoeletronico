@@ -14,6 +14,12 @@
 }
 </style>
 
+<script type="text/javascript">
+	function ajuda() {
+		window.open("manual/indiceManual.html");
+	}
+</script>
+
 <div id="non-printable"><f:subview id="Menu">
 	<center><a4j:form>
 		<a4j:jsFunction action="#{autenticacaoController.isAutenticado}"
@@ -140,7 +146,7 @@
 						</h:panelGroup>
 					</f:facet>
 					<rich:menuItem submitMode="ajax" value="Manual do Sistema" 
-						icon="../images/ico_ajuda.gif"  action="#{autenticacaoController.carregarManual}"/>
+						icon="../images/ico_ajuda.gif"  action="#" onclick="ajuda();"/>
 				</rich:dropDownMenu>
 				<rich:dropDownMenu>
 					<f:facet name="label">
