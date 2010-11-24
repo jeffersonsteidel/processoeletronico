@@ -136,6 +136,15 @@
 				<rich:dropDownMenu>
 					<f:facet name="label">
 						<h:panelGroup>
+							<h:outputText value="AJUDA" />
+						</h:panelGroup>
+					</f:facet>
+					<rich:menuItem submitMode="ajax" value="Manual do Sistema" 
+						icon="../images/ico_ajuda.gif"  action="#{autenticacaoController.carregarManual}"/>
+				</rich:dropDownMenu>
+				<rich:dropDownMenu>
+					<f:facet name="label">
+						<h:panelGroup>
 							<h:outputText value="SAIR" />
 						</h:panelGroup>
 					</f:facet>
