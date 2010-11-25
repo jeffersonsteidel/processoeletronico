@@ -593,6 +593,15 @@ public class ServidorController {
 			servidor.setDataUltimaAlteracao(new Date());
 			servidor.setDadosValidados(false);
 			DAO.getInstance().saveOrUpdate(servidor);
+			servidor = (Servidor) DAO.getInstance().refresh(servidor);
+			if (servidor.getDataUltimaAlteracao() != null) {
+				this.setDataUltimaAlteracao(Validator.formatarDataHoraBR(servidor
+						.getDataUltimaAlteracao()));
+			}
+			if (servidor.getDataUltimaAprovacao() != null) {
+				this.setDataUltimaAprovacao(Validator.formatarDataHoraBR(servidor
+						.getDataUltimaAprovacao()));
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -603,9 +612,11 @@ public class ServidorController {
 			servidor.setDataUltimaAprovacao(new Date());
 			servidor.setDadosValidados(true);
 			DAO.getInstance().update(servidor);
-			servidor = new Servidor();
-			servidor.setDataUltimaAlteracao(null);
-			servidor.setDataUltimaAprovacao(null);
+			servidor = (Servidor) DAO.getInstance().refresh(servidor);
+			if (servidor.getDataUltimaAprovacao() != null) {
+				this.setDataUltimaAprovacao(Validator.formatarDataHoraBR(servidor
+						.getDataUltimaAprovacao()));
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
