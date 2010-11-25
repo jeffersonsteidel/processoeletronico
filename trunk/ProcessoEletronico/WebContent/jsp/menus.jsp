@@ -7,7 +7,7 @@
 <link rel="StyleSheet" type="text/css" href="../css/messages-style.css"
 	media="screen" />
 <body onload="verificarAutenticacao()">
-<style>
+<style type="text/css">
 .pic {
 	margin-bottom: -4px;
 	margin-right: 4px;
@@ -19,6 +19,7 @@
 		window.open("manual/indiceManual.html");
 	}
 </script>
+
 
 <div id="non-printable"><f:subview id="Menu">
 	<center><a4j:form>

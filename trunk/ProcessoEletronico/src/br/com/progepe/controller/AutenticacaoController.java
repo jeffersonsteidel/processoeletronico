@@ -71,6 +71,7 @@ public class AutenticacaoController implements Serializable {
 			FacesContext.getCurrentInstance().getExternalContext()
 					.redirect("menus.jsp");
 			autenticacao = new Autenticacao();
+			session.setMaxInactiveInterval(-1);
 		} else {
 			session.setAttribute("usuarioLogado", null);
 			session.removeAttribute("user");
@@ -128,10 +129,4 @@ public class AutenticacaoController implements Serializable {
 			e.printStackTrace();
 		}
 	}
-
-	public void carregarManual() throws IOException {
-		FacesContext.getCurrentInstance().getExternalContext()
-				.redirect("manual/indiceManual.html");
-	}
-
 }
