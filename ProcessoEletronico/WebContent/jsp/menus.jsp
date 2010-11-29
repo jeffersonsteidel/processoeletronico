@@ -6,6 +6,9 @@
 
 <link rel="StyleSheet" type="text/css" href="../css/messages-style.css"
 	media="screen" />
+<head>
+<title>Instituto Federal do Paraná</title>
+</head>	
 <body onload="verificarAutenticacao()">
 <style type="text/css">
 .pic {
