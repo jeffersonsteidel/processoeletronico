@@ -100,8 +100,8 @@ public class AutenticacaoController implements Serializable {
 		} else if (!this.getNovaSenha().equals(this.getConfirmarSenha())) {
 			FacesMessage message = new FacesMessage(
 					FacesMessage.SEVERITY_ERROR,
-					"Confirmar Nova Senha diferente!",
-					"Confirmar Nova Senha diferente!");
+					"A Nova Senha não corresponde à Senha de confirmação!",
+					"A Nova Senha não corresponde à Senha de confirmação!");
 			FacesContext.getCurrentInstance().addMessage("", message);
 		} else {
 			String novaSenha = Encripty.criptografaSenha(this.getNovaSenha());
