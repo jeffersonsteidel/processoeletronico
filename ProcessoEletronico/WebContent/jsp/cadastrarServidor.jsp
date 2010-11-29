@@ -184,7 +184,8 @@
 							value="#{servidorController.servidor.cargo.classe.sigla}" />
 
 						<h:outputText value="Padrão: " />
-						<h:selectOneMenu id="padrao" disabled="#{servidorController.indEstagiario}"
+						<h:selectOneMenu id="padrao"
+							disabled="#{servidorController.indEstagiario}"
 							value="#{servidorController.servidor.padrao.codigo}"
 							required="true" requiredMessage="Campo Padrão é obrigatório!">
 							<f:selectItem itemLabel="SELECIONE" itemValue="" />
@@ -212,6 +213,7 @@
 						<h:outputText value="Data de Saída do Orgão: " />
 						<rich:calendar value="#{servidorController.servidor.dataSaida}"
 							locale="" popup="true" datePattern="dd/MM/yyyy"
+							rendered="#{autenticacaoController.siapeAutenticado.indAdministrador}"
 							showApplyButton="#" cellWidth="12px" cellHeight="12px"
 							style="width:80px" inputSize="12" />
 					</h:panelGrid>
@@ -468,8 +470,7 @@
 								rendered="#{servidorController.servidor.dadosValidados}"
 								value="Dados validados pela PROGEPE!"></h:outputText>
 						</h:panelGrid>
-						<h:panelGrid
-							columns="2">	
+						<h:panelGrid columns="2">
 							<h:outputText
 								value="Data da última atualização realizada pelo servidor:"></h:outputText>
 							<h:outputText value="#{servidorController.dataUltimaAlteracao}"></h:outputText>
