@@ -4,8 +4,10 @@ import java.util.List;
 
 import org.hibernate.Criteria;
 import org.hibernate.criterion.MatchMode;
+import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 
+import br.com.progepe.entity.Lotacao;
 import br.com.progepe.entity.Servidor;
 
 public class ServidorDAO extends DAO {
@@ -76,6 +78,18 @@ public class ServidorDAO extends DAO {
 		}
 		HibernateUtility.commitTransaction();
 		return (Servidor) c.uniqueResult();
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Servidor> listByCampus(Lotacao lotacao) {
+		HibernateUtility.beginTransaction();
+		HibernateUtility.commitTransaction();
+		if(lotacao != null){
+		return HibernateUtility.getSession().createCriteria(Servidor.class).add(
+				Restrictions.like("lotacao", lotacao)).addOrder(
+				Order.asc("descricao")).list();
+		}
+		return null;
 	}
 	
 } 
