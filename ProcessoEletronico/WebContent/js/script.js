@@ -21,6 +21,13 @@ function telefone(v) {
 	return v;
 }
 
+function horario(v) {
+	v = v.replace(/\D/g, ""); // Remove tudo o que não é número
+	v = v.replace(/(\d{2})(\d)/, "$1:$2"); // Coloca ':' entre o segundo e o
+											// terceiro dgitos
+	return v;
+}
+
 function cpf(v) {
 	v = v.replace(/\D/g, ""); // Remove tudo o que no dgito
 	v = v.replace(/(\d{3})(\d)/, "$1.$2"); // Coloca um ponto entre o terceiro

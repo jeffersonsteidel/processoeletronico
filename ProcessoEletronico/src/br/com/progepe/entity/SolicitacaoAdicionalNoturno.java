@@ -7,7 +7,80 @@ public class SolicitacaoAdicionalNoturno extends Solicitacao {
 
 	private static final long serialVersionUID = 1L;
 
-	Set<AdicionalNoturno> adicionais = new HashSet<AdicionalNoturno>();
+	private String turma;
+	private Boolean indDocente;
+	private Integer mes;
+	private Integer ano;
+
+	private Curso curso;
+	private Lotacao lotacao;
+	private Servidor servidor;
+
+	private Set<AdicionalNoturno> adicionais = new HashSet<AdicionalNoturno>();
+	
+	public String getTurma() {
+		return turma;
+	}
+
+	public void setTurma(String turma) {
+		this.turma = turma;
+	}
+
+	public boolean isIndDocente() {
+		return indDocente;
+	}
+
+	public void setIndDocente(boolean indDocente) {
+		this.indDocente = indDocente;
+	}
+
+	public Integer getMes() {
+		return mes;
+	}
+
+	public void setMes(Integer mes) {
+		this.mes = mes;
+	}
+
+	public Integer getAno() {
+		return ano;
+	}
+
+	public void setAno(Integer ano) {
+		this.ano = ano;
+	}
+
+	public Curso getCurso() {
+		return curso;
+	}
+
+	public void setCurso(Curso curso) {
+		this.curso = curso;
+	}
+
+	public Lotacao getLotacao() {
+		return lotacao;
+	}
+
+	public void setLotacao(Lotacao lotacao) {
+		this.lotacao = lotacao;
+	}
+
+	public Servidor getServidor() {
+		return servidor;
+	}
+
+	public void setServidor(Servidor servidor) {
+		this.servidor = servidor;
+	}
+
+	public Boolean getIndDocente() {
+		return indDocente;
+	}
+
+	public void setIndDocente(Boolean indDocente) {
+		this.indDocente = indDocente;
+	}
 
 	public Set<AdicionalNoturno> getAdicionais() {
 		return adicionais;
@@ -16,5 +89,4 @@ public class SolicitacaoAdicionalNoturno extends Solicitacao {
 	public void setAdicionais(Set<AdicionalNoturno> adicionais) {
 		this.adicionais = adicionais;
 	}
-
 }

@@ -83,6 +83,11 @@ Config 1.1//EN"
 		<managed-bean-class>br.com.progepe.controller.SolicitacaoAdicionalInsalubridadeController</managed-bean-class>
 		<managed-bean-scope>session</managed-bean-scope>
 	</managed-bean>
+		<managed-bean>
+		<managed-bean-name>solicitacaoAdicionalNoturnoController</managed-bean-name>
+		<managed-bean-class>br.com.progepe.controller.SolicitacaoAdicionalNoturnoController</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
 	<lifecycle>
 		<phase-listener id="nostore">br.com.progepe.jsfUtil.CacheControlPhaseListener</phase-listener>
 	</lifecycle>
