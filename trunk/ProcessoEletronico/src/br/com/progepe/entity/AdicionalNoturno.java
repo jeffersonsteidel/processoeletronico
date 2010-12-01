@@ -14,7 +14,8 @@ public class AdicionalNoturno {
 	private Servidor servidor;
 	private Time horaInicial;
 	private Time horaFinal;
-	
+	private Boolean indAprovadoDiretor;
+	private Boolean indAprovadoProgepe;
 
 	public Integer getCodigo() {
 		return codigo;
@@ -72,4 +73,22 @@ public class AdicionalNoturno {
 	public void setHoraFinal(Time horaFinal) {
 		this.horaFinal = horaFinal;
 	}
+
+	public Boolean getIndAprovadoDiretor() {
+		return indAprovadoDiretor;
+	}
+
+	public void setIndAprovadoDiretor(Boolean indAprovadoDiretor) {
+		this.indAprovadoDiretor = indAprovadoDiretor;
+	}
+
+	public Boolean getIndAprovadoProgepe() {
+		return indAprovadoProgepe;
+	}
+
+	public void setIndAprovadoProgepe(Boolean indAprovadoProgepe) {
+		this.indAprovadoProgepe = indAprovadoProgepe;
+	}
 }
+
+
