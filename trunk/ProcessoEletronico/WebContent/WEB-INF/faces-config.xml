@@ -34,13 +34,18 @@ Config 1.1//EN"
 		<managed-bean-scope>session</managed-bean-scope>
 	</managed-bean>
 	<managed-bean>
-		<managed-bean-name>solicitacaoController</managed-bean-name>
-		<managed-bean-class>br.com.progepe.controller.SolicitacaoController</managed-bean-class>
+		<managed-bean-name>solicitacaoAdicionalInsalubridadeController</managed-bean-name>
+		<managed-bean-class>br.com.progepe.controller.SolicitacaoAdicionalInsalubridadeController</managed-bean-class>
 		<managed-bean-scope>session</managed-bean-scope>
 	</managed-bean>
 	<managed-bean>
-		<managed-bean-name>solicitacaoContaBancariaController</managed-bean-name>
-		<managed-bean-class>br.com.progepe.controller.SolicitacaoContaBancariaController</managed-bean-class>
+		<managed-bean-name>solicitacaoAdicionalNoturnoController</managed-bean-name>
+		<managed-bean-class>br.com.progepe.controller.SolicitacaoAdicionalNoturnoController</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>solicitacaoAfastamentoConjugeController</managed-bean-name>
+		<managed-bean-class>br.com.progepe.controller.SolicitacaoAfastamentoConjugeController</managed-bean-class>
 		<managed-bean-scope>session</managed-bean-scope>
 	</managed-bean>
 	<managed-bean>
@@ -51,6 +56,16 @@ Config 1.1//EN"
 	<managed-bean>
 		<managed-bean-name>solicitacaoAlteracaoFeriasController</managed-bean-name>
 		<managed-bean-class>br.com.progepe.controller.SolicitacaoAlteracaoFeriasController</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>solicitacaoController</managed-bean-name>
+		<managed-bean-class>br.com.progepe.controller.SolicitacaoController</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>solicitacaoContaBancariaController</managed-bean-name>
+		<managed-bean-class>br.com.progepe.controller.SolicitacaoContaBancariaController</managed-bean-class>
 		<managed-bean-scope>session</managed-bean-scope>
 	</managed-bean>
 	<managed-bean>
@@ -71,21 +86,6 @@ Config 1.1//EN"
 	<managed-bean>
 		<managed-bean-name>solicitacaoObitoController</managed-bean-name>
 		<managed-bean-class>br.com.progepe.controller.SolicitacaoObitoController</managed-bean-class>
-		<managed-bean-scope>session</managed-bean-scope>
-	</managed-bean>
-	<managed-bean>
-		<managed-bean-name>solicitacaoAfastamentoConjugeController</managed-bean-name>
-		<managed-bean-class>br.com.progepe.controller.SolicitacaoAfastamentoConjugeController</managed-bean-class>
-		<managed-bean-scope>session</managed-bean-scope>
-	</managed-bean>
-	<managed-bean>
-		<managed-bean-name>solicitacaoAdicionalInsalubridadeController</managed-bean-name>
-		<managed-bean-class>br.com.progepe.controller.SolicitacaoAdicionalInsalubridadeController</managed-bean-class>
-		<managed-bean-scope>session</managed-bean-scope>
-	</managed-bean>
-		<managed-bean>
-		<managed-bean-name>solicitacaoAdicionalNoturnoController</managed-bean-name>
-		<managed-bean-class>br.com.progepe.controller.SolicitacaoAdicionalNoturnoController</managed-bean-class>
 		<managed-bean-scope>session</managed-bean-scope>
 	</managed-bean>
 	<lifecycle>

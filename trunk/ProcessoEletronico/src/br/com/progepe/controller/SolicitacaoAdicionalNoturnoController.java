@@ -120,10 +120,10 @@ public class SolicitacaoAdicionalNoturnoController implements Serializable {
 		return lotacoes;
 	}
 	
-	public List<SelectItem> listarServidoresCampus() {
+	public List<SelectItem> listarServidoresTecnicosCampus() {
 		servidoresCampus = new ArrayList<SelectItem>();
 		List<Servidor> servidorList = new ArrayList<Servidor>();
-		servidorList = ServidorDAO.getInstance().listByCampus(solicitacaoAdicionalNoturno.getLotacao());
+		servidorList = ServidorDAO.getInstance().listTecnicosByCampus(adicionalNoturno.getSolicitacaoAdicionalNoturno().getLotacao());
 		
 		for (Servidor item : servidorList) {
 			servidoresCampus.add(new SelectItem(item.getCodigo(), item.getNome()));

@@ -6,6 +6,7 @@ public class Constantes {
 	public static final Long CARGO_ESTAGIARIO = 999999L;
 	public static final Long PADRAO_DEFAULT = 69L;
 	public static final Long CLASSE_DEFAULT = 99L;
+	public static final Long CODIGO_LIMITE_TECNICO = 6000L;
 	
 	
 	public static final Long STATUS_SOLICITACAO_ENCAMINHADO = 1L;
