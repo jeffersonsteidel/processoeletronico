@@ -62,7 +62,7 @@ public class SolicitacaoAdicionalNoturnoController implements Serializable {
 		this.adicionalNoturno = adicionalNoturno;
 	}
 
-	public void abrirSolicitacaoAdicionalNoturno() throws ParseException {
+	public void abrirSolicitacaoAdicionalNoturnoTecnico() throws ParseException {
 		try {
 			solicitacaoAdicionalNoturno = new SolicitacaoAdicionalNoturno();
 			adicionalNoturno = new AdicionalNoturno();

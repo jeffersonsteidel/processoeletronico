@@ -30,7 +30,7 @@
 
 			<h:panelGrid columns="1">
 				<h:outputText
-					value="#{solicitacaoAdicionalNoturnoController.servidor.siape} - #{solicitacaoAdicionalNoturno.servidor.nome}">
+					value="#{solicitacaoAdicionalNoturnoController.solicitacaoAdicionalNoturno.solicitante.siape} - #{solicitacaoAdicionalNoturno.solicitacaoAdicionalNoturno.solicitante.nome}">
 				</h:outputText>
 			</h:panelGrid>
 			<a4j:region>
@@ -39,7 +39,7 @@
 					<h:outputText value="Campus: " />
 					<h:selectOneMenu id="campus"
 						value="#{solicitacaoAdicionalNoturnoController.solicitacaoAdicionalNoturno.lotacao.codigo}"
-						required="true" requiredMessage="Campo Campus é obrigatório!">
+						required="true" requiredMessage="Campo Campus é obrigatório!"> 
 						<f:selectItem itemLabel="SELECIONE" itemValue="" />
 						<f:selectItems
 							value="#{solicitacaoAdicionalNoturnoController.lotacoes}" />
