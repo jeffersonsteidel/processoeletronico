@@ -30,38 +30,31 @@
 
 			<h:panelGrid columns="1">
 				<h:outputText
-					value="#{solicitacaoAdicionalNoturnoController.solicitacaoAdicionalNoturno.solicitante.siape} - #{solicitacaoAdicionalNoturno.solicitacaoAdicionalNoturno.solicitante.nome}">
+					value="#{solicitacaoAdicionalNoturnoController.solicitacaoAdicionalNoturno.solicitante.siape} - #{solicitacaoAdicionalNoturnoController.solicitacaoAdicionalNoturno.solicitante.nome}">
 				</h:outputText>
 			</h:panelGrid>
-			<a4j:region>
-				<h:panelGrid columns="4">
-
+				<h:panelGrid columns="10">
 					<h:outputText value="Campus: " />
 					<h:selectOneMenu id="campus"
-						value="#{solicitacaoAdicionalNoturnoController.solicitacaoAdicionalNoturno.lotacao.codigo}"
-						required="true" requiredMessage="Campo Campus é obrigatório!"> 
+						value="#{solicitacaoAdicionalNoturnoController.adicionalNoturno.solicitacaoAdicionalNoturno.lotacao.codigo}"
+						required="true" requiredMessage="Campo Campus é obrigatório!">
 						<f:selectItem itemLabel="SELECIONE" itemValue="" />
 						<f:selectItems
 							value="#{solicitacaoAdicionalNoturnoController.lotacoes}" />
 						<a4j:support event="onchange"
-							action="#{solicitacaoAdicionalNoturnoController.listarServidoresCampus}"
+							action="#{solicitacaoAdicionalNoturnoController.listarServidoresTecnicosCampus}"
 							ajaxSingle="true" reRender="servidoresCampus"></a4j:support>
 					</h:selectOneMenu>
 
 					<h:outputText value="Servidor: " />
-					<ui:composition xmlns="http://www.w3.org/1999/xhtml"
-						xmlns:ui="http://java.sun.com/jsf/facelets"
-						xmlns:h="http://java.sun.com/jsf/html"
-						xmlns:f="http://java.sun.com/jsf/core"
-						xmlns:a4j="http://richfaces.org/a4j"
-						xmlns:rich="http://richfaces.org/rich">
-						<rich:comboBox suggestionValues="#{solicitacaoAdicionalNoturnoController.servidoresCampus}"
-							directInputSuggestions="true" defaultLabel="SELECIONE" value="#{solicitacaoAdicionalNoturnoController.adicionalNoturno.servidor.codigo}"
-							required="true" requiredMessage="Campo Servidor é obrigatório!" />
+					<h:selectOneMenu id="servidoresCampus"
+						value="#{solicitacaoAdicionalNoturnoController.adicionalNoturno.servidor.codigo}"
+						required="true" requiredMessage="Campo Servidor é obrigatório!">
 						<f:selectItem itemLabel="SELECIONE" itemValue="" />
 						<f:selectItems
 							value="#{solicitacaoAdicionalNoturnoController.servidoresCampus}" />
-					</ui:composition>
+					</h:selectOneMenu>
+
 
 					<h:outputText value="Hora Inicial: " />
 					<h:inputText
@@ -90,13 +83,13 @@
 						showApplyButton="#" cellWidth="12px" cellHeight="12px"
 						style="width:80px" required="true" inputSize="12"
 						requiredMessage="Campo Data é obrigatório!" />
-
-					<h:outputText value="Motivo: " />
-					<h:inputText
-						value="#{solicitacaoAdicionalNoturnoController.adicionalNoturno.motivo}"
-						size="100" maxlength="200"></h:inputText>
 				</h:panelGrid>
-			</a4j:region>
+
+				<h:panelGrid columns="2">
+					<h:outputText value="Motivo: " />
+					<h:inputTextarea rows="5" cols="50"
+						value="#{solicitacaoAdicionalNoturnoController.adicionalNoturno.motivo}"></h:inputTextarea>
+				</h:panelGrid>
 		</rich:panel></center>
 	</a4j:form>
 </f:view>

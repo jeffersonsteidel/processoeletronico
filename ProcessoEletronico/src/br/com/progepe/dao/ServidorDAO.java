@@ -3,26 +3,29 @@ package br.com.progepe.dao;
 import java.util.List;
 
 import org.hibernate.Criteria;
+import org.hibernate.Query;
 import org.hibernate.criterion.MatchMode;
-import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 
+import br.com.progepe.constantes.Constantes;
+import br.com.progepe.entity.Cargo;
 import br.com.progepe.entity.Lotacao;
 import br.com.progepe.entity.Servidor;
 
 public class ServidorDAO extends DAO {
-	
+
 	private static ServidorDAO instance;
-	private ServidorDAO(){}
-	
-	
-	public static ServidorDAO getInstance(){
-		if(instance == null){
+
+	private ServidorDAO() {
+	}
+
+	public static ServidorDAO getInstance() {
+		if (instance == null) {
 			instance = new ServidorDAO();
 		}
 		return instance;
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	public List<Servidor> listByFilter(Servidor servidor) {
 		HibernateUtility.getSession().clear();
@@ -53,14 +56,14 @@ public class ServidorDAO extends DAO {
 	public Servidor refreshBySiape(Servidor servidor) {
 		HibernateUtility.getSession().clear();
 		HibernateUtility.beginTransaction();
-		Criteria c = HibernateUtility.getSession().createCriteria(Servidor.class);
-		if (servidor.getSiape() != null && servidor.getSiape() != 0 ){
+		Criteria c = HibernateUtility.getSession().createCriteria(
+				Servidor.class);
+		if (servidor.getSiape() != null && servidor.getSiape() != 0) {
 			c.add(Restrictions.like("siape", servidor.getSiape()));
 		}
 		HibernateUtility.commitTransaction();
 		return (Servidor) c.uniqueResult();
 	}
-	
 
 	public Servidor refreshByFilter(Servidor servidor) {
 		HibernateUtility.getSession().clear();
@@ -79,17 +82,37 @@ public class ServidorDAO extends DAO {
 		HibernateUtility.commitTransaction();
 		return (Servidor) c.uniqueResult();
 	}
-	
+
 	@SuppressWarnings("unchecked")
-	public List<Servidor> listByCampus(Lotacao lotacao) {
-		HibernateUtility.beginTransaction();
+	public List<Servidor> listTecnicosByCampus(Lotacao lotacao) {
+		Cargo cargo = new Cargo();
+		cargo.setCodigo(Constantes.CODIGO_LIMITE_TECNICO);
+		HibernateUtility.getSession().clear();
+		Query query = HibernateUtility
+				.getSession()
+				.createQuery(
+						"from Servidor s where s.lotacao = :codigoLotacao and s.cargo < :codigoCargo and s.dataSaida is null order by s.nome");
+		query.setParameter("codigoLotacao", lotacao);
+		query.setParameter("codigoCargo", cargo);
 		HibernateUtility.commitTransaction();
-		if(lotacao != null){
-		return HibernateUtility.getSession().createCriteria(Servidor.class).add(
-				Restrictions.like("lotacao", lotacao)).addOrder(
-				Order.asc("descricao")).list();
-		}
-		return null;
+		return (List<Servidor>) query.list();
 	}
-	
-} 
+
+	@SuppressWarnings("unchecked")
+	public List<Servidor> listDocentesByCampus(Lotacao lotacao) {
+		Cargo cargo = new Cargo();
+		cargo.setCodigo(Constantes.CODIGO_LIMITE_TECNICO);
+		Cargo cargoEstagiagio = new Cargo();
+		cargoEstagiagio.setCodigo(Constantes.CARGO_ESTAGIARIO);
+		HibernateUtility.getSession().clear();
+		Query query = HibernateUtility
+				.getSession()
+				.createQuery(
+						"from Servidor s where s.lotacao = :codigoLotacao and s.cargo > :codigoCargo and s.cargo != : cargoEstagiagio  s.dataSaida is null order by s.nome");
+		query.setParameter("codigoLotacao", lotacao);
+		query.setParameter("codigoCargo", cargo);
+		query.setParameter("cargoEstagiagio", cargoEstagiagio);
+		HibernateUtility.commitTransaction();
+		return (List<Servidor>) query.list();
+	}
+}
