@@ -2,11 +2,9 @@ package br.com.progepe.entity;
 
 import java.util.Date;
 
-public class AdicionalNoturno extends Solicitacao {
+public class AdicionalNoturno {
 
 	private static final long serialVersionUID = 1L;
-
-	Solicitacao solicitacao = new Solicitacao();
 	Servidor servidor = new Servidor();
 	Lotacao lotacao = new Lotacao(); 
 	
@@ -15,12 +13,7 @@ public class AdicionalNoturno extends Solicitacao {
 	private Date data;
 	private String motivo;
 	
-	public Solicitacao getSolicitacao() {
-		return solicitacao;
-	}
-	public void setSolicitacao(Solicitacao solicitacao) {
-		this.solicitacao = solicitacao;
-	}
+	
 	public Servidor getServidor() {
 		return servidor;
 	}
