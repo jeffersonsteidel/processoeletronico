@@ -38,7 +38,7 @@
 
 					<h:outputText value="Campus: " />
 					<h:selectOneMenu id="campus"
-						value="#{solicitacaoAdicionalNoturnoController.lotacao.codigo}"
+						value="#{solicitacaoAdicionalNoturnoController.solicitacaoAdicionalNoturno.lotacao.codigo}"
 						required="true" requiredMessage="Campo Campus é obrigatório!">
 						<f:selectItem itemLabel="SELECIONE" itemValue="" />
 						<f:selectItems
@@ -55,210 +55,50 @@
 						xmlns:f="http://java.sun.com/jsf/core"
 						xmlns:a4j="http://richfaces.org/a4j"
 						xmlns:rich="http://richfaces.org/rich">
-						<rich:comboBox id="servidoresCampus"
-							value="#{solicitacaoAdicionalNoturnoController.servidor.nome}"
+						<rich:comboBox suggestionValues="#{solicitacaoAdicionalNoturnoController.servidoresCampus}"
+							directInputSuggestions="true" defaultLabel="SELECIONE" value="#{solicitacaoAdicionalNoturnoController.adicionalNoturno.servidor.codigo}"
 							required="true" requiredMessage="Campo Servidor é obrigatório!" />
 						<f:selectItem itemLabel="SELECIONE" itemValue="" />
 						<f:selectItems
 							value="#{solicitacaoAdicionalNoturnoController.servidoresCampus}" />
 					</ui:composition>
 
+					<h:outputText value="Hora Inicial: " />
+					<h:inputText
+						value="#{solicitacaoAdicionalNoturnoController.adicionalNoturno.horaInicial}"
+						size="10" maxlength="5" required="true"
+						requiredMessage="Campo Hora Inicial é obrigatório!"
+						onkeypress="mascara(this,horario);"
+						validatorMessage="Campo Hora Inicial deve ter no mínimo 4 caracteres!">
+						<f:validateLength minimum="4" />
+					</h:inputText>
 
+					<h:outputText value="Hora Final: " />
+					<h:inputText
+						value="#{solicitacaoAdicionalNoturnoController.adicionalNoturno.horaFinal}"
+						size="10" maxlength="5" required="true"
+						requiredMessage="Campo Hora Final é obrigatório!"
+						onkeypress="mascara(this,horario);"
+						validatorMessage="Campo Hora Final deve ter no mínimo 4 caracteres!">
+						<f:validateLength minimum="4" />
+					</h:inputText>
 
-
-
-
-
-					<h:outputText value="Sexo: " />
-					<h:selectOneMenu value="#{dependenteController.dependente.sexo}"
-						required="true" requiredMessage="Campo Sexo é obrigatório!">
-						<f:selectItem itemLabel="SELECIONE" itemValue="" />
-						<f:selectItem itemLabel="FEMININO" itemValue="F" />
-						<f:selectItem itemLabel="MASCULINO" itemValue="M" />
-					</h:selectOneMenu>
-
-					<h:outputText value="Data de Nascimento do Dependente: " />
+					<h:outputText value="Data: " />
 					<rich:calendar
-						value="#{dependenteController.dependente.dataNascimento}"
+						value="#{solicitacaoAdicionalNoturnoController.adicionalNoturno.data}"
 						locale="" popup="true" datePattern="dd/MM/yyyy"
 						showApplyButton="#" cellWidth="12px" cellHeight="12px"
 						style="width:80px" required="true" inputSize="12"
-						requiredMessage="Campo Data de Nascimento do Dependente é obrigatório!" />
+						requiredMessage="Campo Data é obrigatório!" />
 
-					<h:outputText value="CPF do Dependente: " />
+					<h:outputText value="Motivo: " />
 					<h:inputText
-						value="#{dependenteController.dependente.documento.cpf}" size="16"
-						maxlength="14" id="cpf" onkeypress="mascara(this,cpf);">
-						<a4j:support event="onchange"
-							action="#{dependenteController.validarCPF}" ajaxSingle="true"
-							reRender="cpf, confirmPanel, messages"></a4j:support>
-					</h:inputText>
-
-					<h:outputText value="RG do Dependente: " />
-					<h:inputText
-						value="#{dependenteController.dependente.documento.rg}" size="16"
-						maxlength="13"></h:inputText>
-
-					<h:outputText value="UF do RG do Dependente: " />
-					<h:selectOneMenu
-						value="#{dependenteController.dependente.documento.rgUf}">
-						<f:selectItem itemLabel="SELECIONE" itemValue="" />
-						<f:selectItems value="#{dependenteController.ufs}" />
-					</h:selectOneMenu>
-
-					<h:outputText value="Orgão Emissor do RG do Dependente: " />
-					<h:inputText
-						value="#{dependenteController.dependente.documento.rgOrgaoEmissor}"
-						size="16" maxlength="8" />
-
-					<h:outputText value="Data de Expedição do RG do Dependente: " />
-					<rich:calendar
-						value="#{dependenteController.dependente.documento.rgDataExpedicao}"
-						locale="" popup="true" datePattern="dd/MM/yyyy"
-						showApplyButton="#" cellWidth="12px" cellHeight="12px"
-						style="width:80px" inputSize="12" />
-
-					<h:outputText value="Grau Parentesco: " />
-					<h:selectOneMenu
-						value="#{dependenteController.dependente.grauParentesco.codigo}"
-						required="true"
-						requiredMessage="Campo Grau Parentesco é obrigatório!">
-						<f:selectItem itemLabel="SELECIONE" itemValue="" />
-						<f:selectItems value="#{dependenteController.grausParentescos}" />
-					</h:selectOneMenu>
-
-					<h:outputText value="Imposto de Renda: " />
-					<h:selectBooleanCheckbox id="impostoDeRenda"
-						value="#{dependenteController.dependente.indIr}">
-					</h:selectBooleanCheckbox>
-
-					<h:outputText value="Necessidade Especiais: " />
-					<h:selectBooleanCheckbox id="necessidadesEspeciais"
-						value="#{dependenteController.dependente.indNecessidadesEspeciais}">
-					</h:selectBooleanCheckbox>
-
-					<h:outputText value="Estudante Universitário? " />
-					<h:selectBooleanCheckbox id="estudanteUniversitario"
-						value="#{dependenteController.dependente.indEstudante}">
-						<a4j:support event="onchange" action="#" ajaxSingle="true"
-							reRender="faculdade, curso, dataFormacao"></a4j:support>
-					</h:selectBooleanCheckbox>
-
-					<h:outputText value="Estabelecimento de Ensino: ">
-					</h:outputText>
-					<h:inputText id="faculdade"
-						value="#{dependenteController.dependente.faculdade}" size="50"
-						maxlength="100"
-						disabled="#{!dependenteController.dependente.indEstudante}"
-						required="true"
-						requiredMessage="Campo Estabelecimento de Ensino é obrigatório!"></h:inputText>
-
-					<h:outputText value="Curso: ">
-					</h:outputText>
-					<h:inputText id="curso"
-						value="#{dependenteController.dependente.curso}" size="50"
-						maxlength="100"
-						disabled="#{!dependenteController.dependente.indEstudante}"
-						required="true" requiredMessage="Campo Curso é obrigatório!"></h:inputText>
-
-					<h:outputText value="Previsão de Formação: " />
-					<rich:calendar id="dataFormacao"
-						value="#{dependenteController.dependente.dataFormacao}" locale=""
-						popup="true" datePattern="dd/MM/yyyy" showApplyButton="#"
-						cellWidth="12px" cellHeight="12px" style="width:80px"
-						disabled="#{!dependenteController.dependente.indEstudante}"
-						required="true" inputSize="12"
-						requiredMessage="Campo Previsão de Formação é obrigatório!" />
-
+						value="#{solicitacaoAdicionalNoturnoController.adicionalNoturno.motivo}"
+						size="100" maxlength="200"></h:inputText>
 				</h:panelGrid>
-
-				<a4j:commandButton value="Salvar"
-					action="#{dependenteController.salvarDependente}" reRender="form" />
-
-				<rich:dataTable id="listaDependentes"
-					value="#{dependenteController.listaDependentes}" var="list"
-					width="1160px" columnClasses="center" rows="15" reRender="ds">
-
-					<rich:column width="435px">
-						<f:facet name="header">
-							<h:outputText value="Nome do Dependente" />
-						</f:facet>
-						<h:outputText value="#{list.nome}" />
-					</rich:column>
-
-					<rich:column width="435px">
-						<f:facet name="header">
-							<h:outputText value="Grau Parentesco" />
-						</f:facet>
-						<h:outputText value="#{list.grauParentesco.descricao}" />
-					</rich:column>
-
-					<rich:column>
-						<f:facet name="header">
-							<h:outputText value="Editar" />
-						</f:facet>
-						<a4j:commandLink action="#" reRender="listaDependentes"
-							ajaxSingle="true">
-							<h:graphicImage value="../images/edit.gif" style="border:0"
-								width="20" height="18" id="editar" />
-							<f:setPropertyActionListener value="#{list.codigo}"
-								target="#{dependenteController.dependente.codigo}" />
-						</a4j:commandLink>
-						<rich:toolTip for="editar" value="Editar" />
-
-					</rich:column>
-
-					<rich:column>
-						<f:facet name="header">
-							<h:outputText value="Excluir" />
-						</f:facet>
-						<a4j:commandLink ajaxSingle="true" id="delete" reRender="form"
-							oncomplete="#{rich:component('deletePanel')}.show()">
-							<h:graphicImage id="excluir" value="../images/delete.gif"
-								style="border:0" />
-							<f:setPropertyActionListener value="#{list.codigo}"
-								target="#{dependenteController.dependente.codigo}" />
-							<f:setPropertyActionListener
-								value="#{list.grauParentesco.codigo}"
-								target="#{dependenteController.dependente.grauParentesco.codigo}" />
-							<f:setPropertyActionListener value="#{list.documento.codigo}"
-								target="#{dependenteController.dependente.documento.codigo}" />
-							<f:setPropertyActionListener value="#{list.documento.rgUf}"
-								target="#{dependenteController.dependente.documento.rgUf}" />
-						</a4j:commandLink>
-						<rich:toolTip for="excluir" value="Excluir" />
-					</rich:column>
-
-					<f:facet name="footer">
-						<rich:datascroller id="ds"></rich:datascroller>
-					</f:facet>
-				</rich:dataTable>
 			</a4j:region>
 		</rich:panel></center>
 	</a4j:form>
-
-	<center><rich:modalPanel id="deletePanel" autosized="true"
-		width="200">
-		<f:facet name="header">
-			<h:outputText value="Deseja realmente deletar este item?"
-				style="padding-right:15px;" />
-		</f:facet>
-		<h:form>
-			<table width="100%">
-				<tbody>
-					<tr>
-						<td align="center" width="50%"><a4j:commandButton value="Sim"
-							ajaxSingle="true" action="#{dependenteController.remover}"
-							oncomplete="#{rich:component('deletePanel')}.hide();"
-							reRender="listaDependentes, form" /></td>
-						<td align="center" width="50%"><a4j:commandButton value="Não"
-							onclick="#{rich:component('deletePanel')}.hide();return false;" />
-						</td>
-					</tr>
-				</tbody>
-			</table>
-		</h:form>
-	</rich:modalPanel></center>
 </f:view>
 </body>
 </html>

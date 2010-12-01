@@ -1,54 +1,75 @@
 package br.com.progepe.entity;
 
+import java.sql.Time;
 import java.util.Date;
 
 public class AdicionalNoturno {
 
 	private static final long serialVersionUID = 1L;
-	Servidor servidor = new Servidor();
-	Lotacao lotacao = new Lotacao(); 
-	
-	private Integer mes;
-	private Integer ano;
+
+	private Integer codigo;
 	private Date data;
 	private String motivo;
+	private SolicitacaoAdicionalNoturno solicitacaoAdicionalNoturno;
+	private Servidor servidor;
+	private Time horaInicial;
+	private Time horaFinal;
 	
-	
-	public Servidor getServidor() {
-		return servidor;
+
+	public Integer getCodigo() {
+		return codigo;
 	}
-	public void setServidor(Servidor servidor) {
-		this.servidor = servidor;
+
+	public void setCodigo(Integer codigo) {
+		this.codigo = codigo;
 	}
-	public Lotacao getLotacao() {
-		return lotacao;
-	}
-	public void setLotacao(Lotacao lotacao) {
-		this.lotacao = lotacao;
-	}
-	public Integer getMes() {
-		return mes;
-	}
-	public void setMes(Integer mes) {
-		this.mes = mes;
-	}
-	public Integer getAno() {
-		return ano;
-	}
-	public void setAno(Integer ano) {
-		this.ano = ano;
-	}
+
 	public Date getData() {
 		return data;
 	}
+
 	public void setData(Date data) {
 		this.data = data;
 	}
+
 	public String getMotivo() {
 		return motivo;
 	}
+
 	public void setMotivo(String motivo) {
 		this.motivo = motivo;
 	}
-	
+
+	public SolicitacaoAdicionalNoturno getSolicitacaoAdicionalNoturno() {
+		return solicitacaoAdicionalNoturno;
+	}
+
+	public void setSolicitacaoAdicionalNoturno(
+			SolicitacaoAdicionalNoturno solicitacaoAdicionalNoturno) {
+		this.solicitacaoAdicionalNoturno = solicitacaoAdicionalNoturno;
+	}
+
+	public Servidor getServidor() {
+		return servidor;
+	}
+
+	public void setServidor(Servidor servidor) {
+		this.servidor = servidor;
+	}
+
+	public Time getHoraInicial() {
+		return horaInicial;
+	}
+
+	public void setHoraInicial(Time horaInicial) {
+		this.horaInicial = horaInicial;
+	}
+
+	public Time getHoraFinal() {
+		return horaFinal;
+	}
+
+	public void setHoraFinal(Time horaFinal) {
+		this.horaFinal = horaFinal;
+	}
 }

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping 
+	PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="br.com.progepe.entity.AdicionalNoturno" table="ADICIONALNOTURNO">
+		<id name="codigo" column="ADIC_COD">
+			<generator class="increment"></generator>
+		</id>
+		<property name="data" column="ADIC_DATA" />
+		<property name="motivo" column="ADIC_MOTIVO" />
+		<property name="horaInicial" column="ADIC_HORA_INICIAL" />
+		<property name="horaFinal" column="ADIC_HORA_FINAL" />
+		<many-to-one name="servidor" class="br.com.progepe.entity.Servidor"
+			column="SERV_COD" lazy="false" />
+		<many-to-one name="solicitacaoAdicionalNoturno"
+			class="br.com.progepe.entity.SolicitacaoAdicionalNoturno" column="SOLIC_COD"
+			lazy="false" />
+	</class>
+</hibernate-mapping>

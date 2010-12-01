@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping 
+	PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<joined-subclass name="br.com.progepe.entity.SolicitacaoAdicionalNoturno"
+		extends="br.com.progepe.entity.Solicitacao">
+		<key column="SOLIC_COD"></key>
+		<property name="turma" column="SOLIC_TURMA" />
+		<property name="indDocente" column="SOLIC_IND_DOCENTE" type="boolean" />
+		<property name="mes" column="SOLIC_MES" />
+		<property name="ano" column="SOLIC_ANO" />
+		<many-to-one name="curso" class="br.com.progepe.entity.Curso"
+			column="CUR_COD" lazy="false" />
+		<many-to-one name="lotacao" class="br.com.progepe.entity.Lotacao"
+			column="LOT_COD" lazy="false" />
+		<many-to-one name="servidor" class="br.com.progepe.entity.Servidor"
+			column="SERV_COD" lazy="false" />
+		<set name="adicionais" inverse="true">
+			<key column="SOLIC_COD" />
+			<one-to-many class="br.com.progepe.entity.AdicionalNoturno" />
+		</set>
+	</joined-subclass>
+</hibernate-mapping>

@@ -87,6 +87,9 @@
 				<rich:menuItem submitMode="ajax" value="Auxílio Alimentação"
 					action="#{solicitacaoAlimentacaoController.abrirSolicitacaoAlimentacao}"
 					icon="../images/auxilioalimentacao.gif" />
+				<rich:menuItem submitMode="ajax" value="Adicional Noturno"
+					action="#{solicitacaoAdicionalNoturnoController.abrirSolicitacaoAdicionalNoturno}"
+					icon="../images/auxilioalimentacao.gif" />
 				<rich:menuItem submitMode="ajax" value="Licença de Casamento"
 					action="#{solicitacaoCasamentoController.abrirSolicitacaoCasamento}"
 					icon="../images/casamento.gif" />

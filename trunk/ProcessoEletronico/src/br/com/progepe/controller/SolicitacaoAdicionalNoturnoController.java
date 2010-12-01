@@ -24,20 +24,11 @@ import br.com.progepe.entity.TipoSolicitacao;
 public class SolicitacaoAdicionalNoturnoController implements Serializable {
 	private static final long serialVersionUID = -333995781063775201L;
 
-	private AdicionalNoturno adicionalNoturno;
+	private SolicitacaoAdicionalNoturno solicitacaoAdicionalNoturno;
 	private List<SelectItem> lotacoes = new ArrayList<SelectItem>();
 	private List<SelectItem> servidoresCampus = new ArrayList<SelectItem>();
+	private AdicionalNoturno adicionalNoturno;
 	
-	private SolicitacaoAdicionalNoturno solicitacaoAdicionalNoturno;
-	
-	public AdicionalNoturno getSolicitacaoAdicionalNoturno() {
-		return adicionalNoturno;
-	}
-
-	public void setSolicitacaoAdicionalNoturno(
-			AdicionalNoturno adicionalNoturno) {
-		this.adicionalNoturno = adicionalNoturno;
-	}
 	public List<SelectItem> getLotacoes() {
 		return lotacoes;
 	}
@@ -54,6 +45,15 @@ public class SolicitacaoAdicionalNoturnoController implements Serializable {
 		this.servidoresCampus = servidoresCampus;
 	}
 	
+	public SolicitacaoAdicionalNoturno getSolicitacaoAdicionalNoturno() {
+		return solicitacaoAdicionalNoturno;
+	}
+
+	public void setSolicitacaoAdicionalNoturno(
+			SolicitacaoAdicionalNoturno solicitacaoAdicionalNoturno) {
+		this.solicitacaoAdicionalNoturno = solicitacaoAdicionalNoturno;
+	}
+	
 	public AdicionalNoturno getAdicionalNoturno() {
 		return adicionalNoturno;
 	}
@@ -62,33 +62,31 @@ public class SolicitacaoAdicionalNoturnoController implements Serializable {
 		this.adicionalNoturno = adicionalNoturno;
 	}
 
-	public void setSolicitacaoAdicionalNoturno(
-			SolicitacaoAdicionalNoturno solicitacaoAdicionalNoturno) {
-		this.solicitacaoAdicionalNoturno = solicitacaoAdicionalNoturno;
-	}
-
 	public void abrirSolicitacaoAdicionalNoturno() throws ParseException {
 		try {
-			solicitacaoAdicionalNoturno.getAdicionais().clear();
+			solicitacaoAdicionalNoturno = new SolicitacaoAdicionalNoturno();
 			adicionalNoturno = new AdicionalNoturno();
+		    adicionalNoturno.setServidor(new Servidor());
+			adicionalNoturno.setSolicitacaoAdicionalNoturno(new SolicitacaoAdicionalNoturno());
+			adicionalNoturno.getSolicitacaoAdicionalNoturno().setLotacao(new Lotacao());
 			buscarServidorLogado();
 			listarLotacoes();
 			FacesContext.getCurrentInstance().getExternalContext()
-					.redirect("solicitacaoAdicionalNoturno.jsp");
+					.redirect("solicitacaoAdicionalNoturnoTecnico.jsp");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
 
 	public void buscarServidorLogado() throws IOException, ParseException {
-		adicionalNoturno.setSolicitante(new Servidor());
+		solicitacaoAdicionalNoturno.setSolicitante(new Servidor());
 		Autenticacao siapeAutenticado = (Autenticacao) FacesContext
 				.getCurrentInstance().getExternalContext().getSessionMap()
 				.get("usuarioLogado");
-		adicionalNoturno.getSolicitante().setSiape(
+		solicitacaoAdicionalNoturno.getSolicitante().setSiape(
 				siapeAutenticado.getSiape());
-		adicionalNoturno.setSolicitante(ServidorDAO.getInstance()
-				.refreshBySiape(adicionalNoturno.getSolicitante()));
+		solicitacaoAdicionalNoturno.setSolicitante(ServidorDAO.getInstance()
+				.refreshBySiape(solicitacaoAdicionalNoturno.getSolicitante()));
 	}
 	
 	public void adicionarAdicional(){
@@ -96,17 +94,17 @@ public class SolicitacaoAdicionalNoturnoController implements Serializable {
 	}
 
 	public void salvar() throws IOException, ParseException {
-		adicionalNoturno.setDataAbertura(new Date());
-		adicionalNoturno.setDataAtendimento(null);
-		adicionalNoturno.setTipoSolicitacao(new TipoSolicitacao());
-		adicionalNoturno.getTipoSolicitacao().setCodigo(
+		solicitacaoAdicionalNoturno.setDataAbertura(new Date());
+		solicitacaoAdicionalNoturno.setDataAtendimento(null);
+		solicitacaoAdicionalNoturno.setTipoSolicitacao(new TipoSolicitacao());
+		solicitacaoAdicionalNoturno.getTipoSolicitacao().setCodigo(
 				Constantes.TIPO_SOLICITACAO_ADICIONAL_NOTURNO);
-		adicionalNoturno
+		solicitacaoAdicionalNoturno
 				.setStatusSolicitacao(new StatusSolicitacao());
-		adicionalNoturno.getStatusSolicitacao().setCodigo(
+		solicitacaoAdicionalNoturno.getStatusSolicitacao().setCodigo(
 				Constantes.STATUS_SOLICITACAO_ENCAMINHADO);
-		DAO.getInstance().saveOrUpdate(adicionalNoturno);
-		adicionalNoturno = new AdicionalNoturno();
+		DAO.getInstance().saveOrUpdate(solicitacaoAdicionalNoturno);
+		solicitacaoAdicionalNoturno = new SolicitacaoAdicionalNoturno();
 		buscarServidorLogado();
 	}
 	
@@ -125,7 +123,7 @@ public class SolicitacaoAdicionalNoturnoController implements Serializable {
 	public List<SelectItem> listarServidoresCampus() {
 		servidoresCampus = new ArrayList<SelectItem>();
 		List<Servidor> servidorList = new ArrayList<Servidor>();
-		servidorList = ServidorDAO.getInstance().listByCampus(adicionalNoturno.getLotacao());
+		servidorList = ServidorDAO.getInstance().listByCampus(solicitacaoAdicionalNoturno.getLotacao());
 		
 		for (Servidor item : servidorList) {
 			servidoresCampus.add(new SelectItem(item.getCodigo(), item.getNome()));
