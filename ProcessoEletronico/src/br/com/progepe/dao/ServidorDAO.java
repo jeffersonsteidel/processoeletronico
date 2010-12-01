@@ -102,16 +102,16 @@ public class ServidorDAO extends DAO {
 	public List<Servidor> listDocentesByCampus(Lotacao lotacao) {
 		Cargo cargo = new Cargo();
 		cargo.setCodigo(Constantes.CODIGO_LIMITE_TECNICO);
-		Cargo cargoEstagiagio = new Cargo();
-		cargoEstagiagio.setCodigo(Constantes.CARGO_ESTAGIARIO);
+		Cargo cargoEstagiario = new Cargo();
+		cargoEstagiario.setCodigo(Constantes.CARGO_ESTAGIARIO);
 		HibernateUtility.getSession().clear();
 		Query query = HibernateUtility
 				.getSession()
 				.createQuery(
-						"from Servidor s where s.lotacao = :codigoLotacao and s.cargo > :codigoCargo and s.cargo != : cargoEstagiagio  s.dataSaida is null order by s.nome");
+						"from Servidor s where s.lotacao = :codigoLotacao and s.cargo > :codigoCargo and s.cargo <> :cargoEstagiario and s.dataSaida is null order by s.nome");
 		query.setParameter("codigoLotacao", lotacao);
 		query.setParameter("codigoCargo", cargo);
-		query.setParameter("cargoEstagiagio", cargoEstagiagio);
+		query.setParameter("cargoEstagiario", cargoEstagiario);
 		HibernateUtility.commitTransaction();
 		return (List<Servidor>) query.list();
 	}

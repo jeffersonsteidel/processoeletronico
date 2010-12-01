@@ -90,6 +90,9 @@
 				<rich:menuItem submitMode="ajax" value="Adicional Noturno"
 					action="#{solicitacaoAdicionalNoturnoController.abrirSolicitacaoAdicionalNoturnoTecnico}"
 					icon="../images/auxilioalimentacao.gif" />
+				<rich:menuItem submitMode="ajax" value="Adicional Noturno de Docentes"
+					action="#{solicitacaoAdicionalNoturnoController.abrirSolicitacaoAdicionalNoturnoDocentes}"
+					icon="../images/auxilioalimentacao.gif" />
 				<rich:menuItem submitMode="ajax" value="Licença de Casamento"
 					action="#{solicitacaoCasamentoController.abrirSolicitacaoCasamento}"
 					icon="../images/casamento.gif" />

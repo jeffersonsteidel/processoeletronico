@@ -16,6 +16,7 @@ public class AdicionalNoturno {
 	private Time horaFinal;
 	private Boolean indAprovadoDiretor;
 	private Boolean indAprovadoProgepe;
+	private String materia;
 
 	public Integer getCodigo() {
 		return codigo;
@@ -89,6 +90,15 @@ public class AdicionalNoturno {
 	public void setIndAprovadoProgepe(Boolean indAprovadoProgepe) {
 		this.indAprovadoProgepe = indAprovadoProgepe;
 	}
+
+	public String getMateria() {
+		return materia;
+	}
+
+	public void setMateria(String materia) {
+		this.materia = materia;
+	}
+	
 }
 
 
