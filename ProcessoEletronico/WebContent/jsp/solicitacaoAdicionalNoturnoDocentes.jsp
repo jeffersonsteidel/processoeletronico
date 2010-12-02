@@ -30,66 +30,95 @@
 
 			<h:panelGrid columns="1">
 				<h:outputText
-					value="#{solicitacaoAdicionalNoturnoController.solicitacaoAdicionalNoturno.solicitante.siape} - #{solicitacaoAdicionalNoturno.solicitacaoAdicionalNoturno.solicitante.nome}">
+					value="#{solicitacaoAdicionalNoturnoController.solicitacaoAdicionalNoturno.solicitante.siape} - #{solicitacaoAdicionalNoturnoController.solicitacaoAdicionalNoturno.solicitante.nome}">
 				</h:outputText>
 			</h:panelGrid>
 			<a4j:region>
-				<h:panelGrid columns="7">
+				<h:panelGrid columns="6">
 
 					<h:outputText value="Campus: " />
 					<h:selectOneMenu id="campus"
 						value="#{solicitacaoAdicionalNoturnoController.adicionalNoturno.solicitacaoAdicionalNoturno.lotacao.codigo}"
-						required="true" requiredMessage="Campo Campus é obrigatório!" disabled="#{solicitacaoAdicionalNoturnoController.indTurmaDefinida}">
+						required="true" requiredMessage="Campo Campus é obrigatório!"
+						disabled="#{solicitacaoAdicionalNoturnoController.indTurmaDefinida}">
 						<f:selectItem itemLabel="SELECIONE" itemValue="" />
 						<f:selectItems
 							value="#{solicitacaoAdicionalNoturnoController.lotacoes}" />
 						<a4j:support event="onchange"
 							action="#{solicitacaoAdicionalNoturnoController.carregarCursosProfessoresPorLotacao}"
-							ajaxSingle="true" reRender="curso,professor" ></a4j:support>
+							ajaxSingle="true" reRender="curso,professor, form"></a4j:support>
 					</h:selectOneMenu>
 					<h:outputText value="Curso: " />
-					<h:selectOneMenu id="curso" disabled="#{solicitacaoAdicionalNoturnoController.indTurmaDefinida}"
+					<h:selectOneMenu id="curso"
+						disabled="#{solicitacaoAdicionalNoturnoController.indTurmaDefinida}"
 						value="#{solicitacaoAdicionalNoturnoController.solicitacaoAdicionalNoturno.curso.codigo}"
 						required="true" requiredMessage="Campo Curso é obrigatório!">
 						<f:selectItem itemLabel="SELECIONE" itemValue="" />
 						<f:selectItems
 							value="#{solicitacaoAdicionalNoturnoController.cursos}" />
+						<a4j:support event="onchange"
+							action="#{solicitacaoAdicionalNoturnoController.confirmarTurma}"
+							ajaxSingle="true" reRender="form" />
 					</h:selectOneMenu>
-					
-			
-				<h:outputText value="Turma: " />
-				<h:inputText
-					value="#{solicitacaoAdicionalNoturnoController.solicitacaoAdicionalNoturno.turma}"
-					required="true" requiredMessage="Campo Turma é obrigatório!" disabled="#{solicitacaoAdicionalNoturnoController.indTurmaDefinida}">
-				</h:inputText>
-				
-				<a4j:commandButton value="OK"
-						action="#{solicitacaoAdicionalNotuurnoController.confirmarTurma}" 
-						type="submit" reRender="form" />
 
+					<h:outputText value="Turma: " />
+					<h:inputText
+						value="#{solicitacaoAdicionalNoturnoController.solicitacaoAdicionalNoturno.turma}"
+						required="true" requiredMessage="Campo Turma é obrigatório!"
+						disabled="#{solicitacaoAdicionalNoturnoController.indTurmaDefinida}">
+						<a4j:support event="onchange"
+							action="#{solicitacaoAdicionalNoturnoController.confirmarTurma}"
+							ajaxSingle="true" reRender="form" />
+					</h:inputText>
+				</h:panelGrid>
 
-				<h:outputText value="Matéria: " />
-				<h:inputText 
-					value="#{solicitacaoAdicionalNoturnoController.adicionalNoturno.materia}"
-					required="true" requiredMessage="Campo Matéria é obrigatório!" disabled="#{!solicitacaoAdicionalNoturnoController.indTurmaDefinida}"/>
+				<h:panelGrid columns="10">
+					<h:outputText value="Matéria: " />
+					<h:inputText
+						value="#{solicitacaoAdicionalNoturnoController.adicionalNoturno.materia}"
+						required="true" requiredMessage="Campo Matéria é obrigatório!"
+						disabled="#{!solicitacaoAdicionalNoturnoController.indTurmaDefinida}" />
 
-				<h:outputText value="Data: " />
-				<rich:calendar
-					value="#{solicitacaoAdicionalNoturnoController.adicionalNoturno.data}"
-					locale="" popup="true" datePattern="dd/MM/yyyy" showApplyButton="#"
-					cellWidth="12px" cellHeight="12px" style="width:80px"
-					required="true" inputSize="12"
-					requiredMessage="Campo Data é obrigatório!" disabled="#{!solicitacaoAdicionalNoturnoController.indTurmaDefinida}"/>
+					<h:outputText value="Servidor: " />
+					<h:selectOneMenu id="professor"
+						value="#{solicitacaoAdicionalNoturnoController.adicionalNoturno.servidor.codigo}"
+						required="true" requiredMessage="Campo Servidor é obrigatório!"
+						disabled="#{!solicitacaoAdicionalNoturnoController.indTurmaDefinida}">
+						<f:selectItem itemLabel="SELECIONE" itemValue="" />
+						<f:selectItems
+							value="#{solicitacaoAdicionalNoturnoController.professoresCampus}" />
+					</h:selectOneMenu>
 
-				<h:outputText value="Servidor: " />
-				<h:selectOneMenu id="professor"
-					value="#{solicitacaoAdicionalNoturnoController.adicionalNoturno.servidor.codigo}"
-					required="true" requiredMessage="Campo Servidor é obrigatório!" disabled="#{!solicitacaoAdicionalNoturnoController.indTurmaDefinida}">
-					<f:selectItem itemLabel="SELECIONE" itemValue="" />
-					<f:selectItems
-						value="#{solicitacaoAdicionalNoturnoController.professoresCampus}" />
-				</h:selectOneMenu>
-			</h:panelGrid>
+					<h:outputText value="Data: " />
+					<rich:calendar
+						value="#{solicitacaoAdicionalNoturnoController.adicionalNoturno.data}"
+						locale="" popup="true" datePattern="dd/MM/yyyy"
+						showApplyButton="#" cellWidth="12px" cellHeight="12px"
+						style="width:80px" required="true" inputSize="12"
+						requiredMessage="Campo Data é obrigatório!"
+						disabled="#{!solicitacaoAdicionalNoturnoController.indTurmaDefinida}" />
+
+					<h:outputText value="Hora Inicial: " />
+					<h:inputText
+						value="#{solicitacaoAdicionalNoturnoController.adicionalNoturno.horaInicial}"
+						size="10" maxlength="5" required="true"
+						requiredMessage="Campo Hora Inicial é obrigatório!"
+						onkeypress="mascara(this,horario);"
+						validatorMessage="Campo Hora Inicial deve ter no mínimo 4 caracteres!">
+						<f:validateLength minimum="4" />
+					</h:inputText>
+
+					<h:outputText value="Hora Final: " />
+					<h:inputText
+						value="#{solicitacaoAdicionalNoturnoController.adicionalNoturno.horaFinal}"
+						size="10" maxlength="5" required="true"
+						requiredMessage="Campo Hora Final é obrigatório!"
+						onkeypress="mascara(this,horario);"
+						validatorMessage="Campo Hora Final deve ter no mínimo 4 caracteres!">
+						<f:validateLength minimum="4" />
+					</h:inputText>
+
+				</h:panelGrid>
 			</a4j:region>
 		</rich:panel></center>
 	</a4j:form>
