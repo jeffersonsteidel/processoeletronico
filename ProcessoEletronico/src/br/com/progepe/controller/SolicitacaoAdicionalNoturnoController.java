@@ -182,12 +182,9 @@ public class SolicitacaoAdicionalNoturnoController implements Serializable {
 			throws ParseException {
 		try {
 			solicitacaoAdicionalNoturno = new SolicitacaoAdicionalNoturno();
+			solicitacaoAdicionalNoturno.setLotacao(new Lotacao());
 			adicionalNoturno = new AdicionalNoturno();
 			adicionalNoturno.setServidor(new Servidor());
-			adicionalNoturno
-					.setSolicitacaoAdicionalNoturno(new SolicitacaoAdicionalNoturno());
-			adicionalNoturno.getSolicitacaoAdicionalNoturno().setLotacao(
-					new Lotacao());
 			solicitacaoAdicionalNoturno.setCurso(new Curso());
 			buscarServidorLogado();
 			listarLotacoes();
@@ -204,7 +201,7 @@ public class SolicitacaoAdicionalNoturnoController implements Serializable {
 		cursos = new ArrayList<SelectItem>();
 		List<Curso> cursoList = new ArrayList<Curso>();
 		cursoList = CursoDAO.getInstance().listByCampus(
-				adicionalNoturno.getSolicitacaoAdicionalNoturno().getLotacao());
+				solicitacaoAdicionalNoturno.getLotacao());
 		for (Curso curso : cursoList) {
 			cursos.add(new SelectItem(curso.getCodigo(), curso.getDescricao()));
 		}
@@ -215,7 +212,7 @@ public class SolicitacaoAdicionalNoturnoController implements Serializable {
 		professoresCampus = new ArrayList<SelectItem>();
 		List<Servidor> professorList = new ArrayList<Servidor>();
 		professorList = ServidorDAO.getInstance().listDocentesByCampus(
-				adicionalNoturno.getSolicitacaoAdicionalNoturno().getLotacao());
+				solicitacaoAdicionalNoturno.getLotacao());
 		for (Servidor item : professorList) {
 			professoresCampus.add(new SelectItem(item.getCodigo(), item
 					.getNome()));
@@ -229,8 +226,8 @@ public class SolicitacaoAdicionalNoturnoController implements Serializable {
 	}
 
 	public void confirmarTurma() {
-		if (adicionalNoturno.getSolicitacaoAdicionalNoturno().getLotacao() != null &&
-			adicionalNoturno.getSolicitacaoAdicionalNoturno().getLotacao().getCodigo() != 0 
+		if (solicitacaoAdicionalNoturno.getLotacao() != null &&
+			solicitacaoAdicionalNoturno.getLotacao().getCodigo() != 0 
 			&& solicitacaoAdicionalNoturno.getCurso() != null && solicitacaoAdicionalNoturno.getCurso().getCodigo() != 0
 			&& solicitacaoAdicionalNoturno.getTurma() != null 	&& solicitacaoAdicionalNoturno.getTurma() != ""){
 			indTurmaDefinida = true;
@@ -239,5 +236,31 @@ public class SolicitacaoAdicionalNoturnoController implements Serializable {
 		}
 	}
 
-
+	public void adicionarDocente() {
+		List<Servidor> professorList = new ArrayList<Servidor>();
+		professorList = ServidorDAO.getInstance().listDocentesByCampus(
+				solicitacaoAdicionalNoturno.getLotacao());
+		for(Servidor servidor: professorList){
+			if(servidor.getCodigo().equals(adicionalNoturno.getServidor().getCodigo())){
+				adicionalNoturno.setServidor(servidor);
+				break;
+			}
+		}
+		listaAdicionalNoturno.add(adicionalNoturno);
+		adicionalNoturno = new AdicionalNoturno();
+		adicionalNoturno.setServidor(new Servidor());
+//		adicionalNoturno.setMateria(null);
+//		adicionalNoturno.setData(null);
+//		adicionalNoturno.setHoraInicial(null);
+//		adicionalNoturno.setHoraFinal(null);
+		}
+	public void excluirDocente(){
+		for(AdicionalNoturno adicional: listaAdicionalNoturno){
+			if(adicional.getCodigo().equals(adicionalNoturno.getCodigo())){
+				adicionalNoturno = adicional;
+				break;
+			}
+		}
+		listaAdicionalNoturno.remove(adicionalNoturno);
+	}
 }
