@@ -32,7 +32,7 @@ public class SolicitacaoAdicionalNoturnoController implements Serializable {
 	private AdicionalNoturno adicionalNoturno;
 	private List<SelectItem> cursos = new ArrayList<SelectItem>();
 	private List<SelectItem> professoresCampus = new ArrayList<SelectItem>();
-	private List<AdicionalNoturno> listAuxiliar = new ArrayList<AdicionalNoturno>();
+	private List<AdicionalNoturno> listaAdicionalNoturno = new ArrayList<AdicionalNoturno>();
 	
 	private Boolean indTurmaDefinida = false;
 
@@ -94,6 +94,15 @@ public class SolicitacaoAdicionalNoturnoController implements Serializable {
 		this.indTurmaDefinida = indTurmaDefinida;
 	}
 
+	public List<AdicionalNoturno> getListaAdicionalNoturno() {
+		return listaAdicionalNoturno;
+	}
+
+	public void setListaAdicionalNoturno(
+			List<AdicionalNoturno> listaAdicionalNoturno) {
+		this.listaAdicionalNoturno = listaAdicionalNoturno;
+	}
+
 	public void abrirSolicitacaoAdicionalNoturnoTecnico() throws ParseException {
 		try {
 			solicitacaoAdicionalNoturno = new SolicitacaoAdicionalNoturno();
@@ -125,7 +134,7 @@ public class SolicitacaoAdicionalNoturnoController implements Serializable {
 
 	public void adicionarAdicional() {
 		solicitacaoAdicionalNoturno.getAdicionais().add(adicionalNoturno);
-		listAuxiliar.add(adicionalNoturno);
+		listaAdicionalNoturno.add(adicionalNoturno);
 	}
 
 	public void salvarAdicional() throws IOException, ParseException {
@@ -181,6 +190,7 @@ public class SolicitacaoAdicionalNoturnoController implements Serializable {
 			solicitacaoAdicionalNoturno.setCurso(new Curso());
 			buscarServidorLogado();
 			listarLotacoes();
+			indTurmaDefinida = false;
 			FacesContext.getCurrentInstance().getExternalContext()
 					.redirect("solicitacaoAdicionalNoturnoDocentes.jsp");
 		} catch (IOException e) {
@@ -228,12 +238,5 @@ public class SolicitacaoAdicionalNoturnoController implements Serializable {
 		}
 	}
 
-	public void setListAuxiliar(List<AdicionalNoturno> listAuxiliar) {
-		this.listAuxiliar = listAuxiliar;
-	}
-
-	public List<AdicionalNoturno> getListAuxiliar() {
-		return listAuxiliar;
-	}
 
 }
