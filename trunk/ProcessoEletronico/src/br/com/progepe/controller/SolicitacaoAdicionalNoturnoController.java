@@ -178,6 +178,7 @@ public class SolicitacaoAdicionalNoturnoController implements Serializable {
 					.setSolicitacaoAdicionalNoturno(new SolicitacaoAdicionalNoturno());
 			adicionalNoturno.getSolicitacaoAdicionalNoturno().setLotacao(
 					new Lotacao());
+			solicitacaoAdicionalNoturno.setCurso(new Curso());
 			buscarServidorLogado();
 			listarLotacoes();
 			FacesContext.getCurrentInstance().getExternalContext()
@@ -217,13 +218,12 @@ public class SolicitacaoAdicionalNoturnoController implements Serializable {
 	}
 
 	public void confirmarTurma() {
-		if (!solicitacaoAdicionalNoturno.getTurma().isEmpty()) {
-			if (!solicitacaoAdicionalNoturno.getCurso().equals(null)) {
-				indTurmaDefinida = true;
-			} else {
-				indTurmaDefinida = false;
-			}
-		} else {
+		if (adicionalNoturno.getSolicitacaoAdicionalNoturno().getLotacao() != null &&
+			adicionalNoturno.getSolicitacaoAdicionalNoturno().getLotacao().getCodigo() != 0 
+			&& solicitacaoAdicionalNoturno.getCurso() != null && solicitacaoAdicionalNoturno.getCurso().getCodigo() != 0
+			&& solicitacaoAdicionalNoturno.getTurma() != null 	&& solicitacaoAdicionalNoturno.getTurma() != ""){
+			indTurmaDefinida = true;
+		}else{
 			indTurmaDefinida = false;
 		}
 	}
