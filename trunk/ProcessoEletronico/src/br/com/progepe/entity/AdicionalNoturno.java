@@ -1,6 +1,5 @@
 package br.com.progepe.entity;
 
-import java.sql.Time;
 import java.util.Date;
 
 public class AdicionalNoturno {
@@ -12,8 +11,8 @@ public class AdicionalNoturno {
 	private String motivo;
 	private SolicitacaoAdicionalNoturno solicitacaoAdicionalNoturno;
 	private Servidor servidor;
-	private Time horaInicial;
-	private Time horaFinal;
+	private String horaInicial;
+	private String horaFinal;
 	private Boolean indAprovadoDiretor;
 	private Boolean indAprovadoProgepe;
 	private String materia;
@@ -59,19 +58,19 @@ public class AdicionalNoturno {
 		this.servidor = servidor;
 	}
 
-	public Time getHoraInicial() {
+	public String getHoraInicial() {
 		return horaInicial;
 	}
 
-	public void setHoraInicial(Time horaInicial) {
+	public void setHoraInicial(String horaInicial) {
 		this.horaInicial = horaInicial;
 	}
 
-	public Time getHoraFinal() {
+	public String getHoraFinal() {
 		return horaFinal;
 	}
 
-	public void setHoraFinal(Time horaFinal) {
+	public void setHoraFinal(String horaFinal) {
 		this.horaFinal = horaFinal;
 	}
 

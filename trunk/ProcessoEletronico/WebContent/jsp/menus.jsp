@@ -87,10 +87,10 @@
 				<rich:menuItem submitMode="ajax" value="Auxílio Alimentação"
 					action="#{solicitacaoAlimentacaoController.abrirSolicitacaoAlimentacao}"
 					icon="../images/auxilioalimentacao.gif" />
-				<rich:menuItem submitMode="ajax" value="Adicional Noturno"
+				<rich:menuItem submitMode="ajax" value="Adicional Noturno - Técnicos"
 					action="#{solicitacaoAdicionalNoturnoController.abrirSolicitacaoAdicionalNoturnoTecnico}"
 					icon="../images/auxilioalimentacao.gif" />
-				<rich:menuItem submitMode="ajax" value="Adicional Noturno de Docentes"
+				<rich:menuItem submitMode="ajax" value="Adicional Noturno - Docentes"
 					action="#{solicitacaoAdicionalNoturnoController.abrirSolicitacaoAdicionalNoturnoDocentes}"
 					icon="../images/auxilioalimentacao.gif" />
 				<rich:menuItem submitMode="ajax" value="Licença de Casamento"
