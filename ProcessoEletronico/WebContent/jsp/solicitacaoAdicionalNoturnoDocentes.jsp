@@ -117,8 +117,67 @@
 						validatorMessage="Campo Hora Final deve ter no mínimo 4 caracteres!">
 						<f:validateLength minimum="4" />
 					</h:inputText>
+						</h:panelGrid>
+					<a4j:commandButton value="Adicionar"
+					action="#{solicitacaoAdicionalNoturnoController.adicionarAdicional}"
+					reRender="listaAdicionais" />
+					
+					<rich:dataTable id="listaAdicionais"
+					value="#{solicitacaoAdicionalNoturnoController.listaAdicionalNoturno}"
+					var="list" width="1160px" columnClasses="center" rows="15"
+					reRender="ds">
 
-				</h:panelGrid>
+					<rich:column width="435px">
+						<f:facet name="header">
+							<h:outputText value="Servidor" />
+						</f:facet>
+						<h:outputText value="#{list.servidor}" />
+					</rich:column>
+					
+					<rich:column width="435px">
+						<f:facet name="header">
+							<h:outputText value="Matéria:" />
+						</f:facet>
+						<h:outputText value="#{list.servidor}" />
+					</rich:column>
+					
+
+					<rich:column width="435px">
+						<f:facet name="header">
+							<h:outputText value="Horário" />
+						</f:facet>
+						<h:outputText value="#{list.horaInicial - list.horaFinal}" />
+					</rich:column>
+
+					<rich:column width="435px">
+						<f:facet name="header">
+							<h:outputText value="Data" />
+						</f:facet>
+						<h:outputText value="#{list.data}" />
+					</rich:column>
+
+					<rich:column>
+						<f:facet name="header">
+							<h:outputText value="Excluir" />
+						</f:facet>
+						<a4j:commandLink ajaxSingle="true" id="delete" reRender="form"
+							oncomplete="#{rich:component('deletePanel')}.show()">
+							<h:graphicImage id="excluir" value="../images/delete.gif"
+								style="border:0" />
+						</a4j:commandLink>
+						<rich:toolTip for="excluir" value="Excluir" />
+					</rich:column>
+
+					<f:facet name="footer">
+						<rich:datascroller id="ds"></rich:datascroller>
+					</f:facet>
+				</rich:dataTable>
+
+				<a4j:commandButton value="Salvar"
+					action="#{solicitacaoAdicionalNoturnoController.salvarAdicional}"
+					reRender="form" />
+
+			
 			</a4j:region>
 		</rich:panel></center>
 	</a4j:form>
