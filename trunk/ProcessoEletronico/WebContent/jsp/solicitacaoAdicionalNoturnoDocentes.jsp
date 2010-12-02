@@ -117,12 +117,12 @@
 						validatorMessage="Campo Hora Final deve ter no mínimo 4 caracteres!">
 						<f:validateLength minimum="4" />
 					</h:inputText>
-						</h:panelGrid>
-					<a4j:commandButton value="Adicionar"
+				</h:panelGrid>
+				<a4j:commandButton value="Adicionar"
 					action="#{solicitacaoAdicionalNoturnoController.adicionarAdicional}"
-					reRender="listaAdicionais" />
-					
-					<rich:dataTable id="listaAdicionais"
+					reRender="listaAdicionais, form" />
+
+				<rich:dataTable id="listaAdicionais"
 					value="#{solicitacaoAdicionalNoturnoController.listaAdicionalNoturno}"
 					var="list" width="1160px" columnClasses="center" rows="15"
 					reRender="ds">
@@ -131,29 +131,31 @@
 						<f:facet name="header">
 							<h:outputText value="Servidor" />
 						</f:facet>
-						<h:outputText value="#{list.servidor}" />
+						<h:outputText value="#{list.servidor.nome}" />
 					</rich:column>
-					
+
 					<rich:column width="435px">
 						<f:facet name="header">
 							<h:outputText value="Matéria:" />
 						</f:facet>
-						<h:outputText value="#{list.servidor}" />
+						<h:outputText value="#{list.materia}" />
 					</rich:column>
-					
+
 
 					<rich:column width="435px">
 						<f:facet name="header">
 							<h:outputText value="Horário" />
 						</f:facet>
-						<h:outputText value="#{list.horaInicial - list.horaFinal}" />
+						<h:outputText value="#{list.horaInicial} - #{list.horaFinal}" />
 					</rich:column>
 
 					<rich:column width="435px">
 						<f:facet name="header">
 							<h:outputText value="Data" />
 						</f:facet>
-						<h:outputText value="#{list.data}" />
+						<h:outputText value="#{list.data}">
+							<f:convertDateTime pattern="dd/MM/yyyy" />
+						</h:outputText>
 					</rich:column>
 
 					<rich:column>
@@ -177,7 +179,7 @@
 					action="#{solicitacaoAdicionalNoturnoController.salvarAdicional}"
 					reRender="form" />
 
-			
+
 			</a4j:region>
 		</rich:panel></center>
 	</a4j:form>

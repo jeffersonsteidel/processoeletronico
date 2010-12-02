@@ -135,7 +135,8 @@ public class SolicitacaoAdicionalNoturnoController implements Serializable {
 	public void adicionarAdicional() {
 		solicitacaoAdicionalNoturno.getAdicionais().add(adicionalNoturno);
 		listaAdicionalNoturno.add(adicionalNoturno);
-	}
+		adicionalNoturno = new AdicionalNoturno();
+		}
 
 	public void salvarAdicional() throws IOException, ParseException {
 		solicitacaoAdicionalNoturno.setDataAbertura(new Date());
