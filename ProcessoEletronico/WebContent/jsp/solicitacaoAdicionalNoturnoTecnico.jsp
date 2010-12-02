@@ -27,12 +27,12 @@
 			</rich:messages>
 
 			<font size="2"><b>ADICIONAL NOTURNO - TÉCNICO</b></font>
-
-			<h:panelGrid columns="1">
-				<h:outputText
-					value="#{solicitacaoAdicionalNoturnoController.solicitacaoAdicionalNoturno.solicitante.siape} - #{solicitacaoAdicionalNoturnoController.solicitacaoAdicionalNoturno.solicitante.nome}">
-				</h:outputText>
-			</h:panelGrid>
+			<a4j:region>
+				<h:panelGrid columns="1">
+					<h:outputText
+						value="#{solicitacaoAdicionalNoturnoController.solicitacaoAdicionalNoturno.solicitante.siape} - #{solicitacaoAdicionalNoturnoController.solicitacaoAdicionalNoturno.solicitante.nome}">
+					</h:outputText>
+				</h:panelGrid>
 				<h:panelGrid columns="10">
 					<h:outputText value="Campus: " />
 					<h:selectOneMenu id="campus"
@@ -55,27 +55,6 @@
 							value="#{solicitacaoAdicionalNoturnoController.servidoresCampus}" />
 					</h:selectOneMenu>
 
-
-					<h:outputText value="Hora Inicial: " />
-					<h:inputText
-						value="#{solicitacaoAdicionalNoturnoController.adicionalNoturno.horaInicial}"
-						size="10" maxlength="5" required="true"
-						requiredMessage="Campo Hora Inicial é obrigatório!"
-						onkeypress="mascara(this,horario);"
-						validatorMessage="Campo Hora Inicial deve ter no mínimo 4 caracteres!">
-						<f:validateLength minimum="4" />
-					</h:inputText>
-
-					<h:outputText value="Hora Final: " />
-					<h:inputText
-						value="#{solicitacaoAdicionalNoturnoController.adicionalNoturno.horaFinal}"
-						size="10" maxlength="5" required="true"
-						requiredMessage="Campo Hora Final é obrigatório!"
-						onkeypress="mascara(this,horario);"
-						validatorMessage="Campo Hora Final deve ter no mínimo 4 caracteres!">
-						<f:validateLength minimum="4" />
-					</h:inputText>
-
 					<h:outputText value="Data: " />
 					<rich:calendar
 						value="#{solicitacaoAdicionalNoturnoController.adicionalNoturno.data}"
@@ -83,15 +62,112 @@
 						showApplyButton="#" cellWidth="12px" cellHeight="12px"
 						style="width:80px" required="true" inputSize="12"
 						requiredMessage="Campo Data é obrigatório!" />
+
+					<h:outputText value="Hora Inicial: " />
+					<h:inputText
+						value="#{solicitacaoAdicionalNoturnoController.adicionalNoturno.horaInicial}"
+						size="8" maxlength="5" onkeypress="mascara(this,horario);"
+						required="true"
+						requiredMessage="Campo Hora Inicial é obrigatório!">
+					</h:inputText>
+
+					<h:outputText value="Hora Final: " />
+					<h:inputText
+						value="#{solicitacaoAdicionalNoturnoController.adicionalNoturno.horaFinal}"
+						size="8" maxlength="5" required="true"
+						requiredMessage="Campo Hora Final é obrigatório!"
+						onkeypress="mascara(this,horario);"
+						validatorMessage="Campo Hora Final deve ter no mínimo 4 caracteres!">
+						<f:validateLength minimum="4" />
+					</h:inputText>
 				</h:panelGrid>
 
 				<h:panelGrid columns="2">
 					<h:outputText value="Motivo: " />
-					<h:inputTextarea rows="5" cols="50"
+					<h:inputTextarea rows="5" cols="50" required="true"
+						requiredMessage="Campo Motivo é obrigatório!"
 						value="#{solicitacaoAdicionalNoturnoController.adicionalNoturno.motivo}"></h:inputTextarea>
 				</h:panelGrid>
+
+				<a4j:commandButton value="Adicionar"
+					action="#{solicitacaoAdicionalNoturnoController.adicionarAdicional}"
+					reRender="listaAdicionais" />
+
+
+				<rich:dataTable id="listaAdicionais"
+					value="#{solicitacaoAdicionalNoturnoController.listAuxiliar}"
+					var="list" width="1160px" columnClasses="center" rows="15"
+					reRender="ds">
+
+					<rich:column width="435px">
+						<f:facet name="header">
+							<h:outputText value="Servidor" />
+						</f:facet>
+						<h:outputText value="#{list.servidor}" />
+					</rich:column>
+
+					<rich:column width="435px">
+						<f:facet name="header">
+							<h:outputText value="Horário" />
+						</f:facet>
+						<h:outputText value="#{list.horaInicial - list.horaFinal}" />
+					</rich:column>
+
+					<rich:column width="435px">
+						<f:facet name="header">
+							<h:outputText value="Data" />
+						</f:facet>
+						<h:outputText value="#{list.data}" />
+					</rich:column>
+
+					<rich:column>
+						<f:facet name="header">
+							<h:outputText value="Excluir" />
+						</f:facet>
+						<a4j:commandLink ajaxSingle="true" id="delete" reRender="form"
+							oncomplete="#{rich:component('deletePanel')}.show()">
+							<h:graphicImage id="excluir" value="../images/delete.gif"
+								style="border:0" />
+						</a4j:commandLink>
+						<rich:toolTip for="excluir" value="Excluir" />
+					</rich:column>
+
+					<f:facet name="footer">
+						<rich:datascroller id="ds"></rich:datascroller>
+					</f:facet>
+				</rich:dataTable>
+
+				<a4j:commandButton value="Salvar"
+					action="#{solicitacaoAdicionalNoturnoController.salvarAdicional}"
+					reRender="form" />
+
+			</a4j:region>
 		</rich:panel></center>
 	</a4j:form>
+
+
+	<center><rich:modalPanel id="deletePanel" autosized="true"
+		width="200">
+		<f:facet name="header">
+			<h:outputText value="Deseja realmente deletar este item?"
+				style="padding-right:15px;" />
+		</f:facet>
+		<h:form>
+			<table width="100%">
+				<tbody>
+					<tr>
+						<td align="center" width="50%"><a4j:commandButton value="Sim"
+							ajaxSingle="true" action="#{dependenteController.remover}"
+							oncomplete="#{rich:component('deletePanel')}.hide();"
+							reRender="listaDependentes, form" /></td>
+						<td align="center" width="50%"><a4j:commandButton value="Não"
+							onclick="#{rich:component('deletePanel')}.hide();return false;" />
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</h:form>
+	</rich:modalPanel></center>
 </f:view>
 </body>
 </html>

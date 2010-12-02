@@ -32,6 +32,8 @@ public class SolicitacaoAdicionalNoturnoController implements Serializable {
 	private AdicionalNoturno adicionalNoturno;
 	private List<SelectItem> cursos = new ArrayList<SelectItem>();
 	private List<SelectItem> professoresCampus = new ArrayList<SelectItem>();
+	private List<AdicionalNoturno> listAuxiliar = new ArrayList<AdicionalNoturno>();
+	
 	private Boolean indTurmaDefinida = false;
 
 	public List<SelectItem> getLotacoes() {
@@ -123,9 +125,10 @@ public class SolicitacaoAdicionalNoturnoController implements Serializable {
 
 	public void adicionarAdicional() {
 		solicitacaoAdicionalNoturno.getAdicionais().add(adicionalNoturno);
+		listAuxiliar.add(adicionalNoturno);
 	}
 
-	public void salvar() throws IOException, ParseException {
+	public void salvarAdicional() throws IOException, ParseException {
 		solicitacaoAdicionalNoturno.setDataAbertura(new Date());
 		solicitacaoAdicionalNoturno.setDataAtendimento(null);
 		solicitacaoAdicionalNoturno.setTipoSolicitacao(new TipoSolicitacao());
@@ -223,6 +226,14 @@ public class SolicitacaoAdicionalNoturnoController implements Serializable {
 		} else {
 			indTurmaDefinida = false;
 		}
+	}
+
+	public void setListAuxiliar(List<AdicionalNoturno> listAuxiliar) {
+		this.listAuxiliar = listAuxiliar;
+	}
+
+	public List<AdicionalNoturno> getListAuxiliar() {
+		return listAuxiliar;
 	}
 
 }
