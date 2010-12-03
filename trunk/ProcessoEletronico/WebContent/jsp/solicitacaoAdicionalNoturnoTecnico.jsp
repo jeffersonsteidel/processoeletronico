@@ -36,6 +36,7 @@
 				<h:panelGrid columns="10">
 					<h:outputText value="Campus: " />
 					<h:selectOneMenu id="campus"
+					disabled="#{solicitacaoAdicionalNoturnoController.indCursoDefinido}"
 						value="#{solicitacaoAdicionalNoturnoController.adicionalNoturno.solicitacaoAdicionalNoturno.lotacao.codigo}"
 						required="true" requiredMessage="Campo Campus é obrigatório!">
 						<f:selectItem itemLabel="SELECIONE" itemValue="" />
@@ -43,7 +44,7 @@
 							value="#{solicitacaoAdicionalNoturnoController.lotacoes}" />
 						<a4j:support event="onchange"
 							action="#{solicitacaoAdicionalNoturnoController.listarServidoresTecnicosCampus}"
-							ajaxSingle="true" reRender="servidoresCampus"></a4j:support>
+							ajaxSingle="true" reRender="servidoresCampus, campus" ></a4j:support>
 					</h:selectOneMenu>
 
 					<h:outputText value="Servidor: " />
@@ -80,6 +81,7 @@
 						validatorMessage="Campo Hora Final deve ter no mínimo 4 caracteres!">
 						<f:validateLength minimum="4" />
 					</h:inputText>
+					
 				</h:panelGrid>
 
 				<h:panelGrid columns="2">
@@ -95,7 +97,7 @@
 
 
 				<rich:dataTable id="listaAdicionais"
-					value="#{solicitacaoAdicionalNoturnoController.listAuxiliar}"
+					value="#{solicitacaoAdicionalNoturnoController.listaAdicionalTecnicos}"
 					var="list" width="1160px" columnClasses="center" rows="15"
 					reRender="ds">
 
@@ -103,21 +105,23 @@
 						<f:facet name="header">
 							<h:outputText value="Servidor" />
 						</f:facet>
-						<h:outputText value="#{list.servidor}" />
+						<h:outputText value="#{list.servidor.nome}" />
 					</rich:column>
 
 					<rich:column width="435px">
 						<f:facet name="header">
 							<h:outputText value="Horário" />
 						</f:facet>
-						<h:outputText value="#{list.horaInicial - list.horaFinal}" />
+						<h:outputText value="#{list.horaInicial} - #{list.horaFinal}" />
 					</rich:column>
 
 					<rich:column width="435px">
 						<f:facet name="header">
 							<h:outputText value="Data" />
 						</f:facet>
-						<h:outputText value="#{list.data}" />
+						<h:outputText value="#{list.data}">
+							<f:convertDateTime pattern="dd/MM/yyyy" />
+						</h:outputText>
 					</rich:column>
 
 					<rich:column>
