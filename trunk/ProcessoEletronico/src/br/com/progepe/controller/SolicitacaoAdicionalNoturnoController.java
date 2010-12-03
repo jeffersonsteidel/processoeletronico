@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
 
@@ -264,6 +265,44 @@ public class SolicitacaoAdicionalNoturnoController implements Serializable {
 	}
 
 	public void adicionarDocente() {
+		Boolean ok = true;
+		if(adicionalNoturno.getMateria()== null || adicionalNoturno.getMateria()== ""){
+			ok = false;
+			FacesMessage message = new FacesMessage(
+					FacesMessage.SEVERITY_ERROR,
+					"Campo Matéria é obrigatório!",
+					"Campo Matéria é obrigatório!");
+			FacesContext.getCurrentInstance().addMessage("", message);
+		}if(adicionalNoturno.getServidor()== null || adicionalNoturno.getServidor().getCodigo()==null || adicionalNoturno.getServidor().getCodigo()==0){
+			ok = false;
+			FacesMessage message = new FacesMessage(
+					FacesMessage.SEVERITY_ERROR,
+					"Campo Servidor é obrigatório!",
+					"Campo Servidor é obrigatório!");
+			FacesContext.getCurrentInstance().addMessage("", message);
+		}if(adicionalNoturno.getData()== null){
+			ok = false;
+			FacesMessage message = new FacesMessage(
+					FacesMessage.SEVERITY_ERROR,
+					"Campo Data é obrigatório!",
+					"Campo Data é obrigatório!");
+			FacesContext.getCurrentInstance().addMessage("", message);
+		}if(adicionalNoturno.getHoraInicial()== null||adicionalNoturno.getHoraInicial()=="" ){
+			ok = false;
+			FacesMessage message = new FacesMessage(
+					FacesMessage.SEVERITY_ERROR,
+					"Campo Hora Inicial é obrigatório!",
+					"Campo Hora Inicial é obrigatório!");
+			FacesContext.getCurrentInstance().addMessage("", message);
+		}if(adicionalNoturno.getHoraFinal()== null||adicionalNoturno.getHoraFinal()=="" ){
+			ok = false;
+			FacesMessage message = new FacesMessage(
+					FacesMessage.SEVERITY_ERROR,
+					"Campo Hora Final é obrigatório!",
+					"Campo Hora Final é obrigatório!");
+			FacesContext.getCurrentInstance().addMessage("", message);
+		}
+		if(ok){
 		List<Servidor> professorList = new ArrayList<Servidor>();
 		professorList = ServidorDAO.getInstance().listDocentesByCampus(
 				solicitacaoAdicionalNoturno.getLotacao());
@@ -277,16 +316,13 @@ public class SolicitacaoAdicionalNoturnoController implements Serializable {
 		listaAdicionalNoturno.add(adicionalNoturno);
 		adicionalNoturno = new AdicionalNoturno();
 		adicionalNoturno.setServidor(new Servidor());
+		}
 	}
 
 	public void excluirDocente() {
-		for (AdicionalNoturno adicional : listaAdicionalNoturno) {
-			if (adicional.getCodigo().equals(adicionalNoturno.getCodigo())) {
-				adicionalNoturno = adicional;
-				break;
-			}
-		}
 		listaAdicionalNoturno.remove(adicionalNoturno);
+		adicionalNoturno = new AdicionalNoturno();
+		adicionalNoturno.setServidor(new Servidor());
 	}
 
 	public void setListaAdicionalTecnicos(
@@ -311,9 +347,10 @@ public class SolicitacaoAdicionalNoturnoController implements Serializable {
 		adicionalNoturno = new AdicionalNoturno();
 		adicionalNoturno.setServidor(new Servidor());
 	}
-	
-	public void salvarDocentes() throws Exception{
-		solicitacaoAdicionalNoturno.getAdicionais().addAll(listaAdicionalNoturno);
+
+	public void salvarDocentes() throws Exception {
+		solicitacaoAdicionalNoturno.getAdicionais().addAll(
+				listaAdicionalNoturno);
 		DAO.getInstance().saveOrUpdate(solicitacaoAdicionalNoturno);
 		abrirSolicitacaoAdicionalNoturnoDocentes();
 	}
