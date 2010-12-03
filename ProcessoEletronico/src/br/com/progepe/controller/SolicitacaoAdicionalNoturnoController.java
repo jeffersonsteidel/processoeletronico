@@ -133,6 +133,9 @@ public class SolicitacaoAdicionalNoturnoController implements Serializable {
 			adicionalNoturno = new AdicionalNoturno();
 			adicionalNoturno.setServidor(new Servidor());
 			solicitacaoAdicionalNoturno.setCurso(new Curso());
+			listaAdicionalNoturno = new ArrayList<AdicionalNoturno>();
+			cursos = new ArrayList<SelectItem>();
+			professoresCampus = new ArrayList<SelectItem>();
 			buscarServidorLogado();
 			listarLotacoes();
 			indTurmaDefinida = false;

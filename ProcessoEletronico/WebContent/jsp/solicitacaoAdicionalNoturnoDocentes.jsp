@@ -35,7 +35,7 @@
 				</h:outputText>
 			</h:panelGrid>
 			<a4j:region>
-				<h:panelGrid columns="6">
+				<h:panelGrid columns="7">
 
 					<h:outputText value="Campus: " />
 					<h:selectOneMenu id="campus"
@@ -57,9 +57,6 @@
 						<f:selectItem itemLabel="SELECIONE" itemValue="" />
 						<f:selectItems
 							value="#{solicitacaoAdicionalNoturnoController.cursos}" />
-						<a4j:support event="onchange"
-							action="#{solicitacaoAdicionalNoturnoController.confirmarTurma}"
-							ajaxSingle="true" reRender="form" />
 					</h:selectOneMenu>
 
 					<h:outputText value="Turma: " />
@@ -67,10 +64,12 @@
 						value="#{solicitacaoAdicionalNoturnoController.solicitacaoAdicionalNoturno.turma}"
 						required="true" requiredMessage="Campo Turma é obrigatório!"
 						disabled="#{solicitacaoAdicionalNoturnoController.indTurmaDefinida}">
-						<a4j:support event="onchange"
-							action="#{solicitacaoAdicionalNoturnoController.confirmarTurma}"
-							ajaxSingle="true" reRender="form" />
+
 					</h:inputText>
+					<a4j:commandButton value="OK"
+						action="#{solicitacaoAdicionalNoturnoController.confirmarTurma}"
+						disabled="#{solicitacaoAdicionalNoturnoController.indTurmaDefinida}"
+						reRender="form" />
 				</h:panelGrid>
 
 				<h:panelGrid columns="10">
@@ -93,14 +92,14 @@
 						value="#{solicitacaoAdicionalNoturnoController.adicionalNoturno.data}"
 						locale="" popup="true" datePattern="dd/MM/yyyy"
 						showApplyButton="#" cellWidth="12px" cellHeight="12px"
-						style="width:80px"inputSize="12"
+						style="width:80px" inputSize="12"
 						disabled="#{!solicitacaoAdicionalNoturnoController.indTurmaDefinida}" />
 
 					<h:outputText value="Hora Inicial: " />
 					<h:inputText
 						value="#{solicitacaoAdicionalNoturnoController.adicionalNoturno.horaInicial}"
-						size="10" maxlength="5" 
-						onkeypress="mascara(this,horario);"
+						size="10" maxlength="5" onkeypress="mascara(this,horario);"
+						disabled="#{!solicitacaoAdicionalNoturnoController.indTurmaDefinida}"
 						validatorMessage="Campo Hora Inicial deve ter no mínimo 4 caracteres!">
 						<f:validateLength minimum="4" />
 					</h:inputText>
@@ -108,8 +107,8 @@
 					<h:outputText value="Hora Final: " />
 					<h:inputText
 						value="#{solicitacaoAdicionalNoturnoController.adicionalNoturno.horaFinal}"
-						size="10" maxlength="5" 
-						onkeypress="mascara(this,horario);"
+						size="10" maxlength="5" onkeypress="mascara(this,horario);"
+						disabled="#{!solicitacaoAdicionalNoturnoController.indTurmaDefinida}"
 						validatorMessage="Campo Hora Final deve ter no mínimo 4 caracteres!">
 						<f:validateLength minimum="4" />
 					</h:inputText>
@@ -174,12 +173,13 @@
 					</f:facet>
 				</rich:dataTable>
 
+				<a4j:commandButton value="Salvar"
+					action="#{solicitacaoAdicionalNoturnoController.salvarDocentes}"
+					reRender="form" />
+
 			</a4j:region>
 		</a4j:form>
 
-		<a4j:commandButton value="Salvar"
-			action="#{solicitacaoAdicionalNoturnoController.salvarDocentes}"
-			reRender="form" />
 
 	</rich:panel></center>
 
