@@ -14,8 +14,9 @@
 <f:view>
 	<jsp:directive.include file="menus.jsp" />
 	<a4j:loadScript src="../js/script.js" />
-	<a4j:form id="form">
-		<center><rich:panel>
+
+	<center><rich:panel>
+		<a4j:form id="form">
 			<rich:messages layout="list" errorLabelClass="errorLabel"
 				style="top:auto;" infoLabelClass="infoLabel">
 				<f:facet name="infoMarker">
@@ -162,12 +163,13 @@
 						<f:facet name="header">
 							<h:outputText value="Excluir" />
 						</f:facet>
-						<a4j:commandLink ajaxSingle="true" id="delete" reRender="form"
+						<a4j:commandLink ajaxSingle="true" id="delete"
+							reRender="form, listaAdicionais"
 							oncomplete="#{rich:component('deletePanel')}.show()">
 							<h:graphicImage id="excluir" value="../images/delete.gif"
 								style="border:0" />
 							<f:setPropertyActionListener value="#{list}"
-								target="#{solicitacaoAdicionalNoturnoController.currentRow}" />
+								target="#{solicitacaoAdicionalNoturnoController.adicionalNoturno}" />
 						</a4j:commandLink>
 						<rich:toolTip for="excluir" value="Excluir" />
 					</rich:column>
@@ -177,15 +179,17 @@
 					</f:facet>
 				</rich:dataTable>
 
-				<a4j:commandButton value="Salvar"
-					action="#{solicitacaoAdicionalNoturnoController.salvarAdicional}"
-					reRender="form" />
-
-
 			</a4j:region>
-		</rich:panel></center>
-	</a4j:form>
-	<center><rich:modalPanel id="deletePanel" autosized="true" width="200">
+		</a4j:form>
+
+		<a4j:commandButton value="Salvar"
+			action="#{solicitacaoAdicionalNoturnoController.salvarDocentes}"
+			reRender="form" />
+
+	</rich:panel></center>
+
+	<center><rich:modalPanel id="deletePanel" autosized="true"
+		width="200">
 		<f:facet name="header">
 			<h:outputText value="Deseja realmente deletar este item?"
 				style="padding-right:15px;" />
@@ -195,7 +199,8 @@
 				<tbody>
 					<tr>
 						<td align="center" width="50%"><a4j:commandButton value="Sim"
-							ajaxSingle="true" action="#{solicitacaoAdicionalNoturnoController.excluirDocente}"
+							ajaxSingle="true"
+							action="#{solicitacaoAdicionalNoturnoController.excluir}"
 							oncomplete="#{rich:component('deletePanel')}.hide();"
 							reRender="listaAdicionais, form" /></td>
 						<td align="center" width="50%"><a4j:commandButton value="Não"

@@ -311,5 +311,10 @@ public class SolicitacaoAdicionalNoturnoController implements Serializable {
 		adicionalNoturno = new AdicionalNoturno();
 		adicionalNoturno.setServidor(new Servidor());
 	}
-
+	
+	public void salvarDocentes() throws Exception{
+		solicitacaoAdicionalNoturno.getAdicionais().addAll(listaAdicionalNoturno);
+		DAO.getInstance().saveOrUpdate(solicitacaoAdicionalNoturno);
+		abrirSolicitacaoAdicionalNoturnoDocentes();
+	}
 }
