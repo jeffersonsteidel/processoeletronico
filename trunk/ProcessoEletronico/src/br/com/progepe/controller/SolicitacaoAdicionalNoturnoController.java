@@ -113,8 +113,7 @@ public class SolicitacaoAdicionalNoturnoController implements Serializable {
 			adicionalNoturno.setServidor(new Servidor());
 			adicionalNoturno
 					.setSolicitacaoAdicionalNoturno(new SolicitacaoAdicionalNoturno());
-			solicitacaoAdicionalNoturno.setLotacao(
-					new Lotacao());
+			solicitacaoAdicionalNoturno.setLotacao(new Lotacao());
 			buscarServidorLogado();
 			listarLotacoes();
 			indCursoDefinido = false;
@@ -236,15 +235,15 @@ public class SolicitacaoAdicionalNoturnoController implements Serializable {
 			indTurmaDefinida = false;
 		}
 	}
-	
-//	public void definirCampus() {
-//		if (solicitacaoAdicionalNoturno.getLotacao() != null) {
-//			indCursoDefinido = true;
-//			listarServidoresTecnicosCampus();
-//		} else {
-//			indCursoDefinido = false;
-//		}
-//	}
+
+	// public void definirCampus() {
+	// if (solicitacaoAdicionalNoturno.getLotacao() != null) {
+	// indCursoDefinido = true;
+	// listarServidoresTecnicosCampus();
+	// } else {
+	// indCursoDefinido = false;
+	// }
+	// }
 
 	public void adicionarAdicional() throws ParseException {
 		List<Servidor> tecnicoList = new ArrayList<Servidor>();
@@ -256,12 +255,12 @@ public class SolicitacaoAdicionalNoturnoController implements Serializable {
 				adicionalNoturno.setServidor(servidor);
 				break;
 			}
-		}		
+		}
 		listaAdicionalTecnicos.add(adicionalNoturno);
 		adicionalNoturno = new AdicionalNoturno();
 		adicionalNoturno.setServidor(new Servidor());
 		adicionalNoturno.setMotivo("");
-		
+
 	}
 
 	public void adicionarDocente() {
@@ -290,7 +289,8 @@ public class SolicitacaoAdicionalNoturnoController implements Serializable {
 		listaAdicionalNoturno.remove(adicionalNoturno);
 	}
 
-	public void setListaAdicionalTecnicos(List<AdicionalNoturno> listaAdicionalTecnicos) {
+	public void setListaAdicionalTecnicos(
+			List<AdicionalNoturno> listaAdicionalTecnicos) {
 		this.listaAdicionalTecnicos = listaAdicionalTecnicos;
 	}
 
@@ -305,14 +305,13 @@ public class SolicitacaoAdicionalNoturnoController implements Serializable {
 	public Boolean getIndCursoDefinido() {
 		return indCursoDefinido;
 	}
-	
-	public String excluir() {
-        FacesContext context = FacesContext.getCurrentInstance();
-        adicionalNoturno = (AdicionalNoturno ) context
-                .getExternalContext().getRequestMap().get("list");
-        listaAdicionalTecnicos.remove(adicionalNoturno);
-        return null;
-    }
 
+	public String excluir() {
+		FacesContext context = FacesContext.getCurrentInstance();
+		adicionalNoturno = (AdicionalNoturno) context.getExternalContext()
+				.getRequestMap().get("list");
+		listaAdicionalTecnicos.remove(adicionalNoturno);
+		return null;
+	}
 
 }

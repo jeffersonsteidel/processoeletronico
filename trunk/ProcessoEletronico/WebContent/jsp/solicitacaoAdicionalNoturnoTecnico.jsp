@@ -162,7 +162,8 @@
 				<tbody>
 					<tr>
 						<td align="center" width="50%"><a4j:commandButton value="Sim"
-							ajaxSingle="true" action="#{solicitacaoAdicionalNoturnoController.excluir}"
+							ajaxSingle="true"
+							action="#{solicitacaoAdicionalNoturnoController.excluir}"
 							oncomplete="#{rich:component('deletePanel')}.hide();"
 							reRender="listaAdicionais, form" /></td>
 						<td align="center" width="50%"><a4j:commandButton value="Não"
