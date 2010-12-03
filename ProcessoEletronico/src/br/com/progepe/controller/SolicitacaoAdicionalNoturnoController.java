@@ -33,7 +33,7 @@ public class SolicitacaoAdicionalNoturnoController implements Serializable {
 	private List<SelectItem> cursos = new ArrayList<SelectItem>();
 	private List<SelectItem> professoresCampus = new ArrayList<SelectItem>();
 	private List<AdicionalNoturno> listaAdicionalNoturno = new ArrayList<AdicionalNoturno>();
-	private List<AdicionalNoturno> listaAdicionalTecnicos = new ArrayList<AdicionalNoturno>();
+	private List<AdicionalNoturno> listaAdicionalTecnicos;
 
 	private Boolean indTurmaDefinida = false;
 	private Boolean indCursoDefinido = false;
@@ -306,12 +306,10 @@ public class SolicitacaoAdicionalNoturnoController implements Serializable {
 		return indCursoDefinido;
 	}
 
-	public String excluir() {
-		FacesContext context = FacesContext.getCurrentInstance();
-		adicionalNoturno = (AdicionalNoturno) context.getExternalContext()
-				.getRequestMap().get("list");
+	public void excluir() {
 		listaAdicionalTecnicos.remove(adicionalNoturno);
-		return null;
+		adicionalNoturno = new AdicionalNoturno();
+		adicionalNoturno.setServidor(new Servidor());
 	}
 
 }
