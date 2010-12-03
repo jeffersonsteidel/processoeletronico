@@ -17,7 +17,7 @@ public class SolicitacaoAdicionalNoturno extends Solicitacao {
 	private Servidor servidor;
 
 	private Set<AdicionalNoturno> adicionais = new HashSet<AdicionalNoturno>();
-	
+
 	public String getTurma() {
 		return turma;
 	}
