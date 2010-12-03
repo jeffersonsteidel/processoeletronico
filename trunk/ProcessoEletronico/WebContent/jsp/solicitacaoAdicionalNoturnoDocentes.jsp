@@ -166,8 +166,8 @@
 							oncomplete="#{rich:component('deletePanel')}.show()">
 							<h:graphicImage id="excluir" value="../images/delete.gif"
 								style="border:0" />
-							<f:setPropertyActionListener value="#{list.codigo}"
-								target="#{list.codigo}" />
+							<f:setPropertyActionListener value="#{list}"
+								target="#{solicitacaoAdicionalNoturnoController.currentRow}" />
 						</a4j:commandLink>
 						<rich:toolTip for="excluir" value="Excluir" />
 					</rich:column>

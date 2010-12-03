@@ -674,8 +674,10 @@ public class ServidorController {
 		listarGrupoSanguineo();
 		listarCorPele();
 		listarEstadosCivis();
-
-		servidor = (Servidor) DAO.getInstance().refresh(servidor);
+		
+		 FacesContext context = FacesContext.getCurrentInstance();
+		 servidor = (Servidor) context
+	                .getExternalContext().getRequestMap().get("list");
 		
 		if (servidor.getCidadeNascimento() != null) {
 			servidor.setEstadoNascimento(new Estado());
