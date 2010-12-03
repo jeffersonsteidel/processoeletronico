@@ -33,8 +33,10 @@ public class SolicitacaoAdicionalNoturnoController implements Serializable {
 	private List<SelectItem> cursos = new ArrayList<SelectItem>();
 	private List<SelectItem> professoresCampus = new ArrayList<SelectItem>();
 	private List<AdicionalNoturno> listaAdicionalNoturno = new ArrayList<AdicionalNoturno>();
-	
+	private List<AdicionalNoturno> listaAdicionalTecnicos = new ArrayList<AdicionalNoturno>();
+
 	private Boolean indTurmaDefinida = false;
+	private Boolean indCursoDefinido = false;
 
 	public List<SelectItem> getLotacoes() {
 		return lotacoes;
@@ -84,7 +86,6 @@ public class SolicitacaoAdicionalNoturnoController implements Serializable {
 	public void setProfessoresCampus(List<SelectItem> professoresCampus) {
 		this.professoresCampus = professoresCampus;
 	}
-	
 
 	public Boolean getIndTurmaDefinida() {
 		return indTurmaDefinida;
@@ -106,6 +107,8 @@ public class SolicitacaoAdicionalNoturnoController implements Serializable {
 	public void abrirSolicitacaoAdicionalNoturnoTecnico() throws ParseException {
 		try {
 			solicitacaoAdicionalNoturno = new SolicitacaoAdicionalNoturno();
+			listaAdicionalTecnicos = new ArrayList<AdicionalNoturno>();
+			listaAdicionalTecnicos.clear();
 			adicionalNoturno = new AdicionalNoturno();
 			adicionalNoturno.setServidor(new Servidor());
 			adicionalNoturno
@@ -114,8 +117,27 @@ public class SolicitacaoAdicionalNoturnoController implements Serializable {
 					new Lotacao());
 			buscarServidorLogado();
 			listarLotacoes();
+			indCursoDefinido = false;
 			FacesContext.getCurrentInstance().getExternalContext()
 					.redirect("solicitacaoAdicionalNoturnoTecnico.jsp");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void abrirSolicitacaoAdicionalNoturnoDocentes()
+			throws ParseException {
+		try {
+			solicitacaoAdicionalNoturno = new SolicitacaoAdicionalNoturno();
+			solicitacaoAdicionalNoturno.setLotacao(new Lotacao());
+			adicionalNoturno = new AdicionalNoturno();
+			adicionalNoturno.setServidor(new Servidor());
+			solicitacaoAdicionalNoturno.setCurso(new Curso());
+			buscarServidorLogado();
+			listarLotacoes();
+			indTurmaDefinida = false;
+			FacesContext.getCurrentInstance().getExternalContext()
+					.redirect("solicitacaoAdicionalNoturnoDocentes.jsp");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -131,12 +153,6 @@ public class SolicitacaoAdicionalNoturnoController implements Serializable {
 		solicitacaoAdicionalNoturno.setSolicitante(ServidorDAO.getInstance()
 				.refreshBySiape(solicitacaoAdicionalNoturno.getSolicitante()));
 	}
-
-	public void adicionarAdicional() {
-		solicitacaoAdicionalNoturno.getAdicionais().add(adicionalNoturno);
-		listaAdicionalNoturno.add(adicionalNoturno);
-		adicionalNoturno = new AdicionalNoturno();
-		}
 
 	public void salvarAdicional() throws IOException, ParseException {
 		solicitacaoAdicionalNoturno.setDataAbertura(new Date());
@@ -175,25 +191,8 @@ public class SolicitacaoAdicionalNoturnoController implements Serializable {
 			servidoresCampus.add(new SelectItem(item.getCodigo(), item
 					.getNome()));
 		}
+		indCursoDefinido = true;
 		return servidoresCampus;
-	}
-
-	public void abrirSolicitacaoAdicionalNoturnoDocentes()
-			throws ParseException {
-		try {
-			solicitacaoAdicionalNoturno = new SolicitacaoAdicionalNoturno();
-			solicitacaoAdicionalNoturno.setLotacao(new Lotacao());
-			adicionalNoturno = new AdicionalNoturno();
-			adicionalNoturno.setServidor(new Servidor());
-			solicitacaoAdicionalNoturno.setCurso(new Curso());
-			buscarServidorLogado();
-			listarLotacoes();
-			indTurmaDefinida = false;
-			FacesContext.getCurrentInstance().getExternalContext()
-					.redirect("solicitacaoAdicionalNoturnoDocentes.jsp");
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
 	}
 
 	public List<SelectItem> listarCursos() {
@@ -226,22 +225,50 @@ public class SolicitacaoAdicionalNoturnoController implements Serializable {
 	}
 
 	public void confirmarTurma() {
-		if (solicitacaoAdicionalNoturno.getLotacao() != null &&
-			solicitacaoAdicionalNoturno.getLotacao().getCodigo() != 0 
-			&& solicitacaoAdicionalNoturno.getCurso() != null && solicitacaoAdicionalNoturno.getCurso().getCodigo() != 0
-			&& solicitacaoAdicionalNoturno.getTurma() != null 	&& solicitacaoAdicionalNoturno.getTurma() != ""){
+		if (solicitacaoAdicionalNoturno.getLotacao() != null
+				&& solicitacaoAdicionalNoturno.getLotacao().getCodigo() != 0
+				&& solicitacaoAdicionalNoturno.getCurso() != null
+				&& solicitacaoAdicionalNoturno.getCurso().getCodigo() != 0
+				&& solicitacaoAdicionalNoturno.getTurma() != null
+				&& solicitacaoAdicionalNoturno.getTurma() != "") {
 			indTurmaDefinida = true;
-		}else{
+		} else {
 			indTurmaDefinida = false;
 		}
+	}
+	
+//	public void definirCampus() {
+//		if (solicitacaoAdicionalNoturno.getLotacao() != null) {
+//			indCursoDefinido = true;
+//			listarServidoresTecnicosCampus();
+//		} else {
+//			indCursoDefinido = false;
+//		}
+//	}
+
+	public void adicionarAdicional() throws ParseException {
+		List<Servidor> tecnicoList = new ArrayList<Servidor>();
+		tecnicoList = ServidorDAO.getInstance().listTecnicosByCampus(
+				solicitacaoAdicionalNoturno.getLotacao());
+		for (Servidor servidor : tecnicoList) {
+			if (servidor.getCodigo().equals(
+					adicionalNoturno.getServidor().getCodigo())) {
+				adicionalNoturno.setServidor(servidor);
+				break;
+			}
+		}		
+		listaAdicionalTecnicos.add(adicionalNoturno);
+		adicionalNoturno = new AdicionalNoturno();
+		adicionalNoturno.setServidor(new Servidor());
 	}
 
 	public void adicionarDocente() {
 		List<Servidor> professorList = new ArrayList<Servidor>();
 		professorList = ServidorDAO.getInstance().listDocentesByCampus(
 				solicitacaoAdicionalNoturno.getLotacao());
-		for(Servidor servidor: professorList){
-			if(servidor.getCodigo().equals(adicionalNoturno.getServidor().getCodigo())){
+		for (Servidor servidor : professorList) {
+			if (servidor.getCodigo().equals(
+					adicionalNoturno.getServidor().getCodigo())) {
 				adicionalNoturno.setServidor(servidor);
 				break;
 			}
@@ -249,18 +276,35 @@ public class SolicitacaoAdicionalNoturnoController implements Serializable {
 		listaAdicionalNoturno.add(adicionalNoturno);
 		adicionalNoturno = new AdicionalNoturno();
 		adicionalNoturno.setServidor(new Servidor());
-//		adicionalNoturno.setMateria(null);
-//		adicionalNoturno.setData(null);
-//		adicionalNoturno.setHoraInicial(null);
-//		adicionalNoturno.setHoraFinal(null);
-		}
-	public void excluirDocente(){
-		for(AdicionalNoturno adicional: listaAdicionalNoturno){
-			if(adicional.getCodigo().equals(adicionalNoturno.getCodigo())){
+		// adicionalNoturno.setMateria(null);
+		// adicionalNoturno.setData(null);
+		// adicionalNoturno.setHoraInicial(null);
+		// adicionalNoturno.setHoraFinal(null);
+	}
+
+	public void excluirDocente() {
+		for (AdicionalNoturno adicional : listaAdicionalNoturno) {
+			if (adicional.getCodigo().equals(adicionalNoturno.getCodigo())) {
 				adicionalNoturno = adicional;
 				break;
 			}
 		}
 		listaAdicionalNoturno.remove(adicionalNoturno);
+	}
+
+	public void setListaAdicionalTecnicos(List<AdicionalNoturno> listaAdicionalTecnicos) {
+		this.listaAdicionalTecnicos = listaAdicionalTecnicos;
+	}
+
+	public List<AdicionalNoturno> getListaAdicionalTecnicos() {
+		return listaAdicionalTecnicos;
+	}
+
+	public void setIndCursoDefinido(Boolean indCursoDefinido) {
+		this.indCursoDefinido = indCursoDefinido;
+	}
+
+	public Boolean getIndCursoDefinido() {
+		return indCursoDefinido;
 	}
 }
