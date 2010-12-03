@@ -77,13 +77,11 @@
 					<h:outputText value="Matéria: " />
 					<h:inputText
 						value="#{solicitacaoAdicionalNoturnoController.adicionalNoturno.materia}"
-						required="true" requiredMessage="Campo Matéria é obrigatório!"
 						disabled="#{!solicitacaoAdicionalNoturnoController.indTurmaDefinida}" />
 
 					<h:outputText value="Servidor: " />
 					<h:selectOneMenu id="professor"
 						value="#{solicitacaoAdicionalNoturnoController.adicionalNoturno.servidor.codigo}"
-						required="true" requiredMessage="Campo Servidor é obrigatório!"
 						disabled="#{!solicitacaoAdicionalNoturnoController.indTurmaDefinida}">
 						<f:selectItem itemLabel="SELECIONE" itemValue="" />
 						<f:selectItems
@@ -95,15 +93,13 @@
 						value="#{solicitacaoAdicionalNoturnoController.adicionalNoturno.data}"
 						locale="" popup="true" datePattern="dd/MM/yyyy"
 						showApplyButton="#" cellWidth="12px" cellHeight="12px"
-						style="width:80px" required="true" inputSize="12"
-						requiredMessage="Campo Data é obrigatório!"
+						style="width:80px"inputSize="12"
 						disabled="#{!solicitacaoAdicionalNoturnoController.indTurmaDefinida}" />
 
 					<h:outputText value="Hora Inicial: " />
 					<h:inputText
 						value="#{solicitacaoAdicionalNoturnoController.adicionalNoturno.horaInicial}"
-						size="10" maxlength="5" required="true"
-						requiredMessage="Campo Hora Inicial é obrigatório!"
+						size="10" maxlength="5" 
 						onkeypress="mascara(this,horario);"
 						validatorMessage="Campo Hora Inicial deve ter no mínimo 4 caracteres!">
 						<f:validateLength minimum="4" />
@@ -112,8 +108,7 @@
 					<h:outputText value="Hora Final: " />
 					<h:inputText
 						value="#{solicitacaoAdicionalNoturnoController.adicionalNoturno.horaFinal}"
-						size="10" maxlength="5" required="true"
-						requiredMessage="Campo Hora Final é obrigatório!"
+						size="10" maxlength="5" 
 						onkeypress="mascara(this,horario);"
 						validatorMessage="Campo Hora Final deve ter no mínimo 4 caracteres!">
 						<f:validateLength minimum="4" />
@@ -200,7 +195,7 @@
 					<tr>
 						<td align="center" width="50%"><a4j:commandButton value="Sim"
 							ajaxSingle="true"
-							action="#{solicitacaoAdicionalNoturnoController.excluir}"
+							action="#{solicitacaoAdicionalNoturnoController.excluirDocente}"
 							oncomplete="#{rich:component('deletePanel')}.hide();"
 							reRender="listaAdicionais, form" /></td>
 						<td align="center" width="50%"><a4j:commandButton value="Não"
