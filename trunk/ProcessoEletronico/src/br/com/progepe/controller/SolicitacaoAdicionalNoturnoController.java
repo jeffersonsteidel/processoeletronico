@@ -113,7 +113,7 @@ public class SolicitacaoAdicionalNoturnoController implements Serializable {
 			adicionalNoturno.setServidor(new Servidor());
 			adicionalNoturno
 					.setSolicitacaoAdicionalNoturno(new SolicitacaoAdicionalNoturno());
-			adicionalNoturno.getSolicitacaoAdicionalNoturno().setLotacao(
+			solicitacaoAdicionalNoturno.setLotacao(
 					new Lotacao());
 			buscarServidorLogado();
 			listarLotacoes();
@@ -185,7 +185,7 @@ public class SolicitacaoAdicionalNoturnoController implements Serializable {
 		servidoresCampus = new ArrayList<SelectItem>();
 		List<Servidor> servidorList = new ArrayList<Servidor>();
 		servidorList = ServidorDAO.getInstance().listTecnicosByCampus(
-				adicionalNoturno.getSolicitacaoAdicionalNoturno().getLotacao());
+				solicitacaoAdicionalNoturno.getLotacao());
 
 		for (Servidor item : servidorList) {
 			servidoresCampus.add(new SelectItem(item.getCodigo(), item
@@ -260,6 +260,8 @@ public class SolicitacaoAdicionalNoturnoController implements Serializable {
 		listaAdicionalTecnicos.add(adicionalNoturno);
 		adicionalNoturno = new AdicionalNoturno();
 		adicionalNoturno.setServidor(new Servidor());
+		adicionalNoturno.setMotivo("");
+		
 	}
 
 	public void adicionarDocente() {
@@ -276,10 +278,6 @@ public class SolicitacaoAdicionalNoturnoController implements Serializable {
 		listaAdicionalNoturno.add(adicionalNoturno);
 		adicionalNoturno = new AdicionalNoturno();
 		adicionalNoturno.setServidor(new Servidor());
-		// adicionalNoturno.setMateria(null);
-		// adicionalNoturno.setData(null);
-		// adicionalNoturno.setHoraInicial(null);
-		// adicionalNoturno.setHoraFinal(null);
 	}
 
 	public void excluirDocente() {
@@ -307,4 +305,14 @@ public class SolicitacaoAdicionalNoturnoController implements Serializable {
 	public Boolean getIndCursoDefinido() {
 		return indCursoDefinido;
 	}
+	
+	public String excluir() {
+        FacesContext context = FacesContext.getCurrentInstance();
+        adicionalNoturno = (AdicionalNoturno ) context
+                .getExternalContext().getRequestMap().get("list");
+        listaAdicionalTecnicos.remove(adicionalNoturno);
+        return null;
+    }
+
+
 }
