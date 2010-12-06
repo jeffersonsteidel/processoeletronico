@@ -378,6 +378,8 @@ public class SolicitacaoAdicionalNoturnoController implements Serializable {
 					break;
 				}
 			}
+			adicionalNoturno.setIndAprovadoDiretor(false);
+			adicionalNoturno.setIndAprovadoProgepe(false);
 			listaAdicionalNoturno.add(adicionalNoturno);
 			adicionalNoturno = new AdicionalNoturno();
 			adicionalNoturno.setServidor(new Servidor());
@@ -404,6 +406,7 @@ public class SolicitacaoAdicionalNoturnoController implements Serializable {
 	public void salvarDocentes() throws Exception {
 		solicitacaoAdicionalNoturno.getAdicionais().addAll(
 				listaAdicionalNoturno);
+		solicitacaoAdicionalNoturno.setIndDocente(true);
 		DAO.getInstance().saveOrUpdate(solicitacaoAdicionalNoturno);
 		abrirSolicitacaoAdicionalNoturnoDocentes();
 	}
