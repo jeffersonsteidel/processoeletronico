@@ -125,8 +125,6 @@ public class SolicitacaoAdicionalNoturnoController implements Serializable {
 			listaAdicionalTecnicos.clear();
 			adicionalNoturno = new AdicionalNoturno();
 			adicionalNoturno.setServidor(new Servidor());
-			adicionalNoturno
-					.setSolicitacaoAdicionalNoturno(new SolicitacaoAdicionalNoturno());
 			solicitacaoAdicionalNoturno.setLotacao(new Lotacao());
 			buscarServidorLogado();
 			listarLotacoes();

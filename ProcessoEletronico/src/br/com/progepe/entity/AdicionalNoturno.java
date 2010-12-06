@@ -9,7 +9,6 @@ public class AdicionalNoturno {
 	private Integer codigo;
 	private Date data;
 	private String motivo;
-	private SolicitacaoAdicionalNoturno solicitacaoAdicionalNoturno;
 	private Servidor servidor;
 	private String horaInicial;
 	private String horaFinal;
@@ -39,15 +38,6 @@ public class AdicionalNoturno {
 
 	public void setMotivo(String motivo) {
 		this.motivo = motivo;
-	}
-
-	public SolicitacaoAdicionalNoturno getSolicitacaoAdicionalNoturno() {
-		return solicitacaoAdicionalNoturno;
-	}
-
-	public void setSolicitacaoAdicionalNoturno(
-			SolicitacaoAdicionalNoturno solicitacaoAdicionalNoturno) {
-		this.solicitacaoAdicionalNoturno = solicitacaoAdicionalNoturno;
 	}
 
 	public Servidor getServidor() {

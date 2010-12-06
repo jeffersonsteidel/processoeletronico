@@ -16,8 +16,5 @@
 		<property name="materia" column="ADIC_MATERIA" />
 		<many-to-one name="servidor" class="br.com.progepe.entity.Servidor"
 			column="SERV_COD" lazy="false" />
-		<many-to-one name="solicitacaoAdicionalNoturno"
-			class="br.com.progepe.entity.SolicitacaoAdicionalNoturno" column="SOLIC_COD"
-			lazy="false" />
 	</class>
 </hibernate-mapping>
