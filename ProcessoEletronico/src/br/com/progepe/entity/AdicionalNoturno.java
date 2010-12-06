@@ -15,6 +15,7 @@ public class AdicionalNoturno {
 	private Boolean indAprovadoDiretor;
 	private Boolean indAprovadoProgepe;
 	private String materia;
+	private String diaSemana;
 
 	public Integer getCodigo() {
 		return codigo;
@@ -86,6 +87,14 @@ public class AdicionalNoturno {
 
 	public void setMateria(String materia) {
 		this.materia = materia;
+	}
+
+	public String getDiaSemana() {
+		return diaSemana;
+	}
+
+	public void setDiaSemana(String diaSemana) {
+		this.diaSemana = diaSemana;
 	}
 
 }
