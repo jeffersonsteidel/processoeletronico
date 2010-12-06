@@ -302,6 +302,8 @@ public class SolicitacaoAdicionalNoturnoController implements Serializable {
 					break;
 				}
 			}
+			adicionalNoturno.setIndAprovadoDiretor(false);
+			adicionalNoturno.setIndAprovadoProgepe(false);
 			listaAdicionalTecnicos.add(adicionalNoturno);
 			adicionalNoturno = new AdicionalNoturno();
 			adicionalNoturno.setServidor(new Servidor());

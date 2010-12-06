@@ -9,8 +9,6 @@ public class SolicitacaoAdicionalNoturno extends Solicitacao {
 
 	private String turma;
 	private Boolean indDocente;
-	private Integer mes;
-	private Integer ano;
 
 	private Curso curso;
 	private Lotacao lotacao;
@@ -32,22 +30,6 @@ public class SolicitacaoAdicionalNoturno extends Solicitacao {
 
 	public void setIndDocente(boolean indDocente) {
 		this.indDocente = indDocente;
-	}
-
-	public Integer getMes() {
-		return mes;
-	}
-
-	public void setMes(Integer mes) {
-		this.mes = mes;
-	}
-
-	public Integer getAno() {
-		return ano;
-	}
-
-	public void setAno(Integer ano) {
-		this.ano = ano;
 	}
 
 	public Curso getCurso() {
