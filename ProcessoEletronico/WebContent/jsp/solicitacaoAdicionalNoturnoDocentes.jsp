@@ -136,12 +136,7 @@
 					</rich:column>
 
 
-					<rich:column width="435px">
-						<f:facet name="header">
-							<h:outputText value="Horário" />
-						</f:facet>
-						<h:outputText value="#{list.horaInicial} - #{list.horaFinal}" />
-					</rich:column>
+					
 
 					<rich:column width="435px">
 						<f:facet name="header">
@@ -151,7 +146,20 @@
 							<f:convertDateTime pattern="dd/MM/yyyy" />
 						</h:outputText>
 					</rich:column>
-
+					
+					<rich:column width="435px">
+						<f:facet name="header">
+							<h:outputText value="Dia da Semana" />
+						</f:facet>
+						<h:outputText value="#{list.diaSemana}">
+						</h:outputText>
+					</rich:column>
+<rich:column width="435px">
+						<f:facet name="header">
+							<h:outputText value="Horário" />
+						</f:facet>
+						<h:outputText value="#{list.horaInicial} - #{list.horaFinal}" />
+					</rich:column>
 					<rich:column>
 						<f:facet name="header">
 							<h:outputText value="Excluir" />
