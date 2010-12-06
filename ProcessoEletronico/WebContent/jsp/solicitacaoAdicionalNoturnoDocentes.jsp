@@ -38,7 +38,7 @@
 				<h:panelGrid columns="7">
 
 					<h:outputText value="Campus: " />
-					<h:selectOneMenu id="campus"
+					<h:selectOneMenu id="campus" required="true" requiredMessage="Campo Campus é obrigatório!"
 						value="#{solicitacaoAdicionalNoturnoController.solicitacaoAdicionalNoturno.lotacao.codigo}"
 						disabled="#{solicitacaoAdicionalNoturnoController.indTurmaDefinida}">
 						<f:selectItem itemLabel="SELECIONE" itemValue="" />

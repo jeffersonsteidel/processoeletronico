@@ -248,6 +248,16 @@ public class SolicitacaoAdicionalNoturnoController implements Serializable {
 	public void adicionarAdicionalTecnico() throws ParseException {
 
 		Boolean ok = true;
+		if (solicitacaoAdicionalNoturno.getLotacao() == null
+				|| solicitacaoAdicionalNoturno.getLotacao().getCodigo() == null
+				|| solicitacaoAdicionalNoturno.getLotacao().getCodigo() == 0) {
+			ok = false;
+			FacesMessage message = new FacesMessage(
+					FacesMessage.SEVERITY_ERROR,
+					"Campo Campus é obrigatório!",
+					"Campo Campus é obrigatório!");
+			FacesContext.getCurrentInstance().addMessage("", message);
+		}
 		if (adicionalNoturno.getServidor() == null
 				|| adicionalNoturno.getServidor().getCodigo() == null
 				|| adicionalNoturno.getServidor().getCodigo() == 0) {
