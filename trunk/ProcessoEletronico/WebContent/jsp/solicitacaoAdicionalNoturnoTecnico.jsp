@@ -35,7 +35,7 @@
 				</h:panelGrid>
 				<h:panelGrid columns="10">
 					<h:outputText value="Campus: " />
-					<h:selectOneMenu id="campus" 
+					<h:selectOneMenu id="campus"
 						disabled="#{solicitacaoAdicionalNoturnoController.indCursoDefinido}"
 						value="#{solicitacaoAdicionalNoturnoController.solicitacaoAdicionalNoturno.lotacao.codigo}">
 						<f:selectItem itemLabel="SELECIONE" itemValue="" />
@@ -101,18 +101,26 @@
 
 					<rich:column width="435px">
 						<f:facet name="header">
-							<h:outputText value="Horário" />
-						</f:facet>
-						<h:outputText value="#{list.horaInicial} - #{list.horaFinal}" />
-					</rich:column>
-
-					<rich:column width="435px">
-						<f:facet name="header">
 							<h:outputText value="Data" />
 						</f:facet>
 						<h:outputText value="#{list.data}">
 							<f:convertDateTime pattern="dd/MM/yyyy" />
 						</h:outputText>
+					</rich:column>
+
+					<rich:column width="435px">
+						<f:facet name="header">
+							<h:outputText value="Dia da Semana" />
+						</f:facet>
+						<h:outputText value="#{list.diaSemana}">
+						</h:outputText>
+					</rich:column>
+
+					<rich:column width="435px">
+						<f:facet name="header">
+							<h:outputText value="Horário" />
+						</f:facet>
+						<h:outputText value="#{list.horaInicial} - #{list.horaFinal}" />
 					</rich:column>
 
 					<rich:column>
