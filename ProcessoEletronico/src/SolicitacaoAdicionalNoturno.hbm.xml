@@ -8,8 +8,6 @@
 		<key column="SOLIC_COD"></key>
 		<property name="turma" column="SOLIC_TURMA" />
 		<property name="indDocente" column="SOLIC_IND_DOCENTE" type="boolean" />
-		<property name="mes" column="SOLIC_MES" />
-		<property name="ano" column="SOLIC_ANO" />
 		<many-to-one name="curso" class="br.com.progepe.entity.Curso"
 			column="CUR_COD" lazy="false" />
 		<many-to-one name="lotacao" class="br.com.progepe.entity.Lotacao"
