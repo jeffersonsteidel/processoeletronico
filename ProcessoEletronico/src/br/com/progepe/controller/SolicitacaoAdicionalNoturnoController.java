@@ -245,6 +245,7 @@ public class SolicitacaoAdicionalNoturnoController implements Serializable {
 	// }
 	// }
 
+	@SuppressWarnings("deprecation")
 	public void adicionarAdicionalTecnico() throws ParseException {
 
 		Boolean ok = true;
@@ -312,6 +313,7 @@ public class SolicitacaoAdicionalNoturnoController implements Serializable {
 					break;
 				}
 			}
+			adicionalNoturno.setDiaSemana(pesquisarDiaSemana(adicionalNoturno.getData().getDay()));
 			adicionalNoturno.setIndAprovadoDiretor(false);
 			adicionalNoturno.setIndAprovadoProgepe(false);
 			listaAdicionalTecnicos.add(adicionalNoturno);
@@ -428,5 +430,42 @@ public class SolicitacaoAdicionalNoturnoController implements Serializable {
 		listaAdicionalTecnicos.remove(adicionalNoturno);
 		adicionalNoturno = new AdicionalNoturno();
 		adicionalNoturno.setServidor(new Servidor());
+	}
+	
+	public String pesquisarDiaSemana(int diaSemana) {
+		String 	diaSemanaString = null;
+		switch (diaSemana) {
+
+		case 0: {
+			diaSemanaString = "Domingo";
+			break;
+		}
+		case 1: {
+			diaSemanaString = "Segunda-Feira";
+			break;
+		}
+		case 2: {
+			diaSemanaString = "Terça-Feira";
+			break;
+		}
+		case 3: {
+			diaSemanaString = "Quarta-Feira";
+			break;
+		}
+		case 4: {
+			diaSemanaString = "Quinta-Feira";
+			break;
+		}
+		case 5: {
+			diaSemanaString = "Sexta-Feira";
+			break;
+		}
+		case 6: {
+			diaSemanaString = "Sábado";
+			break;
+		}
+
+		}
+		return diaSemanaString;
 	}
 }
