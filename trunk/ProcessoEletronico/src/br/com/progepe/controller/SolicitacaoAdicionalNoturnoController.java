@@ -380,6 +380,7 @@ public class SolicitacaoAdicionalNoturnoController implements Serializable {
 					break;
 				}
 			}
+			adicionalNoturno.setDiaSemana(pesquisarDiaSemana(adicionalNoturno.getData().getDay()));
 			adicionalNoturno.setIndAprovadoDiretor(false);
 			adicionalNoturno.setIndAprovadoProgepe(false);
 			listaAdicionalNoturno.add(adicionalNoturno);
