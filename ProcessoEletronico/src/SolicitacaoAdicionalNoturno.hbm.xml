@@ -16,7 +16,7 @@
 			column="LOT_COD" lazy="false" />
 		<many-to-one name="servidor" class="br.com.progepe.entity.Servidor"
 			column="SERV_COD" lazy="false" />
-		<set name="adicionais" inverse="true">
+		<set name="adicionais" inverse="true" cascade="all">
 			<key column="SOLIC_COD" />
 			<one-to-many class="br.com.progepe.entity.AdicionalNoturno" />
 		</set>

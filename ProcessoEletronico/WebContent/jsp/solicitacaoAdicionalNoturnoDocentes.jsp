@@ -40,7 +40,6 @@
 					<h:outputText value="Campus: " />
 					<h:selectOneMenu id="campus"
 						value="#{solicitacaoAdicionalNoturnoController.solicitacaoAdicionalNoturno.lotacao.codigo}"
-						required="true" requiredMessage="Campo Campus é obrigatório!"
 						disabled="#{solicitacaoAdicionalNoturnoController.indTurmaDefinida}">
 						<f:selectItem itemLabel="SELECIONE" itemValue="" />
 						<f:selectItems
