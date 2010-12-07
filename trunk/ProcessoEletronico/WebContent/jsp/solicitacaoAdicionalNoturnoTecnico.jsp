@@ -30,7 +30,7 @@
 			<a4j:region>
 				<h:panelGrid columns="1">
 					<h:outputText
-						value="#{solicitacaoAdicionalNoturnoController.solicitacaoAdicionalNoturno.solicitante.siape} - #{solicitacaoAdicionalNoturnoController.solicitacaoAdicionalNoturno.solicitante.nome}">
+						value="#{solicitacaoAdicionalNoturnoController.solicitacaoAdicionalNoturno.servidor.nome}">
 					</h:outputText>
 				</h:panelGrid>
 				<h:panelGrid columns="10">
