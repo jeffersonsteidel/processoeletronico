@@ -31,7 +31,6 @@ public class SolicitacaoAdicionalNoturnoController implements Serializable {
 	private List<SelectItem> professoresCampus = new ArrayList<SelectItem>();
 	private List<AdicionalNoturno> listaAdicionalNoturno = new ArrayList<AdicionalNoturno>();
 	private List<AdicionalNoturno> listaAdicionalTecnicos;
-	private List<AdicionalNoturno> listaSolicitacaoAdicionalTecnicos;
 
 	private Boolean indTurmaDefinida = false;
 	private Boolean indCursoDefinido = false;
@@ -119,15 +118,6 @@ public class SolicitacaoAdicionalNoturnoController implements Serializable {
 		return indCursoDefinido;
 	}
 
-	public List<AdicionalNoturno> getListaSolicitacaoAdicionalTecnicos() {
-		return listaSolicitacaoAdicionalTecnicos;
-	}
-
-	public void setListaSolicitacaoAdicionalTecnicos(
-			List<AdicionalNoturno> listaSolicitacaoAdicionalTecnicos) {
-		this.listaSolicitacaoAdicionalTecnicos = listaSolicitacaoAdicionalTecnicos;
-	}
-
 	public void abrirSolicitacaoAdicionalNoturnoTecnico() throws ParseException {
 		try {
 			solicitacaoAdicionalNoturno = new SolicitacaoAdicionalNoturno();
@@ -166,25 +156,6 @@ public class SolicitacaoAdicionalNoturnoController implements Serializable {
 			e.printStackTrace();
 		}
 	}
-	
-	public void abrirListarSolicitacaoAdicionalNoturnoTecnico() throws ParseException {
-		try {
-			solicitacaoAdicionalNoturno = new SolicitacaoAdicionalNoturno();
-			solicitacaoAdicionalNoturno.setServidor(new Servidor());
-			solicitacaoAdicionalNoturno.setLotacao(new Lotacao());
-			listaSolicitacaoAdicionalTecnicos = new ArrayList<AdicionalNoturno>();
-			listaSolicitacaoAdicionalTecnicos.clear();
-			buscarServidorLogado();
-			listarLotacoes();
-			indCursoDefinido = false;
-			FacesContext.getCurrentInstance().getExternalContext()
-					.redirect("listarSolicitacaoAdicionalNoturnoTecnico.jsp");
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-
-
 
 	public void buscarServidorLogado() throws IOException, ParseException {
 		solicitacaoAdicionalNoturno.setSolicitante(new Servidor());
@@ -194,8 +165,6 @@ public class SolicitacaoAdicionalNoturnoController implements Serializable {
 		solicitacaoAdicionalNoturno.getSolicitante().setSiape(
 				siapeAutenticado.getSiape());
 		solicitacaoAdicionalNoturno.setSolicitante(ServidorDAO.getInstance()
-				.refreshBySiape(solicitacaoAdicionalNoturno.getSolicitante()));
-		solicitacaoAdicionalNoturno.setServidor(ServidorDAO.getInstance()
 				.refreshBySiape(solicitacaoAdicionalNoturno.getSolicitante()));
 	}
 
@@ -285,7 +254,8 @@ public class SolicitacaoAdicionalNoturnoController implements Serializable {
 				|| solicitacaoAdicionalNoturno.getLotacao().getCodigo() == 0) {
 			ok = false;
 			FacesMessage message = new FacesMessage(
-					FacesMessage.SEVERITY_ERROR, "Campo Campus é obrigatório!",
+					FacesMessage.SEVERITY_ERROR,
+					"Campo Campus é obrigatório!",
 					"Campo Campus é obrigatório!");
 			FacesContext.getCurrentInstance().addMessage("", message);
 		}
@@ -343,8 +313,7 @@ public class SolicitacaoAdicionalNoturnoController implements Serializable {
 					break;
 				}
 			}
-			adicionalNoturno.setDiaSemana(pesquisarDiaSemana(adicionalNoturno
-					.getData().getDay()));
+			adicionalNoturno.setDiaSemana(pesquisarDiaSemana(adicionalNoturno.getData().getDay()));
 			adicionalNoturno.setIndAprovadoDiretor(false);
 			adicionalNoturno.setIndAprovadoProgepe(false);
 			listaAdicionalTecnicos.add(adicionalNoturno);
@@ -354,6 +323,7 @@ public class SolicitacaoAdicionalNoturnoController implements Serializable {
 		}
 	}
 
+	@SuppressWarnings("deprecation")
 	public void adicionarDocente() {
 		Boolean ok = true;
 		if (adicionalNoturno.getMateria() == null
@@ -411,8 +381,7 @@ public class SolicitacaoAdicionalNoturnoController implements Serializable {
 					break;
 				}
 			}
-			adicionalNoturno.setDiaSemana(pesquisarDiaSemana(adicionalNoturno
-					.getData().getDay()));
+			adicionalNoturno.setDiaSemana(pesquisarDiaSemana(adicionalNoturno.getData().getDay()));
 			adicionalNoturno.setIndAprovadoDiretor(false);
 			adicionalNoturno.setIndAprovadoProgepe(false);
 			listaAdicionalNoturno.add(adicionalNoturno);
@@ -449,10 +418,8 @@ public class SolicitacaoAdicionalNoturnoController implements Serializable {
 	public void salvarAdicionalTecnico() throws Exception {
 		solicitacaoAdicionalNoturno.getAdicionais().addAll(
 				listaAdicionalTecnicos);
-		solicitacaoAdicionalNoturno.getAdicionais().addAll(
-				listaSolicitacaoAdicionalTecnicos);
 		solicitacaoAdicionalNoturno.setIndDocente(false);
-		DAO.getInstance().saveOrUpdate(solicitacaoAdicionalNoturno);
+		DAO.getInstance().save(solicitacaoAdicionalNoturno);
 	}
 
 	public void excluirDocente() {
@@ -466,9 +433,9 @@ public class SolicitacaoAdicionalNoturnoController implements Serializable {
 		adicionalNoturno = new AdicionalNoturno();
 		adicionalNoturno.setServidor(new Servidor());
 	}
-
+	
 	public String pesquisarDiaSemana(int diaSemana) {
-		String diaSemanaString = null;
+		String 	diaSemanaString = null;
 		switch (diaSemana) {
 
 		case 0: {
@@ -502,9 +469,5 @@ public class SolicitacaoAdicionalNoturnoController implements Serializable {
 
 		}
 		return diaSemanaString;
-	}
-	
-	public List<AdicionalNoturno> carregarListaSolicitacaoAdicionalNoturno() {
-		return listaSolicitacaoAdicionalTecnicos;
 	}
 }
