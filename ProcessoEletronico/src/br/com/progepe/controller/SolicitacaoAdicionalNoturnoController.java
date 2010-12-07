@@ -236,15 +236,6 @@ public class SolicitacaoAdicionalNoturnoController implements Serializable {
 		}
 	}
 
-	// public void definirCampus() {
-	// if (solicitacaoAdicionalNoturno.getLotacao() != null) {
-	// indCursoDefinido = true;
-	// listarServidoresTecnicosCampus();
-	// } else {
-	// indCursoDefinido = false;
-	// }
-	// }
-
 	@SuppressWarnings("deprecation")
 	public void adicionarAdicionalTecnico() throws ParseException {
 
@@ -390,23 +381,6 @@ public class SolicitacaoAdicionalNoturnoController implements Serializable {
 		}
 	}
 
-	// SÓ QUANDO O DIRETOR APROVAR!
-	//
-	// public void salvarAdicional() throws IOException, ParseException {
-	// solicitacaoAdicionalNoturno.setDataAbertura(new Date());
-	// solicitacaoAdicionalNoturno.setDataAtendimento(null);
-	// solicitacaoAdicionalNoturno.setTipoSolicitacao(new TipoSolicitacao());
-	// solicitacaoAdicionalNoturno.getTipoSolicitacao().setCodigo(
-	// Constantes.TIPO_SOLICITACAO_ADICIONAL_NOTURNO);
-	// solicitacaoAdicionalNoturno
-	// .setStatusSolicitacao(new StatusSolicitacao());
-	// solicitacaoAdicionalNoturno.getStatusSolicitacao().setCodigo(
-	// Constantes.STATUS_SOLICITACAO_ENCAMINHADO);
-	// DAO.getInstance().saveOrUpdate(solicitacaoAdicionalNoturno);
-	// solicitacaoAdicionalNoturno = new SolicitacaoAdicionalNoturno();
-	// buscarServidorLogado();
-	// }
-
 	public void salvarDocentes() throws Exception {
 		solicitacaoAdicionalNoturno.getAdicionais().addAll(
 				listaAdicionalNoturno);
@@ -419,7 +393,7 @@ public class SolicitacaoAdicionalNoturnoController implements Serializable {
 		solicitacaoAdicionalNoturno.getAdicionais().addAll(
 				listaAdicionalTecnicos);
 		solicitacaoAdicionalNoturno.setIndDocente(false);
-		DAO.getInstance().save(solicitacaoAdicionalNoturno);
+		DAO.getInstance().saveOrUpdate(solicitacaoAdicionalNoturno);
 	}
 
 	public void excluirDocente() {
