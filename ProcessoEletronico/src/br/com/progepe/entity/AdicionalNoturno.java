@@ -96,5 +96,4 @@ public class AdicionalNoturno {
 	public void setDiaSemana(String diaSemana) {
 		this.diaSemana = diaSemana;
 	}
-
 }
