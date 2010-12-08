@@ -36,18 +36,19 @@
 				<h:panelGrid columns="10">
 					<h:outputText value="Campus: " />
 					<h:selectOneMenu id="campus"
-						disabled="#{solicitacaoAdicionalNoturnoController.indCampusDefinido}"
+						disabled="#{solicitacaoAdicionalNoturnoController.indCampusTecnico}"
 						value="#{solicitacaoAdicionalNoturnoController.solicitacaoAdicionalNoturno.lotacao.codigo}">
 						<f:selectItem itemLabel="SELECIONE" itemValue="" />
 						<f:selectItems
 							value="#{solicitacaoAdicionalNoturnoController.lotacoes}" />
 						<a4j:support event="onchange"
 							action="#{solicitacaoAdicionalNoturnoController.listarServidoresTecnicosCampus}"
-							ajaxSingle="true" reRender="servidoresCampus, campus"></a4j:support>
+							ajaxSingle="true" reRender="servidoresCampus, campus, form"></a4j:support>
 					</h:selectOneMenu>
 
 					<h:outputText value="Servidor: " />
 					<h:selectOneMenu id="servidoresCampus"
+						disabled="#{!solicitacaoAdicionalNoturnoController.indCampusTecnico}"
 						value="#{solicitacaoAdicionalNoturnoController.adicionalNoturno.servidor.codigo}">
 						<f:selectItem itemLabel="SELECIONE" itemValue="" />
 						<f:selectItems
@@ -56,6 +57,7 @@
 
 					<h:outputText value="Data: " />
 					<rich:calendar id="data"
+						disabled="#{!solicitacaoAdicionalNoturnoController.indCampusTecnico}"
 						value="#{solicitacaoAdicionalNoturnoController.adicionalNoturno.data}"
 						locale="" popup="true" datePattern="dd/MM/yyyy"
 						showApplyButton="#" cellWidth="12px" cellHeight="12px"
@@ -63,12 +65,14 @@
 
 					<h:outputText value="Hora Inicial: " />
 					<h:inputText id="horaInicial"
+						disabled="#{!solicitacaoAdicionalNoturnoController.indCampusTecnico}"
 						value="#{solicitacaoAdicionalNoturnoController.adicionalNoturno.horaInicial}"
 						size="8" maxlength="5" onkeypress="mascara(this,horario);">
 					</h:inputText>
 
 					<h:outputText value="Hora Final: " />
 					<h:inputText id="horaFinal"
+						disabled="#{!solicitacaoAdicionalNoturnoController.indCampusTecnico}"
 						value="#{solicitacaoAdicionalNoturnoController.adicionalNoturno.horaFinal}"
 						size="8" maxlength="5" onkeypress="mascara(this,horario);"
 						validatorMessage="Campo Hora Final deve ter no mínimo 4 caracteres!">
@@ -80,6 +84,7 @@
 				<h:panelGrid columns="2">
 					<h:outputText id="motivo" value="Motivo: " />
 					<h:inputTextarea rows="5" cols="50"
+						disabled="#{!solicitacaoAdicionalNoturnoController.indCampusTecnico}"
 						value="#{solicitacaoAdicionalNoturnoController.adicionalNoturno.motivo}"></h:inputTextarea>
 				</h:panelGrid>
 
