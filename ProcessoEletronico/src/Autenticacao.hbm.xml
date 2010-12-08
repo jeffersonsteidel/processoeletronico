@@ -9,5 +9,6 @@
 		<property name="senha" column="AUT_SENHA" />	
 		<property name="indAdministrador" column="AUT_IND_ADMINISTRADOR" type="boolean"/>	
 		<property name="indDiretor" column="AUT_IND_DIRETOR" type="boolean"/>	
+		<property name="indSecretaria" column="AUT_IND_SECRETARIA" type="boolean"/>	
 	</class>
 </hibernate-mapping>

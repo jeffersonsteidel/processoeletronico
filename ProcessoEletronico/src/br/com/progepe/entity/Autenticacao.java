@@ -9,6 +9,7 @@ public class Autenticacao implements Serializable {
 	private String senha;
 	private Boolean indAdministrador;
 	private Boolean indDiretor;
+	private Boolean indSecretaria;
 	
 	public Integer getSiape() {
 		return siape;
@@ -33,5 +34,11 @@ public class Autenticacao implements Serializable {
 	}
 	public void setIndDiretor(Boolean indDiretor) {
 		this.indDiretor = indDiretor;
+	}
+	public Boolean getIndSecretaria() {
+		return indSecretaria;
+	}
+	public void setIndSecretaria(Boolean indSecretaria) {
+		this.indSecretaria = indSecretaria;
 	}
 }
