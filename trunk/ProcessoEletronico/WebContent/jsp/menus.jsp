@@ -88,11 +88,11 @@
 					action="#{solicitacaoAlimentacaoController.abrirSolicitacaoAlimentacao}"
 					icon="../images/auxilioalimentacao.gif" />
 				<rich:menuItem submitMode="ajax"
-					value="Adicional Noturno - Técnicos"
+					value="Adicional Noturno - Técnicos" rendered="#{autenticacaoController.siapeAutenticado.indSecretaria}"
 					action="#{solicitacaoAdicionalNoturnoController.abrirSolicitacaoAdicionalNoturnoTecnico}"
 					icon="../images/auxilioalimentacao.gif" />
 				<rich:menuItem submitMode="ajax"
-					value="Adicional Noturno - Docentes"
+					value="Adicional Noturno - Docentes" rendered="#{autenticacaoController.siapeAutenticado.indSecretaria}"
 					action="#{solicitacaoAdicionalNoturnoController.abrirSolicitacaoAdicionalNoturnoDocentes}"
 					icon="../images/auxilioalimentacao.gif" />
 				<rich:menuItem submitMode="ajax" value="Licença de Casamento"
