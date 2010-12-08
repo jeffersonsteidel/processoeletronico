@@ -10,15 +10,15 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
 
-import br.com.progepe.dao.CursoDAO;
+import br.com.progepe.constantes.Constantes;
 import br.com.progepe.dao.DAO;
 import br.com.progepe.dao.ServidorDAO;
 import br.com.progepe.entity.AdicionalNoturno;
 import br.com.progepe.entity.Autenticacao;
-import br.com.progepe.entity.Curso;
 import br.com.progepe.entity.Lotacao;
 import br.com.progepe.entity.Servidor;
 import br.com.progepe.entity.SolicitacaoAdicionalNoturno;
+import br.com.progepe.entity.TipoSolicitacao;
 
 public class SolicitacaoAdicionalNoturnoController implements Serializable {
 	private static final long serialVersionUID = -333995781063775201L;
@@ -27,13 +27,14 @@ public class SolicitacaoAdicionalNoturnoController implements Serializable {
 	private List<SelectItem> lotacoes = new ArrayList<SelectItem>();
 	private List<SelectItem> servidoresCampus = new ArrayList<SelectItem>();
 	private AdicionalNoturno adicionalNoturno;
-	private List<SelectItem> cursos = new ArrayList<SelectItem>();
 	private List<SelectItem> professoresCampus = new ArrayList<SelectItem>();
 	private List<AdicionalNoturno> listaAdicionalNoturno = new ArrayList<AdicionalNoturno>();
 	private List<AdicionalNoturno> listaAdicionalTecnicos;
+	private List<AdicionalNoturno> listaSolicitacaoAdicionalDocentes;
 
 	private Boolean indTurmaDefinida = false;
 	private Boolean indCursoDefinido = false;
+	private Boolean indCampusDefinido = false;
 
 	public List<SelectItem> getLotacoes() {
 		return lotacoes;
@@ -66,14 +67,6 @@ public class SolicitacaoAdicionalNoturnoController implements Serializable {
 
 	public void setAdicionalNoturno(AdicionalNoturno adicionalNoturno) {
 		this.adicionalNoturno = adicionalNoturno;
-	}
-
-	public List<SelectItem> getCursos() {
-		return cursos;
-	}
-
-	public void setCursos(List<SelectItem> cursos) {
-		this.cursos = cursos;
 	}
 
 	public List<SelectItem> getProfessoresCampus() {
@@ -118,6 +111,23 @@ public class SolicitacaoAdicionalNoturnoController implements Serializable {
 		return indCursoDefinido;
 	}
 
+	public List<AdicionalNoturno> getListaSolicitacaoAdicionalDocentes() {
+		return listaSolicitacaoAdicionalDocentes;
+	}
+
+	public void setListaSolicitacaoAdicionalDocentes(
+			List<AdicionalNoturno> listaSolicitacaoAdicionalDocentes) {
+		this.listaSolicitacaoAdicionalDocentes = listaSolicitacaoAdicionalDocentes;
+	}
+
+	public Boolean getIndCampusDefinido() {
+		return indCampusDefinido;
+	}
+
+	public void setIndCampusDefinido(Boolean indCampusDefinido) {
+		this.indCampusDefinido = indCampusDefinido;
+	}
+
 	public void abrirSolicitacaoAdicionalNoturnoTecnico() throws ParseException {
 		try {
 			solicitacaoAdicionalNoturno = new SolicitacaoAdicionalNoturno();
@@ -128,7 +138,7 @@ public class SolicitacaoAdicionalNoturnoController implements Serializable {
 			solicitacaoAdicionalNoturno.setLotacao(new Lotacao());
 			buscarServidorLogado();
 			listarLotacoes();
-			indCursoDefinido = false;
+			indCampusDefinido = false;
 			FacesContext.getCurrentInstance().getExternalContext()
 					.redirect("solicitacaoAdicionalNoturnoTecnico.jsp");
 		} catch (IOException e) {
@@ -143,15 +153,30 @@ public class SolicitacaoAdicionalNoturnoController implements Serializable {
 			solicitacaoAdicionalNoturno.setLotacao(new Lotacao());
 			adicionalNoturno = new AdicionalNoturno();
 			adicionalNoturno.setServidor(new Servidor());
-			solicitacaoAdicionalNoturno.setCurso(new Curso());
 			listaAdicionalNoturno = new ArrayList<AdicionalNoturno>();
-			cursos = new ArrayList<SelectItem>();
 			professoresCampus = new ArrayList<SelectItem>();
 			buscarServidorLogado();
 			listarLotacoes();
-			indTurmaDefinida = false;
 			FacesContext.getCurrentInstance().getExternalContext()
 					.redirect("solicitacaoAdicionalNoturnoDocentes.jsp");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void abrirListarSolicitacaoAdicionalNoturnoDocentes()
+			throws ParseException {
+		try {
+			solicitacaoAdicionalNoturno = new SolicitacaoAdicionalNoturno();
+			solicitacaoAdicionalNoturno.setServidor(new Servidor());
+			solicitacaoAdicionalNoturno.setLotacao(new Lotacao());
+			listaSolicitacaoAdicionalDocentes = new ArrayList<AdicionalNoturno>();
+			listaSolicitacaoAdicionalDocentes.clear();
+			buscarServidorLogado();
+			listarLotacoes();
+			indCursoDefinido = false;
+			FacesContext.getCurrentInstance().getExternalContext()
+					.redirect("listarSolicitacaoAdicionalNoturnoDocentes.jsp");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -190,20 +215,8 @@ public class SolicitacaoAdicionalNoturnoController implements Serializable {
 			servidoresCampus.add(new SelectItem(item.getCodigo(), item
 					.getNome()));
 		}
-		indCursoDefinido = true;
+		indCampusDefinido = true;
 		return servidoresCampus;
-	}
-
-	public List<SelectItem> listarCursos() {
-
-		cursos = new ArrayList<SelectItem>();
-		List<Curso> cursoList = new ArrayList<Curso>();
-		cursoList = CursoDAO.getInstance().listByCampus(
-				solicitacaoAdicionalNoturno.getLotacao());
-		for (Curso curso : cursoList) {
-			cursos.add(new SelectItem(curso.getCodigo(), curso.getDescricao()));
-		}
-		return cursos;
 	}
 
 	public List<SelectItem> listarProfessoresCampus() {
@@ -218,18 +231,13 @@ public class SolicitacaoAdicionalNoturnoController implements Serializable {
 		return professoresCampus;
 	}
 
-	public void carregarCursosProfessoresPorLotacao() {
-		listarProfessoresCampus();
-		listarCursos();
-	}
-
 	public void confirmarTurma() {
 		if (solicitacaoAdicionalNoturno.getLotacao() != null
 				&& solicitacaoAdicionalNoturno.getLotacao().getCodigo() != 0
-				&& solicitacaoAdicionalNoturno.getCurso() != null
-				&& solicitacaoAdicionalNoturno.getCurso().getCodigo() != 0
-				&& solicitacaoAdicionalNoturno.getTurma() != null
-				&& solicitacaoAdicionalNoturno.getTurma() != "") {
+				&& adicionalNoturno.getCurso() != null
+				&& adicionalNoturno.getCurso() != ""
+				&& adicionalNoturno.getTurma() != null
+				&& adicionalNoturno.getTurma() != "") {
 			indTurmaDefinida = true;
 		} else {
 			indTurmaDefinida = false;
@@ -245,8 +253,7 @@ public class SolicitacaoAdicionalNoturnoController implements Serializable {
 				|| solicitacaoAdicionalNoturno.getLotacao().getCodigo() == 0) {
 			ok = false;
 			FacesMessage message = new FacesMessage(
-					FacesMessage.SEVERITY_ERROR,
-					"Campo Campus é obrigatório!",
+					FacesMessage.SEVERITY_ERROR, "Campo Campus é obrigatório!",
 					"Campo Campus é obrigatório!");
 			FacesContext.getCurrentInstance().addMessage("", message);
 		}
@@ -304,7 +311,8 @@ public class SolicitacaoAdicionalNoturnoController implements Serializable {
 					break;
 				}
 			}
-			adicionalNoturno.setDiaSemana(pesquisarDiaSemana(adicionalNoturno.getData().getDay()));
+			adicionalNoturno.setDiaSemana(pesquisarDiaSemana(adicionalNoturno
+					.getData().getDay()));
 			adicionalNoturno.setIndAprovadoDiretor(false);
 			adicionalNoturno.setIndAprovadoProgepe(false);
 			listaAdicionalTecnicos.add(adicionalNoturno);
@@ -372,7 +380,8 @@ public class SolicitacaoAdicionalNoturnoController implements Serializable {
 					break;
 				}
 			}
-			adicionalNoturno.setDiaSemana(pesquisarDiaSemana(adicionalNoturno.getData().getDay()));
+			adicionalNoturno.setDiaSemana(pesquisarDiaSemana(adicionalNoturno
+					.getData().getDay()));
 			adicionalNoturno.setIndAprovadoDiretor(false);
 			adicionalNoturno.setIndAprovadoProgepe(false);
 			listaAdicionalNoturno.add(adicionalNoturno);
@@ -393,7 +402,15 @@ public class SolicitacaoAdicionalNoturnoController implements Serializable {
 		solicitacaoAdicionalNoturno.getAdicionais().addAll(
 				listaAdicionalTecnicos);
 		solicitacaoAdicionalNoturno.setIndDocente(false);
+		solicitacaoAdicionalNoturno.setTipoSolicitacao(new TipoSolicitacao());
+		solicitacaoAdicionalNoturno.getTipoSolicitacao().setCodigo(Constantes.TIPO_SOLICITACAO_ADICIONAL_NOTURNO_TECNICOS);
 		DAO.getInstance().saveOrUpdate(solicitacaoAdicionalNoturno);
+		solicitacaoAdicionalNoturno = new SolicitacaoAdicionalNoturno();
+		listaAdicionalTecnicos = new ArrayList<AdicionalNoturno>();
+		adicionalNoturno = new AdicionalNoturno();
+		adicionalNoturno.setServidor(new Servidor());
+		solicitacaoAdicionalNoturno.setLotacao(new Lotacao());
+		indCampusDefinido = false;
 	}
 
 	public void excluirDocente() {
@@ -407,9 +424,9 @@ public class SolicitacaoAdicionalNoturnoController implements Serializable {
 		adicionalNoturno = new AdicionalNoturno();
 		adicionalNoturno.setServidor(new Servidor());
 	}
-	
+
 	public String pesquisarDiaSemana(int diaSemana) {
-		String 	diaSemanaString = null;
+		String diaSemanaString = null;
 		switch (diaSemana) {
 
 		case 0: {
