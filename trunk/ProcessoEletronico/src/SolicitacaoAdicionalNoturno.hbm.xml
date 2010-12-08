@@ -6,10 +6,7 @@
 	<joined-subclass name="br.com.progepe.entity.SolicitacaoAdicionalNoturno"
 		extends="br.com.progepe.entity.Solicitacao">
 		<key column="SOLIC_COD"></key>
-		<property name="turma" column="SOLIC_TURMA" />
 		<property name="indDocente" column="SOLIC_IND_DOCENTE" type="boolean" />
-		<many-to-one name="curso" class="br.com.progepe.entity.Curso"
-			column="CUR_COD" lazy="false" />
 		<many-to-one name="lotacao" class="br.com.progepe.entity.Lotacao"
 			column="LOT_COD" lazy="false" />
 		<many-to-one name="servidor" class="br.com.progepe.entity.Servidor"

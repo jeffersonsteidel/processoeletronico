@@ -38,29 +38,28 @@
 				<h:panelGrid columns="7">
 
 					<h:outputText value="Campus: " />
-					<h:selectOneMenu id="campus" required="true" requiredMessage="Campo Campus é obrigatório!"
+					<h:selectOneMenu id="campus" required="true"
+						requiredMessage="Campo Campus é obrigatório!"
 						value="#{solicitacaoAdicionalNoturnoController.solicitacaoAdicionalNoturno.lotacao.codigo}"
 						disabled="#{solicitacaoAdicionalNoturnoController.indTurmaDefinida}">
 						<f:selectItem itemLabel="SELECIONE" itemValue="" />
 						<f:selectItems
 							value="#{solicitacaoAdicionalNoturnoController.lotacoes}" />
 						<a4j:support event="onchange"
-							action="#{solicitacaoAdicionalNoturnoController.carregarCursosProfessoresPorLotacao}"
+							action="#{solicitacaoAdicionalNoturnoController.listarProfessoresCampus}"
 							ajaxSingle="true" reRender="curso,professor, form"></a4j:support>
 					</h:selectOneMenu>
+
 					<h:outputText value="Curso: " />
-					<h:selectOneMenu id="curso"
+					<h:inputText id="curso"
 						disabled="#{solicitacaoAdicionalNoturnoController.indTurmaDefinida}"
-						value="#{solicitacaoAdicionalNoturnoController.solicitacaoAdicionalNoturno.curso.codigo}"
+						value="#{solicitacaoAdicionalNoturnoController.adicionalNoturno.curso}"
 						required="true" requiredMessage="Campo Curso é obrigatório!">
-						<f:selectItem itemLabel="SELECIONE" itemValue="" />
-						<f:selectItems
-							value="#{solicitacaoAdicionalNoturnoController.cursos}" />
-					</h:selectOneMenu>
+					</h:inputText>
 
 					<h:outputText value="Turma: " />
 					<h:inputText
-						value="#{solicitacaoAdicionalNoturnoController.solicitacaoAdicionalNoturno.turma}"
+						value="#{solicitacaoAdicionalNoturnoController.adicionalNoturno.turma}"
 						required="true" requiredMessage="Campo Turma é obrigatório!"
 						disabled="#{solicitacaoAdicionalNoturnoController.indTurmaDefinida}">
 
@@ -136,7 +135,7 @@
 					</rich:column>
 
 
-					
+
 
 					<rich:column width="435px">
 						<f:facet name="header">
@@ -146,7 +145,7 @@
 							<f:convertDateTime pattern="dd/MM/yyyy" />
 						</h:outputText>
 					</rich:column>
-					
+
 					<rich:column width="435px">
 						<f:facet name="header">
 							<h:outputText value="Dia da Semana" />
@@ -154,7 +153,7 @@
 						<h:outputText value="#{list.diaSemana}">
 						</h:outputText>
 					</rich:column>
-<rich:column width="435px">
+					<rich:column width="435px">
 						<f:facet name="header">
 							<h:outputText value="Horário" />
 						</f:facet>

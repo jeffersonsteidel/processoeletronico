@@ -7,22 +7,10 @@ public class SolicitacaoAdicionalNoturno extends Solicitacao {
 
 	private static final long serialVersionUID = 1L;
 
-	private String turma;
 	private Boolean indDocente;
-
-	private Curso curso;
 	private Lotacao lotacao;
 	private Servidor servidor;
-
 	private Set<AdicionalNoturno> adicionais = new HashSet<AdicionalNoturno>();
-
-	public String getTurma() {
-		return turma;
-	}
-
-	public void setTurma(String turma) {
-		this.turma = turma;
-	}
 
 	public boolean isIndDocente() {
 		return indDocente;
@@ -30,14 +18,6 @@ public class SolicitacaoAdicionalNoturno extends Solicitacao {
 
 	public void setIndDocente(boolean indDocente) {
 		this.indDocente = indDocente;
-	}
-
-	public Curso getCurso() {
-		return curso;
-	}
-
-	public void setCurso(Curso curso) {
-		this.curso = curso;
 	}
 
 	public Lotacao getLotacao() {

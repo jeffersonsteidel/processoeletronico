@@ -36,7 +36,7 @@
 				<h:panelGrid columns="10">
 					<h:outputText value="Campus: " />
 					<h:selectOneMenu id="campus"
-						disabled="#{solicitacaoAdicionalNoturnoController.indCursoDefinido}"
+						disabled="#{solicitacaoAdicionalNoturnoController.indCampusDefinido}"
 						value="#{solicitacaoAdicionalNoturnoController.solicitacaoAdicionalNoturno.lotacao.codigo}">
 						<f:selectItem itemLabel="SELECIONE" itemValue="" />
 						<f:selectItems
