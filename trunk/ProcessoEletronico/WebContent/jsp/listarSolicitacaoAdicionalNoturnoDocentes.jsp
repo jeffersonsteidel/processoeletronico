@@ -34,33 +34,20 @@
 					<f:selectItems
 						value="#{solicitacaoAdicionalNoturnoController.lotacoes}" />
 					<a4j:support event="onchange"
-							action="#{solicitacaoAdicionalNoturnoController.listarProfessoresCampus}"
-							ajaxSingle="true" reRender="curso"></a4j:support>
+							action="#{solicitacaoAdicionalNoturnoController.listarAdicionaisAprovacao}"
+							ajaxSingle="true" reRender="listaSolicitacoesAdicionalDocentes"></a4j:support>
+ 
 				</h:selectOneMenu>
 				
-				<h:outputText value="Curso: " />
-				<h:inputText id="curso"
-						disabled="#{solicitacaoAdicionalNoturnoController.indTurmaDefinida}"
-						value="#{solicitacaoAdicionalNoturnoController.solicitacaoAdicionalNoturno.curso}"
-						required="true" requiredMessage="Campo Curso é obrigatório!">
-					</h:inputText>
-				
-				<h:outputText  value="Turma: "/>
-				<h:inputText
-						value="#{solicitacaoAdicionalNoturnoController.solicitacaoAdicionalNoturno.turma}"/>
-
-				<a4j:commandButton value="Pesquisar" action="#"
-					reRender="listaSolicitacoesAdicionalDocentes" />
+			
 			</h:panelGrid>
 
 			<h:panelGrid columns="1">
-
 				<rich:dataTable id="listaSolicitacoesAdicionalDocentes"
-					value="#{solicitacaoAdicionaltNoturnoController.listaSolicitacoesAdicionalDocentes}"
-					var="list" width="1160px" columnClasses="center" rows="15"
-					reRender="ds">
+					value="#{solicitacaoAdicionalNoturnoController.listaAdicionaisDocentes}"
+					var="list" width="1160px" columnClasses="center">
 
-					<rich:column width="435px" sortBy="#{list.nome}">
+					<rich:column width="435px" sortBy="#{list.servidor.nome}">
 						<f:facet name="header">
 							<h:outputText value="Nome" />
 						</f:facet>
@@ -93,22 +80,21 @@
 
 					<rich:column width="435px">
 						<f:facet name="header">
-							<h:outputText value="Matéria" />
+							<h:outputText value="Curso - Turma - Matéria" />
 						</f:facet>
-						<h:outputText value="#{list.materia}" />
+						<h:outputText value="#{list.curso} - #{list.turma} - #{list.materia}" />
 					</rich:column>
-
 					<rich:column width="435px">
 						<f:facet name="header">
 							<h:outputText value="Aprovação" />
 						</f:facet>
-						<h:outputText value="#" />
+						<h:selectBooleanCheckbox value="#{list.indAprovadoDiretor}" />
 					</rich:column>
-					<f:facet name="footer">
-						<rich:datascroller id="ds"></rich:datascroller>
-					</f:facet>
 				</rich:dataTable>
 			</h:panelGrid>
+			<center></center><h:panelGrid columns="1">
+			<a4j:commandButton action="#{solicitacaoAdicionalNoturnoController.encaminharDocentes}" value="Encaminhar Para Progepe"></a4j:commandButton>
+			</h:panelGrid></center>
 		</rich:panel>
 	</a4j:form></center>
 </f:view>
