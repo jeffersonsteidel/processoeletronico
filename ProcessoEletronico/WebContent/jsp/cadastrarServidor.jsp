@@ -135,7 +135,7 @@
 						<h:inputText
 							title="A Id Única pode ser encontrada no contra-cheque!"
 							value="#{servidorController.servidor.identificacaoUnica}"
-							size="10" maxlength="9" required="true"
+							size="10" maxlength="10" required="true"
 							requiredMessage="Campo Id Única é obrigatório!"
 							onkeypress="mascara(this,digitoVerificador);"></h:inputText>
 

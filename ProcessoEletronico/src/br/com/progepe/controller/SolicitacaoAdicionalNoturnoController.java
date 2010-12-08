@@ -11,6 +11,7 @@ import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
 
 import br.com.progepe.constantes.Constantes;
+import br.com.progepe.dao.AdicionalNoturnoDAO;
 import br.com.progepe.dao.DAO;
 import br.com.progepe.dao.ServidorDAO;
 import br.com.progepe.entity.AdicionalNoturno;
@@ -18,6 +19,7 @@ import br.com.progepe.entity.Autenticacao;
 import br.com.progepe.entity.Lotacao;
 import br.com.progepe.entity.Servidor;
 import br.com.progepe.entity.SolicitacaoAdicionalNoturno;
+import br.com.progepe.entity.StatusSolicitacao;
 import br.com.progepe.entity.TipoSolicitacao;
 
 public class SolicitacaoAdicionalNoturnoController implements Serializable {
@@ -30,7 +32,7 @@ public class SolicitacaoAdicionalNoturnoController implements Serializable {
 	private List<SelectItem> professoresCampus = new ArrayList<SelectItem>();
 	private List<AdicionalNoturno> listaAdicionalNoturno = new ArrayList<AdicionalNoturno>();
 	private List<AdicionalNoturno> listaAdicionalTecnicos;
-	private List<AdicionalNoturno> listaSolicitacaoAdicionalDocentes;
+	private List<AdicionalNoturno> listaAdicionaisDocentes = new ArrayList<AdicionalNoturno>();
 
 	private Boolean indCampusTecnico = false;
 	private Boolean indCampusDocente = false;
@@ -94,15 +96,6 @@ public class SolicitacaoAdicionalNoturnoController implements Serializable {
 		return listaAdicionalTecnicos;
 	}
 
-	public List<AdicionalNoturno> getListaSolicitacaoAdicionalDocentes() {
-		return listaSolicitacaoAdicionalDocentes;
-	}
-
-	public void setListaSolicitacaoAdicionalDocentes(
-			List<AdicionalNoturno> listaSolicitacaoAdicionalDocentes) {
-		this.listaSolicitacaoAdicionalDocentes = listaSolicitacaoAdicionalDocentes;
-	}
-
 	public Boolean getIndCampusTecnico() {
 		return indCampusTecnico;
 	}
@@ -117,6 +110,15 @@ public class SolicitacaoAdicionalNoturnoController implements Serializable {
 
 	public void setIndCampusDocente(Boolean indCampusDocente) {
 		this.indCampusDocente = indCampusDocente;
+	}
+
+	public List<AdicionalNoturno> getListaAdicionaisDocentes() {
+		return listaAdicionaisDocentes;
+	}
+
+	public void setListaAdicionaisDocentes(
+			List<AdicionalNoturno> listaAdicionaisDocentes) {
+		this.listaAdicionaisDocentes = listaAdicionaisDocentes;
 	}
 
 	public void abrirSolicitacaoAdicionalNoturnoTecnico() throws ParseException {
@@ -159,18 +161,32 @@ public class SolicitacaoAdicionalNoturnoController implements Serializable {
 	public void abrirListarSolicitacaoAdicionalNoturnoDocentes()
 			throws ParseException {
 		try {
+			listaAdicionaisDocentes = new ArrayList<AdicionalNoturno>();
 			solicitacaoAdicionalNoturno = new SolicitacaoAdicionalNoturno();
 			solicitacaoAdicionalNoturno.setServidor(new Servidor());
 			solicitacaoAdicionalNoturno.setLotacao(new Lotacao());
-			listaSolicitacaoAdicionalDocentes = new ArrayList<AdicionalNoturno>();
-			listaSolicitacaoAdicionalDocentes.clear();
-			buscarServidorLogado();
+			buscarDiretor();
 			listarLotacoes();
 			FacesContext.getCurrentInstance().getExternalContext()
 					.redirect("listarSolicitacaoAdicionalNoturnoDocentes.jsp");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+
+	public List<AdicionalNoturno> listarAdicionaisAprovacao()
+			throws ParseException {
+		listaAdicionaisDocentes.clear();
+		solicitacaoAdicionalNoturno = AdicionalNoturnoDAO.getInstance()
+				.carregarSolicitacaoAdicionalNoturnoDocente(
+						solicitacaoAdicionalNoturno.getLotacao(), true);
+		List<AdicionalNoturno> listAdicionalNoturno = new ArrayList<AdicionalNoturno>();
+		listAdicionalNoturno.addAll(solicitacaoAdicionalNoturno.getAdicionais());
+		for (AdicionalNoturno adicional : listAdicionalNoturno) {
+			adicional.setDiaSemana(pesquisarDiaSemana(adicional.getData().getDay()));
+			listaAdicionaisDocentes.add(adicional);
+		}
+		return this.listaAdicionaisDocentes;
 	}
 
 	public void buscarServidorLogado() throws IOException, ParseException {
@@ -182,6 +198,17 @@ public class SolicitacaoAdicionalNoturnoController implements Serializable {
 				siapeAutenticado.getSiape());
 		solicitacaoAdicionalNoturno.setSolicitante(ServidorDAO.getInstance()
 				.refreshBySiape(solicitacaoAdicionalNoturno.getSolicitante()));
+	}
+
+	public void buscarDiretor() throws IOException, ParseException {
+		Autenticacao siapeAutenticado = (Autenticacao) FacesContext
+				.getCurrentInstance().getExternalContext().getSessionMap()
+				.get("usuarioLogado");
+		solicitacaoAdicionalNoturno.setServidor(new Servidor());
+		solicitacaoAdicionalNoturno.getServidor().setSiape(
+				siapeAutenticado.getSiape());
+		solicitacaoAdicionalNoturno.setServidor(ServidorDAO.getInstance()
+				.refreshBySiape(solicitacaoAdicionalNoturno.getServidor()));
 	}
 
 	@SuppressWarnings("unchecked")
@@ -346,7 +373,8 @@ public class SolicitacaoAdicionalNoturnoController implements Serializable {
 				|| adicionalNoturno.getMateria() == "") {
 			ok = false;
 			FacesMessage message = new FacesMessage(
-					FacesMessage.SEVERITY_ERROR, "Campo Materia é obrigatório!",
+					FacesMessage.SEVERITY_ERROR,
+					"Campo Materia é obrigatório!",
 					"Campo Matéria é obrigatório!");
 			FacesContext.getCurrentInstance().addMessage("", message);
 		}
@@ -435,6 +463,14 @@ public class SolicitacaoAdicionalNoturnoController implements Serializable {
 		adicionalNoturno.setServidor(new Servidor());
 		solicitacaoAdicionalNoturno.setLotacao(new Lotacao());
 		indCampusTecnico = false;
+	}
+	
+	public void encaminharDocentes(){
+		solicitacaoAdicionalNoturno.getAdicionais().clear();
+		solicitacaoAdicionalNoturno.getAdicionais().addAll(listaAdicionaisDocentes);
+		solicitacaoAdicionalNoturno.setStatusSolicitacao(new StatusSolicitacao());
+		solicitacaoAdicionalNoturno.getStatusSolicitacao().setCodigo(Constantes.STATUS_SOLICITACAO_ENCAMINHADO);
+		AdicionalNoturnoDAO.getInstance().saveOrUpdateAdicional(solicitacaoAdicionalNoturno);
 	}
 
 	public void excluirDocente() {
