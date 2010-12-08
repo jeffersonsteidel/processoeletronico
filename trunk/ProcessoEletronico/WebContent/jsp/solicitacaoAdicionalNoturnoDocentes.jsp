@@ -38,10 +38,9 @@
 				<h:panelGrid columns="7">
 
 					<h:outputText value="Campus: " />
-					<h:selectOneMenu id="campus" required="true"
-						requiredMessage="Campo Campus é obrigatório!"
+					<h:selectOneMenu id="campus"
 						value="#{solicitacaoAdicionalNoturnoController.solicitacaoAdicionalNoturno.lotacao.codigo}"
-						disabled="#{solicitacaoAdicionalNoturnoController.indTurmaDefinida}">
+						disabled="#{solicitacaoAdicionalNoturnoController.indCampusDocente}">
 						<f:selectItem itemLabel="SELECIONE" itemValue="" />
 						<f:selectItems
 							value="#{solicitacaoAdicionalNoturnoController.lotacoes}" />
@@ -51,35 +50,29 @@
 					</h:selectOneMenu>
 
 					<h:outputText value="Curso: " />
-					<h:inputText id="curso"
-						disabled="#{solicitacaoAdicionalNoturnoController.indTurmaDefinida}"
-						value="#{solicitacaoAdicionalNoturnoController.adicionalNoturno.curso}"
-						required="true" requiredMessage="Campo Curso é obrigatório!">
+					<h:inputText id="curso" size="80"
+						disabled="#{!solicitacaoAdicionalNoturnoController.indCampusDocente}"
+						value="#{solicitacaoAdicionalNoturnoController.adicionalNoturno.curso}">
 					</h:inputText>
 
 					<h:outputText value="Turma: " />
-					<h:inputText
+					<h:inputText size="20"
 						value="#{solicitacaoAdicionalNoturnoController.adicionalNoturno.turma}"
-						required="true" requiredMessage="Campo Turma é obrigatório!"
-						disabled="#{solicitacaoAdicionalNoturnoController.indTurmaDefinida}">
-
+						disabled="#{!solicitacaoAdicionalNoturnoController.indCampusDocente}">
 					</h:inputText>
-					<a4j:commandButton value="OK"
-						action="#{solicitacaoAdicionalNoturnoController.confirmarTurma}"
-						disabled="#{solicitacaoAdicionalNoturnoController.indTurmaDefinida}"
-						reRender="form" />
+
 				</h:panelGrid>
 
 				<h:panelGrid columns="10">
 					<h:outputText value="Matéria: " />
 					<h:inputText
 						value="#{solicitacaoAdicionalNoturnoController.adicionalNoturno.materia}"
-						disabled="#{!solicitacaoAdicionalNoturnoController.indTurmaDefinida}" />
+						disabled="#{!solicitacaoAdicionalNoturnoController.indCampusDocente}" />
 
 					<h:outputText value="Servidor: " />
 					<h:selectOneMenu id="professor"
 						value="#{solicitacaoAdicionalNoturnoController.adicionalNoturno.servidor.codigo}"
-						disabled="#{!solicitacaoAdicionalNoturnoController.indTurmaDefinida}">
+						disabled="#{!solicitacaoAdicionalNoturnoController.indCampusDocente}">
 						<f:selectItem itemLabel="SELECIONE" itemValue="" />
 						<f:selectItems
 							value="#{solicitacaoAdicionalNoturnoController.professoresCampus}" />
@@ -91,13 +84,13 @@
 						locale="" popup="true" datePattern="dd/MM/yyyy"
 						showApplyButton="#" cellWidth="12px" cellHeight="12px"
 						style="width:80px" inputSize="12"
-						disabled="#{!solicitacaoAdicionalNoturnoController.indTurmaDefinida}" />
+						disabled="#{!solicitacaoAdicionalNoturnoController.indCampusDocente}" />
 
 					<h:outputText value="Hora Inicial: " />
 					<h:inputText
 						value="#{solicitacaoAdicionalNoturnoController.adicionalNoturno.horaInicial}"
 						size="10" maxlength="5" onkeypress="mascara(this,horario);"
-						disabled="#{!solicitacaoAdicionalNoturnoController.indTurmaDefinida}"
+						disabled="#{!solicitacaoAdicionalNoturnoController.indCampusDocente}"
 						validatorMessage="Campo Hora Inicial deve ter no mínimo 4 caracteres!">
 						<f:validateLength minimum="4" />
 					</h:inputText>
@@ -106,7 +99,7 @@
 					<h:inputText
 						value="#{solicitacaoAdicionalNoturnoController.adicionalNoturno.horaFinal}"
 						size="10" maxlength="5" onkeypress="mascara(this,horario);"
-						disabled="#{!solicitacaoAdicionalNoturnoController.indTurmaDefinida}"
+						disabled="#{!solicitacaoAdicionalNoturnoController.indCampusDocente}"
 						validatorMessage="Campo Hora Final deve ter no mínimo 4 caracteres!">
 						<f:validateLength minimum="4" />
 					</h:inputText>
