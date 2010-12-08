@@ -1,6 +1,5 @@
 package br.com.progepe.dao;
 
-import java.util.Date;
 import java.util.List;
 
 import javax.faces.application.FacesMessage;
@@ -8,11 +7,9 @@ import javax.faces.context.FacesContext;
 
 import org.hibernate.Criteria;
 import org.hibernate.Query;
-import org.hibernate.criterion.Restrictions;
 
 import br.com.progepe.entity.AdicionalNoturno;
 import br.com.progepe.entity.Lotacao;
-import br.com.progepe.entity.Solicitacao;
 import br.com.progepe.entity.SolicitacaoAdicionalNoturno;
 import br.com.progepe.entity.SolicitacaoAfastamentoConjuge;
 import br.com.progepe.entity.SolicitacaoAlimentacao;

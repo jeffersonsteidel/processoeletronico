@@ -22,7 +22,6 @@ public class Constantes {
 	public static final Long TIPO_SOLICITACAO_AUXILIO_INSALUBRIDADE = 7L;
 	public static final Long TIPO_SOLICITACAO_OBITO = 8L;
 	public static final Long TIPO_SOLICITACAO_AFASTAMENTO_CONJUGE = 9L;
-	public static final Long TIPO_SOLICITACAO_ADICIONAL_NOTURNO = 10L;
-	
-	
+	public static final Long TIPO_SOLICITACAO_ADICIONAL_NOTURNO_TECNICOS = 10L;
+	public static final Long TIPO_SOLICITACAO_ADICIONAL_NOTURNO_DOCENTES = 11L;
 }

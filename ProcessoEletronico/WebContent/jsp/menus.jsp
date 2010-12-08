@@ -117,6 +117,9 @@
 				<rich:menuItem submitMode="ajax" value="Solicitações Adicional Noturno"
 					action="#{solicitacaoAdicionalNoturnoController.abrirListarSolicitacaoAdicionalNoturnoTecnico}"
 					icon="../images/MINHASSOLICITACOES.GIF" />
+				<rich:menuItem submitMode="ajax" value="Solicitações Adicional Noturno - Docentes"
+					action="#{solicitacaoAdicionalNoturnoController.abrirListarSolicitacaoAdicionalNoturnoDocentes}"
+					icon="../images/MINHASSOLICITACOES.GIF" />
 				<rich:menuItem submitMode="ajax" value="Listar Solicitações"
 					rendered="#{autenticacaoController.siapeAutenticado.indAdministrador}"
 					action="#{solicitacaoController.abrirPesquisarSolicitacoes}"

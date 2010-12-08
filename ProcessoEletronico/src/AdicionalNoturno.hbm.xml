@@ -8,6 +8,8 @@
 			<generator class="increment"></generator>
 		</id>
 		<property name="data" column="ADIC_DATA" />
+		<property name="turma" column="ADIC_TURMA" />
+		<property name="curso" column="ADIC_CURSO" />
 		<property name="motivo" column="ADIC_MOTIVO" />
 		<property name="horaInicial" column="ADIC_HORA_INICIAL" />
 		<property name="horaFinal" column="ADIC_HORA_FINAL" />

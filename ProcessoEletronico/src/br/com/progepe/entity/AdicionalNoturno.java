@@ -8,6 +8,8 @@ public class AdicionalNoturno {
 
 	private Integer codigo;
 	private Date data;
+	private String turma;
+	private String curso;
 	private String motivo;
 	private Servidor servidor;
 	private String horaInicial;
@@ -31,6 +33,22 @@ public class AdicionalNoturno {
 
 	public void setData(Date data) {
 		this.data = data;
+	}
+
+	public String getTurma() {
+		return turma;
+	}
+
+	public void setTurma(String turma) {
+		this.turma = turma;
+	}
+
+	public String getCurso() {
+		return curso;
+	}
+
+	public void setCurso(String curso) {
+		this.curso = curso;
 	}
 
 	public String getMotivo() {

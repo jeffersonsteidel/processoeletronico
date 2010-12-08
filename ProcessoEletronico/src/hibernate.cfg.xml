@@ -39,7 +39,6 @@
 		<mapping resource="Conjuge.hbm.xml" />
 		<mapping resource="ContaBancaria.hbm.xml" />
 		<mapping resource="CorPele.hbm.xml" />
-		<mapping resource="Curso.hbm.xml" />
 		<mapping resource="Dependente.hbm.xml" />
 		<mapping resource="Documento.hbm.xml" />
 		<mapping resource="Endereco.hbm.xml" />
