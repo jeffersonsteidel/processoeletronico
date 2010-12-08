@@ -8,7 +8,7 @@
 	media="screen" />
 <head>
 <title>Instituto Federal do Paraná</title>
-</head>	
+</head>
 <body onload="verificarAutenticacao()">
 <style type="text/css">
 .pic {
@@ -87,10 +87,12 @@
 				<rich:menuItem submitMode="ajax" value="Auxílio Alimentação"
 					action="#{solicitacaoAlimentacaoController.abrirSolicitacaoAlimentacao}"
 					icon="../images/auxilioalimentacao.gif" />
-				<rich:menuItem submitMode="ajax" value="Adicional Noturno - Técnicos"
+				<rich:menuItem submitMode="ajax"
+					value="Adicional Noturno - Técnicos"
 					action="#{solicitacaoAdicionalNoturnoController.abrirSolicitacaoAdicionalNoturnoTecnico}"
 					icon="../images/auxilioalimentacao.gif" />
-				<rich:menuItem submitMode="ajax" value="Adicional Noturno - Docentes"
+				<rich:menuItem submitMode="ajax"
+					value="Adicional Noturno - Docentes"
 					action="#{solicitacaoAdicionalNoturnoController.abrirSolicitacaoAdicionalNoturnoDocentes}"
 					icon="../images/auxilioalimentacao.gif" />
 				<rich:menuItem submitMode="ajax" value="Licença de Casamento"
@@ -114,10 +116,14 @@
 				<rich:menuItem submitMode="ajax" value="Adicional de Insalubridade"
 					action="#{solicitacaoAdicionalInsalubridadeController.abrirSolicitacaoAdicionalInsalubridade}"
 					icon="../images/insalubridade.gif" />
-				<rich:menuItem submitMode="ajax" value="Solicitações Adicional Noturno"
+				<rich:menuItem submitMode="ajax"
+					value="Listar Adicional Noturno - Técnicos"
+					rendered="#{autenticacaoController.siapeAutenticado.indDiretor}"
 					action="#{solicitacaoAdicionalNoturnoController.abrirListarSolicitacaoAdicionalNoturnoTecnico}"
 					icon="../images/MINHASSOLICITACOES.GIF" />
-				<rich:menuItem submitMode="ajax" value="Solicitações Adicional Noturno - Docentes"
+				<rich:menuItem submitMode="ajax"
+					value="Listar Adicional Noturno - Docentes"
+					rendered="#{autenticacaoController.siapeAutenticado.indDiretor}"
 					action="#{solicitacaoAdicionalNoturnoController.abrirListarSolicitacaoAdicionalNoturnoDocentes}"
 					icon="../images/MINHASSOLICITACOES.GIF" />
 				<rich:menuItem submitMode="ajax" value="Listar Solicitações"
@@ -161,8 +167,8 @@
 							<h:outputText value="AJUDA" />
 						</h:panelGroup>
 					</f:facet>
-					<rich:menuItem submitMode="ajax" value="Manual do Sistema" 
-						icon="../images/ico_ajuda.gif"  action="#" onclick="ajuda();"/>
+					<rich:menuItem submitMode="ajax" value="Manual do Sistema"
+						icon="../images/ico_ajuda.gif" action="#" onclick="ajuda();" />
 				</rich:dropDownMenu>
 				<rich:dropDownMenu>
 					<f:facet name="label">

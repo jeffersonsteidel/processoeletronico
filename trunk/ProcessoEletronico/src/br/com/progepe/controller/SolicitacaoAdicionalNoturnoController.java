@@ -410,8 +410,15 @@ public class SolicitacaoAdicionalNoturnoController implements Serializable {
 		solicitacaoAdicionalNoturno.getAdicionais().addAll(
 				listaAdicionalNoturno);
 		solicitacaoAdicionalNoturno.setIndDocente(true);
+		solicitacaoAdicionalNoturno.setTipoSolicitacao(new TipoSolicitacao());
+		solicitacaoAdicionalNoturno.getTipoSolicitacao().setCodigo(
+				Constantes.TIPO_SOLICITACAO_ADICIONAL_NOTURNO_DOCENTES);
 		DAO.getInstance().saveOrUpdate(solicitacaoAdicionalNoturno);
-		abrirSolicitacaoAdicionalNoturnoDocentes();
+		listaAdicionalNoturno = new ArrayList<AdicionalNoturno>();
+		adicionalNoturno = new AdicionalNoturno();
+		adicionalNoturno.setServidor(new Servidor());
+		solicitacaoAdicionalNoturno.setLotacao(new Lotacao());
+		indCampusDocente = false;
 	}
 
 	public void salvarAdicionalTecnico() throws Exception {

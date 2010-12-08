@@ -59,6 +59,7 @@ public class SolicitacaoDAO extends DAO {
 			c.add(Restrictions.like("tipoSolicitacao",
 					solicitacao.getTipoSolicitacao()));
 		}
+		c.add(Restrictions.isNotNull("statusSolicitacao"));
 		HibernateUtility.commitTransaction();
 		return c.list();
 	}
