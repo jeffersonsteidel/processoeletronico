@@ -19,7 +19,7 @@
 				</f:facet>
 			</rich:messages>
 			<font size="2"><b>SOLICITAÇÕES DE ADICIONAL NOTURNO -
-			TÉCNICO</b></font>
+			TÉCNICOS</b></font>
 			<h:panelGrid columns="2">
 				<h:outputText
 					value="#{solicitacaoAdicionalNoturnoController.solicitacaoAdicionalNoturno.servidor.siape} - #{solicitacaoAdicionalNoturnoController.solicitacaoAdicionalNoturno.servidor.nome}">
@@ -27,35 +27,32 @@
 			</h:panelGrid>
 
 
-			<h:panelGrid columns="3" id="campus">
+			<h:panelGrid columns="7" id="campus">
 				<h:outputText value="Campus: " />
 				<h:selectOneMenu
 					value="#{solicitacaoAdicionalNoturnoController.solicitacaoAdicionalNoturno.lotacao.codigo}">
 					<f:selectItem itemLabel="SELECIONE" itemValue="" />
 					<f:selectItems
 						value="#{solicitacaoAdicionalNoturnoController.lotacoes}" />
+					<a4j:support event="onchange"
+						action="#{solicitacaoAdicionalNoturnoController.listarAdicionaisTecnicosAprovacao}"
+						ajaxSingle="true" reRender="listaSolicitacoesAdicionalTecnicos"></a4j:support>
 				</h:selectOneMenu>
-
-				<a4j:commandButton value="Pesquisar" action="#"
-					reRender="listaSolicitacoesAdicionalTecnicos" />
-
 			</h:panelGrid>
 
 			<h:panelGrid columns="1">
-
 				<rich:dataTable id="listaSolicitacoesAdicionalTecnicos"
-					value="#{solicitacaoAdicionaltNoturnoController.listaSolicitacoesAdicionalTecnicos}"
-					var="list" width="1160px" columnClasses="center" rows="15"
-					reRender="ds">
+					value="#{solicitacaoAdicionalNoturnoController.listaAdicionaisTecnicos}"
+					var="list" width="1160px" columnClasses="center">
 
-					<rich:column width="435px" sortBy="#{list.nome}">
+					<rich:column width="750px" sortBy="#{list.servidor.nome}">
 						<f:facet name="header">
 							<h:outputText value="Nome" />
 						</f:facet>
 						<h:outputText value="#{list.servidor.nome}" />
 					</rich:column>
 
-					<rich:column width="435px">
+					<rich:column width="435px" sortBy="#{list.data}">
 						<f:facet name="header">
 							<h:outputText value="Data" />
 						</f:facet>
@@ -64,7 +61,7 @@
 						</h:outputText>
 					</rich:column>
 
-					<rich:column width="435px">
+					<rich:column width="385px" sortBy="#{list.diaSemana}">
 						<f:facet name="header">
 							<h:outputText value="Dia da Semana" />
 						</f:facet>
@@ -72,33 +69,37 @@
 						</h:outputText>
 					</rich:column>
 
-					<rich:column width="435px">
+					<rich:column width="435px" sortBy="#{list.horaInicial}">
 						<f:facet name="header">
 							<h:outputText value="Horário" />
 						</f:facet>
 						<h:outputText value="#{list.horaInicial} - #{list.horaFinal}" />
 					</rich:column>
 
-					<rich:column width="435px">
+					<rich:column width="600px" sortBy="#{list.motivo}">
 						<f:facet name="header">
-							<h:outputText value="Motivo" />
-						</f:facet>
-						<h:outputText value="#{list.motivo}" />
+						<h:outputText value="Motivo" />
+					</f:facet>
+					<h:outputText value="Passe o mouse"  id="motivo"/>
+					<rich:toolTip for="motivo" value="#{list.motivo }" />
 					</rich:column>
-
+					
 					<rich:column width="435px">
 						<f:facet name="header">
 							<h:outputText value="Aprovação" />
 						</f:facet>
-						<h:outputText value="#" />
+						<h:selectBooleanCheckbox value="#{list.indAprovadoDiretor}" />
 					</rich:column>
-					<f:facet name="footer">
-						<rich:datascroller id="ds"></rich:datascroller>
-					</f:facet>
 				</rich:dataTable>
 			</h:panelGrid>
-		</rich:panel>
-	</a4j:form></center>
+			<h:panelGrid columns="1">
+				<a4j:commandButton
+					action="#{solicitacaoAdicionalNoturnoController.encaminharDocentes}"
+					value="Encaminhar Para Progepe"></a4j:commandButton>
+			</h:panelGrid>
+	</rich:panel>
+	</a4j:form>
+	</center>
 </f:view>
 </body>
 </html>

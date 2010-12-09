@@ -21,7 +21,7 @@ public class AdicionalNoturnoDAO extends DAO {
 		return instance;
 	}
 	
-	public SolicitacaoAdicionalNoturno carregarSolicitacaoAdicionalNoturnoDocente(
+	public SolicitacaoAdicionalNoturno carregarSolicitacaoAdicionalNoturno(
 			Lotacao codigoLotacao, Boolean indDocente) {
 		HibernateUtility.getSession().clear();
 		Query query = HibernateUtility.getSession().createQuery(
@@ -31,6 +31,7 @@ public class AdicionalNoturnoDAO extends DAO {
 		HibernateUtility.commitTransaction();
 		return (SolicitacaoAdicionalNoturno) query.uniqueResult();
 	}
+	
 	public void saveOrUpdateAdicional(Object objeto) {
 		try {
 			HibernateUtility.getSession().clear();
