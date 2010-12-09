@@ -34,8 +34,8 @@
 				</h:outputText>
 			</h:panelGrid>
 
-			<h:outputText value="Secretária: #{solicitacaoController.solicitacaoAdicionalNoturnoTecnico.solicitante.siape} - #{solicitacaoController.solicitacaoAdicionalNoturnoTecnico.solicitacaoAdicionalNoturno.solicitante.nome}"/>
-			<h:outputText value="Diretor: #{solicitacaoController.solicitacaoAdicionalNoturnoTecnico.servidor.siape} - #{solicitacaoController.solicitacaoAdicionalNoturnoTecnico.solicitacaoAdicionalNoturno.servidor.nome}"/>
+			<h:outputText value="Secretária: #{solicitacaoController.solicitacaoAdicionalNoturnoTecnico.solicitante.siape} - #{solicitacaoController.solicitacaoAdicionalNoturnoTecnico.solicitante.nome}"/>
+			<h:outputText value="Diretor: #{solicitacaoController.solicitacaoAdicionalNoturnoTecnico.servidor.siape} - #{solicitacaoController.solicitacaoAdicionalNoturnoTecnico.servidor.nome}"/>
 			<h:outputText value="Campus: #{solicitacaoController.solicitacaoAdicionalNoturnoTecnico.lotacao.descricao}"/>
 			
 			<h:panelGrid columns="1">
