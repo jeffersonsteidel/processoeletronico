@@ -28,29 +28,24 @@
 			</rich:messages>
 			<font size="2"><b>SOLICITAÇÕES DE ADICIONAL NOTURNO -
 			TÉCNICOS</b></font>
-			<h:panelGrid columns="2">
-				<h:outputText
-					value="#{solicitacaoController.solicitacaoAdicionalNoturnoTecnico.servidor.siape} - #{solicitacaoController.solicitacaoAdicionalNoturnoTecnico.servidor.nome}">
-				</h:outputText>
-			</h:panelGrid>
 
-			<h:outputText value="Secretária: #{solicitacaoController.solicitacaoAdicionalNoturnoTecnico.solicitante.siape} - #{solicitacaoController.solicitacaoAdicionalNoturnoTecnico.solicitante.nome}"/>
+			<br><h:outputText value="Solicitante: #{solicitacaoController.solicitacaoAdicionalNoturnoTecnico.solicitante.siape} - #{solicitacaoController.solicitacaoAdicionalNoturnoTecnico.solicitante.nome}"/>
 			<br><h:outputText value="Diretor: #{solicitacaoController.solicitacaoAdicionalNoturnoTecnico.servidor.siape} - #{solicitacaoController.solicitacaoAdicionalNoturnoTecnico.servidor.nome}"/>
 			<br><h:outputText value="Campus: #{solicitacaoController.solicitacaoAdicionalNoturnoTecnico.lotacao.descricao}"/>
 			
 			<h:panelGrid columns="1">
 				<rich:dataTable id="listaSolicitacoesAdicionalTecnicos"
 					value="#{solicitacaoController.solicitacaoAdicionalNoturnoTecnico.listaAdicionaisTecnicos}"
-					var="list" width="1160px" columnClasses="center">
+					var="list" width="1200px" columnClasses="center">
 
-					<rich:column width="750px" sortBy="#{list.servidor.nome}">
+					<rich:column width="780px" sortBy="#{list.servidor.nome}">
 						<f:facet name="header">
 							<h:outputText value="Nome" />
 						</f:facet>
 						<h:outputText value="#{list.servidor.nome}" />
 					</rich:column>
 
-					<rich:column width="435px" sortBy="#{list.data}">
+					<rich:column width="330px" sortBy="#{list.data}">
 						<f:facet name="header">
 							<h:outputText value="Data" />
 						</f:facet>
@@ -59,7 +54,7 @@
 						</h:outputText>
 					</rich:column>
 
-					<rich:column width="385px" sortBy="#{list.diaSemana}">
+					<rich:column width="350px" sortBy="#{list.diaSemana}">
 						<f:facet name="header">
 							<h:outputText value="Dia da Semana" />
 						</f:facet>
@@ -67,19 +62,27 @@
 						</h:outputText>
 					</rich:column>
 
-					<rich:column width="435px" sortBy="#{list.horaInicial}">
+					<rich:column width="360px" sortBy="#{list.horaInicial}">
 						<f:facet name="header">
 							<h:outputText value="Horário" />
 						</f:facet>
-						<h:outputText value="#{list.horaInicial} - #{list.horaFinal}" />
+						<h:outputText value="#{list.horaInicial} - #{list.horaFinal}" >
+						</h:outputText>
+					</rich:column>
+					
+					<rich:column width="100px" sortBy="#{list.indAprovadoDiretor}">
+						<f:facet name="header">
+							<h:outputText value="Aprovado" />
+						</f:facet>
+						<h:outputText value="SIM" rendered="#{list.indAprovadoDiretor}" />
+						<h:outputText value="NÃO" rendered="#{!list.indAprovadoDiretor}" />
 					</rich:column>
 
-					<rich:column width="600px" sortBy="#{list.motivo}">
+					<rich:column width="660px" sortBy="#{list.motivo}">
 						<f:facet name="header">
 						<h:outputText value="Motivo" />
 					</f:facet>
-					<h:outputText value="Passe o mouse"  id="motivo"/>
-					<rich:toolTip for="motivo" value="#{list.motivo }" />
+					<h:outputText value="#{list.motivo}" />
 					</rich:column>
 					
 				</rich:dataTable>
