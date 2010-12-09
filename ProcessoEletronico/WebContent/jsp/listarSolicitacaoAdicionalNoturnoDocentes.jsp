@@ -18,7 +18,7 @@
 					<h:graphicImage value="../images/error.gif" />
 				</f:facet>
 			</rich:messages>
-			<font size="2"><b>SOLICITAÇÕES DE ADICIONAL NOTURNO - DOCENTE</b></font>
+			<font size="2"><b>SOLICITAÇÕES DE ADICIONAL NOTURNO - DOCENTES</b></font>
 			<h:panelGrid columns="2">
 				<h:outputText
 					value="#{solicitacaoAdicionalNoturnoController.solicitacaoAdicionalNoturno.servidor.siape} - #{solicitacaoAdicionalNoturnoController.solicitacaoAdicionalNoturno.servidor.nome}">
@@ -34,7 +34,7 @@
 					<f:selectItems
 						value="#{solicitacaoAdicionalNoturnoController.lotacoes}" />
 					<a4j:support event="onchange"
-							action="#{solicitacaoAdicionalNoturnoController.listarAdicionaisAprovacao}"
+							action="#{solicitacaoAdicionalNoturnoController.listarAdicionaisDocentesAprovacao}"
 							ajaxSingle="true" reRender="listaSolicitacoesAdicionalDocentes"></a4j:support>
  
 				</h:selectOneMenu>
@@ -47,14 +47,14 @@
 					value="#{solicitacaoAdicionalNoturnoController.listaAdicionaisDocentes}"
 					var="list" width="1160px" columnClasses="center">
 
-					<rich:column width="435px" sortBy="#{list.servidor.nome}">
+					<rich:column width="750px" sortBy="#{list.servidor.nome}">
 						<f:facet name="header">
 							<h:outputText value="Nome" />
 						</f:facet>
 						<h:outputText value="#{list.servidor.nome}" />
 					</rich:column>
 
-					<rich:column width="435px">
+					<rich:column width="435px" sortBy="#{list.data}">
 						<f:facet name="header">
 							<h:outputText value="Data" />
 						</f:facet>
@@ -63,7 +63,7 @@
 						</h:outputText>
 					</rich:column>
 
-					<rich:column width="435px">
+					<rich:column width="385px" sortBy="#{list.diaSemana}">
 						<f:facet name="header">
 							<h:outputText value="Dia da Semana" />
 						</f:facet>
@@ -71,14 +71,14 @@
 						</h:outputText>
 					</rich:column>
 
-					<rich:column width="435px">
+					<rich:column width="435px" sortBy="#{list.horaInicial}">
 						<f:facet name="header">
 							<h:outputText value="Horário" />
 						</f:facet>
 						<h:outputText value="#{list.horaInicial} - #{list.horaFinal}" />
 					</rich:column>
 
-					<rich:column width="435px">
+					<rich:column width="435px" sortBy="#{list.curso}">
 						<f:facet name="header">
 							<h:outputText value="Curso - Turma - Matéria" />
 						</f:facet>
