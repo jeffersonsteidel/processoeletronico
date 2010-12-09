@@ -17,6 +17,7 @@ import br.com.progepe.constantes.Constantes;
 import br.com.progepe.dao.DAO;
 import br.com.progepe.dao.ServidorDAO;
 import br.com.progepe.dao.SolicitacaoDAO;
+import br.com.progepe.entity.AdicionalNoturno;
 import br.com.progepe.entity.Autenticacao;
 import br.com.progepe.entity.Banco;
 import br.com.progepe.entity.ContaBancaria;
@@ -580,7 +581,12 @@ public class SolicitacaoController implements Serializable {
 			solicitacaoAdicionalNoturnoTecnico.setSolicitante(new Servidor());
 			solicitacaoAdicionalNoturnoTecnico = (SolicitacaoAdicionalNoturno) SolicitacaoDAO.getInstance()
 					.carregarSolicitacaoAdicionalNoturno(codigoSolicitacao);
-			solicitacaoAdicionalNoturnoTecnico.getListaAdicionaisTecnicos().addAll(solicitacaoAdicionalNoturnoTecnico.getAdicionais());
+			for(AdicionalNoturno item : solicitacaoAdicionalNoturnoTecnico.getAdicionais()){
+					@SuppressWarnings("deprecation")
+					String dia = SolicitacaoAdicionalNoturnoController.pesquisarDiaSemana(item.getData().getDay());
+					item.setDiaSemana(dia);
+				     solicitacaoAdicionalNoturnoTecnico.getListaAdicionaisTecnicos().add(item);
+			}
 			if (Constantes.STATUS_SOLICITACAO_ENCAMINHADO
 					.equals(solicitacaoAdicionalNoturnoTecnico.getStatusSolicitacao()
 							.getCodigo())) {
