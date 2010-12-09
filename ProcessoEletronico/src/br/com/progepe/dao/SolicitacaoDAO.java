@@ -11,6 +11,7 @@ import org.hibernate.Query;
 import org.hibernate.criterion.Restrictions;
 
 import br.com.progepe.entity.Solicitacao;
+import br.com.progepe.entity.SolicitacaoAdicionalNoturno;
 import br.com.progepe.entity.SolicitacaoAfastamentoConjuge;
 import br.com.progepe.entity.SolicitacaoAlimentacao;
 import br.com.progepe.entity.SolicitacaoCasamento;
@@ -130,6 +131,15 @@ public class SolicitacaoDAO extends DAO {
 		query.setParameter("codigo", codigo);
 		HibernateUtility.commitTransaction();
 		return (SolicitacaoObito) query.uniqueResult();
+	}
+	
+	public SolicitacaoAdicionalNoturno carregarSolicitacaoAdicionalNoturno(Long codigo) {
+		HibernateUtility.getSession().clear();
+		Query query = HibernateUtility.getSession().createQuery(
+				"from SolicitacaoAdicionalNoturno s where s.codigo= :codigo");
+		query.setParameter("codigo", codigo);
+		HibernateUtility.commitTransaction();
+		return (SolicitacaoAdicionalNoturno) query.uniqueResult();
 	}
 	
 	public void updateSolicitacao(Object objeto) {

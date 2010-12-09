@@ -22,6 +22,7 @@ import br.com.progepe.entity.Banco;
 import br.com.progepe.entity.ContaBancaria;
 import br.com.progepe.entity.Servidor;
 import br.com.progepe.entity.Solicitacao;
+import br.com.progepe.entity.SolicitacaoAdicionalNoturno;
 import br.com.progepe.entity.SolicitacaoAfastamentoConjuge;
 import br.com.progepe.entity.SolicitacaoAlimentacao;
 import br.com.progepe.entity.SolicitacaoCasamento;
@@ -49,7 +50,9 @@ public class SolicitacaoController implements Serializable {
 	private SolicitacaoCasamento solicitacaoCasamento;
 	private SolicitacaoAlimentacao solicitacaoAlimentacao;
 	private SolicitacaoAfastamentoConjuge solicitacaoAfastamentoConjuge;
-
+	private SolicitacaoAdicionalNoturno solicitacaoAdicionalNoturnoTecnico;
+	private SolicitacaoAdicionalNoturno solicitacaoAdicionalNoturnoDocente;
+	
 	private Long codigoSolicitacao;
 	private Long tipoSolicitacao;
 	private Boolean desabilitaBotao = true;
@@ -194,6 +197,24 @@ public class SolicitacaoController implements Serializable {
 	public void setSolicitacaoAfastamentoConjuge(
 			SolicitacaoAfastamentoConjuge solicitacaoAfastamentoConjuge) {
 		this.solicitacaoAfastamentoConjuge = solicitacaoAfastamentoConjuge;
+	}
+
+	public SolicitacaoAdicionalNoturno getSolicitacaoAdicionalNoturnoTecnico() {
+		return solicitacaoAdicionalNoturnoTecnico;
+	}
+
+	public void setSolicitacaoAdicionalNoturnoTecnico(
+			SolicitacaoAdicionalNoturno solicitacaoAdicionalNoturnoTecnico) {
+		this.solicitacaoAdicionalNoturnoTecnico = solicitacaoAdicionalNoturnoTecnico;
+	}
+
+	public SolicitacaoAdicionalNoturno getSolicitacaoAdicionalNoturnoDocente() {
+		return solicitacaoAdicionalNoturnoDocente;
+	}
+
+	public void setSolicitacaoAdicionalNoturnoDocente(
+			SolicitacaoAdicionalNoturno solicitacaoAdicionalNoturnoDocente) {
+		this.solicitacaoAdicionalNoturnoDocente = solicitacaoAdicionalNoturnoDocente;
 	}
 
 	public void abrirPesquisarSolicitacoes() throws ParseException {
@@ -365,6 +386,26 @@ public class SolicitacaoController implements Serializable {
 				.getExternalContext().getResponse();
 		response.sendRedirect("solicitacaoCasamentoAprovar.jsp ");
 	}
+	
+	public void carregarSolicitacaoAdicionalNotunoTecnico(
+		SolicitacaoAdicionalNoturno codigoSolicitacaoAdicionalNoturnoTecnico) throws IOException {
+		solicitacaoAdicionalNoturnoTecnico = (SolicitacaoAdicionalNoturno) DAO.getInstance()
+				.refresh(codigoSolicitacaoAdicionalNoturnoTecnico);
+		FacesContext context = FacesContext.getCurrentInstance();
+		HttpServletResponse response = (HttpServletResponse) context
+				.getExternalContext().getResponse();
+		response.sendRedirect("solicitacaoAdicionalNoturnoTecnicoAprovar.jsp ");
+	}
+	
+	public void carregarSolicitacaoAdicionalNotunoDocente(
+			SolicitacaoAdicionalNoturno codigoSolicitacaoAdicionalNoturnoDocente) throws IOException {
+			solicitacaoAdicionalNoturnoDocente = (SolicitacaoAdicionalNoturno) DAO.getInstance()
+					.refresh(codigoSolicitacaoAdicionalNoturnoDocente);
+			FacesContext context = FacesContext.getCurrentInstance();
+			HttpServletResponse response = (HttpServletResponse) context
+					.getExternalContext().getResponse();
+			response.sendRedirect("solicitacaoAdicionalNoturnoDocenteAprovar.jsp ");
+		}
 
 	public void carregarSolicitacao() throws IOException, ParseException {
 		Autenticacao siapeAutenticado = (Autenticacao) FacesContext
@@ -533,7 +574,47 @@ public class SolicitacaoController implements Serializable {
 				DAO.getInstance().saveOrUpdate(solicitacaoAfastamentoConjuge);
 			}
 			this.carregarSolicitacaoAfasatamentoConjuge(solicitacaoAfastamentoConjuge);
-		}
+		}else if (Constantes.TIPO_SOLICITACAO_ADICIONAL_NOTURNO_TECNICOS
+				.equals(tipoSolicitacao)) {
+			solicitacaoAdicionalNoturnoTecnico = new SolicitacaoAdicionalNoturno();
+			solicitacaoAdicionalNoturnoTecnico.setSolicitante(new Servidor());
+			solicitacaoAdicionalNoturnoTecnico = (SolicitacaoAdicionalNoturno) SolicitacaoDAO.getInstance()
+					.carregarSolicitacaoAdicionalNoturno(codigoSolicitacao);
+			if (Constantes.STATUS_SOLICITACAO_ENCAMINHADO
+					.equals(solicitacaoAdicionalNoturnoTecnico.getStatusSolicitacao()
+							.getCodigo())) {
+				this.setDesabilitaBotao(false);
+				solicitacaoAdicionalNoturnoTecnico.getStatusSolicitacao().setCodigo(
+						Constantes.STATUS_SOLICITACAO_EM_ANALISE);
+				solicitacaoAdicionalNoturnoTecnico.setDataAtendimento(new Date());
+				solicitacaoAdicionalNoturnoTecnico.setAtendente(siapeAutenticado
+						.getSiape());
+				solicitacaoAdicionalNoturnoTecnico.setAtendenteLogado(new Servidor());
+				solicitacaoAdicionalNoturnoTecnico.setAtendenteLogado(servidor);
+				DAO.getInstance().saveOrUpdate(solicitacaoAdicionalNoturnoTecnico);
+			}
+			this.carregarSolicitacaoAdicionalNotunoTecnico(solicitacaoAdicionalNoturnoTecnico);
+		} else if (Constantes.TIPO_SOLICITACAO_ADICIONAL_NOTURNO_DOCENTES
+				.equals(tipoSolicitacao)) {
+			solicitacaoAdicionalNoturnoDocente = new SolicitacaoAdicionalNoturno();
+			solicitacaoAdicionalNoturnoDocente.setSolicitante(new Servidor());
+			solicitacaoAdicionalNoturnoDocente = (SolicitacaoAdicionalNoturno) SolicitacaoDAO.getInstance()
+					.carregarSolicitacaoAdicionalNoturno(codigoSolicitacao);
+			if (Constantes.STATUS_SOLICITACAO_ENCAMINHADO
+					.equals(solicitacaoAdicionalNoturnoDocente.getStatusSolicitacao()
+							.getCodigo())) {
+				this.setDesabilitaBotao(false);
+				solicitacaoAdicionalNoturnoDocente.getStatusSolicitacao().setCodigo(
+						Constantes.STATUS_SOLICITACAO_EM_ANALISE);
+				solicitacaoAdicionalNoturnoDocente.setDataAtendimento(new Date());
+				solicitacaoAdicionalNoturnoDocente.setAtendente(siapeAutenticado
+						.getSiape());
+				solicitacaoAdicionalNoturnoDocente.setAtendenteLogado(new Servidor());
+				solicitacaoAdicionalNoturnoDocente.setAtendenteLogado(servidor);
+				DAO.getInstance().saveOrUpdate(solicitacaoAdicionalNoturnoDocente);
+			}
+			this.carregarSolicitacaoAdicionalNotunoDocente(solicitacaoAdicionalNoturnoDocente);
+		} 
 	}
 
 	public void deferirSolicitacao() throws IOException, ParseException {
@@ -601,6 +682,20 @@ public class SolicitacaoController implements Serializable {
 					Constantes.STATUS_SOLICITACAO_DEFERIDO);
 			solicitacaoAfastamentoConjuge.setDataFechamento(new Date());
 			DAO.getInstance().update(solicitacaoAfastamentoConjuge);
+			this.setDesabilitaBotao(true);
+		} else if (Constantes.TIPO_SOLICITACAO_ADICIONAL_NOTURNO_TECNICOS
+				.equals(tipoSolicitacao)) {
+			solicitacaoAdicionalNoturnoTecnico.getStatusSolicitacao().setCodigo(
+					Constantes.STATUS_SOLICITACAO_DEFERIDO);
+			solicitacaoAdicionalNoturnoTecnico.setDataFechamento(new Date());
+			DAO.getInstance().update(solicitacaoAdicionalNoturnoTecnico);
+			this.setDesabilitaBotao(true);
+		} else if (Constantes.TIPO_SOLICITACAO_ADICIONAL_NOTURNO_DOCENTES
+				.equals(tipoSolicitacao)) {
+			solicitacaoAdicionalNoturnoDocente.getStatusSolicitacao().setCodigo(
+					Constantes.STATUS_SOLICITACAO_DEFERIDO);
+			solicitacaoAdicionalNoturnoDocente.setDataFechamento(new Date());
+			DAO.getInstance().update(solicitacaoAdicionalNoturnoDocente);
 			this.setDesabilitaBotao(true);
 		}
 	}
@@ -710,6 +805,38 @@ public class SolicitacaoController implements Serializable {
 			if (solicitacaoAfastamentoConjuge.getJustificativa() != null
 					&& solicitacaoAfastamentoConjuge.getJustificativa() != "") {
 				SolicitacaoDAO.getInstance().saveOrUpdate(solicitacaoAfastamentoConjuge);
+				this.setDesabilitaBotao(true);
+			} else {
+				FacesMessage message = new FacesMessage(
+						FacesMessage.SEVERITY_ERROR,
+						"O campo Justificativa é obrigatório!",
+						"O campo Justificativa é obrigatório!!");
+				FacesContext.getCurrentInstance().addMessage("", message);
+			}
+		} else if (Constantes.TIPO_SOLICITACAO_ADICIONAL_NOTURNO_TECNICOS
+				.equals(tipoSolicitacao)) {
+			solicitacaoAdicionalNoturnoTecnico.getStatusSolicitacao().setCodigo(
+					Constantes.STATUS_SOLICITACAO_INDEFERIDO);
+			solicitacaoAdicionalNoturnoTecnico.setDataFechamento(new Date());
+			if (solicitacaoAdicionalNoturnoTecnico.getJustificativa() != null
+					&& solicitacaoAdicionalNoturnoTecnico.getJustificativa() != "") {
+				SolicitacaoDAO.getInstance().saveOrUpdate(solicitacaoAdicionalNoturnoTecnico);
+				this.setDesabilitaBotao(true);
+			} else {
+				FacesMessage message = new FacesMessage(
+						FacesMessage.SEVERITY_ERROR,
+						"O campo Justificativa é obrigatório!",
+						"O campo Justificativa é obrigatório!!");
+				FacesContext.getCurrentInstance().addMessage("", message);
+			}
+		}  else if (Constantes.TIPO_SOLICITACAO_ADICIONAL_NOTURNO_DOCENTES
+				.equals(tipoSolicitacao)) {
+			solicitacaoAdicionalNoturnoDocente.getStatusSolicitacao().setCodigo(
+					Constantes.STATUS_SOLICITACAO_INDEFERIDO);
+			solicitacaoAdicionalNoturnoDocente.setDataFechamento(new Date());
+			if (solicitacaoAdicionalNoturnoDocente.getJustificativa() != null
+					&& solicitacaoAdicionalNoturnoDocente.getJustificativa() != "") {
+				SolicitacaoDAO.getInstance().saveOrUpdate(solicitacaoAdicionalNoturnoDocente);
 				this.setDesabilitaBotao(true);
 			} else {
 				FacesMessage message = new FacesMessage(
