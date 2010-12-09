@@ -14,6 +14,7 @@ import javax.faces.model.SelectItem;
 import javax.servlet.http.HttpServletResponse;
 
 import br.com.progepe.constantes.Constantes;
+import br.com.progepe.dao.AdicionalNoturnoDAO;
 import br.com.progepe.dao.DAO;
 import br.com.progepe.dao.ServidorDAO;
 import br.com.progepe.dao.SolicitacaoDAO;
@@ -598,7 +599,7 @@ public class SolicitacaoController implements Serializable {
 						.getSiape());
 				solicitacaoAdicionalNoturnoTecnico.setAtendenteLogado(new Servidor());
 				solicitacaoAdicionalNoturnoTecnico.setAtendenteLogado(servidor);
-				DAO.getInstance().saveOrUpdate(solicitacaoAdicionalNoturnoTecnico);
+				AdicionalNoturnoDAO.getInstance().saveOrUpdateAdicional(solicitacaoAdicionalNoturnoTecnico);
 			}
 			this.carregarSolicitacaoAdicionalNotunoTecnico(solicitacaoAdicionalNoturnoTecnico);
 		} else if (Constantes.TIPO_SOLICITACAO_ADICIONAL_NOTURNO_DOCENTES
@@ -607,6 +608,12 @@ public class SolicitacaoController implements Serializable {
 			solicitacaoAdicionalNoturnoDocente.setSolicitante(new Servidor());
 			solicitacaoAdicionalNoturnoDocente = (SolicitacaoAdicionalNoturno) SolicitacaoDAO.getInstance()
 					.carregarSolicitacaoAdicionalNoturno(codigoSolicitacao);
+			for(AdicionalNoturno item : solicitacaoAdicionalNoturnoDocente.getAdicionais()){
+				@SuppressWarnings("deprecation")
+				String dia = SolicitacaoAdicionalNoturnoController.pesquisarDiaSemana(item.getData().getDay());
+				item.setDiaSemana(dia);
+			     solicitacaoAdicionalNoturnoDocente.getListaAdicionaisDocente().add(item);
+			}
 			if (Constantes.STATUS_SOLICITACAO_ENCAMINHADO
 					.equals(solicitacaoAdicionalNoturnoDocente.getStatusSolicitacao()
 							.getCodigo())) {
@@ -618,7 +625,7 @@ public class SolicitacaoController implements Serializable {
 						.getSiape());
 				solicitacaoAdicionalNoturnoDocente.setAtendenteLogado(new Servidor());
 				solicitacaoAdicionalNoturnoDocente.setAtendenteLogado(servidor);
-				DAO.getInstance().saveOrUpdate(solicitacaoAdicionalNoturnoDocente);
+				AdicionalNoturnoDAO.getInstance().saveOrUpdateAdicional(solicitacaoAdicionalNoturnoDocente);
 			}
 			this.carregarSolicitacaoAdicionalNotunoDocente(solicitacaoAdicionalNoturnoDocente);
 		} 
