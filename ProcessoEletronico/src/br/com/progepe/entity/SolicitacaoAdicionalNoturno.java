@@ -1,6 +1,8 @@
 package br.com.progepe.entity;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public class SolicitacaoAdicionalNoturno extends Solicitacao {
@@ -11,6 +13,7 @@ public class SolicitacaoAdicionalNoturno extends Solicitacao {
 	private Lotacao lotacao;
 	private Servidor servidor;
 	private Set<AdicionalNoturno> adicionais = new HashSet<AdicionalNoturno>();
+	private List<AdicionalNoturno> listaAdicionaisTecnicos = new ArrayList<AdicionalNoturno>();
 
 	public boolean isIndDocente() {
 		return indDocente;
@@ -51,4 +54,14 @@ public class SolicitacaoAdicionalNoturno extends Solicitacao {
 	public void setAdicionais(Set<AdicionalNoturno> adicionais) {
 		this.adicionais = adicionais;
 	}
+
+	public List<AdicionalNoturno> getListaAdicionaisTecnicos() {
+		return listaAdicionaisTecnicos;
+	}
+
+	public void setListaAdicionaisTecnicos(
+			List<AdicionalNoturno> listaAdicionaisTecnicos) {
+		this.listaAdicionaisTecnicos = listaAdicionaisTecnicos;
+	}
+
 }
