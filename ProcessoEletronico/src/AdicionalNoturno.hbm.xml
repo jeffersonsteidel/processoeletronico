@@ -14,7 +14,6 @@
 		<property name="horaInicial" column="ADIC_HORA_INICIAL" />
 		<property name="horaFinal" column="ADIC_HORA_FINAL" />
 		<property name="indAprovadoDiretor" column="ADIC_APROVADO_DIRETOR" type="boolean"/>
-		<property name="indAprovadoProgepe" column="ADIC_APROVADO_PROGEPE" type="boolean"/>
 		<property name="materia" column="ADIC_MATERIA" />
 		<many-to-one name="servidor" class="br.com.progepe.entity.Servidor"
 			column="SERV_COD" lazy="false" />
