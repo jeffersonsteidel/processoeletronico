@@ -35,8 +35,8 @@
 			</h:panelGrid>
 
 			<h:outputText value="Secretária: #{solicitacaoController.solicitacaoAdicionalNoturnoTecnico.solicitante.siape} - #{solicitacaoController.solicitacaoAdicionalNoturnoTecnico.solicitante.nome}"/>
-			<h:outputText value="Diretor: #{solicitacaoController.solicitacaoAdicionalNoturnoTecnico.servidor.siape} - #{solicitacaoController.solicitacaoAdicionalNoturnoTecnico.servidor.nome}"/>
-			<h:outputText value="Campus: #{solicitacaoController.solicitacaoAdicionalNoturnoTecnico.lotacao.descricao}"/>
+			<br><h:outputText value="Diretor: #{solicitacaoController.solicitacaoAdicionalNoturnoTecnico.servidor.siape} - #{solicitacaoController.solicitacaoAdicionalNoturnoTecnico.servidor.nome}"/>
+			<br><h:outputText value="Campus: #{solicitacaoController.solicitacaoAdicionalNoturnoTecnico.lotacao.descricao}"/>
 			
 			<h:panelGrid columns="1">
 				<rich:dataTable id="listaSolicitacoesAdicionalTecnicos"
