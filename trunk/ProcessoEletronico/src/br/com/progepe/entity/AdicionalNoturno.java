@@ -15,7 +15,6 @@ public class AdicionalNoturno {
 	private String horaInicial;
 	private String horaFinal;
 	private Boolean indAprovadoDiretor;
-	private Boolean indAprovadoProgepe;
 	private String materia;
 	private String diaSemana;
 
@@ -89,14 +88,6 @@ public class AdicionalNoturno {
 
 	public void setIndAprovadoDiretor(Boolean indAprovadoDiretor) {
 		this.indAprovadoDiretor = indAprovadoDiretor;
-	}
-
-	public Boolean getIndAprovadoProgepe() {
-		return indAprovadoProgepe;
-	}
-
-	public void setIndAprovadoProgepe(Boolean indAprovadoProgepe) {
-		this.indAprovadoProgepe = indAprovadoProgepe;
 	}
 
 	public String getMateria() {
