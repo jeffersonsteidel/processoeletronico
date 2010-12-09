@@ -30,17 +30,17 @@
 			TÉCNICOS</b></font>
 			<h:panelGrid columns="2">
 				<h:outputText
-					value="#{solicitacaoAdicionalNoturnoController.solicitacaoAdicionalNoturno.servidor.siape} - #{solicitacaoAdicionalNoturnoController.solicitacaoAdicionalNoturno.servidor.nome}">
+					value="#{solicitacaoController.solicitacaoAdicionalNoturnoTecnico.servidor.siape} - #{solicitacaoController.solicitacaoAdicionalNoturnoTecnico.servidor.nome}">
 				</h:outputText>
 			</h:panelGrid>
 
-			<h:outputText value="Secretária: #{solicitacaoAdicionalNoturnoController.solicitacaoAdicionalNoturno.solicitante.siape} - #{solicitacaoAdicionalNoturnoController.solicitacaoAdicionalNoturno.solicitante.nome}"/>
-			<h:outputText value="Diretor: #{solicitacaoAdicionalNoturnoController.solicitacaoAdicionalNoturno.servidor.siape} - #{solicitacaoAdicionalNoturnoController.solicitacaoAdicionalNoturno.servidor.nome}"/>
-			<h:outputText value="Campus: #{solicitacaoAdicionalNoturnoController.solicitacaoAdicionalNoturno.lotacao.descricao}"/>
+			<h:outputText value="Secretária: #{solicitacaoController.solicitacaoAdicionalNoturnoTecnico.solicitante.siape} - #{solicitacaoController.solicitacaoAdicionalNoturnoTecnico.solicitacaoAdicionalNoturno.solicitante.nome}"/>
+			<h:outputText value="Diretor: #{solicitacaoController.solicitacaoAdicionalNoturnoTecnico.servidor.siape} - #{solicitacaoController.solicitacaoAdicionalNoturnoTecnico.solicitacaoAdicionalNoturno.servidor.nome}"/>
+			<h:outputText value="Campus: #{solicitacaoController.solicitacaoAdicionalNoturnoTecnico.lotacao.descricao}"/>
 			
 			<h:panelGrid columns="1">
 				<rich:dataTable id="listaSolicitacoesAdicionalTecnicos"
-					value="#{solicitacaoAdicionalNoturnoController.listaAdicionaisTecnicos}"
+					value="#{solicitacaoController.solicitacaoAdicionalNoturnoTecnico.listaAdicionaisTecnicos}"
 					var="list" width="1160px" columnClasses="center">
 
 					<rich:column width="750px" sortBy="#{list.servidor.nome}">
@@ -86,17 +86,17 @@
 			</h:panelGrid>
 			<h:panelGrid columns="2">
 				<h:outputText value="Justificativa: " />
-				<h:inputTextarea disabled="#{solicitacaoAdicionalNoturnoController.desabilitaBotao}"
-					value="#{solicitacaoAdicionalNoturnoController.solicitacaoAdicionalNoturno.justificativa}"
+				<h:inputTextarea disabled="#{solicitacaoController.desabilitaBotao}"
+					value="#{solicitacaoController.solicitacaoAdicionalNoturnoTecnico.justificativa}"
 					cols="50" rows="5"></h:inputTextarea>
 			</h:panelGrid>
 
 			<h:panelGrid columns="2">
 				<a4j:commandButton value="Deferir" reRender="form"
-					disabled="#{solicitacaoAdicionalNoturnoController.desabilitaBotao}"
+					disabled="#{solicitacaoController.desabilitaBotao}"
 					oncomplete="#{rich:component('confirmPanel')}.show()" />
 				<a4j:commandButton value="Indeferir" reRender="form"
-					disabled="#{solicitacaoAdicionalNoturnoController.desabilitaBotao}"
+					disabled="#{solicitacaoController.desabilitaBotao}"
 					oncomplete="#{rich:component('confirmPanel02')}.show()" />
 			</h:panelGrid>
 			</a4j:form>
@@ -113,7 +113,7 @@
 						<tr>
 							<td align="center" width="50%"><a4j:commandButton
 								value="Sim" ajaxSingle="true"
-								action="#{solicitacaoAdicionalNoturnoController.deferirSolicitacao}"
+								action="#{solicitacaoController.deferirSolicitacao}"
 								oncomplete="#{rich:component('confirmPanel')}.hide();"
 								reRender="form" /></td>
 							<td align="center" width="50%"><a4j:commandButton
@@ -136,7 +136,7 @@
 						<tr>
 							<td align="center" width="50%"><a4j:commandButton
 								value="Sim" ajaxSingle="true"
-								action="#{solicitacaoAdicionalNoturnoController.indeferirSolicitacao}"
+								action="#{solicitacaoController.indeferirSolicitacao}"
 								oncomplete="#{rich:component('confirmPanel02')}.hide();"
 								reRender="form" /></td>
 							<td align="center" width="50%"><a4j:commandButton
@@ -148,7 +148,7 @@
 				</table>
 			</h:form>
 		</rich:modalPanel>
-	</center>
+
 </f:view>
 </body>
 </html>
