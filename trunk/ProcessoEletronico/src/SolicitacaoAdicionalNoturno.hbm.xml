@@ -11,9 +11,9 @@
 			column="LOT_COD" lazy="false" />
 		<many-to-one name="servidor" class="br.com.progepe.entity.Servidor"
 			column="SERV_COD" lazy="false" />
-		<set name="adicionais" cascade="save-update"  table="ADICIONALNOTURNOSOLICITACAO">
+		<set name="adicionais" cascade="all" table="ADICIONALNOTURNOSOLICITACAO">
 			<key column="SOLIC_COD"/>
-			<many-to-many column="ADIC_COD" class="br.com.progepe.entity.AdicionalNoturno"  unique="true"/>
+			<many-to-many column="ADIC_COD" class="br.com.progepe.entity.AdicionalNoturno" />
 		</set>
 	</joined-subclass>
 </hibernate-mapping>
