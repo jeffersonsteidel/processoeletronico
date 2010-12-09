@@ -27,7 +27,6 @@
 			</rich:messages>
 
 			<font size="2"><b>ADICIONAL NOTURNO - TÉCNICO</b></font>
-			<a4j:region>
 				<h:panelGrid columns="1">
 					<h:outputText
 						value="#{solicitacaoAdicionalNoturnoController.solicitacaoAdicionalNoturno.servidor.nome}">
@@ -90,7 +89,7 @@
 
 				<a4j:commandButton value="Adicionar"
 					action="#{solicitacaoAdicionalNoturnoController.adicionarAdicionalTecnico}"
-					reRender="listaAdicionais, servidoresCampus, data, horaInicial, horaFinal, motivo" />
+					reRender="listaAdicionais, form, salvar" />
 
 				<rich:dataTable id="listaAdicionais"
 					value="#{solicitacaoAdicionalNoturnoController.listaAdicionalTecnicos}"
@@ -148,11 +147,9 @@
 					</f:facet>
 				</rich:dataTable>
 
-				<a4j:commandButton value="Salvar"
+				<a4j:commandButton id="salvar" value="Salvar" rendered="#{not empty solicitacaoAdicionalNoturnoController.listaAdicionalTecnicos}"
 					action="#{solicitacaoAdicionalNoturnoController.salvarAdicionalTecnico}"
 					reRender="form" />
-
-			</a4j:region>
 		</rich:panel></center>
 	</a4j:form>
 
