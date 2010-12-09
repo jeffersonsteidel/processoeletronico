@@ -412,7 +412,6 @@ public class SolicitacaoAdicionalNoturnoController implements Serializable {
 			adicionalNoturno.setDiaSemana(pesquisarDiaSemana(adicionalNoturno
 					.getData().getDay()));
 			adicionalNoturno.setIndAprovadoDiretor(false);
-			adicionalNoturno.setIndAprovadoProgepe(false);
 			listaAdicionalTecnicos.add(adicionalNoturno);
 			adicionalNoturno = new AdicionalNoturno();
 			adicionalNoturno.setServidor(new Servidor());
@@ -507,7 +506,6 @@ public class SolicitacaoAdicionalNoturnoController implements Serializable {
 			adicionalNoturno.setDiaSemana(pesquisarDiaSemana(adicionalNoturno
 					.getData().getDay()));
 			adicionalNoturno.setIndAprovadoDiretor(false);
-			adicionalNoturno.setIndAprovadoProgepe(false);
 			listaAdicionalNoturno.add(adicionalNoturno);
 			adicionalNoturno = new AdicionalNoturno();
 			adicionalNoturno.setServidor(new Servidor());
