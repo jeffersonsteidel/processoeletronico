@@ -13,12 +13,15 @@
 	<jsp:directive.include file="menus.jsp" />
 	<center><a4j:form id="form">
 		<rich:panel>
+
 			<rich:messages layout="list">
 				<f:facet name="errorMarker">
 					<h:graphicImage value="../images/error.gif" />
 				</f:facet>
 			</rich:messages>
-			<font size="2"><b>SOLICITAÇÕES DE ADICIONAL NOTURNO - DOCENTES</b></font>
+
+			<font size="2"><b>SOLICITAÇÕES DE ADICIONAL NOTURNO -
+			DOCENTE</b></font>
 			<h:panelGrid columns="2">
 				<h:outputText
 					value="#{solicitacaoAdicionalNoturnoController.solicitacaoAdicionalNoturno.servidor.siape} - #{solicitacaoAdicionalNoturnoController.solicitacaoAdicionalNoturno.servidor.nome}">
@@ -34,12 +37,10 @@
 					<f:selectItems
 						value="#{solicitacaoAdicionalNoturnoController.lotacoes}" />
 					<a4j:support event="onchange"
-							action="#{solicitacaoAdicionalNoturnoController.listarAdicionaisDocentesAprovacao}"
-							ajaxSingle="true" reRender="listaSolicitacoesAdicionalDocentes"></a4j:support>
- 
+						action="#{solicitacaoAdicionalNoturnoController.listarAdicionaisAprovacao}"
+						ajaxSingle="true" reRender="listaSolicitacoesAdicionalDocentes"></a4j:support>
+
 				</h:selectOneMenu>
-				
-			
 			</h:panelGrid>
 
 			<h:panelGrid columns="1">
@@ -82,21 +83,28 @@
 						<f:facet name="header">
 							<h:outputText value="Curso - Turma - Matéria" />
 						</f:facet>
-						<h:outputText value="#{list.curso} - #{list.turma} - #{list.materia}" />
+						<h:outputText
+							value="#{list.curso} - #{list.turma} - #{list.materia}" />
 					</rich:column>
+
 					<rich:column width="435px">
 						<f:facet name="header">
 							<h:outputText value="Aprovação" />
 						</f:facet>
 						<h:selectBooleanCheckbox value="#{list.indAprovadoDiretor}" />
 					</rich:column>
+
 				</rich:dataTable>
 			</h:panelGrid>
-			<center></center><h:panelGrid columns="1">
-			<a4j:commandButton action="#{solicitacaoAdicionalNoturnoController.encaminharDocentes}" value="Encaminhar Para Progepe"></a4j:commandButton>
-			</h:panelGrid></center>
+
+			<h:panelGrid columns="1">
+				<a4j:commandButton
+					action="#{solicitacaoAdicionalNoturnoController.encaminharDocentes}"
+					value="Encaminhar Para Progepe"></a4j:commandButton>
+			</h:panelGrid>
 		</rich:panel>
 	</a4j:form></center>
+
 </f:view>
 </body>
 </html>
