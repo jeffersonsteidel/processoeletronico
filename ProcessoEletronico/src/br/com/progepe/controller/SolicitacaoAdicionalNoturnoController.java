@@ -38,6 +38,8 @@ public class SolicitacaoAdicionalNoturnoController implements Serializable {
 
 	private Boolean indCampusTecnico = false;
 	private Boolean indCampusDocente = false;
+	private Boolean indEncaminharDocente = false;
+	private Boolean indEncaminharTecnico = false;
 
 	public List<SelectItem> getLotacoes() {
 		return lotacoes;
@@ -131,6 +133,22 @@ public class SolicitacaoAdicionalNoturnoController implements Serializable {
 			List<AdicionalNoturno> listaAdicionaisTecnicos) {
 		this.listaAdicionaisTecnicos = listaAdicionaisTecnicos;
 	}
+	
+	public Boolean getIndEncaminharDocente() {
+		return indEncaminharDocente;
+	}
+
+	public void setIndEncaminharDocente(Boolean indEncaminharDocente) {
+		this.indEncaminharDocente = indEncaminharDocente;
+	}
+
+	public Boolean getIndEncaminharTecnico() {
+		return indEncaminharTecnico;
+	}
+
+	public void setIndEncaminharTecnico(Boolean indEncaminharTecnico) {
+		this.indEncaminharTecnico = indEncaminharTecnico;
+	}
 
 	public void abrirSolicitacaoAdicionalNoturnoTecnico() throws ParseException {
 		try {
@@ -176,6 +194,7 @@ public class SolicitacaoAdicionalNoturnoController implements Serializable {
 			solicitacaoAdicionalNoturno = new SolicitacaoAdicionalNoturno();
 			solicitacaoAdicionalNoturno.setServidor(new Servidor());
 			solicitacaoAdicionalNoturno.setLotacao(new Lotacao());
+			indEncaminharTecnico = false;
 			buscarDiretor();
 			listarLotacoes();
 			FacesContext.getCurrentInstance().getExternalContext()
@@ -192,6 +211,7 @@ public class SolicitacaoAdicionalNoturnoController implements Serializable {
 			solicitacaoAdicionalNoturno = new SolicitacaoAdicionalNoturno();
 			solicitacaoAdicionalNoturno.setServidor(new Servidor());
 			solicitacaoAdicionalNoturno.setLotacao(new Lotacao());
+			indEncaminharDocente = false;
 			buscarDiretor();
 			listarLotacoes();
 			FacesContext.getCurrentInstance().getExternalContext()
@@ -203,27 +223,24 @@ public class SolicitacaoAdicionalNoturnoController implements Serializable {
 
 	@SuppressWarnings("deprecation")
 	public List<AdicionalNoturno> listarAdicionaisDocentesAprovacao()
-			throws ParseException {
+			throws ParseException, IOException {
 		listaAdicionaisDocentes.clear();
 		solicitacaoAdicionalNoturno = AdicionalNoturnoDAO.getInstance()
 				.carregarSolicitacaoAdicionalNoturno(
 						solicitacaoAdicionalNoturno.getLotacao(), true);
-		List<AdicionalNoturno> listAdicionalNoturno = new ArrayList<AdicionalNoturno>();
-		listAdicionalNoturno
-				.addAll(solicitacaoAdicionalNoturno.getAdicionais());
-		for (AdicionalNoturno adicional : listAdicionalNoturno) {
-			adicional.setDiaSemana(pesquisarDiaSemana(adicional.getData()
-					.getDay()));
-			listaAdicionaisDocentes.add(adicional);
-		}
-
-		if (listaAdicionaisTecnicos.isEmpty()) {
-			FacesMessage message = new FacesMessage(
-					FacesMessage.SEVERITY_ERROR,
-					"Nenhum item encontrado com o filtro informado!",
-					"Nenhum item encontrado com o filtro informado!");
-			FacesContext.getCurrentInstance().addMessage("", message);
-
+		
+		if(solicitacaoAdicionalNoturno == null){
+			abrirListarSolicitacaoAdicionalNoturnoDocentes();
+		}else{
+			List<AdicionalNoturno> listAdicionalNoturno = new ArrayList<AdicionalNoturno>();
+			listAdicionalNoturno
+					.addAll(solicitacaoAdicionalNoturno.getAdicionais());
+			for (AdicionalNoturno adicional : listAdicionalNoturno) {
+				adicional.setDiaSemana(pesquisarDiaSemana(adicional.getData()
+						.getDay()));
+				listaAdicionaisDocentes.add(adicional);
+			}
+			indEncaminharDocente = true;
 		}
 		return this.listaAdicionaisDocentes;
 	}
@@ -534,7 +551,7 @@ public class SolicitacaoAdicionalNoturnoController implements Serializable {
 		indCampusTecnico = false;
 	}
 
-	public void encaminharDocentes() {
+	public void encaminharDocentes() throws IOException, ParseException {
 		solicitacaoAdicionalNoturno.getAdicionais().clear();
 		solicitacaoAdicionalNoturno.getAdicionais().addAll(
 				listaAdicionaisDocentes);
@@ -542,8 +559,10 @@ public class SolicitacaoAdicionalNoturnoController implements Serializable {
 				.setStatusSolicitacao(new StatusSolicitacao());
 		solicitacaoAdicionalNoturno.getStatusSolicitacao().setCodigo(
 				Constantes.STATUS_SOLICITACAO_ENCAMINHADO);
+		buscarDiretor();
 		AdicionalNoturnoDAO.getInstance().saveOrUpdateAdicional(
 				solicitacaoAdicionalNoturno);
+		indEncaminharDocente = false;
 	}
 
 	public void excluirDocente() {

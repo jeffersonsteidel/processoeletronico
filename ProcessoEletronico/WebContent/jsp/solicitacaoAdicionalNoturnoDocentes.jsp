@@ -28,7 +28,6 @@
 			</rich:messages>
 
 			<font size="2"><b>ADICIONAL NOTURNO - DOCENTES</b></font>
-
 			<h:panelGrid columns="1">
 				<h:outputText
 					value="#{solicitacaoAdicionalNoturnoController.solicitacaoAdicionalNoturno.solicitante.siape} - #{solicitacaoAdicionalNoturnoController.solicitacaoAdicionalNoturno.solicitante.nome}">
@@ -106,7 +105,7 @@
 				</h:panelGrid>
 				<a4j:commandButton value="Adicionar"
 					action="#{solicitacaoAdicionalNoturnoController.adicionarDocente}"
-					reRender="listaAdicionais, form" />
+					reRender="listaAdicionais, form, salvar" />
 
 				<rich:dataTable id="listaAdicionais"
 					value="#{solicitacaoAdicionalNoturnoController.listaAdicionalNoturno}"
@@ -172,7 +171,7 @@
 					</f:facet>
 				</rich:dataTable>
 
-				<a4j:commandButton value="Salvar"
+				<a4j:commandButton id="salvar" value="Salvar" rendered="#{not empty solicitacaoAdicionalNoturnoController.listaAdicionalNoturno}"
 					action="#{solicitacaoAdicionalNoturnoController.salvarDocentes}"
 					reRender="form" />
 
