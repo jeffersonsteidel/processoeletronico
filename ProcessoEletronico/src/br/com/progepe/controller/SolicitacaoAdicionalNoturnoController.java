@@ -253,12 +253,7 @@ public class SolicitacaoAdicionalNoturnoController implements Serializable {
 				.carregarSolicitacaoAdicionalNoturno(
 						solicitacaoAdicionalNoturno.getLotacao(), false);
 		if (solicitacaoAdicionalNoturno == null) {
-			FacesMessage message = new FacesMessage(
-					FacesMessage.SEVERITY_ERROR,
-					"Nenhum item encontrado com o filtro informado!",
-					"Nenhum item encontrado com o filtro informado!");
-			FacesContext.getCurrentInstance().addMessage("", message);
-
+			abrirListarSolicitacaoAdicionalNoturnoTecnicos();
 		} else {
 
 			List<AdicionalNoturno> listaAdicionaisTecnicosAprovacao = new ArrayList<AdicionalNoturno>();
@@ -269,6 +264,7 @@ public class SolicitacaoAdicionalNoturnoController implements Serializable {
 						.getDay()));
 				listaAdicionaisTecnicos.add(adicional);
 			}
+			indEncaminharTecnico = true;
 		}
 		return this.listaAdicionaisTecnicos;
 	}
@@ -563,6 +559,20 @@ public class SolicitacaoAdicionalNoturnoController implements Serializable {
 		AdicionalNoturnoDAO.getInstance().saveOrUpdateAdicional(
 				solicitacaoAdicionalNoturno);
 		indEncaminharDocente = false;
+	}
+	
+	public void encaminharTecnicos() throws IOException, ParseException {
+		solicitacaoAdicionalNoturno.getAdicionais().clear();
+		solicitacaoAdicionalNoturno.getAdicionais().addAll(
+				listaAdicionaisTecnicos);
+		solicitacaoAdicionalNoturno
+				.setStatusSolicitacao(new StatusSolicitacao());
+		solicitacaoAdicionalNoturno.getStatusSolicitacao().setCodigo(
+				Constantes.STATUS_SOLICITACAO_ENCAMINHADO);
+		buscarDiretor();
+		AdicionalNoturnoDAO.getInstance().saveOrUpdateAdicional(
+				solicitacaoAdicionalNoturno);
+		indEncaminharTecnico = false;
 	}
 
 	public void excluirDocente() {

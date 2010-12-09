@@ -7,13 +7,21 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Instituto Federal do Paraná</title>
+<link rel="StyleSheet" type="text/css" href="../css/messages-style.css"
+	media="screen" />
 </head>
 <body>
 <f:view>
 	<jsp:directive.include file="menus.jsp" />
-	<center><a4j:form id="form">
-		<rich:panel>
-			<rich:messages layout="list">
+	<a4j:loadScript src="../js/script.js" />
+
+	<center><rich:panel>
+		<a4j:form id="form">
+			<rich:messages layout="list" errorLabelClass="errorLabel"
+				style="top:auto;" infoLabelClass="infoLabel">
+				<f:facet name="infoMarker">
+					<h:graphicImage value="../images/passed.gif" />
+				</f:facet>
 				<f:facet name="errorMarker">
 					<h:graphicImage value="../images/error.gif" />
 				</f:facet>
@@ -36,7 +44,7 @@
 						value="#{solicitacaoAdicionalNoturnoController.lotacoes}" />
 					<a4j:support event="onchange"
 						action="#{solicitacaoAdicionalNoturnoController.listarAdicionaisTecnicosAprovacao}"
-						ajaxSingle="true" reRender="listaSolicitacoesAdicionalTecnicos"></a4j:support>
+						ajaxSingle="true" reRender="listaSolicitacoesAdicionalTecnicos, encaminhar"></a4j:support>
 				</h:selectOneMenu>
 			</h:panelGrid>
 
@@ -94,11 +102,10 @@
 			</h:panelGrid>
 			<h:panelGrid columns="1">
 				<a4j:commandButton
-					action="#{solicitacaoAdicionalNoturnoController.encaminharDocentes}"
-					value="Encaminhar Para Progepe"></a4j:commandButton>
-			</h:panelGrid>
+					action="#{solicitacaoAdicionalNoturnoController.encaminharTecnicos}" id="encaminhar" reRender="form"
+					value="Encaminhar Para Progepe" disabled="#{!solicitacaoAdicionalNoturnoController.indEncaminharTecnico}"></a4j:commandButton>
+			</h:panelGrid></a4j:form>
 	</rich:panel>
-	</a4j:form>
 	</center>
 </f:view>
 </body>
