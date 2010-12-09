@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.faces.application.FacesMessage;
@@ -441,6 +442,7 @@ public class SolicitacaoAdicionalNoturnoController implements Serializable {
 		solicitacaoAdicionalNoturno.setTipoSolicitacao(new TipoSolicitacao());
 		solicitacaoAdicionalNoturno.getTipoSolicitacao().setCodigo(
 				Constantes.TIPO_SOLICITACAO_ADICIONAL_NOTURNO_DOCENTES);
+		solicitacaoAdicionalNoturno.setDataAbertura(new Date());
 		DAO.getInstance().saveOrUpdate(solicitacaoAdicionalNoturno);
 		listaAdicionalNoturno = new ArrayList<AdicionalNoturno>();
 		adicionalNoturno = new AdicionalNoturno();
@@ -456,6 +458,7 @@ public class SolicitacaoAdicionalNoturnoController implements Serializable {
 		solicitacaoAdicionalNoturno.setTipoSolicitacao(new TipoSolicitacao());
 		solicitacaoAdicionalNoturno.getTipoSolicitacao().setCodigo(
 				Constantes.TIPO_SOLICITACAO_ADICIONAL_NOTURNO_TECNICOS);
+		solicitacaoAdicionalNoturno.setDataAbertura(new Date());
 		DAO.getInstance().saveOrUpdate(solicitacaoAdicionalNoturno);
 		solicitacaoAdicionalNoturno = new SolicitacaoAdicionalNoturno();
 		listaAdicionalTecnicos = new ArrayList<AdicionalNoturno>();
