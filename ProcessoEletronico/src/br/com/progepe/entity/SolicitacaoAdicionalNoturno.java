@@ -15,7 +15,6 @@ public class SolicitacaoAdicionalNoturno extends Solicitacao {
 	private Set<AdicionalNoturno> adicionais = new HashSet<AdicionalNoturno>();
 	private List<AdicionalNoturno> listaAdicionaisTecnicos = new ArrayList<AdicionalNoturno>();
 	private List<AdicionalNoturno> listaAdicionaisDocente = new ArrayList<AdicionalNoturno>();
-
 	public boolean isIndDocente() {
 		return indDocente;
 	}
@@ -70,7 +69,7 @@ public class SolicitacaoAdicionalNoturno extends Solicitacao {
 	}
 
 	public void setListaAdicionaisDocente(
-			List<AdicionalNoturno> listaAdicionaisDocente) {
-		this.listaAdicionaisDocente = listaAdicionaisDocente;
+			List<AdicionalNoturno> listaAdicionaisDocentes) {
+		this.listaAdicionaisDocente = listaAdicionaisDocentes;
 	}
 }
