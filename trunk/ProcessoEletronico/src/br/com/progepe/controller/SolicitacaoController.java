@@ -394,7 +394,7 @@ public class SolicitacaoController implements Serializable {
 		FacesContext context = FacesContext.getCurrentInstance();
 		HttpServletResponse response = (HttpServletResponse) context
 				.getExternalContext().getResponse();
-		response.sendRedirect("solicitacaoAdicionalNoturnoTecnicoAprovar.jsp ");
+		response.sendRedirect("solicitacaoAdicionalNoturnoTecnicosAprovar.jsp ");
 	}
 	
 	public void carregarSolicitacaoAdicionalNotunoDocente(
@@ -404,7 +404,7 @@ public class SolicitacaoController implements Serializable {
 			FacesContext context = FacesContext.getCurrentInstance();
 			HttpServletResponse response = (HttpServletResponse) context
 					.getExternalContext().getResponse();
-			response.sendRedirect("solicitacaoAdicionalNoturnoDocenteAprovar.jsp ");
+			response.sendRedirect("solicitacaoAdicionalNoturnoDocentesAprovar.jsp ");
 		}
 
 	public void carregarSolicitacao() throws IOException, ParseException {
