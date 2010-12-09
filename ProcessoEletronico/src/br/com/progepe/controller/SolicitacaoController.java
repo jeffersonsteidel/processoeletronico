@@ -580,6 +580,7 @@ public class SolicitacaoController implements Serializable {
 			solicitacaoAdicionalNoturnoTecnico.setSolicitante(new Servidor());
 			solicitacaoAdicionalNoturnoTecnico = (SolicitacaoAdicionalNoturno) SolicitacaoDAO.getInstance()
 					.carregarSolicitacaoAdicionalNoturno(codigoSolicitacao);
+			solicitacaoAdicionalNoturnoTecnico.getListaAdicionaisTecnicos().addAll(solicitacaoAdicionalNoturnoTecnico.getAdicionais());
 			if (Constantes.STATUS_SOLICITACAO_ENCAMINHADO
 					.equals(solicitacaoAdicionalNoturnoTecnico.getStatusSolicitacao()
 							.getCodigo())) {
