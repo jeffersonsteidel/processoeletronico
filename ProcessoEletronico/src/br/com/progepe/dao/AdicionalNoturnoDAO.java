@@ -36,7 +36,7 @@ public class AdicionalNoturnoDAO extends DAO {
 		try {
 			HibernateUtility.getSession().clear();
 			HibernateUtility.beginTransaction();
-			HibernateUtility.getSession().saveOrUpdate(objeto);
+			HibernateUtility.getSession().merge(objeto);
 			HibernateUtility.commitTransaction();
 			FacesMessage message = new FacesMessage(
 					FacesMessage.SEVERITY_INFO, "Item salvo com sucesso!",
