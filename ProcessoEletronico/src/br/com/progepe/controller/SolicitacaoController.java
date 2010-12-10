@@ -702,14 +702,14 @@ public class SolicitacaoController implements Serializable {
 			solicitacaoAdicionalNoturnoTecnico.getStatusSolicitacao().setCodigo(
 					Constantes.STATUS_SOLICITACAO_DEFERIDO);
 			solicitacaoAdicionalNoturnoTecnico.setDataFechamento(new Date());
-			DAO.getInstance().update(solicitacaoAdicionalNoturnoTecnico);
+			AdicionalNoturnoDAO.getInstance().saveOrUpdateAdicional(solicitacaoAdicionalNoturnoTecnico);
 			this.setDesabilitaBotao(true);
 		} else if (Constantes.TIPO_SOLICITACAO_ADICIONAL_NOTURNO_DOCENTES
 				.equals(tipoSolicitacao)) {
 			solicitacaoAdicionalNoturnoDocente.getStatusSolicitacao().setCodigo(
 					Constantes.STATUS_SOLICITACAO_DEFERIDO);
 			solicitacaoAdicionalNoturnoDocente.setDataFechamento(new Date());
-			DAO.getInstance().update(solicitacaoAdicionalNoturnoDocente);
+			AdicionalNoturnoDAO.getInstance().saveOrUpdateAdicional(solicitacaoAdicionalNoturnoDocente);
 			this.setDesabilitaBotao(true);
 		}
 	}
@@ -834,7 +834,7 @@ public class SolicitacaoController implements Serializable {
 			solicitacaoAdicionalNoturnoTecnico.setDataFechamento(new Date());
 			if (solicitacaoAdicionalNoturnoTecnico.getJustificativa() != null
 					&& solicitacaoAdicionalNoturnoTecnico.getJustificativa() != "") {
-				SolicitacaoDAO.getInstance().saveOrUpdate(solicitacaoAdicionalNoturnoTecnico);
+				AdicionalNoturnoDAO.getInstance().saveOrUpdateAdicional(solicitacaoAdicionalNoturnoTecnico);
 				this.setDesabilitaBotao(true);
 			} else {
 				FacesMessage message = new FacesMessage(
@@ -850,7 +850,7 @@ public class SolicitacaoController implements Serializable {
 			solicitacaoAdicionalNoturnoDocente.setDataFechamento(new Date());
 			if (solicitacaoAdicionalNoturnoDocente.getJustificativa() != null
 					&& solicitacaoAdicionalNoturnoDocente.getJustificativa() != "") {
-				SolicitacaoDAO.getInstance().saveOrUpdate(solicitacaoAdicionalNoturnoDocente);
+				AdicionalNoturnoDAO.getInstance().saveOrUpdateAdicional(solicitacaoAdicionalNoturnoDocente);
 				this.setDesabilitaBotao(true);
 			} else {
 				FacesMessage message = new FacesMessage(
