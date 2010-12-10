@@ -45,7 +45,7 @@
 						<h:outputText value="#{list.servidor.nome}" />
 					</rich:column>
 
-					<rich:column width="330px" sortBy="#{list.data}">
+					<rich:column width="290px" sortBy="#{list.data}">
 						<f:facet name="header">
 							<h:outputText value="Data" />
 						</f:facet>
@@ -54,7 +54,7 @@
 						</h:outputText>
 					</rich:column>
 
-					<rich:column width="350px" sortBy="#{list.diaSemana}">
+					<rich:column width="310px" sortBy="#{list.diaSemana}">
 						<f:facet name="header">
 							<h:outputText value="Dia da Semana" />
 						</f:facet>
@@ -62,7 +62,7 @@
 						</h:outputText>
 					</rich:column>
 
-					<rich:column width="360px" sortBy="#{list.horaInicial}">
+					<rich:column width="300px" sortBy="#{list.horaInicial}">
 						<f:facet name="header">
 							<h:outputText value="Horário" />
 						</f:facet>
@@ -70,7 +70,7 @@
 						</h:outputText>
 					</rich:column>
 					
-					<rich:column width="100px" sortBy="#{list.indAprovadoDiretor}">
+					<rich:column width="80px" sortBy="#{list.indAprovadoDiretor}">
 						<f:facet name="header">
 							<h:outputText value="Aprovado" />
 						</f:facet>
@@ -78,7 +78,7 @@
 						<h:outputText value="NÃO" rendered="#{!list.indAprovadoDiretor}" />
 					</rich:column>
 
-					<rich:column width="660px" sortBy="#{list.motivo}">
+					<rich:column width="800px" sortBy="#{list.motivo}">
 						<f:facet name="header">
 						<h:outputText value="Motivo" />
 					</f:facet>
