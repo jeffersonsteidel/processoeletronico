@@ -56,16 +56,16 @@
 			<h:panelGrid columns="1">
 				<rich:dataTable id="listaSolicitacoesAdicionalDocentes"
 					value="#{solicitacaoAdicionalNoturnoController.listaAdicionaisDocentes}"
-					var="list" width="1160px" columnClasses="center">
+					var="list" width="1200px" columnClasses="center">
 
-					<rich:column width="750px" sortBy="#{list.servidor.nome}">
+					<rich:column width="650px" sortBy="#{list.servidor.nome}">
 						<f:facet name="header">
 							<h:outputText value="Nome" />
 						</f:facet>
 						<h:outputText value="#{list.servidor.nome}" />
 					</rich:column>
 
-					<rich:column width="435px" sortBy="#{list.data}">
+					<rich:column width="80px" sortBy="#{list.data}">
 						<f:facet name="header">
 							<h:outputText value="Data" />
 						</f:facet>
@@ -74,7 +74,7 @@
 						</h:outputText>
 					</rich:column>
 
-					<rich:column width="385px" sortBy="#{list.diaSemana}">
+					<rich:column width="100px" sortBy="#{list.diaSemana}">
 						<f:facet name="header">
 							<h:outputText value="Dia da Semana" />
 						</f:facet>
@@ -82,21 +82,21 @@
 						</h:outputText>
 					</rich:column>
 
-					<rich:column width="435px" sortBy="#{list.horaInicial}">
+					<rich:column width="130px" sortBy="#{list.horaInicial}">
 						<f:facet name="header">
 							<h:outputText value="Horário" />
 						</f:facet>
 						<h:outputText value="#{list.horaInicial} - #{list.horaFinal}" />
 					</rich:column>
 
-					<rich:column width="435px" sortBy="#{list.curso}">
+					<rich:column width="650px" sortBy="#{list.curso}">
 						<f:facet name="header">
 							<h:outputText value="Curso - Turma - Matéria" />
 						</f:facet>
 						<h:outputText
 							value="#{list.curso} - #{list.turma} - #{list.materia}" />
 					</rich:column>
-					<rich:column width="435px">
+					<rich:column width="50px">
 						<f:facet name="header">
 							<h:outputText value="Aprovação" />
 						</f:facet>

@@ -109,27 +109,27 @@
 
 				<rich:dataTable id="listaAdicionais"
 					value="#{solicitacaoAdicionalNoturnoController.listaAdicionalNoturno}"
-					var="list" width="1160px" columnClasses="center" rows="15"
+					var="list" width="1200px" columnClasses="center" rows="15"
 					reRender="ds">
 
-					<rich:column width="435px">
+					<rich:column width="500px">
 						<f:facet name="header">
 							<h:outputText value="Servidor" />
 						</f:facet>
 						<h:outputText value="#{list.servidor.nome}" />
 					</rich:column>
 
-					<rich:column width="435px">
+					<rich:column width="500px">
 						<f:facet name="header">
-							<h:outputText value="Matéria:" />
+							<h:outputText value="Curso - Matéria - Turma" />
 						</f:facet>
-						<h:outputText value="#{list.materia}" />
+						<h:outputText value="#{list.curso} - #{list.materia} - #{list.turma}" />
 					</rich:column>
 
 
 
 
-					<rich:column width="435px">
+					<rich:column width="80px">
 						<f:facet name="header">
 							<h:outputText value="Data" />
 						</f:facet>
@@ -138,20 +138,20 @@
 						</h:outputText>
 					</rich:column>
 
-					<rich:column width="435px">
+					<rich:column width="100px">
 						<f:facet name="header">
 							<h:outputText value="Dia da Semana" />
 						</f:facet>
 						<h:outputText value="#{list.diaSemana}">
 						</h:outputText>
 					</rich:column>
-					<rich:column width="435px">
+					<rich:column width="100px">
 						<f:facet name="header">
 							<h:outputText value="Horário" />
 						</f:facet>
 						<h:outputText value="#{list.horaInicial} - #{list.horaFinal}" />
 					</rich:column>
-					<rich:column>
+					<rich:column width="70px">
 						<f:facet name="header">
 							<h:outputText value="Excluir" />
 						</f:facet>
