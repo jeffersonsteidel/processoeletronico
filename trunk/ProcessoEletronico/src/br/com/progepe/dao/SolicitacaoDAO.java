@@ -64,7 +64,7 @@ public class SolicitacaoDAO extends DAO {
 		HibernateUtility.commitTransaction();
 		return c.list();
 	}
-
+	
 	public SolicitacaoContaBancaria carregarSoliciacaoContaBancaria(Long codigo) {
 		HibernateUtility.getSession().clear();
 		Query query = HibernateUtility.getSession().createQuery(
