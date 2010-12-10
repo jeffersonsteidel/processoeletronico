@@ -592,6 +592,9 @@ public class ServidorController {
 		try {
 			servidor.setDataUltimaAlteracao(new Date());
 			servidor.setDadosValidados(false);
+			if(servidor.getIndEstrangeiro() == false){
+				servidor.setPais(null);
+			}
 			DAO.getInstance().saveOrUpdate(servidor);
 			servidor = (Servidor) DAO.getInstance().refresh(servidor);
 			if (servidor.getDataUltimaAlteracao() != null) {

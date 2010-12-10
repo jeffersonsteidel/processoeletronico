@@ -16,6 +16,13 @@
 	<a4j:loadScript src="../js/script.js" />
 	<center><a4j:form id="form">
 		<rich:panel>
+			<h:panelGrid columns="1" rendered="#{servidorController.servidor.codigo == null}">
+				<font size="2"><b>CADASTRAR SERVIDOR</b></font>
+			</h:panelGrid>
+			<h:panelGrid columns="1" rendered="#{servidorController.servidor.codigo != 0 && servidorController.servidor.codigo != null}">
+				<font size="2"><b>ATUALIZAR DADOS</b></font>
+			</h:panelGrid>
+			
 			<rich:tabPanel switchType="client" width="750" height="120">
 				<rich:tab label="Dados Pessoais">
 					<h:panelGrid columns="4">
