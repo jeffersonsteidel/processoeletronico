@@ -49,13 +49,13 @@
 					</h:selectOneMenu>
 
 					<h:outputText value="Curso: " />
-					<h:inputText id="curso" size="80"
+					<h:inputText id="curso" size="80" maxlength="80"
 						disabled="#{!solicitacaoAdicionalNoturnoController.indCampusDocente}"
 						value="#{solicitacaoAdicionalNoturnoController.adicionalNoturno.curso}">
 					</h:inputText>
 
 					<h:outputText value="Turma: " />
-					<h:inputText size="20"
+					<h:inputText size="20" maxlength="20"
 						value="#{solicitacaoAdicionalNoturnoController.adicionalNoturno.turma}"
 						disabled="#{!solicitacaoAdicionalNoturnoController.indCampusDocente}">
 					</h:inputText>
@@ -64,7 +64,7 @@
 
 				<h:panelGrid columns="10">
 					<h:outputText value="Matéria: " />
-					<h:inputText
+					<h:inputText size="50" maxlength="50"
 						value="#{solicitacaoAdicionalNoturnoController.adicionalNoturno.materia}"
 						disabled="#{!solicitacaoAdicionalNoturnoController.indCampusDocente}" />
 

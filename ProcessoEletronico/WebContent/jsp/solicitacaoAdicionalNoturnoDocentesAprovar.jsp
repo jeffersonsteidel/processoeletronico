@@ -43,14 +43,14 @@
 					value="#{solicitacaoController.solicitacaoAdicionalNoturnoDocente.listaAdicionaisDocente}"
 					var="list" width="1200px" columnClasses="center">
 
-					<rich:column width="750px" sortBy="#{list.servidor.nome}">
+					<rich:column width="550px" sortBy="#{list.servidor.nome}">
 						<f:facet name="header">
 							<h:outputText value="Nome" />
 						</f:facet>
 						<h:outputText value="#{list.servidor.nome}" />
 					</rich:column>
 
-					<rich:column width="325px" sortBy="#{list.data}">
+					<rich:column width="80px" sortBy="#{list.data}">
 						<f:facet name="header">
 							<h:outputText value="Data" />
 						</f:facet>
@@ -59,7 +59,7 @@
 						</h:outputText>
 					</rich:column>
 
-					<rich:column width="325px" sortBy="#{list.diaSemana}">
+					<rich:column width="100px" sortBy="#{list.diaSemana}">
 						<f:facet name="header">
 							<h:outputText value="Dia da Semana" />
 						</f:facet>
@@ -67,23 +67,17 @@
 						</h:outputText>
 					</rich:column>
 
-					<rich:column width="325px" sortBy="#{list.horaInicial}">
+					<rich:column width="130px" sortBy="#{list.horaInicial}">
 						<f:facet name="header">
 							<h:outputText value="Horário" />
 						</f:facet>
 						<h:outputText value="#{list.horaInicial} - #{list.horaFinal}" />
 					</rich:column>
-					<rich:column sortBy="#{list.curso}" width="450px">
+					<rich:column sortBy="#{list.curso}" width="250px">
 						<f:facet name="header">
 							<h:outputText value="Curso" />
 						</f:facet>
 						<h:outputText value="#{list.curso}" />
-					</rich:column>
-					<rich:column sortBy="#{list.turma}" width="100px">
-						<f:facet name="header">
-							<h:outputText value="Turma" />
-						</f:facet>
-						<h:outputText value="#{list.turma}" />
 					</rich:column>
 					<rich:column sortBy="#{list.materia}" width="250px">
 						<f:facet name="header">
@@ -91,7 +85,21 @@
 						</f:facet>
 						<h:outputText value="#{list.materia}" />
 					</rich:column>
-
+					<rich:column sortBy="#{list.turma}" width="100px">
+						<f:facet name="header">
+							<h:outputText value="Turma" />
+						</f:facet>
+						<h:outputText value="#{list.turma}" />
+					</rich:column>
+					
+					<rich:column width="70px" sortBy="#{list.indAprovadoDiretor}">
+						<f:facet name="header">
+							<h:outputText value="Aprovado" />
+						</f:facet>
+						<h:outputText value="SIM" rendered="#{list.indAprovadoDiretor}" />
+						<h:outputText value="NÃO" rendered="#{!list.indAprovadoDiretor}" />
+					</rich:column>
+				
 				</rich:dataTable>
 			</h:panelGrid>
 			<h:panelGrid columns="2">
