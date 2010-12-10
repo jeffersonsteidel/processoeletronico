@@ -13,6 +13,7 @@
 	<jsp:directive.include file="menus.jsp" />
 	<center><a4j:form id="form">
 		<rich:panel>
+		    <font size="2"><b>LISTAR PORTARIAS</b></font>
 			<h:panelGrid columns="13">
 				<h:outputText value="Número: ">
 				</h:outputText>

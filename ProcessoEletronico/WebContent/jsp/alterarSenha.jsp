@@ -16,6 +16,7 @@
 	<a4j:loadScript src="../js/script.js" />
 	<a4j:form id="form">
 		<center><rich:panel>
+			<font size="2"><b>ALTERAR SENHA</b></font>
 			<rich:messages layout="list" errorLabelClass="errorLabel"
 				style="top:auto;" infoLabelClass="infoLabel">
 				<f:facet name="infoMarker">
