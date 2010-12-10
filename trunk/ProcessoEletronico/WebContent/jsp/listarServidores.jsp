@@ -13,6 +13,7 @@
 	<jsp:directive.include file="menus.jsp"/>
 	<center><a4j:form id="form">
 		<rich:panel>
+			<font size="2"><b>LISTAR SERVIDORES</b></font>
 			<rich:messages layout="list">
 				<f:facet name="errorMarker">
 					<h:graphicImage value="../images/error.gif" />

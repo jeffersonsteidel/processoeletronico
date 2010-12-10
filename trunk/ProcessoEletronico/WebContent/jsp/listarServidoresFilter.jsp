@@ -13,6 +13,7 @@
 	<jsp:directive.include file="menus.jsp"/>
 	<center><a4j:form id="form">
 			<rich:panel>
+			<font size="2"><b>PESQUISAR SERVIDOR</b></font>
 			<h:panelGrid columns="9">
 				<h:outputText value="Siape: ">
 				</h:outputText>
