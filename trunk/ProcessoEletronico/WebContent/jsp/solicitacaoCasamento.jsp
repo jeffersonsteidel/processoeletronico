@@ -61,7 +61,7 @@
 				transferErrorLabel="Falha Ao realizar Transferência"
 				doneLabelClass="Finalizada" autoclear="true" immediateUpload="true"
 				listWidth="270px" stopControlLabel="Parar"
-				acceptedTypes="jpg, gif, png, bmp" allowFlash="true"
+				acceptedTypes="jpg, gif, png" allowFlash="true"
 				sizeErrorLabel="Foto muito grande" uploadControlLabel="Carregar"
 				listHeight="70px">
 				<a4j:support event="onuploadcomplete" reRender="info" />
