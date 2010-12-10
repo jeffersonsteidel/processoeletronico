@@ -41,7 +41,7 @@
 					locale="" popup="true" datePattern="dd/MM/yyyy" showApplyButton="#"
 					cellWidth="12px" cellHeight="12px" style="width:80px"
 					required="true" inputSize="12" ajaxSingle="true"
-					requiredMessage="Campo Date de Nascimento do Filho(a) é obrigatório!">
+					requiredMessage="Campo Data de Nascimento do Filho(a) é obrigatório!">
 				</rich:calendar>
 			</h:panelGrid>
 			<rich:fileUpload
@@ -51,7 +51,7 @@
 				transferErrorLabel="Falha Ao realizar Transferência"
 				doneLabelClass="Finalizada" autoclear="true" immediateUpload="true"
 				listWidth="270px" stopControlLabel="Parar"
-				acceptedTypes="jpg, gif, png, bmp" allowFlash="true"
+				acceptedTypes="jpg, gif, png" allowFlash="true"
 				sizeErrorLabel="Foto muito grande" uploadControlLabel="Carregar"
 				listHeight="70px">
 				<a4j:support event="onuploadcomplete" reRender="info" />
