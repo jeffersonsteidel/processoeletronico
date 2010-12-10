@@ -13,15 +13,48 @@
 	<jsp:directive.include file="menus.jsp" />
 	<center><a4j:form id="form">
 		<rich:panel>
+			<font size="2"><b>MINHAS SOLICITAÇÕES</b></font>
 			<rich:messages layout="list">
 				<f:facet name="errorMarker">
 					<h:graphicImage value="../images/error.gif" />
 				</f:facet>
 			</rich:messages>
+			<h:panelGrid columns="9">
+				<h:outputText value="Data de Abertura Entre: " />
+				<h:panelGrid columns="3">
+					<rich:calendar value="#{solicitacaoController.dataAberturaInicial}"
+						locale="" popup="true" datePattern="dd/MM/yyyy"
+						showApplyButton="#" cellWidth="12px" cellHeight="12px"
+						style="width:80px" />
+					<h:outputText value="a" />
+					<rich:calendar value="#{solicitacaoController.dataAberturaFinal}"
+						locale="" popup="true" datePattern="dd/MM/yyyy"
+						showApplyButton="#" cellWidth="12px" cellHeight="12px"
+						style="width:80px" />
+				</h:panelGrid>
+
+				<h:outputText value="Tipo Solicitação: " />
+				<h:selectOneMenu
+					value="#{solicitacaoController.solicitacao.tipoSolicitacao.codigo}">
+					<f:selectItem itemLabel="SELECIONE" itemValue="" />
+					<f:selectItems value="#{solicitacaoController.tiposSolicitacoes}" />
+				</h:selectOneMenu>
+
+				<h:outputText value="Status: " />
+				<h:selectOneMenu
+					value="#{solicitacaoController.solicitacao.statusSolicitacao.codigo}">
+					<f:selectItem itemLabel="SELECIONE" itemValue="" />
+					<f:selectItems value="#{solicitacaoController.statusSolicitacoes}" />
+				</h:selectOneMenu>
+
+				<a4j:commandButton value="Pesquisar"
+					action="#{solicitacaoController.pesquisarMinhasSolicitacoes}"
+					reRender="listaSolicitacoes, form" type="submit" />
+			</h:panelGrid>
+
 			<rich:dataTable id="listarSolicitacoes"
 				value="#{solicitacaoController.minhasSolicitacoes}" var="list"
 				width="1160px" columnClasses="center" rows="15" reRender="ds">
-
 
 				<rich:column width="280px" sortBy="#{list.dataAbertura}">
 					<f:facet name="header">
@@ -48,7 +81,8 @@
 					<f:facet name="header">
 						<h:outputText value="Atendente" />
 					</f:facet>
-					<h:outputText value="#{list.atendenteLogado.nome}" rendered="#{list.atendenteLogado.nome!=null}">
+					<h:outputText value="#{list.atendenteLogado.nome}"
+						rendered="#{list.atendenteLogado.nome!=null}">
 					</h:outputText>
 					<h:outputText value="-"
 						rendered="#{list.atendenteLogado.nome==null}"></h:outputText>
@@ -67,8 +101,7 @@
 				</rich:column>
 
 				<rich:column width="350px"
-					sortBy="#{list.tipoSolicitacao.descricao}"
-					filterBy="#{list.tipoSolicitacao.descricao}" filterEvent="onkeyup">
+					sortBy="#{list.tipoSolicitacao.descricao}">
 					<f:facet name="header">
 						<h:outputText value="Tipo Solicitação" />
 					</f:facet>
@@ -76,9 +109,7 @@
 				</rich:column>
 
 				<rich:column width="135px"
-					sortBy="#{list.statusSolicitacao.descricao}"
-					filterBy="#{list.statusSolicitacao.descricao}"
-					filterEvent="onkeyup">
+					sortBy="#{list.statusSolicitacao.descricao}">
 					<f:facet name="header">
 						<h:outputText value="Status Solicitação" />
 					</f:facet>

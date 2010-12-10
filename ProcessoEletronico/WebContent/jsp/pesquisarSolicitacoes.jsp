@@ -51,7 +51,7 @@
 
 				<a4j:commandButton value="Pesquisar"
 					action="#{solicitacaoController.pesquisarSolicitacoes}"
-					reRender="listaSolicitacoes" type="submit" />
+					reRender="listaSolicitacoes, form" type="submit" />
 			</h:panelGrid>
 
 			<rich:messages layout="list">

@@ -54,7 +54,7 @@ public class SolicitacaoController implements Serializable {
 	private SolicitacaoAfastamentoConjuge solicitacaoAfastamentoConjuge;
 	private SolicitacaoAdicionalNoturno solicitacaoAdicionalNoturnoTecnico;
 	private SolicitacaoAdicionalNoturno solicitacaoAdicionalNoturnoDocente;
-	
+
 	private Long codigoSolicitacao;
 	private Long tipoSolicitacao;
 	private Boolean desabilitaBotao = true;
@@ -242,11 +242,17 @@ public class SolicitacaoController implements Serializable {
 		solicitacoes = new ArrayList<Solicitacao>();
 		solicitacoes.clear();
 		if (solicitacao.getSolicitante().getSiape() != 0) {
-			solicitacao.setSolicitante(ServidorDAO.getInstance().refreshByFilter(solicitacao
-					.getSolicitante()));
+			solicitacao.setSolicitante(ServidorDAO.getInstance()
+					.refreshByFilter(solicitacao.getSolicitante()));
 		}
-		this.setSolicitacoes(SolicitacaoDAO.getInstance().listByFilter(solicitacao,
-				dataAberturaInicial, dataAberturaFinal));
+		this.setSolicitacoes(SolicitacaoDAO.getInstance().listByFilter(
+				solicitacao, dataAberturaInicial, dataAberturaFinal));
+		dataAberturaInicial = null;
+		dataAberturaFinal = null;
+		solicitacao = new Solicitacao();
+		solicitacao.setSolicitante(new Servidor());
+		solicitacao.setStatusSolicitacao(new StatusSolicitacao());
+		solicitacao.setTipoSolicitacao(new TipoSolicitacao());
 		return this.getSolicitacoes();
 	}
 
@@ -254,7 +260,8 @@ public class SolicitacaoController implements Serializable {
 	public List<SelectItem> listarStatusSolicitacoes() {
 		statusSolicitacoes = new ArrayList<SelectItem>();
 		List<StatusSolicitacao> statusSolicitacoesList = new ArrayList<StatusSolicitacao>();
-		statusSolicitacoesList = DAO.getInstance().list(StatusSolicitacao.class, "descricao");
+		statusSolicitacoesList = DAO.getInstance().list(
+				StatusSolicitacao.class, "descricao");
 		for (StatusSolicitacao statusSolicitacao : statusSolicitacoesList) {
 			statusSolicitacoes.add(new SelectItem(
 					statusSolicitacao.getCodigo(), statusSolicitacao
@@ -267,7 +274,8 @@ public class SolicitacaoController implements Serializable {
 	public List<SelectItem> listarTiposSolicitacoes() {
 		tiposSolicitacoes = new ArrayList<SelectItem>();
 		List<TipoSolicitacao> tipoSolicitacoesList = new ArrayList<TipoSolicitacao>();
-		tipoSolicitacoesList = DAO.getInstance().list(TipoSolicitacao.class, "descricao");
+		tipoSolicitacoesList = DAO.getInstance().list(TipoSolicitacao.class,
+				"descricao");
 		for (TipoSolicitacao tipoSolicitacao : tipoSolicitacoesList) {
 			tiposSolicitacoes.add(new SelectItem(tipoSolicitacao.getCodigo(),
 					tipoSolicitacao.getDescricao()));
@@ -275,23 +283,38 @@ public class SolicitacaoController implements Serializable {
 		return tiposSolicitacoes;
 	}
 
-	public List<Solicitacao> abrirMinhasSolicitacoes() throws ParseException {
+	public void abrirMinhasSolicitacoes() throws ParseException {
 		try {
+			statusSolicitacoes = new ArrayList<SelectItem>();
+			tiposSolicitacoes = new ArrayList<SelectItem>();
+			listarStatusSolicitacoes();
+			listarTiposSolicitacoes();
 			minhasSolicitacoes = new ArrayList<Solicitacao>();
 			minhasSolicitacoes.clear();
 			solicitacao = new Solicitacao();
 			solicitacao.setSolicitante(new Servidor());
 			solicitacao.setStatusSolicitacao(new StatusSolicitacao());
 			solicitacao.setTipoSolicitacao(new TipoSolicitacao());
-
 			Autenticacao siapeAutenticado = (Autenticacao) FacesContext
 					.getCurrentInstance().getExternalContext().getSessionMap()
 					.get("usuarioLogado");
 			solicitacao.getSolicitante().setSiape(siapeAutenticado.getSiape());
-			solicitacao.setSolicitante(ServidorDAO.getInstance().refreshByFilter(solicitacao
-					.getSolicitante()));
-			this.setMinhasSolicitacoes(SolicitacaoDAO.getInstance().listByFilter(solicitacao,
-					null, null));
+			solicitacao.setSolicitante(ServidorDAO.getInstance()
+					.refreshByFilter(solicitacao.getSolicitante()));
+			FacesContext.getCurrentInstance().getExternalContext()
+					.redirect("listarMinhasSolicitacoes.jsp");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public List<Solicitacao> pesquisarMinhasSolicitacoes()
+			throws ParseException {
+		try {
+			minhasSolicitacoes = new ArrayList<Solicitacao>();
+			minhasSolicitacoes.clear();
+			this.setMinhasSolicitacoes(SolicitacaoDAO.getInstance().listByFilter(
+					solicitacao, dataAberturaInicial, dataAberturaFinal));
 			for (Solicitacao item : this.getMinhasSolicitacoes()) {
 				Servidor servidor = new Servidor();
 				servidor.setSiape(item.getAtendente());
@@ -300,6 +323,18 @@ public class SolicitacaoController implements Serializable {
 							.refreshBySiape(servidor));
 				}
 			}
+			solicitacao = new Solicitacao();
+			solicitacao.setSolicitante(new Servidor());
+			solicitacao.setStatusSolicitacao(new StatusSolicitacao());
+			solicitacao.setTipoSolicitacao(new TipoSolicitacao());
+			Autenticacao siapeAutenticado = (Autenticacao) FacesContext
+					.getCurrentInstance().getExternalContext().getSessionMap()
+					.get("usuarioLogado");
+			solicitacao.getSolicitante().setSiape(siapeAutenticado.getSiape());
+			solicitacao.setSolicitante(ServidorDAO.getInstance()
+					.refreshByFilter(solicitacao.getSolicitante()));
+			dataAberturaInicial = null;
+			dataAberturaFinal = null;
 			FacesContext.getCurrentInstance().getExternalContext()
 					.redirect("listarMinhasSolicitacoes.jsp");
 		} catch (IOException e) {
@@ -333,8 +368,8 @@ public class SolicitacaoController implements Serializable {
 	public void carregarSolicitacaoAfasatamentoConjuge(
 			SolicitacaoAfastamentoConjuge codigoSolicitacaoAfastamentoConjuge)
 			throws IOException {
-		solicitacaoAfastamentoConjuge = (SolicitacaoAfastamentoConjuge) DAO.getInstance()
-				.refresh(codigoSolicitacaoAfastamentoConjuge);
+		solicitacaoAfastamentoConjuge = (SolicitacaoAfastamentoConjuge) DAO
+				.getInstance().refresh(codigoSolicitacaoAfastamentoConjuge);
 		FacesContext context = FacesContext.getCurrentInstance();
 		HttpServletResponse response = (HttpServletResponse) context
 				.getExternalContext().getResponse();
@@ -344,8 +379,8 @@ public class SolicitacaoController implements Serializable {
 	public void carregarSolicitacaoLicencaPaternidade(
 			SolicitacaoLicencaPaternidade codigoSolicitacaoLicencaPaternidade)
 			throws IOException {
-		solicitacaoLicencaPaternidade = (SolicitacaoLicencaPaternidade) DAO.getInstance()
-				.refresh(codigoSolicitacaoLicencaPaternidade);
+		solicitacaoLicencaPaternidade = (SolicitacaoLicencaPaternidade) DAO
+				.getInstance().refresh(codigoSolicitacaoLicencaPaternidade);
 		solicitacaoLicencaPaternidade.getFiles().add(
 				solicitacaoLicencaPaternidade);
 		FacesContext context = FacesContext.getCurrentInstance();
@@ -357,8 +392,9 @@ public class SolicitacaoController implements Serializable {
 	public void carregarSolicitacaoHorarioEspecialEstudante(
 			SolicitacaoHorarioEspecialEstudante codigoSolicitacaoHorarioEspecialEstudante)
 			throws IOException {
-		solicitacaoHorarioEspecialEstudante = (SolicitacaoHorarioEspecialEstudante) DAO.getInstance()
-				.refresh(codigoSolicitacaoHorarioEspecialEstudante);
+		solicitacaoHorarioEspecialEstudante = (SolicitacaoHorarioEspecialEstudante) DAO
+				.getInstance().refresh(
+						codigoSolicitacaoHorarioEspecialEstudante);
 		solicitacaoHorarioEspecialEstudante.getFiles().add(
 				solicitacaoHorarioEspecialEstudante);
 		FacesContext context = FacesContext.getCurrentInstance();
@@ -369,8 +405,8 @@ public class SolicitacaoController implements Serializable {
 
 	public void carregarSolicitacaoObito(SolicitacaoObito codigoSolicitacaoObito)
 			throws IOException {
-		solicitacaoObito = (SolicitacaoObito) DAO.getInstance()
-				.refresh(codigoSolicitacaoObito);
+		solicitacaoObito = (SolicitacaoObito) DAO.getInstance().refresh(
+				codigoSolicitacaoObito);
 		solicitacaoObito.getFiles().add(solicitacaoObito);
 		FacesContext context = FacesContext.getCurrentInstance();
 		HttpServletResponse response = (HttpServletResponse) context
@@ -388,26 +424,30 @@ public class SolicitacaoController implements Serializable {
 				.getExternalContext().getResponse();
 		response.sendRedirect("solicitacaoCasamentoAprovar.jsp ");
 	}
-	
+
 	public void carregarSolicitacaoAdicionalNotunoTecnico(
-		SolicitacaoAdicionalNoturno codigoSolicitacaoAdicionalNoturnoTecnico) throws IOException {
-		solicitacaoAdicionalNoturnoTecnico = (SolicitacaoAdicionalNoturno) DAO.getInstance()
+			SolicitacaoAdicionalNoturno codigoSolicitacaoAdicionalNoturnoTecnico)
+			throws IOException {
+		solicitacaoAdicionalNoturnoTecnico = (SolicitacaoAdicionalNoturno) DAO
+				.getInstance()
 				.refresh(codigoSolicitacaoAdicionalNoturnoTecnico);
 		FacesContext context = FacesContext.getCurrentInstance();
 		HttpServletResponse response = (HttpServletResponse) context
 				.getExternalContext().getResponse();
 		response.sendRedirect("solicitacaoAdicionalNoturnoTecnicosAprovar.jsp ");
 	}
-	
+
 	public void carregarSolicitacaoAdicionalNotunoDocente(
-			SolicitacaoAdicionalNoturno codigoSolicitacaoAdicionalNoturnoDocente) throws IOException {
-			solicitacaoAdicionalNoturnoDocente = (SolicitacaoAdicionalNoturno) DAO.getInstance()
-					.refresh(codigoSolicitacaoAdicionalNoturnoDocente);
-			FacesContext context = FacesContext.getCurrentInstance();
-			HttpServletResponse response = (HttpServletResponse) context
-					.getExternalContext().getResponse();
-			response.sendRedirect("solicitacaoAdicionalNoturnoDocentesAprovar.jsp ");
-		}
+			SolicitacaoAdicionalNoturno codigoSolicitacaoAdicionalNoturnoDocente)
+			throws IOException {
+		solicitacaoAdicionalNoturnoDocente = (SolicitacaoAdicionalNoturno) DAO
+				.getInstance()
+				.refresh(codigoSolicitacaoAdicionalNoturnoDocente);
+		FacesContext context = FacesContext.getCurrentInstance();
+		HttpServletResponse response = (HttpServletResponse) context
+				.getExternalContext().getResponse();
+		response.sendRedirect("solicitacaoAdicionalNoturnoDocentesAprovar.jsp ");
+	}
 
 	public void carregarSolicitacao() throws IOException, ParseException {
 		Autenticacao siapeAutenticado = (Autenticacao) FacesContext
@@ -426,8 +466,9 @@ public class SolicitacaoController implements Serializable {
 					.setBanco(new Banco());
 			solicitacaoContaBancaria.setNovoBanco(new Banco());
 			solicitacaoContaBancaria.setCodigo(codigoSolicitacao);
-			solicitacaoContaBancaria = (SolicitacaoContaBancaria) SolicitacaoDAO.getInstance()
-					.carregarSoliciacaoContaBancaria(codigoSolicitacao);
+			solicitacaoContaBancaria = (SolicitacaoContaBancaria) SolicitacaoDAO
+					.getInstance().carregarSoliciacaoContaBancaria(
+							codigoSolicitacao);
 			if (Constantes.STATUS_SOLICITACAO_ENCAMINHADO
 					.equals(solicitacaoContaBancaria.getStatusSolicitacao()
 							.getCodigo())) {
@@ -449,8 +490,9 @@ public class SolicitacaoController implements Serializable {
 					.setFiles(new ArrayList<SolicitacaoLicencaPaternidade>());
 			solicitacaoLicencaPaternidade.setSolicitante(new Servidor());
 			solicitacaoLicencaPaternidade.setCodigo(codigoSolicitacao);
-			solicitacaoLicencaPaternidade = (SolicitacaoLicencaPaternidade) SolicitacaoDAO.getInstance()
-					.carregarSolicitacaoLicencaPaternidade(codigoSolicitacao);
+			solicitacaoLicencaPaternidade = (SolicitacaoLicencaPaternidade) SolicitacaoDAO
+					.getInstance().carregarSolicitacaoLicencaPaternidade(
+							codigoSolicitacao);
 			if (Constantes.STATUS_SOLICITACAO_ENCAMINHADO
 					.equals(solicitacaoLicencaPaternidade
 							.getStatusSolicitacao().getCodigo())) {
@@ -473,8 +515,9 @@ public class SolicitacaoController implements Serializable {
 					.setFiles(new ArrayList<SolicitacaoHorarioEspecialEstudante>());
 			solicitacaoHorarioEspecialEstudante.setSolicitante(new Servidor());
 			solicitacaoHorarioEspecialEstudante.setCodigo(codigoSolicitacao);
-			solicitacaoHorarioEspecialEstudante = (SolicitacaoHorarioEspecialEstudante) SolicitacaoDAO.getInstance()
-					.carregarSolicitacaoHorarioEspecialEstudante(codigoSolicitacao);
+			solicitacaoHorarioEspecialEstudante = (SolicitacaoHorarioEspecialEstudante) SolicitacaoDAO
+					.getInstance().carregarSolicitacaoHorarioEspecialEstudante(
+							codigoSolicitacao);
 			if (Constantes.STATUS_SOLICITACAO_ENCAMINHADO
 					.equals(solicitacaoHorarioEspecialEstudante
 							.getStatusSolicitacao().getCodigo())) {
@@ -489,7 +532,8 @@ public class SolicitacaoController implements Serializable {
 						.setAtendenteLogado(new Servidor());
 				solicitacaoHorarioEspecialEstudante
 						.setAtendenteLogado(servidor);
-				DAO.getInstance().saveOrUpdate(solicitacaoHorarioEspecialEstudante);
+				DAO.getInstance().saveOrUpdate(
+						solicitacaoHorarioEspecialEstudante);
 			}
 			this.carregarSolicitacaoHorarioEspecialEstudante(solicitacaoHorarioEspecialEstudante);
 		} else if (Constantes.TIPO_SOLICITACAO_OBITO.equals(tipoSolicitacao)) {
@@ -518,8 +562,9 @@ public class SolicitacaoController implements Serializable {
 					.setFiles(new ArrayList<SolicitacaoCasamento>());
 			solicitacaoCasamento.setSolicitante(new Servidor());
 			solicitacaoCasamento.setCodigo(codigoSolicitacao);
-			solicitacaoCasamento = (SolicitacaoCasamento) SolicitacaoDAO.getInstance()
-					.carregarSolicitacaoCasamento(codigoSolicitacao);
+			solicitacaoCasamento = (SolicitacaoCasamento) SolicitacaoDAO
+					.getInstance().carregarSolicitacaoCasamento(
+							codigoSolicitacao);
 			if (Constantes.STATUS_SOLICITACAO_ENCAMINHADO
 					.equals(solicitacaoCasamento.getStatusSolicitacao()
 							.getCodigo())) {
@@ -538,8 +583,9 @@ public class SolicitacaoController implements Serializable {
 			solicitacaoAlimentacao = new SolicitacaoAlimentacao();
 			solicitacaoAlimentacao.setSolicitante(new Servidor());
 			solicitacaoAlimentacao.setCodigo(codigoSolicitacao);
-			solicitacaoAlimentacao = (SolicitacaoAlimentacao) SolicitacaoDAO.getInstance()
-					.carregarSolicitacaoAlimentacao(codigoSolicitacao);
+			solicitacaoAlimentacao = (SolicitacaoAlimentacao) SolicitacaoDAO
+					.getInstance().carregarSolicitacaoAlimentacao(
+							codigoSolicitacao);
 			if (Constantes.STATUS_SOLICITACAO_ENCAMINHADO
 					.equals(solicitacaoAlimentacao.getStatusSolicitacao()
 							.getCodigo())) {
@@ -559,11 +605,12 @@ public class SolicitacaoController implements Serializable {
 			solicitacaoAfastamentoConjuge = new SolicitacaoAfastamentoConjuge();
 			solicitacaoAfastamentoConjuge.setSolicitante(new Servidor());
 			solicitacaoAfastamentoConjuge.setCodigo(codigoSolicitacao);
-			solicitacaoAfastamentoConjuge = (SolicitacaoAfastamentoConjuge) SolicitacaoDAO.getInstance()
-					.carregarSolicitacaoAfastamentoConjuge(codigoSolicitacao);
+			solicitacaoAfastamentoConjuge = (SolicitacaoAfastamentoConjuge) SolicitacaoDAO
+					.getInstance().carregarSolicitacaoAfastamentoConjuge(
+							codigoSolicitacao);
 			if (Constantes.STATUS_SOLICITACAO_ENCAMINHADO
-					.equals(solicitacaoAfastamentoConjuge.getStatusSolicitacao()
-							.getCodigo())) {
+					.equals(solicitacaoAfastamentoConjuge
+							.getStatusSolicitacao().getCodigo())) {
 				this.setDesabilitaBotao(false);
 				solicitacaoAfastamentoConjuge.getStatusSolicitacao().setCodigo(
 						Constantes.STATUS_SOLICITACAO_EM_ANALISE);
@@ -576,59 +623,73 @@ public class SolicitacaoController implements Serializable {
 				DAO.getInstance().saveOrUpdate(solicitacaoAfastamentoConjuge);
 			}
 			this.carregarSolicitacaoAfasatamentoConjuge(solicitacaoAfastamentoConjuge);
-		}else if (Constantes.TIPO_SOLICITACAO_ADICIONAL_NOTURNO_TECNICOS
+		} else if (Constantes.TIPO_SOLICITACAO_ADICIONAL_NOTURNO_TECNICOS
 				.equals(tipoSolicitacao)) {
 			solicitacaoAdicionalNoturnoTecnico = new SolicitacaoAdicionalNoturno();
 			solicitacaoAdicionalNoturnoTecnico.setSolicitante(new Servidor());
-			solicitacaoAdicionalNoturnoTecnico = (SolicitacaoAdicionalNoturno) SolicitacaoDAO.getInstance()
-					.carregarSolicitacaoAdicionalNoturno(codigoSolicitacao);
-			for(AdicionalNoturno item : solicitacaoAdicionalNoturnoTecnico.getAdicionais()){
-					@SuppressWarnings("deprecation")
-					String dia = SolicitacaoAdicionalNoturnoController.pesquisarDiaSemana(item.getData().getDay());
-					item.setDiaSemana(dia);
-				     solicitacaoAdicionalNoturnoTecnico.getListaAdicionaisTecnicos().add(item);
+			solicitacaoAdicionalNoturnoTecnico = (SolicitacaoAdicionalNoturno) SolicitacaoDAO
+					.getInstance().carregarSolicitacaoAdicionalNoturno(
+							codigoSolicitacao);
+			for (AdicionalNoturno item : solicitacaoAdicionalNoturnoTecnico
+					.getAdicionais()) {
+				@SuppressWarnings("deprecation")
+				String dia = SolicitacaoAdicionalNoturnoController
+						.pesquisarDiaSemana(item.getData().getDay());
+				item.setDiaSemana(dia);
+				solicitacaoAdicionalNoturnoTecnico.getListaAdicionaisTecnicos()
+						.add(item);
 			}
 			if (Constantes.STATUS_SOLICITACAO_ENCAMINHADO
-					.equals(solicitacaoAdicionalNoturnoTecnico.getStatusSolicitacao()
-							.getCodigo())) {
+					.equals(solicitacaoAdicionalNoturnoTecnico
+							.getStatusSolicitacao().getCodigo())) {
 				this.setDesabilitaBotao(false);
-				solicitacaoAdicionalNoturnoTecnico.getStatusSolicitacao().setCodigo(
-						Constantes.STATUS_SOLICITACAO_EM_ANALISE);
-				solicitacaoAdicionalNoturnoTecnico.setDataAtendimento(new Date());
-				solicitacaoAdicionalNoturnoTecnico.setAtendente(siapeAutenticado
-						.getSiape());
-				solicitacaoAdicionalNoturnoTecnico.setAtendenteLogado(new Servidor());
+				solicitacaoAdicionalNoturnoTecnico.getStatusSolicitacao()
+						.setCodigo(Constantes.STATUS_SOLICITACAO_EM_ANALISE);
+				solicitacaoAdicionalNoturnoTecnico
+						.setDataAtendimento(new Date());
+				solicitacaoAdicionalNoturnoTecnico
+						.setAtendente(siapeAutenticado.getSiape());
+				solicitacaoAdicionalNoturnoTecnico
+						.setAtendenteLogado(new Servidor());
 				solicitacaoAdicionalNoturnoTecnico.setAtendenteLogado(servidor);
-				AdicionalNoturnoDAO.getInstance().saveOrUpdateAdicional(solicitacaoAdicionalNoturnoTecnico);
+				AdicionalNoturnoDAO.getInstance().saveOrUpdateAdicional(
+						solicitacaoAdicionalNoturnoTecnico);
 			}
 			this.carregarSolicitacaoAdicionalNotunoTecnico(solicitacaoAdicionalNoturnoTecnico);
 		} else if (Constantes.TIPO_SOLICITACAO_ADICIONAL_NOTURNO_DOCENTES
 				.equals(tipoSolicitacao)) {
 			solicitacaoAdicionalNoturnoDocente = new SolicitacaoAdicionalNoturno();
 			solicitacaoAdicionalNoturnoDocente.setSolicitante(new Servidor());
-			solicitacaoAdicionalNoturnoDocente = (SolicitacaoAdicionalNoturno) SolicitacaoDAO.getInstance()
-					.carregarSolicitacaoAdicionalNoturno(codigoSolicitacao);
-			for(AdicionalNoturno item : solicitacaoAdicionalNoturnoDocente.getAdicionais()){
+			solicitacaoAdicionalNoturnoDocente = (SolicitacaoAdicionalNoturno) SolicitacaoDAO
+					.getInstance().carregarSolicitacaoAdicionalNoturno(
+							codigoSolicitacao);
+			for (AdicionalNoturno item : solicitacaoAdicionalNoturnoDocente
+					.getAdicionais()) {
 				@SuppressWarnings("deprecation")
-				String dia = SolicitacaoAdicionalNoturnoController.pesquisarDiaSemana(item.getData().getDay());
+				String dia = SolicitacaoAdicionalNoturnoController
+						.pesquisarDiaSemana(item.getData().getDay());
 				item.setDiaSemana(dia);
-			     solicitacaoAdicionalNoturnoDocente.getListaAdicionaisDocente().add(item);
+				solicitacaoAdicionalNoturnoDocente.getListaAdicionaisDocente()
+						.add(item);
 			}
 			if (Constantes.STATUS_SOLICITACAO_ENCAMINHADO
-					.equals(solicitacaoAdicionalNoturnoDocente.getStatusSolicitacao()
-							.getCodigo())) {
+					.equals(solicitacaoAdicionalNoturnoDocente
+							.getStatusSolicitacao().getCodigo())) {
 				this.setDesabilitaBotao(false);
-				solicitacaoAdicionalNoturnoDocente.getStatusSolicitacao().setCodigo(
-						Constantes.STATUS_SOLICITACAO_EM_ANALISE);
-				solicitacaoAdicionalNoturnoDocente.setDataAtendimento(new Date());
-				solicitacaoAdicionalNoturnoDocente.setAtendente(siapeAutenticado
-						.getSiape());
-				solicitacaoAdicionalNoturnoDocente.setAtendenteLogado(new Servidor());
+				solicitacaoAdicionalNoturnoDocente.getStatusSolicitacao()
+						.setCodigo(Constantes.STATUS_SOLICITACAO_EM_ANALISE);
+				solicitacaoAdicionalNoturnoDocente
+						.setDataAtendimento(new Date());
+				solicitacaoAdicionalNoturnoDocente
+						.setAtendente(siapeAutenticado.getSiape());
+				solicitacaoAdicionalNoturnoDocente
+						.setAtendenteLogado(new Servidor());
 				solicitacaoAdicionalNoturnoDocente.setAtendenteLogado(servidor);
-				AdicionalNoturnoDAO.getInstance().saveOrUpdateAdicional(solicitacaoAdicionalNoturnoDocente);
+				AdicionalNoturnoDAO.getInstance().saveOrUpdateAdicional(
+						solicitacaoAdicionalNoturnoDocente);
 			}
 			this.carregarSolicitacaoAdicionalNotunoDocente(solicitacaoAdicionalNoturnoDocente);
-		} 
+		}
 	}
 
 	public void deferirSolicitacao() throws IOException, ParseException {
@@ -637,7 +698,8 @@ public class SolicitacaoController implements Serializable {
 			solicitacaoContaBancaria.getStatusSolicitacao().setCodigo(
 					Constantes.STATUS_SOLICITACAO_DEFERIDO);
 			solicitacaoContaBancaria.setDataFechamento(new Date());
-			SolicitacaoDAO.getInstance().updateSolicitacao(solicitacaoContaBancaria);
+			SolicitacaoDAO.getInstance().updateSolicitacao(
+					solicitacaoContaBancaria);
 			solicitacaoContaBancaria.getSolicitante().getContaBancaria()
 					.setBanco(solicitacaoContaBancaria.getNovoBanco());
 			solicitacaoContaBancaria
@@ -679,8 +741,10 @@ public class SolicitacaoController implements Serializable {
 			solicitacaoCasamento.getStatusSolicitacao().setCodigo(
 					Constantes.STATUS_SOLICITACAO_DEFERIDO);
 			solicitacaoCasamento.setDataFechamento(new Date());
-			SolicitacaoDAO.getInstance().updateSolicitacao(solicitacaoCasamento);
-			solicitacaoCasamento.getSolicitante().getEstadoCivil().setCodigo(Constantes.ESTADO_CIVIL_CASADO);
+			SolicitacaoDAO.getInstance()
+					.updateSolicitacao(solicitacaoCasamento);
+			solicitacaoCasamento.getSolicitante().getEstadoCivil()
+					.setCodigo(Constantes.ESTADO_CIVIL_CASADO);
 			DAO.getInstance().update(solicitacaoCasamento.getSolicitante());
 			this.setDesabilitaBotao(true);
 		} else if (Constantes.TIPO_SOLICITACAO_AUXILIO_ALIMENTACAO
@@ -699,17 +763,19 @@ public class SolicitacaoController implements Serializable {
 			this.setDesabilitaBotao(true);
 		} else if (Constantes.TIPO_SOLICITACAO_ADICIONAL_NOTURNO_TECNICOS
 				.equals(tipoSolicitacao)) {
-			solicitacaoAdicionalNoturnoTecnico.getStatusSolicitacao().setCodigo(
-					Constantes.STATUS_SOLICITACAO_DEFERIDO);
+			solicitacaoAdicionalNoturnoTecnico.getStatusSolicitacao()
+					.setCodigo(Constantes.STATUS_SOLICITACAO_DEFERIDO);
 			solicitacaoAdicionalNoturnoTecnico.setDataFechamento(new Date());
-			AdicionalNoturnoDAO.getInstance().saveOrUpdateAdicional(solicitacaoAdicionalNoturnoTecnico);
+			AdicionalNoturnoDAO.getInstance().saveOrUpdateAdicional(
+					solicitacaoAdicionalNoturnoTecnico);
 			this.setDesabilitaBotao(true);
 		} else if (Constantes.TIPO_SOLICITACAO_ADICIONAL_NOTURNO_DOCENTES
 				.equals(tipoSolicitacao)) {
-			solicitacaoAdicionalNoturnoDocente.getStatusSolicitacao().setCodigo(
-					Constantes.STATUS_SOLICITACAO_DEFERIDO);
+			solicitacaoAdicionalNoturnoDocente.getStatusSolicitacao()
+					.setCodigo(Constantes.STATUS_SOLICITACAO_DEFERIDO);
 			solicitacaoAdicionalNoturnoDocente.setDataFechamento(new Date());
-			AdicionalNoturnoDAO.getInstance().saveOrUpdateAdicional(solicitacaoAdicionalNoturnoDocente);
+			AdicionalNoturnoDAO.getInstance().saveOrUpdateAdicional(
+					solicitacaoAdicionalNoturnoDocente);
 			this.setDesabilitaBotao(true);
 		}
 	}
@@ -722,7 +788,8 @@ public class SolicitacaoController implements Serializable {
 			solicitacaoContaBancaria.setDataFechamento(new Date());
 			if (solicitacaoContaBancaria.getJustificativa() != null
 					&& solicitacaoContaBancaria.getJustificativa() != "") {
-				SolicitacaoDAO.getInstance().saveOrUpdate(solicitacaoContaBancaria);
+				SolicitacaoDAO.getInstance().saveOrUpdate(
+						solicitacaoContaBancaria);
 				this.setDesabilitaBotao(true);
 			} else {
 				FacesMessage message = new FacesMessage(
@@ -738,7 +805,8 @@ public class SolicitacaoController implements Serializable {
 			solicitacaoLicencaPaternidade.setDataFechamento(new Date());
 			if (solicitacaoLicencaPaternidade.getJustificativa() != null
 					&& solicitacaoLicencaPaternidade.getJustificativa() != "") {
-				SolicitacaoDAO.getInstance().saveOrUpdate(solicitacaoLicencaPaternidade);
+				SolicitacaoDAO.getInstance().saveOrUpdate(
+						solicitacaoLicencaPaternidade);
 				this.setDesabilitaBotao(true);
 			} else {
 				FacesMessage message = new FacesMessage(
@@ -754,8 +822,8 @@ public class SolicitacaoController implements Serializable {
 			solicitacaoHorarioEspecialEstudante.setDataFechamento(new Date());
 			if (solicitacaoHorarioEspecialEstudante.getJustificativa() != null
 					&& solicitacaoHorarioEspecialEstudante.getJustificativa() != "") {
-				SolicitacaoDAO.getInstance()
-						.saveOrUpdate(solicitacaoHorarioEspecialEstudante);
+				SolicitacaoDAO.getInstance().saveOrUpdate(
+						solicitacaoHorarioEspecialEstudante);
 				this.setDesabilitaBotao(true);
 			} else {
 				FacesMessage message = new FacesMessage(
@@ -802,7 +870,8 @@ public class SolicitacaoController implements Serializable {
 			solicitacaoAlimentacao.setDataFechamento(new Date());
 			if (solicitacaoAlimentacao.getJustificativa() != null
 					&& solicitacaoAlimentacao.getJustificativa() != "") {
-				SolicitacaoDAO.getInstance().saveOrUpdate(solicitacaoAlimentacao);
+				SolicitacaoDAO.getInstance().saveOrUpdate(
+						solicitacaoAlimentacao);
 				this.setDesabilitaBotao(true);
 			} else {
 				FacesMessage message = new FacesMessage(
@@ -818,7 +887,8 @@ public class SolicitacaoController implements Serializable {
 			solicitacaoAfastamentoConjuge.setDataFechamento(new Date());
 			if (solicitacaoAfastamentoConjuge.getJustificativa() != null
 					&& solicitacaoAfastamentoConjuge.getJustificativa() != "") {
-				SolicitacaoDAO.getInstance().saveOrUpdate(solicitacaoAfastamentoConjuge);
+				SolicitacaoDAO.getInstance().saveOrUpdate(
+						solicitacaoAfastamentoConjuge);
 				this.setDesabilitaBotao(true);
 			} else {
 				FacesMessage message = new FacesMessage(
@@ -829,12 +899,13 @@ public class SolicitacaoController implements Serializable {
 			}
 		} else if (Constantes.TIPO_SOLICITACAO_ADICIONAL_NOTURNO_TECNICOS
 				.equals(tipoSolicitacao)) {
-			solicitacaoAdicionalNoturnoTecnico.getStatusSolicitacao().setCodigo(
-					Constantes.STATUS_SOLICITACAO_INDEFERIDO);
+			solicitacaoAdicionalNoturnoTecnico.getStatusSolicitacao()
+					.setCodigo(Constantes.STATUS_SOLICITACAO_INDEFERIDO);
 			solicitacaoAdicionalNoturnoTecnico.setDataFechamento(new Date());
 			if (solicitacaoAdicionalNoturnoTecnico.getJustificativa() != null
 					&& solicitacaoAdicionalNoturnoTecnico.getJustificativa() != "") {
-				AdicionalNoturnoDAO.getInstance().saveOrUpdateAdicional(solicitacaoAdicionalNoturnoTecnico);
+				AdicionalNoturnoDAO.getInstance().saveOrUpdateAdicional(
+						solicitacaoAdicionalNoturnoTecnico);
 				this.setDesabilitaBotao(true);
 			} else {
 				FacesMessage message = new FacesMessage(
@@ -843,14 +914,15 @@ public class SolicitacaoController implements Serializable {
 						"O campo Justificativa é obrigatório!!");
 				FacesContext.getCurrentInstance().addMessage("", message);
 			}
-		}  else if (Constantes.TIPO_SOLICITACAO_ADICIONAL_NOTURNO_DOCENTES
+		} else if (Constantes.TIPO_SOLICITACAO_ADICIONAL_NOTURNO_DOCENTES
 				.equals(tipoSolicitacao)) {
-			solicitacaoAdicionalNoturnoDocente.getStatusSolicitacao().setCodigo(
-					Constantes.STATUS_SOLICITACAO_INDEFERIDO);
+			solicitacaoAdicionalNoturnoDocente.getStatusSolicitacao()
+					.setCodigo(Constantes.STATUS_SOLICITACAO_INDEFERIDO);
 			solicitacaoAdicionalNoturnoDocente.setDataFechamento(new Date());
 			if (solicitacaoAdicionalNoturnoDocente.getJustificativa() != null
 					&& solicitacaoAdicionalNoturnoDocente.getJustificativa() != "") {
-				AdicionalNoturnoDAO.getInstance().saveOrUpdateAdicional(solicitacaoAdicionalNoturnoDocente);
+				AdicionalNoturnoDAO.getInstance().saveOrUpdateAdicional(
+						solicitacaoAdicionalNoturnoDocente);
 				this.setDesabilitaBotao(true);
 			} else {
 				FacesMessage message = new FacesMessage(
