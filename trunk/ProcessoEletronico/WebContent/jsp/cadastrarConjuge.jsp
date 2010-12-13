@@ -51,9 +51,17 @@
 					<f:selectItem itemLabel="FEMININO" itemValue="F" />
 					<f:selectItem itemLabel="MASCULINO" itemValue="M" />
 				</h:selectOneMenu>
+				
+				<h:outputText value="Data de Nascimento do Cônjuge: " />
+				<rich:calendar
+					value="#{conjugeController.conjuge.dataNascimento}"
+					locale="" popup="true" datePattern="dd/MM/yyyy" showApplyButton="#"
+					cellWidth="12px" cellHeight="12px" style="width:80px"
+					inputSize="12" required="true"
+					requiredMessage="Campo Data de Nascimento do Cônjuge é obrigatório!" />
 
 				<h:outputText value="CPF do Cônjuge: " />
-				<h:inputText value="#{conjugeController.conjuge.documento.cpf}"
+				<h:inputText value="#{conjugeController.conjuge.cpf}"
 					size="16" maxlength="14" id="cpf" onkeypress="mascara(this,cpf);"
 					required="true"
 					requiredMessage="Campo CPF do Cônjuge é obrigatório!">
@@ -63,12 +71,12 @@
 				</h:inputText>
 
 				<h:outputText value="RG do Cônjuge: " />
-				<h:inputText value="#{conjugeController.conjuge.documento.rg}"
+				<h:inputText value="#{conjugeController.conjuge.rg}"
 					size="16" maxlength="13" required="true"
 					requiredMessage="Campo RG do Cônjuge é obrigatório!"></h:inputText>
 
 				<h:outputText value="UF do RG do Cônjuge: " />
-				<h:selectOneMenu value="#{conjugeController.conjuge.documento.rgUf}"
+				<h:selectOneMenu value="#{conjugeController.conjuge.rgUf}"
 					required="true"
 					requiredMessage="Campo UF do RG do Cônjuge é obrigatório!">
 					<f:selectItem itemLabel="SELECIONE" itemValue="" />
@@ -77,13 +85,13 @@
 
 				<h:outputText value="Orgão Emissor do RG do Cônjuge: " />
 				<h:inputText
-					value="#{conjugeController.conjuge.documento.rgOrgaoEmissor}"
+					value="#{conjugeController.conjuge.rgOrgao}"
 					size="16" maxlength="8" required="true"
 					requiredMessage="Campo Orgão Emissor do RG do Cônjuge é obrigatório!" />
 
 				<h:outputText value="Data de Expedição do RG do Cônjuge: " />
 				<rich:calendar
-					value="#{conjugeController.conjuge.documento.rgDataExpedicao}"
+					value="#{conjugeController.conjuge.rgDataExpedicao}"
 					locale="" popup="true" datePattern="dd/MM/yyyy" showApplyButton="#"
 					cellWidth="12px" cellHeight="12px" style="width:80px"
 					inputSize="12" required="true"
@@ -92,7 +100,7 @@
 				<h:outputText value="Estado de Nascimento do Cônjuge: " />
 				<h:selectOneMenu id="estadoNascimentoConjuge"
 					value="#{conjugeController.conjuge.cidadeNascimento.estado.codigo}"
-					required="true" disabled="#{!conjugeController.conjugeBrasileiro}"
+					required="true" disabled="#{conjugeController.conjuge.indEstrangeiro}"
 					requiredMessage="Campo Estado de Nascimento do Cônjuge é obrigatório!">
 					<f:selectItem itemLabel="SELECIONE" itemValue="" />
 					<f:selectItems value="#{conjugeController.estados}" />
@@ -104,7 +112,7 @@
 				<h:outputText value="Cidade de Nascimento do Cônjuge: " />
 				<h:selectOneMenu id="cidadeNascimentoConjuge"
 					value="#{conjugeController.conjuge.cidadeNascimento.codigo}"
-					required="true" disabled="#{!conjugeController.conjugeBrasileiro}"
+					required="true" disabled="#{conjugeController.conjuge.indEstrangeiro}"
 					requiredMessage="Campo Cidade de Nascimento do Cônjuge é obrigatório!">
 					<f:selectItem itemLabel="SELECIONE" itemValue="" />
 					<f:selectItems value="#{conjugeController.cidadesNascimento}" />
@@ -113,15 +121,15 @@
 				<h:outputText value="Estrangeiro: " />
 				<h:selectBooleanCheckbox id="estrangeiro"
 					title="Marcar esta opção caso seja imigrante!"
-					value="#{conjugeController.conjuge.indEstrangeiro}">
-					<a4j:support event="onchange" ajaxSingle="true"
+					value="#{conjugeController.conjuge.indEstrangeiro}" >
+					<a4j:support event="onchange" ajaxSingle="true" 
 						reRender="paisNascimentoConjuge, estadoNascimentoConjuge, cidadeNascimentoConjuge"></a4j:support>
 				</h:selectBooleanCheckbox>
 
 				<h:outputText value="País de Nascimento do Cônjuge: " />
 				<h:selectOneMenu id="paisNascimentoConjuge"
 					value="#{conjugeController.conjuge.pais.codigo}" required="true"
-					disabled="#{conjugeController.conjugeBrasileiro}"
+					disabled="#{!conjugeController.conjuge.indEstrangeiro}"
 					requiredMessage="Campo País de Nascimento do Cônjuge é obrigatório!">
 					<f:selectItem itemLabel="SELECIONE" itemValue="" />
 					<f:selectItems value="#{conjugeController.paises}" />

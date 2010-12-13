@@ -24,7 +24,7 @@ public class Conjuge implements Serializable {
 	private String rg;
 	private String rgOrgao;
 	private Date rgDataExpedicao;
-	private Long  rgUfOrgao;
+	private Long  rgUf;
 	
 	public Long getCodigo() {
 		return codigo;
@@ -146,11 +146,13 @@ public class Conjuge implements Serializable {
 		this.rgDataExpedicao = rgDataExpedicao;
 	}
 
-	public Long getRgUfOrgao() {
-		return rgUfOrgao;
+	public Long getRgUf() {
+		return rgUf;
 	}
 
-	public void setRgUfOrgao(Long rgUfOrgao) {
-		this.rgUfOrgao = rgUfOrgao;
+	public void setRgUf(Long rgUf) {
+		this.rgUf = rgUf;
 	}
+
+	
 }

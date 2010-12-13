@@ -33,8 +33,8 @@ public class ConjugeController implements Serializable {
 	private List<SelectItem> cidadesNascimento = new ArrayList<SelectItem>();
 
 	private Estado estadoNascimento;
-	private Boolean conjugeEstrangeiro = false;
-	private Boolean conjugeBrasileiro = true;
+	
+	
 	private Boolean conjugeServidor = false;
 	private String texto;
 
@@ -94,21 +94,8 @@ public class ConjugeController implements Serializable {
 		this.estadoNascimento = estadoNascimento;
 	}
 
-	public Boolean getConjugeEstrangeiro() {
-		return conjugeEstrangeiro;
-	}
-
-	public void setConjugeEstrangeiro(Boolean conjugeEstrangeiro) {
-		this.conjugeEstrangeiro = conjugeEstrangeiro;
-	}
-
-	public Boolean getConjugeBrasileiro() {
-		return conjugeBrasileiro;
-	}
-
-	public void setConjugeBrasileiro(Boolean conjugeBrasileiro) {
-		this.conjugeBrasileiro = conjugeBrasileiro;
-	}
+	
+	
 
 	public Boolean getConjugeServidor() {
 		return conjugeServidor;
@@ -261,5 +248,5 @@ public class ConjugeController implements Serializable {
 			conjuge.setCpf("");
 		}
 	}
-
+	
 }
