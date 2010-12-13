@@ -145,7 +145,8 @@ public class SolicitacaoDAO extends DAO {
 	public void updateSolicitacao(Object objeto) {
 		try {
 			HibernateUtility.getSession().clear();
-			HibernateUtility.getSession().saveOrUpdate(objeto);
+			HibernateUtility.beginTransaction();
+			HibernateUtility.getSession().update(objeto);
 			HibernateUtility.commitTransaction();
 		} catch (Exception e) {
 			HibernateUtility.rollbackTransaction();
