@@ -19,7 +19,7 @@
 		<property name="rg" column="CONJ_RG" />
 		<property name="rgOrgao" column="CONJ_RG_ORG_EMI" />
 		<property name="rgDataExpedicao" column="CONJ_RG_DATA_EXP" />
-		<property name="rgUfOrgao" column="CONJ_RG_UF" />
+		<property name="rgUf" column="CONJ_RG_UF" />
 		<many-to-one name="cidadeNascimento" class="br.com.progepe.entity.Cidade"
 			column="CID_COD_CID_NASC" lazy="false" />
 		<many-to-one name="servidor" class="br.com.progepe.entity.Servidor"
