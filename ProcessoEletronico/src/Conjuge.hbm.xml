@@ -14,13 +14,17 @@
 		<property name="atual" column="CONJ_IND_ATUAL" type="boolean" />
 		<property name="local" column="CONJ_SERV_LOCAL_TRAB" />
 		<property name="sexo" column="CONJ_SEXO" />
+		<property name="dataNascimento" column="CONJ_DATA_NASC" />
+		<property name="cpf" column="CONJ_CPF" />
+		<property name="rg" column="CONJ_RG" />
+		<property name="rgOrgao" column="CONJ_RG_ORG_EMI" />
+		<property name="rgDataExpedicao" column="CONJ_RG_DATA_EXP" />
+		<property name="rgUfOrgao" column="CONJ_RG_UF" />
 		<many-to-one name="cidadeNascimento" class="br.com.progepe.entity.Cidade"
 			column="CID_COD_CID_NASC" lazy="false" />
 		<many-to-one name="servidor" class="br.com.progepe.entity.Servidor"
 			column="SERV_COD" lazy="false" />
 		<many-to-one name="pais" class="br.com.progepe.entity.Pais"
 			column="PAIS_COD" lazy="false" />
-		<one-to-one name="documento" class="br.com.progepe.entity.Documento"
-			constrained="true" cascade="all" />
 	</class>
 </hibernate-mapping>

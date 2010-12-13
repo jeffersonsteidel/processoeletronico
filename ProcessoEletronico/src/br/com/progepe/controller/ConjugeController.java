@@ -17,7 +17,6 @@ import br.com.progepe.dao.ServidorDAO;
 import br.com.progepe.entity.Autenticacao;
 import br.com.progepe.entity.Cidade;
 import br.com.progepe.entity.Conjuge;
-import br.com.progepe.entity.Documento;
 import br.com.progepe.entity.Estado;
 import br.com.progepe.entity.Pais;
 import br.com.progepe.entity.Servidor;
@@ -130,7 +129,6 @@ public class ConjugeController implements Serializable {
 	public void abrirCadastrarConjuge() throws ParseException {
 		try {
 			conjuge = new Conjuge();
-			conjuge.setDocumento(new Documento());
 			conjuge.setCidadeNascimento(new Cidade());
 			conjuge.getCidadeNascimento().setEstado(new Estado());
 			conjuge.setPais(new Pais());
@@ -160,7 +158,6 @@ public class ConjugeController implements Serializable {
 		listarConjugesServidorLogado();
 		DAO.getInstance().saveOrUpdate(conjuge);
 		conjuge = new Conjuge();
-		conjuge.setDocumento(new Documento());
 		conjuge.setCidadeNascimento(new Cidade());
 		conjuge.getCidadeNascimento().setEstado(new Estado());
 		conjuge.setPais(new Pais());
@@ -256,12 +253,12 @@ public class ConjugeController implements Serializable {
 	}
 
 	public void validarCPF() {
-		if (!Validator.validaCPF(conjuge.getDocumento().getCpf())) {
+		if (!Validator.validaCPF(conjuge.getCpf())) {
 			FacesMessage message = new FacesMessage(
 					FacesMessage.SEVERITY_ERROR, "Campo CPF inválido!",
 					"Campo CPF inválido!");
 			FacesContext.getCurrentInstance().addMessage("", message);
-			conjuge.getDocumento().setCpf("");
+			conjuge.setCpf("");
 		}
 	}
 

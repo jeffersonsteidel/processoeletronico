@@ -1,6 +1,7 @@
 package br.com.progepe.entity;
 
 import java.io.Serializable;
+import java.util.Date;
 
 public class Conjuge implements Serializable {
 
@@ -10,7 +11,6 @@ public class Conjuge implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private Long codigo;
 	private String nome;
-	private Documento documento;
 	private Cidade cidadeNascimento;
 	private Boolean indEstrangeiro;
 	private Boolean indServidor;
@@ -19,7 +19,13 @@ public class Conjuge implements Serializable {
 	private Servidor servidor;
 	private Pais pais;
 	private Boolean atual;
-
+	private Date dataNascimento;
+	private String cpf;
+	private String rg;
+	private String rgOrgao;
+	private Date rgDataExpedicao;
+	private Long  rgUfOrgao;
+	
 	public Long getCodigo() {
 		return codigo;
 	}
@@ -34,14 +40,6 @@ public class Conjuge implements Serializable {
 
 	public void setNome(String nome) {
 		this.nome = nome;
-	}
-
-	public Documento getDocumento() {
-		return documento;
-	}
-
-	public void setDocumento(Documento documento) {
-		this.documento = documento;
 	}
 
 	public Cidade getCidadeNascimento() {
@@ -107,5 +105,52 @@ public class Conjuge implements Serializable {
 	public void setAtual(Boolean atual) {
 		this.atual = atual;
 	}
-	
+
+	public Date getDataNascimento() {
+		return dataNascimento;
+	}
+
+	public void setDataNascimento(Date dataNascimento) {
+		this.dataNascimento = dataNascimento;
+	}
+
+	public String getCpf() {
+		return cpf;
+	}
+
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
+	}
+
+	public String getRg() {
+		return rg;
+	}
+
+	public void setRg(String rg) {
+		this.rg = rg;
+	}
+
+	public String getRgOrgao() {
+		return rgOrgao;
+	}
+
+	public void setRgOrgao(String rgOrgao) {
+		this.rgOrgao = rgOrgao;
+	}
+
+	public Date getRgDataExpedicao() {
+		return rgDataExpedicao;
+	}
+
+	public void setRgDataExpedicao(Date rgDataExpedicao) {
+		this.rgDataExpedicao = rgDataExpedicao;
+	}
+
+	public Long getRgUfOrgao() {
+		return rgUfOrgao;
+	}
+
+	public void setRgUfOrgao(Long rgUfOrgao) {
+		this.rgUfOrgao = rgUfOrgao;
+	}
 }
