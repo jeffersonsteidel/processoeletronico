@@ -9,18 +9,21 @@
 		</id>
 		<property name="nome" column="DEP_NOME" />
 		<property name="sexo" column="DEP_SEXO" />
+		<property name="cpf" column="DEP_CPF" />
+		<property name="rg" column="DEP_RG" />
+		<property name="rgDataExpedicao" column="DEP_RG_DATA_EXP" />
+		<property name="rgUf" column="DEP_RG_UF" />
+		<property name="rgOrgao" column="DEP_RG_ORG_EMI" />
 		<property name="dataNascimento" column="DEP_DATA_NASC" />
 		<property name="curso" column="DEP_CURSO" />
 		<property name="faculdade" column="DEP_FACULDADE" />
 		<property name="dataFormacao" column="DEP_DATA_FORMACAO" />
 		<property name="indEstudante" column="DEP_IND_EST" type="boolean" />
 		<property name="indIr" column="DEP_IND_IR" type="boolean" />
-			<property name="indNecessidadesEspeciais" column="DEP_IND_NEC_ESP"
+		<property name="indNecessidadesEspeciais" column="DEP_IND_NEC_ESP"
 			type="boolean" />
 		<many-to-one name="grauParentesco" class="br.com.progepe.entity.GrauParentesco"
 			column="GRAU_PAR_COD_DEP" lazy="false" />
-		<many-to-one name="documento" class="br.com.progepe.entity.Documento"
-			column="DOC_COD" unique="true" cascade="all" />
 		<many-to-one name="servidor" class="br.com.progepe.entity.Servidor"
 			column="SERV_COD" lazy="false" />
 	</class>
