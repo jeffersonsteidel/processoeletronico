@@ -146,8 +146,6 @@
 						reRender="listaTitulacoes, titulacao, estabelecimentoEnsino, curso, areaConhecimento, estadoEstabelecimento,
 					 cidadeEstabelecimento, cargaHoraria, anoConclusao, registroConcelho, orgaoEmissor, estadoEmissor, titulacaoEstrangeira, pais, listaTitulacoes"
 						oncomplete="#{rich:component('confirmPanel')}.show()" />
-					<a4j:commandButton value="Novo"
-						action="#{servidorTitulacaoController.abrirAdicionarServidorTitulacao}" />
 				</h:panelGrid>
 				
 				<rich:dataTable id="listaTitulacoes"
