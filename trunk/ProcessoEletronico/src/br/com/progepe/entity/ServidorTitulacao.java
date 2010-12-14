@@ -21,8 +21,6 @@ public class ServidorTitulacao implements Serializable {
 	private String orgaoEmissor;
 	private Estado estadoOrgaoEmissor;
 	private String curso;
-	//Variavel auxiliar
-	private Integer indentificador;
 
 	public Long getCodigo() {
 		return codigo;
@@ -111,14 +109,6 @@ public class ServidorTitulacao implements Serializable {
 
 	public void setEstadoOrgaoEmissor(Estado estadoOrgaoEmissor) {
 		this.estadoOrgaoEmissor = estadoOrgaoEmissor;
-	}
-
-	public Integer getIndentificador() {
-		return indentificador;
-	}
-
-	public void setIndentificador(Integer indentificador) {
-		this.indentificador = indentificador;
 	}
 
 	public String getCurso() {

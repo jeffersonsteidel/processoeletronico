@@ -16,6 +16,15 @@
 	<a4j:loadScript src="../js/script.js" />
 	<a4j:form id="form">
 		<center><rich:panel>
+			<rich:messages layout="list" errorLabelClass="errorLabel"
+				style="top:auto;" infoLabelClass="infoLabel">
+				<f:facet name="infoMarker">
+					<h:graphicImage value="../images/passed.gif" />
+				</f:facet>
+				<f:facet name="errorMarker">
+					<h:graphicImage value="../images/error.gif" />
+				</f:facet>
+			</rich:messages>
 			<font size="2"><b>ADICIONAR TITULAÇÃO</b></font>
 			<h:panelGrid columns="1">
 				<h:outputText id="siapeNome"
@@ -147,11 +156,9 @@
 				<h:panelGrid columns="2">
 					<a4j:commandButton value="Adicionar"
 						action="#{servidorTitulacaoController.salvarTitulacao}"
-						reRender="listaTitulacoes, titulacao, estabelecimentoEnsino, curso, areaConhecimento, estadoEstabelecimento,
-					 cidadeEstabelecimento, cargaHoraria, anoConclusao, registroConcelho, orgaoEmissor, estadoEmissor, titulacaoEstrangeira, pais, listaTitulacoes"
-						oncomplete="#{rich:component('confirmPanel')}.show()" />
+						reRender="listaTitulacoes, form" />
 				</h:panelGrid>
-				
+
 				<rich:dataTable id="listaTitulacoes"
 					value="#{servidorTitulacaoController.listaServidorTitulacoes}"
 					var="list" width="1150px" columnClasses="center" rows="15"
@@ -187,7 +194,7 @@
 							<h:outputText value="Editar" />
 						</f:facet>
 						<a4j:commandLink action="#{servidorTitulacaoController.carregar}"
-							reRender="listaTitulacoes" ajaxSingle="true">
+							reRender="listaTitulacoes, form" ajaxSingle="true">
 							<h:graphicImage value="../images/edit.gif" style="border:0"
 								width="20" height="18" id="editar" />
 							<f:setPropertyActionListener value="#{list.codigo}"
@@ -216,38 +223,8 @@
 			</a4j:region>
 		</rich:panel></center>
 	</a4j:form>
-	<center><rich:modalPanel id="confirmPanel" autosized="false"
-		style="overflow: auto;"
-		showWhenRendered="#{not empty facesContext.maximumSeverity}">
-		<f:facet name="header">
-			<h:panelGroup>
-				<h:outputText value="Verificar Campos"></h:outputText>
-			</h:panelGroup>
-		</f:facet>
-		<f:facet name="controls">
-			<h:panelGroup>
-				<h:graphicImage value="../images/close.gif"
-					onclick="#{rich:component('confirmPanel')}.hide();" />
-			</h:panelGroup>
-		</f:facet>
-		<h:form>
-			<table width="100%" height="100%">
-				<tbody>
-					<tr>
-						<td><rich:messages layout="list" errorLabelClass="errorLabel"
-							style="top:auto;" infoLabelClass="infoLabel">
-							<f:facet name="infoMarker">
-								<h:graphicImage value="../images/passed.gif" />
-							</f:facet>
-							<f:facet name="errorMarker">
-								<h:graphicImage value="../images/error.gif" />
-							</f:facet>
-						</rich:messages></td>
-					</tr>
-				</tbody>
-			</table>
-		</h:form>
-	</rich:modalPanel> <rich:modalPanel id="deletePanel" autosized="true" width="200">
+	<center><rich:modalPanel id="deletePanel" autosized="true"
+		width="200">
 		<f:facet name="header">
 			<h:outputText value="Deseja realmente deletar este item?"
 				style="padding-right:15px;" />
