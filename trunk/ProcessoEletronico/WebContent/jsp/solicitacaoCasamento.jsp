@@ -31,8 +31,8 @@
 				</a4j:region>
 			</rich:messages>
 
+		<h:panelGrid columns="1">
 			<font size="2"><b>LICENÇA DE CASAMENTO</b></font>
-			<h:panelGrid columns="1">
 				<h:outputText
 					value="#{solicitacaoCasamentoController.solicitacaoCasamento.solicitante.siape} - #{solicitacaoCasamentoController.solicitacaoCasamento.solicitante.nome}">
 				</h:outputText>
