@@ -15,7 +15,6 @@ import br.com.progepe.dao.DependenteDAO;
 import br.com.progepe.dao.ServidorDAO;
 import br.com.progepe.entity.Autenticacao;
 import br.com.progepe.entity.Dependente;
-import br.com.progepe.entity.Documento;
 import br.com.progepe.entity.Estado;
 import br.com.progepe.entity.GrauParentesco;
 import br.com.progepe.entity.Servidor;
@@ -65,7 +64,6 @@ public class DependenteController implements Serializable {
 			dependente = new Dependente();
 			listaDependentes = new ArrayList<Dependente>();
 			listaDependentes.clear();
-			dependente.setDocumento(new Documento());
 			dependente.setGrauParentesco(new GrauParentesco());
 			buscarServidorLogado();
 			listarGrauParentesco();
@@ -112,12 +110,12 @@ public class DependenteController implements Serializable {
 	}
 
 	public void validarCPF() {
-		if (!Validator.validaCPF(dependente.getDocumento().getCpf())) {
+		if (!Validator.validaCPF(dependente.getCpf())) {
 			FacesMessage message = new FacesMessage(
 					FacesMessage.SEVERITY_ERROR, "Campo CPF inválido!",
 					"Campo CPF inválido!");
 			FacesContext.getCurrentInstance().addMessage("", message);
-			dependente.getDocumento().setCpf("");
+			dependente.setCpf("");
 		}
 	}
 
@@ -131,14 +129,13 @@ public class DependenteController implements Serializable {
 				break;
 			}
 		}
-		if( 0 ==(dependente.getDocumento().getRgUf())){
-			dependente.getDocumento().setRgUf(null);
+		if( 0 ==(dependente.getRgUf())){
+			dependente.setRgUf(null);
 		}
 		this.getListaDependentes().add(dependente);
 		DAO.getInstance().saveOrUpdate(dependente);
 		listarDependentesServidorLogado();
 		dependente = new Dependente();
-		dependente.setDocumento(new Documento());
 		dependente.setGrauParentesco(new GrauParentesco());
 		abrirAdicionarDependentes();
 	}
@@ -151,32 +148,10 @@ public class DependenteController implements Serializable {
 		}
 	}
 
-//	public void carregar() throws Exception {
-//		servidorTitulacao = (ServidorTitulacao) dao.refresh(servidorTitulacao);
-//		if (servidorTitulacao.getCidadeEstabelecimentoEnsino().getCodigo() != null) {
-//			listarCidadesEstabelecimento();
-//		}
-//		FacesContext.getCurrentInstance().getExternalContext()
-//				.redirect("adicionarTitulacao.jsp");
-//	}
-//	
-	// public void salvar() throws IOException, ParseException {
-	// dao.saveOrUpdate(dependente);
-	// dependente = new Dependente();
-	// files = new ArrayList<Portaria>();
-	// }
-
-	// @SuppressWarnings("unchecked")
-	// public void listarDependentes() {
-	// listaDependentes = dao.list(Dependente.class);
-	// }
-
 	public void remover() throws Exception {
-	//	dao.refresh(dependente);
 		listaDependentes.remove(dependente);
 		DAO.getInstance().delete(dependente);
 		dependente = new Dependente();
-		dependente.setDocumento(new Documento());
 		dependente.setGrauParentesco(new GrauParentesco());
 		abrirAdicionarDependentes();
 	}
