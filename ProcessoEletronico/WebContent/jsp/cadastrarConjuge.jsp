@@ -121,7 +121,7 @@
 				<h:selectBooleanCheckbox id="estrangeiro"
 					title="Marcar esta opção caso seja imigrante!"
 					value="#{conjugeController.conjuge.indEstrangeiro}">
-					<a4j:support event="onchange" ajaxSingle="true"
+					<a4j:support event="onchange" ajaxSingle="true" action="#{conjugeController.limparEstado}"
 						reRender="paisNascimentoConjuge, estadoNascimentoConjuge, cidadeNascimentoConjuge"></a4j:support>
 				</h:selectBooleanCheckbox>
 
