@@ -70,6 +70,9 @@
 				<rich:menuItem submitMode="ajax" value="Listar Titulações"
 					action="#{servidorTitulacaoController.abrirListarServidorTitulacao}"
 					icon="../images/titulacoes.gif" />
+				<rich:menuItem submitMode="ajax" value="Adicionar Empregos"
+					action="#{empregoController.abrirEmprego}"
+					icon="../images/titulacoes.gif" />
 			</rich:dropDownMenu>
 
 			<rich:dropDownMenu>
