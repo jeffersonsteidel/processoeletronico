@@ -176,6 +176,7 @@ public class ServidorTitulacaoController implements Serializable {
 			servidorTitulacao.setCidadeEstabelecimentoEnsino(null);
 		} else {
 			servidorTitulacao.setPais(null);
+			cidadesEstabelecimento = new ArrayList<SelectItem>();
 			servidorTitulacao.setCidadeEstabelecimentoEnsino(new Cidade());
 			servidorTitulacao.getCidadeEstabelecimentoEnsino().setEstado(
 					new Estado());
@@ -278,7 +279,7 @@ public class ServidorTitulacaoController implements Serializable {
 	}
 
 	public void remover() throws Exception {
-		DAO.getInstance().refresh(servidorTitulacao);
+		servidorTitulacao  = (ServidorTitulacao) DAO.getInstance().refresh(servidorTitulacao);
 		DAO.getInstance().delete(servidorTitulacao);
 		abrirAdicionarServidorTitulacao();
 	}
@@ -287,6 +288,15 @@ public class ServidorTitulacaoController implements Serializable {
 		FacesContext context = FacesContext.getCurrentInstance();
 	    servidorTitulacao = (ServidorTitulacao) context.getExternalContext().getRequestMap()
 				.get("list");
+	    if(servidorTitulacao.getEstadoOrgaoEmissor() == null){
+	    	servidorTitulacao.setEstadoOrgaoEmissor(new Estado());
+	    	servidorTitulacao.getEstadoOrgaoEmissor().setCodigo(Constantes.ZERO);
+	    }
+		if(Constantes.ENSINO_FUNDAMENTAL.equals(servidorTitulacao.getTitulacao().getCodigo())||Constantes.ENSINO_MEDIO.equals(servidorTitulacao.getTitulacao().getCodigo())){
+	    	setIndSuperior(false);
+	    }else{
+	    	setIndSuperior(true);
+	    }
 		listarCidadesEstabelecimento();
 	}
 
