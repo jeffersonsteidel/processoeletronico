@@ -64,7 +64,7 @@
 				<rich:menuItem submitMode="ajax" value="Cadastrar Cônjuge"
 					action="#{conjugeController.abrirCadastrarConjuge}"
 					icon="../images/cadastrarConjuge.gif" />
-				<rich:menuItem submitMode="ajax" value="Atualizar Titulações"
+				<rich:menuItem submitMode="ajax" value="Adicionar Titulações"
 					action="#{servidorTitulacaoController.abrirAdicionarServidorTitulacao}"
 					icon="../images/titulacoes.gif" />
 				<rich:menuItem submitMode="ajax" value="Listar Titulações"
