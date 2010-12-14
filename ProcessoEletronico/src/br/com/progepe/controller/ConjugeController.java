@@ -108,7 +108,7 @@ public class ConjugeController implements Serializable {
 	public void setTexto(String texto) {
 		this.texto = texto;
 	}
-
+	
 	public void abrirCadastrarConjuge() throws ParseException {
 		try {
 			conjuge = new Conjuge();
@@ -137,7 +137,6 @@ public class ConjugeController implements Serializable {
 		} else {
 			conjuge.setCidadeNascimento(null);
 		}
-		conjuge.setAtual(true);
 		listarConjugesServidorLogado();
 		DAO.getInstance().saveOrUpdate(conjuge);
 		conjuge = new Conjuge();
@@ -156,8 +155,12 @@ public class ConjugeController implements Serializable {
 			conjugeList = new ArrayList<Conjuge>();
 		} else {
 			for (Conjuge item : conjugeList) {
-				item.setAtual(false);
-				DAO.getInstance().update(item);
+				if(item.getAtual() == null){
+					item.setAtual(true); 
+				}else{
+					item.setAtual(false); 
+				}
+				ConjugeDAO.getInstance().updateConjuge(item);
 			}
 		}
 	}
@@ -180,9 +183,10 @@ public class ConjugeController implements Serializable {
 	}
 
 	public void carregar() throws IOException, ParseException {
-		conjuge = (Conjuge) DAO.getInstance().refresh(conjuge);
-		FacesContext.getCurrentInstance().getExternalContext()
-				.redirect("conjuge.jsp");
+		FacesContext context = FacesContext.getCurrentInstance();
+		conjuge = (Conjuge) context.getExternalContext().getRequestMap()
+				.get("list");
+		listarCidadesNascimentoConjuge();
 	}
 
 	public void carregarConjugeSolicitante(Servidor servidor) {

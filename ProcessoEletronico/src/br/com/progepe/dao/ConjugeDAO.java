@@ -2,6 +2,9 @@ package br.com.progepe.dao;
 
 import java.util.List;
 
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
+
 import org.hibernate.Criteria;
 import org.hibernate.criterion.Restrictions;
 
@@ -48,6 +51,22 @@ public class ConjugeDAO extends DAO {
 		c.add(Restrictions.like("atual", 1));
 		HibernateUtility.commitTransaction();
 		return (Conjuge)c.uniqueResult();
+	}
+	
+	public void updateConjuge(Object objeto) {
+		try {
+			HibernateUtility.getSession().clear();
+			HibernateUtility.beginTransaction();
+			HibernateUtility.getSession().update(objeto);
+			HibernateUtility.commitTransaction();
+		} catch (Exception e) {
+			HibernateUtility.rollbackTransaction();
+			FacesMessage message = new FacesMessage(
+					FacesMessage.SEVERITY_ERROR,
+					"Erro ao comunicar com o servidor!",
+					"Erro ao comunicar com o servidor!");
+			FacesContext.getCurrentInstance().addMessage("", message);
+		}
 	}
 
 }
