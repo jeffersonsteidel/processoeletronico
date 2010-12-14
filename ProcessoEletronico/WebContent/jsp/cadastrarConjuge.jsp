@@ -167,11 +167,11 @@
 					<h:outputText value="#{list.nome}" />
 				</rich:column>
 
-				<rich:column width="280px" sortBy="#{list.documento.cpf}">
+				<rich:column width="280px" sortBy="#{list.cpf}">
 					<f:facet name="header">
 						<h:outputText value="CPF" />
 					</f:facet>
-					<h:outputText value="#{list.documento.cpf}" />
+					<h:outputText value="#{list.cpf}" />
 				</rich:column>
 
 				<rich:column width="280px" sortBy="#{list.atual}">
