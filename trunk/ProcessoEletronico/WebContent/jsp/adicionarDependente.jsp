@@ -185,7 +185,7 @@
 						<f:facet name="header">
 							<h:outputText value="Excluir" />
 						</f:facet>
-						<a4j:commandLink ajaxSingle="true" id="delete" reRender="form"
+						<a4j:commandLink ajaxSingle="true" id="delete" reRender="form, listaDependentes"
 							oncomplete="#{rich:component('deletePanel')}.show()">
 							<h:graphicImage id="excluir" value="../images/delete.gif"
 								style="border:0" />
@@ -201,7 +201,7 @@
 				</rich:dataTable>
 			</a4j:region>
 		</rich:panel></center>
-	</a4j:form>
+
 
 	<center><rich:modalPanel id="deletePanel" autosized="true" width="200">
 		<f:facet name="header">
@@ -215,7 +215,7 @@
 						<td align="center" width="50%"><a4j:commandButton value="Sim"
 							ajaxSingle="true" action="#{dependenteController.remover}"
 							oncomplete="#{rich:component('deletePanel')}.hide();"
-							reRender="listaDependentes, form" /></td>
+							reRender="form, listaDependentes" /></td>
 						<td align="center" width="50%"><a4j:commandButton value="Não"
 							onclick="#{rich:component('deletePanel')}.hide();return false;" />
 						</td>
@@ -224,6 +224,7 @@
 			</table>
 		</h:form>
 	</rich:modalPanel></center>
+	</a4j:form>
 </f:view>
 </body>
 </html>
