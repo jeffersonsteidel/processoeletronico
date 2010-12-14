@@ -10,6 +10,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
 
+import br.com.progepe.constantes.Constantes;
 import br.com.progepe.dao.DAO;
 import br.com.progepe.dao.DependenteDAO;
 import br.com.progepe.dao.ServidorDAO;
@@ -131,7 +132,7 @@ public class DependenteController implements Serializable {
 				break;
 			}
 		}
-		if (0 == (dependente.getRgUf())) {
+		if (Constantes.ZERO.equals(dependente.getRgUf())) {
 			dependente.setRgUf(null);
 		}
 
