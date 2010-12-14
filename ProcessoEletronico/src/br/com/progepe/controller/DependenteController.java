@@ -160,7 +160,7 @@ public class DependenteController implements Serializable {
 		DAO.getInstance().delete(dependente);
 		dependente = new Dependente();
 		dependente.setGrauParentesco(new GrauParentesco());
-		buscarServidorLogado();
+	//	abrirAdicionarDependentes();
 	}
 
 	public void carregar() throws Exception {
