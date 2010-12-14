@@ -51,18 +51,17 @@
 					<f:selectItem itemLabel="FEMININO" itemValue="F" />
 					<f:selectItem itemLabel="MASCULINO" itemValue="M" />
 				</h:selectOneMenu>
-				
+
 				<h:outputText value="Data de Nascimento do Cônjuge: " />
-				<rich:calendar
-					value="#{conjugeController.conjuge.dataNascimento}"
+				<rich:calendar value="#{conjugeController.conjuge.dataNascimento}"
 					locale="" popup="true" datePattern="dd/MM/yyyy" showApplyButton="#"
 					cellWidth="12px" cellHeight="12px" style="width:80px"
 					inputSize="12" required="true"
 					requiredMessage="Campo Data de Nascimento do Cônjuge é obrigatório!" />
 
 				<h:outputText value="CPF do Cônjuge: " />
-				<h:inputText value="#{conjugeController.conjuge.cpf}"
-					size="16" maxlength="14" id="cpf" onkeypress="mascara(this,cpf);"
+				<h:inputText value="#{conjugeController.conjuge.cpf}" size="16"
+					maxlength="14" id="cpf" onkeypress="mascara(this,cpf);"
 					required="true"
 					requiredMessage="Campo CPF do Cônjuge é obrigatório!">
 					<a4j:support event="onchange"
@@ -71,8 +70,8 @@
 				</h:inputText>
 
 				<h:outputText value="RG do Cônjuge: " />
-				<h:inputText value="#{conjugeController.conjuge.rg}"
-					size="16" maxlength="13" required="true"
+				<h:inputText value="#{conjugeController.conjuge.rg}" size="16"
+					maxlength="13" required="true"
 					requiredMessage="Campo RG do Cônjuge é obrigatório!"></h:inputText>
 
 				<h:outputText value="UF do RG do Cônjuge: " />
@@ -84,14 +83,12 @@
 				</h:selectOneMenu>
 
 				<h:outputText value="Orgão Emissor do RG do Cônjuge: " />
-				<h:inputText
-					value="#{conjugeController.conjuge.rgOrgao}"
-					size="16" maxlength="8" required="true"
+				<h:inputText value="#{conjugeController.conjuge.rgOrgao}" size="16"
+					maxlength="8" required="true"
 					requiredMessage="Campo Orgão Emissor do RG do Cônjuge é obrigatório!" />
 
 				<h:outputText value="Data de Expedição do RG do Cônjuge: " />
-				<rich:calendar
-					value="#{conjugeController.conjuge.rgDataExpedicao}"
+				<rich:calendar value="#{conjugeController.conjuge.rgDataExpedicao}"
 					locale="" popup="true" datePattern="dd/MM/yyyy" showApplyButton="#"
 					cellWidth="12px" cellHeight="12px" style="width:80px"
 					inputSize="12" required="true"
@@ -100,7 +97,8 @@
 				<h:outputText value="Estado de Nascimento do Cônjuge: " />
 				<h:selectOneMenu id="estadoNascimentoConjuge"
 					value="#{conjugeController.conjuge.cidadeNascimento.estado.codigo}"
-					required="true" disabled="#{conjugeController.conjuge.indEstrangeiro}"
+					required="true"
+					disabled="#{conjugeController.conjuge.indEstrangeiro}"
 					requiredMessage="Campo Estado de Nascimento do Cônjuge é obrigatório!">
 					<f:selectItem itemLabel="SELECIONE" itemValue="" />
 					<f:selectItems value="#{conjugeController.estados}" />
@@ -112,7 +110,8 @@
 				<h:outputText value="Cidade de Nascimento do Cônjuge: " />
 				<h:selectOneMenu id="cidadeNascimentoConjuge"
 					value="#{conjugeController.conjuge.cidadeNascimento.codigo}"
-					required="true" disabled="#{conjugeController.conjuge.indEstrangeiro}"
+					required="true"
+					disabled="#{conjugeController.conjuge.indEstrangeiro}"
 					requiredMessage="Campo Cidade de Nascimento do Cônjuge é obrigatório!">
 					<f:selectItem itemLabel="SELECIONE" itemValue="" />
 					<f:selectItems value="#{conjugeController.cidadesNascimento}" />
@@ -121,8 +120,8 @@
 				<h:outputText value="Estrangeiro: " />
 				<h:selectBooleanCheckbox id="estrangeiro"
 					title="Marcar esta opção caso seja imigrante!"
-					value="#{conjugeController.conjuge.indEstrangeiro}" >
-					<a4j:support event="onchange" ajaxSingle="true" 
+					value="#{conjugeController.conjuge.indEstrangeiro}">
+					<a4j:support event="onchange" ajaxSingle="true"
 						reRender="paisNascimentoConjuge, estadoNascimentoConjuge, cidadeNascimentoConjuge"></a4j:support>
 				</h:selectBooleanCheckbox>
 
@@ -152,10 +151,11 @@
 
 			<a4j:commandButton value="Salvar"
 				action="#{conjugeController.salvarConjuge}" reRender="form" />
-			<a4j:commandButton value="Voltar" onclick="history.go(-1)">
+			<a4j:commandButton value="Voltar" onclick="history.go(-1)"
+				rendered="#{autenticacaoController.siapeAutenticado.indAdministrador}">
 			</a4j:commandButton>
 			<rich:dataTable id="listarConjugesSolicitante"
-			 	rendered="#{not empty conjugeController.conjugeList}"
+				rendered="#{not empty conjugeController.conjugeList}"
 				value="#{conjugeController.conjugeList}" var="list" width="1160px"
 				columnClasses="center" rows="15" reRender="ds">
 
@@ -178,11 +178,11 @@
 					<f:facet name="header">
 						<h:outputText value="Atual" />
 					</f:facet>
-					<h:outputText value="Atual" rendered="#{list.atual}"/>
-					<h:outputText value="Ex" rendered="#{!list.atual}"/>
+					<h:outputText value="Atual" rendered="#{list.atual}" />
+					<h:outputText value="Ex" rendered="#{!list.atual}" />
 				</rich:column>
-				
-				
+
+
 				<rich:column>
 					<f:facet name="header">
 						<h:outputText value="Editar" />
