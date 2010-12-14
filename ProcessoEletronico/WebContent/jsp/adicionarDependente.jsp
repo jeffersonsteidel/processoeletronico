@@ -113,7 +113,7 @@
 					<h:outputText value="Estudante Universitário? " />
 					<h:selectBooleanCheckbox id="estudanteUniversitario"
 						value="#{dependenteController.dependente.indEstudante}">
-						<a4j:support event="onchange" action="#" ajaxSingle="true"
+						<a4j:support event="onchange" action="#{dependenteController.validarEstudante}" ajaxSingle="true"
 							reRender="faculdade, curso, dataFormacao"></a4j:support>
 					</h:selectBooleanCheckbox>
 

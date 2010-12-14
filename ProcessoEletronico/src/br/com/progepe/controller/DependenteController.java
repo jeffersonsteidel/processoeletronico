@@ -136,12 +136,7 @@ public class DependenteController implements Serializable {
 			dependente.setRgUf(null);
 		}
 
-		if (dependente.getIndEstudante() == false) {
-			dependente.setCurso("");
-			dependente.setFaculdade("");
-			dependente.setDataFormacao(null);
-		}
-
+		
 		this.getListaDependentes().add(dependente);
 		DAO.getInstance().saveOrUpdate(dependente);
 		listarDependentesServidorLogado();
@@ -174,4 +169,11 @@ public class DependenteController implements Serializable {
 				.get("list");
 	}
 
+	public void validarEstudante(){
+		if(!dependente.getIndEstudante()){
+			dependente.setCurso(null);
+			dependente.setFaculdade(null);
+			dependente.setDataFormacao(null);
+		}
+	}
 }
