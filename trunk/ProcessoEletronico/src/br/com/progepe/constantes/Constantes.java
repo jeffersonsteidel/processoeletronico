@@ -8,6 +8,8 @@ public class Constantes {
 	public static final Long PADRAO_DEFAULT = 69L;
 	public static final Long CLASSE_DEFAULT = 99L;
 	public static final Long CODIGO_LIMITE_TECNICO = 6000L;
+	public static final Long ENSINO_FUNDAMENTAL = 6L;
+	public static final Long ENSINO_MEDIO = 8L;
 	
 	
 	public static final Long STATUS_SOLICITACAO_ENCAMINHADO = 1L;

@@ -33,6 +33,9 @@
 						required="true" requiredMessage="Campo Titulação é obrigatório!">
 						<f:selectItem itemLabel="SELECIONE" itemValue="" />
 						<f:selectItems value="#{servidorTitulacaoController.titulacoes}" />
+						<a4j:support event="onchange"
+							action="#{servidorTitulacaoController.validarTitulacao}"
+							ajaxSingle="true" reRender="curso,areaConhecimento,cargaHoraria"></a4j:support>
 					</h:selectOneMenu>
 
 					<h:outputText value="Estabelecimento de Ensino: " />
@@ -46,7 +49,8 @@
 					<h:outputText value="Curso: " />
 
 					<h:inputText id="curso" required="true"
-						requiredMessage="Campo Curso é obrigatório!"
+						requiredMessage="Campo Curso é obrigatório!" 
+						disabled="#{!servidorTitulacaoController.indSuperior}"
 						value="#{servidorTitulacaoController.servidorTitulacao.curso}"
 						size="40" maxlength="100"></h:inputText>
 
@@ -54,7 +58,7 @@
 
 					<h:selectOneMenu id="areaConhecimento"
 						value="#{servidorTitulacaoController.servidorTitulacao.areaConhecimento.codigo}"
-						required="true"
+						required="true" disabled="#{!servidorTitulacaoController.indSuperior}"
 						requiredMessage="Campo Area de Conhecimento é obrigatório!">
 						<f:selectItem itemLabel="SELECIONE" itemValue="" />
 						<f:selectItems
@@ -87,7 +91,7 @@
 					<h:outputText value="Carga Horária: " />
 
 					<h:inputText id="cargaHoraria" required="true"
-						requiredMessage="Campo Carga Horária é obrigatório!"
+						requiredMessage="Campo Carga Horária é obrigatório!" disabled="#{!servidorTitulacaoController.indSuperior}"
 						value="#{servidorTitulacaoController.servidorTitulacao.cargaHoraria}"
 						size="9" maxlength="4" onkeypress="mascara(this,soNumeros);"></h:inputText>
 

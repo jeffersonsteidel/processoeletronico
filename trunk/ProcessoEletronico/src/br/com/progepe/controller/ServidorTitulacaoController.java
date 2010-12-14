@@ -10,6 +10,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
 
+import br.com.progepe.constantes.Constantes;
 import br.com.progepe.dao.CidadeDAO;
 import br.com.progepe.dao.DAO;
 import br.com.progepe.dao.ServidorDAO;
@@ -34,6 +35,7 @@ public class ServidorTitulacaoController implements Serializable {
 	private List<SelectItem> titulacoes = new ArrayList<SelectItem>();
 	private List<SelectItem> ufs = new ArrayList<SelectItem>();
 	private Boolean indTitulacaoEstrangeira = false;
+	private Boolean indSuperior = false;
 
 	public List<ServidorTitulacao> getListaServidorTitulacoes() {
 		return listaServidorTitulacoes;
@@ -107,6 +109,16 @@ public class ServidorTitulacaoController implements Serializable {
 
 	public void setIndTitulacaoEstrangeira(Boolean indTitulacaoEstrangeira) {
 		this.indTitulacaoEstrangeira = indTitulacaoEstrangeira;
+	}
+	
+	
+
+	public Boolean getIndSuperior() {
+		return indSuperior;
+	}
+
+	public void setIndSuperior(Boolean indSuperior) {
+		this.indSuperior = indSuperior;
 	}
 
 	public void abrirAdicionarServidorTitulacao() throws Exception {
@@ -304,5 +316,16 @@ public class ServidorTitulacaoController implements Serializable {
 
 		}
 		return listaServidorTitulacoes;
+	}
+	
+	public void validarTitulacao(){
+		if(Constantes.ENSINO_FUNDAMENTAL.equals(servidorTitulacao.getTitulacao().getCodigo())||Constantes.ENSINO_MEDIO.equals(servidorTitulacao.getTitulacao().getCodigo())){
+			setIndSuperior(false);
+			servidorTitulacao.setCargaHoraria(null);
+			servidorTitulacao.setCurso(null);
+			servidorTitulacao.setEstabelecimentoEnsino(null);
+		}else{
+			setIndSuperior(true);
+		}
 	}
 }
