@@ -137,7 +137,7 @@ public class DependenteController implements Serializable {
 		listarDependentesServidorLogado();
 		dependente = new Dependente();
 		dependente.setGrauParentesco(new GrauParentesco());
-		abrirAdicionarDependentes();
+		buscarServidorLogado();
 	}
 
 	public void listarDependentesServidorLogado() throws Exception {
@@ -149,11 +149,18 @@ public class DependenteController implements Serializable {
 	}
 
 	public void remover() throws Exception {
+		dependente = (Dependente) DAO.getInstance().refresh(dependente);
 		listaDependentes.remove(dependente);
 		DAO.getInstance().delete(dependente);
 		dependente = new Dependente();
 		dependente.setGrauParentesco(new GrauParentesco());
-		abrirAdicionarDependentes();
+		buscarServidorLogado();
+	}
+	
+	public void carregar() throws Exception {
+		 FacesContext context = FacesContext.getCurrentInstance();
+		 dependente = (Dependente) context
+	                .getExternalContext().getRequestMap().get("list");
 	}
 
 }
