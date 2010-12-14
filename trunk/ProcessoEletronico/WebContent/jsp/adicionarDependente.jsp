@@ -60,7 +60,7 @@
 
 					<h:outputText value="CPF do Dependente: " />
 					<h:inputText
-						value="#{dependenteController.dependente.documento.cpf}" size="16"
+						value="#{dependenteController.dependente.cpf}" size="16"
 						maxlength="14" id="cpf" onkeypress="mascara(this,cpf);">
 						<a4j:support event="onchange"
 							action="#{dependenteController.validarCPF}" ajaxSingle="true"
@@ -69,24 +69,24 @@
 
 					<h:outputText value="RG do Dependente: " />
 					<h:inputText
-						value="#{dependenteController.dependente.documento.rg}" size="16"
+						value="#{dependenteController.dependente.rg}" size="16"
 						maxlength="13"></h:inputText>
 
 					<h:outputText value="UF do RG do Dependente: " />
 					<h:selectOneMenu
-						value="#{dependenteController.dependente.documento.rgUf}">
+						value="#{dependenteController.dependente.rgUf}">
 						<f:selectItem itemLabel="SELECIONE" itemValue="" />
 						<f:selectItems value="#{dependenteController.ufs}" />
 					</h:selectOneMenu>
 
 					<h:outputText value="Orgão Emissor do RG do Dependente: " />
 					<h:inputText
-						value="#{dependenteController.dependente.documento.rgOrgaoEmissor}"
+						value="#{dependenteController.dependente.rgOrgao}"
 						size="16" maxlength="8" />
 
 					<h:outputText value="Data de Expedição do RG do Dependente: " />
 					<rich:calendar
-						value="#{dependenteController.dependente.documento.rgDataExpedicao}"
+						value="#{dependenteController.dependente.rgDataExpedicao}"
 						locale="" popup="true" datePattern="dd/MM/yyyy"
 						showApplyButton="#" cellWidth="12px" cellHeight="12px"
 						style="width:80px" inputSize="12" />
