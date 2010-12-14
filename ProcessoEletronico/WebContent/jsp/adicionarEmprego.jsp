@@ -47,7 +47,7 @@
 						requiredMessage="Campo Empresa é obrigatório!"
 						required="true"
 						value="#{empregoController.emprego.empresa}"
-						size="40" maxlength="100"></h:inputText>	
+						size="60" maxlength="100"></h:inputText>	
 						
 					<h:outputText value="Data de Admissão: " />
 					<rich:calendar rendered="true" requiredMessage="Campo Data de Admissão é Obrigatório!"
