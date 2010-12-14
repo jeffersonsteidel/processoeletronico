@@ -17,14 +17,16 @@ public class Dependente implements Serializable {
 	private Boolean indNecessidadesEspeciais = false;
 	private Boolean indEstudante = false;
 	private Boolean indIr = false;
-	private Documento documento;
 	private String curso;
 	private String faculdade;
 	private Date dataFormacao;
-	// Variavel auxiliar
-	private Integer indentificador;
 	private Servidor servidor;
-
+	private String cpf;
+	private String rg;
+	private String rgOrgao;
+	private Date rgDataExpedicao;
+	private Long  rgUf;
+	
 	public Long getCodigo() {
 		return codigo;
 	}
@@ -89,14 +91,6 @@ public class Dependente implements Serializable {
 		this.indIr = indIr;
 	}
 
-	public Documento getDocumento() {
-		return documento;
-	}
-
-	public void setDocumento(Documento documento) {
-		this.documento = documento;
-	}
-
 	public String getCurso() {
 		return curso;
 	}
@@ -121,14 +115,6 @@ public class Dependente implements Serializable {
 		this.dataFormacao = dataFormacao;
 	}
 
-	public Integer getIndentificador() {
-		return indentificador;
-	}
-
-	public void setIndentificador(Integer indentificador) {
-		this.indentificador = indentificador;
-	}
-
 	public Servidor getServidor() {
 		return servidor;
 	}
@@ -137,4 +123,43 @@ public class Dependente implements Serializable {
 		this.servidor = servidor;
 	}
 
+	public String getCpf() {
+		return cpf;
+	}
+
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
+	}
+
+	public String getRg() {
+		return rg;
+	}
+
+	public void setRg(String rg) {
+		this.rg = rg;
+	}
+
+	public String getRgOrgao() {
+		return rgOrgao;
+	}
+
+	public void setRgOrgao(String rgOrgao) {
+		this.rgOrgao = rgOrgao;
+	}
+
+	public Date getRgDataExpedicao() {
+		return rgDataExpedicao;
+	}
+
+	public void setRgDataExpedicao(Date rgDataExpedicao) {
+		this.rgDataExpedicao = rgDataExpedicao;
+	}
+
+	public Long getRgUf() {
+		return rgUf;
+	}
+
+	public void setRgUf(Long rgUf) {
+		this.rgUf = rgUf;
+	}
 }
