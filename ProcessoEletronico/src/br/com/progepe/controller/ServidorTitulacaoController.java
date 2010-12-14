@@ -111,8 +111,6 @@ public class ServidorTitulacaoController implements Serializable {
 		this.indTitulacaoEstrangeira = indTitulacaoEstrangeira;
 	}
 	
-	
-
 	public Boolean getIndSuperior() {
 		return indSuperior;
 	}
@@ -256,7 +254,7 @@ public class ServidorTitulacaoController implements Serializable {
 	}
 
 	public void salvarTitulacao() throws Exception {
-		if (new Long(0).equals(servidorTitulacao.getEstadoOrgaoEmissor()
+		if (Constantes.ZERO.equals(servidorTitulacao.getEstadoOrgaoEmissor()
 				.getCodigo())) {
 			servidorTitulacao.setEstadoOrgaoEmissor(null);
 		}
@@ -270,6 +268,7 @@ public class ServidorTitulacaoController implements Serializable {
 				new Estado());
 		servidorTitulacao.setTitulacao(new Titulacao());
 		cidadesEstabelecimento = new ArrayList<SelectItem>();
+		buscarServidorLogado();
 	}
 
 	public void listarTitulacoesServidorLogado() throws Exception {
@@ -281,25 +280,14 @@ public class ServidorTitulacaoController implements Serializable {
 	public void remover() throws Exception {
 		DAO.getInstance().refresh(servidorTitulacao);
 		DAO.getInstance().delete(servidorTitulacao);
-		listarTitulacoesServidorLogado();
-		servidorTitulacao = new ServidorTitulacao();
-		servidorTitulacao.setEstadoOrgaoEmissor(new Estado());
-		servidorTitulacao.setAreaConhecimento(new AreaConhecimento());
-		servidorTitulacao.setCidadeEstabelecimentoEnsino(new Cidade());
-		servidorTitulacao.getCidadeEstabelecimentoEnsino().setEstado(
-				new Estado());
-		servidorTitulacao.setTitulacao(new Titulacao());
-		buscarServidorLogado();
+		abrirAdicionarServidorTitulacao();
 	}
 
 	public void carregar() throws Exception {
-		servidorTitulacao = (ServidorTitulacao) DAO.getInstance().refresh(
-				servidorTitulacao);
-		if (servidorTitulacao.getCidadeEstabelecimentoEnsino().getCodigo() != null) {
-			listarCidadesEstabelecimento();
-		}
-		FacesContext.getCurrentInstance().getExternalContext()
-				.redirect("adicionarTitulacao.jsp");
+		FacesContext context = FacesContext.getCurrentInstance();
+	    servidorTitulacao = (ServidorTitulacao) context.getExternalContext().getRequestMap()
+				.get("list");
+		listarCidadesEstabelecimento();
 	}
 
 	public List<ServidorTitulacao> listarTitulacoesFiltro() {
@@ -324,8 +312,10 @@ public class ServidorTitulacaoController implements Serializable {
 			servidorTitulacao.setCargaHoraria(null);
 			servidorTitulacao.setCurso(null);
 			servidorTitulacao.setEstabelecimentoEnsino(null);
+			servidorTitulacao.setAreaConhecimento(null);
 		}else{
 			setIndSuperior(true);
+			servidorTitulacao.setAreaConhecimento(new AreaConhecimento());
 		}
 	}
 }
