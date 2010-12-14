@@ -40,7 +40,7 @@ public class EmpregoController implements Serializable {
 		try {
 			listaEmpregos.clear();
 			emprego = new Emprego();
-			buscarServidorLogado();
+			listarEmpregoServidorLogado();
 			FacesContext.getCurrentInstance().getExternalContext()
 					.redirect("adicionarEmprego.jsp");
 		} catch (IOException e) {
