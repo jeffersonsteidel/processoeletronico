@@ -82,15 +82,16 @@ public class DependenteController implements Serializable {
 				.getCurrentInstance().getExternalContext().getSessionMap()
 				.get("usuarioLogado");
 		dependente.getServidor().setSiape(siapeAutenticado.getSiape());
-		dependente.setServidor(ServidorDAO.getInstance().refreshBySiape(dependente
-				.getServidor()));
+		dependente.setServidor(ServidorDAO.getInstance().refreshBySiape(
+				dependente.getServidor()));
 	}
 
 	@SuppressWarnings("unchecked")
 	public List<SelectItem> listarGrauParentesco() {
 		grausParentescos = new ArrayList<SelectItem>();
 		List<GrauParentesco> grauParentescosList = new ArrayList<GrauParentesco>();
-		grauParentescosList = DAO.getInstance().list(GrauParentesco.class, "descricao");
+		grauParentescosList = DAO.getInstance().list(GrauParentesco.class,
+				"descricao");
 		for (GrauParentesco grauParentesco : grauParentescosList) {
 			grausParentescos.add(new SelectItem(grauParentesco.getCodigo(),
 					grauParentesco.getDescricao()));
@@ -121,7 +122,8 @@ public class DependenteController implements Serializable {
 
 	@SuppressWarnings("unchecked")
 	public void salvarDependente() throws Exception {
-		List<GrauParentesco> grauParentescos = DAO.getInstance().list(GrauParentesco.class);
+		List<GrauParentesco> grauParentescos = DAO.getInstance().list(
+				GrauParentesco.class);
 		for (GrauParentesco item : grauParentescos) {
 			if (item.getCodigo().equals(
 					dependente.getGrauParentesco().getCodigo())) {
@@ -129,9 +131,16 @@ public class DependenteController implements Serializable {
 				break;
 			}
 		}
-		if( 0 ==(dependente.getRgUf())){
+		if (0 == (dependente.getRgUf())) {
 			dependente.setRgUf(null);
 		}
+
+		if (dependente.getIndEstudante() == false) {
+			dependente.setCurso("");
+			dependente.setFaculdade("");
+			dependente.setDataFormacao(null);
+		}
+
 		this.getListaDependentes().add(dependente);
 		DAO.getInstance().saveOrUpdate(dependente);
 		listarDependentesServidorLogado();
@@ -142,8 +151,9 @@ public class DependenteController implements Serializable {
 
 	public void listarDependentesServidorLogado() throws Exception {
 		buscarServidorLogado();
-		listaDependentes = DependenteDAO.getInstance().listByServidor(dependente);
-		if(listaDependentes.isEmpty()){
+		listaDependentes = DependenteDAO.getInstance().listByServidor(
+				dependente);
+		if (listaDependentes.isEmpty()) {
 			listaDependentes = new ArrayList<Dependente>();
 		}
 	}
@@ -156,11 +166,11 @@ public class DependenteController implements Serializable {
 		dependente.setGrauParentesco(new GrauParentesco());
 		buscarServidorLogado();
 	}
-	
+
 	public void carregar() throws Exception {
-		 FacesContext context = FacesContext.getCurrentInstance();
-		 dependente = (Dependente) context
-	                .getExternalContext().getRequestMap().get("list");
+		FacesContext context = FacesContext.getCurrentInstance();
+		dependente = (Dependente) context.getExternalContext().getRequestMap()
+				.get("list");
 	}
 
 }
