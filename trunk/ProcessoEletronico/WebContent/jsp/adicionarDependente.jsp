@@ -59,29 +59,25 @@
 						requiredMessage="Campo Data de Nascimento do Dependente é obrigatório!" />
 
 					<h:outputText value="CPF do Dependente: " />
-					<h:inputText
-						value="#{dependenteController.dependente.cpf}" size="16"
-						maxlength="14" id="cpf" onkeypress="mascara(this,cpf);">
+					<h:inputText value="#{dependenteController.dependente.cpf}"
+						size="16" maxlength="14" id="cpf" onkeypress="mascara(this,cpf);">
 						<a4j:support event="onchange"
 							action="#{dependenteController.validarCPF}" ajaxSingle="true"
 							reRender="cpf, confirmPanel, messages"></a4j:support>
 					</h:inputText>
 
 					<h:outputText value="RG do Dependente: " />
-					<h:inputText
-						value="#{dependenteController.dependente.rg}" size="16"
-						maxlength="13"></h:inputText>
+					<h:inputText value="#{dependenteController.dependente.rg}"
+						size="16" maxlength="13"></h:inputText>
 
 					<h:outputText value="UF do RG do Dependente: " />
-					<h:selectOneMenu
-						value="#{dependenteController.dependente.rgUf}">
+					<h:selectOneMenu value="#{dependenteController.dependente.rgUf}">
 						<f:selectItem itemLabel="SELECIONE" itemValue="" />
 						<f:selectItems value="#{dependenteController.ufs}" />
 					</h:selectOneMenu>
 
 					<h:outputText value="Orgão Emissor do RG do Dependente: " />
-					<h:inputText
-						value="#{dependenteController.dependente.rgOrgao}"
+					<h:inputText value="#{dependenteController.dependente.rgOrgao}"
 						size="16" maxlength="8" />
 
 					<h:outputText value="Data de Expedição do RG do Dependente: " />
@@ -170,8 +166,8 @@
 						<f:facet name="header">
 							<h:outputText value="Editar" />
 						</f:facet>
-						<a4j:commandLink action="#{dependenteController.carregar}" reRender="listaDependentes, form"
-							ajaxSingle="true">
+						<a4j:commandLink action="#{dependenteController.carregar}"
+							reRender="listaDependentes, form" ajaxSingle="true">
 							<h:graphicImage value="../images/edit.gif" style="border:0"
 								width="20" height="18" id="editar" />
 							<f:setPropertyActionListener value="#{list.codigo}"
@@ -185,7 +181,8 @@
 						<f:facet name="header">
 							<h:outputText value="Excluir" />
 						</f:facet>
-						<a4j:commandLink ajaxSingle="true" id="delete" reRender="form, listaDependentes"
+						<a4j:commandLink ajaxSingle="true" id="delete"
+							reRender="form, listaDependentes"
 							oncomplete="#{rich:component('deletePanel')}.show()">
 							<h:graphicImage id="excluir" value="../images/delete.gif"
 								style="border:0" />
@@ -200,30 +197,34 @@
 					</f:facet>
 				</rich:dataTable>
 			</a4j:region>
+
+
+
+			<center><rich:modalPanel id="deletePanel" autosized="true"
+				width="200">
+				<f:facet name="header">
+					<h:outputText value="Deseja realmente deletar este item?"
+						style="padding-right:15px;" />
+				</f:facet>
+				<h:form>
+					<table width="100%">
+						<tbody>
+							<tr>
+								<td align="center" width="50%"><a4j:commandButton
+									value="Sim" ajaxSingle="true"
+									action="#{dependenteController.remover}"
+									oncomplete="#{rich:component('deletePanel')}.hide();"
+									reRender="form, listaDependentes" /></td>
+								<td align="center" width="50%"><a4j:commandButton
+									value="Não"
+									onclick="#{rich:component('deletePanel')}.hide();return false;" />
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</h:form>
+			</rich:modalPanel></center>
 		</rich:panel></center>
-
-
-	<center><rich:modalPanel id="deletePanel" autosized="true" width="200">
-		<f:facet name="header">
-			<h:outputText value="Deseja realmente deletar este item?"
-				style="padding-right:15px;" />
-		</f:facet>
-		<h:form>
-			<table width="100%">
-				<tbody>
-					<tr>
-						<td align="center" width="50%"><a4j:commandButton value="Sim"
-							ajaxSingle="true" action="#{dependenteController.remover}"
-							oncomplete="#{rich:component('deletePanel')}.hide();"
-							reRender="form, listaDependentes" /></td>
-						<td align="center" width="50%"><a4j:commandButton value="Não"
-							onclick="#{rich:component('deletePanel')}.hide();return false;" />
-						</td>
-					</tr>
-				</tbody>
-			</table>
-		</h:form>
-	</rich:modalPanel></center>
 	</a4j:form>
 </f:view>
 </body>
