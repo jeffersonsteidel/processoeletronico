@@ -147,6 +147,12 @@
 					maxlength="13" required="true"
 					requiredMessage="Campo Órgão de atuação é obrigatório!"></h:inputText>
 
+<h:outputText value="Cônjuge Atual? " />
+				<h:selectBooleanCheckbox id="atual"
+					title="Marcar esta opção caso o cônjuge seja atual!"
+					value="#{conjugeController.conjuge.atual}">
+				</h:selectBooleanCheckbox>
+
 			</h:panelGrid>
 
 			<a4j:commandButton value="Salvar"

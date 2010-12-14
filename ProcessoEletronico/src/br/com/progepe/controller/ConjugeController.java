@@ -137,7 +137,6 @@ public class ConjugeController implements Serializable {
 		} else {
 			conjuge.setCidadeNascimento(null);
 		}
-		listarConjugesServidorLogado();
 		DAO.getInstance().saveOrUpdate(conjuge);
 		conjuge = new Conjuge();
 		conjuge.setCidadeNascimento(new Cidade());
@@ -147,22 +146,14 @@ public class ConjugeController implements Serializable {
 		listarUfs();
 		listarEstados();
 		buscarServidorLogado();
+		listarConjugesServidorLogado();
 	}
 
 	public void listarConjugesServidorLogado() throws Exception {
 		conjugeList = ConjugeDAO.getInstance().listByServidor(conjuge);
 		if (conjugeList.isEmpty()) {
 			conjugeList = new ArrayList<Conjuge>();
-		} else {
-			for (Conjuge item : conjugeList) {
-				if(item.getAtual() == null){
-					item.setAtual(true); 
-				}else{
-					item.setAtual(false); 
-				}
-				ConjugeDAO.getInstance().updateConjuge(item);
-			}
-		}
+		} 
 	}
 
 	public void buscarServidorLogado() throws IOException, ParseException {
