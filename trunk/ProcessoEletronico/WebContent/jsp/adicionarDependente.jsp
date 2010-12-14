@@ -170,7 +170,7 @@
 						<f:facet name="header">
 							<h:outputText value="Editar" />
 						</f:facet>
-						<a4j:commandLink action="#" reRender="listaDependentes"
+						<a4j:commandLink action="#{dependenteController.carregar}" reRender="listaDependentes, form"
 							ajaxSingle="true">
 							<h:graphicImage value="../images/edit.gif" style="border:0"
 								width="20" height="18" id="editar" />
@@ -191,12 +191,6 @@
 								style="border:0" />
 							<f:setPropertyActionListener value="#{list.codigo}"
 								target="#{dependenteController.dependente.codigo}" />
-							<f:setPropertyActionListener value="#{list.grauParentesco.codigo}"
-								target="#{dependenteController.dependente.grauParentesco.codigo}" />
-							<f:setPropertyActionListener value="#{list.documento.codigo}"
-								target="#{dependenteController.dependente.documento.codigo}" />	
-							<f:setPropertyActionListener value="#{list.documento.rgUf}"
-								target="#{dependenteController.dependente.documento.rgUf}" />
 						</a4j:commandLink>
 						<rich:toolTip for="excluir" value="Excluir" />
 					</rich:column>
