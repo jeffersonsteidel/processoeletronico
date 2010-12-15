@@ -119,27 +119,27 @@
 				<h:outputText value="Titulacao: " />
 				<h:outputText value="#{servidorTitulacaoController.servidorTitulacao.titulacao.descricao}"></h:outputText>
 				<h:outputText value="Curso: " rendered="#{servidorTitulacaoController.servidorTitulacao.curso != null}"/>
-				<h:outputText value="#{servidorTitulacaoController.servidorTitulacao.curso}"></h:outputText>
+				<h:outputText value="#{servidorTitulacaoController.servidorTitulacao.curso}" rendered="#{servidorTitulacaoController.servidorTitulacao.curso != null}"></h:outputText>
 				<h:outputText value="Area de Conhecimento: " rendered="#{servidorTitulacaoController.servidorTitulacao.areaConhecimento.descricao != null}"/>
-				<h:outputText value="#{servidorTitulacaoController.servidorTitulacao.areaConhecimento.descricao}"></h:outputText>
+				<h:outputText value="#{servidorTitulacaoController.servidorTitulacao.areaConhecimento.descricao}" rendered="#{servidorTitulacaoController.servidorTitulacao.areaConhecimento.descricao != null}"></h:outputText>
 				<h:outputText value="Estabelecimento de Ensino: " rendered="#{servidorTitulacaoController.servidorTitulacao.estabelecimentoEnsino != null}"/>
-				<h:outputText value="#{servidorTitulacaoController.servidorTitulacao.estabelecimentoEnsino}"></h:outputText>
+				<h:outputText value="#{servidorTitulacaoController.servidorTitulacao.estabelecimentoEnsino}" rendered="#{servidorTitulacaoController.servidorTitulacao.estabelecimentoEnsino != null}"></h:outputText>
 				<h:outputText value="Estado do Estabelecimento: " rendered="#{servidorTitulacaoController.servidorTitulacao.cidadeEstabelecimentoEnsino.estado.descricao != null}"/>
-				<h:outputText value="#{servidorTitulacaoController.servidorTitulacao.cidadeEstabelecimentoEnsino.estado.uf}"></h:outputText>
+				<h:outputText value="#{servidorTitulacaoController.servidorTitulacao.cidadeEstabelecimentoEnsino.estado.uf}" rendered="#{servidorTitulacaoController.servidorTitulacao.cidadeEstabelecimentoEnsino.estado.descricao != null}"></h:outputText>
 				<h:outputText value="Cidade do Estabelecimento: " rendered="#{servidorTitulacaoController.servidorTitulacao.cidadeEstabelecimentoEnsino.descricao!= null}"/>
-				<h:outputText value="#{servidorTitulacaoController.servidorTitulacao.cidadeEstabelecimentoEnsino.descricao}"></h:outputText>
+				<h:outputText value="#{servidorTitulacaoController.servidorTitulacao.cidadeEstabelecimentoEnsino.descricao}" rendered="#{servidorTitulacaoController.servidorTitulacao.cidadeEstabelecimentoEnsino.descricao!= null}"></h:outputText>
 				<h:outputText value="Pais do Estabelecimento: " rendered="#{servidorTitulacaoController.servidorTitulacao.pais.descricao != null}"/>
-				<h:outputText value="#{servidorTitulacaoController.servidorTitulacao.pais.descricao}"></h:outputText>
+				<h:outputText value="#{servidorTitulacaoController.servidorTitulacao.pais.descricao}" rendered="#{servidorTitulacaoController.servidorTitulacao.pais.descricao != null}"></h:outputText>
 				<h:outputText value="Carga Horária: " rendered="#{servidorTitulacaoController.servidorTitulacao.cargaHoraria != null}"/>
-				<h:outputText value="#{servidorTitulacaoController.servidorTitulacao.cargaHoraria}" rendered="#{servidorTitulacaoController.servidorTitulacao.pais.descricao}"></h:outputText>
+				<h:outputText value="#{servidorTitulacaoController.servidorTitulacao.cargaHoraria}" rendered="#{servidorTitulacaoController.servidorTitulacao.cargaHoraria != null}"></h:outputText>
 				<h:outputText value="Ano de Conclusão: " rendered="#{servidorTitulacaoController.servidorTitulacao.anoConclusao != null}"/>
-				<h:outputText value="#{servidorTitulacaoController.servidorTitulacao.anoConclusao}"></h:outputText>
+				<h:outputText value="#{servidorTitulacaoController.servidorTitulacao.anoConclusao}" rendered="#{servidorTitulacaoController.servidorTitulacao.anoConclusao != null}"></h:outputText>
 				<h:outputText value="Registro no Conselho: " rendered="#{servidorTitulacaoController.servidorTitulacao.registroConselho != ''}"/>
-				<h:outputText value="#{servidorTitulacaoController.servidorTitulacao.registroConselho}"></h:outputText>
+				<h:outputText value="#{servidorTitulacaoController.servidorTitulacao.registroConselho}" rendered="#{servidorTitulacaoController.servidorTitulacao.registroConselho != ''}"></h:outputText>
 				<h:outputText value="Orgão Emissor do Registro: " rendered="#{servidorTitulacaoController.servidorTitulacao.orgaoEmissor != ''}"/>
-				<h:outputText value="#{servidorTitulacaoController.servidorTitulacao.orgaoEmissor}"></h:outputText>
+				<h:outputText value="#{servidorTitulacaoController.servidorTitulacao.orgaoEmissor}" rendered="#{servidorTitulacaoController.servidorTitulacao.orgaoEmissor != ''}"></h:outputText>
 				<h:outputText value="UF do Orgão Emissor: " rendered="#{servidorTitulacaoController.servidorTitulacao.estadoOrgaoEmissor.uf != null}"/>
-				<h:outputText value="#{servidorTitulacaoController.servidorTitulacao.estadoOrgaoEmissor.uf}"></h:outputText>
+				<h:outputText value="#{servidorTitulacaoController.servidorTitulacao.estadoOrgaoEmissor.uf}" rendered="#{servidorTitulacaoController.servidorTitulacao.estadoOrgaoEmissor.uf != null}"></h:outputText>
 			</h:panelGrid> <h:panelGrid columns="1">
 				<a4j:commandButton value="Fechar"
 					onclick="#{rich:component('editPanel')}.hide();return false;" />
