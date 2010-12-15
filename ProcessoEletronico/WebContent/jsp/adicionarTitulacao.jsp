@@ -116,18 +116,18 @@
 
 					<h:outputText value="Registro no Concelho: " />
 
-					<h:inputText id="registroConcelho"
+					<h:inputText id="registroConcelho" disabled="#{!servidorTitulacaoController.indSuperior}"
 						value="#{servidorTitulacaoController.servidorTitulacao.registroConselho}"
 						size="9" maxlength="10"></h:inputText>
 
 					<h:outputText value="Orgão Emissor do Registro: " />
 
-					<h:inputText id="orgaoEmissor"
+					<h:inputText id="orgaoEmissor" disabled="#{!servidorTitulacaoController.indSuperior}"
 						value="#{servidorTitulacaoController.servidorTitulacao.orgaoEmissor}"
 						size="9" maxlength="8"></h:inputText>
 
 					<h:outputText value="Estado do Orgão Emissor: " />
-					<h:selectOneMenu id="estadoEmissor"
+					<h:selectOneMenu id="estadoEmissor" disabled="#{!servidorTitulacaoController.indSuperior}"
 						value="#{servidorTitulacaoController.servidorTitulacao.estadoOrgaoEmissor.codigo}">
 						<f:selectItem itemLabel="SELECIONE" itemValue="" />
 						<f:selectItems value="#{servidorTitulacaoController.ufs}" />
