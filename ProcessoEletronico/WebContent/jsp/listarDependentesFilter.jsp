@@ -107,35 +107,35 @@
 	</a4j:form></center>
 
 	<center><rich:modalPanel id="editPanel" autosized="true"
-		width="200">
+		width="300">
 		<h:form>
-			<center><font size="2"><b>DETALHES DO DEPENDENTE</b></font> <h:panelGrid
-				columns="4">
+			<center><font size="2"><b>DETALHES DO DEPENDENTE</b></font>
+			<h:panelGrid columns="4">
+			
 				<h:outputText value="Siape do Servidor: " />
 				<h:inputText id="siape" requiredMessage="Campo Siape é obrigatório!"
-					required="true" value="#{dependenteController.dependente.servidor.siape}"
-					size="10" maxlength="8"></h:inputText>
+					required="true"
+					value="#{dependenteController.dependente.servidor.siape}" size="10"
+					maxlength="8"></h:inputText>
+					
 				<h:outputText value="Nome do Servidor: " />
 				<h:inputText id="servidor"
-					requiredMessage="Campo Nome do Servidor é obrigatório!" required="true"
-					value="#{dependenteController.dependente.servidor.nome}" size="60"
+					requiredMessage="Campo Nome do Servidor é obrigatório!"
+					required="true"
+					value="#{dependenteController.dependente.servidor.nome}" size="40"
 					maxlength="100"></h:inputText>
-				<h:outputText value="Nome do Dependente: " />
-				<h:inputText id="servidor"
-					requiredMessage="Campo Nome do Dependente é obrigatório!" required="true"
-					value="#{dependenteController.dependente.nome}" size="60"
-					maxlength="100"></h:inputText>
+					
 				<h:outputText value="Nome do Dependente: " />
 				<h:inputText id="dependente"
-					requiredMessage="Campo Nome do Dependente é obrigatório!" required="true"
-					value="#{dependenteController.dependente.nome}" size="60"
-					maxlength="100"></h:inputText>
+					requiredMessage="Campo Nome do Dependente é obrigatório!"
+					required="true" value="#{dependenteController.dependente.nome}"
+					size="40" maxlength="100"></h:inputText>
+					
 				<h:outputText value="Grau de Parentesco: " />
-				<h:selectOneMenu
-					value="#{dependenteController.dependente.grauParentesco.codigo}">
-					<f:selectItem itemLabel="SELECIONE" itemValue="" />
-					<f:selectItems value="#{dependenteController.dependente.grauParentesco.descricao}" />
-				</h:selectOneMenu>
+				<h:inputText id="parentesco"
+					requiredMessage="Campo Grau de Parentesco é obrigatório!"
+					required="true" value="#{dependenteController.dependente.grauParentesco.descricao}"
+					size="40" maxlength="100"></h:inputText>
 
 			</h:panelGrid> <h:panelGrid columns="1">
 				<a4j:commandButton value="Fechar"
