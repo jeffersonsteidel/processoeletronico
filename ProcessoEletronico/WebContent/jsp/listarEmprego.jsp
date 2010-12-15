@@ -30,7 +30,7 @@
 			<h:panelGrid columns="5">
 				<h:outputText value="Siape do Servidor:" />
 				<h:inputText value="#{empregoController.emprego.servidor.siape}"
-					size="10" maxlength="8"></h:inputText>
+					size="10" maxlength="7" onkeyup="mascara(this, soNumeros);"></h:inputText>
 				<h:outputText value="Nome do Servidor:" />
 				<h:inputText value="#{empregoController.emprego.servidor.nome}"
 					size="80" maxlength="120"></h:inputText>
