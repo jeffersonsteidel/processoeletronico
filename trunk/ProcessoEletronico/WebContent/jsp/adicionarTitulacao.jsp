@@ -44,7 +44,7 @@
 						<f:selectItems value="#{servidorTitulacaoController.titulacoes}" />
 						<a4j:support event="onchange"
 							action="#{servidorTitulacaoController.validarTitulacao}"
-							ajaxSingle="true" reRender="curso,areaConhecimento,cargaHoraria"></a4j:support>
+							ajaxSingle="true" reRender="curso,areaConhecimento,cargaHoraria,registroConselho,orgaoEmisssor,estadoEmissor"></a4j:support>
 					</h:selectOneMenu>
 
 					<h:outputText value="Estabelecimento de Ensino: " />
