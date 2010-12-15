@@ -75,7 +75,7 @@
 					requiredMessage="Campo RG do Cônjuge é obrigatório!"></h:inputText>
 
 				<h:outputText value="UF do RG do Cônjuge: " />
-				<h:selectOneMenu value="#{conjugeController.conjuge.rgUf}"
+				<h:selectOneMenu value="#{conjugeController.conjuge.rgUf.codigo}"
 					required="true"
 					requiredMessage="Campo UF do RG do Cônjuge é obrigatório!">
 					<f:selectItem itemLabel="SELECIONE" itemValue="" />
