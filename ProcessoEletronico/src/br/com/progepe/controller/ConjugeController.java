@@ -113,6 +113,7 @@ public class ConjugeController implements Serializable {
 		try {
 			conjuge = new Conjuge();
 			conjuge.setCidadeNascimento(new Cidade());
+			conjuge.setRgUf(new Estado());
 			conjuge.getCidadeNascimento().setEstado(new Estado());
 			conjuge.setPais(new Pais());
 			listarPais();
@@ -140,6 +141,7 @@ public class ConjugeController implements Serializable {
 		DAO.getInstance().saveOrUpdate(conjuge);
 		conjuge = new Conjuge();
 		conjuge.setCidadeNascimento(new Cidade());
+		conjuge.setRgUf(new Estado());
 		conjuge.getCidadeNascimento().setEstado(new Estado());
 		conjuge.setPais(new Pais());
 		listarPais();
