@@ -264,9 +264,8 @@ public class ServidorTitulacaoController implements Serializable {
 	}
 
 	public void salvarTitulacao() throws Exception {
-		if (Constantes.ZERO.equals(servidorTitulacao.getEstadoOrgaoEmissor()
-				.getCodigo())) {
-			servidorTitulacao.setEstadoOrgaoEmissor(null);
+		if(servidorTitulacao.getEstadoOrgaoEmissor() != null && Constantes.ZERO.equals(servidorTitulacao.getEstadoOrgaoEmissor().getCodigo())){
+			servidorTitulacao.getEstadoOrgaoEmissor().setCodigo(null);
 		}
 		DAO.getInstance().saveOrUpdate(servidorTitulacao);
 		listarTitulacoesServidorLogado();
@@ -329,9 +328,11 @@ public class ServidorTitulacaoController implements Serializable {
 			servidorTitulacao.setCurso(null);
 			servidorTitulacao.setEstabelecimentoEnsino(null);
 			servidorTitulacao.setAreaConhecimento(null);
+			servidorTitulacao.setEstadoOrgaoEmissor(null);
 		}else{
 			setIndSuperior(true);
 			servidorTitulacao.setAreaConhecimento(new AreaConhecimento());
+			servidorTitulacao.setEstadoOrgaoEmissor(new Estado());
 		}
 	}
 }
