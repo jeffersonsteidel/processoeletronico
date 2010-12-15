@@ -122,7 +122,7 @@
 					<f:convertDateTime pattern="dd/MM/yyyy" />
 				</h:outputText>
 				<h:outputText value="Data de Saida: " />
-				<h:outputText value="#{empregoController.emprego.data}">
+				<h:outputText value="#{empregoController.emprego.dataSaida}">
 					<f:convertDateTime pattern="dd/MM/yyyy" />
 				</h:outputText>
 			</h:panelGrid> <h:panelGrid columns="1">
