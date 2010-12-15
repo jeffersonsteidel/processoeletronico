@@ -188,7 +188,9 @@ public class ConjugeController implements Serializable {
 		FacesContext context = FacesContext.getCurrentInstance();
 		conjuge = (Conjuge) context.getExternalContext().getRequestMap()
 				.get("list");
-		listarCidadesNascimentoConjuge();
+		if(conjuge.getCidadeNascimento() != null){
+			listarCidadesNascimentoConjuge();
+		}
 	}
 
 	public void carregarConjugeSolicitante(Servidor servidor) {
@@ -263,6 +265,7 @@ public class ConjugeController implements Serializable {
 			conjuge = new Conjuge();
 			conjuge.setServidor(new Servidor());
 			conjuge.setCidadeNascimento(new Cidade());
+			conjuge.getCidadeNascimento().setEstado(new Estado());
 			conjuge.setPais(new Pais());
 			conjuge.setRgUf(new Estado());
 			FacesContext.getCurrentInstance().getExternalContext()
