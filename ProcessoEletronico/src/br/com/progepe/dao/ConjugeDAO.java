@@ -6,6 +6,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 
 import org.hibernate.Criteria;
+import org.hibernate.Query;
 import org.hibernate.criterion.Restrictions;
 
 import br.com.progepe.entity.Conjuge;
@@ -68,5 +69,29 @@ public class ConjugeDAO extends DAO {
 			FacesContext.getCurrentInstance().addMessage("", message);
 		}
 	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Conjuge> listByFilter(Conjuge conjuge) {
+		HibernateUtility.getSession().clear();
+		HibernateUtility.beginTransaction();
+		String sql = "from Conjuge c LEFT JOIN FETCH c.servidor s where 1 = 1 ";
+		if (conjuge.getServidor().getSiape() != null
+				&& conjuge.getServidor().getSiape() != 0) {
+			sql += " and s.siape = " + conjuge.getServidor().getSiape();
+		}
+		if (conjuge.getServidor().getNome() != null
+				&& conjuge.getServidor().getNome() != "") {
+			sql += " and upper(s.nome) like '%"
+					+ conjuge.getServidor().getNome().toUpperCase() + "%'";
+		}
+		if (conjuge.getNome() != null && conjuge.getNome() != "") {
+			sql += " and upper(c.nome) like '%"
+					+ conjuge.getNome().toUpperCase() + "%'";
+		}
+		Query query = HibernateUtility.getSession().createQuery(sql);
+		HibernateUtility.commitTransaction();
+		return (List<Conjuge>) query.list();
+	}
+	
 
 }

@@ -47,6 +47,9 @@
 				<rich:menuItem submitMode="ajax" value="Listar Servidores"
 					action="#{servidorController.listar}"
 					icon="../images/LISTARSERVIDORES2.gif" />
+				<rich:menuItem submitMode="ajax" value="Listar Cônjuges"
+					action="#{conjugeController.abrirListarConjuge}"
+					icon="../images/LISTARSERVIDORES2.gif" />	
 				<rich:menuItem submitMode="ajax" value="Listar Dependentes"
 					action="#{dependenteController.abrirListarDependentes}"
 					icon="../images/LISTARSERVIDORES2.gif" />

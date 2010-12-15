@@ -31,6 +31,7 @@ public class ConjugeController implements Serializable {
 	private List<SelectItem> ufs = new ArrayList<SelectItem>();
 	private List<SelectItem> estados = new ArrayList<SelectItem>();
 	private List<SelectItem> cidadesNascimento = new ArrayList<SelectItem>();
+	private List<Conjuge> listaConjugesByFilter = new ArrayList<Conjuge>();
 
 	private Estado estadoNascimento;
 
@@ -109,6 +110,14 @@ public class ConjugeController implements Serializable {
 		this.texto = texto;
 	}
 	
+	public List<Conjuge> getListaConjugesByFilter() {
+		return listaConjugesByFilter;
+	}
+
+	public void setListaConjugesByFilter(List<Conjuge> listaConjugesByFilter) {
+		this.listaConjugesByFilter = listaConjugesByFilter;
+	}
+
 	public void abrirCadastrarConjuge() throws ParseException {
 		try {
 			conjuge = new Conjuge();
@@ -247,5 +256,23 @@ public class ConjugeController implements Serializable {
 		conjuge.setCidadeNascimento(new Cidade());
 		conjuge.getCidadeNascimento().setEstado(new Estado());
 	}
+	
+	public void abrirListarConjuge() throws Exception {
+		try {
+			listaConjugesByFilter.clear();
+			conjuge = new Conjuge();
+			conjuge.setServidor(new Servidor());
+			conjuge.setCidadeNascimento(new Cidade());
+			conjuge.setRgUf(new Estado());
+			FacesContext.getCurrentInstance().getExternalContext()
+					.redirect("listarConjuge.jsp");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 
+	public List<Conjuge> buscarConjuges() {
+		listaConjugesByFilter = (List<Conjuge>) ConjugeDAO.getInstance().listByFilter(conjuge);
+		return listaConjugesByFilter;
+	}
 }

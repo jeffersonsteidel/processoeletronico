@@ -121,7 +121,8 @@
 				<h:selectBooleanCheckbox id="estrangeiro"
 					title="Marcar esta opção caso seja imigrante!"
 					value="#{conjugeController.conjuge.indEstrangeiro}">
-					<a4j:support event="onchange" ajaxSingle="true" action="#{conjugeController.limparEstado}"
+					<a4j:support event="onchange" ajaxSingle="true"
+						action="#{conjugeController.limparEstado}"
 						reRender="paisNascimentoConjuge, estadoNascimentoConjuge, cidadeNascimentoConjuge"></a4j:support>
 				</h:selectBooleanCheckbox>
 
@@ -147,7 +148,7 @@
 					maxlength="13" required="true"
 					requiredMessage="Campo Órgão de atuação é obrigatório!"></h:inputText>
 
-<h:outputText value="Cônjuge Atual? " />
+				<h:outputText value="Cônjuge Atual? " />
 				<h:selectBooleanCheckbox id="atual"
 					title="Marcar esta opção caso o cônjuge seja atual!"
 					value="#{conjugeController.conjuge.atual}">
