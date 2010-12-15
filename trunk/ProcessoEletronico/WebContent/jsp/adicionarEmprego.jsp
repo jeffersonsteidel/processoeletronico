@@ -57,7 +57,7 @@
 
 					<h:outputText value="Data de Saida: " />
 					<rich:calendar required="true"
-						requiredMessage="Campo Data de Admissão é Obrigatório!"
+						requiredMessage="Campo Data de Saida é Obrigatório!"
 						value="#{empregoController.emprego.dataSaida}" locale=""
 						popup="true" datePattern="dd/MM/yyyy" showApplyButton="#"
 						cellWidth="12px" cellHeight="12px" style="width:80px"
