@@ -52,7 +52,10 @@
 					icon="../images/LISTARSERVIDORES2.gif" />
 				<rich:menuItem submitMode="ajax" value="Listar Empregos"
 					action="#{empregoController.abrirListarEmprego}"
-					icon="../images/LISTARSERVIDORES2.gif" />	
+					icon="../images/LISTARSERVIDORES2.gif" />
+				<rich:menuItem submitMode="ajax" value="Listar Titulações"
+					action="#{servidorTitulacaoController.abrirListarServidorTitulacao}"
+					icon="../images/titulacoes.gif" />
 			</rich:dropDownMenu>
 
 			<rich:dropDownMenu>
@@ -73,9 +76,7 @@
 				<rich:menuItem submitMode="ajax" value="Adicionar Titulações"
 					action="#{servidorTitulacaoController.abrirAdicionarServidorTitulacao}"
 					icon="../images/titulacoes.gif" />
-				<rich:menuItem submitMode="ajax" value="Listar Titulações"
-					action="#{servidorTitulacaoController.abrirListarServidorTitulacao}"
-					icon="../images/titulacoes.gif" />
+				
 				<rich:menuItem submitMode="ajax" value="Adicionar Empregos"
 					action="#{empregoController.abrirEmprego}"
 					icon="../images/titulacoes.gif" />

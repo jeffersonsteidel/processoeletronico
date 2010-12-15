@@ -20,12 +20,12 @@
 					value="#{servidorTitulacaoController.servidorTitulacao.servidor.siape}"
 					size="10" maxlength="7" onkeyup="mascara(this, soNumeros);">
 				</h:inputText>
-<!--				<h:outputText value="Nome: ">
+				<h:outputText value="Nome: ">
 				</h:outputText>
 				<h:inputText
 					value="#{servidorTitulacaoController.servidorTitulacao.servidor.nome}"
 					size="80">
-				</h:inputText> -->
+				</h:inputText> 
 				<h:outputText value="Titulação: " />
 				<h:selectOneMenu
 					value="#{servidorTitulacaoController.servidorTitulacao.titulacao.codigo}">
@@ -53,7 +53,7 @@
 			</rich:messages>
 
 			<rich:dataTable id="listaTitulacoes"
-				value="#{servidorTitulacaoController.listaServidorTitulacoes}"
+				value="#{servidorTitulacaoController.listaTitulacoes}"
 				var="list" width="1150px" columnClasses="center" rows="15"
 				reRender="ds">
 				<rich:column width="50px" sortBy="#{list.servidor.siape}">
@@ -87,15 +87,16 @@
 
 				<rich:column>
 					<f:facet name="header">
-						<h:outputText value="Editar" />
+						<h:outputText value="Visualizar" />
 					</f:facet>
-					<a4j:commandLink action="#{servidorTitulacaoController.carregar}"
-						reRender="listaTitulacoes" ajaxSingle="true">
-						<h:graphicImage value="../images/edit.gif" style="border:0"
-							width="20" height="18" id="editar" />
-						<f:setPropertyActionListener value="#{list.codigo}"
-							target="#{servidorTitulacaoController.servidorTitulacao.codigo}" />
-					</a4j:commandLink>
+					<a4j:commandLink action="#{servidorTitulacaoController.carregarTitulacao}"
+							reRender="editPanel" ajaxSingle="true"
+							oncomplete="#{rich:component('editPanel')}.show()">
+							<h:graphicImage value="../images/edit.gif" style="border:0"
+								width="20" height="18" id="editar" />
+							<f:setPropertyActionListener value="#{list.codigo}"
+								target="#{empregoController.emprego.codigo}" />
+						</a4j:commandLink>
 					<rich:toolTip for="editar" value="Editar" />
 				</rich:column>
 
@@ -107,6 +108,44 @@
 			</rich:dataTable>
 		</rich:panel>
 	</a4j:form></center>
+	<center><rich:modalPanel id="editPanel" autosized="true"
+		width="1000">
+		<h:form>
+			<center><font size="2"><b>DETALHES DA TITULAÇÃO</b></font> <h:panelGrid
+				columns="2">
+				<h:outputText value="Servidor: " />
+				<h:outputText value="#{servidorTitulacaoController.servidorTitulacao.servidor.nome}" />
+			</h:panelGrid> <h:panelGrid columns="2">
+				<h:outputText value="Titulacao: " />
+				<h:outputText value="#{servidorTitulacaoController.servidorTitulacao.titulacao.descricao}"></h:outputText>
+				<h:outputText value="Curso: " rendered="#{servidorTitulacaoController.servidorTitulacao.curso != null}"/>
+				<h:outputText value="#{servidorTitulacaoController.servidorTitulacao.curso}"></h:outputText>
+				<h:outputText value="Area de Conhecimento: " rendered="#{servidorTitulacaoController.servidorTitulacao.areaConhecimento.descricao != null}"/>
+				<h:outputText value="#{servidorTitulacaoController.servidorTitulacao.areaConhecimento.descricao}"></h:outputText>
+				<h:outputText value="Estabelecimento de Ensino: " rendered="#{servidorTitulacaoController.servidorTitulacao.estabelecimentoEnsino != null}"/>
+				<h:outputText value="#{servidorTitulacaoController.servidorTitulacao.estabelecimentoEnsino}"></h:outputText>
+				<h:outputText value="Estado do Estabelecimento: " rendered="#{servidorTitulacaoController.servidorTitulacao.cidadeEstabelecimentoEnsino.estado.descricao != null}"/>
+				<h:outputText value="#{servidorTitulacaoController.servidorTitulacao.cidadeEstabelecimentoEnsino.estado.uf}"></h:outputText>
+				<h:outputText value="Cidade do Estabelecimento: " rendered="#{servidorTitulacaoController.servidorTitulacao.cidadeEstabelecimentoEnsino.descricao!= null}"/>
+				<h:outputText value="#{servidorTitulacaoController.servidorTitulacao.cidadeEstabelecimentoEnsino.descricao}"></h:outputText>
+				<h:outputText value="Pais do Estabelecimento: " rendered="#{servidorTitulacaoController.servidorTitulacao.pais.descricao != null}"/>
+				<h:outputText value="#{servidorTitulacaoController.servidorTitulacao.pais.descricao}"></h:outputText>
+				<h:outputText value="Carga Horária: " rendered="#{servidorTitulacaoController.servidorTitulacao.cargaHoraria != null}"/>
+				<h:outputText value="#{servidorTitulacaoController.servidorTitulacao.cargaHoraria}" rendered="#{servidorTitulacaoController.servidorTitulacao.pais.descricao}"></h:outputText>
+				<h:outputText value="Ano de Conclusão: " rendered="#{servidorTitulacaoController.servidorTitulacao.anoConclusao != null}"/>
+				<h:outputText value="#{servidorTitulacaoController.servidorTitulacao.anoConclusao}"></h:outputText>
+				<h:outputText value="Registro no Conselho: " rendered="#{servidorTitulacaoController.servidorTitulacao.registroConselho != ''}"/>
+				<h:outputText value="#{servidorTitulacaoController.servidorTitulacao.registroConselho}"></h:outputText>
+				<h:outputText value="Orgão Emissor do Registro: " rendered="#{servidorTitulacaoController.servidorTitulacao.orgaoEmissor != ''}"/>
+				<h:outputText value="#{servidorTitulacaoController.servidorTitulacao.orgaoEmissor}"></h:outputText>
+				<h:outputText value="UF do Orgão Emissor: " rendered="#{servidorTitulacaoController.servidorTitulacao.estadoOrgaoEmissor.uf != null}"/>
+				<h:outputText value="#{servidorTitulacaoController.servidorTitulacao.estadoOrgaoEmissor.uf}"></h:outputText>
+			</h:panelGrid> <h:panelGrid columns="1">
+				<a4j:commandButton value="Fechar"
+					onclick="#{rich:component('editPanel')}.hide();return false;" />
+			</h:panelGrid></center>
+		</h:form>
+	</rich:modalPanel></center>
 </f:view>
 </body>
 </html>
