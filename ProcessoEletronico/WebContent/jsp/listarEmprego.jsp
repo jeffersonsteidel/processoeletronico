@@ -43,6 +43,14 @@
 				<rich:dataTable id="listaEmpregos"
 					value="#{empregoController.listaEmpregosByFilter}" var="list"
 					width="1150px" columnClasses="center" rows="15">
+					
+					<rich:column width="700px" sortBy="#{list.servidor.nome}">
+						<f:facet name="header">
+							<h:outputText value="Servidor" />
+						</f:facet>
+						<h:outputText value="#{list.servidor.nome}" />
+					</rich:column>
+					
 
 					<rich:column width="700px" sortBy="#{list.empresa}">
 						<f:facet name="header">
@@ -100,39 +108,30 @@
 	<center><rich:modalPanel id="editPanel" autosized="true"
 		width="200">
 		<h:form>
-			<center><font size="2"><b>DETALHES DO EMPREGO</b></font> <h:panelGrid
+			<center><font size="2"><b>DETALHES DO EMPREGO</b></font>
+			 <h:panelGrid
+				columns="2">
+				<h:outputText value="Servidor: " />
+				<h:outputText value="#{empregoController.emprego.servidor.nome}"/>
+			</h:panelGrid>
+			 <h:panelGrid
 				columns="4">
 				<h:outputText value="Cargo: " />
-				<h:inputText id="cargo" requiredMessage="Campo Cargo é obrigatório!"
-					required="true" value="#{empregoController.emprego.cargo}"
-					size="40" maxlength="80"></h:inputText>
+				<h:outputText id="cargo" value="#{empregoController.emprego.cargo}"></h:outputText>
 				<h:outputText value="Empresa: " />
-				<h:inputText id="empresa"
-					requiredMessage="Campo Empresa é obrigatório!" required="true"
-					value="#{empregoController.emprego.empresa}" size="60"
-					maxlength="100"></h:inputText>
-
+				<h:outputText value="#{empregoController.emprego.empresa}"></h:outputText>
 				<h:outputText value="Data de Admissão: " />
-				<rich:calendar rendered="true"
-					requiredMessage="Campo Data de Admissão é Obrigatório!"
-					value="#{empregoController.emprego.dataAdmissao}" locale=""
-					popup="true" datePattern="dd/MM/yyyy" showApplyButton="#"
-					cellWidth="12px" cellHeight="12px" style="width:80px"
-					inputSize="12" />
-
+				<h:outputText value="#{empregoController.emprego.dataAdmissao}" >
+					<f:convertDateTime pattern="dd/MM/yyyy" />
+				</h:outputText>
 				<h:outputText value="Data de Saida: " />
-				<rich:calendar rendered="true"
-					requiredMessage="Campo Data de Admissão é Obrigatório!"
-					value="#{empregoController.emprego.dataSaida}" locale=""
-					popup="true" datePattern="dd/MM/yyyy" showApplyButton="#"
-					cellWidth="12px" cellHeight="12px" style="width:80px"
-					inputSize="12" />
+				<h:outputText value="#{empregoController.emprego.dataSaida}" >
+					<f:convertDateTime pattern="dd/MM/yyyy" />
+				</h:outputText>
 			</h:panelGrid> <h:panelGrid columns="1">
 				<h:outputText value="Atividades: " />
-				<h:inputTextarea value="#{empregoController.emprego.atividades}"
-					rows="10" cols="50" required="true"
-					requiredMessage="Campo Atividades é obrigatório!">
-				</h:inputTextarea>
+				<h:outputText value="#{empregoController.emprego.atividades}">
+			</h:outputText>
 			</h:panelGrid> <h:panelGrid columns="1">
 				<a4j:commandButton value="Fechar"
 					onclick="#{rich:component('editPanel')}.hide();return false;" />
