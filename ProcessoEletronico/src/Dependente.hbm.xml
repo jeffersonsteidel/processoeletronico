@@ -12,7 +12,6 @@
 		<property name="cpf" column="DEP_CPF" />
 		<property name="rg" column="DEP_RG" />
 		<property name="rgDataExpedicao" column="DEP_RG_DATA_EXP" />
-		<property name="rgUf" column="DEP_RG_UF" />
 		<property name="rgOrgao" column="DEP_RG_ORG_EMI" />
 		<property name="dataNascimento" column="DEP_DATA_NASC" />
 		<property name="curso" column="DEP_CURSO" />
@@ -26,5 +25,7 @@
 			column="GRAU_PAR_COD_DEP" lazy="false" />
 		<many-to-one name="servidor" class="br.com.progepe.entity.Servidor"
 			column="SERV_COD" lazy="false" />
+		<many-to-one name="rgUf" class="br.com.progepe.entity.Estado" 
+			column="DEP_RG_UF" lazy="false"/>	
 	</class>
 </hibernate-mapping>
