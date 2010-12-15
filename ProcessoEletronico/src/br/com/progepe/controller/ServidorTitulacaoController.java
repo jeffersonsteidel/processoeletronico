@@ -6,7 +6,6 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
 
@@ -36,6 +35,7 @@ public class ServidorTitulacaoController implements Serializable {
 	private List<SelectItem> ufs = new ArrayList<SelectItem>();
 	private Boolean indTitulacaoEstrangeira = false;
 	private Boolean indSuperior = false;
+	private List<ServidorTitulacao> listaTitulacoes = new ArrayList<ServidorTitulacao>();
 
 	public List<ServidorTitulacao> getListaServidorTitulacoes() {
 		return listaServidorTitulacoes;
@@ -117,6 +117,15 @@ public class ServidorTitulacaoController implements Serializable {
 
 	public void setIndSuperior(Boolean indSuperior) {
 		this.indSuperior = indSuperior;
+	}
+
+	
+	public List<ServidorTitulacao> getListaTitulacoes() {
+		return listaTitulacoes;
+	}
+
+	public void setListaTitulacoes(List<ServidorTitulacao> listaTitulacoes) {
+		this.listaTitulacoes = listaTitulacoes;
 	}
 
 	public void abrirAdicionarServidorTitulacao() throws Exception {
@@ -299,22 +308,18 @@ public class ServidorTitulacaoController implements Serializable {
 	    }
 		listarCidadesEstabelecimento();
 	}
+	
+	public void carregarTitulacao() throws Exception {
+		FacesContext context = FacesContext.getCurrentInstance();
+		servidorTitulacao = (ServidorTitulacao) context.getExternalContext().getRequestMap()
+				.get("list");
+	}
 
 	public List<ServidorTitulacao> listarTitulacoesFiltro() {
-		listaServidorTitulacoes = new ArrayList<ServidorTitulacao>();
-		servidorTitulacao.setServidor(ServidorDAO.getInstance()
-				.refreshByFilter(servidorTitulacao.getServidor()));
-		setListaServidorTitulacoes(ServidorTitulacaoDAO.getInstance()
-				.listByFilter(servidorTitulacao));
-		if (getListaServidorTitulacoes().size() == 0) {
-			FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_WARN,
-					"Nenhum registro para o filtro informado!",
-					"Nenhum registro para o filtro informado!");
-			FacesContext.getCurrentInstance().addMessage("", message);
-
-		}
-		return listaServidorTitulacoes;
+		listaTitulacoes =(List<ServidorTitulacao>) ServidorTitulacaoDAO.getInstance().listByFilter(servidorTitulacao);
+		return listaTitulacoes;
 	}
+	
 	
 	public void validarTitulacao(){
 		if(Constantes.ENSINO_FUNDAMENTAL.equals(servidorTitulacao.getTitulacao().getCodigo())||Constantes.ENSINO_MEDIO.equals(servidorTitulacao.getTitulacao().getCodigo())){
