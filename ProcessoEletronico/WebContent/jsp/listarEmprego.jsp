@@ -43,14 +43,14 @@
 				<rich:dataTable id="listaEmpregos"
 					value="#{empregoController.listaEmpregosByFilter}" var="list"
 					width="1150px" columnClasses="center" rows="15">
-					
+
 					<rich:column width="700px" sortBy="#{list.servidor.nome}">
 						<f:facet name="header">
 							<h:outputText value="Servidor" />
 						</f:facet>
 						<h:outputText value="#{list.servidor.nome}" />
 					</rich:column>
-					
+
 
 					<rich:column width="700px" sortBy="#{list.empresa}">
 						<f:facet name="header">
@@ -108,30 +108,28 @@
 	<center><rich:modalPanel id="editPanel" autosized="true"
 		width="200">
 		<h:form>
-			<center><font size="2"><b>DETALHES DO EMPREGO</b></font>
-			 <h:panelGrid
+			<center><font size="2"><b>DETALHES DO EMPREGO</b></font> <h:panelGrid
 				columns="2">
 				<h:outputText value="Servidor: " />
-				<h:outputText value="#{empregoController.emprego.servidor.nome}"/>
-			</h:panelGrid>
-			 <h:panelGrid
-				columns="4">
+				<h:outputText value="#{empregoController.emprego.servidor.nome}" />
+			</h:panelGrid> <h:panelGrid columns="4">
 				<h:outputText value="Cargo: " />
 				<h:outputText id="cargo" value="#{empregoController.emprego.cargo}"></h:outputText>
 				<h:outputText value="Empresa: " />
 				<h:outputText value="#{empregoController.emprego.empresa}"></h:outputText>
 				<h:outputText value="Data de Admissão: " />
-				<h:outputText value="#{empregoController.emprego.dataAdmissao}" >
+				<h:outputText value="#{empregoController.emprego.dataAdmissao}">
 					<f:convertDateTime pattern="dd/MM/yyyy" />
 				</h:outputText>
 				<h:outputText value="Data de Saida: " />
-				<h:outputText value="#{empregoController.emprego.dataSaida}" >
+				<h:outputText value="#{empregoController.emprego.data}">
 					<f:convertDateTime pattern="dd/MM/yyyy" />
 				</h:outputText>
 			</h:panelGrid> <h:panelGrid columns="1">
 				<h:outputText value="Atividades: " />
-				<h:outputText value="#{empregoController.emprego.atividades}">
-			</h:outputText>
+				<h:inputTextarea value="#{empregoController.emprego.atividades}"
+					rows="10" cols="50" disabled="true">
+				</h:inputTextarea>
 			</h:panelGrid> <h:panelGrid columns="1">
 				<a4j:commandButton value="Fechar"
 					onclick="#{rich:component('editPanel')}.hide();return false;" />
