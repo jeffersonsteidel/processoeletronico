@@ -3,6 +3,7 @@ package br.com.progepe.dao;
 import java.util.List;
 
 import org.hibernate.Criteria;
+import org.hibernate.Query;
 import org.hibernate.criterion.Restrictions;
 
 import br.com.progepe.entity.Emprego;
@@ -33,5 +34,22 @@ public class EmpregoDAO extends DAO {
 		}
 		HibernateUtility.commitTransaction();
 		return c.list();
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Object> listByFilter(
+			Emprego emprego) {
+		HibernateUtility.getSession().clear();
+		HibernateUtility.beginTransaction();
+		String sql = "from Emprego e INNER JOIN e.servidor s where 1 = 1 ";
+		if(emprego.getServidor().getSiape() != null && emprego.getServidor().getSiape() != 0){
+			sql += " and s.siape = "+ emprego.getServidor().getSiape() ;
+		}
+		if(emprego.getServidor().getNome() != null && emprego.getServidor().getNome() != ""){
+			sql += " and upper(s.nome) like '%"+ emprego.getServidor().getNome().toUpperCase()+"%'";
+		}
+		Query query = HibernateUtility.getSession().createQuery(sql);
+		HibernateUtility.commitTransaction();
+		return (List<Object>) query.list();
 	}
 }

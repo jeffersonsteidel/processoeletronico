@@ -18,8 +18,9 @@ import br.com.progepe.entity.Servidor;
 public class EmpregoController implements Serializable {
 	private static final long serialVersionUID = -333995781063775201L;
 	private List<Emprego> listaEmpregos = new ArrayList<Emprego>();
+	private List<Object> listaEmpregosByFilter = new ArrayList<Object>();
 	private Emprego emprego;
-	
+
 	public List<Emprego> getListaEmpregos() {
 		return listaEmpregos;
 	}
@@ -36,6 +37,14 @@ public class EmpregoController implements Serializable {
 		this.emprego = emprego;
 	}
 
+	public List<Object> getListaEmpregosByFilter() {
+		return listaEmpregosByFilter;
+	}
+
+	public void setListaEmpregosByFilter(List<Object> listaEmpregosByFilter) {
+		this.listaEmpregosByFilter = listaEmpregosByFilter;
+	}
+
 	public void abrirEmprego() throws Exception {
 		try {
 			listaEmpregos.clear();
@@ -43,6 +52,18 @@ public class EmpregoController implements Serializable {
 			listarEmpregoServidorLogado();
 			FacesContext.getCurrentInstance().getExternalContext()
 					.redirect("adicionarEmprego.jsp");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void abrirListarEmprego() throws Exception {
+		try {
+			listaEmpregos.clear();
+			emprego = new Emprego();
+			emprego.setServidor(new Servidor());
+			FacesContext.getCurrentInstance().getExternalContext()
+					.redirect("listarEmprego.jsp");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -67,19 +88,24 @@ public class EmpregoController implements Serializable {
 
 	public void listarEmpregoServidorLogado() throws Exception {
 		buscarServidorLogado();
-		listaEmpregos = EmpregoDAO.getInstance()
-				.listByServidor(emprego);
+		listaEmpregos = EmpregoDAO.getInstance().listByServidor(emprego);
 	}
 
 	public void remover() throws Exception {
-		emprego  = (Emprego) DAO.getInstance().refresh(emprego);
+		emprego = (Emprego) DAO.getInstance().refresh(emprego);
 		DAO.getInstance().delete(emprego);
 		abrirEmprego();
 	}
 
 	public void carregar() throws Exception {
 		FacesContext context = FacesContext.getCurrentInstance();
-	    emprego = (Emprego) context.getExternalContext().getRequestMap()
+		emprego = (Emprego) context.getExternalContext().getRequestMap()
 				.get("list");
 	}
+
+	public List<Object> buscarEmpregos() {
+		listaEmpregosByFilter = EmpregoDAO.getInstance().listByFilter(emprego);
+		return listaEmpregosByFilter;
+	}
+
 }
