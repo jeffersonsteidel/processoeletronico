@@ -34,7 +34,8 @@
 				<h:outputText value="Nome do Servidor:" />
 				<h:inputText value="#{empregoController.emprego.servidor.nome}"
 					size="80" maxlength="120"></h:inputText>
-				<a4j:commandButton value="Pesquisar" action="#{empregoController.buscarEmpregos}"
+				<a4j:commandButton value="Pesquisar"
+					action="#{empregoController.buscarEmpregos}"
 					reRender="listaEmpregos" type="submit" />
 			</h:panelGrid>
 			<a4j:region>
@@ -80,7 +81,8 @@
 							<h:outputText value="Editar" />
 						</f:facet>
 						<a4j:commandLink action="#{empregoController.carregar}"
-							reRender="listaEmpregos, form" ajaxSingle="true" oncomplete="#{rich:component('editPanel')}.show()">
+							reRender="editPanel" ajaxSingle="true"
+							oncomplete="#{rich:component('editPanel')}.show()">
 							<h:graphicImage value="../images/edit.gif" style="border:0"
 								width="20" height="18" id="editar" />
 							<f:setPropertyActionListener value="#{list.codigo}"
@@ -98,44 +100,43 @@
 	<center><rich:modalPanel id="editPanel" autosized="true"
 		width="200">
 		<h:form>
-				<h:panelGrid columns="4">
-					<h:outputText value="Cargo: " />
-					<h:inputText id="cargo"
-						requiredMessage="Campo Cargo é obrigatório!" required="true"
-						value="#{empregoController.emprego.cargo}" size="40"
-						maxlength="80"></h:inputText>
-					<h:outputText value="Empresa: " />
-					<h:inputText id="empresa"
-						requiredMessage="Campo Empresa é obrigatório!" required="true"
-						value="#{empregoController.emprego.empresa}" size="60"
-						maxlength="100"></h:inputText>
+			<center><font size="2"><b>DETALHES DO EMPREGO</b></font> <h:panelGrid
+				columns="4">
+				<h:outputText value="Cargo: " />
+				<h:inputText id="cargo" requiredMessage="Campo Cargo é obrigatório!"
+					required="true" value="#{empregoController.emprego.cargo}"
+					size="40" maxlength="80"></h:inputText>
+				<h:outputText value="Empresa: " />
+				<h:inputText id="empresa"
+					requiredMessage="Campo Empresa é obrigatório!" required="true"
+					value="#{empregoController.emprego.empresa}" size="60"
+					maxlength="100"></h:inputText>
 
-					<h:outputText value="Data de Admissão: " />
-					<rich:calendar rendered="true"
-						requiredMessage="Campo Data de Admissão é Obrigatório!"
-						value="#{empregoController.emprego.dataAdmissao}" locale=""
-						popup="true" datePattern="dd/MM/yyyy" showApplyButton="#"
-						cellWidth="12px" cellHeight="12px" style="width:80px"
-						inputSize="12" />
+				<h:outputText value="Data de Admissão: " />
+				<rich:calendar rendered="true"
+					requiredMessage="Campo Data de Admissão é Obrigatório!"
+					value="#{empregoController.emprego.dataAdmissao}" locale=""
+					popup="true" datePattern="dd/MM/yyyy" showApplyButton="#"
+					cellWidth="12px" cellHeight="12px" style="width:80px"
+					inputSize="12" />
 
-					<h:outputText value="Data de Saida: " />
-					<rich:calendar rendered="true"
-						requiredMessage="Campo Data de Admissão é Obrigatório!"
-						value="#{empregoController.emprego.dataSaida}" locale=""
-						popup="true" datePattern="dd/MM/yyyy" showApplyButton="#"
-						cellWidth="12px" cellHeight="12px" style="width:80px"
-						inputSize="12" />
-				</h:panelGrid>
-				<h:panelGrid columns="1">
-					<center><h:outputText value="Atividades: " /> <h:inputTextarea
-						value="#{empregoController.emprego.atividades}" rows="10"
-						cols="50" required="true"
-						requiredMessage="Campo Atividades é obrigatório!">
-					</h:inputTextarea>
-					<a4j:commandButton value="Fechar"
-							onclick="#{rich:component('editPanel')}.hide();return false;" />
-				</center>
-				</h:panelGrid>
+				<h:outputText value="Data de Saida: " />
+				<rich:calendar rendered="true"
+					requiredMessage="Campo Data de Admissão é Obrigatório!"
+					value="#{empregoController.emprego.dataSaida}" locale=""
+					popup="true" datePattern="dd/MM/yyyy" showApplyButton="#"
+					cellWidth="12px" cellHeight="12px" style="width:80px"
+					inputSize="12" />
+			</h:panelGrid> <h:panelGrid columns="1">
+				<h:outputText value="Atividades: " />
+				<h:inputTextarea value="#{empregoController.emprego.atividades}"
+					rows="10" cols="50" required="true"
+					requiredMessage="Campo Atividades é obrigatório!">
+				</h:inputTextarea>
+			</h:panelGrid> <h:panelGrid columns="1">
+				<a4j:commandButton value="Fechar"
+					onclick="#{rich:component('editPanel')}.hide();return false;" />
+			</h:panelGrid></center>
 		</h:form>
 	</rich:modalPanel></center>
 </f:view>
