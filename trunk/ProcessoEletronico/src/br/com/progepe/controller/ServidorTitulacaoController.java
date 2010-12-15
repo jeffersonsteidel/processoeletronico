@@ -299,14 +299,15 @@ public class ServidorTitulacaoController implements Serializable {
 				.get("list");
 	    if(servidorTitulacao.getEstadoOrgaoEmissor() == null){
 	    	servidorTitulacao.setEstadoOrgaoEmissor(new Estado());
-	    	servidorTitulacao.getEstadoOrgaoEmissor().setCodigo(Constantes.ZERO);
 	    }
 		if(Constantes.ENSINO_FUNDAMENTAL.equals(servidorTitulacao.getTitulacao().getCodigo())||Constantes.ENSINO_MEDIO.equals(servidorTitulacao.getTitulacao().getCodigo())){
 	    	setIndSuperior(false);
 	    }else{
 	    	setIndSuperior(true);
 	    }
-		listarCidadesEstabelecimento();
+		if(servidorTitulacao.getCidadeEstabelecimentoEnsino() != null){
+			listarCidadesEstabelecimento();
+		}
 	}
 	
 	public void carregarTitulacao() throws Exception {
