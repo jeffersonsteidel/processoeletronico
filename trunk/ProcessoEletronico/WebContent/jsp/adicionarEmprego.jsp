@@ -48,7 +48,7 @@
 						maxlength="100"></h:inputText>
 
 					<h:outputText value="Data de Admissão: " />
-					<rich:calendar rendered="true"
+					<rich:calendar required="true"
 						requiredMessage="Campo Data de Admissão é Obrigatório!"
 						value="#{empregoController.emprego.dataAdmissao}" locale=""
 						popup="true" datePattern="dd/MM/yyyy" showApplyButton="#"
@@ -56,7 +56,7 @@
 						inputSize="12" />
 
 					<h:outputText value="Data de Saida: " />
-					<rich:calendar rendered="true"
+					<rich:calendar required="true"
 						requiredMessage="Campo Data de Admissão é Obrigatório!"
 						value="#{empregoController.emprego.dataSaida}" locale=""
 						popup="true" datePattern="dd/MM/yyyy" showApplyButton="#"
