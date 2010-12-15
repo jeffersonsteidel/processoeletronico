@@ -263,6 +263,7 @@ public class ConjugeController implements Serializable {
 			conjuge = new Conjuge();
 			conjuge.setServidor(new Servidor());
 			conjuge.setCidadeNascimento(new Cidade());
+			conjuge.setPais(new Pais());
 			conjuge.setRgUf(new Estado());
 			FacesContext.getCurrentInstance().getExternalContext()
 					.redirect("listarConjuge.jsp");
