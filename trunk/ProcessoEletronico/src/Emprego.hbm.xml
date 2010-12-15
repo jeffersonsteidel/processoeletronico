@@ -12,7 +12,7 @@
 		<property name="dataSaida" column="EMP_DATA_SAIDA" />
 		<property name="empresa" column="EMP_EMPRESA" />
 		<property name="atividades" column="EMP_ATIVIDADE" />
-		<many-to-one name="servidor" fetch="select" class="br.com.progepe.entity.Servidor"
+		<many-to-one name="servidor"  class="br.com.progepe.entity.Servidor"
 			column="SERV_COD" lazy="false" />
 	</class>
 </hibernate-mapping>
