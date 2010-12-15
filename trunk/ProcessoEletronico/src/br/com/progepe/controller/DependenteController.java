@@ -82,6 +82,7 @@ public class DependenteController implements Serializable {
 	public void abrirAdicionarDependentes() throws Exception {
 		try {
 			dependente = new Dependente();
+			dependente.setRgUf(new Estado());
 			listaDependentes = new ArrayList<Dependente>();
 			listaDependentes.clear();
 			dependente.setGrauParentesco(new GrauParentesco());
@@ -100,6 +101,7 @@ public class DependenteController implements Serializable {
 		try {
 			dependente = new Dependente();
 			dependente.setServidor(new Servidor());
+			dependente.setRgUf(new Estado());
 			dependente.setGrauParentesco(new GrauParentesco()); 
 			listarGrauParentesco();
 			FacesContext.getCurrentInstance().getExternalContext()
@@ -173,6 +175,7 @@ public class DependenteController implements Serializable {
 		DAO.getInstance().saveOrUpdate(dependente);
 		listarDependentesServidorLogado();
 		dependente = new Dependente();
+		dependente.setRgUf(new Estado());
 		dependente.setGrauParentesco(new GrauParentesco());
 		buscarServidorLogado();
 	}

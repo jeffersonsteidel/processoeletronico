@@ -107,36 +107,77 @@
 	</a4j:form></center>
 
 	<center><rich:modalPanel id="editPanel" autosized="true"
-		width="300">
+		width="700">
 		<h:form>
 			<center><font size="2"><b>DETALHES DO DEPENDENTE</b></font>
-			<h:panelGrid columns="4">
-			
-				<h:outputText value="Siape do Servidor: " />
-				<h:inputText id="siape" requiredMessage="Campo Siape é obrigatório!"
-					required="true"
-					value="#{dependenteController.dependente.servidor.siape}" size="10"
-					maxlength="8"></h:inputText>
-					
-				<h:outputText value="Nome do Servidor: " />
-				<h:inputText id="servidor"
-					requiredMessage="Campo Nome do Servidor é obrigatório!"
-					required="true"
-					value="#{dependenteController.dependente.servidor.nome}" size="40"
-					maxlength="100"></h:inputText>
-					
-				<h:outputText value="Nome do Dependente: " />
-				<h:inputText id="dependente"
-					requiredMessage="Campo Nome do Dependente é obrigatório!"
-					required="true" value="#{dependenteController.dependente.nome}"
-					size="40" maxlength="100"></h:inputText>
-					
-				<h:outputText value="Grau de Parentesco: " />
-				<h:inputText id="parentesco"
-					requiredMessage="Campo Grau de Parentesco é obrigatório!"
-					required="true" value="#{dependenteController.dependente.grauParentesco.descricao}"
-					size="40" maxlength="100"></h:inputText>
-
+			<h:panelGrid columns="2">
+				<h:outputText value="Servidor: " />
+				<h:outputText
+					value="#{dependenteController.dependente.servidor.siape} - #{dependenteController.dependente.servidor.nome}" />
+			</h:panelGrid> <h:panelGrid columns="4">
+				<h:outputText value="Nome do Dependente: ">
+				</h:outputText>
+				<h:outputText value="#{dependenteController.dependente.nome}"></h:outputText>
+				<h:outputText value="Sexo: " />
+				<h:outputText value="FEMININO"
+					rendered="#{dependenteController.dependente.sexo == 'F'}"></h:outputText>
+				<h:outputText value="MASCULINO"
+					rendered="#{dependenteController.dependente.sexo == 'M'}"></h:outputText>
+				<h:outputText value="Data de Nascimento do Dependente: " />
+				<h:outputText
+					value="#{dependenteController.dependente.dataNascimento}">
+					<f:convertDateTime pattern="dd/MM/yyyy" />
+				</h:outputText>
+				<h:outputText value="CPF do Dependente: " />
+				<h:outputText value="#{dependenteController.dependente.cpf}">
+				</h:outputText>
+				<h:outputText value="RG do Dependente: " />
+				<h:outputText value="#{dependenteController.dependente.rg}"></h:outputText>
+				<h:outputText value="UF do RG do Dependente: " />
+				<h:outputText value="#{dependenteController.dependente.rgUf.uf}"></h:outputText>
+				<h:outputText value="Orgão Emissor do RG do Dependente: " />
+				<h:outputText value="#{dependenteController.dependente.rgOrgao}" />
+				<h:outputText value="Data de Expedição do RG do Dependente: " />
+				<h:outputText
+					value="#{dependenteController.dependente.rgDataExpedicao}">
+					<f:convertDateTime pattern="dd/MM/yyyy" />
+				</h:outputText>
+				<h:outputText value="Grau Parentesco: " />
+				<h:outputText
+					value="#{dependenteController.dependente.grauParentesco.descricao}"></h:outputText>
+				<h:outputText value="Imposto de Renda: " />
+				<h:outputText value="SIM"
+					rendered="#{dependenteController.dependente.indIr}"></h:outputText>
+				<h:outputText value="NÃO"
+					rendered="#{!dependenteController.dependente.indIr}"></h:outputText>
+				<h:outputText value="Necessidade Especiais: " />
+				<h:outputText value="SIM"
+					rendered="#{dependenteController.dependente.indNecessidadesEspeciais}"></h:outputText>
+				<h:outputText value="NÃO"
+					rendered="#{!dependenteController.dependente.indNecessidadesEspeciais}"></h:outputText>
+				<h:outputText value="Estudante Universitário? " />
+				<h:outputText value="SIM"
+					rendered="#{dependenteController.dependente.indEstudante}"></h:outputText>
+				<h:outputText value="NÃO"
+					rendered="#{!dependenteController.dependente.indEstudante}"></h:outputText>
+				<h:outputText value="Estabelecimento de Ensino: "
+					rendered="#{dependenteController.dependente.indEstudante}">
+				</h:outputText>
+				<h:outputText value="#{dependenteController.dependente.faculdade}"
+					rendered="#{dependenteController.dependente.indEstudante}"></h:outputText>
+				<h:outputText value="Curso: "
+					rendered="#{dependenteController.dependente.indEstudante}">
+				</h:outputText>
+				<h:outputText id="curso"
+					rendered="#{dependenteController.dependente.indEstudante}"
+					value="#{dependenteController.dependente.curso}"></h:outputText>
+				<h:outputText value="Previsão de Formação: "
+					rendered="#{dependenteController.dependente.indEstudante}" />
+				<h:outputText id="dataFormacao"
+					rendered="#{dependenteController.dependente.indEstudante}"
+					value="#{dependenteController.dependente.dataFormacao}">
+					<f:convertDateTime pattern="dd/MM/yyyy" />
+				</h:outputText>
 			</h:panelGrid> <h:panelGrid columns="1">
 				<a4j:commandButton value="Fechar"
 					onclick="#{rich:component('editPanel')}.hide();return false;" />

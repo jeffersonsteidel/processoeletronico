@@ -71,7 +71,7 @@
 						size="16" maxlength="13"></h:inputText>
 
 					<h:outputText value="UF do RG do Dependente: " />
-					<h:selectOneMenu value="#{dependenteController.dependente.rgUf}">
+					<h:selectOneMenu value="#{dependenteController.dependente.rgUf.codigo}">
 						<f:selectItem itemLabel="SELECIONE" itemValue="" />
 						<f:selectItems value="#{dependenteController.ufs}" />
 					</h:selectOneMenu>
@@ -138,7 +138,6 @@
 						disabled="#{!dependenteController.dependente.indEstudante}"
 						required="true" inputSize="12"
 						requiredMessage="Campo Previsão de Formação é obrigatório!" />
-
 				</h:panelGrid>
 
 				<a4j:commandButton value="Salvar"
