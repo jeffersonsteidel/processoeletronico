@@ -44,7 +44,7 @@
 						<f:selectItems value="#{servidorTitulacaoController.titulacoes}" />
 						<a4j:support event="onchange"
 							action="#{servidorTitulacaoController.validarTitulacao}"
-							ajaxSingle="true" reRender="curso,areaConhecimento,cargaHoraria,registroConselho,orgaoEmisssor,estadoEmissor"></a4j:support>
+							ajaxSingle="true" reRender="curso,areaConhecimento,cargaHoraria,registroConselho,orgaoEmissor,estadoEmissor"></a4j:support>
 					</h:selectOneMenu>
 
 					<h:outputText value="Estabelecimento de Ensino: " />
@@ -114,9 +114,9 @@
 						<f:validateLength minimum="4" />
 					</h:inputText>
 
-					<h:outputText value="Registro no Concelho: " />
+					<h:outputText value="Registro no Conselho: " />
 
-					<h:inputText id="registroConcelho" disabled="#{!servidorTitulacaoController.indSuperior}"
+					<h:inputText id="registroConselho" disabled="#{!servidorTitulacaoController.indSuperior}"
 						value="#{servidorTitulacaoController.servidorTitulacao.registroConselho}"
 						size="9" maxlength="10"></h:inputText>
 

@@ -9,18 +9,19 @@ import org.hibernate.criterion.Restrictions;
 import br.com.progepe.entity.ServidorTitulacao;
 
 public class ServidorTitulacaoDAO extends DAO {
-	
+
 	private static ServidorTitulacaoDAO instance;
-	private ServidorTitulacaoDAO(){}
-	
-	
-	public static ServidorTitulacaoDAO getInstance(){
-		if(instance == null){
+
+	private ServidorTitulacaoDAO() {
+	}
+
+	public static ServidorTitulacaoDAO getInstance() {
+		if (instance == null) {
 			instance = new ServidorTitulacaoDAO();
 		}
 		return instance;
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	public List<ServidorTitulacao> listByServidor(
 			ServidorTitulacao servidorTitulacao) {
@@ -41,16 +42,26 @@ public class ServidorTitulacaoDAO extends DAO {
 			ServidorTitulacao servidorTitulacao) {
 		HibernateUtility.getSession().clear();
 		HibernateUtility.beginTransaction();
-		String sql = "from ServidorTitulacao st LEFT JOIN FETCH st.servidor s LEFT JOIN FETCH st.titulacao t LEFT JOIN FETCH st.areaConhecimento ac where 1 = 1 ";
-		if(servidorTitulacao.getServidor().getSiape() != null && servidorTitulacao.getServidor().getSiape() != 0){
-			sql += " and s.siape = "+ servidorTitulacao.getServidor().getSiape() ;
+		String sql = "from ServidorTitulacao st LEFT JOIN FETCH st.servidor s where 1 = 1 ";
+		if (servidorTitulacao.getServidor().getSiape() != null
+				&& servidorTitulacao.getServidor().getSiape() != 0) {
+			sql += " and s.siape = "
+					+ servidorTitulacao.getServidor().getSiape();
 		}
-		if(servidorTitulacao.getServidor().getNome() != null && servidorTitulacao.getServidor().getNome() != ""){
-			sql += " and upper(s.nome) like '%"+ servidorTitulacao.getServidor().getNome().toUpperCase()+"%'";
-		}if(servidorTitulacao.getTitulacao().getDescricao() != null && servidorTitulacao.getTitulacao().getDescricao() != ""){
-			sql += " and upper(t.descricao) like '%"+ servidorTitulacao.getTitulacao().getDescricao().toUpperCase()+"%'";
-		}if(servidorTitulacao.getAreaConhecimento().getDescricao() != null && servidorTitulacao.getAreaConhecimento().getDescricao() != ""){
-			sql += " and upper(ac.descricao) like '%"+ servidorTitulacao.getAreaConhecimento().getDescricao().toUpperCase()+"%'";
+		if (servidorTitulacao.getServidor().getNome() != null
+				&& servidorTitulacao.getServidor().getNome() != "") {
+			sql += " and upper(s.nome) like '%"
+					+ servidorTitulacao.getServidor().getNome().toUpperCase()
+					+ "%'";
+		}
+		if (servidorTitulacao.getTitulacao().getCodigo() != null
+				&& servidorTitulacao.getTitulacao().getCodigo() != 0) {
+			sql += " and st.titulacao.codigo = " +servidorTitulacao.getTitulacao().getCodigo();
+		}
+		if (servidorTitulacao.getAreaConhecimento().getCodigo() != null
+				&& servidorTitulacao.getAreaConhecimento().getCodigo() != 0) {
+			sql += " and st.areaConhecimento.codigo =  "
+					+ servidorTitulacao.getAreaConhecimento().getCodigo();
 		}
 		Query query = HibernateUtility.getSession().createQuery(sql);
 		HibernateUtility.commitTransaction();
