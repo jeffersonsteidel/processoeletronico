@@ -128,16 +128,16 @@
 					value="#{dependenteController.dependente.dataNascimento}">
 					<f:convertDateTime pattern="dd/MM/yyyy" />
 				</h:outputText>
-				<h:outputText value="CPF do Dependente: " />
+				<h:outputText value="CPF do Dependente: " rendered="#{dependenteController.dependente.cpf != null}"/>
 				<h:outputText value="#{dependenteController.dependente.cpf}">
 				</h:outputText>
-				<h:outputText value="RG do Dependente: " />
+				<h:outputText value="RG do Dependente: " rendered="#{dependenteController.dependente.rg != ''}"/>
 				<h:outputText value="#{dependenteController.dependente.rg}"></h:outputText>
-				<h:outputText value="UF do RG do Dependente: " />
+				<h:outputText value="UF do RG do Dependente: " rendered="#{dependenteController.dependente.rgUf.uf != null}"/>
 				<h:outputText value="#{dependenteController.dependente.rgUf.uf}"></h:outputText>
-				<h:outputText value="Orgão Emissor do RG do Dependente: " />
+				<h:outputText value="Orgão Emissor do RG do Dependente: " rendered="#{dependenteController.dependente.rgOrgao != ''}"/>
 				<h:outputText value="#{dependenteController.dependente.rgOrgao}" />
-				<h:outputText value="Data de Expedição do RG do Dependente: " />
+				<h:outputText value="Data de Expedição do RG do Dependente: " rendered="#{dependenteController.dependente.rgDataExpedicao.date!=null}"/>
 				<h:outputText
 					value="#{dependenteController.dependente.rgDataExpedicao}">
 					<f:convertDateTime pattern="dd/MM/yyyy" />
