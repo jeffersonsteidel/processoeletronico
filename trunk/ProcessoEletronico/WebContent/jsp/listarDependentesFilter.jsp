@@ -86,7 +86,7 @@
 
 				<rich:column>
 					<f:facet name="header">
-						<h:outputText value="Editar" />
+						<h:outputText value="Visualizar" />
 					</f:facet>
 					<a4j:commandLink action="#{dependenteController.carregar}"
 						reRender="editPanel" ajaxSingle="true"
