@@ -166,11 +166,10 @@ public class DependenteController implements Serializable {
 				break;
 			}
 		}
-		if (Constantes.ZERO.equals(dependente.getRgUf())) {
+		if (Constantes.ZERO.equals(dependente.getRgUf().getCodigo())) {
 			dependente.setRgUf(null);
 		}
-
-		
+			
 		this.getListaDependentes().add(dependente);
 		DAO.getInstance().saveOrUpdate(dependente);
 		listarDependentesServidorLogado();
