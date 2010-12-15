@@ -18,7 +18,7 @@ import br.com.progepe.entity.Servidor;
 public class EmpregoController implements Serializable {
 	private static final long serialVersionUID = -333995781063775201L;
 	private List<Emprego> listaEmpregos = new ArrayList<Emprego>();
-	private List<Object> listaEmpregosByFilter = new ArrayList<Object>();
+	private List<Emprego> listaEmpregosByFilter = new ArrayList<Emprego>();
 	private Emprego emprego;
 
 	public List<Emprego> getListaEmpregos() {
@@ -37,11 +37,11 @@ public class EmpregoController implements Serializable {
 		this.emprego = emprego;
 	}
 
-	public List<Object> getListaEmpregosByFilter() {
+	public List<Emprego> getListaEmpregosByFilter() {
 		return listaEmpregosByFilter;
 	}
 
-	public void setListaEmpregosByFilter(List<Object> listaEmpregosByFilter) {
+	public void setListaEmpregosByFilter(List<Emprego> listaEmpregosByFilter) {
 		this.listaEmpregosByFilter = listaEmpregosByFilter;
 	}
 
@@ -103,8 +103,8 @@ public class EmpregoController implements Serializable {
 				.get("list");
 	}
 
-	public List<Object> buscarEmpregos() {
-		listaEmpregosByFilter = EmpregoDAO.getInstance().listByFilter(emprego);
+	public List<Emprego> buscarEmpregos() {
+		listaEmpregosByFilter = (List<Emprego>) EmpregoDAO.getInstance().listByFilter(emprego);
 		return listaEmpregosByFilter;
 	}
 

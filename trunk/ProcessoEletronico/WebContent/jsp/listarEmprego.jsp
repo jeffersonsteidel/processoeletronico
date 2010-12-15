@@ -126,12 +126,15 @@
 						cellWidth="12px" cellHeight="12px" style="width:80px"
 						inputSize="12" />
 				</h:panelGrid>
-				<h:panelGrid columns="4">
+				<h:panelGrid columns="1">
 					<center><h:outputText value="Atividades: " /> <h:inputTextarea
 						value="#{empregoController.emprego.atividades}" rows="10"
 						cols="50" required="true"
 						requiredMessage="Campo Atividades é obrigatório!">
-					</h:inputTextarea></center>
+					</h:inputTextarea>
+					<a4j:commandButton value="Fechar"
+							onclick="#{rich:component('editPanel')}.hide();return false;" />
+				</center>
 				</h:panelGrid>
 		</h:form>
 	</rich:modalPanel></center>

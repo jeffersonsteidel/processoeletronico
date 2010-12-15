@@ -37,11 +37,11 @@ public class EmpregoDAO extends DAO {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public List<Object> listByFilter(
+	public List<Emprego> listByFilter(
 			Emprego emprego) {
 		HibernateUtility.getSession().clear();
 		HibernateUtility.beginTransaction();
-		String sql = "from Emprego e INNER JOIN e.servidor s where 1 = 1 ";
+		String sql = "from Emprego e LEFT JOIN FETCH e.servidor s where 1 = 1 ";
 		if(emprego.getServidor().getSiape() != null && emprego.getServidor().getSiape() != 0){
 			sql += " and s.siape = "+ emprego.getServidor().getSiape() ;
 		}
@@ -50,6 +50,6 @@ public class EmpregoDAO extends DAO {
 		}
 		Query query = HibernateUtility.getSession().createQuery(sql);
 		HibernateUtility.commitTransaction();
-		return (List<Object>) query.list();
+		return (List<Emprego>) query.list();
 	}
 }
