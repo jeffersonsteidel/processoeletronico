@@ -24,9 +24,12 @@ import br.com.progepe.validator.Validator;
 public class DependenteController implements Serializable {
 	private static final long serialVersionUID = -333995781063775201L;
 	private Dependente dependente;
+	private Servidor servidor;
 	private List<SelectItem> grausParentescos = new ArrayList<SelectItem>();
 	private List<SelectItem> ufs = new ArrayList<SelectItem>();
 	private List<Dependente> listaDependentes;
+	private List<Dependente> listaDependentesFiltro;
+	
 
 	public List<Dependente> getListaDependentes() {
 		return listaDependentes;
@@ -44,6 +47,14 @@ public class DependenteController implements Serializable {
 		this.dependente = dependente;
 	}
 
+	public Servidor getServidor() {
+		return servidor;
+	}
+
+	public void setServidor(Servidor servidor) {
+		this.servidor = servidor;
+	}
+
 	public List<SelectItem> getGrausParentescos() {
 		return grausParentescos;
 	}
@@ -58,6 +69,14 @@ public class DependenteController implements Serializable {
 
 	public void setUfs(List<SelectItem> ufs) {
 		this.ufs = ufs;
+	}
+	
+	public List<Dependente> getListaDependentesFiltro() {
+		return listaDependentesFiltro;
+	}
+
+	public void setListaDependentesFiltro(List<Dependente> listaDependentesFiltro) {
+		this.listaDependentesFiltro = listaDependentesFiltro;
 	}
 
 	public void abrirAdicionarDependentes() throws Exception {
@@ -77,6 +96,19 @@ public class DependenteController implements Serializable {
 		}
 	}
 
+	public void abrirListarDependentes() throws Exception {
+		try {
+			dependente = new Dependente();
+			dependente.setServidor(new Servidor());
+			dependente.setGrauParentesco(new GrauParentesco()); 
+			listarGrauParentesco();
+			FacesContext.getCurrentInstance().getExternalContext()
+					.redirect("listarDependentesFilter.jsp");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	public void buscarServidorLogado() throws IOException, ParseException {
 		dependente.setServidor(new Servidor());
 		Autenticacao siapeAutenticado = (Autenticacao) FacesContext
@@ -152,6 +184,19 @@ public class DependenteController implements Serializable {
 		if (listaDependentes.isEmpty()) {
 			listaDependentes = new ArrayList<Dependente>();
 		}
+	}
+	
+	public List<Dependente> listarDependentesFiltro() {
+		listaDependentesFiltro = new ArrayList<Dependente>();
+		setListaDependentesFiltro(DependenteDAO.getInstance().listByFilter(dependente));
+		if (getListaDependentesFiltro().size() == 0) {
+			FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_WARN,
+					"Nenhum registro para o filtro informado!",
+					"Nenhum registro para o filtro informado!");
+			FacesContext.getCurrentInstance().addMessage("", message);
+
+		}
+		return listaDependentesFiltro;
 	}
 
 	public void remover() throws Exception {
