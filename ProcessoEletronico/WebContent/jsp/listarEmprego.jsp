@@ -106,7 +106,7 @@
 		</rich:panel></center>
 	</a4j:form>
 	<center><rich:modalPanel id="editPanel" autosized="true"
-		width="200">
+		width="400">
 		<h:form>
 			<center><font size="2"><b>DETALHES DO EMPREGO</b></font> <h:panelGrid
 				columns="2">
