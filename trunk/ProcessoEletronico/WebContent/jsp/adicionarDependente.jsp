@@ -42,7 +42,7 @@
 						size="50" maxlength="100" required="true"
 						requiredMessage="Campo Nome do Dependente é obrigatório!"></h:inputText>
 
-					<h:outputText value="Sexo: " />
+					<h:outputText value="Sexo do Dependente: " />
 					<h:selectOneMenu value="#{dependenteController.dependente.sexo}"
 						required="true" requiredMessage="Campo Sexo é obrigatório!">
 						<f:selectItem itemLabel="SELECIONE" itemValue="" />
@@ -106,7 +106,7 @@
 						value="#{dependenteController.dependente.indNecessidadesEspeciais}">
 					</h:selectBooleanCheckbox>
 
-					<h:outputText value="Estudante Universitário? " />
+					<h:outputText value="Estudante Universitário: " />
 					<h:selectBooleanCheckbox id="estudanteUniversitario"
 						value="#{dependenteController.dependente.indEstudante}">
 						<a4j:support event="onchange" action="#{dependenteController.validarEstudante}" ajaxSingle="true"
