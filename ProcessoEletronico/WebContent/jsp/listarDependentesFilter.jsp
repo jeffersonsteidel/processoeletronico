@@ -7,10 +7,13 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Instituto Federal do Paraná</title>
+<link rel="StyleSheet" type="text/css" href="../css/messages-style.css"
+	media="screen" />
 </head>
 <body>
 <f:view>
 	<jsp:directive.include file="menus.jsp" />
+	<a4j:loadScript src="../js/script.js" />
 	<center><a4j:form id="form">
 		<rich:panel>
 			<font size="2"><b>LISTAR DEPENDENTES</b></font>
