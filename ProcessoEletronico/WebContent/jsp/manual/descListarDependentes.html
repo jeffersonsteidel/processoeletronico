@@ -1,0 +1,79 @@
+<html>
+<head>
+<title>Processo Verde</title>
+</head>
+<body>
+<center>
+<h1>Manual Do Usuário</h1>
+<p><font size='4'>LISTAR DEPENDENTES</font></p>
+</center>
+<b>*É necessário permissão de Administrador para visualizar esta
+tela.</b>
+<br>
+<br>
+
+Quatro filtros são exibidos na tela (Siape, Servidor, Dependente e
+Parentesco). O Administrador insere algum dado no filtro que deseja e o
+programa pesquisará baseando-se no critério fornecido. Ao clicar no
+botão pesquisar, o sistema exibirá uma tabela com todos os dependentes
+que estão relacionados com o(s) filtro(s) informado(s).
+</br>
+</br>
+<center>
+<table name="listarDependentes" border="1">
+	<th><b>Campo</b></th>
+	<th><b>Descrição</b></th>
+	<th><b>Obrigatório</b></th>
+	<tr>
+		<td>Siape</td>
+		<td>Siape do servidor que está relacionado com o dependente que
+		você deseja buscar</td>
+		<td>NÃO</td>
+	</tr>
+	<tr>
+		<td>Nome</td>
+		<td>Nome do servidor que está relacionado com o dependente que
+		você deseja buscar</td>
+		<td>NÃO</td>
+	</tr>
+	<tr>
+		<td>Dependente</td>
+		<td>Nome do dependente que você deseja buscar</td>
+		<td>NÃO</td>
+	</tr>
+	<tr>
+		<td>Parentesco</td>
+		<td>Grau de parentesco entre o servidor logado e o dependente que
+		você deseja buscar</td>
+		<td>NÃO</td>
+	</tr>
+</table>
+</center>
+<br>
+<b>*</b>
+Caso não exista registro com os dados informados aparecerá a mensagem:
+"Nenhum registro para o filtro informado!"
+<br>
+<b>*</b>
+Caso nenhum campo seja preenchido, o sistema listará todos os
+dependentes existentes.
+<br>
+<br>
+O resultado da pesquisa é uma tabela com os seguintes dados:
+<br>
+-SIAPE
+<br>
+-Nome do Servidor
+<br>
+-Nome do Dependente
+<br>
+-Grau de Parentesco
+<br>
+<br>
+Ao lado direito de cada dependente presente na tabela há o campo
+<b>Visualizar</b>
+que é um link para uma página onde se pode visualizar todas as
+informações cadastradas a respeito deste dependente.
+<br>
+</body>
+</html>
