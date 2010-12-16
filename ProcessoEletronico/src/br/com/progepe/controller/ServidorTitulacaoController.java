@@ -110,7 +110,7 @@ public class ServidorTitulacaoController implements Serializable {
 	public void setIndTitulacaoEstrangeira(Boolean indTitulacaoEstrangeira) {
 		this.indTitulacaoEstrangeira = indTitulacaoEstrangeira;
 	}
-	
+
 	public Boolean getIndSuperior() {
 		return indSuperior;
 	}
@@ -119,7 +119,6 @@ public class ServidorTitulacaoController implements Serializable {
 		this.indSuperior = indSuperior;
 	}
 
-	
 	public List<ServidorTitulacao> getListaTitulacoes() {
 		return listaTitulacoes;
 	}
@@ -133,6 +132,7 @@ public class ServidorTitulacaoController implements Serializable {
 			listaServidorTitulacoes.clear();
 			servidorTitulacao = new ServidorTitulacao();
 			servidorTitulacao.setEstadoOrgaoEmissor(new Estado());
+			servidorTitulacao.setPais(new Pais());
 			servidorTitulacao.setAreaConhecimento(new AreaConhecimento());
 			servidorTitulacao.setCidadeEstabelecimentoEnsino(new Cidade());
 			servidorTitulacao.getCidadeEstabelecimentoEnsino().setEstado(
@@ -142,7 +142,6 @@ public class ServidorTitulacaoController implements Serializable {
 			listarAreaConhecimento();
 			listarEstados();
 			listarTitulacoes();
-			listarEstados();
 			listarUf();
 			listarTitulacoesServidorLogado();
 			FacesContext.getCurrentInstance().getExternalContext()
@@ -264,8 +263,16 @@ public class ServidorTitulacaoController implements Serializable {
 	}
 
 	public void salvarTitulacao() throws Exception {
-		if(servidorTitulacao.getEstadoOrgaoEmissor() != null && Constantes.ZERO.equals(servidorTitulacao.getEstadoOrgaoEmissor().getCodigo())){
-			servidorTitulacao.getEstadoOrgaoEmissor().setCodigo(null);
+		if (servidorTitulacao.getEstadoOrgaoEmissor() != null) {
+			if (Constantes.ZERO.equals(servidorTitulacao
+					.getEstadoOrgaoEmissor().getCodigo())) {
+				servidorTitulacao.setEstadoOrgaoEmissor(null);
+			}
+		}
+		if (servidorTitulacao.getPais() != null) {
+			if (Constantes.ZERO.equals(servidorTitulacao.getPais().getCodigo())) {
+				servidorTitulacao.setPais(null);
+			}
 		}
 		DAO.getInstance().saveOrUpdate(servidorTitulacao);
 		listarTitulacoesServidorLogado();
@@ -284,6 +291,7 @@ public class ServidorTitulacaoController implements Serializable {
 		paises = new ArrayList<SelectItem>();
 		buscarServidorLogado();
 		listarEstados();
+		listarUf();
 		listarPais();
 	}
 
@@ -294,49 +302,62 @@ public class ServidorTitulacaoController implements Serializable {
 	}
 
 	public void remover() throws Exception {
-		servidorTitulacao  = (ServidorTitulacao) DAO.getInstance().refresh(servidorTitulacao);
+		servidorTitulacao = (ServidorTitulacao) DAO.getInstance().refresh(
+				servidorTitulacao);
 		DAO.getInstance().delete(servidorTitulacao);
 		abrirAdicionarServidorTitulacao();
 	}
 
 	public void carregar() throws Exception {
 		FacesContext context = FacesContext.getCurrentInstance();
-	    servidorTitulacao = (ServidorTitulacao) context.getExternalContext().getRequestMap()
-				.get("list");
-	    if(servidorTitulacao.getEstadoOrgaoEmissor() == null){
-	    	servidorTitulacao.setEstadoOrgaoEmissor(new Estado());
-	    }
-		if(Constantes.ENSINO_FUNDAMENTAL.equals(servidorTitulacao.getTitulacao().getCodigo())||Constantes.ENSINO_MEDIO.equals(servidorTitulacao.getTitulacao().getCodigo())){
-	    	setIndSuperior(false);
-	    }else{
-	    	setIndSuperior(true);
-	    }
-		if(servidorTitulacao.getCidadeEstabelecimentoEnsino() != null){
+		servidorTitulacao = (ServidorTitulacao) context.getExternalContext()
+				.getRequestMap().get("list");
+		if (servidorTitulacao.getEstadoOrgaoEmissor() == null) {
+			servidorTitulacao.setEstadoOrgaoEmissor(new Estado());
+		}
+		if (servidorTitulacao.getPais() == null) {
+			setIndTitulacaoEstrangeira(false);
+			servidorTitulacao.setPais(new Pais());
+		} else {
+			setIndTitulacaoEstrangeira(true);
+			listarPais();
+		}
+		if (Constantes.ENSINO_FUNDAMENTAL.equals(servidorTitulacao
+				.getTitulacao().getCodigo())
+				|| Constantes.ENSINO_MEDIO.equals(servidorTitulacao
+						.getTitulacao().getCodigo())) {
+			setIndSuperior(false);
+		} else {
+			setIndSuperior(true);
+		}
+		if (servidorTitulacao.getCidadeEstabelecimentoEnsino() != null) {
 			listarCidadesEstabelecimento();
 		}
 	}
-	
+
 	public void carregarTitulacao() throws Exception {
 		FacesContext context = FacesContext.getCurrentInstance();
-		servidorTitulacao = (ServidorTitulacao) context.getExternalContext().getRequestMap()
-				.get("list");
+		servidorTitulacao = (ServidorTitulacao) context.getExternalContext()
+				.getRequestMap().get("list");
 	}
 
 	public List<ServidorTitulacao> listarTitulacoesFiltro() {
-		listaTitulacoes =(List<ServidorTitulacao>) ServidorTitulacaoDAO.getInstance().listByFilter(servidorTitulacao);
+		listaTitulacoes = (List<ServidorTitulacao>) ServidorTitulacaoDAO
+				.getInstance().listByFilter(servidorTitulacao);
 		return listaTitulacoes;
 	}
-	
-	
-	public void validarTitulacao(){
-		if(Constantes.ENSINO_FUNDAMENTAL.equals(servidorTitulacao.getTitulacao().getCodigo())||Constantes.ENSINO_MEDIO.equals(servidorTitulacao.getTitulacao().getCodigo())){
+
+	public void validarTitulacao() {
+		if (Constantes.ENSINO_FUNDAMENTAL.equals(servidorTitulacao
+				.getTitulacao().getCodigo())
+				|| Constantes.ENSINO_MEDIO.equals(servidorTitulacao
+						.getTitulacao().getCodigo())) {
 			setIndSuperior(false);
 			servidorTitulacao.setCargaHoraria(null);
 			servidorTitulacao.setCurso(null);
 			servidorTitulacao.setEstabelecimentoEnsino(null);
 			servidorTitulacao.setAreaConhecimento(null);
-			servidorTitulacao.setEstadoOrgaoEmissor(null);
-		}else{
+		} else {
 			setIndSuperior(true);
 			servidorTitulacao.setAreaConhecimento(new AreaConhecimento());
 			servidorTitulacao.setEstadoOrgaoEmissor(new Estado());
