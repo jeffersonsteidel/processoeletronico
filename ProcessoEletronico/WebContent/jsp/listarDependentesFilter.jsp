@@ -118,7 +118,7 @@
 				<h:outputText value="Nome do Dependente: ">
 				</h:outputText>
 				<h:outputText value="#{dependenteController.dependente.nome}"></h:outputText>
-				<h:outputText value="Sexo: " />
+				<h:outputText value="Sexo do Dependente: " />
 				<h:outputText value="FEMININO"
 					rendered="#{dependenteController.dependente.sexo == 'F'}"></h:outputText>
 				<h:outputText value="MASCULINO"
