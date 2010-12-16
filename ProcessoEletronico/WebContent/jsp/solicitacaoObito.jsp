@@ -41,7 +41,7 @@
 					requiredMessage="Campo Nome do Falecido é obrigatório!">
 				</h:inputText>
 
-				<h:outputText value="Grau Parentesco: " />
+				<h:outputText value="Grau de Parentesco: " />
 				<h:selectOneMenu
 					value="#{solicitacaoObitoController.solicitacaoObito.grauParentesco.codigo}"
 					required="true"

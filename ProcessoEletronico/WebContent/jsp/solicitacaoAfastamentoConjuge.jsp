@@ -35,7 +35,7 @@
 
 			<h:panelGrid columns="2">
 				<h:outputText value="Tipo: " />
-				<h:selectOneRadio id="radiosTipo"
+				<h:selectOneRadio id="radiosTipo" required="true" requiredMessage="Campo Tipo é Obrigatório!"
 					value="#{solicitacaoAfastamentoConjugeController.solicitacaoAfastamentoConjuge.tipo}">
 					<f:selectItem itemValue="1" itemLabel="Concessão" />
 					<f:selectItem itemValue="2" itemLabel="Prorrogação" />
@@ -57,7 +57,7 @@
 				</h:inputText>
 
 				<h:outputText value="Remuneração: " />
-				<h:selectOneRadio id="radiosRemuneracao"
+				<h:selectOneRadio id="radiosRemuneracao" required="true" requiredMessage="Campo Remuneração é Obrigatório!"
 					value="#{solicitacaoAfastamentoConjugeController.solicitacaoAfastamentoConjuge.remuneracao}">
 					<f:selectItem itemValue="1" itemLabel="Sim" />
 					<f:selectItem itemValue="2" itemLabel="Não" />

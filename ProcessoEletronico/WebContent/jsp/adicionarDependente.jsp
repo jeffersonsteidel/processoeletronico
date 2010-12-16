@@ -101,7 +101,7 @@
 						value="#{dependenteController.dependente.indIr}">
 					</h:selectBooleanCheckbox>
 
-					<h:outputText value="Necessidade Especiais: " />
+					<h:outputText value="Necessidades Especiais: " />
 					<h:selectBooleanCheckbox id="necessidadesEspeciais"
 						value="#{dependenteController.dependente.indNecessidadesEspeciais}">
 					</h:selectBooleanCheckbox>
