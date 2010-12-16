@@ -119,7 +119,7 @@
 				<h:outputText value="Servidor: " />
 				<h:outputText value="#{servidorTitulacaoController.servidorTitulacao.servidor.nome}" />
 			</h:panelGrid> <h:panelGrid columns="4">
-				<h:outputText value="Titulacao: " />
+				<h:outputText value="Titulação: " />
 				<h:outputText value="#{servidorTitulacaoController.servidorTitulacao.titulacao.descricao}"></h:outputText>
 				<h:outputText value="Curso: " rendered="#{servidorTitulacaoController.servidorTitulacao.curso != null}"/>
 				<h:outputText value="#{servidorTitulacaoController.servidorTitulacao.curso}" rendered="#{servidorTitulacaoController.servidorTitulacao.curso != null}"></h:outputText>
