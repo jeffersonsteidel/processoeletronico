@@ -25,7 +25,7 @@ public class Dependente implements Serializable {
 	private String rg;
 	private String rgOrgao;
 	private Date rgDataExpedicao;
-	private Estado  rgUf;
+	private Estado rgUf;
 	
 	public Long getCodigo() {
 		return codigo;
