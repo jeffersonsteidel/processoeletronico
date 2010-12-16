@@ -109,13 +109,13 @@
 		</rich:panel>
 	</a4j:form></center>
 	<center><rich:modalPanel id="editPanel" autosized="true"
-		width="1000">
+		width="600">
 		<h:form>
 			<center><font size="2"><b>DETALHES DA TITULAÇÃO</b></font> <h:panelGrid
 				columns="2">
 				<h:outputText value="Servidor: " />
 				<h:outputText value="#{servidorTitulacaoController.servidorTitulacao.servidor.nome}" />
-			</h:panelGrid> <h:panelGrid columns="2">
+			</h:panelGrid> <h:panelGrid columns="4">
 				<h:outputText value="Titulacao: " />
 				<h:outputText value="#{servidorTitulacaoController.servidorTitulacao.titulacao.descricao}"></h:outputText>
 				<h:outputText value="Curso: " rendered="#{servidorTitulacaoController.servidorTitulacao.curso != null}"/>
@@ -134,10 +134,10 @@
 				<h:outputText value="#{servidorTitulacaoController.servidorTitulacao.cargaHoraria}" rendered="#{servidorTitulacaoController.servidorTitulacao.cargaHoraria != null}"></h:outputText>
 				<h:outputText value="Ano de Conclusão: " rendered="#{servidorTitulacaoController.servidorTitulacao.anoConclusao != null}"/>
 				<h:outputText value="#{servidorTitulacaoController.servidorTitulacao.anoConclusao}" rendered="#{servidorTitulacaoController.servidorTitulacao.anoConclusao != null}"></h:outputText>
-				<h:outputText value="Registro no Conselho: " rendered="#{servidorTitulacaoController.servidorTitulacao.registroConselho != ''}"/>
-				<h:outputText value="#{servidorTitulacaoController.servidorTitulacao.registroConselho}" rendered="#{servidorTitulacaoController.servidorTitulacao.registroConselho != ''}"></h:outputText>
-				<h:outputText value="Orgão Emissor do Registro: " rendered="#{servidorTitulacaoController.servidorTitulacao.orgaoEmissor != ''}"/>
-				<h:outputText value="#{servidorTitulacaoController.servidorTitulacao.orgaoEmissor}" rendered="#{servidorTitulacaoController.servidorTitulacao.orgaoEmissor != ''}"></h:outputText>
+				<h:outputText value="Registro no Conselho: " rendered="#{servidorTitulacaoController.servidorTitulacao.registroConselho != null && servidorTitulacaoController.servidorTitulacao.registroConselho != ''}"/>
+				<h:outputText value="#{servidorTitulacaoController.servidorTitulacao.registroConselho}" rendered="#{servidorTitulacaoController.servidorTitulacao.registroConselho != null && servidorTitulacaoController.servidorTitulacao.registroConselho != ''}"></h:outputText>
+				<h:outputText value="Orgão Emissor do Registro: " rendered="#{servidorTitulacaoController.servidorTitulacao.orgaoEmissor != null && servidorTitulacaoController.servidorTitulacao.orgaoEmissor != ''}"/>
+				<h:outputText value="#{servidorTitulacaoController.servidorTitulacao.orgaoEmissor}" rendered="#{servidorTitulacaoController.servidorTitulacao.orgaoEmissor != null && servidorTitulacaoController.servidorTitulacao.orgaoEmissor != ''}"></h:outputText>
 				<h:outputText value="UF do Orgão Emissor: " rendered="#{servidorTitulacaoController.servidorTitulacao.estadoOrgaoEmissor.uf != null}"/>
 				<h:outputText value="#{servidorTitulacaoController.servidorTitulacao.estadoOrgaoEmissor.uf}" rendered="#{servidorTitulacaoController.servidorTitulacao.estadoOrgaoEmissor.uf != null}"></h:outputText>
 			</h:panelGrid> <h:panelGrid columns="1">
