@@ -39,15 +39,11 @@ public class Servidor implements Serializable {
 	private String identificacaoUnica;
 	private Date dataAdmServicoPublico;
 	private Pais pais;
-	
+
 	private Date dataUltimaAlteracao;
 	private Date dataUltimaAprovacao;
 	private Boolean dadosValidados;
-	
-	//VARIAVEL SOMENTE DE VISUALIZAÇÃO UTILIZADA 
-	//NO ANIVERSARIANTECONTROLLER
-	private String diaSemana;
-	
+
 	public Long getCodigo() {
 		return codigo;
 	}
@@ -256,13 +252,13 @@ public class Servidor implements Serializable {
 		this.identificacaoUnica = identificacaoUnica;
 	}
 
-//	public Lotacao getLocalExercicio() {
-//		return localExercicio;
-//	}
-//
-//	public void setLocalExercicio(Lotacao localExercicio) {
-//		this.localExercicio = localExercicio;
-//	}
+	// public Lotacao getLocalExercicio() {
+	// return localExercicio;
+	// }
+	//
+	// public void setLocalExercicio(Lotacao localExercicio) {
+	// this.localExercicio = localExercicio;
+	// }
 
 	public Date getDataAdmServicoPublico() {
 		return dataAdmServicoPublico;
@@ -318,13 +314,5 @@ public class Servidor implements Serializable {
 
 	public void setDataUltimaAprovacao(Date dataUltimaAprovacao) {
 		this.dataUltimaAprovacao = dataUltimaAprovacao;
-	}
-
-	public String getDiaSemana() {
-		return diaSemana;
-	}
-
-	public void setDiaSemana(String diaSemana) {
-		this.diaSemana = diaSemana;
 	}
 }

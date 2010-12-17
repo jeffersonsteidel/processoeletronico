@@ -29,20 +29,21 @@
 
 			<h:panelGrid columns="3">
 				<h:outputText value="Mês" />
-				<h:selectOneMenu value="#{aniversarianteController.mes}">
+				<h:selectOneMenu value="#{aniversarianteController.mes}"
+					required="true" requiredMessage="O campo Mês é Obrigatório!">
 					<f:selectItem itemLabel="SELECIONE" itemValue="" />
-					<f:selectItem itemLabel="JANEIRO" itemValue=1 />
-					<f:selectItem itemLabel="FEVEREIRO" itemValue=2 />
-					<f:selectItem itemLabel="MARÇO" itemValue=3 />
-					<f:selectItem itemLabel="ABRIL" itemValue=4 />
-					<f:selectItem itemLabel="MAIO" itemValue=5 />
-					<f:selectItem itemLabel="JUNHO" itemValue=6 />
-					<f:selectItem itemLabel="JULHO" itemValue=7 />
-					<f:selectItem itemLabel="AGOSTO" itemValue=8 />
-					<f:selectItem itemLabel="SETEMBRO" itemValue=9 />
-					<f:selectItem itemLabel="OUTUBRO" itemValue=10 />
-					<f:selectItem itemLabel="NOVEMBRO" itemValue=11 />
-					<f:selectItem itemLabel="DEZEMBRO" itemValue=12 />
+					<f:selectItem itemLabel="JANEIRO" itemValue="1" />
+					<f:selectItem itemLabel="FEVEREIRO" itemValue="2" />
+					<f:selectItem itemLabel="MARÇO" itemValue="3" />
+					<f:selectItem itemLabel="ABRIL" itemValue="4" />
+					<f:selectItem itemLabel="MAIO" itemValue="5" />
+					<f:selectItem itemLabel="JUNHO" itemValue="6" />
+					<f:selectItem itemLabel="JULHO" itemValue="7" />
+					<f:selectItem itemLabel="AGOSTO" itemValue="8" />
+					<f:selectItem itemLabel="SETEMBRO" itemValue="9" />
+					<f:selectItem itemLabel="OUTUBRO" itemValue="10" />
+					<f:selectItem itemLabel="NOVEMBRO" itemValue="11" />
+					<f:selectItem itemLabel="DEZEMBRO" itemValue="12" />
 				</h:selectOneMenu>
 				<a4j:commandButton value="Pesquisar"
 					action="#{aniversarianteController.pesquisarAniversariantes}"
@@ -51,12 +52,14 @@
 			<a4j:region>
 				<rich:dataTable id="listaAniversariantes"
 					value="#{aniversarianteController.aniversariantesList}" var="list"
-					width="1150px" columnClasses="center" rows="15">
-					<rich:column width="80px" sortBy="#{list.siape}">
+					width="900px" columnClasses="center">
+					<rich:column width="50px">
 						<f:facet name="header">
-							<h:outputText value="Siape" />
+							<h:outputText value="Dia" />
 						</f:facet>
-						<h:outputText value="#{list.siape}" />
+						<h:outputText value="#{list.dataNascimento}">
+							<f:convertDateTime pattern="dd" />
+						</h:outputText>
 					</rich:column>
 					<rich:column width="700px" sortBy="#{list.nome}">
 						<f:facet name="header">
@@ -64,26 +67,12 @@
 						</f:facet>
 						<h:outputText value="#{list.nome}" />
 					</rich:column>
-					<rich:column width="700px" sortBy="#{list.lotacao}">
+					<rich:column width="700px" sortBy="#{list.lotacao.descricao}">
 						<f:facet name="header">
-							<h:outputText value="Campus" />
+							<h:outputText value="Lotação" />
 						</f:facet>
-						<h:outputText value="#{list.lotacao}" />
+						<h:outputText value="#{list.lotacao.descricao}" />
 					</rich:column>
-					<rich:column width="700px" sortBy="#{list.dataNascimento}">
-						<f:facet name="header">
-							<h:outputText value="Data" />
-						</f:facet>
-						<h:outputText value="#{list.dataNascimento}" />
-					</rich:column>
-					<rich:column width="700px" sortBy="#{list.diaSemana}">
-						<f:facet name="header">
-							<h:outputText value="Dia da Semana" />
-						</f:facet>
-						<h:outputText value="#{list.diaSemana}" />
-					</rich:column>
-					<f:facet name="footer">
-					</f:facet>
 				</rich:dataTable>
 			</a4j:region>
 		</rich:panel></center>

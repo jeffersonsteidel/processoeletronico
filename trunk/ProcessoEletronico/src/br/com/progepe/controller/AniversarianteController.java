@@ -44,15 +44,9 @@ public class AniversarianteController implements Serializable {
 		}
 	}
 
-	@SuppressWarnings("deprecation")
 	public void pesquisarAniversariantes() throws IOException {
-		List<Servidor> listTemp = (ServidorDAO.getInstance()
-				.listAniversariantes(mes));
-		for (Servidor item : listTemp) {
-			item.setDiaSemana(SolicitacaoAdicionalNoturnoController
-					.pesquisarDiaSemana(item.getDataNascimento().getDay()));
-			aniversariantesList.add(item);
-		}
+		aniversariantesList = ServidorDAO.getInstance()
+				.listAniversariantes(mes);
 		FacesContext.getCurrentInstance().getExternalContext()
 				.redirect("listarAniversariantes.jsp");
 	}
