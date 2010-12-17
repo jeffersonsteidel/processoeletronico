@@ -44,6 +44,10 @@ public class Servidor implements Serializable {
 	private Date dataUltimaAprovacao;
 	private Boolean dadosValidados;
 	
+	//VARIAVEL SOMENTE DE VISUALIZAÇÃO UTILIZADA 
+	//NO ANIVERSARIANTECONTROLLER
+	private String diaSemana;
+	
 	public Long getCodigo() {
 		return codigo;
 	}
@@ -314,5 +318,13 @@ public class Servidor implements Serializable {
 
 	public void setDataUltimaAprovacao(Date dataUltimaAprovacao) {
 		this.dataUltimaAprovacao = dataUltimaAprovacao;
+	}
+
+	public String getDiaSemana() {
+		return diaSemana;
+	}
+
+	public void setDiaSemana(String diaSemana) {
+		this.diaSemana = diaSemana;
 	}
 }
