@@ -161,6 +161,17 @@
 					action="#{portariaController.listarPortarias}"
 					icon="../images/portarias.gif" />
 			</rich:dropDownMenu>
+			
+			<rich:dropDownMenu>
+				<f:facet name="label">
+					<h:panelGroup>
+						<h:outputText value="ANIVERSARIANTES" />
+					</h:panelGroup>
+				</f:facet>
+				<rich:menuItem submitMode="ajax" value="Aniversariantes"
+					action="#{aniversarianteController.abrirAniversariantes}"
+					icon="../images/ALTERARSENHA.gif" />
+			</rich:dropDownMenu>
 
 			<rich:dropDownMenu>
 				<f:facet name="label">

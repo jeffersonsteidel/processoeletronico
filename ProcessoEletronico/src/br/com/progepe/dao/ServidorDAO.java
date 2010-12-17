@@ -115,4 +115,16 @@ public class ServidorDAO extends DAO {
 		HibernateUtility.commitTransaction();
 		return (List<Servidor>) query.list();
 	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Servidor> listAniversariantes(Integer mes) {
+		HibernateUtility.getSession().clear();
+		Query query = HibernateUtility
+				.getSession()
+				.createQuery(
+						"from Servidor s where month(s.dataNascimento) = :mes and s.dataSaida is null order by day(s.dataNascimento)");
+		query.setParameter("mes", mes);
+		HibernateUtility.commitTransaction();
+		return (List<Servidor>) query.list();
+	}
 }
