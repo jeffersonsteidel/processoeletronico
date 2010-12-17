@@ -24,9 +24,7 @@
 
 
 		<!--
-		<mapping resource="Funcao.hbm.xml" />
 		<mapping resource="Progressao.hbm.xml" />
-		<mapping resource="TipoFuncao.hbm.xml" />
 		-->
 		<mapping resource="AdicionalNoturno.hbm.xml" />
 		<mapping resource="AreaConhecimento.hbm.xml" />
@@ -44,6 +42,8 @@
 		<mapping resource="Endereco.hbm.xml" />
 		<mapping resource="Estado.hbm.xml" />
 		<mapping resource="EstadoCivil.hbm.xml" />
+		<mapping resource="Funcao.hbm.xml" />
+		<mapping resource="FuncaoServidor.hbm.xml" />
 		<mapping resource="GrauParentesco.hbm.xml" />
 		<mapping resource="GrupoSanguineo.hbm.xml" />
 		<mapping resource="Lotacao.hbm.xml" />
@@ -66,6 +66,7 @@
 		<mapping resource="SolicitacaoHorarioEspecialEstudante.hbm.xml" />
 		<mapping resource="SolicitacaoObito.hbm.xml" />
 		<mapping resource="StatusSolicitacao.hbm.xml" />
+		<mapping resource="TipoFuncao.hbm.xml" />
 		<mapping resource="TipoPortaria.hbm.xml" />
 		<mapping resource="TipoSolicitacao.hbm.xml" />
 		<mapping resource="Titulacao.hbm.xml" />

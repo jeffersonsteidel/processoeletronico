@@ -8,5 +8,6 @@
 			<generator class="increment"></generator>  
 		</id>
 		<property name="descricao" column="TIP_FUNC_DESC" />
+		<property name="sigla" column="TIP_FUNC_SIGLA" />
 	</class>
 </hibernate-mapping>
