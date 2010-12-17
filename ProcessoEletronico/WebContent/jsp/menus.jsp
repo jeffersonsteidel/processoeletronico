@@ -165,6 +165,17 @@
 			<rich:dropDownMenu>
 				<f:facet name="label">
 					<h:panelGroup>
+						<h:outputText value="FUNÇÕES" />
+					</h:panelGroup>
+				</f:facet>
+				<rich:menuItem submitMode="ajax" value="Adicionar Função"
+					action="#{funcaoServidorController.abrirAdicionarFuncaoServidor}"
+					icon="../images/ALTERARSENHA.gif" />
+			</rich:dropDownMenu>
+			
+			<rich:dropDownMenu>
+				<f:facet name="label">
+					<h:panelGroup>
 						<h:outputText value="ANIVERSARIANTES" />
 					</h:panelGroup>
 				</f:facet>
