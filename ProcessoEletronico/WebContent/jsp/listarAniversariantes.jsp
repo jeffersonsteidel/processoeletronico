@@ -64,6 +64,12 @@
 						</f:facet>
 						<h:outputText value="#{list.nome}" />
 					</rich:column>
+					<rich:column width="700px" sortBy="#{list.lotacao}">
+						<f:facet name="header">
+							<h:outputText value="Campus" />
+						</f:facet>
+						<h:outputText value="#{list.lotacao}" />
+					</rich:column>
 					<rich:column width="700px" sortBy="#{list.dataNascimento}">
 						<f:facet name="header">
 							<h:outputText value="Data" />
