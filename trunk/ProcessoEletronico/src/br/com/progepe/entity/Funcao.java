@@ -3,13 +3,12 @@ package br.com.progepe.entity;
 import java.io.Serializable;
 
 public class Funcao implements Serializable {
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 1L;
 	private Long codigo;
 	private String descricao;
 	private TipoFuncao tipoFuncao;
+	private String atoCriacao;
 		
 	public Long getCodigo() {
 		return codigo;
@@ -33,6 +32,14 @@ public class Funcao implements Serializable {
 
 	public void setTipoFuncao(TipoFuncao tipoFuncao) {
 		this.tipoFuncao = tipoFuncao;
+	}
+
+	public String getAtoCriacao() {
+		return atoCriacao;
+	}
+
+	public void setAtoCriacao(String atoCriacao) {
+		this.atoCriacao = atoCriacao;
 	}
 
 }
