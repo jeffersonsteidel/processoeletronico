@@ -38,7 +38,7 @@ public class FuncaoServidorDAO extends DAO{
 			FuncaoServidor funcaoServidor, Boolean indAtual) {
 		HibernateUtility.getSession().clear();
 		HibernateUtility.beginTransaction();
-		String sql = "from FuncaoServidor fs LEFT JOIN FETCH st.servidor s where 1 = 1 ";
+		String sql = "from FuncaoServidor fs LEFT JOIN FETCH fs.servidor s where 1 = 1 ";
 		if (funcaoServidor.getServidor().getSiape() != null
 				&& funcaoServidor.getServidor().getSiape() != 0) {
 			sql += " and s.siape = "

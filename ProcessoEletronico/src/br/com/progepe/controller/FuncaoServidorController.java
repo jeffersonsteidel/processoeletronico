@@ -27,7 +27,7 @@ public class FuncaoServidorController implements Serializable {
 	private List<SelectItem> locaisExercicio = new ArrayList<SelectItem>();
 	private List<SelectItem> tipoFuncoes = new ArrayList<SelectItem>();
 	private List<SelectItem> funcoes = new ArrayList<SelectItem>();
-	private List<FuncaoServidor> listaFuncoesByFilter = new ArrayList<FuncaoServidor>();
+	private List<FuncaoServidor> listaFuncoes = new ArrayList<FuncaoServidor>();
 	private Boolean indAtual = false;
 
 	public FuncaoServidor getFuncaoServidor() {
@@ -61,13 +61,12 @@ public class FuncaoServidorController implements Serializable {
 	public void setFuncoes(List<SelectItem> funcoes) {
 		this.funcoes = funcoes;
 	}
-
-	public List<FuncaoServidor> getListaFuncoesByFilter() {
-		return listaFuncoesByFilter;
+	public List<FuncaoServidor> getListaFuncoes() {
+		return listaFuncoes;
 	}
 
-	public void setListaFuncoesByFilter(List<FuncaoServidor> listaFuncoesByFilter) {
-		this.listaFuncoesByFilter = listaFuncoesByFilter;
+	public void setListaFuncoes(List<FuncaoServidor> listaFuncoes) {
+		this.listaFuncoes = listaFuncoes;
 	}
 
 	public Boolean getIndAtual() {
@@ -151,6 +150,11 @@ public class FuncaoServidorController implements Serializable {
 		}
 	}
 
+	public List<FuncaoServidor> pesquisarFuncoes(){
+		listaFuncoes = FuncaoServidorDAO.getInstance().listByFilter(funcaoServidor, indAtual);
+		 return listaFuncoes;
+	}
+ 	
 	public void salvarFuncaoServidor() {
 		DAO.getInstance().save(funcaoServidor);
 		funcaoServidor = new FuncaoServidor();
