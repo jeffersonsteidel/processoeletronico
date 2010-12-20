@@ -99,7 +99,7 @@
 							<f:setPropertyActionListener value="#{list.codigo}"
 								target="#{empregoController.emprego.codigo}" />
 						</a4j:commandLink>
-						<rich:toolTip for="editar" value="Editar" />
+						<rich:toolTip for="visualizar" value="Visualizar" />
 					</rich:column>
 					<f:facet name="footer">
 						<rich:datascroller id="ds"></rich:datascroller>
