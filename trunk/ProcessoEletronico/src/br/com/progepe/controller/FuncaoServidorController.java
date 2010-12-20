@@ -6,6 +6,7 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
 
@@ -111,6 +112,13 @@ public class FuncaoServidorController implements Serializable {
 	public void buscarServidor() throws IOException, ParseException {
 		funcaoServidor.setServidor(ServidorDAO.getInstance().refreshBySiape(
 				funcaoServidor.getServidor()));
+		if(funcaoServidor.getServidor() == null){
+			funcaoServidor.setServidor(new Servidor());
+			FacesMessage message = new FacesMessage(
+					FacesMessage.SEVERITY_ERROR, "Siape inválido!",
+					"Siape inválido!");
+			FacesContext.getCurrentInstance().addMessage("", message);
+		}
 	}
 
 	public void salvarFuncaoServidor() {

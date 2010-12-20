@@ -26,8 +26,8 @@
 				</f:facet>
 			</rich:messages>
 			<font size="2"><b>ADICIONAR FUNÇÃO</b></font>
-			<h:panelGrid columns="4">
 
+			<h:panelGrid columns="6">
 				<h:outputText value="Tipo Função: " />
 				<h:selectOneMenu id="tipoFuncao"
 					value="#{funcaoServidorController.funcaoServidor.funcao.tipoFuncao.codigo}"
@@ -47,27 +47,6 @@
 					<f:selectItems value="#{funcaoServidorController.funcoes}" />
 				</h:selectOneMenu>
 
-				<h:outputText value="Siape do Servidor: ">
-				</h:outputText>
-				<h:inputText
-					value="#{funcaoServidorController.funcaoServidor.servidor.siape}"
-					size="15" maxlength="7" required="true"
-					requiredMessage="Campo Siape do Servidor é obrigatório!">
-					<a4j:support event="onchange"
-						action="#{funcaoServidorController.buscarServidor}"
-						ajaxSingle="true" reRender="servidor"></a4j:support>
-				</h:inputText>
-
-				<h:outputText value="Nome do Servidor: ">
-				</h:outputText>
-				<h:outputText id="servidor"
-					value="#{funcaoServidorController.funcaoServidor.servidor.nome}">
-				</h:outputText>
-
-			</h:panelGrid>
-
-			<h:panelGrid columns="6">
-
 				<h:outputText value="Local Exercício: " />
 				<h:selectOneMenu
 					value="#{funcaoServidorController.funcaoServidor.localExercicio.codigo}"
@@ -76,6 +55,25 @@
 					<f:selectItem itemLabel="SELECIONE" itemValue="" />
 					<f:selectItems value="#{funcaoServidorController.locaisExercicio}" />
 				</h:selectOneMenu>
+			</h:panelGrid>
+
+			<h:panelGrid columns="8">
+				<h:outputText value="Siape do Servidor: ">
+				</h:outputText>
+				<h:inputText id="siape"
+					value="#{funcaoServidorController.funcaoServidor.servidor.siape}"
+					size="15" maxlength="7" required="true"
+					requiredMessage="Campo Siape do Servidor é obrigatório!">
+					<a4j:support event="onchange"
+						action="#{funcaoServidorController.buscarServidor}"
+						ajaxSingle="true" reRender="servidor,siape"></a4j:support>
+				</h:inputText>
+
+				<h:outputText value="Nome do Servidor: ">
+				</h:outputText>
+				<h:outputText id="servidor"
+					value="#{funcaoServidorController.funcaoServidor.servidor.nome}">
+				</h:outputText>
 
 				<h:outputText value="Data Entrada: " />
 				<rich:calendar
@@ -85,8 +83,8 @@
 					inputSize="12" required="true"
 					requiredMessage="Campo Data Entrada é obrigatório!" />
 
-				<h:outputText value="Data Saída: " />
-				<rich:calendar
+				<h:outputText value="Data Saída: " rendered="#{funcaoServidorController.funcaoServidor.codigo != null}"/>
+				<rich:calendar rendered="#{funcaoServidorController.funcaoServidor.codigo != null}"
 					value="#{funcaoServidorController.funcaoServidor.dataSaida}"
 					locale="" popup="true" datePattern="dd/MM/yyyy" showApplyButton="#"
 					cellWidth="12px" cellHeight="12px" style="width:80px"
