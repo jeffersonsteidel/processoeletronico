@@ -73,6 +73,13 @@
 					value="#{funcaoServidorController.listaFuncoes}" var="list"
 					width="1150px" columnClasses="center" rows="15">
 
+					<rich:column width="80px" sortBy="#{list.localExercicio.descricao}">
+						<f:facet name="header">
+							<h:outputText value="Local Exercício" />
+						</f:facet>
+						<h:outputText value="#{list.localExercicio.descricao}" />
+					</rich:column>
+
 					<rich:column width="80px" sortBy="#{list.funcao.tipoFuncao.sigla}">
 						<f:facet name="header">
 							<h:outputText value="Tipo Função" />
@@ -80,20 +87,18 @@
 						<h:outputText value="#{list.funcao.tipoFuncao.sigla}" />
 					</rich:column>
 
-					<rich:column width="80px" sortBy="#{list.funcao.descricao}">
+					<rich:column width="150px" sortBy="#{list.funcao.descricao}">
 						<f:facet name="header">
 							<h:outputText value="Função" />
 						</f:facet>
 						<h:outputText value="#{list.funcao.descricao}" />
 					</rich:column>
 
-					<rich:column width="150px"
-						sortBy="#{list.servidor.nome}">
+					<rich:column width="250px" sortBy="#{list.servidor.nome}">
 						<f:facet name="header">
 							<h:outputText value="Nome do Servidor" />
 						</f:facet>
-						<h:outputText
-							value="#{list.servidor.nome}" />
+						<h:outputText value="#{list.servidor.nome}" />
 					</rich:column>
 
 					<rich:column width="80px" sortBy="#{list.dataEntrada}">
@@ -114,21 +119,19 @@
 						</h:outputText>
 					</rich:column>
 
-					<rich:column width="150px"
-						sortBy="#{list.funcao.atoCriacao}">
+					<rich:column width="250px" sortBy="#{list.funcao.atoCriacao}">
 						<f:facet name="header">
 							<h:outputText value="Ato de Criação" />
 						</f:facet>
-						<h:outputText
-							value="#{list.funcao.atoCriacao}" />
+						<h:outputText value="#{list.funcao.atoCriacao}" />
 					</rich:column>
 
-					<rich:column>
-					 <f:facet name="header">
+					<rich:column width="80">
+						<f:facet name="header">
 							<h:outputText value="Editar" />
 						</f:facet>
-						<a4j:commandLink action="#"
-							reRender="listaFuncoes" ajaxSingle="true">
+						<a4j:commandLink action="#" reRender="listaFuncoes"
+							ajaxSingle="true">
 							<h:graphicImage value="../images/edit.gif" style="border:0"
 								width="20" height="18" id="editar" />
 							<f:setPropertyActionListener value="#{list.codigo}"
