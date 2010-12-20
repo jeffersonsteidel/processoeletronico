@@ -49,7 +49,7 @@
 				<h:outputText value="Siape do Servidor:" />
 				<h:inputText
 					value="#{funcaoServidorController.funcaoServidor.servidor.siape}"
-					size="80" maxlength="120"></h:inputText>
+					size="10" maxlength="7" onkeyup="mascara(this, soNumeros);"></h:inputText>
 
 				<h:outputText value="Local Exercício: " />
 				<h:selectOneMenu
@@ -64,7 +64,7 @@
 				</h:selectBooleanCheckbox>
 
 				<a4j:commandButton value="Pesquisar"
-					action="#{funcaoServidorController.pesquisarFuncao}"
+					action="#"
 					reRender="listaFuncoes" type="submit" />
 			</h:panelGrid>
 			<a4j:region>
@@ -73,27 +73,27 @@
 					value="#{funcaoServidorController.listaFuncoesByFilter}" var="list"
 					width="1150px" columnClasses="center" rows="15">
 
-					<rich:column width="80px" sortBy="#{list.funcao.tipoFuncao.codigo}">
+					<rich:column width="80px" sortBy="#{list.funcao.tipoFuncao.sigla}">
 						<f:facet name="header">
 							<h:outputText value="Tipo Função" />
 						</f:facet>
-						<h:outputText value="#{list.funcao.tipoFuncao.codigo}" />
+						<h:outputText value="#{list.funcao.tipoFuncao.sigla}" />
 					</rich:column>
 
-					<rich:column width="80px" sortBy="#{list.funcao.codigo}">
+					<rich:column width="80px" sortBy="#{list.funcao.descricao}">
 						<f:facet name="header">
 							<h:outputText value="Função" />
 						</f:facet>
-						<h:outputText value="#{list.funcao.codigo}" />
+						<h:outputText value="#{list.funcao.descricao}" />
 					</rich:column>
 
 					<rich:column width="150px"
-						sortBy="#{funcaoServidorController.funcaoServidor.servidor.nome}">
+						sortBy="#{list.servidor.nome}">
 						<f:facet name="header">
 							<h:outputText value="Nome do Servidor" />
 						</f:facet>
 						<h:outputText
-							value="#{funcaoServidorController.funcaoServidor.servidor.siape}" />
+							value="#{list.servidor.nome}" />
 					</rich:column>
 
 					<rich:column width="80px" sortBy="#{list.dataEntrada}">
@@ -115,21 +115,21 @@
 					</rich:column>
 
 					<rich:column width="150px"
-						sortBy="#{funcaoServidorController.funcaoServidor.funcao.atoCriacao}">
+						sortBy="#{list.funcao.atoCriacao}">
 						<f:facet name="header">
 							<h:outputText value="Ato de Criação" />
 						</f:facet>
 						<h:outputText
-							value="#{funcaoServidorController.funcaoServidor.funcao.atoCriacao}" />
+							value="#{list.funcao.atoCriacao}" />
 					</rich:column>
 
 					<rich:column>
-						<a4j:commandLink action="#{funcaoServidorController.carregar}"
+						<a4j:commandLink action="#"
 							reRender="listaFuncoes" ajaxSingle="true">
 							<h:graphicImage value="../images/edit.gif" style="border:0"
 								width="20" height="18" id="editar" />
 							<f:setPropertyActionListener value="#{list.codigo}"
-								target="#{funcaoServidorController.funcaoServidor.servidor.codigo}" />
+								target="#{funcaoServidorController.funcaoServidor.codigo}" />
 						</a4j:commandLink>
 						<rich:toolTip for="editar" value="Editar" />
 					</rich:column>
