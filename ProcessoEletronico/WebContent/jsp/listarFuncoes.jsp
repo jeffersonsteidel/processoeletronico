@@ -73,13 +73,6 @@
 					value="#{funcaoServidorController.listaFuncoes}" var="list"
 					width="1150px" columnClasses="center" rows="15">
 
-					<rich:column width="80px" sortBy="#{list.localExercicio.descricao}">
-						<f:facet name="header">
-							<h:outputText value="Local Exercício" />
-						</f:facet>
-						<h:outputText value="#{list.localExercicio.descricao}" />
-					</rich:column>
-
 					<rich:column width="80px" sortBy="#{list.funcao.tipoFuncao.sigla}">
 						<f:facet name="header">
 							<h:outputText value="Tipo Função" />
@@ -87,7 +80,7 @@
 						<h:outputText value="#{list.funcao.tipoFuncao.sigla}" />
 					</rich:column>
 
-					<rich:column width="150px" sortBy="#{list.funcao.descricao}">
+					<rich:column width="180px" sortBy="#{list.funcao.descricao}">
 						<f:facet name="header">
 							<h:outputText value="Função" />
 						</f:facet>
@@ -100,8 +93,15 @@
 						</f:facet>
 						<h:outputText value="#{list.servidor.nome}" />
 					</rich:column>
+					
+					<rich:column width="130px" sortBy="#{list.localExercicio.descricao}">
+						<f:facet name="header">
+							<h:outputText value="Local Exercício" />
+						</f:facet>
+						<h:outputText value="#{list.localExercicio.descricao}" />
+					</rich:column>
 
-					<rich:column width="80px" sortBy="#{list.dataEntrada}">
+					<rich:column width="60px" sortBy="#{list.dataEntrada}">
 						<f:facet name="header">
 							<h:outputText value="Data Entrada" />
 						</f:facet>
@@ -110,7 +110,7 @@
 						</h:outputText>
 					</rich:column>
 
-					<rich:column width="80px" sortBy="#{list.dataSaida}">
+					<rich:column width="60px" sortBy="#{list.dataSaida}">
 						<f:facet name="header">
 							<h:outputText value="Data Saída" />
 						</f:facet>
@@ -119,18 +119,18 @@
 						</h:outputText>
 					</rich:column>
 
-					<rich:column width="250px" sortBy="#{list.funcao.atoCriacao}">
+					<rich:column width="200px" sortBy="#{list.funcao.atoCriacao}">
 						<f:facet name="header">
 							<h:outputText value="Ato de Criação" />
 						</f:facet>
 						<h:outputText value="#{list.funcao.atoCriacao}" />
 					</rich:column>
 
-					<rich:column width="80">
+					<rich:column width="40">
 						<f:facet name="header">
 							<h:outputText value="Editar" />
 						</f:facet>
-						<a4j:commandLink action="#" reRender="listaFuncoes"
+						<a4j:commandLink action="#{funcaoServidorController.carregar}" reRender="listaFuncoes"
 							ajaxSingle="true">
 							<h:graphicImage value="../images/edit.gif" style="border:0"
 								width="20" height="18" id="editar" />

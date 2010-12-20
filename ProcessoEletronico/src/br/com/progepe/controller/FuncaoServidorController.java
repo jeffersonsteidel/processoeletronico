@@ -167,12 +167,15 @@ public class FuncaoServidorController implements Serializable {
 		FacesContext context = FacesContext.getCurrentInstance();
 		funcaoServidor = (FuncaoServidor) context.getExternalContext()
 				.getRequestMap().get("list");
+		listarLotacoes();
+		listarTipoFuncoes();
+		listarFuncoes();
 		FacesContext.getCurrentInstance().getExternalContext()
 				.redirect("adicionarFuncao.jsp");
 	}
 
 	public void salvarFuncaoServidor() {
-		DAO.getInstance().save(funcaoServidor);
+		DAO.getInstance().saveOrUpdate(funcaoServidor);
 		funcaoServidor = new FuncaoServidor();
 		funcaoServidor.setFuncao(new Funcao());
 		funcaoServidor.getFuncao().setTipoFuncao(new TipoFuncao());
