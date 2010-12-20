@@ -65,7 +65,7 @@
 
 				<a4j:commandButton value="Pesquisar"
 					action="#{funcaoServidorController.pesquisarFuncoes}"
-					reRender="listaFuncoes" type="submit" />
+					reRender="listaFuncoes, form" type="submit" />
 			</h:panelGrid>
 			<a4j:region>
 

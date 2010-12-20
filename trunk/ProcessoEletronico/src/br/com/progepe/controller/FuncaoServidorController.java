@@ -165,9 +165,7 @@ public class FuncaoServidorController implements Serializable {
 		funcaoServidor.setFuncao(new Funcao());
 		funcaoServidor.getFuncao().setTipoFuncao(new TipoFuncao());
 		funcaoServidor.setLocalExercicio(new Lotacao());
-		funcoes = new ArrayList<SelectItem>();
-		tipoFuncoes = new ArrayList<SelectItem>();
-		locaisExercicio = new ArrayList<SelectItem>();
+		funcaoServidor.setServidor(new Servidor());
 		return listaFuncoes;
 	}
 
@@ -188,6 +186,7 @@ public class FuncaoServidorController implements Serializable {
 		funcaoServidor.setFuncao(new Funcao());
 		funcaoServidor.getFuncao().setTipoFuncao(new TipoFuncao());
 		funcaoServidor.setLocalExercicio(new Lotacao());
+		funcaoServidor.setServidor(new Servidor());
 		funcoes = new ArrayList<SelectItem>();
 	}
 
