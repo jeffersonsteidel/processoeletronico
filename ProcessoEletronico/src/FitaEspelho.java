@@ -429,6 +429,7 @@ public class FitaEspelho {
 			html = html + "<th>DATA ADMISSÃO SERV. PUB.</th>";
 			html = html + "<th>DATA DE ENTRADA NA OCUPAÇÃO.</th>";
 			html = html + "<th>DATA ADMISSÃO ORGÃO.</th>";
+			html = html + "<th>DATA SAIDA CARGO.</th>";
 			html = html + "<th>SITUAÇÃO</th>";
 			html = html + "<th>GRUPO INGR. ORGÃO</th>";
 			html = html + "<th>OCORRENC. INGR. ORGÃO</th>";
@@ -663,6 +664,10 @@ public class FitaEspelho {
 					html = html + "<td>" + linha.substring(251, 253) + "/"
 							+ linha.substring(253, 255) + "/"
 							+ linha.substring(255, 259) + "</td>";
+					
+					html = html + "<td>" + linha.substring(131, 133) + "/"
+					+ linha.substring(133, 135) + "/"
+					+ linha.substring(135, 139) + "</td>";
 
 					Integer situacao = Integer
 							.parseInt(linha.substring(23, 25));
