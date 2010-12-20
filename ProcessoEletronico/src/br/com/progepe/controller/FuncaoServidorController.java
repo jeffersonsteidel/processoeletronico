@@ -153,6 +153,14 @@ public class FuncaoServidorController implements Serializable {
 	public List<FuncaoServidor> pesquisarFuncoes() {
 		listaFuncoes = FuncaoServidorDAO.getInstance().listByFilter(
 				funcaoServidor, indAtual);
+		if (listaFuncoes == null) {
+			listaFuncoes = new ArrayList<FuncaoServidor>();
+			FacesMessage message = new FacesMessage(
+					FacesMessage.SEVERITY_ERROR,
+					"Nenhum registro encontrado para o filtro informado!",
+					"Nenhum registro encontrado para o filtro informado!");
+			FacesContext.getCurrentInstance().addMessage("", message);
+		}
 		funcaoServidor = new FuncaoServidor();
 		funcaoServidor.setFuncao(new Funcao());
 		funcaoServidor.getFuncao().setTipoFuncao(new TipoFuncao());
