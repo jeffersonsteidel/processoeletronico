@@ -27,6 +27,8 @@ public class FuncaoServidorController implements Serializable {
 	private List<SelectItem> locaisExercicio = new ArrayList<SelectItem>();
 	private List<SelectItem> tipoFuncoes = new ArrayList<SelectItem>();
 	private List<SelectItem> funcoes = new ArrayList<SelectItem>();
+	private List<FuncaoServidor> listaFuncoesByFilter = new ArrayList<FuncaoServidor>();
+	private Boolean indAtual = false;
 
 	public FuncaoServidor getFuncaoServidor() {
 		return funcaoServidor;
@@ -60,6 +62,22 @@ public class FuncaoServidorController implements Serializable {
 		this.funcoes = funcoes;
 	}
 
+	public List<FuncaoServidor> getListaFuncoesByFilter() {
+		return listaFuncoesByFilter;
+	}
+
+	public void setListaFuncoesByFilter(List<FuncaoServidor> listaFuncoesByFilter) {
+		this.listaFuncoesByFilter = listaFuncoesByFilter;
+	}
+
+	public Boolean getIndAtual() {
+		return indAtual;
+	}
+
+	public void setIndAtual(Boolean indAtual) {
+		this.indAtual = indAtual;
+	}
+
 	public void abrirAdicionarFuncaoServidor() throws Exception {
 		funcaoServidor = new FuncaoServidor();
 		funcaoServidor.setFuncao(new Funcao());
@@ -70,6 +88,18 @@ public class FuncaoServidorController implements Serializable {
 		listarTipoFuncoes();
 		FacesContext.getCurrentInstance().getExternalContext()
 				.redirect("adicionarFuncao.jsp");
+	}
+	
+	public void abrirListarFuncoes() throws Exception {
+		funcaoServidor = new FuncaoServidor();
+		funcaoServidor.setFuncao(new Funcao());
+		funcaoServidor.getFuncao().setTipoFuncao(new TipoFuncao());
+		funcaoServidor.setLocalExercicio(new Lotacao());
+		funcaoServidor.setServidor(new Servidor());
+		listarLotacoes();
+		listarTipoFuncoes();
+		FacesContext.getCurrentInstance().getExternalContext()
+				.redirect("listarFuncoes.jsp");
 	}
 
 	@SuppressWarnings("unchecked")
