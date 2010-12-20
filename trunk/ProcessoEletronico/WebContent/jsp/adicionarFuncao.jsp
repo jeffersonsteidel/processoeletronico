@@ -62,7 +62,7 @@
 				</h:outputText>
 				<h:inputText id="siape"
 					value="#{funcaoServidorController.funcaoServidor.servidor.siape}"
-					size="15" maxlength="7" required="true"
+					size="10" maxlength="7" required="true"
 					requiredMessage="Campo Siape do Servidor é obrigatório!">
 					<a4j:support event="onchange"
 						action="#{funcaoServidorController.buscarServidor}"
