@@ -61,6 +61,7 @@ public class FuncaoServidorController implements Serializable {
 	public void setFuncoes(List<SelectItem> funcoes) {
 		this.funcoes = funcoes;
 	}
+
 	public List<FuncaoServidor> getListaFuncoes() {
 		return listaFuncoes;
 	}
@@ -88,8 +89,9 @@ public class FuncaoServidorController implements Serializable {
 		FacesContext.getCurrentInstance().getExternalContext()
 				.redirect("adicionarFuncao.jsp");
 	}
-	
+
 	public void abrirListarFuncoes() throws Exception {
+		listaFuncoes.clear();
 		funcaoServidor = new FuncaoServidor();
 		funcaoServidor.setFuncao(new Funcao());
 		funcaoServidor.getFuncao().setTipoFuncao(new TipoFuncao());
@@ -119,8 +121,7 @@ public class FuncaoServidorController implements Serializable {
 		List<TipoFuncao> tipoFuncaoList = new ArrayList<TipoFuncao>();
 		tipoFuncaoList = DAO.getInstance().list(TipoFuncao.class, "codigo");
 		for (TipoFuncao item : tipoFuncaoList) {
-			tipoFuncoes.add(new SelectItem(item.getCodigo(), item
-					.getSigla()));
+			tipoFuncoes.add(new SelectItem(item.getCodigo(), item.getSigla()));
 		}
 		return tipoFuncoes;
 	}
@@ -137,11 +138,10 @@ public class FuncaoServidorController implements Serializable {
 		return funcoes;
 	}
 
-	
 	public void buscarServidor() throws IOException, ParseException {
 		funcaoServidor.setServidor(ServidorDAO.getInstance().refreshBySiape(
 				funcaoServidor.getServidor()));
-		if(funcaoServidor.getServidor() == null){
+		if (funcaoServidor.getServidor() == null) {
 			funcaoServidor.setServidor(new Servidor());
 			FacesMessage message = new FacesMessage(
 					FacesMessage.SEVERITY_ERROR, "Siape inválido!",
@@ -150,11 +150,27 @@ public class FuncaoServidorController implements Serializable {
 		}
 	}
 
-	public List<FuncaoServidor> pesquisarFuncoes(){
-		listaFuncoes = FuncaoServidorDAO.getInstance().listByFilter(funcaoServidor, indAtual);
-		 return listaFuncoes;
+	public List<FuncaoServidor> pesquisarFuncoes() {
+		listaFuncoes = FuncaoServidorDAO.getInstance().listByFilter(
+				funcaoServidor, indAtual);
+		funcaoServidor = new FuncaoServidor();
+		funcaoServidor.setFuncao(new Funcao());
+		funcaoServidor.getFuncao().setTipoFuncao(new TipoFuncao());
+		funcaoServidor.setLocalExercicio(new Lotacao());
+		funcoes = new ArrayList<SelectItem>();
+		tipoFuncoes = new ArrayList<SelectItem>();
+		locaisExercicio = new ArrayList<SelectItem>();
+		return listaFuncoes;
 	}
- 	
+
+	public void carregar() throws IOException {
+		FacesContext context = FacesContext.getCurrentInstance();
+		funcaoServidor = (FuncaoServidor) context.getExternalContext()
+				.getRequestMap().get("list");
+		FacesContext.getCurrentInstance().getExternalContext()
+				.redirect("adicionarFuncao.jsp");
+	}
+
 	public void salvarFuncaoServidor() {
 		DAO.getInstance().save(funcaoServidor);
 		funcaoServidor = new FuncaoServidor();
@@ -163,4 +179,5 @@ public class FuncaoServidorController implements Serializable {
 		funcaoServidor.setLocalExercicio(new Lotacao());
 		funcoes = new ArrayList<SelectItem>();
 	}
+
 }

@@ -38,7 +38,7 @@ public class FuncaoServidorDAO extends DAO{
 			FuncaoServidor funcaoServidor, Boolean indAtual) {
 		HibernateUtility.getSession().clear();
 		HibernateUtility.beginTransaction();
-		String sql = "from FuncaoServidor fs LEFT JOIN FETCH fs.servidor s where 1 = 1 ";
+		String sql = "from FuncaoServidor fs LEFT JOIN FETCH fs.servidor s LEFT JOIN FETCH fs.funcao.tipoFuncao tf where 1 = 1 ";
 		if (funcaoServidor.getServidor().getSiape() != null
 				&& funcaoServidor.getServidor().getSiape() != 0) {
 			sql += " and s.siape = "
@@ -46,12 +46,12 @@ public class FuncaoServidorDAO extends DAO{
 		}
 		if (funcaoServidor.getFuncao().getTipoFuncao() != null
 				&& funcaoServidor.getFuncao().getTipoFuncao().getCodigo() != 0) {
-			sql += " and fs.fucao.tipofuncao.codigo =  "
+			sql += " and tf.codigo =  "
 					+ funcaoServidor.getFuncao().getTipoFuncao().getCodigo();
 		}
 		if (funcaoServidor.getFuncao() != null
 				&& funcaoServidor.getFuncao().getCodigo() != 0) {
-			sql += " and fs.fucao.codigo =  "
+			sql += " and fs.funcao.codigo =  "
 					+ funcaoServidor.getFuncao().getCodigo();
 		}
 		if (funcaoServidor.getLocalExercicio()!= null
