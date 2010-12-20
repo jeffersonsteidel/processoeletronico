@@ -64,13 +64,13 @@
 				</h:selectBooleanCheckbox>
 
 				<a4j:commandButton value="Pesquisar"
-					action="#"
+					action="#{funcaoServidorController.pesquisarFuncoes}"
 					reRender="listaFuncoes" type="submit" />
 			</h:panelGrid>
 			<a4j:region>
 
 				<rich:dataTable id="listaFuncoes"
-					value="#{funcaoServidorController.listaFuncoesByFilter}" var="list"
+					value="#{funcaoServidorController.listaFuncoes}" var="list"
 					width="1150px" columnClasses="center" rows="15">
 
 					<rich:column width="80px" sortBy="#{list.funcao.tipoFuncao.sigla}">
@@ -124,6 +124,9 @@
 					</rich:column>
 
 					<rich:column>
+					 <f:facet name="header">
+							<h:outputText value="Editar" />
+						</f:facet>
 						<a4j:commandLink action="#"
 							reRender="listaFuncoes" ajaxSingle="true">
 							<h:graphicImage value="../images/edit.gif" style="border:0"
