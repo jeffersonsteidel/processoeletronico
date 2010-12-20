@@ -32,10 +32,76 @@
 				</h:outputText>
 			</h:panelGrid>
 
+			<h:panelGrid columns="4">
+
+				<h:outputText value="Tipo Função: " />
+				<h:selectOneMenu id="tipoFuncao"
+					value="#{funcaoServidorController.funcaoServidor.funcao.tipoFuncao.codigo}"
+					required="true" requiredMessage="Campo Tipo Função é obrigatório!">
+					<f:selectItem itemLabel="SELECIONE" itemValue="" />
+					<f:selectItems value="#{funcaoServidorController.tiposFuncoes}" />
+					<a4j:support event="onchange"
+						action="#{funcaoServidorController.listarFuncoes}"
+						ajaxSingle="true" reRender="funcao"></a4j:support>
+				</h:selectOneMenu>
+
+				<h:outputText value="Função: " />
+				<h:selectOneMenu id="funcao"
+					value="#{funcaoServidorController.funcaoServidor.funcao.codigo}"
+					required="true" requiredMessage="Campo Função é obrigatório!">
+					<f:selectItem itemLabel="SELECIONE" itemValue="" />
+					<f:selectItems value="#{funcaoServidorController.funcoes}" />
+				</h:selectOneMenu>
+
+				<h:outputText value="Siape do Servidor: ">
+				</h:outputText>
+				<h:inputText
+					value="#{funcaoServidorController.funcaoServidor.servidor.siape}"
+					size="15" maxlength="7" required="true"
+					requiredMessage="Campo Siape do Servidor é obrigatório!">
+					<a4j:support event="onchange"
+						action="#{funcaoServidorController.buscarServidor}"
+						ajaxSingle="true" reRender="servidor"></a4j:support>
+				</h:inputText>
+
+				<h:outputText value="Nome do Servidor: ">
+				</h:outputText>
+				<h:outputText id="servidor"
+					value="#{funcaoServidorController.funcaoServidor.servidor.nome}">
+				</h:outputText>
+
+			</h:panelGrid>
+
+			<h:panelGrid columns="6">
+
+				<h:outputText value="Local Exercício: " />
+				<h:selectOneMenu
+					value="#{funcaoServidorController.funcaoServidor.localExercicio.codigo}"
+					required="true"
+					requiredMessage="Campo Local Exercício é obrigatório!">
+					<f:selectItem itemLabel="SELECIONE" itemValue="" />
+					<f:selectItems value="#{funcaoServidorController.locaisExercicio}" />
+				</h:selectOneMenu>
+
+				<h:outputText value="Data entrada: " />
+				<rich:calendar value="#{conjugeController.dataEntrada}" locale=""
+					popup="true" datePattern="dd/MM/yyyy" showApplyButton="#"
+					cellWidth="12px" cellHeight="12px" style="width:80px"
+					inputSize="12" required="true"
+					requiredMessage="Campo Data entrada é obrigatório!" />
+
+				<h:outputText value="Data Saída: " />
+				<rich:calendar value="#{conjugeController.dataSaida}" locale=""
+					popup="true" datePattern="dd/MM/yyyy" showApplyButton="#"
+					cellWidth="12px" cellHeight="12px" style="width:80px"
+					inputSize="12" required="true"
+					requiredMessage="Campo Data Saída é obrigatório!" />
+
+			</h:panelGrid>
+
 			<a4j:region>
 				<h:panelGrid columns="4">
 
-					
 				</h:panelGrid>
 				<h:panelGrid columns="2">
 					<a4j:commandButton value="Adicionar"
@@ -43,7 +109,6 @@
 						reRender="listaTitulacoes, form" />
 				</h:panelGrid>
 
-				
 			</a4j:region>
 		</rich:panel></center>
 	</a4j:form>
