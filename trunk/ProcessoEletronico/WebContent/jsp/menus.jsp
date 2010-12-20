@@ -162,7 +162,7 @@
 					icon="../images/portarias.gif" />
 			</rich:dropDownMenu>
 			
-			<rich:dropDownMenu>
+			<rich:dropDownMenu rendered="#{autenticacaoController.siapeAutenticado.indAdministrador}">
 				<f:facet name="label">
 					<h:panelGroup>
 						<h:outputText value="FUNÇÕES" />

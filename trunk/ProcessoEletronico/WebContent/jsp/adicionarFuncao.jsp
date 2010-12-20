@@ -26,12 +26,6 @@
 				</f:facet>
 			</rich:messages>
 			<font size="2"><b>ADICIONAR FUNÇÃO</b></font>
-			<h:panelGrid columns="1">
-				<h:outputText id="siapeNome"
-					value="#{funcaoServidorController.funcaoServidor.servidor.siape} - #{funcaoServidorController.funcaoServidor.servidor.nome}">
-				</h:outputText>
-			</h:panelGrid>
-
 			<h:panelGrid columns="4">
 
 				<h:outputText value="Tipo Função: " />
@@ -39,7 +33,7 @@
 					value="#{funcaoServidorController.funcaoServidor.funcao.tipoFuncao.codigo}"
 					required="true" requiredMessage="Campo Tipo Função é obrigatório!">
 					<f:selectItem itemLabel="SELECIONE" itemValue="" />
-					<f:selectItems value="#{funcaoServidorController.tiposFuncoes}" />
+					<f:selectItems value="#{funcaoServidorController.tipoFuncoes}" />
 					<a4j:support event="onchange"
 						action="#{funcaoServidorController.listarFuncoes}"
 						ajaxSingle="true" reRender="funcao"></a4j:support>
@@ -83,33 +77,26 @@
 					<f:selectItems value="#{funcaoServidorController.locaisExercicio}" />
 				</h:selectOneMenu>
 
-				<h:outputText value="Data entrada: " />
-				<rich:calendar value="#{conjugeController.dataEntrada}" locale=""
-					popup="true" datePattern="dd/MM/yyyy" showApplyButton="#"
+				<h:outputText value="Data Entrada: " />
+				<rich:calendar
+					value="#{funcaoServidorController.funcaoServidor.dataEntrada}"
+					locale="" popup="true" datePattern="dd/MM/yyyy" showApplyButton="#"
 					cellWidth="12px" cellHeight="12px" style="width:80px"
 					inputSize="12" required="true"
-					requiredMessage="Campo Data entrada é obrigatório!" />
+					requiredMessage="Campo Data Entrada é obrigatório!" />
 
 				<h:outputText value="Data Saída: " />
-				<rich:calendar value="#{conjugeController.dataSaida}" locale=""
-					popup="true" datePattern="dd/MM/yyyy" showApplyButton="#"
+				<rich:calendar
+					value="#{funcaoServidorController.funcaoServidor.dataSaida}"
+					locale="" popup="true" datePattern="dd/MM/yyyy" showApplyButton="#"
 					cellWidth="12px" cellHeight="12px" style="width:80px"
-					inputSize="12" required="true"
-					requiredMessage="Campo Data Saída é obrigatório!" />
-
+					inputSize="12" />
 			</h:panelGrid>
-
-			<a4j:region>
-				<h:panelGrid columns="4">
-
-				</h:panelGrid>
-				<h:panelGrid columns="2">
-					<a4j:commandButton value="Adicionar"
-						action="#{funcaoServidorController.salvarFuncaoServidor}"
-						reRender="listaTitulacoes, form" />
-				</h:panelGrid>
-
-			</a4j:region>
+			<h:panelGrid columns="2">
+				<a4j:commandButton value="Salvar"
+					action="#{funcaoServidorController.salvarFuncaoServidor}"
+					reRender="form" />
+			</h:panelGrid>
 		</rich:panel></center>
 	</a4j:form>
 </f:view>
