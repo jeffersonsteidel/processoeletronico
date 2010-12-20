@@ -46,9 +46,9 @@
 					<f:selectItems value="#{funcaoServidorController.funcoes}" />
 				</h:selectOneMenu>
 
-				<h:outputText value="Nome do Servidor:" />
+				<h:outputText value="Siape do Servidor:" />
 				<h:inputText
-					value="#{funcaoServidorController.funcaoServidor.servidor.nome}"
+					value="#{funcaoServidorController.funcaoServidor.servidor.siape}"
 					size="80" maxlength="120"></h:inputText>
 
 				<h:outputText value="Local Exercício: " />
@@ -88,9 +88,9 @@
 					</rich:column>
 
 					<rich:column width="150px"
-						sortBy="#{funcaoServidorController.funcaoServidor.servidor.siape}">
+						sortBy="#{funcaoServidorController.funcaoServidor.servidor.nome}">
 						<f:facet name="header">
-							<h:outputText value="Siape do Servidor" />
+							<h:outputText value="Nome do Servidor" />
 						</f:facet>
 						<h:outputText
 							value="#{funcaoServidorController.funcaoServidor.servidor.siape}" />
