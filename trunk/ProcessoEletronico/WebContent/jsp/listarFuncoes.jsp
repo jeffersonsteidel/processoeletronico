@@ -46,7 +46,7 @@
 					<f:selectItems value="#{funcaoServidorController.funcoes}" />
 				</h:selectOneMenu>
 
-				<h:outputText value="Siape do Servidor:" />
+				<h:outputText value="Siape:" />
 				<h:inputText
 					value="#{funcaoServidorController.funcaoServidor.servidor.siape}"
 					size="10" maxlength="7" onkeyup="mascara(this, soNumeros);"></h:inputText>
