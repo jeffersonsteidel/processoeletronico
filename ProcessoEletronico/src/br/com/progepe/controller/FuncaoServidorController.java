@@ -118,10 +118,10 @@ public class FuncaoServidorController implements Serializable {
 	public List<SelectItem> listarTipoFuncoes() {
 		tipoFuncoes = new ArrayList<SelectItem>();
 		List<TipoFuncao> tipoFuncaoList = new ArrayList<TipoFuncao>();
-		tipoFuncaoList = DAO.getInstance().list(TipoFuncao.class, "descricao");
+		tipoFuncaoList = DAO.getInstance().list(TipoFuncao.class, "codigo");
 		for (TipoFuncao item : tipoFuncaoList) {
 			tipoFuncoes.add(new SelectItem(item.getCodigo(), item
-					.getDescricao()));
+					.getSigla()));
 		}
 		return tipoFuncoes;
 	}
