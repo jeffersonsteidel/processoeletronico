@@ -22,15 +22,15 @@
 			<rich:dataTable id="listafuncoes"
 				value="#{funcaoController.funcoesList}" var="list" width="1160px"
 				columnClasses="center" rows="15" reRender="ds">
-				<rich:column width="50px" sortBy="#{list.tipoFuncao}"
-					filterBy="#{list.tipoFuncao}" filterEvent="onkeyup">
+				<rich:column width="120px" sortBy="#{list.tipoFuncao.descricao}"
+					filterBy="#{list.tipoFuncao.descricao}" filterEvent="onkeyup">
 					<f:facet name="header">
 						<h:outputText value="Tipo da Função" />
 					</f:facet>
-					<h:outputText value="#{list.tipoFuncao}" />
+					<h:outputText value="#{list.tipoFuncao.descricao}" />
 				</rich:column>
 
-				<rich:column width="435px" sortBy="#{list.descricao}"
+				<rich:column width="900px" sortBy="#{list.descricao}"
 					filterBy="#{list.descricao}" filterEvent="onkeyup">
 					<f:facet name="header">
 						<h:outputText value="Função" />
@@ -38,7 +38,7 @@
 					<h:outputText value="#{list.descricao}" />
 				</rich:column>
 
-				<rich:column width="280px" sortBy="#{list.atoCriacao}"
+				<rich:column width="250px" sortBy="#{list.atoCriacao}"
 					filterBy="#{list.atoCriacao}" filterEvent="onkeyup">
 					<f:facet name="header">
 						<h:outputText value="Ato de Criação" />
@@ -52,12 +52,12 @@
 					<f:facet name="header">
 						<h:outputText value="Editar" />
 					</f:facet>
-					<a4j:commandLink action="#{funcaoController.}"
+					<a4j:commandLink action="#{funcaoController.carregar}"
 						reRender="listarServidores" ajaxSingle="true">
 						<h:graphicImage value="../images/edit.gif" style="border:0"
 							width="20" height="18" id="editar" />
 						<f:setPropertyActionListener value="#{list.codigo}"
-							target="#{funcaoController.carregar}" />
+							target="#{funcaoController.funcao.codigo}" />
 					</a4j:commandLink>
 					<rich:toolTip for="editar" value="Editar" />
 				</rich:column>
