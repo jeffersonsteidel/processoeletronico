@@ -34,12 +34,12 @@
 				</h:outputText>
 			</h:panelGrid>
 			<h:panelGrid columns="2">
-				<h:outputText
+				<h:outputText rendered="#{solicitacaoAdicionalNoturnoController.solicitacaoAdicionalNoturno.solicitante != null}"
 					value="Secretário: #{solicitacaoAdicionalNoturnoController.solicitacaoAdicionalNoturno.solicitante.siape} - #{solicitacaoAdicionalNoturnoController.solicitacaoAdicionalNoturno.solicitante.nome}">
 				</h:outputText>
 			</h:panelGrid>
 
-			<h:panelGrid columns="7" id="campus">
+			<h:panelGrid columns="7" id="campus" rendered="#{solicitacaoAdicionalNoturnoController.solicitacaoAdicionalNoturno.solicitante != null}">
 				<h:outputText value="Campus: " />
 				<h:selectOneMenu disabled="true"
 					value="#{solicitacaoAdicionalNoturnoController.solicitacaoAdicionalNoturno.lotacao.codigo}">
@@ -47,6 +47,11 @@
 					<f:selectItems
 						value="#{solicitacaoAdicionalNoturnoController.lotacoes}" />
 				</h:selectOneMenu>
+			</h:panelGrid>
+			
+			<h:panelGrid columns="1" 
+				rendered="#{solicitacaoAdicionalNoturnoController.solicitacaoAdicionalNoturno.solicitante == null}">
+				<h:outputText value="Nenhum adicional encontrado!" />
 			</h:panelGrid>
 
 			<h:panelGrid columns="1">
