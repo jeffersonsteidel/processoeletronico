@@ -77,6 +77,7 @@ public class FuncaoController implements Serializable {
 		 FacesContext context = FacesContext.getCurrentInstance();
 		 funcao = (Funcao) context
 	                .getExternalContext().getRequestMap().get("list");
+		 listarTipoFuncoes();
 		 FacesContext.getCurrentInstance().getExternalContext()
 			.redirect("novaFuncao.jsp");
 	}
