@@ -217,6 +217,11 @@ public class SolicitacaoAdicionalNoturnoController implements Serializable {
 				.carregarSolicitacaoAdicionalNoturno(
 						solicitacaoAdicionalNoturno.getLotacao(), true);
 		if(solicitacaoAdicionalNoturno == null){
+			listaAdicionaisDocentes = new ArrayList<AdicionalNoturno>();
+			solicitacaoAdicionalNoturno = new SolicitacaoAdicionalNoturno();
+			solicitacaoAdicionalNoturno.setServidor(new Servidor());
+			solicitacaoAdicionalNoturno.setLotacao(new Lotacao());
+			indEncaminharDocente = false;
 			FacesMessage message = new FacesMessage(
 					FacesMessage.SEVERITY_INFO, "Nenhum adicional encontrado para esse campus!",
 					"Nenhum adicional encontrado para esse campus!");
@@ -244,6 +249,11 @@ public class SolicitacaoAdicionalNoturnoController implements Serializable {
 				.carregarSolicitacaoAdicionalNoturno(
 						solicitacaoAdicionalNoturno.getLotacao(), false);
 		if (solicitacaoAdicionalNoturno == null) {
+			listaAdicionaisTecnicos = new ArrayList<AdicionalNoturno>();
+			solicitacaoAdicionalNoturno = new SolicitacaoAdicionalNoturno();
+			solicitacaoAdicionalNoturno.setServidor(new Servidor());
+			solicitacaoAdicionalNoturno.setLotacao(new Lotacao());
+			indEncaminharTecnico = false;
 			FacesMessage message = new FacesMessage(
 					FacesMessage.SEVERITY_INFO, "Nenhum adicional encontrado para esse campus!",
 					"Nenhum adicional encontrado para esse campus!");
