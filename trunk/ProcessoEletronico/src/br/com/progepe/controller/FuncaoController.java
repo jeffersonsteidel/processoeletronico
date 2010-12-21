@@ -59,7 +59,6 @@ public class FuncaoController implements Serializable {
 		funcao.setTipoFuncao(new TipoFuncao());
 		funcao.setFuncaoAnterior(new Funcao());
 		listarTipoFuncoes();
-		listarFuncoes();
 		FacesContext.getCurrentInstance().getExternalContext()
 				.redirect("novaFuncao.jsp");
 	}
