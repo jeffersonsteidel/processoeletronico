@@ -174,6 +174,9 @@
 					<rich:menuItem submitMode="ajax" value="Listar Funções"
 					action="#{funcaoServidorController.abrirListarFuncoes}"
 					icon="../images/LISTARSERVIDORES2.gif" />
+					<rich:menuItem submitMode="ajax" value="Nova Função"
+					action="#{funcaoController.abrirNovaFuncao}"
+					icon="../images/LISTARSERVIDORES2.gif" />
 			</rich:dropDownMenu>
 			
 			<rich:dropDownMenu>
