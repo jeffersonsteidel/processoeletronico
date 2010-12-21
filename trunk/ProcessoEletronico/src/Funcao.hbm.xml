@@ -9,6 +9,8 @@
 		</id>
 		<property name="descricao" column="FUNC_DESC" />
 		<property name="atoCriacao" column="FUNC_ATO_CRIACAO" />
+		<property name="dataCriacao" column="FUNC_DATA_CRIACAO" />
+		<property name="dataExtincao" column="FUNC_DATA_EXTINCAO" />
 		<many-to-one name="tipoFuncao" class="br.com.progepe.entity.TipoFuncao"
 			column="TIP_FUNC_COD" />
 		<many-to-one name="funcaoAnterior" class="br.com.progepe.entity.Funcao" column="FUNC_COD_ANTERIOR"/>	
