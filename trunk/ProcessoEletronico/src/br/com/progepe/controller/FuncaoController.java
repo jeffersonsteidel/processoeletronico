@@ -9,6 +9,7 @@ import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
 
 import br.com.progepe.dao.DAO;
+import br.com.progepe.dao.FuncaoServidorDAO;
 import br.com.progepe.entity.Funcao;
 import br.com.progepe.entity.TipoFuncao;
 
@@ -85,13 +86,14 @@ public class FuncaoController implements Serializable {
 		return tipoFuncoes;
 	}
 	
-	@SuppressWarnings("unchecked")
 	public List<SelectItem> listarFuncoes() {
 		funcoes = new ArrayList<SelectItem>();
 		List<Funcao> funcaoList = new ArrayList<Funcao>();
-		funcaoList = DAO.getInstance().list(Funcao.class, "descricao");
-		for (Funcao item : funcaoList) {
-			funcoes.add(new SelectItem(item.getCodigo(), item.getDescricao()));
+		funcaoList = FuncaoServidorDAO.getInstance().listByTipoFuncao(
+				funcao.getTipoFuncao());
+		for (Funcao funcao : funcaoList) {
+			funcoes.add(new SelectItem(funcao.getCodigo(), funcao
+					.getDescricao()));
 		}
 		return funcoes;
 	}
