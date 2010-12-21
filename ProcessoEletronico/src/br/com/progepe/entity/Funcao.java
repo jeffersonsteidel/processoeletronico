@@ -1,6 +1,7 @@
 package br.com.progepe.entity;
 
 import java.io.Serializable;
+import java.util.Date;
 
 public class Funcao implements Serializable {
 	
@@ -10,6 +11,8 @@ public class Funcao implements Serializable {
 	private TipoFuncao tipoFuncao;
 	private String atoCriacao;
 	private Funcao funcaoAnterior;
+	private Date dataCriacao;
+	private Date dataExtincao;
 		
 	public Long getCodigo() {
 		return codigo;
@@ -50,4 +53,21 @@ public class Funcao implements Serializable {
 	public void setFuncaoAnterior(Funcao funcaoAnterior) {
 		this.funcaoAnterior = funcaoAnterior;
 	}
+
+	public Date getDataCriacao() {
+		return dataCriacao;
+	}
+
+	public void setDataCriacao(Date dataCriacao) {
+		this.dataCriacao = dataCriacao;
+	}
+
+	public Date getDataExtincao() {
+		return dataExtincao;
+	}
+
+	public void setDataExtincao(Date dataExtincao) {
+		this.dataExtincao = dataExtincao;
+	}
+	
 }

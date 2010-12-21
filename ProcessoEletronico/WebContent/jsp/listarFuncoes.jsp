@@ -85,7 +85,7 @@
 							<h:outputText value="Função" />
 						</f:facet>
 						<h:outputText id="funcao" value="#{list.funcao.descricao}" />
-						<rich:toolTip for="funcao" value="A antiga função era: #{list.funcao.funcaoAntiga.descricao}" />
+						<rich:toolTip for="funcao" value="A antiga função era: #{list.funcao.funcaoAnterior.descricao}" />
 					</rich:column>
 
 					<rich:column width="250px" sortBy="#{list.servidor.nome}">
