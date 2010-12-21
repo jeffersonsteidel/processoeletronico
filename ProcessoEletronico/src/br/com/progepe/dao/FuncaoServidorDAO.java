@@ -28,7 +28,8 @@ public class FuncaoServidorDAO extends DAO{
 		HibernateUtility.beginTransaction();
 		HibernateUtility.commitTransaction();
 		return HibernateUtility.getSession().createCriteria(Funcao.class).add(
-				Restrictions.like("tipoFuncao", tipoFuncao)).addOrder(
+				Restrictions.like("tipoFuncao", tipoFuncao)).add(
+				Restrictions.isNull("dataExtincao")).addOrder(
 				Order.asc("descricao")).list();
 	}
 	
