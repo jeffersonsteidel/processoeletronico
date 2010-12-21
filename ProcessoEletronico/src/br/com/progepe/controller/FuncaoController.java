@@ -8,6 +8,7 @@ import java.util.List;
 import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
 
+import br.com.progepe.constantes.Constantes;
 import br.com.progepe.dao.DAO;
 import br.com.progepe.dao.FuncaoServidorDAO;
 import br.com.progepe.entity.Funcao;
@@ -108,9 +109,16 @@ public class FuncaoController implements Serializable {
 	}
 
 	public void salvarNovaFuncao() {
+		if(funcao.getFuncaoAnterior() == null || Constantes.ZERO.equals(funcao.getFuncaoAnterior().getCodigo())){
+			funcao.setFuncaoAnterior(null);
+		}
 		DAO.getInstance().saveOrUpdate(funcao);
 		funcao = new Funcao();
 		funcao.setTipoFuncao(new TipoFuncao());
 		funcao.setFuncaoAnterior(new Funcao());
 	}	
+	public void carregarAnterior(){
+		funcao.setFuncaoAnterior((Funcao) DAO.getInstance().refresh(funcao.getFuncaoAnterior()));
+		funcao.setAtoCriacao(funcao.getFuncaoAnterior().getAtoCriacao());
+	}
 }
