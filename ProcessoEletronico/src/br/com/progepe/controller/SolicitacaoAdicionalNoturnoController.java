@@ -238,7 +238,7 @@ public class SolicitacaoAdicionalNoturnoController implements Serializable {
 
 	@SuppressWarnings("deprecation")
 	public List<AdicionalNoturno> listarAdicionaisTecnicosAprovacao()
-			throws ParseException {
+			throws ParseException, IOException {
 		listaAdicionaisTecnicos.clear();
 		solicitacaoAdicionalNoturno = AdicionalNoturnoDAO.getInstance()
 				.carregarSolicitacaoAdicionalNoturno(
@@ -260,6 +260,7 @@ public class SolicitacaoAdicionalNoturnoController implements Serializable {
 			}
 			indEncaminharTecnico = true;
 		}
+		buscarDiretor();
 		return this.listaAdicionaisTecnicos;
 	}
 
