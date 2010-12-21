@@ -57,6 +57,7 @@ public class FuncaoController implements Serializable {
 		DAO.getInstance().saveOrUpdate(funcao);
 		funcao = new Funcao();
 		funcao.setTipoFuncao(new TipoFuncao());
-	}
+		funcao = new Funcao();
+	}	
 
 }
