@@ -46,16 +46,7 @@
 					</f:facet>
 					<h:outputText value="#{list.atoCriacao}" />
 				</rich:column>
-				
-				
-				<rich:column width="250px" sortBy="#{list.dataCriacao}"
-					filterBy="#{list.dataCriacao}" filterEvent="onkeyup">
-					<f:facet name="header">
-						<h:outputText value="Data de Criação" />
-					</f:facet>
-					<h:outputText value="#{list.dataCriacao}" />
-				</rich:column>
-				
+			
 				<rich:column width="250px" sortBy="#{list.dataExtincao}"
 					filterBy="#{list.dataExtincao}" filterEvent="onkeyup">
 					<f:facet name="header">
