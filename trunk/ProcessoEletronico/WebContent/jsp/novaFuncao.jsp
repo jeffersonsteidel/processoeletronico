@@ -47,7 +47,7 @@
 				</h:inputText>
 
 				<h:outputText value="Ato de Criação: " />
-				<h:inputText id="atoCriacao"
+				<h:inputText id="atoCriacao" disabled="#{funcaoController.funcao.funcaoAnterior.codigo != null}"
 					value="#{funcaoController.funcao.atoCriacao}" size="40"
 					maxlength="100" required="true"
 					requiredMessage="Campo Ato de Criação é obrigatório!">
@@ -58,9 +58,12 @@
 					required="false" >
 					<f:selectItem itemLabel="SELECIONE" itemValue="" />
 					<f:selectItems value="#{funcaoController.funcoes}" />
+					<a4j:support event="onchange"
+						action="#{funcaoController.carregarAnterior}"
+						ajaxSingle="true" reRender="atoCriacao,dataEdicao"></a4j:support>
 				</h:selectOneMenu>
 				<h:outputText value="Data de Extinção da Função Anterior: " />
-					<rich:calendar
+					<rich:calendar id = "dataEdicao" disabled="#{funcaoController.funcao.funcaoAnterior.codigo == null}"
 						value="#{funcaoController.funcao.funcaoAnterior.dataExtincao}"
 						locale="" popup="true" datePattern="dd/MM/yyyy"
 						showApplyButton="#" cellWidth="12px" cellHeight="12px"
