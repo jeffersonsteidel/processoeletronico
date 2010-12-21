@@ -9,6 +9,7 @@ public class Funcao implements Serializable {
 	private String descricao;
 	private TipoFuncao tipoFuncao;
 	private String atoCriacao;
+	private Funcao funcaoAnterior;
 		
 	public Long getCodigo() {
 		return codigo;
@@ -42,4 +43,11 @@ public class Funcao implements Serializable {
 		this.atoCriacao = atoCriacao;
 	}
 
+	public Funcao getFuncaoAnterior() {
+		return funcaoAnterior;
+	}
+
+	public void setFuncaoAnterior(Funcao funcaoAnterior) {
+		this.funcaoAnterior = funcaoAnterior;
+	}
 }
