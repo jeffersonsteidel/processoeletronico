@@ -52,12 +52,14 @@ public class FuncaoController implements Serializable {
 				.redirect("novaFuncao.jsp");
 	}
 	
+	@SuppressWarnings("unchecked")
 	public void abrirListarFuncoes() throws Exception {
 		funcao = new Funcao();
 		funcao.setTipoFuncao(new TipoFuncao());
 		funcoesList.clear();
+		funcoesList = DAO.getInstance().list(Funcao.class, "codigo");
 		FacesContext.getCurrentInstance().getExternalContext()
-				.redirect("pesquisarFuncao.jsp");
+				.redirect("pesquisarFuncoes.jsp");
 	}
 
 	@SuppressWarnings("unchecked")
