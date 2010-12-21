@@ -45,6 +45,13 @@
 					</f:facet>
 					<h:outputText value="#{list.atoCriacao}" />
 				</rich:column>
+				<rich:column width="250px" sortBy="#{list.funcaoAnterior.descricao}"
+					filterBy="#{list.funcaoAnterior.descricao}" filterEvent="onkeyup">
+					<f:facet name="header">
+						<h:outputText value="Função anterior" />
+					</f:facet>
+					<h:outputText value="#{list.funcaoAnterior.descricao}" />
+				</rich:column>
 
 				
 

@@ -27,7 +27,7 @@
 			</rich:messages>
 			<font size="2"><b>NOVA FUNÇÃO</b></font>
 
-			<h:panelGrid columns="6">
+			<h:panelGrid columns="8">
 				<h:outputText value="Tipo Função: " />
 				<h:selectOneMenu id="tipoFuncao"
 					value="#{funcaoController.funcao.tipoFuncao.codigo}"
@@ -49,6 +49,13 @@
 					maxlength="100" required="true"
 					requiredMessage="Campo Ato de Criação é obrigatório!">
 				</h:inputText>
+				<h:outputText value="Função Anterior: " />
+				<h:selectOneMenu id="tipoFuncao"
+					value="#{funcaoController.funcao.funcaoAnterior.codigo}"
+					required="false" >
+					<f:selectItem itemLabel="SELECIONE" itemValue="" />
+					<f:selectItems value="#{funcaoController.funcoes}" />
+				</h:selectOneMenu>
 			</h:panelGrid>
 			<h:panelGrid columns="1">
 				<a4j:commandButton value="Salvar"
