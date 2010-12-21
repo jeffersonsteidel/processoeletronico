@@ -17,7 +17,6 @@ public class FuncaoController implements Serializable {
 
 	private Funcao funcao;
 	private List<SelectItem> tipoFuncoes = new ArrayList<SelectItem>();
-	private Boolean indAtual = false;
 
 	public Funcao getFuncao() {
 		return funcao;
@@ -33,14 +32,6 @@ public class FuncaoController implements Serializable {
 
 	public void setTipoFuncoes(List<SelectItem> tipoFuncoes) {
 		this.tipoFuncoes = tipoFuncoes;
-	}
-
-	public Boolean getIndAtual() {
-		return indAtual;
-	}
-
-	public void setIndAtual(Boolean indAtual) {
-		this.indAtual = indAtual;
 	}
 
 	public void abrirNovaFuncao() throws Exception {
