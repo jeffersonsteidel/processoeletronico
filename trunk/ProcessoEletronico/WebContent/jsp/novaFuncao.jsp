@@ -56,6 +56,18 @@
 					<f:selectItem itemLabel="SELECIONE" itemValue="" />
 					<f:selectItems value="#{funcaoController.funcoes}" />
 				</h:selectOneMenu>
+				<h:outputText value="Data de Criação: " />
+					<rich:calendar
+						value="#{funcaoController.funcao.dataCriacao}"
+						locale="" popup="true" datePattern="dd/MM/yyyy"
+						showApplyButton="#" cellWidth="12px" cellHeight="12px"
+						style="width:80px" inputSize="12" />
+				<h:outputText value="Data de Extinção: " />
+					<rich:calendar
+						value="#{funcaoController.funcao.dataExtincao}"
+						locale="" popup="true" datePattern="dd/MM/yyyy"
+						showApplyButton="#" cellWidth="12px" cellHeight="12px"
+						style="width:80px" inputSize="12" />
 			</h:panelGrid>
 			<h:panelGrid columns="1">
 				<a4j:commandButton value="Salvar"
