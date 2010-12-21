@@ -181,7 +181,7 @@
 				rendered="#{autenticacaoController.siapeAutenticado.indAdministrador}">
 				<f:facet name="label">
 					<h:panelGroup>
-						<h:outputText value="Administração" />
+						<h:outputText value="ADMINISTRAÇÃO" />
 					</h:panelGroup>
 					
 				</f:facet>
