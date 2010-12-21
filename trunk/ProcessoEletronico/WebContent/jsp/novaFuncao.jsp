@@ -52,7 +52,7 @@
 			</h:panelGrid>
 			<h:panelGrid columns="1">
 				<a4j:commandButton value="Salvar"
-					action="#{funcaoController.salvarNovaFuncao}" rendered="form"/>
+					action="#{funcaoController.salvarNovaFuncao}" reRender="form"/>
 			</h:panelGrid>
 		</rich:panel></center>
 	</a4j:form>
