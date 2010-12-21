@@ -174,10 +174,25 @@
 					<rich:menuItem submitMode="ajax" value="Listar Funções"
 					action="#{funcaoServidorController.abrirListarFuncoes}"
 					icon="../images/LISTARSERVIDORES2.gif" />
-					<rich:menuItem submitMode="ajax" value="Nova Função"
+					
+			</rich:dropDownMenu>
+			
+			<rich:dropDownMenu
+				rendered="#{autenticacaoController.siapeAutenticado.indAdministrador}">
+				<f:facet name="label">
+					<h:panelGroup>
+						<h:outputText value="Administração" />
+					</h:panelGroup>
+					
+				</f:facet>
+				<rich:menuItem submitMode="ajax" value="Nova Função"
 					action="#{funcaoController.abrirNovaFuncao}"
 					icon="../images/LISTARSERVIDORES2.gif" />
-			</rich:dropDownMenu>
+					<rich:menuItem submitMode="ajax" value="Pesquisar Funções"
+					action="#{funcaoController.abrirListarFuncoes}"
+					icon="../images/LISTARSERVIDORES2.gif" />
+				</rich:dropDownMenu>
+				
 			
 			<rich:dropDownMenu>
 				<f:facet name="label">
