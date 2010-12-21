@@ -27,7 +27,7 @@
 			</rich:messages>
 			<font size="2"><b>NOVA FUNÇÃO</b></font>
 
-			<h:panelGrid columns="8">
+			<h:panelGrid columns="4">
 				<h:outputText value="Tipo Função: " />
 				<h:selectOneMenu id="tipoFuncao"
 					value="#{funcaoController.funcao.tipoFuncao.codigo}"
@@ -50,7 +50,7 @@
 					requiredMessage="Campo Ato de Criação é obrigatório!">
 				</h:inputText>
 				<h:outputText value="Função Anterior: " />
-				<h:selectOneMenu id="tipoFuncao"
+				<h:selectOneMenu 
 					value="#{funcaoController.funcao.funcaoAnterior.codigo}"
 					required="false" >
 					<f:selectItem itemLabel="SELECIONE" itemValue="" />
