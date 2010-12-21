@@ -153,6 +153,7 @@ public class ServidorTitulacaoController implements Serializable {
 
 	public void abrirListarServidorTitulacao() throws Exception {
 		try {
+			listaTitulacoes.clear();
 			listaServidorTitulacoes.clear();
 			servidorTitulacao = new ServidorTitulacao();
 			servidorTitulacao.setServidor(new Servidor());

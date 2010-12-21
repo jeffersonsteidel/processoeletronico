@@ -31,23 +31,23 @@
 			DOCENTES</b></font>
 			<h:panelGrid columns="2">
 				<h:outputText
-					value="#{solicitacaoAdicionalNoturnoController.solicitacaoAdicionalNoturno.servidor.siape} - #{solicitacaoAdicionalNoturnoController.solicitacaoAdicionalNoturno.servidor.nome}">
+					value="Diretor: #{solicitacaoAdicionalNoturnoController.solicitacaoAdicionalNoturno.servidor.siape} - #{solicitacaoAdicionalNoturnoController.solicitacaoAdicionalNoturno.servidor.nome}">
+				</h:outputText>
+			</h:panelGrid>
+			<h:panelGrid columns="2">
+				<h:outputText
+					value="Secretário: #{solicitacaoAdicionalNoturnoController.solicitacaoAdicionalNoturno.solicitante.siape} - #{solicitacaoAdicionalNoturnoController.solicitacaoAdicionalNoturno.solicitante.nome}">
 				</h:outputText>
 			</h:panelGrid>
 
 
 			<h:panelGrid columns="7" id="campus">
 				<h:outputText value="Campus: " />
-				<h:selectOneMenu
+				<h:selectOneMenu disabled="true"
 					value="#{solicitacaoAdicionalNoturnoController.solicitacaoAdicionalNoturno.lotacao.codigo}">
 					<f:selectItem itemLabel="SELECIONE" itemValue="" />
 					<f:selectItems
 						value="#{solicitacaoAdicionalNoturnoController.lotacoes}" />
-					<a4j:support event="onchange"
-						action="#{solicitacaoAdicionalNoturnoController.listarAdicionaisDocentesAprovacao}"
-						ajaxSingle="true"
-						reRender="listaSolicitacoesAdicionalDocentes, encaminhar"></a4j:support>
-
 				</h:selectOneMenu>
 
 

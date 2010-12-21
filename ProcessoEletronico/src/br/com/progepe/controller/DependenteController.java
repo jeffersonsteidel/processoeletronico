@@ -99,6 +99,8 @@ public class DependenteController implements Serializable {
 
 	public void abrirListarDependentes() throws Exception {
 		try {
+			listaDependentesFiltro = new ArrayList<Dependente>();
+			listaDependentesFiltro.clear();
 			dependente = new Dependente();
 			dependente.setServidor(new Servidor());
 			dependente.setRgUf(new Estado());

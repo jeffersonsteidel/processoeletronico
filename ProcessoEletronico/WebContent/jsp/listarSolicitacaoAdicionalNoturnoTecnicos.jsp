@@ -42,9 +42,6 @@
 					<f:selectItem itemLabel="SELECIONE" itemValue="" />
 					<f:selectItems
 						value="#{solicitacaoAdicionalNoturnoController.lotacoes}" />
-					<a4j:support event="onchange"
-						action="#{solicitacaoAdicionalNoturnoController.listarAdicionaisTecnicosAprovacao}"
-						ajaxSingle="true" reRender="listaSolicitacoesAdicionalTecnicos, encaminhar"></a4j:support>
 				</h:selectOneMenu>
 			</h:panelGrid>
 
