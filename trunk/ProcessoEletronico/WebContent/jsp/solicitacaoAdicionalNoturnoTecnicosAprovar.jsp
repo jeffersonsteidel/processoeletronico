@@ -31,6 +31,10 @@
 
 			<br><h:outputText value="Solicitante: #{solicitacaoController.solicitacaoAdicionalNoturnoTecnico.solicitante.siape} - #{solicitacaoController.solicitacaoAdicionalNoturnoTecnico.solicitante.nome}"/>
 			<br><h:outputText value="Diretor: #{solicitacaoController.solicitacaoAdicionalNoturnoTecnico.servidor.siape} - #{solicitacaoController.solicitacaoAdicionalNoturnoTecnico.servidor.nome}"/>
+			<br><h:outputText value="Processo: #{solicitacaoController.solicitacaoAdicionalNoturnoTecnico.codigo} - " />
+			<h:outputText  value="#{solicitacaoController.solicitacaoAdicionalNoturnoDocente.dataAbertura}">
+				<f:convertDateTime pattern="dd/MM/yyyy" />
+			</h:outputText>
 			<br><h:outputText value="Campus: #{solicitacaoController.solicitacaoAdicionalNoturnoTecnico.lotacao.descricao}"/>
 			
 			<h:panelGrid columns="1">
