@@ -11,7 +11,6 @@ public class Funcao implements Serializable {
 	private TipoFuncao tipoFuncao;
 	private String atoCriacao;
 	private Funcao funcaoAnterior;
-	private Date dataCriacao;
 	private Date dataExtincao;
 		
 	public Long getCodigo() {
@@ -52,14 +51,6 @@ public class Funcao implements Serializable {
 
 	public void setFuncaoAnterior(Funcao funcaoAnterior) {
 		this.funcaoAnterior = funcaoAnterior;
-	}
-
-	public Date getDataCriacao() {
-		return dataCriacao;
-	}
-
-	public void setDataCriacao(Date dataCriacao) {
-		this.dataCriacao = dataCriacao;
 	}
 
 	public Date getDataExtincao() {

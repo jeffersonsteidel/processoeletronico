@@ -35,7 +35,7 @@
 					<f:selectItem itemLabel="SELECIONE" itemValue="" />
 					<f:selectItems value="#{funcaoController.tipoFuncoes}" />
 					<a4j:support event="onchange"
-						action="#{funcaoServidorController.listarFuncoes}"
+						action="#{funcaoController.listarFuncoes}"
 						ajaxSingle="true" reRender="funcao,funcaoAnterior"></a4j:support>
 				</h:selectOneMenu>
 
@@ -59,15 +59,9 @@
 					<f:selectItem itemLabel="SELECIONE" itemValue="" />
 					<f:selectItems value="#{funcaoController.funcoes}" />
 				</h:selectOneMenu>
-				<h:outputText value="Data de Criação: " />
-					<rich:calendar required="true" requiredMessage="Campo Data de Criação é obrigatório!"
-						value="#{funcaoController.funcao.dataCriacao}"
-						locale="" popup="true" datePattern="dd/MM/yyyy"
-						showApplyButton="#" cellWidth="12px" cellHeight="12px"
-						style="width:80px" inputSize="12" />
-				<h:outputText value="Data de Extinção: " />
+				<h:outputText value="Data de Extinção da Função Anterior: " />
 					<rich:calendar
-						value="#{funcaoController.funcao.dataExtincao}"
+						value="#{funcaoController.funcao.funcaoAnterior.dataExtincao}"
 						locale="" popup="true" datePattern="dd/MM/yyyy"
 						showApplyButton="#" cellWidth="12px" cellHeight="12px"
 						style="width:80px" inputSize="12" />
