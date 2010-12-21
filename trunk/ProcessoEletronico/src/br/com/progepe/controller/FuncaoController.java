@@ -56,6 +56,7 @@ public class FuncaoController implements Serializable {
 	public void abrirNovaFuncao() throws Exception {
 		funcao = new Funcao();
 		funcao.setTipoFuncao(new TipoFuncao());
+		funcao.setFuncaoAnterior(new Funcao());
 		listarTipoFuncoes();
 		listarFuncoes();
 		FacesContext.getCurrentInstance().getExternalContext()
