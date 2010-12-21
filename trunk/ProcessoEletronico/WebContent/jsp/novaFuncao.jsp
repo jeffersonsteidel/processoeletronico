@@ -39,14 +39,14 @@
 				<h:outputText value="Função: " />
 				<h:inputText id="funcao"
 					value="#{funcaoController.funcao.descricao}" size="80"
-					maxlength="75" required="true"
+					maxlength="80" required="true"
 					requiredMessage="Campo Função é obrigatório!">
 				</h:inputText>
 
 				<h:outputText value="Ato de Criação: " />
 				<h:inputText id="atoCriacao"
-					value="#{funcaoController.funcao.atoCriacao}" size="80"
-					maxlength="75" required="true"
+					value="#{funcaoController.funcao.atoCriacao}" size="40"
+					maxlength="100" required="true"
 					requiredMessage="Campo Ato de Criação é obrigatório!">
 				</h:inputText>
 			</h:panelGrid>
