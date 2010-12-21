@@ -28,14 +28,16 @@
 			</rich:messages>
 			<font size="2"><b>SOLICITAÇÕES DE ADICIONAL NOTURNO -
 			DOCENTES</b></font>
-			
 			<br><h:outputText
 				value="Solicitante: #{solicitacaoController.solicitacaoAdicionalNoturnoDocente.solicitante.siape} - #{solicitacaoController.solicitacaoAdicionalNoturnoDocente.solicitante.nome}" />
 			<br>
 			<h:outputText
 				value="Diretor: #{solicitacaoController.solicitacaoAdicionalNoturnoDocente.servidor.siape} - #{solicitacaoController.solicitacaoAdicionalNoturnoDocente.servidor.nome}" />
-			<br>
-			<h:outputText
+			<br><h:outputText value="Processo: #{solicitacaoController.solicitacaoAdicionalNoturnoDocente.codigo} - " />
+			<h:outputText  value="#{solicitacaoController.solicitacaoAdicionalNoturnoDocente.dataAbertura}">
+				<f:convertDateTime pattern="dd/MM/yyyy" />
+			</h:outputText>
+			<br><h:outputText
 				value="Campus: #{solicitacaoController.solicitacaoAdicionalNoturnoDocente.lotacao.descricao}" />
 
 			<h:panelGrid columns="1">
