@@ -18,6 +18,7 @@ public class FuncaoController implements Serializable {
 
 	private Funcao funcao;
 	private List<SelectItem> tipoFuncoes = new ArrayList<SelectItem>();
+	private List<SelectItem> funcoes = new ArrayList<SelectItem>();
 	private List<Funcao> funcoesList = new ArrayList<Funcao>();
 
 	public Funcao getFuncao() {
@@ -43,11 +44,20 @@ public class FuncaoController implements Serializable {
 	public void setFuncoesList(List<Funcao> funcoesList) {
 		this.funcoesList = funcoesList;
 	}
+	
+	public List<SelectItem> getFuncoes() {
+		return funcoes;
+	}
+
+	public void setFuncoes(List<SelectItem> funcoes) {
+		this.funcoes = funcoes;
+	}
 
 	public void abrirNovaFuncao() throws Exception {
 		funcao = new Funcao();
 		funcao.setTipoFuncao(new TipoFuncao());
 		listarTipoFuncoes();
+		listarFuncoes();
 		FacesContext.getCurrentInstance().getExternalContext()
 				.redirect("novaFuncao.jsp");
 	}
@@ -56,6 +66,7 @@ public class FuncaoController implements Serializable {
 	public void abrirListarFuncoes() throws Exception {
 		funcao = new Funcao();
 		funcao.setTipoFuncao(new TipoFuncao());
+		funcao.setFuncaoAnterior(new Funcao());
 		funcoesList.clear();
 		funcoesList = DAO.getInstance().list(Funcao.class, "codigo");
 		FacesContext.getCurrentInstance().getExternalContext()
@@ -73,11 +84,23 @@ public class FuncaoController implements Serializable {
 		return tipoFuncoes;
 	}
 	
+	@SuppressWarnings("unchecked")
+	public List<SelectItem> listarFuncoes() {
+		funcoes = new ArrayList<SelectItem>();
+		List<Funcao> funcaoList = new ArrayList<Funcao>();
+		funcaoList = DAO.getInstance().list(Funcao.class, "descricao");
+		for (Funcao item : funcaoList) {
+			funcoes.add(new SelectItem(item.getCodigo(), item.getDescricao()));
+		}
+		return funcoes;
+	}
+	
 	public void carregar() throws IOException{
 		 FacesContext context = FacesContext.getCurrentInstance();
 		 funcao = (Funcao) context
 	                .getExternalContext().getRequestMap().get("list");
 		 listarTipoFuncoes();
+		 listarFuncoes();
 		 FacesContext.getCurrentInstance().getExternalContext()
 			.redirect("novaFuncao.jsp");
 	}
@@ -86,5 +109,6 @@ public class FuncaoController implements Serializable {
 		DAO.getInstance().saveOrUpdate(funcao);
 		funcao = new Funcao();
 		funcao.setTipoFuncao(new TipoFuncao());
+		funcao.setFuncaoAnterior(new Funcao());
 	}	
 }
