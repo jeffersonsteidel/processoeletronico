@@ -11,5 +11,6 @@
 		<property name="atoCriacao" column="FUNC_ATO_CRIACAO" />
 		<many-to-one name="tipoFuncao" class="br.com.progepe.entity.TipoFuncao"
 			column="TIP_FUNC_COD" />
+		<one-to-one name="funcaoAnterior" class="br.com.progepe.entity.Funcao"/>	
 	</class>
 </hibernate-mapping>
