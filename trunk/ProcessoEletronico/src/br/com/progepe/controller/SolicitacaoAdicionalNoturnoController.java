@@ -36,8 +36,6 @@ public class SolicitacaoAdicionalNoturnoController implements Serializable {
 	private List<AdicionalNoturno> listaAdicionaisDocentes = new ArrayList<AdicionalNoturno>();
 	private List<AdicionalNoturno> listaAdicionaisTecnicos = new ArrayList<AdicionalNoturno>();
 
-	private Boolean indCampusTecnico = false;
-	private Boolean indCampusDocente = false;
 	private Boolean indEncaminharDocente = false;
 	private Boolean indEncaminharTecnico = false;
 
@@ -100,22 +98,6 @@ public class SolicitacaoAdicionalNoturnoController implements Serializable {
 		return listaAdicionalTecnicos;
 	}
 
-	public Boolean getIndCampusTecnico() {
-		return indCampusTecnico;
-	}
-
-	public void setIndCampusTecnico(Boolean indCampusTecnico) {
-		this.indCampusTecnico = indCampusTecnico;
-	}
-
-	public Boolean getIndCampusDocente() {
-		return indCampusDocente;
-	}
-
-	public void setIndCampusDocente(Boolean indCampusDocente) {
-		this.indCampusDocente = indCampusDocente;
-	}
-
 	public List<AdicionalNoturno> getListaAdicionaisDocentes() {
 		return listaAdicionaisDocentes;
 	}
@@ -160,7 +142,8 @@ public class SolicitacaoAdicionalNoturnoController implements Serializable {
 			solicitacaoAdicionalNoturno.setLotacao(new Lotacao());
 			buscarServidorLogado();
 			listarLotacoes();
-			indCampusTecnico = false;
+			solicitacaoAdicionalNoturno.setLotacao(solicitacaoAdicionalNoturno.getSolicitante().getLotacao());
+			listarServidoresTecnicosCampus();
 			FacesContext.getCurrentInstance().getExternalContext()
 					.redirect("solicitacaoAdicionalNoturnoTecnico.jsp");
 		} catch (IOException e) {
@@ -179,7 +162,8 @@ public class SolicitacaoAdicionalNoturnoController implements Serializable {
 			professoresCampus = new ArrayList<SelectItem>();
 			buscarServidorLogado();
 			listarLotacoes();
-			indCampusDocente = false;
+			solicitacaoAdicionalNoturno.setLotacao(solicitacaoAdicionalNoturno.getSolicitante().getLotacao());
+			listarProfessoresCampus();
 			FacesContext.getCurrentInstance().getExternalContext()
 					.redirect("solicitacaoAdicionalNoturnoDocentes.jsp");
 		} catch (IOException e) {
@@ -197,6 +181,8 @@ public class SolicitacaoAdicionalNoturnoController implements Serializable {
 			indEncaminharTecnico = false;
 			buscarDiretor();
 			listarLotacoes();
+			solicitacaoAdicionalNoturno.setLotacao(solicitacaoAdicionalNoturno.getServidor().getLotacao());
+			listarAdicionaisTecnicosAprovacao();
 			FacesContext.getCurrentInstance().getExternalContext()
 					.redirect("listarSolicitacaoAdicionalNoturnoTecnicos.jsp");
 		} catch (IOException e) {
@@ -212,8 +198,10 @@ public class SolicitacaoAdicionalNoturnoController implements Serializable {
 			solicitacaoAdicionalNoturno.setServidor(new Servidor());
 			solicitacaoAdicionalNoturno.setLotacao(new Lotacao());
 			indEncaminharDocente = false;
-			buscarDiretor();
 			listarLotacoes();
+			buscarDiretor();
+			solicitacaoAdicionalNoturno.setLotacao(solicitacaoAdicionalNoturno.getServidor().getLotacao());
+			listarAdicionaisDocentesAprovacao();
 			FacesContext.getCurrentInstance().getExternalContext()
 					.redirect("listarSolicitacaoAdicionalNoturnoDocentes.jsp");
 		} catch (IOException e) {
@@ -228,9 +216,11 @@ public class SolicitacaoAdicionalNoturnoController implements Serializable {
 		solicitacaoAdicionalNoturno = AdicionalNoturnoDAO.getInstance()
 				.carregarSolicitacaoAdicionalNoturno(
 						solicitacaoAdicionalNoturno.getLotacao(), true);
-		
 		if(solicitacaoAdicionalNoturno == null){
-			abrirListarSolicitacaoAdicionalNoturnoDocentes();
+			FacesMessage message = new FacesMessage(
+					FacesMessage.SEVERITY_INFO, "Nenhum adicional encontrado para esse campus!",
+					"Nenhum adicional encontrado para esse campus!");
+			FacesContext.getCurrentInstance().addMessage("", message);
 		}else{
 			List<AdicionalNoturno> listAdicionalNoturno = new ArrayList<AdicionalNoturno>();
 			listAdicionalNoturno
@@ -242,6 +232,7 @@ public class SolicitacaoAdicionalNoturnoController implements Serializable {
 			}
 			indEncaminharDocente = true;
 		}
+		buscarDiretor();
 		return this.listaAdicionaisDocentes;
 	}
 
@@ -253,7 +244,10 @@ public class SolicitacaoAdicionalNoturnoController implements Serializable {
 				.carregarSolicitacaoAdicionalNoturno(
 						solicitacaoAdicionalNoturno.getLotacao(), false);
 		if (solicitacaoAdicionalNoturno == null) {
-			abrirListarSolicitacaoAdicionalNoturnoTecnicos();
+			FacesMessage message = new FacesMessage(
+					FacesMessage.SEVERITY_INFO, "Nenhum adicional encontrado para esse campus!",
+					"Nenhum adicional encontrado para esse campus!");
+			FacesContext.getCurrentInstance().addMessage("", message);
 		} else {
 
 			List<AdicionalNoturno> listaAdicionaisTecnicosAprovacao = new ArrayList<AdicionalNoturno>();
@@ -313,7 +307,6 @@ public class SolicitacaoAdicionalNoturnoController implements Serializable {
 			servidoresCampus.add(new SelectItem(item.getCodigo(), item
 					.getNome()));
 		}
-		indCampusTecnico = true;
 		return servidoresCampus;
 	}
 
@@ -326,21 +319,7 @@ public class SolicitacaoAdicionalNoturnoController implements Serializable {
 			professoresCampus.add(new SelectItem(item.getCodigo(), item
 					.getNome()));
 		}
-		indCampusDocente = true;
 		return professoresCampus;
-	}
-
-	public void confirmarTurma() {
-		if (solicitacaoAdicionalNoturno.getLotacao() != null
-				&& solicitacaoAdicionalNoturno.getLotacao().getCodigo() != 0
-				&& adicionalNoturno.getCurso() != null
-				&& adicionalNoturno.getCurso() != ""
-				&& adicionalNoturno.getTurma() != null
-				&& adicionalNoturno.getTurma() != "") {
-			indCampusDocente = true;
-		} else {
-			indCampusDocente = false;
-		}
 	}
 
 	@SuppressWarnings("deprecation")
@@ -525,7 +504,6 @@ public class SolicitacaoAdicionalNoturnoController implements Serializable {
 		adicionalNoturno = new AdicionalNoturno();
 		adicionalNoturno.setServidor(new Servidor());
 		solicitacaoAdicionalNoturno.setLotacao(new Lotacao());
-		indCampusDocente = false;
 	}
 
 	public void salvarAdicionalTecnico() throws Exception {
@@ -542,7 +520,6 @@ public class SolicitacaoAdicionalNoturnoController implements Serializable {
 		adicionalNoturno = new AdicionalNoturno();
 		adicionalNoturno.setServidor(new Servidor());
 		solicitacaoAdicionalNoturno.setLotacao(new Lotacao());
-		indCampusTecnico = false;
 	}
 
 	public void encaminharDocentes() throws IOException, ParseException {

@@ -59,7 +59,7 @@ public class EmpregoController implements Serializable {
 
 	public void abrirListarEmprego() throws Exception {
 		try {
-			listaEmpregos.clear();
+			listaEmpregosByFilter.clear();
 			emprego = new Emprego();
 			emprego.setServidor(new Servidor());
 			FacesContext.getCurrentInstance().getExternalContext()
