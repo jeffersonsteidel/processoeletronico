@@ -176,24 +176,6 @@
 					icon="../images/LISTARSERVIDORES2.gif" />
 					
 			</rich:dropDownMenu>
-			
-			<rich:dropDownMenu
-				rendered="#{autenticacaoController.siapeAutenticado.indAdministrador}">
-				<f:facet name="label">
-					<h:panelGroup>
-						<h:outputText value="ADMINISTRAÇÃO" />
-					</h:panelGroup>
-					
-				</f:facet>
-				<rich:menuItem submitMode="ajax" value="Nova Função"
-					action="#{funcaoController.abrirNovaFuncao}"
-					icon="../images/LISTARSERVIDORES2.gif" />
-					<rich:menuItem submitMode="ajax" value="Pesquisar Funções"
-					action="#{funcaoController.abrirListarFuncoes}"
-					icon="../images/LISTARSERVIDORES2.gif" />
-				</rich:dropDownMenu>
-				
-			
 			<rich:dropDownMenu>
 				<f:facet name="label">
 					<h:panelGroup>
@@ -215,6 +197,22 @@
 					action="#{autenticacaoController.alterarSenha}"
 					icon="../images/ALTERARSENHA.gif" />
 			</rich:dropDownMenu>
+				<rich:dropDownMenu
+				rendered="#{autenticacaoController.siapeAutenticado.indGerente}">
+				<f:facet name="label">
+					<h:panelGroup>
+						<h:outputText value="ADMINISTRAÇÃO" />
+					</h:panelGroup>
+					
+				</f:facet>
+				<rich:menuItem submitMode="ajax" value="Nova Função"
+					action="#{funcaoController.abrirNovaFuncao}"
+					icon="../images/LISTARSERVIDORES2.gif" />
+					<rich:menuItem submitMode="ajax" value="Pesquisar Funções"
+					action="#{funcaoController.abrirListarFuncoes}"
+					icon="../images/LISTARSERVIDORES2.gif" />
+				</rich:dropDownMenu>
+				
 
 			<rich:toolBarGroup location="right">
 				<rich:dropDownMenu>
