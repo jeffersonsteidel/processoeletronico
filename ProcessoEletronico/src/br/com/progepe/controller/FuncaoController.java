@@ -22,6 +22,7 @@ public class FuncaoController implements Serializable {
 	private List<SelectItem> tipoFuncoes = new ArrayList<SelectItem>();
 	private List<SelectItem> funcoes = new ArrayList<SelectItem>();
 	private List<Funcao> funcoesList = new ArrayList<Funcao>();
+	private Boolean desabilitarCampos;
 
 	public Funcao getFuncao() {
 		return funcao;
@@ -55,7 +56,16 @@ public class FuncaoController implements Serializable {
 		this.funcoes = funcoes;
 	}
 
+	public Boolean getDesabilitarCampos() {
+		return desabilitarCampos;
+	}
+
+	public void setDesabilitarCampos(Boolean desabilitarCampos) {
+		this.desabilitarCampos = desabilitarCampos;
+	}
+
 	public void abrirNovaFuncao() throws Exception {
+		desabilitarCampos = false;
 		funcao = new Funcao();
 		funcao.setTipoFuncao(new TipoFuncao());
 		funcao.setFuncaoAnterior(new Funcao());
@@ -109,16 +119,23 @@ public class FuncaoController implements Serializable {
 	}
 
 	public void salvarNovaFuncao() {
-		if(funcao.getFuncaoAnterior() == null || Constantes.ZERO.equals(funcao.getFuncaoAnterior().getCodigo())){
+		if(funcao.getFuncaoAnterior() != null && Constantes.ZERO.equals(funcao.getFuncaoAnterior().getCodigo())){
 			funcao.setFuncaoAnterior(null);
 		}
 		DAO.getInstance().saveOrUpdate(funcao);
 		funcao = new Funcao();
 		funcao.setTipoFuncao(new TipoFuncao());
 		funcao.setFuncaoAnterior(new Funcao());
+		desabilitarCampos = false;
 	}	
 	public void carregarAnterior(){
-		funcao.setFuncaoAnterior((Funcao) DAO.getInstance().refresh(funcao.getFuncaoAnterior()));
-		funcao.setAtoCriacao(funcao.getFuncaoAnterior().getAtoCriacao());
+		if(funcao.getFuncaoAnterior() != null && !(Constantes.ZERO.equals(funcao.getFuncaoAnterior().getCodigo()))){
+			funcao.setFuncaoAnterior((Funcao) DAO.getInstance().refresh(funcao.getFuncaoAnterior()));
+			funcao.setAtoCriacao(funcao.getFuncaoAnterior().getAtoCriacao());
+			desabilitarCampos = true;
+		}else{
+			funcao.setAtoCriacao("");
+			desabilitarCampos = false;
+		}
 	}
 }
