@@ -52,7 +52,7 @@
 					icon="../images/listarConjuge.jpg" />
 				<rich:menuItem submitMode="ajax" value="Listar Dependentes"
 					action="#{dependenteController.abrirListarDependentes}"
-					icon="../images/listarDependente.gif" />
+					icon="../images/listarDependente.png" />
 				<rich:menuItem submitMode="ajax" value="Listar Empregos"
 					action="#{empregoController.abrirListarEmprego}"
 					icon="../images/listemprego.jpg" />
