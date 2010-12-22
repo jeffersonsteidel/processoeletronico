@@ -85,7 +85,11 @@
 							<h:outputText value="Função" />
 						</f:facet>
 						<h:outputText id="funcao" value="#{list.funcao.descricao}" />
-						<rich:toolTip rendered="#{list.funcao.funcaoAnterior.codigo != null}" for="funcao" value="A antiga função era: #{list.funcao.funcaoAnterior.descricao}" />
+						<rich:toolTip
+							rendered="#{list.funcao.funcaoAnterior.codigo != null}"
+							for="funcao" 
+							value="A função anterior era: #{list.funcao.funcaoAnterior.descricao} extinta em:  #{list.funcao.funcaoAnterior.dataExtincao}">
+						</rich:toolTip>
 					</rich:column>
 
 					<rich:column width="250px" sortBy="#{list.servidor.nome}">
@@ -94,8 +98,9 @@
 						</f:facet>
 						<h:outputText value="#{list.servidor.nome}" />
 					</rich:column>
-					
-					<rich:column width="130px" sortBy="#{list.localExercicio.descricao}">
+
+					<rich:column width="130px"
+						sortBy="#{list.localExercicio.descricao}">
 						<f:facet name="header">
 							<h:outputText value="Local Exercício" />
 						</f:facet>
@@ -131,8 +136,8 @@
 						<f:facet name="header">
 							<h:outputText value="Editar" />
 						</f:facet>
-						<a4j:commandLink action="#{funcaoServidorController.carregar}" reRender="listaFuncoes"
-							ajaxSingle="true">
+						<a4j:commandLink action="#{funcaoServidorController.carregar}"
+							reRender="listaFuncoes" ajaxSingle="true">
 							<h:graphicImage value="../images/edit.gif" style="border:0"
 								width="20" height="18" id="editar" />
 							<f:setPropertyActionListener value="#{list.codigo}"
