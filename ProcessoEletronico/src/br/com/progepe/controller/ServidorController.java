@@ -67,6 +67,15 @@ public class ServidorController {
 	private Boolean indEstagiario = false;
 	private String dataUltimaAlteracao;
 	private String dataUltimaAprovacao;
+	private Integer situacao = 0;
+	
+	public Integer getSituacao() {
+		return situacao;
+	}
+
+	public void setSituacao(Integer situacao) {
+		this.situacao = situacao;
+	}
 
 	public Servidor getPessoa() {
 		return servidor;
@@ -753,7 +762,7 @@ public class ServidorController {
 
 	public List<Servidor> listarServidoresFiltro() {
 		servidoresList = new ArrayList<Servidor>();
-		setServidoresList(ServidorDAO.getInstance().listByFilter(servidor));
+		setServidoresList(ServidorDAO.getInstance().listByFilter(servidor, situacao));
 		if (getServidoresList().size() == 0) {
 			FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_WARN,
 					"Nenhum registro para o filtro informado!",
