@@ -278,12 +278,19 @@ public class ServidorTitulacaoController implements Serializable {
 					.getEstadoOrgaoEmissor().getCodigo())) {
 				servidorTitulacao.setEstadoOrgaoEmissor(null);
 			}
+			else if(servidorTitulacao.getEstadoOrgaoEmissor().getCodigo() == null){
+				servidorTitulacao.setEstadoOrgaoEmissor(null);
+			}
 		}
 		if (servidorTitulacao.getPais() != null) {
 			if (Constantes.ZERO.equals(servidorTitulacao.getPais().getCodigo())) {
 				servidorTitulacao.setPais(null);
 			}
+			else if(servidorTitulacao.getPais().getCodigo() == null){
+				servidorTitulacao.setPais(null);
+			}
 		}
+		
 		DAO.getInstance().saveOrUpdate(servidorTitulacao);
 		listarTitulacoesServidorLogado();
 		servidorTitulacao = new ServidorTitulacao();
