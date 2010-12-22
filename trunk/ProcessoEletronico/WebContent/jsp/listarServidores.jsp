@@ -89,6 +89,18 @@
 				
 				<rich:column>
 					<f:facet name="header">
+						<h:outputText value="Ativo" />
+					</f:facet>
+						<h:graphicImage id="ativo" value="../images/ativar.gif" style="border:0"
+							width="20" height="18" rendered="#{list.dataSaida == null}"/>
+						<h:graphicImage id="inativo" value="../images/desativar.gif" style="border:0"
+							width="20" height="18" rendered="#{list.dataSaida != null}"/>	
+						<rich:toolTip for="ativo" value="Ativo" />
+						<rich:toolTip for="inativo" value="Inativo" />	
+				</rich:column>
+				
+				<rich:column>
+					<f:facet name="header">
 						<h:outputText value="Validado" />
 					</f:facet>
 						<h:graphicImage id="deferido" value="../images/deferido.gif" style="border:0"
@@ -98,7 +110,7 @@
 						<rich:toolTip for="deferido" value="Validado" />
 						<rich:toolTip for="indeferido" value="Não Validado" />	
 				</rich:column>
-
+				
 				<f:facet name="footer">
 					<rich:datascroller id="ds"></rich:datascroller>
 				</f:facet>
