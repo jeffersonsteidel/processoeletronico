@@ -110,12 +110,12 @@
 					value="Adicional Noturno - Técnicos"
 					rendered="#{autenticacaoController.siapeAutenticado.indSecretaria}"
 					action="#{solicitacaoAdicionalNoturnoController.abrirSolicitacaoAdicionalNoturnoTecnico}"
-					icon="../images/dinheiro.gif" />
+					icon="../images/cadastrarAdicional.jpg" />
 				<rich:menuItem submitMode="ajax"
 					value="Adicional Noturno - Docentes"
 					rendered="#{autenticacaoController.siapeAutenticado.indSecretaria}"
 					action="#{solicitacaoAdicionalNoturnoController.abrirSolicitacaoAdicionalNoturnoDocentes}"
-					icon="../images/dinheiro.gif" />
+					icon="../images/cadastrarAdicional.jpg" />
 				<rich:menuItem submitMode="ajax" value="Licença de Casamento"
 					action="#{solicitacaoCasamentoController.abrirSolicitacaoCasamento}"
 					icon="../images/listarConjuge.jpg" />
@@ -141,12 +141,12 @@
 					value="Listar Adicional Noturno - Técnicos"
 					rendered="#{autenticacaoController.siapeAutenticado.indDiretor}"
 					action="#{solicitacaoAdicionalNoturnoController.abrirListarSolicitacaoAdicionalNoturnoTecnicos}"
-					icon="../images/listarAdNoturno.GIF" />
+					icon="../images/listarAdicional.jpg" />
 				<rich:menuItem submitMode="ajax"
 					value="Listar Adicional Noturno - Docentes"
 					rendered="#{autenticacaoController.siapeAutenticado.indDiretor}"
 					action="#{solicitacaoAdicionalNoturnoController.abrirListarSolicitacaoAdicionalNoturnoDocentes}"
-					icon="../images/listarAdNoturno.GIF" />
+					icon="../images/listarAdicional.jpg" />
 				<rich:menuItem submitMode="ajax" value="Listar Solicitações"
 					rendered="#{autenticacaoController.siapeAutenticado.indAdministrador}"
 					action="#{solicitacaoController.abrirPesquisarSolicitacoes}"
