@@ -184,7 +184,7 @@
 				</f:facet>
 				<rich:menuItem submitMode="ajax" value="Aniversariantes"
 					action="#{aniversarianteController.abrirAniversariantes}"
-					icon="../images/ALTERARSENHA.gif" />
+					icon="../images/aniversario.png" />
 			</rich:dropDownMenu>
 
 			<rich:dropDownMenu>
