@@ -10,19 +10,19 @@
 </head>
 <body>
 <f:view>
-	<jsp:directive.include file="menus.jsp"/>
+	<jsp:directive.include file="menus.jsp" />
 	<center><a4j:form id="form">
-			<rich:panel>
+		<rich:panel>
 			<font size="2"><b>PESQUISAR SERVIDOR</b></font>
-			<h:panelGrid columns="9">
+			<h:panelGrid columns="11">
 				<h:outputText value="Siape: ">
 				</h:outputText>
-				<h:inputText value="#{servidorController.servidor.siape}" size="10"
+				<h:inputText value="#{servidorController.servidor.siape}" size="7"
 					maxlength="7" onkeyup="mascara(this, soNumeros);">
 				</h:inputText>
 				<h:outputText value="Nome: ">
 				</h:outputText>
-				<h:inputText value="#{servidorController.servidor.nome}" size="80">
+				<h:inputText value="#{servidorController.servidor.nome}" size="70">
 				</h:inputText>
 				<h:outputText value="Lotação: " />
 				<h:selectOneMenu
@@ -36,9 +36,8 @@
 					<f:selectItem itemLabel="SELECIONE" itemValue="" />
 					<f:selectItems value="#{servidorController.cargos}" />
 				</h:selectOneMenu>
-<h:outputText value="Situação: " />
-				<h:selectOneMenu
-					value="#{servidorController.situacao}">
+				<h:outputText value="Situação: " />
+				<h:selectOneMenu value="#{servidorController.situacao}">
 					<f:selectItem itemLabel="TODOS" itemValue="0" />
 					<f:selectItem itemLabel="ATIVOS" itemValue="1" />
 					<f:selectItem itemLabel="INATIVOS" itemValue="2" />
