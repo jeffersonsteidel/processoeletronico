@@ -61,7 +61,7 @@
 					icon="../images/listarTitulacao.gif" />
 				<rich:menuItem submitMode="ajax" value="Adicionar Função"
 					action="#{funcaoServidorController.abrirAdicionarFuncaoServidor}"
-					icon="../images/ALTERARSENHA.gif" />
+					icon="../images/addfuncao.png" />
 				<rich:menuItem submitMode="ajax" value="Listar Funções"
 					action="#{funcaoServidorController.abrirListarFuncoes}"
 					icon="../images/LISTARSERVIDORES2.gif" />
