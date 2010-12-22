@@ -49,7 +49,7 @@
 					icon="../images/LISTARSERVIDORES2.gif" />
 				<rich:menuItem submitMode="ajax" value="Listar Cônjuges"
 					action="#{conjugeController.abrirListarConjuge}"
-					icon="../images/listarConjuge.jpg" />	
+					icon="../images/listarConjuge.jpg" />
 				<rich:menuItem submitMode="ajax" value="Listar Dependentes"
 					action="#{dependenteController.abrirListarDependentes}"
 					icon="../images/LISTARSERVIDORES2.gif" />
@@ -59,6 +59,12 @@
 				<rich:menuItem submitMode="ajax" value="Listar Titulações"
 					action="#{servidorTitulacaoController.abrirListarServidorTitulacao}"
 					icon="../images/listarTitulacao.gif" />
+				<rich:menuItem submitMode="ajax" value="Adicionar Função"
+					action="#{funcaoServidorController.abrirAdicionarFuncaoServidor}"
+					icon="../images/ALTERARSENHA.gif" />
+				<rich:menuItem submitMode="ajax" value="Listar Funções"
+					action="#{funcaoServidorController.abrirListarFuncoes}"
+					icon="../images/LISTARSERVIDORES2.gif" />
 			</rich:dropDownMenu>
 
 			<rich:dropDownMenu>
@@ -79,7 +85,7 @@
 				<rich:menuItem submitMode="ajax" value="Adicionar Titulações"
 					action="#{servidorTitulacaoController.abrirAdicionarServidorTitulacao}"
 					icon="../images/titulacoes.gif" />
-				
+
 				<rich:menuItem submitMode="ajax" value="Adicionar Empregos"
 					action="#{empregoController.abrirEmprego}"
 					icon="../images/ico_emprego.gif" />
@@ -101,11 +107,13 @@
 					action="#{solicitacaoAlimentacaoController.abrirSolicitacaoAlimentacao}"
 					icon="../images/auxilioalimentacao.gif" />
 				<rich:menuItem submitMode="ajax"
-					value="Adicional Noturno - Técnicos" rendered="#{autenticacaoController.siapeAutenticado.indSecretaria}"
+					value="Adicional Noturno - Técnicos"
+					rendered="#{autenticacaoController.siapeAutenticado.indSecretaria}"
 					action="#{solicitacaoAdicionalNoturnoController.abrirSolicitacaoAdicionalNoturnoTecnico}"
 					icon="../images/dinheiro.gif" />
 				<rich:menuItem submitMode="ajax"
-					value="Adicional Noturno - Docentes" rendered="#{autenticacaoController.siapeAutenticado.indSecretaria}"
+					value="Adicional Noturno - Docentes"
+					rendered="#{autenticacaoController.siapeAutenticado.indSecretaria}"
 					action="#{solicitacaoAdicionalNoturnoController.abrirSolicitacaoAdicionalNoturnoDocentes}"
 					icon="../images/dinheiro.gif" />
 				<rich:menuItem submitMode="ajax" value="Licença de Casamento"
@@ -161,21 +169,7 @@
 					action="#{portariaController.listarPortarias}"
 					icon="../images/portarias.gif" />
 			</rich:dropDownMenu>
-			
-			<rich:dropDownMenu rendered="#{autenticacaoController.siapeAutenticado.indAdministrador}">
-				<f:facet name="label">
-					<h:panelGroup>
-						<h:outputText value="FUNÇÕES" />
-					</h:panelGroup>
-				</f:facet>
-				<rich:menuItem submitMode="ajax" value="Adicionar Função"
-					action="#{funcaoServidorController.abrirAdicionarFuncaoServidor}"
-					icon="../images/ALTERARSENHA.gif" />
-					<rich:menuItem submitMode="ajax" value="Listar Funções"
-					action="#{funcaoServidorController.abrirListarFuncoes}"
-					icon="../images/LISTARSERVIDORES2.gif" />
-					
-			</rich:dropDownMenu>
+
 			<rich:dropDownMenu>
 				<f:facet name="label">
 					<h:panelGroup>
@@ -197,22 +191,22 @@
 					action="#{autenticacaoController.alterarSenha}"
 					icon="../images/ALTERARSENHA.gif" />
 			</rich:dropDownMenu>
-				<rich:dropDownMenu
+			<rich:dropDownMenu
 				rendered="#{autenticacaoController.siapeAutenticado.indGerente}">
 				<f:facet name="label">
 					<h:panelGroup>
 						<h:outputText value="ADMINISTRAÇÃO" />
 					</h:panelGroup>
-					
+
 				</f:facet>
 				<rich:menuItem submitMode="ajax" value="Nova Função"
 					action="#{funcaoController.abrirNovaFuncao}"
 					icon="../images/LISTARSERVIDORES2.gif" />
-					<rich:menuItem submitMode="ajax" value="Pesquisar Funções"
+				<rich:menuItem submitMode="ajax" value="Pesquisar Funções"
 					action="#{funcaoController.abrirListarFuncoes}"
 					icon="../images/LISTARSERVIDORES2.gif" />
-				</rich:dropDownMenu>
-				
+			</rich:dropDownMenu>
+
 
 			<rich:toolBarGroup location="right">
 				<rich:dropDownMenu>
