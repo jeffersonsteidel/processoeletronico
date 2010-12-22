@@ -37,7 +37,6 @@
 					</f:facet>
 					<h:outputText value="#{list.descricao}" />
 				</rich:column>
-
 			
 				<rich:column width="250px" sortBy="#{list.atoCriacao}"
 					filterBy="#{list.atoCriacao}" filterEvent="onkeyup">
@@ -47,14 +46,15 @@
 					<h:outputText value="#{list.atoCriacao}" />
 				</rich:column>
 			
-				<rich:column width="250px" sortBy="#{list.dataExtincao}"
-					filterBy="#{list.dataExtincao}" filterEvent="onkeyup">
+				<rich:column width="250px" sortBy="#{list.dataExtincao}">
 					<f:facet name="header">
 						<h:outputText value="Data de Extinção" />
 					</f:facet>
-					<h:outputText value="#{list.dataExtincao}" />
+					<h:outputText value="#{list.dataExtincao}" >
+						<f:convertDateTime pattern="dd/MM/yyyy" />
+					</h:outputText>
 				</rich:column>
-
+				
 				<rich:column width="250px" sortBy="#{list.funcaoAnterior.descricao}"
 					filterBy="#{list.funcaoAnterior.descricao}" filterEvent="onkeyup">
 					<f:facet name="header">
@@ -62,8 +62,6 @@
 					</f:facet>
 					<h:outputText value="#{list.funcaoAnterior.descricao}" />
 				</rich:column>
-				
-
 				<rich:column>
 					<f:facet name="header">
 						<h:outputText value="Editar" />

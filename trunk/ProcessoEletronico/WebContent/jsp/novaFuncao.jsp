@@ -47,11 +47,13 @@
 				</h:inputText>
 
 				<h:outputText value="Ato de Criação: " />
-				<h:inputText id="atoCriacao" disabled="#{funcaoController.funcao.funcaoAnterior.codigo != null}"
+				<h:inputText id="atoCriacao" disabled="#{funcaoController.desabilitarCampos}"
 					value="#{funcaoController.funcao.atoCriacao}" size="40"
 					maxlength="100" required="true"
 					requiredMessage="Campo Ato de Criação é obrigatório!">
+				<rich:toolTip for="atoCriacao" value="Ex: Portaria 136/MEC/DOU 09/02/2009" />
 				</h:inputText>
+			
 				<h:outputText value="Função Anterior: " />
 				<h:selectOneMenu  id="funcaoAnterior"
 					value="#{funcaoController.funcao.funcaoAnterior.codigo}"
@@ -63,12 +65,20 @@
 						ajaxSingle="true" reRender="atoCriacao,dataEdicao"></a4j:support>
 				</h:selectOneMenu>
 				<h:outputText value="Data de Extinção da Função Anterior: " />
-					<rich:calendar id = "dataEdicao" disabled="#{funcaoController.funcao.funcaoAnterior.codigo == null}"
+					<rich:calendar id="dataEdicao" disabled="#{!funcaoController.desabilitarCampos}"
 						value="#{funcaoController.funcao.funcaoAnterior.dataExtincao}"
+						required="true" requiredMessage="Campo Data de Extinção da Função Anterior é obrigatório!"
 						locale="" popup="true" datePattern="dd/MM/yyyy"
 						showApplyButton="#" cellWidth="12px" cellHeight="12px"
 						style="width:80px" inputSize="12" />
 			</h:panelGrid>
+			
+			<h:outputText rendered="#{funcaoController.funcao.dataExtincao != null}" value="Função Extinta em:" >
+			</h:outputText>
+			<h:outputText value="#{funcaoController.funcao.dataExtincao}">
+				<f:convertDateTime pattern="dd/MM/yyyy" />
+			</h:outputText>
+				
 			<h:panelGrid columns="1">
 				<a4j:commandButton value="Salvar"
 					action="#{funcaoController.salvarNovaFuncao}" reRender="form"/>
