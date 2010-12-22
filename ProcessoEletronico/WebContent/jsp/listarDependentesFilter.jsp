@@ -17,7 +17,7 @@
 	<center><a4j:form id="form">
 		<rich:panel>
 			<font size="2"><b>LISTAR DEPENDENTES</b></font>
-			<h:panelGrid columns="9">
+			<h:panelGrid columns="11">
 
 				<h:outputText value="Siape: ">
 				</h:outputText>
@@ -29,13 +29,13 @@
 				<h:outputText value="Servidor: ">
 				</h:outputText>
 				<h:inputText
-					value="#{dependenteController.dependente.servidor.nome}" size="60">
+					value="#{dependenteController.dependente.servidor.nome}" size="55">
 				</h:inputText>
 
 				<h:outputText value="Dependente: ">
 				</h:outputText>
 				<h:inputText value="#{dependenteController.dependente.nome}"
-					size="60">
+					size="55">
 				</h:inputText>
 
 				<h:outputText value="Parentesco: " />

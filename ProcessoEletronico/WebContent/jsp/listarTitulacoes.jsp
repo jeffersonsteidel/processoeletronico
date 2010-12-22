@@ -27,7 +27,7 @@
 				</h:outputText>
 				<h:inputText
 					value="#{servidorTitulacaoController.servidorTitulacao.servidor.nome}"
-					size="80">
+					size="60">
 				</h:inputText> 
 				<h:outputText value="Titulação: " />
 				<h:selectOneMenu

@@ -27,16 +27,13 @@
 			</rich:messages>
 			<font size="2"><b>PESQUISAR EMPREGOS</b></font>
 
-			<h:panelGrid columns="5">
+			<h:panelGrid columns="7">
 				<h:outputText value="Siape do Servidor:" />
 				<h:inputText value="#{empregoController.emprego.servidor.siape}"
 					size="7" maxlength="7" onkeyup="mascara(this, soNumeros);"></h:inputText>
 				<h:outputText value="Nome do Servidor:" />
 				<h:inputText value="#{empregoController.emprego.servidor.nome}"
-					size="80" maxlength="120"></h:inputText>
-				<a4j:commandButton value="Pesquisar"
-					action="#{empregoController.buscarEmpregos}"
-					reRender="listaEmpregos" type="submit" />
+					size="60" maxlength="120"></h:inputText>
 				<h:outputText value="Situação: " />
 				<h:selectOneMenu
 					value="#{empregoController.situacao}">
@@ -44,6 +41,10 @@
 					<f:selectItem itemLabel="ATIVOS" itemValue="1" />
 					<f:selectItem itemLabel="INATIVOS" itemValue="2" />
 				</h:selectOneMenu>
+				<a4j:commandButton value="Pesquisar"
+					action="#{empregoController.buscarEmpregos}"
+					reRender="listaEmpregos" type="submit" />
+				
 			</h:panelGrid>
 			<a4j:region>
 
