@@ -36,7 +36,7 @@ public class FuncaoServidorDAO extends DAO{
 				Order.asc("descricao")).list();
 	}
 	
-	public void updateFucnaoServidor(Object objeto) {
+	public void updateFuncaoServidor(Object objeto) {
 		try {
 			HibernateUtility.getSession().clear();
 			HibernateUtility.beginTransaction();
@@ -64,7 +64,7 @@ public class FuncaoServidorDAO extends DAO{
 			sql += " and s.siape = "
 					+ funcaoServidor.getServidor().getSiape();
 		}
-		if (funcaoServidor.getFuncao().getTipoFuncao() != null
+		if (funcaoServidor.getFuncao() != null && funcaoServidor.getFuncao().getTipoFuncao() != null
 				&& funcaoServidor.getFuncao().getTipoFuncao().getCodigo() != 0) {
 			sql += " and tf.codigo =  "
 					+ funcaoServidor.getFuncao().getTipoFuncao().getCodigo();
