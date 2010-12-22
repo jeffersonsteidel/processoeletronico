@@ -27,7 +27,7 @@ public class ServidorDAO extends DAO {
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<Servidor> listByFilter(Servidor servidor) {
+	public List<Servidor> listByFilter(Servidor servidor, Integer situacao) {
 		HibernateUtility.getSession().clear();
 		HibernateUtility.beginTransaction();
 
@@ -48,6 +48,13 @@ public class ServidorDAO extends DAO {
 
 		if (servidor.getCargo().getCodigo() != 0) {
 			c.add(Restrictions.like("cargo", servidor.getCargo()));
+		}
+		
+		if (situacao != null && Constantes.ATIVO.equals(situacao) ) {
+			c.add(Restrictions.isNull("dataSaida"));
+		}
+		if (situacao != null && Constantes.DESATIVO.equals(situacao) ) {
+			c.add(Restrictions.isNotNull("dataSaida"));
 		}
 		HibernateUtility.commitTransaction();
 		return c.list();
