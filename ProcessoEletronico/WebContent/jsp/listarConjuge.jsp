@@ -30,10 +30,17 @@
 			<h:panelGrid columns="5">
 				<h:outputText value="Siape do Servidor:" />
 				<h:inputText value="#{conjugeController.conjuge.servidor.siape}"
-					size="10" maxlength="7" onkeyup="mascara(this, soNumeros);"></h:inputText>
+					size="7" maxlength="7" onkeyup="mascara(this, soNumeros);"></h:inputText>
 				<h:outputText value="Nome do Servidor:" />
 				<h:inputText value="#{conjugeController.conjuge.servidor.nome}"
 					size="80" maxlength="120"></h:inputText>
+				<h:outputText value="Situação: " />
+				<h:selectOneMenu
+					value="#{conjugeController.situacao}">
+					<f:selectItem itemLabel="TODOS" itemValue="0" />
+					<f:selectItem itemLabel="ATIVOS" itemValue="1" />
+					<f:selectItem itemLabel="INATIVOS" itemValue="2" />
+				</h:selectOneMenu>
 				<a4j:commandButton value="Pesquisar"
 					action="#{conjugeController.buscarConjuges}"
 					reRender="listaConjuges" type="submit" />

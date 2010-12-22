@@ -21,7 +21,7 @@
 				</h:outputText>
 				<h:inputText
 					value="#{servidorTitulacaoController.servidorTitulacao.servidor.siape}"
-					size="10" maxlength="7" onkeyup="mascara(this, soNumeros);">
+					size="7" maxlength="7" onkeyup="mascara(this, soNumeros);">
 				</h:inputText>
 				<h:outputText value="Nome: ">
 				</h:outputText>
@@ -43,7 +43,13 @@
 					<f:selectItems
 						value="#{servidorTitulacaoController.areasConhecimento}" />
 				</h:selectOneMenu>
-
+<h:outputText value="Situação: " />
+				<h:selectOneMenu
+					value="#{servidorTitulacaoController.situacao}">
+					<f:selectItem itemLabel="TODOS" itemValue="0" />
+					<f:selectItem itemLabel="ATIVOS" itemValue="1" />
+					<f:selectItem itemLabel="INATIVOS" itemValue="2" />
+				</h:selectOneMenu>
 				<a4j:commandButton value="Pesquisar"
 					action="#{servidorTitulacaoController.listarTitulacoesFiltro}"
 					reRender="listaTitulacoes" type="submit" />

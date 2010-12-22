@@ -22,7 +22,7 @@
 				<h:outputText value="Siape: ">
 				</h:outputText>
 				<h:inputText
-					value="#{dependenteController.dependente.servidor.siape}" size="10"
+					value="#{dependenteController.dependente.servidor.siape}" size="7"
 					maxlength="7" onkeyup="mascara(this, soNumeros);">
 				</h:inputText>
 
@@ -43,6 +43,14 @@
 					value="#{dependenteController.dependente.grauParentesco.codigo}">
 					<f:selectItem itemLabel="SELECIONE" itemValue="" />
 					<f:selectItems value="#{dependenteController.grausParentescos}" />
+				</h:selectOneMenu>
+				
+				<h:outputText value="Situação: " />
+				<h:selectOneMenu
+					value="#{dependenteController.situacao}">
+					<f:selectItem itemLabel="TODOS" itemValue="0" />
+					<f:selectItem itemLabel="ATIVOS" itemValue="1" />
+					<f:selectItem itemLabel="INATIVOS" itemValue="2" />
 				</h:selectOneMenu>
 
 				<a4j:commandButton value="Pesquisar"
