@@ -2,6 +2,9 @@ package br.com.progepe.dao;
 
 import java.security.NoSuchAlgorithmException;
 
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
+
 import org.hibernate.Criteria;
 import org.hibernate.criterion.Restrictions;
 
@@ -31,5 +34,21 @@ public class AutenticacaoDAO extends  DAO {
 				Encripty.criptografaSenha(autenticacao.getSenha())));
 		HibernateUtility.commitTransaction();
 		return (Autenticacao) c.uniqueResult();
+	}
+	
+	public void deleteAutenticacao(Object objeto) {
+		try {
+			HibernateUtility.getSession().clear();
+			HibernateUtility.beginTransaction();
+			HibernateUtility.getSession().delete(objeto);
+			HibernateUtility.commitTransaction();
+		} catch (Exception e) {
+			HibernateUtility.rollbackTransaction();
+			FacesMessage message = new FacesMessage(
+					FacesMessage.SEVERITY_ERROR,
+					"Erro ao comunicar com o servidor!",
+					"Erro ao comunicar com o servidor!");
+			FacesContext.getCurrentInstance().addMessage("", message);
+		}
 	}
 }

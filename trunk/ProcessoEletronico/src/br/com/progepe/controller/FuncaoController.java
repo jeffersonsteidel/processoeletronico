@@ -145,7 +145,7 @@ public class FuncaoController implements Serializable {
 			if(list != null){
 				for(FuncaoServidor item: list){
 					item.setDataSaida(funcao.getFuncaoAnterior().getDataExtincao());
-					FuncaoServidorDAO.getInstance().updateFucnaoServidor(item);
+					FuncaoServidorDAO.getInstance().updateFuncaoServidor(item);
 				}
 			}
 		}

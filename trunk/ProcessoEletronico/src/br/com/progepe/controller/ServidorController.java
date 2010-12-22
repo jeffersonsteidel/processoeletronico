@@ -11,8 +11,10 @@ import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
 
 import br.com.progepe.constantes.Constantes;
+import br.com.progepe.dao.AutenticacaoDAO;
 import br.com.progepe.dao.CidadeDAO;
 import br.com.progepe.dao.DAO;
+import br.com.progepe.dao.FuncaoServidorDAO;
 import br.com.progepe.dao.ServidorDAO;
 import br.com.progepe.entity.Autenticacao;
 import br.com.progepe.entity.Banco;
@@ -26,6 +28,7 @@ import br.com.progepe.entity.Endereco;
 import br.com.progepe.entity.Estado;
 import br.com.progepe.entity.EstadoCivil;
 import br.com.progepe.entity.Funcao;
+import br.com.progepe.entity.FuncaoServidor;
 import br.com.progepe.entity.GrupoSanguineo;
 import br.com.progepe.entity.Lotacao;
 import br.com.progepe.entity.Padrao;
@@ -603,6 +606,20 @@ public class ServidorController {
 			servidor.setDadosValidados(false);
 			if(servidor.getIndEstrangeiro() == false){
 				servidor.setPais(null);
+			}
+			if(servidor.getDataSaida() != null){
+				Autenticacao autenticacao = new Autenticacao();
+				autenticacao.setSiape(servidor.getSiape());
+				AutenticacaoDAO.getInstance().deleteAutenticacao(autenticacao);
+				FuncaoServidor funcaoServidor = new FuncaoServidor();
+				funcaoServidor.setServidor(servidor);
+				List<FuncaoServidor> list = FuncaoServidorDAO.getInstance().listByFilter(funcaoServidor, true);
+				if(list != null){
+					for(FuncaoServidor item: list){
+						item.setDataSaida(servidor.getDataSaida());
+						FuncaoServidorDAO.getInstance().updateFuncaoServidor(item);
+					}
+				}
 			}
 			DAO.getInstance().saveOrUpdate(servidor);
 			servidor = (Servidor) DAO.getInstance().refresh(servidor);
