@@ -49,7 +49,7 @@
 					icon="../images/LISTARSERVIDORES2.gif" />
 				<rich:menuItem submitMode="ajax" value="Listar Cônjuges"
 					action="#{conjugeController.abrirListarConjuge}"
-					icon="../images/LISTARSERVIDORES2.gif" />	
+					icon="../images/listarConjuge.jpg" />	
 				<rich:menuItem submitMode="ajax" value="Listar Dependentes"
 					action="#{dependenteController.abrirListarDependentes}"
 					icon="../images/LISTARSERVIDORES2.gif" />
