@@ -82,7 +82,7 @@
 				
 				<rich:menuItem submitMode="ajax" value="Adicionar Empregos"
 					action="#{empregoController.abrirEmprego}"
-					icon="../images/titulacoes.gif" />
+					icon="../images/ico_emprego.gif" />
 			</rich:dropDownMenu>
 
 			<rich:dropDownMenu>
