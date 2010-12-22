@@ -36,7 +36,13 @@
 					<f:selectItem itemLabel="SELECIONE" itemValue="" />
 					<f:selectItems value="#{servidorController.cargos}" />
 				</h:selectOneMenu>
-
+<h:outputText value="Situação: " />
+				<h:selectOneMenu
+					value="#{servidorController.situacao}">
+					<f:selectItem itemLabel="TODOS" itemValue="0" />
+					<f:selectItem itemLabel="ATIVOS" itemValue="1" />
+					<f:selectItem itemLabel="INATIVOS" itemValue="2" />
+				</h:selectOneMenu>
 				<a4j:commandButton value="Pesquisar"
 					action="#{servidorController.listarServidoresFiltro}"
 					reRender="listaServidores" type="submit" />
