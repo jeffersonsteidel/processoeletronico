@@ -6,6 +6,7 @@ import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.criterion.Restrictions;
 
+import br.com.progepe.constantes.Constantes;
 import br.com.progepe.entity.ServidorTitulacao;
 
 public class ServidorTitulacaoDAO extends DAO {
@@ -39,7 +40,7 @@ public class ServidorTitulacaoDAO extends DAO {
 
 	@SuppressWarnings("unchecked")
 	public List<ServidorTitulacao> listByFilter(
-			ServidorTitulacao servidorTitulacao) {
+			ServidorTitulacao servidorTitulacao, Integer situacao) {
 		HibernateUtility.getSession().clear();
 		HibernateUtility.beginTransaction();
 		String sql = "from ServidorTitulacao st LEFT JOIN FETCH st.servidor s where 1 = 1 ";
@@ -62,6 +63,12 @@ public class ServidorTitulacaoDAO extends DAO {
 				&& servidorTitulacao.getAreaConhecimento().getCodigo() != 0) {
 			sql += " and st.areaConhecimento.codigo =  "
 					+ servidorTitulacao.getAreaConhecimento().getCodigo();
+		}
+		if (situacao != null && Constantes.ATIVO.equals(situacao) ) {
+			sql += " and s.dataSaida is null";
+		}
+		if (situacao != null && Constantes.DESATIVO.equals(situacao) ) {
+			sql += " and s.dataSaida is not null";
 		}
 		Query query = HibernateUtility.getSession().createQuery(sql);
 		HibernateUtility.commitTransaction();

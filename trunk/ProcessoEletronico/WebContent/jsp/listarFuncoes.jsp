@@ -88,7 +88,7 @@
 						<rich:toolTip
 							rendered="#{list.funcao.funcaoAnterior.codigo != null}"
 							for="funcao" 
-							value="A função anterior era: #{list.funcao.funcaoAnterior.descricao} extinta em:  #{list.funcao.funcaoAnterior.dataExtincao}">
+							value="A função anterior era: #{list.funcao.funcaoAnterior.descricao}">
 						</rich:toolTip>
 					</rich:column>
 
@@ -136,7 +136,7 @@
 						<f:facet name="header">
 							<h:outputText value="Editar" />
 						</f:facet>
-						<a4j:commandLink action="#{funcaoServidorController.carregar}"
+						<a4j:commandLink action="#{funcaoServidorController.carregar}" 
 							reRender="listaFuncoes" ajaxSingle="true">
 							<h:graphicImage value="../images/edit.gif" style="border:0"
 								width="20" height="18" id="editar" />

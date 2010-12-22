@@ -9,6 +9,7 @@ import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.criterion.Restrictions;
 
+import br.com.progepe.constantes.Constantes;
 import br.com.progepe.entity.Conjuge;
 import br.com.progepe.entity.Servidor;
 
@@ -71,7 +72,7 @@ public class ConjugeDAO extends DAO {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public List<Conjuge> listByFilter(Conjuge conjuge) {
+	public List<Conjuge> listByFilter(Conjuge conjuge, Integer situacao) {
 		HibernateUtility.getSession().clear();
 		HibernateUtility.beginTransaction();
 		String sql = "from Conjuge c LEFT JOIN FETCH c.servidor s where 1 = 1 ";
@@ -87,6 +88,12 @@ public class ConjugeDAO extends DAO {
 		if (conjuge.getNome() != null && conjuge.getNome() != "") {
 			sql += " and upper(c.nome) like '%"
 					+ conjuge.getNome().toUpperCase() + "%'";
+		}
+		if (situacao != null && Constantes.ATIVO.equals(situacao) ) {
+			sql += " and s.dataSaida is null";
+		}
+		if (situacao != null && Constantes.DESATIVO.equals(situacao) ) {
+			sql += " and s.dataSaida is not null";
 		}
 		Query query = HibernateUtility.getSession().createQuery(sql);
 		HibernateUtility.commitTransaction();

@@ -2,6 +2,10 @@ package br.com.progepe.constantes;
 
 public class Constantes {
 	public static final Long ZERO = 0L;
+	public static final Integer TODOS = 0;
+	public static final Integer ATIVO = 1;
+	public static final Integer DESATIVO = 2;
+	
 	public static final Long CAIXA_ECONOMICA_FEDERAL = 104L;
 	public static final Long ESTADO_CIVIL_CASADO = 2L;
 	public static final Long CARGO_ESTAGIARIO = 999999L;
