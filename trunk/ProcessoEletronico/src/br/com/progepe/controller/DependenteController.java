@@ -29,6 +29,7 @@ public class DependenteController implements Serializable {
 	private List<SelectItem> ufs = new ArrayList<SelectItem>();
 	private List<Dependente> listaDependentes;
 	private List<Dependente> listaDependentesFiltro;
+	private Integer situacao = 0;
 	
 
 	public List<Dependente> getListaDependentes() {
@@ -77,6 +78,14 @@ public class DependenteController implements Serializable {
 
 	public void setListaDependentesFiltro(List<Dependente> listaDependentesFiltro) {
 		this.listaDependentesFiltro = listaDependentesFiltro;
+	}
+	
+	public Integer getSituacao() {
+		return situacao;
+	}
+
+	public void setSituacao(Integer situacao) {
+		this.situacao = situacao;
 	}
 
 	public void abrirAdicionarDependentes() throws Exception {
@@ -192,7 +201,7 @@ public class DependenteController implements Serializable {
 	
 	public List<Dependente> listarDependentesFiltro() {
 		listaDependentesFiltro = new ArrayList<Dependente>();
-		setListaDependentesFiltro(DependenteDAO.getInstance().listByFilter(dependente));
+		setListaDependentesFiltro(DependenteDAO.getInstance().listByFilter(dependente, situacao));
 		if (getListaDependentesFiltro().size() == 0) {
 			FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_WARN,
 					"Nenhum registro para o filtro informado!",

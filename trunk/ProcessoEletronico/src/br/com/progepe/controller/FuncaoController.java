@@ -12,6 +12,7 @@ import br.com.progepe.constantes.Constantes;
 import br.com.progepe.dao.DAO;
 import br.com.progepe.dao.FuncaoServidorDAO;
 import br.com.progepe.entity.Funcao;
+import br.com.progepe.entity.FuncaoServidor;
 import br.com.progepe.entity.TipoFuncao;
 
 public class FuncaoController implements Serializable {
@@ -108,12 +109,28 @@ public class FuncaoController implements Serializable {
 		return funcoes;
 	}
 	
+	@SuppressWarnings("unchecked")
+	public List<SelectItem> listarTodasFuncoes() {
+		funcoes = new ArrayList<SelectItem>();
+		List<Funcao> funcaoList = new ArrayList<Funcao>();
+		funcaoList = FuncaoServidorDAO.getInstance().list(Funcao.class, "descricao");
+		for (Funcao funcao : funcaoList) {
+			funcoes.add(new SelectItem(funcao.getCodigo(), funcao
+					.getDescricao()));
+		}
+		return funcoes;
+	}
+	
 	public void carregar() throws IOException{
 		 FacesContext context = FacesContext.getCurrentInstance();
 		 funcao = (Funcao) context
 	                .getExternalContext().getRequestMap().get("list");
 		 listarTipoFuncoes();
-		 listarFuncoes();
+		 if(funcao.getDataExtincao() != null){
+				listarTodasFuncoes();
+			}else{
+				listarTipoFuncoes();
+			}
 		 FacesContext.getCurrentInstance().getExternalContext()
 			.redirect("novaFuncao.jsp");
 	}
@@ -121,6 +138,16 @@ public class FuncaoController implements Serializable {
 	public void salvarNovaFuncao() {
 		if(funcao.getFuncaoAnterior() != null && Constantes.ZERO.equals(funcao.getFuncaoAnterior().getCodigo())){
 			funcao.setFuncaoAnterior(null);
+		}else{
+			FuncaoServidor funcaoServidor = new FuncaoServidor();
+			funcaoServidor.setFuncao(funcao.getFuncaoAnterior());
+			List<FuncaoServidor> list = FuncaoServidorDAO.getInstance().listByFilter(funcaoServidor, true);
+			if(list != null){
+				for(FuncaoServidor item: list){
+					item.setDataSaida(funcao.getFuncaoAnterior().getDataExtincao());
+					FuncaoServidorDAO.getInstance().updateFucnaoServidor(item);
+				}
+			}
 		}
 		DAO.getInstance().saveOrUpdate(funcao);
 		funcao = new Funcao();

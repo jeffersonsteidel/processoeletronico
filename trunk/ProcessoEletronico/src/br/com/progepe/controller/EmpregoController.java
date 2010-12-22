@@ -20,6 +20,7 @@ public class EmpregoController implements Serializable {
 	private List<Emprego> listaEmpregos = new ArrayList<Emprego>();
 	private List<Emprego> listaEmpregosByFilter = new ArrayList<Emprego>();
 	private Emprego emprego;
+	private Integer situacao = 0;
 
 	public List<Emprego> getListaEmpregos() {
 		return listaEmpregos;
@@ -43,6 +44,14 @@ public class EmpregoController implements Serializable {
 
 	public void setListaEmpregosByFilter(List<Emprego> listaEmpregosByFilter) {
 		this.listaEmpregosByFilter = listaEmpregosByFilter;
+	}
+	
+	public Integer getSituacao() {
+		return situacao;
+	}
+
+	public void setSituacao(Integer situacao) {
+		this.situacao = situacao;
 	}
 
 	public void abrirEmprego() throws Exception {
@@ -104,7 +113,7 @@ public class EmpregoController implements Serializable {
 	}
 
 	public List<Emprego> buscarEmpregos() {
-		listaEmpregosByFilter = (List<Emprego>) EmpregoDAO.getInstance().listByFilter(emprego);
+		listaEmpregosByFilter = (List<Emprego>) EmpregoDAO.getInstance().listByFilter(emprego, situacao);
 		return listaEmpregosByFilter;
 	}
 
