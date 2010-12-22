@@ -27,13 +27,13 @@
 			</rich:messages>
 			<font size="2"><b>PESQUISAR CÔNJUGE</b></font>
 
-			<h:panelGrid columns="5">
+			<h:panelGrid columns="7">
 				<h:outputText value="Siape do Servidor:" />
 				<h:inputText value="#{conjugeController.conjuge.servidor.siape}"
 					size="7" maxlength="7" onkeyup="mascara(this, soNumeros);"></h:inputText>
 				<h:outputText value="Nome do Servidor:" />
 				<h:inputText value="#{conjugeController.conjuge.servidor.nome}"
-					size="80" maxlength="120"></h:inputText>
+					size="60" maxlength="120"></h:inputText>
 				<h:outputText value="Situação: " />
 				<h:selectOneMenu
 					value="#{conjugeController.situacao}">
