@@ -64,7 +64,7 @@
 					icon="../images/addfuncao.png" />
 				<rich:menuItem submitMode="ajax" value="Listar Funções"
 					action="#{funcaoServidorController.abrirListarFuncoes}"
-					icon="../images/LISTARSERVIDORES2.gif" />
+					icon="../images/listfuncao.png" />
 			</rich:dropDownMenu>
 
 			<rich:dropDownMenu>
