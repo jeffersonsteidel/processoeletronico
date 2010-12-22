@@ -217,7 +217,7 @@
 							<f:selectItems value="#{servidorController.situacoesFuncionais}" />
 						</h:selectOneMenu>
 
-						<h:outputText value="Data de Saída do Orgão: " />
+						<h:outputText value="Data de Saída do Orgão: " rendered="#{autenticacaoController.siapeAutenticado.indAdministrador}"/>
 						<rich:calendar value="#{servidorController.servidor.dataSaida}"
 							locale="" popup="true" datePattern="dd/MM/yyyy"
 							rendered="#{autenticacaoController.siapeAutenticado.indAdministrador}"
