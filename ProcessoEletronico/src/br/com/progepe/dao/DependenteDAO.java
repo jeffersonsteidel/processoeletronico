@@ -6,6 +6,7 @@ import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.criterion.Restrictions;
 
+import br.com.progepe.constantes.Constantes;
 import br.com.progepe.entity.Dependente;
 
 public class DependenteDAO extends DAO {
@@ -36,7 +37,7 @@ public class DependenteDAO extends DAO {
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<Dependente> listByFilter(Dependente dependente) {
+	public List<Dependente> listByFilter(Dependente dependente, Integer situacao) {
 		HibernateUtility.getSession().clear();
 		HibernateUtility.beginTransaction();
 		String sql = "from Dependente d LEFT JOIN FETCH d.servidor s where 1 = 1 ";
@@ -57,6 +58,12 @@ public class DependenteDAO extends DAO {
 				&& dependente.getGrauParentesco().getCodigo() != 0) {
 			sql += " and d.grauParentesco = "
 					+ dependente.getGrauParentesco().getCodigo();
+		}
+		if (situacao != null && Constantes.ATIVO.equals(situacao) ) {
+			sql += " and s.dataSaida is null";
+		}
+		if (situacao != null && Constantes.DESATIVO.equals(situacao) ) {
+			sql += " and s.dataSaida is not null";
 		}
 		Query query = HibernateUtility.getSession().createQuery(sql);
 		HibernateUtility.commitTransaction();
