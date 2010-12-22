@@ -137,6 +137,18 @@ public class FuncaoServidorController implements Serializable {
 		}
 		return funcoes;
 	}
+	
+	@SuppressWarnings("unchecked")
+	public List<SelectItem> listarTodasFuncoes() {
+		funcoes = new ArrayList<SelectItem>();
+		List<Funcao> funcaoList = new ArrayList<Funcao>();
+		funcaoList = FuncaoServidorDAO.getInstance().list(Funcao.class, "descricao");
+		for (Funcao funcao : funcaoList) {
+			funcoes.add(new SelectItem(funcao.getCodigo(), funcao
+					.getDescricao()));
+		}
+		return funcoes;
+	}
 
 	public void buscarServidor() throws IOException, ParseException {
 		funcaoServidor.setServidor(ServidorDAO.getInstance().refreshBySiape(
@@ -174,7 +186,11 @@ public class FuncaoServidorController implements Serializable {
 		funcaoServidor = (FuncaoServidor) context.getExternalContext()
 				.getRequestMap().get("list");
 		listarLotacoes();
-		listarTipoFuncoes();
+		if(funcaoServidor.getDataSaida() != null){
+			listarTodasFuncoes();
+		}else{
+			listarTipoFuncoes();
+		}
 		listarFuncoes();
 		FacesContext.getCurrentInstance().getExternalContext()
 				.redirect("adicionarFuncao.jsp");

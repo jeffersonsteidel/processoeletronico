@@ -36,6 +36,7 @@ public class ServidorTitulacaoController implements Serializable {
 	private Boolean indTitulacaoEstrangeira = false;
 	private Boolean indSuperior = false;
 	private List<ServidorTitulacao> listaTitulacoes = new ArrayList<ServidorTitulacao>();
+	private Integer situacao = 0;
 
 	public List<ServidorTitulacao> getListaServidorTitulacoes() {
 		return listaServidorTitulacoes;
@@ -125,6 +126,14 @@ public class ServidorTitulacaoController implements Serializable {
 
 	public void setListaTitulacoes(List<ServidorTitulacao> listaTitulacoes) {
 		this.listaTitulacoes = listaTitulacoes;
+	}
+
+	public Integer getSituacao() {
+		return situacao;
+	}
+
+	public void setSituacao(Integer situacao) {
+		this.situacao = situacao;
 	}
 
 	public void abrirAdicionarServidorTitulacao() throws Exception {
@@ -344,7 +353,7 @@ public class ServidorTitulacaoController implements Serializable {
 
 	public List<ServidorTitulacao> listarTitulacoesFiltro() {
 		listaTitulacoes = (List<ServidorTitulacao>) ServidorTitulacaoDAO
-				.getInstance().listByFilter(servidorTitulacao);
+				.getInstance().listByFilter(servidorTitulacao, situacao);
 		return listaTitulacoes;
 	}
 
