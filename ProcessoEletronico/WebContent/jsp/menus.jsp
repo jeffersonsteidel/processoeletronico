@@ -58,7 +58,7 @@
 					icon="../images/LISTARSERVIDORES2.gif" />
 				<rich:menuItem submitMode="ajax" value="Listar Titulações"
 					action="#{servidorTitulacaoController.abrirListarServidorTitulacao}"
-					icon="../images/titulacoes.gif" />
+					icon="../images/listarTitulacao.gif" />
 			</rich:dropDownMenu>
 
 			<rich:dropDownMenu>
