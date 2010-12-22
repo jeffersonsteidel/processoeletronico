@@ -201,7 +201,7 @@
 				</f:facet>
 				<rich:menuItem submitMode="ajax" value="Nova Função"
 					action="#{funcaoController.abrirNovaFuncao}"
-					icon="../images/LISTARSERVIDORES2.gif" />
+					icon="../images/novafuncao.png" />
 				<rich:menuItem submitMode="ajax" value="Pesquisar Funções"
 					action="#{funcaoController.abrirListarFuncoes}"
 					icon="../images/LISTARSERVIDORES2.gif" />
