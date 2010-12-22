@@ -49,7 +49,7 @@
 					icon="../images/LISTARSERVIDORES2.gif" />
 				<rich:menuItem submitMode="ajax" value="Listar Cônjuges"
 					action="#{conjugeController.abrirListarConjuge}"
-					icon="../images/listarConjuge.jpg" />
+					icon="../images/conjuge.png" />
 				<rich:menuItem submitMode="ajax" value="Listar Dependentes"
 					action="#{dependenteController.abrirListarDependentes}"
 					icon="../images/listarDependente.png" />
@@ -81,7 +81,7 @@
 					icon="../images/dependente.jpg" />
 				<rich:menuItem submitMode="ajax" value="Cadastrar Cônjuge"
 					action="#{conjugeController.abrirCadastrarConjuge}"
-					icon="../images/cadastrarConjuge.gif" />
+					icon="../images/casamento.gif" />
 				<rich:menuItem submitMode="ajax" value="Adicionar Titulações"
 					action="#{servidorTitulacaoController.abrirAdicionarServidorTitulacao}"
 					icon="../images/titulacoes.gif" />
@@ -118,7 +118,7 @@
 					icon="../images/dinheiro.gif" />
 				<rich:menuItem submitMode="ajax" value="Licença de Casamento"
 					action="#{solicitacaoCasamentoController.abrirSolicitacaoCasamento}"
-					icon="../images/conjuge.png" />
+					icon="../images/listarConjuge.jpg" />
 				<rich:menuItem submitMode="ajax" value="Afastamento do Cônjuge"
 					action="#{solicitacaoAfastamentoConjugeController.abrirSolicitacaoAfastamentoConjuge}"
 					icon="../images/afastamentoconjuge.gif" />
@@ -204,7 +204,7 @@
 					icon="../images/novafuncao.png" />
 				<rich:menuItem submitMode="ajax" value="Pesquisar Funções"
 					action="#{funcaoController.abrirListarFuncoes}"
-					icon="../images/LISTARSERVIDORES2.gif" />
+					icon="../images/pesquisarfuncoes.gif" />
 			</rich:dropDownMenu>
 
 
