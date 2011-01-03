@@ -241,26 +241,28 @@ public class SolicitacaoController implements Serializable {
 	public List<Solicitacao> pesquisarSolicitacoes() throws ParseException {
 		solicitacoes = new ArrayList<Solicitacao>();
 		solicitacoes.clear();
-		if (dataAberturaInicial != null && dataAberturaFinal != null && dataAberturaInicial.after(dataAberturaFinal)) {
-			FacesMessage message = new FacesMessage(
-					FacesMessage.SEVERITY_ERROR,
-					"A Data de Abertura Inicial deve ser menor que Data de Abertura Final!",
-					"A Data de Abertura Inicial deve ser menor que Data de Abertura Final!");
-			FacesContext.getCurrentInstance().addMessage("", message);
-		} else {
-			if (solicitacao.getSolicitante().getSiape() != 0) {
-				solicitacao.setSolicitante(ServidorDAO.getInstance()
-						.refreshByFilter(solicitacao.getSolicitante()));
+		if (dataAberturaInicial != null && dataAberturaFinal != null) {
+			if (dataAberturaInicial.after(dataAberturaFinal)
+					|| dataAberturaInicial.equals(dataAberturaFinal)) {
+				FacesMessage message = new FacesMessage(
+						FacesMessage.SEVERITY_ERROR,
+						"A Data de Abertura Final deve ser maior que Data de Abertura Inicial!",
+						"A Data de Abertura Final deve ser menor que Data de Abertura Inicial!");
+				FacesContext.getCurrentInstance().addMessage("", message);
 			}
-			this.setSolicitacoes(SolicitacaoDAO.getInstance().listByFilter(
-					solicitacao, dataAberturaInicial, dataAberturaFinal));
-			dataAberturaInicial = null;
-			dataAberturaFinal = null;
-			solicitacao = new Solicitacao();
-			solicitacao.setSolicitante(new Servidor());
-			solicitacao.setStatusSolicitacao(new StatusSolicitacao());
-			solicitacao.setTipoSolicitacao(new TipoSolicitacao());
 		}
+		if (solicitacao.getSolicitante().getSiape() != 0) {
+			solicitacao.setSolicitante(ServidorDAO.getInstance()
+					.refreshByFilter(solicitacao.getSolicitante()));
+		}
+		this.setSolicitacoes(SolicitacaoDAO.getInstance().listByFilter(
+				solicitacao, dataAberturaInicial, dataAberturaFinal));
+		dataAberturaInicial = null;
+		dataAberturaFinal = null;
+		solicitacao = new Solicitacao();
+		solicitacao.setSolicitante(new Servidor());
+		solicitacao.setStatusSolicitacao(new StatusSolicitacao());
+		solicitacao.setTipoSolicitacao(new TipoSolicitacao());
 		return this.getSolicitacoes();
 	}
 
@@ -318,37 +320,40 @@ public class SolicitacaoController implements Serializable {
 
 	public List<Solicitacao> pesquisarMinhasSolicitacoes()
 			throws ParseException {
-		try {
-			minhasSolicitacoes = new ArrayList<Solicitacao>();
-			minhasSolicitacoes.clear();
-			this.setMinhasSolicitacoes(SolicitacaoDAO.getInstance()
-					.listByFilter(solicitacao, dataAberturaInicial,
-							dataAberturaFinal));
-			for (Solicitacao item : this.getMinhasSolicitacoes()) {
-				Servidor servidor = new Servidor();
-				servidor.setSiape(item.getAtendente());
-				if (item.getAtendente() != null) {
-					item.setAtendenteLogado(ServidorDAO.getInstance()
-							.refreshBySiape(servidor));
-				}
+		minhasSolicitacoes = new ArrayList<Solicitacao>();
+		minhasSolicitacoes.clear();
+		if (dataAberturaInicial != null && dataAberturaFinal != null) {
+			if (dataAberturaInicial.after(dataAberturaFinal)
+					|| dataAberturaInicial.equals(dataAberturaFinal)) {
+				FacesMessage message = new FacesMessage(
+						FacesMessage.SEVERITY_ERROR,
+						"A Data de Abertura Final deve ser maior que Data de Abertura Inicial!",
+						"A Data de Abertura Final deve ser menor que Data de Abertura Inicial!");
+				FacesContext.getCurrentInstance().addMessage("", message);
 			}
-			solicitacao = new Solicitacao();
-			solicitacao.setSolicitante(new Servidor());
-			solicitacao.setStatusSolicitacao(new StatusSolicitacao());
-			solicitacao.setTipoSolicitacao(new TipoSolicitacao());
-			Autenticacao siapeAutenticado = (Autenticacao) FacesContext
-					.getCurrentInstance().getExternalContext().getSessionMap()
-					.get("usuarioLogado");
-			solicitacao.getSolicitante().setSiape(siapeAutenticado.getSiape());
-			solicitacao.setSolicitante(ServidorDAO.getInstance()
-					.refreshByFilter(solicitacao.getSolicitante()));
-			dataAberturaInicial = null;
-			dataAberturaFinal = null;
-			FacesContext.getCurrentInstance().getExternalContext()
-					.redirect("listarMinhasSolicitacoes.jsp");
-		} catch (IOException e) {
-			e.printStackTrace();
 		}
+		this.setMinhasSolicitacoes(SolicitacaoDAO.getInstance().listByFilter(
+				solicitacao, dataAberturaInicial, dataAberturaFinal));
+		for (Solicitacao item : this.getMinhasSolicitacoes()) {
+			Servidor servidor = new Servidor();
+			servidor.setSiape(item.getAtendente());
+			if (item.getAtendente() != null) {
+				item.setAtendenteLogado(ServidorDAO.getInstance()
+						.refreshBySiape(servidor));
+			}
+		}
+		solicitacao = new Solicitacao();
+		solicitacao.setSolicitante(new Servidor());
+		solicitacao.setStatusSolicitacao(new StatusSolicitacao());
+		solicitacao.setTipoSolicitacao(new TipoSolicitacao());
+		Autenticacao siapeAutenticado = (Autenticacao) FacesContext
+				.getCurrentInstance().getExternalContext().getSessionMap()
+				.get("usuarioLogado");
+		solicitacao.getSolicitante().setSiape(siapeAutenticado.getSiape());
+		solicitacao.setSolicitante(ServidorDAO.getInstance().refreshByFilter(
+				solicitacao.getSolicitante()));
+		dataAberturaInicial = null;
+		dataAberturaFinal = null;
 		return this.getMinhasSolicitacoes();
 	}
 
