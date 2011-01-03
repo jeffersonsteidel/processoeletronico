@@ -7,6 +7,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Instituto Federal do Paraná</title>
+<link rel="StyleSheet" type="text/css" href="../css/messages-style.css"
+	media="screen" />
 </head>
 <body>
 <f:view>
@@ -54,7 +56,11 @@
 					reRender="listaSolicitacoes, form" type="submit" />
 			</h:panelGrid>
 
-			<rich:messages layout="list">
+			<rich:messages layout="list" errorLabelClass="errorLabel"
+				style="top:auto;" infoLabelClass="infoLabel">
+				<f:facet name="infoMarker">
+					<h:graphicImage value="../images/passed.gif" />
+				</f:facet>
 				<f:facet name="errorMarker">
 					<h:graphicImage value="../images/error.gif" />
 				</f:facet>
