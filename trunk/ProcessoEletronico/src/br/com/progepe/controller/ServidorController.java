@@ -16,6 +16,7 @@ import br.com.progepe.dao.CidadeDAO;
 import br.com.progepe.dao.DAO;
 import br.com.progepe.dao.FuncaoServidorDAO;
 import br.com.progepe.dao.ServidorDAO;
+import br.com.progepe.encripty.Encripty;
 import br.com.progepe.entity.Autenticacao;
 import br.com.progepe.entity.Banco;
 import br.com.progepe.entity.Cargo;
@@ -620,6 +621,12 @@ public class ServidorController {
 						FuncaoServidorDAO.getInstance().updateFuncaoServidor(item);
 					}
 				}
+			}
+			if(servidor.getCodigo() == null || servidor.getCodigo() == 0){
+				Autenticacao autenticacao = new Autenticacao();
+				autenticacao.setSiape(servidor.getSiape());
+				autenticacao.setSenha(Encripty.criptografaSenha(servidor.getSiape().toString()));
+				AutenticacaoDAO.getInstance().saveAutenticacao(autenticacao);
 			}
 			DAO.getInstance().saveOrUpdate(servidor);
 			servidor = (Servidor) DAO.getInstance().refresh(servidor);

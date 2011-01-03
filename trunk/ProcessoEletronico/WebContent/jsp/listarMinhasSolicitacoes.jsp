@@ -7,6 +7,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Instituto Federal do Paraná</title>
+<link rel="StyleSheet" type="text/css" href="../css/messages-style.css"
+	media="screen" />
 </head>
 <body>
 <f:view>
@@ -14,11 +16,6 @@
 	<center><a4j:form id="form">
 		<rich:panel>
 			<font size="2"><b>MINHAS SOLICITAÇÕES</b></font>
-			<rich:messages layout="list">
-				<f:facet name="errorMarker">
-					<h:graphicImage value="../images/error.gif" />
-				</f:facet>
-			</rich:messages>
 			<h:panelGrid columns="9">
 				<h:outputText value="Data de Abertura Entre: " />
 				<h:panelGrid columns="3">
@@ -51,6 +48,17 @@
 					action="#{solicitacaoController.pesquisarMinhasSolicitacoes}"
 					reRender="listaSolicitacoes, form" type="submit" />
 			</h:panelGrid>
+			
+			
+			<rich:messages layout="list" errorLabelClass="errorLabel"
+				style="top:auto;" infoLabelClass="infoLabel">
+				<f:facet name="infoMarker">
+					<h:graphicImage value="../images/passed.gif" />
+				</f:facet>
+				<f:facet name="errorMarker">
+					<h:graphicImage value="../images/error.gif" />
+				</f:facet>
+			</rich:messages>
 
 			<rich:dataTable id="listarSolicitacoes"
 				value="#{solicitacaoController.minhasSolicitacoes}" var="list"
