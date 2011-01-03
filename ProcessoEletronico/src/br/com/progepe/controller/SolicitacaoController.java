@@ -241,18 +241,26 @@ public class SolicitacaoController implements Serializable {
 	public List<Solicitacao> pesquisarSolicitacoes() throws ParseException {
 		solicitacoes = new ArrayList<Solicitacao>();
 		solicitacoes.clear();
-		if (solicitacao.getSolicitante().getSiape() != 0) {
-			solicitacao.setSolicitante(ServidorDAO.getInstance()
-					.refreshByFilter(solicitacao.getSolicitante()));
+		if (dataAberturaInicial != null && dataAberturaFinal != null && dataAberturaInicial.after(dataAberturaFinal)) {
+			FacesMessage message = new FacesMessage(
+					FacesMessage.SEVERITY_ERROR,
+					"A Data de Abertura Inicial deve ser menor que Data de Abertura Final!",
+					"A Data de Abertura Inicial deve ser menor que Data de Abertura Final!");
+			FacesContext.getCurrentInstance().addMessage("", message);
+		} else {
+			if (solicitacao.getSolicitante().getSiape() != 0) {
+				solicitacao.setSolicitante(ServidorDAO.getInstance()
+						.refreshByFilter(solicitacao.getSolicitante()));
+			}
+			this.setSolicitacoes(SolicitacaoDAO.getInstance().listByFilter(
+					solicitacao, dataAberturaInicial, dataAberturaFinal));
+			dataAberturaInicial = null;
+			dataAberturaFinal = null;
+			solicitacao = new Solicitacao();
+			solicitacao.setSolicitante(new Servidor());
+			solicitacao.setStatusSolicitacao(new StatusSolicitacao());
+			solicitacao.setTipoSolicitacao(new TipoSolicitacao());
 		}
-		this.setSolicitacoes(SolicitacaoDAO.getInstance().listByFilter(
-				solicitacao, dataAberturaInicial, dataAberturaFinal));
-		dataAberturaInicial = null;
-		dataAberturaFinal = null;
-		solicitacao = new Solicitacao();
-		solicitacao.setSolicitante(new Servidor());
-		solicitacao.setStatusSolicitacao(new StatusSolicitacao());
-		solicitacao.setTipoSolicitacao(new TipoSolicitacao());
 		return this.getSolicitacoes();
 	}
 
@@ -313,8 +321,9 @@ public class SolicitacaoController implements Serializable {
 		try {
 			minhasSolicitacoes = new ArrayList<Solicitacao>();
 			minhasSolicitacoes.clear();
-			this.setMinhasSolicitacoes(SolicitacaoDAO.getInstance().listByFilter(
-					solicitacao, dataAberturaInicial, dataAberturaFinal));
+			this.setMinhasSolicitacoes(SolicitacaoDAO.getInstance()
+					.listByFilter(solicitacao, dataAberturaInicial,
+							dataAberturaFinal));
 			for (Solicitacao item : this.getMinhasSolicitacoes()) {
 				Servidor servidor = new Servidor();
 				servidor.setSiape(item.getAtendente());
