@@ -32,115 +32,116 @@
 			<h:panelGrid columns="2">
 				<h:outputText value="Nome da Portaria: "></h:outputText>
 				<h:inputText value="#{portariaController.portaria.nome}" size="53"
-					maxlength="120" required="true" 
+					maxlength="120" required="true"
 					requiredMessage="Campo Nome da Portaria é obrigatório!">
 				</h:inputText>
 				<h:outputText value="Numero da Portaria: "></h:outputText>
-				<h:inputText value="#{portariaController.portaria.numero}" size="53" 
-					maxlength="11" required="true" onkeypress="mascara(this,soNumeros);"
+				<h:inputText value="#{portariaController.portaria.numero}" size="53"
+					maxlength="11" required="true"
+					onkeypress="mascara(this,soNumeros);"
 					requiredMessage="Campo Numero da Portaria é obrigatório!">
 				</h:inputText>
 				<h:outputText value="Data da Portaria: "></h:outputText>
 				<rich:calendar value="#{portariaController.portaria.data}" locale=""
-					popup="true" datePattern="dd/MM/yyyy" showApplyButton="#" 
+					popup="true" datePattern="dd/MM/yyyy" showApplyButton="#"
 					cellWidth="12px" cellHeight="12px" style="width:80px"
 					required="true" inputSize="12" ajaxSingle="true"
 					requiredMessage="Campo Data da Portaria é obrigatório!">
 				</rich:calendar>
 				<h:outputText value="Tipo da Portaria: "></h:outputText>
-				<h:selectOneMenu value="#{portariaController.portaria.tipo.codigo}" 
+				<h:selectOneMenu value="#{portariaController.portaria.tipo.codigo}"
 					required="true"
 					requiredMessage="Campo Tipo da Portaria é obrigatório!">
-					<f:selectItem itemLabel="SELECIONE" itemValue="" /> 
+					<f:selectItem itemLabel="SELECIONE" itemValue="" />
 					<f:selectItems value="#{portariaController.tiposPortaria}" />
 				</h:selectOneMenu>
 				<h:outputText value="Local da Portaria: "></h:outputText>
 				<h:selectOneMenu value="#{portariaController.portaria.local}"
-					required="true" 
+					required="true"
 					requiredMessage="Campo Local da Portaria é obrigatório!">
 					<f:selectItem itemLabel="SELECIONE" itemValue="" />
 					<f:selectItem itemLabel="PROGEPE" itemValue="PROGEPE" />
 					<f:selectItem itemLabel="REITORIA" itemValue="REITORIA" />
 				</h:selectOneMenu>
 				<h:outputText value="Descrição da Portaria: "></h:outputText>
-				<h:inputTextarea value="#{portariaController.portaria.descricao}" 
+				<h:inputTextarea value="#{portariaController.portaria.descricao}"
 					rows="10" cols="50">
 				</h:inputTextarea>
 			</h:panelGrid>
-			<rich:fileUpload rendered="#{portariaController.portaria.codigo == null}"
-				fileUploadListener="#{portariaController.listener}"  
+			<rich:fileUpload
+				rendered="#{portariaController.portaria.codigo == null}"
+				fileUploadListener="#{portariaController.listener}" required="true"
+				requiredMessage="É necessário adicionar a Portaria!"
 				maxFilesQuantity="5" clearAllControlLabel="Limpar Todos"
 				addControlLabel="Adicionar Pagina de Portaria" id="upload"
 				transferErrorLabel="Falha Ao realizar Transferência"
-				doneLabelClass="Finalizada" immediateUpload="true"
-				listWidth="400px" stopControlLabel="Parar"
-				acceptedTypes="jpg, gif, png, bmp" allowFlash="true"
-				sizeErrorLabel="Foto muito grande" uploadControlLabel="Carregar"
-				listHeight="70px">
+				doneLabelClass="Finalizada" immediateUpload="true" listWidth="400px"
+				stopControlLabel="Parar" acceptedTypes="jpg, gif, png, bmp"
+				allowFlash="true" sizeErrorLabel="Foto muito grande"
+				uploadControlLabel="Carregar" listHeight="70px">
 				<a4j:support event="onuploadcomplete" reRender="info" />
 			</rich:fileUpload>
 			<a4j:commandButton value="Salvar"
-				action="#{portariaController.salvar}"  reRender="form" />
-				
+				action="#{portariaController.salvar}" reRender="form" />
+
 			<h:panelGroup id="info">
 				<rich:panel bodyClass="info">
 					<rich:dataGrid columns="1"
-					value="#{portariaController.portaria.arquivo1 }"
-						var="file" rowKeyVar="row">
+						value="#{portariaController.portaria.arquivo1 }" var="file"
+						rowKeyVar="row">
 						<rich:panel bodyClass="rich-laguna-panel-no-header">
 							<h:panelGrid columns="5">
 								<a4j:mediaOutput element="img"
-									createContent="#{portariaController.paint1}"
-									value="#{row}" style="width:600px; height:800px;"
-									cacheable="false">
+									createContent="#{portariaController.paint1}" value="#{row}"
+									style="width:600px; height:800px;" cacheable="false">
 								</a4j:mediaOutput>
 							</h:panelGrid>
 						</rich:panel>
 					</rich:dataGrid>
-					<rich:dataGrid columns="1" value="#{portariaController.portaria.arquivo2 }"
-						var="file" rowKeyVar="row">
+					<rich:dataGrid columns="1"
+						value="#{portariaController.portaria.arquivo2 }" var="file"
+						rowKeyVar="row">
 						<rich:panel bodyClass="rich-laguna-panel-no-header">
 							<h:panelGrid columns="5">
 								<a4j:mediaOutput element="img"
-									createContent="#{portariaController.paint2}"
-									value="#{row}" style="width:600px; height:800px;"
-									cacheable="false">
+									createContent="#{portariaController.paint2}" value="#{row}"
+									style="width:600px; height:800px;" cacheable="false">
 								</a4j:mediaOutput>
 							</h:panelGrid>
 						</rich:panel>
 					</rich:dataGrid>
-					<rich:dataGrid columns="1" value="#{portariaController.portaria.arquivo3 }"
-						var="file" rowKeyVar="row">
+					<rich:dataGrid columns="1"
+						value="#{portariaController.portaria.arquivo3 }" var="file"
+						rowKeyVar="row">
 						<rich:panel bodyClass="rich-laguna-panel-no-header">
 							<h:panelGrid columns="5">
 								<a4j:mediaOutput element="img"
-									createContent="#{portariaController.paint3}"
-									value="#{row}" style="width:600px; height:800px;"
-									cacheable="false">
+									createContent="#{portariaController.paint3}" value="#{row}"
+									style="width:600px; height:800px;" cacheable="false">
 								</a4j:mediaOutput>
 							</h:panelGrid>
 						</rich:panel>
 					</rich:dataGrid>
-					<rich:dataGrid columns="1" value="#{portariaController.portaria.arquivo4 }"
-						var="file" rowKeyVar="row">
+					<rich:dataGrid columns="1"
+						value="#{portariaController.portaria.arquivo4 }" var="file"
+						rowKeyVar="row">
 						<rich:panel bodyClass="rich-laguna-panel-no-header">
 							<h:panelGrid columns="5">
 								<a4j:mediaOutput element="img"
-									createContent="#{portariaController.paint4}"
-									value="#{row}" style="width:600px; height:800px;"
-									cacheable="false">
+									createContent="#{portariaController.paint4}" value="#{row}"
+									style="width:600px; height:800px;" cacheable="false">
 								</a4j:mediaOutput>
 							</h:panelGrid>
 						</rich:panel>
 					</rich:dataGrid>
-					<rich:dataGrid columns="1" value="#{portariaController.portaria.arquivo5 }"
-						var="file" rowKeyVar="row">
+					<rich:dataGrid columns="1"
+						value="#{portariaController.portaria.arquivo5 }" var="file"
+						rowKeyVar="row">
 						<rich:panel bodyClass="rich-laguna-panel-no-header">
 							<h:panelGrid columns="5">
 								<a4j:mediaOutput element="img"
-									createContent="#{portariaController.paint5}"
-									value="#{row}" style="width:600px; height:800px;"
-									cacheable="false">
+									createContent="#{portariaController.paint5}" value="#{row}"
+									style="width:600px; height:800px;" cacheable="false">
 								</a4j:mediaOutput>
 							</h:panelGrid>
 						</rich:panel>
@@ -149,7 +150,7 @@
 			</h:panelGroup>
 
 		</rich:panel></center>
-		
+
 	</a4j:form>
 </f:view>
 </body>

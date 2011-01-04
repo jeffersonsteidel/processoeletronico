@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
 import javax.servlet.http.HttpServletResponse;
@@ -88,7 +89,6 @@ public class PortariaController implements Serializable {
 		this.portarias = portarias;
 	}
 
-
 	@SuppressWarnings("unchecked")
 	public List<SelectItem> listarTiposPortaria() {
 		tiposPortaria = new ArrayList<SelectItem>();
@@ -125,10 +125,17 @@ public class PortariaController implements Serializable {
 	}
 
 	public void salvar() throws IOException, ParseException {
-
-		DAO.getInstance().saveOrUpdate(portaria);
-		portaria = new Portaria();
-		files = new ArrayList<Portaria>();
+		if (portaria.getArquivo1() == null) {
+			FacesMessage message = new FacesMessage(
+					FacesMessage.SEVERITY_ERROR,
+					"É necessário adicionar a Portaria!",
+					"É necessário adicionar a Portaria!");
+			FacesContext.getCurrentInstance().addMessage("", message);
+		} else {
+			DAO.getInstance().saveOrUpdate(portaria);
+			portaria = new Portaria();
+			files = new ArrayList<Portaria>();
+		}
 	}
 
 	public void listarPortarias() throws IOException {
