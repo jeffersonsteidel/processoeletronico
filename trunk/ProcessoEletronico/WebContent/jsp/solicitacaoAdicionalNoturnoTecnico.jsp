@@ -60,15 +60,17 @@
 					<h:outputText value="Hora Inicial: " />
 					<h:inputText id="horaInicial"
 						value="#{solicitacaoAdicionalNoturnoController.adicionalNoturno.horaInicial}"
-						size="8" maxlength="5" onkeypress="mascara(this,horario);">
+						size="8" maxlength="5" onkeypress="mascara(this,horario);"
+						validatorMessage="O campo Hora Inicial deve ter 4 digitos">
+						<f:validateLength minimum="5" />
 					</h:inputText>
 
 					<h:outputText value="Hora Final: " />
 					<h:inputText id="horaFinal"
 						value="#{solicitacaoAdicionalNoturnoController.adicionalNoturno.horaFinal}"
 						size="8" maxlength="5" onkeypress="mascara(this,horario);"
-						validatorMessage="Campo Hora Final deve ter no mínimo 4 caracteres!">
-						<f:validateLength minimum="4" />
+						validatorMessage="O campo Hora Final deve ter 4 digitos">
+						<f:validateLength minimum="5" />
 					</h:inputText>
 
 				</h:panelGrid>
