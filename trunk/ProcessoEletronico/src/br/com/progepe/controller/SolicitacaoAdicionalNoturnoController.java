@@ -572,6 +572,7 @@ public class SolicitacaoAdicionalNoturnoController implements Serializable {
 		adicionalNoturno = new AdicionalNoturno();
 		adicionalNoturno.setServidor(new Servidor());
 	}
+	
 
 	public static String pesquisarDiaSemana(int diaSemana) {
 		String diaSemanaString = null;
