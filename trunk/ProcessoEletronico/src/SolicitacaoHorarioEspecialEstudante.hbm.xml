@@ -3,7 +3,8 @@
 	PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
     "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
-	<joined-subclass name="br.com.progepe.entity.SolicitacaoHorarioEspecialEstudante"
+	<joined-subclass
+		name="br.com.progepe.entity.SolicitacaoHorarioEspecialEstudante"
 		extends="br.com.progepe.entity.Solicitacao">
 		<key column="SOLIC_COD"></key>
 		<property name="curso" column="SOLIC_HOR_ESP_EST_CURSO" />
@@ -11,5 +12,29 @@
 		<property name="motivo" column="SOLIC_HOR_ESP_EST_MOTIVO" />
 		<property name="declaracaoMatricula" column="SOLIC_HOR_ESP_EST_DEC_MAT" />
 		<property name="documentoValidado" column="SOLIC_HOR_ESP_EST_DOC_VALIDADO" />
+		<property name="horarioEntradaSegunda" column="SOLIC_HOR_ESP_EST_SEG_ENT" />
+		<property name="horarioEntradaTerca" column="SOLIC_HOR_ESP_EST_TER_ENT" />
+		<property name="horarioEntradaQuarta" column="SOLIC_HOR_ESP_EST_QUA_ENT" />
+		<property name="horarioEntradaQuinta" column="SOLIC_HOR_ESP_EST_QUI_ENT" />
+		<property name="horarioEntradaSexta" column="SOLIC_HOR_ESP_EST_SEX_ENT" />
+		<property name="horarioEntradaSabado" column="SOLIC_HOR_ESP_EST_SAB_ENT" />
+		<property name="horarioSaidaAlmocoSegunda" column="SOLIC_HOR_ESP_EST_SEG_SAI_ALM" />
+		<property name="horarioSaidaAlmocoTerca" column="SOLIC_HOR_ESP_EST_TER_SAI_ALM" />
+		<property name="horarioSaidaAlmocoQuarta" column="SOLIC_HOR_ESP_EST_QUA_SAI_ALM" />
+		<property name="horarioSaidaAlmocoQuinta" column="SOLIC_HOR_ESP_EST_QUI_SAI_ALM" />
+		<property name="horarioSaidaAlmocoSexta" column="SOLIC_HOR_ESP_EST_SEX_SAI_ALM" />
+		<property name="horarioSaidaAlmocoSabado" column="SOLIC_HOR_ESP_EST_SAB_SAI_ALM" />
+		<property name="horarioRetornoAlmocoSegunda" column="SOLIC_HOR_ESP_EST_SEG_RET_ALM" />
+		<property name="horarioRetornoAlmocoTerca" column="SOLIC_HOR_ESP_EST_TER_RET_ALM" />
+		<property name="horarioRetornoAlmocoQuarta" column="SOLIC_HOR_ESP_EST_QUA_RET_ALM" />
+		<property name="horarioRetornoAlmocoQuinta" column="SOLIC_HOR_ESP_EST_QUI_RET_ALM" />
+		<property name="horarioRetornoAlmocoSexta" column="SOLIC_HOR_ESP_EST_SEX_RET_ALM" />
+		<property name="horarioRetornoAlmocoSabado" column="SOLIC_HOR_ESP_EST_SAB_RET_ALM" />
+		<property name="horarioSaidaSegunda" column="SOLIC_HOR_ESP_EST_SEG_SAI" />
+		<property name="horarioSaidaTerca" column="SOLIC_HOR_ESP_EST_TER_SAI" />
+		<property name="horarioSaidaQuarta" column="SOLIC_HOR_ESP_EST_QUA_SAI" />
+		<property name="horarioSaidaQuinta" column="SOLIC_HOR_ESP_EST_QUI_SAI" />
+		<property name="horarioSaidaSexta" column="SOLIC_HOR_ESP_EST_SEX_SAI" />
+		<property name="horarioSaidaSabado" column="SOLIC_HOR_ESP_EST_SAB_SAI" />
 	</joined-subclass>
 </hibernate-mapping>
