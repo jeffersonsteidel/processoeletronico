@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
 
@@ -29,7 +30,7 @@ public class SolicitacaoObitoController implements Serializable {
 
 	private SolicitacaoObito solicitacaoObito;
 	private List<SelectItem> grausParentescos = new ArrayList<SelectItem>();
-	
+
 	public SolicitacaoObito getSolicitacaoObito() {
 		return solicitacaoObito;
 	}
@@ -45,7 +46,7 @@ public class SolicitacaoObitoController implements Serializable {
 	public void setGrausParentescos(List<SelectItem> grausParentescos) {
 		this.grausParentescos = grausParentescos;
 	}
-	
+
 	public void abrirSolicitacaoObito() throws ParseException {
 		try {
 			solicitacaoObito = new SolicitacaoObito();
@@ -64,29 +65,37 @@ public class SolicitacaoObitoController implements Serializable {
 		Autenticacao siapeAutenticado = (Autenticacao) FacesContext
 				.getCurrentInstance().getExternalContext().getSessionMap()
 				.get("usuarioLogado");
-		solicitacaoObito.getSolicitante().setSiape(
-				siapeAutenticado.getSiape());
+		solicitacaoObito.getSolicitante().setSiape(siapeAutenticado.getSiape());
 		solicitacaoObito.setSolicitante(ServidorDAO.getInstance()
 				.refreshBySiape(solicitacaoObito.getSolicitante()));
 	}
-	
+
 	public void salvar() throws IOException, ParseException {
-		solicitacaoObito.setDataAbertura(new Date());
-		solicitacaoObito.setDataAtendimento(null);
-		solicitacaoObito.setTipoSolicitacao(new TipoSolicitacao());
-		solicitacaoObito.getTipoSolicitacao().setCodigo(
-				Constantes.TIPO_SOLICITACAO_OBITO);
-		solicitacaoObito.setStatusSolicitacao(new StatusSolicitacao());
-		solicitacaoObito.getStatusSolicitacao().setCodigo(
-				Constantes.STATUS_SOLICITACAO_ENCAMINHADO);
-		DAO.getInstance().saveOrUpdate(solicitacaoObito);
-		solicitacaoObito = new SolicitacaoObito();
-		solicitacaoObito.setFiles(new ArrayList<SolicitacaoObito>());
-		buscarServidorLogado();
+		if (solicitacaoObito.getCertidaoObito() == null) {
+			FacesMessage message = new FacesMessage(
+					FacesMessage.SEVERITY_ERROR,
+					"É necessário adicionar a Certidão de Obito!",
+					"É necessário adicionar a Certidão de Obito!");
+			FacesContext.getCurrentInstance().addMessage("", message);
+		} else {
+			solicitacaoObito.setDataAbertura(new Date());
+			solicitacaoObito.setDataAtendimento(null);
+			solicitacaoObito.setTipoSolicitacao(new TipoSolicitacao());
+			solicitacaoObito.getTipoSolicitacao().setCodigo(
+					Constantes.TIPO_SOLICITACAO_OBITO);
+			solicitacaoObito.setStatusSolicitacao(new StatusSolicitacao());
+			solicitacaoObito.getStatusSolicitacao().setCodigo(
+					Constantes.STATUS_SOLICITACAO_ENCAMINHADO);
+			DAO.getInstance().saveOrUpdate(solicitacaoObito);
+			solicitacaoObito = new SolicitacaoObito();
+			solicitacaoObito.setFiles(new ArrayList<SolicitacaoObito>());
+			buscarServidorLogado();
+		}
 	}
-	
+
 	public void paint(OutputStream stream, Object object) throws IOException {
-		stream.write(solicitacaoObito.getFiles().get((Integer) object).getCertidaoObito());
+		stream.write(solicitacaoObito.getFiles().get((Integer) object)
+				.getCertidaoObito());
 	}
 
 	public void listener(UploadEvent event) throws Exception {
@@ -94,13 +103,13 @@ public class SolicitacaoObitoController implements Serializable {
 		solicitacaoObito.setCertidaoObito(item.getData());
 		solicitacaoObito.getFiles().add(solicitacaoObito);
 	}
-	
-	
+
 	@SuppressWarnings("unchecked")
 	public List<SelectItem> listarGrauParentesco() {
 		grausParentescos = new ArrayList<SelectItem>();
 		List<GrauParentesco> grauParentescosList = new ArrayList<GrauParentesco>();
-		grauParentescosList = DAO.getInstance().list(GrauParentesco.class, "descricao");
+		grauParentescosList = DAO.getInstance().list(GrauParentesco.class,
+				"descricao");
 		for (GrauParentesco grauParentesco : grauParentescosList) {
 			grausParentescos.add(new SelectItem(grauParentesco.getCodigo(),
 					grauParentesco.getDescricao()));

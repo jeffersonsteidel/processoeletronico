@@ -7,6 +7,7 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 
 import org.richfaces.event.UploadEvent;
@@ -40,7 +41,8 @@ public class SolicitacaoHorarioEspecialEstudanteController implements
 			throws ParseException {
 		try {
 			solicitacaoHorarioEspecialEstudante = new SolicitacaoHorarioEspecialEstudante();
-			solicitacaoHorarioEspecialEstudante.setFiles(new ArrayList<SolicitacaoHorarioEspecialEstudante>());
+			solicitacaoHorarioEspecialEstudante
+					.setFiles(new ArrayList<SolicitacaoHorarioEspecialEstudante>());
 			buscarServidorLogado();
 			FacesContext.getCurrentInstance().getExternalContext()
 					.redirect("solicitacaoHorarioEspecialEstudante.jsp");
@@ -56,36 +58,47 @@ public class SolicitacaoHorarioEspecialEstudanteController implements
 				.get("usuarioLogado");
 		solicitacaoHorarioEspecialEstudante.getSolicitante().setSiape(
 				siapeAutenticado.getSiape());
-		solicitacaoHorarioEspecialEstudante.setSolicitante(ServidorDAO.getInstance()
-				.refreshBySiape(solicitacaoHorarioEspecialEstudante
-						.getSolicitante()));
+		solicitacaoHorarioEspecialEstudante.setSolicitante(ServidorDAO
+				.getInstance().refreshBySiape(
+						solicitacaoHorarioEspecialEstudante.getSolicitante()));
 	}
 
 	public void paint(OutputStream stream, Object object) throws IOException {
-		stream.write(solicitacaoHorarioEspecialEstudante.getFiles().get((Integer) object).getDeclaracaoMatricula());
+		stream.write(solicitacaoHorarioEspecialEstudante.getFiles()
+				.get((Integer) object).getDeclaracaoMatricula());
 	}
 
 	public void listener(UploadEvent event) throws Exception {
 		UploadItem item = event.getUploadItem();
-		solicitacaoHorarioEspecialEstudante.setDeclaracaoMatricula(item.getData());
-		solicitacaoHorarioEspecialEstudante.getFiles().add(solicitacaoHorarioEspecialEstudante);
+		solicitacaoHorarioEspecialEstudante.setDeclaracaoMatricula(item
+				.getData());
+		solicitacaoHorarioEspecialEstudante.getFiles().add(
+				solicitacaoHorarioEspecialEstudante);
 	}
 
 	public void salvar() throws IOException, ParseException {
-		solicitacaoHorarioEspecialEstudante.setDataAbertura(new Date());
-		solicitacaoHorarioEspecialEstudante.setDataAtendimento(null);
-		solicitacaoHorarioEspecialEstudante
-				.setTipoSolicitacao(new TipoSolicitacao());
-		solicitacaoHorarioEspecialEstudante.getTipoSolicitacao().setCodigo(
-				Constantes.TIPO_SOLICITACAO_HORARIO_ESPECIAL_ESTUDANTE);
-		solicitacaoHorarioEspecialEstudante
-				.setStatusSolicitacao(new StatusSolicitacao());
-		solicitacaoHorarioEspecialEstudante.getStatusSolicitacao().setCodigo(
-				Constantes.STATUS_SOLICITACAO_ENCAMINHADO);
-		DAO.getInstance().saveOrUpdate(solicitacaoHorarioEspecialEstudante);
-		solicitacaoHorarioEspecialEstudante = new SolicitacaoHorarioEspecialEstudante();
-		solicitacaoHorarioEspecialEstudante.setFiles(new ArrayList<SolicitacaoHorarioEspecialEstudante>());
-		buscarServidorLogado();
+		if (solicitacaoHorarioEspecialEstudante.getDeclaracaoMatricula() == null) {
+			FacesMessage message = new FacesMessage(
+					FacesMessage.SEVERITY_ERROR,
+					"É necessário adicionar a Declaração de Matricula!",
+					"É necessário adicionar a Declaração de Matricula!");
+			FacesContext.getCurrentInstance().addMessage("", message);
+		} else {
+			solicitacaoHorarioEspecialEstudante.setDataAbertura(new Date());
+			solicitacaoHorarioEspecialEstudante.setDataAtendimento(null);
+			solicitacaoHorarioEspecialEstudante
+					.setTipoSolicitacao(new TipoSolicitacao());
+			solicitacaoHorarioEspecialEstudante.getTipoSolicitacao().setCodigo(
+					Constantes.TIPO_SOLICITACAO_HORARIO_ESPECIAL_ESTUDANTE);
+			solicitacaoHorarioEspecialEstudante
+					.setStatusSolicitacao(new StatusSolicitacao());
+			solicitacaoHorarioEspecialEstudante.getStatusSolicitacao()
+					.setCodigo(Constantes.STATUS_SOLICITACAO_ENCAMINHADO);
+			DAO.getInstance().saveOrUpdate(solicitacaoHorarioEspecialEstudante);
+			solicitacaoHorarioEspecialEstudante = new SolicitacaoHorarioEspecialEstudante();
+			solicitacaoHorarioEspecialEstudante
+					.setFiles(new ArrayList<SolicitacaoHorarioEspecialEstudante>());
+			buscarServidorLogado();
+		}
 	}
-
 }
