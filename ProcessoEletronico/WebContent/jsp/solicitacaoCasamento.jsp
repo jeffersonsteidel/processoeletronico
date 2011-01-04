@@ -56,7 +56,7 @@
 
 			<rich:fileUpload
 				fileUploadListener="#{solicitacaoCasamentoController.listener}"
-				maxFilesQuantity="1"
+				maxFilesQuantity="1" required="true" requiredMessage="É necessário adicionar a  Certidão de Casamento!"
 				addControlLabel="Adicionar Certidao de Casamento" id="upload"
 				transferErrorLabel="Falha Ao realizar Transferência"
 				doneLabelClass="Finalizada" autoclear="true" immediateUpload="true"

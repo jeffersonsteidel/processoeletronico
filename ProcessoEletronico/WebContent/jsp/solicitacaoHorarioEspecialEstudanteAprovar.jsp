@@ -32,6 +32,9 @@
 				<h:outputText
 					value="Solicitante: #{solicitacaoController.solicitacaoHorarioEspecialEstudante.solicitante.siape} - #{solicitacaoController.solicitacaoHorarioEspecialEstudante.solicitante.nome}">
 				</h:outputText>
+				<h:outputText
+					value="Jornada de Trabalho - #{solicitacaoHorarioEspecialEstudanteController.solicitacaoHorarioEspecialEstudante.solicitante.regimeTrabalho.descricao}">
+				</h:outputText>
 			</h:panelGrid>
 
 			<h:panelGrid columns="2">
@@ -49,6 +52,65 @@
 				<h:outputText
 					value="#{solicitacaoController.solicitacaoHorarioEspecialEstudante.motivo}">
 				</h:outputText>
+			</h:panelGrid>
+			
+			<h:panelGrid columns="1">
+				<h:outputText value="Horário de Compensação: " />
+				<h:outputText value="Segunda-feira " />
+				<h:panelGrid columns="8">
+					<h:outputText value="Entrada: " />
+					<h:outputText value="" />
+					<h:outputText value="Saída para Almoço:" />
+					<h:outputText value="" />
+					<h:outputText value="Retorno do Almoço: " />
+					<h:outputText value="" />
+					<h:outputText value="Saída: " />
+					<h:outputText value="" />
+				</h:panelGrid>
+				<h:outputText value="Terça-feira " />
+					<h:panelGrid columns="8">
+					<h:outputText value="Entrada: " />
+					<h:outputText value="" />
+					<h:outputText value="Saída para Almoço:" />
+					<h:outputText value="" />
+					<h:outputText value="Retorno do Almoço: " />
+					<h:outputText value="" />
+					<h:outputText value="Saída: " />
+					<h:outputText value="" />
+				</h:panelGrid>
+				<h:outputText value="Quarta-feira" />
+					<h:panelGrid columns="8">
+					<h:outputText value="Entrada: " />
+					<h:outputText value="" />
+					<h:outputText value="Saída para Almoço:" />
+					<h:outputText value="" />
+					<h:outputText value="Retorno do Almoço: " />
+					<h:outputText value="" />
+					<h:outputText value="Saída: " />
+					<h:outputText value="" />
+				</h:panelGrid>
+				<h:outputText value="Quinta-feira " />
+					<h:panelGrid columns="8">
+					<h:outputText value="Entrada: " />
+					<h:outputText value="" />
+					<h:outputText value="Saída para Almoço:" />
+					<h:outputText value="" />
+					<h:outputText value="Retorno do Almoço: " />
+					<h:outputText value="" />
+					<h:outputText value="Saída: " />
+					<h:outputText value="" />
+				</h:panelGrid>
+				<h:outputText value="Sexta-feira" />
+					<h:panelGrid columns="8">
+					<h:outputText value="Entrada: " />
+					<h:outputText value="" />
+					<h:outputText value="Saída para Almoço:" />
+					<h:outputText value="" />
+					<h:outputText value="Retorno do Almoço: " />
+					<h:outputText value="" />
+					<h:outputText value="Saída: " />
+					<h:outputText value="" />
+				</h:panelGrid>
 			</h:panelGrid>
 			
 			<h:panelGroup id="info">

@@ -32,6 +32,9 @@
 				<h:outputText
 					value="#{solicitacaoHorarioEspecialEstudanteController.solicitacaoHorarioEspecialEstudante.solicitante.siape} - #{solicitacaoHorarioEspecialEstudanteController.solicitacaoHorarioEspecialEstudante.solicitante.nome}">
 				</h:outputText>
+				<h:outputText
+					value="Jornada de Trabalho - #{solicitacaoHorarioEspecialEstudanteController.solicitacaoHorarioEspecialEstudante.solicitante.regimeTrabalho.descricao}">
+				</h:outputText>
 			</h:panelGrid>
 
 			<h:panelGrid columns="2">
@@ -57,9 +60,129 @@
 				</h:inputTextarea>
 			</h:panelGrid>
 
+			
+			<h:panelGrid columns="1">
+				<h:outputText value="Horário de Compensação: " />
+				<h:outputText value="Segunda-feira " />
+				<h:panelGrid columns="8">
+					<h:outputText value="Entrada: " />
+					<h:inputText
+						value=""
+						size="8" maxlength="5" onkeypress="mascara(this,horario);">
+					</h:inputText>
+					<h:outputText value="Saída para Almoço:" />
+					<h:inputText
+						value=""
+						size="8" maxlength="5" onkeypress="mascara(this,horario);">
+					</h:inputText>
+					<h:outputText value="Retorno do Almoço: " />
+					<h:inputText
+						value=""
+						size="8" maxlength="5" onkeypress="mascara(this,horario);">
+					</h:inputText>
+					<h:outputText value="Saída: " />
+					<h:inputText
+						value=""
+						size="8" maxlength="5" onkeypress="mascara(this,horario);">
+					</h:inputText>
+				</h:panelGrid>
+				<h:outputText value="Terça-feira " />
+					<h:panelGrid columns="8">
+					<h:outputText value="Entrada: " />
+					<h:inputText
+						value=""
+						size="8" maxlength="5" onkeypress="mascara(this,horario);">
+					</h:inputText>
+					<h:outputText value="Saída para Almoço:" />
+					<h:inputText
+						value=""
+						size="8" maxlength="5" onkeypress="mascara(this,horario);">
+					</h:inputText>
+					<h:outputText value="Retorno do Almoço: " />
+					<h:inputText
+						value=""
+						size="8" maxlength="5" onkeypress="mascara(this,horario);">
+					</h:inputText>
+					<h:outputText value="Saída: " />
+					<h:inputText
+						value=""
+						size="8" maxlength="5" onkeypress="mascara(this,horario);">
+					</h:inputText>
+				</h:panelGrid>
+				<h:outputText value="Quarta-feira" />
+					<h:panelGrid columns="8">
+					<h:outputText value="Entrada: " />
+					<h:inputText
+						value=""
+						size="8" maxlength="5" onkeypress="mascara(this,horario);">
+					</h:inputText>
+					<h:outputText value="Saída para Almoço:" />
+					<h:inputText
+						value=""
+						size="8" maxlength="5" onkeypress="mascara(this,horario);">
+					</h:inputText>
+					<h:outputText value="Retorno do Almoço: " />
+					<h:inputText
+						value=""
+						size="8" maxlength="5" onkeypress="mascara(this,horario);">
+					</h:inputText>
+					<h:outputText value="Saída: " />
+					<h:inputText
+						value=""
+						size="8" maxlength="5" onkeypress="mascara(this,horario);">
+					</h:inputText>
+				</h:panelGrid>
+				<h:outputText value="Quinta-feira " />
+					<h:panelGrid columns="8">
+					<h:outputText value="Entrada: " />
+					<h:inputText
+						value=""
+						size="8" maxlength="5" onkeypress="mascara(this,horario);">
+					</h:inputText>
+					<h:outputText value="Saída para Almoço:" />
+					<h:inputText
+						value=""
+						size="8" maxlength="5" onkeypress="mascara(this,horario);">
+					</h:inputText>
+					<h:outputText value="Retorno do Almoço: " />
+					<h:inputText
+						value=""
+						size="8" maxlength="5" onkeypress="mascara(this,horario);">
+					</h:inputText>
+					<h:outputText value="Saída: " />
+					<h:inputText
+						value=""
+						size="8" maxlength="5" onkeypress="mascara(this,horario);">
+					</h:inputText>
+				</h:panelGrid>
+				<h:outputText value="Sexta-feira" />
+					<h:panelGrid columns="8">
+					<h:outputText value="Entrada: " />
+					<h:inputText
+						value=""
+						size="8" maxlength="5" onkeypress="mascara(this,horario);">
+					</h:inputText>
+					<h:outputText value="Saída para Almoço:" />
+					<h:inputText
+						value=""
+						size="8" maxlength="5" onkeypress="mascara(this,horario);">
+					</h:inputText>
+					<h:outputText value="Retorno do Almoço: " />
+					<h:inputText
+						value=""
+						size="8" maxlength="5" onkeypress="mascara(this,horario);">
+					</h:inputText>
+					<h:outputText value="Saída: " />
+					<h:inputText
+						value=""
+						size="8" maxlength="5" onkeypress="mascara(this,horario);">
+					</h:inputText>
+				</h:panelGrid>
+			</h:panelGrid>
+
 			<rich:fileUpload
 				fileUploadListener="#{solicitacaoHorarioEspecialEstudanteController.listener}"
-				maxFilesQuantity="1"
+				maxFilesQuantity="1" required="true" requiredMessage="É necessário adicionar a Declaração de Matrícula!"
 				addControlLabel="Adicionar Declaracao de Matricula" id="upload"
 				transferErrorLabel="Falha Ao realizar Transferência"
 				doneLabelClass="Finalizada" autoclear="true" immediateUpload="true"
