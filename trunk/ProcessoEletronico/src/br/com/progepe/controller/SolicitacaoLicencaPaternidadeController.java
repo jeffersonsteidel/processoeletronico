@@ -7,6 +7,7 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 
 import org.richfaces.event.UploadEvent;
@@ -35,7 +36,6 @@ public class SolicitacaoLicencaPaternidadeController implements Serializable {
 		this.solicitacaoLicencaPaternidade = solicitacaoLicencaPaternidade;
 	}
 
-
 	public void abrirSolicitacaoPaternidade() throws ParseException {
 		try {
 			solicitacaoLicencaPaternidade = new SolicitacaoLicencaPaternidade();
@@ -56,39 +56,53 @@ public class SolicitacaoLicencaPaternidadeController implements Serializable {
 		solicitacaoLicencaPaternidade.getSolicitante().setSiape(
 				siapeAutenticado.getSiape());
 		solicitacaoLicencaPaternidade
-				.setSolicitante(ServidorDAO.getInstance()
-						.refreshBySiape(solicitacaoLicencaPaternidade
-								.getSolicitante()));
+				.setSolicitante(ServidorDAO.getInstance().refreshBySiape(
+						solicitacaoLicencaPaternidade.getSolicitante()));
 	}
 
 	public void paint(OutputStream stream, Object object) throws IOException {
-		stream.write(solicitacaoLicencaPaternidade.getFiles().get((Integer)object).getCertidaoNascimento());
+		stream.write(solicitacaoLicencaPaternidade.getFiles()
+				.get((Integer) object).getCertidaoNascimento());
 	}
 
 	public void listener(UploadEvent event) throws Exception {
 		UploadItem item = event.getUploadItem();
 		solicitacaoLicencaPaternidade.setCertidaoNascimento(item.getData());
-		solicitacaoLicencaPaternidade.getFiles().add(solicitacaoLicencaPaternidade);
+		solicitacaoLicencaPaternidade.getFiles().add(
+				solicitacaoLicencaPaternidade);
 	}
 
 	public void salvar() throws IOException, ParseException {
-		solicitacaoLicencaPaternidade.setDataAbertura(new Date());
-		solicitacaoLicencaPaternidade.setDataAtendimento(null);
-		solicitacaoLicencaPaternidade.setTipoSolicitacao(new TipoSolicitacao());
-		solicitacaoLicencaPaternidade.getTipoSolicitacao().setCodigo(
-				Constantes.TIPO_SOLICITACAO_LICENCA_PATERNIDADE);
-		solicitacaoLicencaPaternidade
-				.setStatusSolicitacao(new StatusSolicitacao());
-		solicitacaoLicencaPaternidade.getStatusSolicitacao().setCodigo(
-				Constantes.STATUS_SOLICITACAO_ENCAMINHADO);
-		DAO.getInstance().saveOrUpdate(solicitacaoLicencaPaternidade);
-		solicitacaoLicencaPaternidade = new SolicitacaoLicencaPaternidade();
-		solicitacaoLicencaPaternidade.setFiles(new ArrayList<SolicitacaoLicencaPaternidade>());
-		buscarServidorLogado();
+		if (solicitacaoLicencaPaternidade.getCertidaoNascimento() == null) {
+			FacesMessage message = new FacesMessage(
+					FacesMessage.SEVERITY_ERROR,
+					"É necessário adicionar a Certidão de Nascimento!",
+					"É necessário adicionar a Certidão de Nascimento!");
+			FacesContext.getCurrentInstance().addMessage("", message);
+		} else {
+			solicitacaoLicencaPaternidade.setDataAbertura(new Date());
+			solicitacaoLicencaPaternidade.setDataAtendimento(null);
+			solicitacaoLicencaPaternidade
+					.setTipoSolicitacao(new TipoSolicitacao());
+			solicitacaoLicencaPaternidade.getTipoSolicitacao().setCodigo(
+					Constantes.TIPO_SOLICITACAO_LICENCA_PATERNIDADE);
+			solicitacaoLicencaPaternidade
+					.setStatusSolicitacao(new StatusSolicitacao());
+			solicitacaoLicencaPaternidade.getStatusSolicitacao().setCodigo(
+					Constantes.STATUS_SOLICITACAO_ENCAMINHADO);
+			DAO.getInstance().saveOrUpdate(solicitacaoLicencaPaternidade);
+			solicitacaoLicencaPaternidade = new SolicitacaoLicencaPaternidade();
+			solicitacaoLicencaPaternidade
+					.setFiles(new ArrayList<SolicitacaoLicencaPaternidade>());
+			buscarServidorLogado();
+		}
 	}
-	
-	public void carregar(SolicitacaoLicencaPaternidade codigoSolicitacaoLicencaPaternidade) throws IOException{
-		solicitacaoLicencaPaternidade = codigoSolicitacaoLicencaPaternidade; //(SolicitacaoLicencaPaternidade) dao.refresh(codigoSolicitacaoLicencaPaternidade);
+
+	public void carregar(
+			SolicitacaoLicencaPaternidade codigoSolicitacaoLicencaPaternidade)
+			throws IOException {
+		solicitacaoLicencaPaternidade = codigoSolicitacaoLicencaPaternidade; // (SolicitacaoLicencaPaternidade)
+																				// dao.refresh(codigoSolicitacaoLicencaPaternidade);
 		System.out.println(solicitacaoLicencaPaternidade.getDataNascimento());
 		FacesContext.getCurrentInstance().getExternalContext()
 				.redirect("solicitacaoLicencaPaternidadeAprovar.jsp");
