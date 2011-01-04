@@ -23,10 +23,28 @@ function telefone(v) {
 
 function horario(v) {
 	v = v.replace(/\D/g, ""); // Remove tudo o que não é número
-	v = v.replace(/(\d{2})(\d)/, "$1:$2"); // Coloca ':' entre o segundo e o
-											// terceiro dgitos
+	v = v.replace(/(\d{2})(\d)/, "$1:$2"); // Coloca ':' entre o segundo e o// terceiro dgitos
+	
+	if (v.length == 5){ 
+		situacao = ""; 
+		hrs = (v.substring(0,2)); 
+        min = (v.substring(3,5)); 
+	    // verifica data e hora 
+	    if ((hrs < 00 ) || (hrs > 23) || ( min < 00) ||( min > 59)){ 
+	        situacao = "falsa"; 
+	    } 
+	     
+	    if (v.value == "") { 
+	        situacao = "falsa"; 
+	    } 
+
+	    if (situacao == "falsa") { 
+	       v = "";
+	    }  
+    } 
 	return v;
 }
+
 
 function cpf(v) {
 	v = v.replace(/\D/g, ""); // Remove tudo o que no dgito
