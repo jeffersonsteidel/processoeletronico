@@ -64,35 +64,49 @@
 			<h:panelGrid columns="1">
 				<h:outputText value="Horário de Compensação: " />
 				<h:outputText value="Segunda-feira " />
-				<h:panelGrid columns="8">
+				<h:panelGrid columns="9">
 					<h:outputText value="Entrada: " />
-					<h:inputText
+					<h:inputText id="entradaSegunda"
 						value="#{solicitacaoHorarioEspecialEstudanteController.solicitacaoHorarioEspecialEstudante.horarioEntradaSegunda}"
 						size="8" maxlength="5" onkeypress="mascara(this,horario);"
 						validatorMessage="O campo Entrada (Segunda-Feira) deve ter 4 digitos">
 						<f:validateLength minimum="5" />
+						<a4j:support event="onchange"
+							action="#{solicitacaoHorarioEspecialEstudanteController.calcularTempo}"
+							ajaxSingle="true" reRender="segunda, entradaSegunda, saidaAlmocoSegunda, retornoAlmocoSegunda, saidaSegunda"></a4j:support>
 					</h:inputText>
 					<h:outputText value="Saída para Almoço:" />
-					<h:inputText
+					<h:inputText id="saidaAlmocoSegunda"
 						value="#{solicitacaoHorarioEspecialEstudanteController.solicitacaoHorarioEspecialEstudante.horarioSaidaAlmocoSegunda}"
 						size="8" maxlength="5" onkeypress="mascara(this,horario);"
 						validatorMessage="O campo Saida para Almoço (Segunda-Feira) deve ter 4 digitos">
 						<f:validateLength minimum="5" />
+						<a4j:support event="onchange"
+							action="#{solicitacaoHorarioEspecialEstudanteController.calcularTempo}"
+							ajaxSingle="true" reRender="segunda, entradaSegunda, saidaAlmocoSegunda, retornoAlmocoSegunda, saidaSegunda"></a4j:support>
 					</h:inputText>
 					<h:outputText value="Retorno do Almoço: " />
-					<h:inputText
+					<h:inputText id="retornoAlmocoSegunda"
 						value="#{solicitacaoHorarioEspecialEstudanteController.solicitacaoHorarioEspecialEstudante.horarioRetornoAlmocoSegunda}"
 						size="8" maxlength="5" onkeypress="mascara(this,horario);"
 						validatorMessage="O campo Retorno do Almoço (Segunda-Feira) deve ter 4 digitos">
 						<f:validateLength minimum="5" />
+						<a4j:support event="onchange"
+							action="#{solicitacaoHorarioEspecialEstudanteController.calcularTempo}"
+							ajaxSingle="true" reRender="segunda, entradaSegunda, saidaAlmocoSegunda, retornoAlmocoSegunda, saidaSegunda"></a4j:support>
 					</h:inputText>
 					<h:outputText value="Saída: " />
-					<h:inputText
+					<h:inputText id="saidaSegunda"
 						value="#{solicitacaoHorarioEspecialEstudanteController.solicitacaoHorarioEspecialEstudante.horarioSaidaSegunda}"
 						size="8" maxlength="5" onkeypress="mascara(this,horario);"
 						validatorMessage="O campo Saida (Segunda-Feira) deve ter 4 digitos">
 						<f:validateLength minimum="5" />
+						<a4j:support event="onchange"
+							action="#{solicitacaoHorarioEspecialEstudanteController.calcularTempo}"
+							ajaxSingle="true" reRender="segunda, entradaSegunda, saidaAlmocoSegunda, retornoAlmocoSegunda, saidaSegunda"></a4j:support>
 					</h:inputText>
+					<h:outputText id="segunda"
+						value="#{solicitacaoHorarioEspecialEstudanteController.totalSegunda}" />
 				</h:panelGrid>
 				<h:outputText value="Terça-feira " />
 				<h:panelGrid columns="8">
