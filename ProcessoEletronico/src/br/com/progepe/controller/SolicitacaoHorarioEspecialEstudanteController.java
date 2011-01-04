@@ -742,5 +742,48 @@ public class SolicitacaoHorarioEspecialEstudanteController implements
 						.getHorarioSaidaAlmocoSabado() != "")){
 			totalSabado = null;
 		}
+		
+		// TOTAL
+		
+		Integer totalHoras = 0;
+		Integer totalMinutos = 0;
+		Integer totalMinutosHoras;
+		if(totalSegunda != null && totalSegunda != ""){
+			totalHoras = totalHoras + (Integer.parseInt(totalSegunda.substring(0, 2)));
+			totalMinutos = totalMinutos + (Integer.parseInt(totalSegunda.substring(3)));
+		}
+		if(totalTerca != null && totalTerca != ""){
+			totalHoras = totalHoras + (Integer.parseInt(totalTerca.substring(0, 2)));
+			totalMinutos = totalMinutos + (Integer.parseInt(totalTerca.substring(3)));
+		}
+		if(totalQuarta != null && totalQuarta != ""){
+			totalHoras = totalHoras + (Integer.parseInt(totalQuarta.substring(0, 2)));
+			totalMinutos = totalMinutos + (Integer.parseInt(totalQuarta.substring(3)));
+		}
+		if(totalQuinta != null && totalQuinta != ""){
+			totalHoras = totalHoras + (Integer.parseInt(totalQuinta.substring(0, 2)));
+			totalMinutos = totalMinutos + (Integer.parseInt(totalQuinta.substring(3)));
+		}
+		if(totalSexta != null && totalSexta != ""){
+			totalHoras = totalHoras + (Integer.parseInt(totalSexta.substring(0, 2)));
+			totalMinutos = totalMinutos + (Integer.parseInt(totalSexta.substring(3)));
+		}
+		if(totalSabado != null && totalSabado != ""){
+			totalHoras = totalHoras + (Integer.parseInt(totalSabado.substring(0, 2)));
+			totalMinutos = totalMinutos + (Integer.parseInt(totalSabado.substring(3)));
+		}
+		totalMinutosHoras = (Integer) totalMinutos / 60;
+		totalMinutos = totalMinutos % 60;
+		totalHoras = totalHoras + totalMinutosHoras;
+		if (totalHoras < 10) {
+			totalSemana = "0" + totalHoras.toString();
+		} else {
+			totalSemana = totalHoras.toString();
+		}
+		if (totalMinutos < 10) {
+			totalSemana = totalSemana + ":0" + totalMinutos.toString();
+		} else {
+			totalSemana = totalSabado + ":" + totalMinutos.toString();
+		}
 	}
 }
