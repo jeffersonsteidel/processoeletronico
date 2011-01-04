@@ -68,22 +68,30 @@
 					<h:outputText value="Entrada: " />
 					<h:inputText
 						value="#{solicitacaoHorarioEspecialEstudanteController.solicitacaoHorarioEspecialEstudante.horarioEntradaSegunda}"
-						size="8" maxlength="5" onkeypress="mascara(this,horario);">
+						size="8" maxlength="5" onkeypress="mascara(this,horario);"
+						validatorMessage="O campo Entrada (Segunda-Feira) deve ter 4 digitos">
+						<f:validateLength minimum="5" />
 					</h:inputText>
 					<h:outputText value="Saída para Almoço:" />
 					<h:inputText
 						value="#{solicitacaoHorarioEspecialEstudanteController.solicitacaoHorarioEspecialEstudante.horarioSaidaAlmocoSegunda}"
-						size="8" maxlength="5" onkeypress="mascara(this,horario);">
+						size="8" maxlength="5" onkeypress="mascara(this,horario);"
+						validatorMessage="O campo Saida para Almoço (Segunda-Feira) deve ter 4 digitos">
+						<f:validateLength minimum="5" />
 					</h:inputText>
 					<h:outputText value="Retorno do Almoço: " />
 					<h:inputText
 						value="#{solicitacaoHorarioEspecialEstudanteController.solicitacaoHorarioEspecialEstudante.horarioRetornoAlmocoSegunda}"
-						size="8" maxlength="5" onkeypress="mascara(this,horario);">
+						size="8" maxlength="5" onkeypress="mascara(this,horario);"
+						validatorMessage="O campo Retorno do Almoço (Segunda-Feira) deve ter 4 digitos">
+						<f:validateLength minimum="5" />
 					</h:inputText>
 					<h:outputText value="Saída: " />
 					<h:inputText
 						value="#{solicitacaoHorarioEspecialEstudanteController.solicitacaoHorarioEspecialEstudante.horarioSaidaSegunda}"
-						size="8" maxlength="5" onkeypress="mascara(this,horario);">
+						size="8" maxlength="5" onkeypress="mascara(this,horario);"
+						validatorMessage="O campo Saida (Segunda-Feira) deve ter 4 digitos">
+						<f:validateLength minimum="5" />
 					</h:inputText>
 				</h:panelGrid>
 				<h:outputText value="Terça-feira " />
@@ -91,22 +99,30 @@
 					<h:outputText value="Entrada: " />
 					<h:inputText
 						value="#{solicitacaoHorarioEspecialEstudanteController.solicitacaoHorarioEspecialEstudante.horarioEntradaTerca}"
-						size="8" maxlength="5" onkeypress="mascara(this,horario);">
+						size="8" maxlength="5" onkeypress="mascara(this,horario);"
+						validatorMessage="O campo Entrada (Terça-Feira) deve ter 4 digitos">
+						<f:validateLength minimum="5" />
 					</h:inputText>
 					<h:outputText value="Saída para Almoço:" />
 					<h:inputText
 						value="#{solicitacaoHorarioEspecialEstudanteController.solicitacaoHorarioEspecialEstudante.horarioSaidaAlmocoTerca}"
-						size="8" maxlength="5" onkeypress="mascara(this,horario);">
+						size="8" maxlength="5" onkeypress="mascara(this,horario);"
+						validatorMessage="O campo Saida para Almoço (Terça-Feira) deve ter 4 digitos">
+						<f:validateLength minimum="5" />
 					</h:inputText>
 					<h:outputText value="Retorno do Almoço: " />
 					<h:inputText
 						value="#{solicitacaoHorarioEspecialEstudanteController.solicitacaoHorarioEspecialEstudante.horarioRetornoAlmocoTerca}"
-						size="8" maxlength="5" onkeypress="mascara(this,horario);">
+						size="8" maxlength="5" onkeypress="mascara(this,horario);"
+						validatorMessage="O campo Retorno do Almoço (Terça-Feira) deve ter 4 digitos">
+						<f:validateLength minimum="5" />
 					</h:inputText>
 					<h:outputText value="Saída: " />
 					<h:inputText
 						value="#{solicitacaoHorarioEspecialEstudanteController.solicitacaoHorarioEspecialEstudante.horarioSaidaTerca}"
-						size="8" maxlength="5" onkeypress="mascara(this,horario);">
+						size="8" maxlength="5" onkeypress="mascara(this,horario);"
+						validatorMessage="O campo Saida (Terça-Feira) deve ter 4 digitos">
+						<f:validateLength minimum="5" />
 					</h:inputText>
 				</h:panelGrid>
 				<h:outputText value="Quarta-feira" />
@@ -114,22 +130,30 @@
 					<h:outputText value="Entrada: " />
 					<h:inputText
 						value="#{solicitacaoHorarioEspecialEstudanteController.solicitacaoHorarioEspecialEstudante.horarioEntradaQuarta}"
-						size="8" maxlength="5" onkeypress="mascara(this,horario);">
+						size="8" maxlength="5" onkeypress="mascara(this,horario);"
+						validatorMessage="O campo Entrada (Quarta-Feira) deve ter 4 digitos">
+						<f:validateLength minimum="5" />
 					</h:inputText>
 					<h:outputText value="Saída para Almoço:" />
 					<h:inputText
 						value="#{solicitacaoHorarioEspecialEstudanteController.solicitacaoHorarioEspecialEstudante.horarioSaidaAlmocoQuarta}"
-						size="8" maxlength="5" onkeypress="mascara(this,horario);">
+						size="8" maxlength="5" onkeypress="mascara(this,horario);"
+						validatorMessage="O campo Saida para Almoço (Quarta-Feira) deve ter 4 digitos">
+						<f:validateLength minimum="5" />
 					</h:inputText>
 					<h:outputText value="Retorno do Almoço: " />
 					<h:inputText
 						value="#{solicitacaoHorarioEspecialEstudanteController.solicitacaoHorarioEspecialEstudante.horarioRetornoAlmocoQuarta}"
-						size="8" maxlength="5" onkeypress="mascara(this,horario);">
+						size="8" maxlength="5" onkeypress="mascara(this,horario);"
+						validatorMessage="O campo Retorno do Almoço (Quarta-Feira) deve ter 4 digitos">
+						<f:validateLength minimum="5" />
 					</h:inputText>
 					<h:outputText value="Saída: " />
 					<h:inputText
 						value="#{solicitacaoHorarioEspecialEstudanteController.solicitacaoHorarioEspecialEstudante.horarioSaidaQuarta}"
-						size="8" maxlength="5" onkeypress="mascara(this,horario);">
+						size="8" maxlength="5" onkeypress="mascara(this,horario);"
+						validatorMessage="O campo Saida (Quarta-Feira) deve ter 4 digitos">
+						<f:validateLength minimum="5" />
 					</h:inputText>
 				</h:panelGrid>
 				<h:outputText value="Quinta-feira " />
@@ -137,22 +161,30 @@
 					<h:outputText value="Entrada: " />
 					<h:inputText
 						value="#{solicitacaoHorarioEspecialEstudanteController.solicitacaoHorarioEspecialEstudante.horarioEntradaQuinta}"
-						size="8" maxlength="5" onkeypress="mascara(this,horario);">
+						size="8" maxlength="5" onkeypress="mascara(this,horario);"
+						validatorMessage="O campo Entrada (Quinta-Feira) deve ter 4 digitos">
+						<f:validateLength minimum="5" />
 					</h:inputText>
 					<h:outputText value="Saída para Almoço:" />
 					<h:inputText
 						value="#{solicitacaoHorarioEspecialEstudanteController.solicitacaoHorarioEspecialEstudante.horarioSaidaAlmocoQuinta}"
-						size="8" maxlength="5" onkeypress="mascara(this,horario);">
+						size="8" maxlength="5" onkeypress="mascara(this,horario);"
+						validatorMessage="O campo Saida para Almoço (Quinta-Feira) deve ter 4 digitos">
+						<f:validateLength minimum="5" />
 					</h:inputText>
 					<h:outputText value="Retorno do Almoço: " />
 					<h:inputText
 						value="#{solicitacaoHorarioEspecialEstudanteController.solicitacaoHorarioEspecialEstudante.horarioRetornoAlmocoQuinta}"
-						size="8" maxlength="5" onkeypress="mascara(this,horario);">
+						size="8" maxlength="5" onkeypress="mascara(this,horario);"
+						validatorMessage="O campo Retorno do Almoço (Quinta-Feira) deve ter 4 digitos">
+						<f:validateLength minimum="5" />
 					</h:inputText>
 					<h:outputText value="Saída: " />
 					<h:inputText
 						value="#{solicitacaoHorarioEspecialEstudanteController.solicitacaoHorarioEspecialEstudante.horarioSaidaQuinta}"
-						size="8" maxlength="5" onkeypress="mascara(this,horario);">
+						size="8" maxlength="5" onkeypress="mascara(this,horario);"
+						validatorMessage="O campo Saida (Quinta-Feira) deve ter 4 digitos">
+						<f:validateLength minimum="5" />
 					</h:inputText>
 				</h:panelGrid>
 				<h:outputText value="Sexta-feira" />
@@ -160,22 +192,30 @@
 					<h:outputText value="Entrada: " />
 					<h:inputText
 						value="#{solicitacaoHorarioEspecialEstudanteController.solicitacaoHorarioEspecialEstudante.horarioEntradaSexta}"
-						size="8" maxlength="5" onkeypress="mascara(this,horario);">
+						size="8" maxlength="5" onkeypress="mascara(this,horario);"
+						validatorMessage="O campo Entrada (Sexta-Feira) deve ter 4 digitos">
+						<f:validateLength minimum="5" />
 					</h:inputText>
 					<h:outputText value="Saída para Almoço:" />
 					<h:inputText
 						value="#{solicitacaoHorarioEspecialEstudanteController.solicitacaoHorarioEspecialEstudante.horarioSaidaAlmocoSexta}"
-						size="8" maxlength="5" onkeypress="mascara(this,horario);">
+						size="8" maxlength="5" onkeypress="mascara(this,horario);"
+						validatorMessage="O campo Saida para Almoço (Sexta-Feira) deve ter 4 digitos">
+						<f:validateLength minimum="5" />
 					</h:inputText>
 					<h:outputText value="Retorno do Almoço: " />
 					<h:inputText
 						value="#{solicitacaoHorarioEspecialEstudanteController.solicitacaoHorarioEspecialEstudante.horarioRetornoAlmocoSexta}"
-						size="8" maxlength="5" onkeypress="mascara(this,horario);">
+						size="8" maxlength="5" onkeypress="mascara(this,horario);"
+						validatorMessage="O campo Retorno do Almoço (Sexta-Feira) deve ter 4 digitos">
+						<f:validateLength minimum="5" />
 					</h:inputText>
 					<h:outputText value="Saída: " />
 					<h:inputText
 						value="#{solicitacaoHorarioEspecialEstudanteController.solicitacaoHorarioEspecialEstudante.horarioSaidaSexta}"
-						size="8" maxlength="5" onkeypress="mascara(this,horario);">
+						size="8" maxlength="5" onkeypress="mascara(this,horario);"
+						validatorMessage="O campo Saida (Sexta-Feira) deve ter 4 digitos">
+						<f:validateLength minimum="5" />
 					</h:inputText>
 				</h:panelGrid>
 				<h:outputText value="Sábado" />
@@ -183,22 +223,30 @@
 					<h:outputText value="Entrada: " />
 					<h:inputText
 						value="#{solicitacaoHorarioEspecialEstudanteController.solicitacaoHorarioEspecialEstudante.horarioEntradaSabado}"
-						size="8" maxlength="5" onkeypress="mascara(this,horario);">
+						size="8" maxlength="5" onkeypress="mascara(this,horario);"
+						validatorMessage="O campo Entrada (Sabado) deve ter 4 digitos">
+						<f:validateLength minimum="5" />
 					</h:inputText>
 					<h:outputText value="Saída para Almoço:" />
 					<h:inputText
 						value="#{solicitacaoHorarioEspecialEstudanteController.solicitacaoHorarioEspecialEstudante.horarioSaidaAlmocoSabado}"
-						size="8" maxlength="5" onkeypress="mascara(this,horario);">
+						size="8" maxlength="5" onkeypress="mascara(this,horario);"
+						validatorMessage="O campo Saida para Almoço (Sabado) deve ter 4 digitos">
+						<f:validateLength minimum="5" />
 					</h:inputText>
 					<h:outputText value="Retorno do Almoço: " />
 					<h:inputText
 						value="#{solicitacaoHorarioEspecialEstudanteController.solicitacaoHorarioEspecialEstudante.horarioRetornoAlmocoSabado}"
-						size="8" maxlength="5" onkeypress="mascara(this,horario);">
+						size="8" maxlength="5" onkeypress="mascara(this,horario);"
+						validatorMessage="O campo Retorno do Almoço (Sabado) deve ter 4 digitos">
+						<f:validateLength minimum="5" />
 					</h:inputText>
 					<h:outputText value="Saída: " />
 					<h:inputText
 						value="#{solicitacaoHorarioEspecialEstudanteController.solicitacaoHorarioEspecialEstudante.horarioSaidaSabado}"
-						size="8" maxlength="5" onkeypress="mascara(this,horario);">
+						size="8" maxlength="5" onkeypress="mascara(this,horario);"
+						validatorMessage="O campo Saida (Sabado) deve ter 4 digitos">
+						<f:validateLength minimum="5" />
 					</h:inputText>
 				</h:panelGrid>
 			</h:panelGrid>
