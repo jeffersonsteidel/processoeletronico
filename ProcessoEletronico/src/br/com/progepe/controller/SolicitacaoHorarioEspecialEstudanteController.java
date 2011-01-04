@@ -185,6 +185,7 @@ public class SolicitacaoHorarioEspecialEstudanteController implements
 		int horaFinal = 0;
 		int horaIncial = 0;
 
+		//SEGUNDA
 		if (solicitacaoHorarioEspecialEstudante.getHorarioSaidaSegunda() != null
 				&& solicitacaoHorarioEspecialEstudante.getHorarioSaidaSegunda() != ""
 				&& solicitacaoHorarioEspecialEstudante
@@ -275,6 +276,471 @@ public class SolicitacaoHorarioEspecialEstudanteController implements
 						.getHorarioRetornoAlmocoSegunda() == "" && solicitacaoHorarioEspecialEstudante
 						.getHorarioSaidaAlmocoSegunda() != "")){
 			totalSegunda = null;
+		}
+		
+		//TERCA
+		if (solicitacaoHorarioEspecialEstudante.getHorarioSaidaTerca() != null
+				&& solicitacaoHorarioEspecialEstudante.getHorarioSaidaTerca() != ""
+				&& solicitacaoHorarioEspecialEstudante
+						.getHorarioEntradaTerca() != null
+				&& solicitacaoHorarioEspecialEstudante
+						.getHorarioEntradaTerca() != "") {
+			if (solicitacaoHorarioEspecialEstudante.getHorarioSaidaTerca() != null
+					&& solicitacaoHorarioEspecialEstudante
+							.getHorarioSaidaTerca() != "") {
+				horaFinal = Integer
+						.parseInt(solicitacaoHorarioEspecialEstudante
+								.getHorarioSaidaTerca().substring(0, 2)) * 60;
+				horaFinal = horaFinal
+						+ Integer.parseInt(solicitacaoHorarioEspecialEstudante
+								.getHorarioSaidaTerca().substring(3));
+				if (solicitacaoHorarioEspecialEstudante
+						.getHorarioEntradaTerca() != null
+						&& solicitacaoHorarioEspecialEstudante
+								.getHorarioEntradaTerca() != "") {
+					horaIncial = Integer
+							.parseInt(solicitacaoHorarioEspecialEstudante
+									.getHorarioEntradaTerca().substring(0, 2)) * 60;
+					horaIncial = horaIncial
+							+ Integer
+									.parseInt(solicitacaoHorarioEspecialEstudante
+											.getHorarioEntradaTerca()
+											.substring(3));
+				} else {
+					solicitacaoHorarioEspecialEstudante
+							.setHorarioSaidaTerca(null);
+					solicitacaoHorarioEspecialEstudante
+							.setHorarioEntradaTerca(null);
+				}
+			} else {
+				solicitacaoHorarioEspecialEstudante
+						.setHorarioSaidaTerca(null);
+				solicitacaoHorarioEspecialEstudante
+						.setHorarioEntradaTerca(null);
+			}
+
+			if (solicitacaoHorarioEspecialEstudante
+					.getHorarioRetornoAlmocoTerca() != null
+					&& solicitacaoHorarioEspecialEstudante
+							.getHorarioRetornoAlmocoTerca() != "") {
+				finalIntevalo = Integer
+						.parseInt(solicitacaoHorarioEspecialEstudante
+								.getHorarioRetornoAlmocoTerca().substring(0,
+										2)) * 60;
+				finalIntevalo = finalIntevalo
+						+ Integer.parseInt(solicitacaoHorarioEspecialEstudante
+								.getHorarioRetornoAlmocoTerca().substring(3));
+				if (solicitacaoHorarioEspecialEstudante
+						.getHorarioSaidaAlmocoTerca() != null
+						&& solicitacaoHorarioEspecialEstudante
+								.getHorarioSaidaAlmocoTerca() != "") {
+					inicioIntevalo = Integer
+							.parseInt(solicitacaoHorarioEspecialEstudante
+									.getHorarioSaidaAlmocoTerca().substring(
+											0, 2)) * 60;
+					inicioIntevalo = inicioIntevalo
+							+ Integer
+									.parseInt(solicitacaoHorarioEspecialEstudante
+											.getHorarioSaidaAlmocoTerca()
+											.substring(3));
+				}
+			}
+
+			Integer totalMinutos = (horaFinal - horaIncial)
+					- (finalIntevalo - inicioIntevalo);
+			Integer total = (Integer) totalMinutos / 60;
+			Integer resto = (Integer) totalMinutos % 60;
+			if (total < 10) {
+				totalTerca = "0" + total.toString();
+			} else {
+				totalTerca = total.toString();
+			}
+			if (resto < 10) {
+				totalTerca = totalTerca + ":0" + resto.toString();
+			} else {
+				totalTerca = totalTerca + ":" + resto.toString();
+			}
+		}else{
+			totalTerca = null;
+		}
+		if((solicitacaoHorarioEspecialEstudante
+				.getHorarioRetornoAlmocoTerca() != "" && solicitacaoHorarioEspecialEstudante
+				.getHorarioSaidaAlmocoTerca() == "") ||  (solicitacaoHorarioEspecialEstudante
+						.getHorarioRetornoAlmocoTerca() == "" && solicitacaoHorarioEspecialEstudante
+						.getHorarioSaidaAlmocoTerca() != "")){
+			totalTerca = null;
+		}
+		
+		//QUARTA
+		if (solicitacaoHorarioEspecialEstudante.getHorarioSaidaQuarta() != null
+				&& solicitacaoHorarioEspecialEstudante.getHorarioSaidaQuarta() != ""
+				&& solicitacaoHorarioEspecialEstudante
+						.getHorarioEntradaQuarta() != null
+				&& solicitacaoHorarioEspecialEstudante
+						.getHorarioEntradaQuarta() != "") {
+			if (solicitacaoHorarioEspecialEstudante.getHorarioSaidaQuarta() != null
+					&& solicitacaoHorarioEspecialEstudante
+							.getHorarioSaidaQuarta() != "") {
+				horaFinal = Integer
+						.parseInt(solicitacaoHorarioEspecialEstudante
+								.getHorarioSaidaQuarta().substring(0, 2)) * 60;
+				horaFinal = horaFinal
+						+ Integer.parseInt(solicitacaoHorarioEspecialEstudante
+								.getHorarioSaidaQuarta().substring(3));
+				if (solicitacaoHorarioEspecialEstudante
+						.getHorarioEntradaQuarta() != null
+						&& solicitacaoHorarioEspecialEstudante
+								.getHorarioEntradaQuarta() != "") {
+					horaIncial = Integer
+							.parseInt(solicitacaoHorarioEspecialEstudante
+									.getHorarioEntradaQuarta().substring(0, 2)) * 60;
+					horaIncial = horaIncial
+							+ Integer
+									.parseInt(solicitacaoHorarioEspecialEstudante
+											.getHorarioEntradaQuarta()
+											.substring(3));
+				} else {
+					solicitacaoHorarioEspecialEstudante
+							.setHorarioSaidaQuarta(null);
+					solicitacaoHorarioEspecialEstudante
+							.setHorarioEntradaQuarta(null);
+				}
+			} else {
+				solicitacaoHorarioEspecialEstudante
+						.setHorarioSaidaQuarta(null);
+				solicitacaoHorarioEspecialEstudante
+						.setHorarioEntradaQuarta(null);
+			}
+
+			if (solicitacaoHorarioEspecialEstudante
+					.getHorarioRetornoAlmocoQuarta() != null
+					&& solicitacaoHorarioEspecialEstudante
+							.getHorarioRetornoAlmocoQuarta() != "") {
+				finalIntevalo = Integer
+						.parseInt(solicitacaoHorarioEspecialEstudante
+								.getHorarioRetornoAlmocoQuarta().substring(0,
+										2)) * 60;
+				finalIntevalo = finalIntevalo
+						+ Integer.parseInt(solicitacaoHorarioEspecialEstudante
+								.getHorarioRetornoAlmocoQuarta().substring(3));
+				if (solicitacaoHorarioEspecialEstudante
+						.getHorarioSaidaAlmocoQuarta() != null
+						&& solicitacaoHorarioEspecialEstudante
+								.getHorarioSaidaAlmocoQuarta() != "") {
+					inicioIntevalo = Integer
+							.parseInt(solicitacaoHorarioEspecialEstudante
+									.getHorarioSaidaAlmocoQuarta().substring(
+											0, 2)) * 60;
+					inicioIntevalo = inicioIntevalo
+							+ Integer
+									.parseInt(solicitacaoHorarioEspecialEstudante
+											.getHorarioSaidaAlmocoQuarta()
+											.substring(3));
+				}
+			}
+
+			Integer totalMinutos = (horaFinal - horaIncial)
+					- (finalIntevalo - inicioIntevalo);
+			Integer total = (Integer) totalMinutos / 60;
+			Integer resto = (Integer) totalMinutos % 60;
+			if (total < 10) {
+				totalQuarta = "0" + total.toString();
+			} else {
+				totalQuarta = total.toString();
+			}
+			if (resto < 10) {
+				totalQuarta = totalQuarta + ":0" + resto.toString();
+			} else {
+				totalQuarta = totalQuarta + ":" + resto.toString();
+			}
+		}else{
+			totalQuarta = null;
+		}
+		if((solicitacaoHorarioEspecialEstudante
+				.getHorarioRetornoAlmocoQuarta() != "" && solicitacaoHorarioEspecialEstudante
+				.getHorarioSaidaAlmocoQuarta() == "") ||  (solicitacaoHorarioEspecialEstudante
+						.getHorarioRetornoAlmocoQuarta() == "" && solicitacaoHorarioEspecialEstudante
+						.getHorarioSaidaAlmocoQuarta() != "")){
+			totalQuarta = null;
+		}
+		
+		//QUINTA
+		if (solicitacaoHorarioEspecialEstudante.getHorarioSaidaQuinta() != null
+				&& solicitacaoHorarioEspecialEstudante.getHorarioSaidaQuinta() != ""
+				&& solicitacaoHorarioEspecialEstudante
+						.getHorarioEntradaQuinta() != null
+				&& solicitacaoHorarioEspecialEstudante
+						.getHorarioEntradaQuinta() != "") {
+			if (solicitacaoHorarioEspecialEstudante.getHorarioSaidaQuinta() != null
+					&& solicitacaoHorarioEspecialEstudante
+							.getHorarioSaidaQuinta() != "") {
+				horaFinal = Integer
+						.parseInt(solicitacaoHorarioEspecialEstudante
+								.getHorarioSaidaQuinta().substring(0, 2)) * 60;
+				horaFinal = horaFinal
+						+ Integer.parseInt(solicitacaoHorarioEspecialEstudante
+								.getHorarioSaidaQuinta().substring(3));
+				if (solicitacaoHorarioEspecialEstudante
+						.getHorarioEntradaQuinta() != null
+						&& solicitacaoHorarioEspecialEstudante
+								.getHorarioEntradaQuinta() != "") {
+					horaIncial = Integer
+							.parseInt(solicitacaoHorarioEspecialEstudante
+									.getHorarioEntradaQuinta().substring(0, 2)) * 60;
+					horaIncial = horaIncial
+							+ Integer
+									.parseInt(solicitacaoHorarioEspecialEstudante
+											.getHorarioEntradaQuinta()
+											.substring(3));
+				} else {
+					solicitacaoHorarioEspecialEstudante
+							.setHorarioSaidaQuinta(null);
+					solicitacaoHorarioEspecialEstudante
+							.setHorarioEntradaQuinta(null);
+				}
+			} else {
+				solicitacaoHorarioEspecialEstudante
+						.setHorarioSaidaQuinta(null);
+				solicitacaoHorarioEspecialEstudante
+						.setHorarioEntradaQuinta(null);
+			}
+
+			if (solicitacaoHorarioEspecialEstudante
+					.getHorarioRetornoAlmocoQuinta() != null
+					&& solicitacaoHorarioEspecialEstudante
+							.getHorarioRetornoAlmocoQuinta() != "") {
+				finalIntevalo = Integer
+						.parseInt(solicitacaoHorarioEspecialEstudante
+								.getHorarioRetornoAlmocoQuinta().substring(0,
+										2)) * 60;
+				finalIntevalo = finalIntevalo
+						+ Integer.parseInt(solicitacaoHorarioEspecialEstudante
+								.getHorarioRetornoAlmocoQuinta().substring(3));
+				if (solicitacaoHorarioEspecialEstudante
+						.getHorarioSaidaAlmocoQuinta() != null
+						&& solicitacaoHorarioEspecialEstudante
+								.getHorarioSaidaAlmocoQuinta() != "") {
+					inicioIntevalo = Integer
+							.parseInt(solicitacaoHorarioEspecialEstudante
+									.getHorarioSaidaAlmocoQuinta().substring(
+											0, 2)) * 60;
+					inicioIntevalo = inicioIntevalo
+							+ Integer
+									.parseInt(solicitacaoHorarioEspecialEstudante
+											.getHorarioSaidaAlmocoQuinta()
+											.substring(3));
+				}
+			}
+
+			Integer totalMinutos = (horaFinal - horaIncial)
+					- (finalIntevalo - inicioIntevalo);
+			Integer total = (Integer) totalMinutos / 60;
+			Integer resto = (Integer) totalMinutos % 60;
+			if (total < 10) {
+				totalQuinta = "0" + total.toString();
+			} else {
+				totalQuinta = total.toString();
+			}
+			if (resto < 10) {
+				totalQuinta = totalQuinta + ":0" + resto.toString();
+			} else {
+				totalQuinta = totalQuinta + ":" + resto.toString();
+			}
+		}else{
+			totalQuinta = null;
+		}
+		if((solicitacaoHorarioEspecialEstudante
+				.getHorarioRetornoAlmocoQuinta() != "" && solicitacaoHorarioEspecialEstudante
+				.getHorarioSaidaAlmocoQuinta() == "") ||  (solicitacaoHorarioEspecialEstudante
+						.getHorarioRetornoAlmocoQuinta() == "" && solicitacaoHorarioEspecialEstudante
+						.getHorarioSaidaAlmocoQuinta() != "")){
+			totalQuinta = null;
+		}
+		
+		//SEXTA
+		if (solicitacaoHorarioEspecialEstudante.getHorarioSaidaSexta() != null
+				&& solicitacaoHorarioEspecialEstudante.getHorarioSaidaSexta() != ""
+				&& solicitacaoHorarioEspecialEstudante
+						.getHorarioEntradaSexta() != null
+				&& solicitacaoHorarioEspecialEstudante
+						.getHorarioEntradaSexta() != "") {
+			if (solicitacaoHorarioEspecialEstudante.getHorarioSaidaSexta() != null
+					&& solicitacaoHorarioEspecialEstudante
+							.getHorarioSaidaSexta() != "") {
+				horaFinal = Integer
+						.parseInt(solicitacaoHorarioEspecialEstudante
+								.getHorarioSaidaSexta().substring(0, 2)) * 60;
+				horaFinal = horaFinal
+						+ Integer.parseInt(solicitacaoHorarioEspecialEstudante
+								.getHorarioSaidaSexta().substring(3));
+				if (solicitacaoHorarioEspecialEstudante
+						.getHorarioEntradaSexta() != null
+						&& solicitacaoHorarioEspecialEstudante
+								.getHorarioEntradaSexta() != "") {
+					horaIncial = Integer
+							.parseInt(solicitacaoHorarioEspecialEstudante
+									.getHorarioEntradaSexta().substring(0, 2)) * 60;
+					horaIncial = horaIncial
+							+ Integer
+									.parseInt(solicitacaoHorarioEspecialEstudante
+											.getHorarioEntradaSexta()
+											.substring(3));
+				} else {
+					solicitacaoHorarioEspecialEstudante
+							.setHorarioSaidaSexta(null);
+					solicitacaoHorarioEspecialEstudante
+							.setHorarioEntradaSexta(null);
+				}
+			} else {
+				solicitacaoHorarioEspecialEstudante
+						.setHorarioSaidaSexta(null);
+				solicitacaoHorarioEspecialEstudante
+						.setHorarioEntradaSexta(null);
+			}
+
+			if (solicitacaoHorarioEspecialEstudante
+					.getHorarioRetornoAlmocoSexta() != null
+					&& solicitacaoHorarioEspecialEstudante
+							.getHorarioRetornoAlmocoSexta() != "") {
+				finalIntevalo = Integer
+						.parseInt(solicitacaoHorarioEspecialEstudante
+								.getHorarioRetornoAlmocoSexta().substring(0,
+										2)) * 60;
+				finalIntevalo = finalIntevalo
+						+ Integer.parseInt(solicitacaoHorarioEspecialEstudante
+								.getHorarioRetornoAlmocoSexta().substring(3));
+				if (solicitacaoHorarioEspecialEstudante
+						.getHorarioSaidaAlmocoSexta() != null
+						&& solicitacaoHorarioEspecialEstudante
+								.getHorarioSaidaAlmocoSexta() != "") {
+					inicioIntevalo = Integer
+							.parseInt(solicitacaoHorarioEspecialEstudante
+									.getHorarioSaidaAlmocoSexta().substring(
+											0, 2)) * 60;
+					inicioIntevalo = inicioIntevalo
+							+ Integer
+									.parseInt(solicitacaoHorarioEspecialEstudante
+											.getHorarioSaidaAlmocoSexta()
+											.substring(3));
+				}
+			}
+
+			Integer totalMinutos = (horaFinal - horaIncial)
+					- (finalIntevalo - inicioIntevalo);
+			Integer total = (Integer) totalMinutos / 60;
+			Integer resto = (Integer) totalMinutos % 60;
+			if (total < 10) {
+				totalSexta = "0" + total.toString();
+			} else {
+				totalSexta = total.toString();
+			}
+			if (resto < 10) {
+				totalSexta = totalSexta + ":0" + resto.toString();
+			} else {
+				totalSexta = totalSexta + ":" + resto.toString();
+			}
+		}else{
+			totalSexta = null;
+		}
+		if((solicitacaoHorarioEspecialEstudante
+				.getHorarioRetornoAlmocoSexta() != "" && solicitacaoHorarioEspecialEstudante
+				.getHorarioSaidaAlmocoSexta() == "") ||  (solicitacaoHorarioEspecialEstudante
+						.getHorarioRetornoAlmocoSexta() == "" && solicitacaoHorarioEspecialEstudante
+						.getHorarioSaidaAlmocoSexta() != "")){
+			totalSexta = null;
+		}
+		
+		//SABADO
+		if (solicitacaoHorarioEspecialEstudante.getHorarioSaidaSabado() != null
+				&& solicitacaoHorarioEspecialEstudante.getHorarioSaidaSabado() != ""
+				&& solicitacaoHorarioEspecialEstudante
+						.getHorarioEntradaSabado() != null
+				&& solicitacaoHorarioEspecialEstudante
+						.getHorarioEntradaSabado() != "") {
+			if (solicitacaoHorarioEspecialEstudante.getHorarioSaidaSabado() != null
+					&& solicitacaoHorarioEspecialEstudante
+							.getHorarioSaidaSabado() != "") {
+				horaFinal = Integer
+						.parseInt(solicitacaoHorarioEspecialEstudante
+								.getHorarioSaidaSabado().substring(0, 2)) * 60;
+				horaFinal = horaFinal
+						+ Integer.parseInt(solicitacaoHorarioEspecialEstudante
+								.getHorarioSaidaSabado().substring(3));
+				if (solicitacaoHorarioEspecialEstudante
+						.getHorarioEntradaSabado() != null
+						&& solicitacaoHorarioEspecialEstudante
+								.getHorarioEntradaSabado() != "") {
+					horaIncial = Integer
+							.parseInt(solicitacaoHorarioEspecialEstudante
+									.getHorarioEntradaSabado().substring(0, 2)) * 60;
+					horaIncial = horaIncial
+							+ Integer
+									.parseInt(solicitacaoHorarioEspecialEstudante
+											.getHorarioEntradaSabado()
+											.substring(3));
+				} else {
+					solicitacaoHorarioEspecialEstudante
+							.setHorarioSaidaSabado(null);
+					solicitacaoHorarioEspecialEstudante
+							.setHorarioEntradaSabado(null);
+				}
+			} else {
+				solicitacaoHorarioEspecialEstudante
+						.setHorarioSaidaSabado(null);
+				solicitacaoHorarioEspecialEstudante
+						.setHorarioEntradaSabado(null);
+			}
+
+			if (solicitacaoHorarioEspecialEstudante
+					.getHorarioRetornoAlmocoSabado() != null
+					&& solicitacaoHorarioEspecialEstudante
+							.getHorarioRetornoAlmocoSabado() != "") {
+				finalIntevalo = Integer
+						.parseInt(solicitacaoHorarioEspecialEstudante
+								.getHorarioRetornoAlmocoSabado().substring(0,
+										2)) * 60;
+				finalIntevalo = finalIntevalo
+						+ Integer.parseInt(solicitacaoHorarioEspecialEstudante
+								.getHorarioRetornoAlmocoSabado().substring(3));
+				if (solicitacaoHorarioEspecialEstudante
+						.getHorarioSaidaAlmocoSabado() != null
+						&& solicitacaoHorarioEspecialEstudante
+								.getHorarioSaidaAlmocoSabado() != "") {
+					inicioIntevalo = Integer
+							.parseInt(solicitacaoHorarioEspecialEstudante
+									.getHorarioSaidaAlmocoSabado().substring(
+											0, 2)) * 60;
+					inicioIntevalo = inicioIntevalo
+							+ Integer
+									.parseInt(solicitacaoHorarioEspecialEstudante
+											.getHorarioSaidaAlmocoSabado()
+											.substring(3));
+				}
+			}
+
+			Integer totalMinutos = (horaFinal - horaIncial)
+					- (finalIntevalo - inicioIntevalo);
+			Integer total = (Integer) totalMinutos / 60;
+			Integer resto = (Integer) totalMinutos % 60;
+			if (total < 10) {
+				totalSabado = "0" + total.toString();
+			} else {
+				totalSabado = total.toString();
+			}
+			if (resto < 10) {
+				totalSabado = totalSabado + ":0" + resto.toString();
+			} else {
+				totalSabado = totalSabado + ":" + resto.toString();
+			}
+		}else{
+			totalSabado = null;
+		}
+		if((solicitacaoHorarioEspecialEstudante
+				.getHorarioRetornoAlmocoSabado() != "" && solicitacaoHorarioEspecialEstudante
+				.getHorarioSaidaAlmocoSabado() == "") ||  (solicitacaoHorarioEspecialEstudante
+						.getHorarioRetornoAlmocoSabado() == "" && solicitacaoHorarioEspecialEstudante
+						.getHorarioSaidaAlmocoSabado() != "")){
+			totalSabado = null;
 		}
 	}
 }
