@@ -142,10 +142,13 @@
 						<h:inputText
 							title="A Id Única pode ser encontrada no contra-cheque!"
 							value="#{servidorController.servidor.identificacaoUnica}"
-							size="10" maxlength="9" required="true"
+							size="10" maxlength="10" required="true"
 							requiredMessage="Campo Id Única é obrigatório!"
-							onkeypress="mascara(this,digitoVerificador);"></h:inputText>
-
+							onkeypress="mascara(this,idUnica);"
+							validatorMessage="O campo Id Única deve ter 10 caracteres">
+							<f:validateLength minimum="10" />
+						</h:inputText>
+							
 						<h:outputText value="Data de Admissão no Órgão: " />
 						<rich:calendar value="#{servidorController.servidor.dataAdmissao}"
 							locale="" popup="true" datePattern="dd/MM/yyyy"

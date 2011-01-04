@@ -52,6 +52,12 @@ function digitoVerificador(v) {
 	return v;
 }
 
+function idUnica(v) {
+	v = v.replace(/\D/g, ""); // Remove tudo o que no dgito
+	v = v.replace(/(\d{8})(\d)/, "$1-$2");
+	return v;
+}
+
 
 function codigoCargo(v) {
 	v = v.replace(/\D/g, ""); // Remove tudo o que no dgito
