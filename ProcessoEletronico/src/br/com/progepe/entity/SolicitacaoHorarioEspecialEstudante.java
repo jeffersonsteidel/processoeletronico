@@ -17,21 +17,25 @@ public class SolicitacaoHorarioEspecialEstudante extends Solicitacao {
 	private String horarioEntradaQuarta;
 	private String horarioEntradaQuinta;
 	private String horarioEntradaSexta;
+	private String horarioEntradaSabado;
 	private String horarioSaidaAlmocoSegunda;
 	private String horarioSaidaAlmocoTerca;
 	private String horarioSaidaAlmocoQuarta;
 	private String horarioSaidaAlmocoQuinta;
 	private String horarioSaidaAlmocoSexta;
+	private String horarioSaidaAlmocoSabado;
 	private String horarioRetornoAlmocoSegunda;
 	private String horarioRetornoAlmocoTerca;
 	private String horarioRetornoAlmocoQuarta;
 	private String horarioRetornoAlmocoQuinta;
 	private String horarioRetornoAlmocoSexta;
+	private String horarioRetornoAlmocoSabado;
 	private String horarioSaidaSegunda;
 	private String horarioSaidaTerca;
 	private String horarioSaidaQuarta;
 	private String horarioSaidaQuinta;
 	private String horarioSaidaSexta;
+	private String horarioSaidaSabado;
 
 	public ArrayList<SolicitacaoHorarioEspecialEstudante> getFiles() {
 		return files;
@@ -240,6 +244,38 @@ public class SolicitacaoHorarioEspecialEstudante extends Solicitacao {
 
 	public void setHorarioSaidaSexta(String horarioSaidaSexta) {
 		this.horarioSaidaSexta = horarioSaidaSexta;
+	}
+
+	public String getHorarioEntradaSabado() {
+		return horarioEntradaSabado;
+	}
+
+	public void setHorarioEntradaSabado(String horarioEntradaSabado) {
+		this.horarioEntradaSabado = horarioEntradaSabado;
+	}
+
+	public String getHorarioSaidaAlmocoSabado() {
+		return horarioSaidaAlmocoSabado;
+	}
+
+	public void setHorarioSaidaAlmocoSabado(String horarioSaidaAlmocoSabado) {
+		this.horarioSaidaAlmocoSabado = horarioSaidaAlmocoSabado;
+	}
+
+	public String getHorarioRetornoAlmocoSabado() {
+		return horarioRetornoAlmocoSabado;
+	}
+
+	public void setHorarioRetornoAlmocoSabado(String horarioRetornoAlmocoSabado) {
+		this.horarioRetornoAlmocoSabado = horarioRetornoAlmocoSabado;
+	}
+
+	public String getHorarioSaidaSabado() {
+		return horarioSaidaSabado;
+	}
+
+	public void setHorarioSaidaSabado(String horarioSaidaSabado) {
+		this.horarioSaidaSabado = horarioSaidaSabado;
 	}
 
 }
