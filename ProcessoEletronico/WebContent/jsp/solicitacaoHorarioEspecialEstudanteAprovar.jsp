@@ -33,7 +33,7 @@
 					value="Solicitante: #{solicitacaoController.solicitacaoHorarioEspecialEstudante.solicitante.siape} - #{solicitacaoController.solicitacaoHorarioEspecialEstudante.solicitante.nome}">
 				</h:outputText>
 				<h:outputText
-					value="Jornada de Trabalho: #{solicitacaoHorarioEspecialEstudanteController.solicitacaoHorarioEspecialEstudante.solicitante.regimeTrabalho.descricao}">
+					value="Jornada de Trabalho: #{solicitacaoController.solicitacaoHorarioEspecialEstudante.solicitante.regimeTrabalho.descricao}">
 				</h:outputText>
 			</h:panelGrid>
 
