@@ -249,7 +249,7 @@ public class SolicitacaoHorarioEspecialEstudanteController implements
 									.parseInt(solicitacaoHorarioEspecialEstudante
 											.getHorarioSaidaAlmocoSegunda()
 											.substring(3));
-				} 
+				}
 			}
 
 			Integer totalMinutos = (horaFinal - horaIncial)
@@ -267,6 +267,13 @@ public class SolicitacaoHorarioEspecialEstudanteController implements
 				totalSegunda = totalSegunda + ":" + resto.toString();
 			}
 		}else{
+			totalSegunda = null;
+		}
+		if((solicitacaoHorarioEspecialEstudante
+				.getHorarioRetornoAlmocoSegunda() != "" && solicitacaoHorarioEspecialEstudante
+				.getHorarioSaidaAlmocoSegunda() == "") ||  (solicitacaoHorarioEspecialEstudante
+						.getHorarioRetornoAlmocoSegunda() == "" && solicitacaoHorarioEspecialEstudante
+						.getHorarioSaidaAlmocoSegunda() != "")){
 			totalSegunda = null;
 		}
 	}
