@@ -27,6 +27,13 @@ public class SolicitacaoHorarioEspecialEstudanteController implements
 	private static final long serialVersionUID = -333995781063775201L;
 
 	private SolicitacaoHorarioEspecialEstudante solicitacaoHorarioEspecialEstudante;
+	private String totalSegunda;
+	private String totalTerca;
+	private String totalQuarta;
+	private String totalQuinta;
+	private String totalSexta;
+	private String totalSabado;
+	private String totalSemana;
 
 	public SolicitacaoHorarioEspecialEstudante getSolicitacaoHorarioEspecialEstudante() {
 		return solicitacaoHorarioEspecialEstudante;
@@ -37,9 +44,72 @@ public class SolicitacaoHorarioEspecialEstudanteController implements
 		this.solicitacaoHorarioEspecialEstudante = solicitacaoHorarioEspecialEstudante;
 	}
 
+	public String getTotalSegunda() {
+		return totalSegunda;
+	}
+
+	public void setTotalSegunda(String totalSegunda) {
+		this.totalSegunda = totalSegunda;
+	}
+
+	public String getTotalTerca() {
+		return totalTerca;
+	}
+
+	public void setTotalTerca(String totalTerca) {
+		this.totalTerca = totalTerca;
+	}
+
+	public String getTotalQuarta() {
+		return totalQuarta;
+	}
+
+	public void setTotalQuarta(String totalQuarta) {
+		this.totalQuarta = totalQuarta;
+	}
+
+	public String getTotalQuinta() {
+		return totalQuinta;
+	}
+
+	public void setTotalQuinta(String totalQuinta) {
+		this.totalQuinta = totalQuinta;
+	}
+
+	public String getTotalSexta() {
+		return totalSexta;
+	}
+
+	public void setTotalSexta(String totalSexta) {
+		this.totalSexta = totalSexta;
+	}
+
+	public String getTotalSabado() {
+		return totalSabado;
+	}
+
+	public void setTotalSabado(String totalSabado) {
+		this.totalSabado = totalSabado;
+	}
+
+	public String getTotalSemana() {
+		return totalSemana;
+	}
+
+	public void setTotalSemana(String totalSemana) {
+		this.totalSemana = totalSemana;
+	}
+
 	public void abrirSolicitacaoHorarioEspecialEstudante()
 			throws ParseException {
 		try {
+			totalSegunda = null;
+			totalTerca = null;
+			totalQuarta = null;
+			totalQuinta = null;
+			totalSexta = null;
+			totalSabado = null;
+			totalSemana = null;
 			solicitacaoHorarioEspecialEstudante = new SolicitacaoHorarioEspecialEstudante();
 			solicitacaoHorarioEspecialEstudante
 					.setFiles(new ArrayList<SolicitacaoHorarioEspecialEstudante>());
@@ -99,6 +169,105 @@ public class SolicitacaoHorarioEspecialEstudanteController implements
 			solicitacaoHorarioEspecialEstudante
 					.setFiles(new ArrayList<SolicitacaoHorarioEspecialEstudante>());
 			buscarServidorLogado();
+			totalSegunda = null;
+			totalTerca = null;
+			totalQuarta = null;
+			totalQuinta = null;
+			totalSexta = null;
+			totalSabado = null;
+			totalSemana = null;
+		}
+	}
+
+	public void calcularTempo() {
+		int finalIntevalo = 0;
+		int inicioIntevalo = 0;
+		int horaFinal = 0;
+		int horaIncial = 0;
+
+		if (solicitacaoHorarioEspecialEstudante.getHorarioSaidaSegunda() != null
+				&& solicitacaoHorarioEspecialEstudante.getHorarioSaidaSegunda() != ""
+				&& solicitacaoHorarioEspecialEstudante
+						.getHorarioEntradaSegunda() != null
+				&& solicitacaoHorarioEspecialEstudante
+						.getHorarioEntradaSegunda() != "") {
+			if (solicitacaoHorarioEspecialEstudante.getHorarioSaidaSegunda() != null
+					&& solicitacaoHorarioEspecialEstudante
+							.getHorarioSaidaSegunda() != "") {
+				horaFinal = Integer
+						.parseInt(solicitacaoHorarioEspecialEstudante
+								.getHorarioSaidaSegunda().substring(0, 2)) * 60;
+				horaFinal = horaFinal
+						+ Integer.parseInt(solicitacaoHorarioEspecialEstudante
+								.getHorarioSaidaSegunda().substring(3));
+				if (solicitacaoHorarioEspecialEstudante
+						.getHorarioEntradaSegunda() != null
+						&& solicitacaoHorarioEspecialEstudante
+								.getHorarioEntradaSegunda() != "") {
+					horaIncial = Integer
+							.parseInt(solicitacaoHorarioEspecialEstudante
+									.getHorarioEntradaSegunda().substring(0, 2)) * 60;
+					horaIncial = horaIncial
+							+ Integer
+									.parseInt(solicitacaoHorarioEspecialEstudante
+											.getHorarioEntradaSegunda()
+											.substring(3));
+				} else {
+					solicitacaoHorarioEspecialEstudante
+							.setHorarioSaidaSegunda(null);
+					solicitacaoHorarioEspecialEstudante
+							.setHorarioEntradaSegunda(null);
+				}
+			} else {
+				solicitacaoHorarioEspecialEstudante
+						.setHorarioSaidaSegunda(null);
+				solicitacaoHorarioEspecialEstudante
+						.setHorarioEntradaSegunda(null);
+			}
+
+			if (solicitacaoHorarioEspecialEstudante
+					.getHorarioRetornoAlmocoSegunda() != null
+					&& solicitacaoHorarioEspecialEstudante
+							.getHorarioRetornoAlmocoSegunda() != "") {
+				finalIntevalo = Integer
+						.parseInt(solicitacaoHorarioEspecialEstudante
+								.getHorarioRetornoAlmocoSegunda().substring(0,
+										2)) * 60;
+				finalIntevalo = finalIntevalo
+						+ Integer.parseInt(solicitacaoHorarioEspecialEstudante
+								.getHorarioRetornoAlmocoSegunda().substring(3));
+				if (solicitacaoHorarioEspecialEstudante
+						.getHorarioSaidaAlmocoSegunda() != null
+						&& solicitacaoHorarioEspecialEstudante
+								.getHorarioSaidaAlmocoSegunda() != "") {
+					inicioIntevalo = Integer
+							.parseInt(solicitacaoHorarioEspecialEstudante
+									.getHorarioSaidaAlmocoSegunda().substring(
+											0, 2)) * 60;
+					inicioIntevalo = inicioIntevalo
+							+ Integer
+									.parseInt(solicitacaoHorarioEspecialEstudante
+											.getHorarioSaidaAlmocoSegunda()
+											.substring(3));
+				} 
+			}
+
+			Integer totalMinutos = (horaFinal - horaIncial)
+					- (finalIntevalo - inicioIntevalo);
+			Integer total = (Integer) totalMinutos / 60;
+			Integer resto = (Integer) totalMinutos % 60;
+			if (total < 10) {
+				totalSegunda = "0" + total.toString();
+			} else {
+				totalSegunda = total.toString();
+			}
+			if (resto < 10) {
+				totalSegunda = totalSegunda + ":0" + resto.toString();
+			} else {
+				totalSegunda = totalSegunda + ":" + resto.toString();
+			}
+		}else{
+			totalSegunda = null;
 		}
 	}
 }
