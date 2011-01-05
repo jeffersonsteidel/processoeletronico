@@ -783,7 +783,7 @@ public class SolicitacaoHorarioEspecialEstudanteController implements
 		if (totalMinutos < 10) {
 			totalSemana = totalSemana + ":0" + totalMinutos.toString();
 		} else {
-			totalSemana = totalSabado + ":" + totalMinutos.toString();
+			totalSemana = totalSemana + ":" + totalMinutos.toString();
 		}
 	}
 }
