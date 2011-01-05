@@ -106,7 +106,7 @@
 							ajaxSingle="true" reRender="total, segunda, entradaSegunda, saidaAlmocoSegunda, retornoAlmocoSegunda, saidaSegunda"></a4j:support>
 					</h:inputText>
 					<h:outputText id="segunda"
-						value="#{solicitacaoHorarioEspecialEstudanteController.totalSegunda}" />
+						value="#{solicitacaoHorarioEspecialEstudanteController.solicitacaoHorarioEspecialEstudante.totalSegunda}" />
 				</h:panelGrid>
 				<h:outputText value="Terça-feira " />
 				<h:panelGrid columns="9">
@@ -151,7 +151,7 @@
 							ajaxSingle="true" reRender="total, terca, entradaTerca, saidaAlmocoTerca, retornoAlmocoTerca, saidaTerca"></a4j:support>
 					</h:inputText>
 					<h:outputText id="terca"
-						value="#{solicitacaoHorarioEspecialEstudanteController.totalTerca}" />
+						value="#{solicitacaoHorarioEspecialEstudanteController.solicitacaoHorarioEspecialEstudante.totalTerca}" />
 				</h:panelGrid>
 				<h:outputText value="Quarta-feira" />
 				<h:panelGrid columns="9">
@@ -196,7 +196,7 @@
 							ajaxSingle="true" reRender="total, quarta, entradaQuarta, saidaAlmocoQuarta, retornoAlmocoQuarta, saidaQuarta"></a4j:support>
 					</h:inputText>
 					<h:outputText id="quarta"
-						value="#{solicitacaoHorarioEspecialEstudanteController.totalQuarta}" />
+						value="#{solicitacaoHorarioEspecialEstudanteController.solicitacaoHorarioEspecialEstudante.totalQuarta}" />
 				</h:panelGrid>
 				<h:outputText value="Quinta-feira " />
 				<h:panelGrid columns="9">
@@ -241,7 +241,7 @@
 							ajaxSingle="true" reRender="total, quinta, entradaQuinta, saidaAlmocoQuinta, retornoAlmocoQuinta, saidaQuinta"></a4j:support>
 					</h:inputText>
 					<h:outputText id="quinta"
-						value="#{solicitacaoHorarioEspecialEstudanteController.totalQuinta}" />
+						value="#{solicitacaoHorarioEspecialEstudanteController.solicitacaoHorarioEspecialEstudante.totalQuinta}" />
 				</h:panelGrid>
 				<h:outputText value="Sexta-feira" />
 				<h:panelGrid columns="9">
@@ -286,7 +286,7 @@
 							ajaxSingle="true" reRender="total, sexta, entradaSexta, saidaAlmocoSexta, retornoAlmocoSexta, saidaSexta"></a4j:support>
 					</h:inputText>
 					<h:outputText id="sexta"
-						value="#{solicitacaoHorarioEspecialEstudanteController.totalSexta}" />
+						value="#{solicitacaoHorarioEspecialEstudanteController.solicitacaoHorarioEspecialEstudante.totalSexta}" />
 				</h:panelGrid>
 				<h:outputText value="Sábado" />
 				<h:panelGrid columns="9">
@@ -331,10 +331,10 @@
 							ajaxSingle="true" reRender="total, sabado, entradaSabado, saidaAlmocoSabado, retornoAlmocoSabado, saidaSabado"></a4j:support>
 					</h:inputText>
 					<h:outputText id="sabado"
-						value="#{solicitacaoHorarioEspecialEstudanteController.totalSabado}" />
+						value="#{solicitacaoHorarioEspecialEstudanteController.solicitacaoHorarioEspecialEstudante.totalSabado}" />
 				</h:panelGrid>
 			</h:panelGrid>
-			<center><h:outputText value="Total de Horas: "/><h:outputText id="total" value="#{solicitacaoHorarioEspecialEstudanteController.totalSemana}"/></center>
+			<center><h:outputText value="Total de Horas: "/><h:outputText id="total" value="#{solicitacaoHorarioEspecialEstudanteController.solicitacaoHorarioEspecialEstudante.totalSemana}"/></center>
 
 			<rich:fileUpload
 				fileUploadListener="#{solicitacaoHorarioEspecialEstudanteController.listener}"
