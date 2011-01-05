@@ -57,7 +57,7 @@
 			<h:panelGrid columns="1">
 				<h:outputText value="Horário de Compensação: " />
 				<h:outputText value="Segunda-feira " />
-				<h:panelGrid columns="8">
+				<h:panelGrid columns="10">
 					<h:outputText value="Entrada: " />
 					<h:outputText
 						value="#{solicitacaoController.solicitacaoHorarioEspecialEstudante.horarioEntradaSegunda}" />
@@ -70,9 +70,11 @@
 					<h:outputText value="Saída: " />
 					<h:outputText
 						value="#{solicitacaoController.solicitacaoHorarioEspecialEstudante.horarioSaidaSegunda}" />
+					<h:outputText value="Total de Segunda: "/>
+					<h:outputText value="#{solicitacaoController.solicitacaoHorarioEspecialEstudante.totalSegunda}"/>
 				</h:panelGrid>
 				<h:outputText value="Terça-feira " />
-				<h:panelGrid columns="8">
+				<h:panelGrid columns="10">
 					<h:outputText value="Entrada: " />
 					<h:outputText
 						value="#{solicitacaoController.solicitacaoHorarioEspecialEstudante.horarioEntradaTerca}" />
@@ -85,9 +87,11 @@
 					<h:outputText value="Saída: " />
 					<h:outputText
 						value="#{solicitacaoController.solicitacaoHorarioEspecialEstudante.horarioSaidaTerca}" />
+					<h:outputText value="Total de Terca: "/>
+					<h:outputText value="#{solicitacaoController.solicitacaoHorarioEspecialEstudante.totalTerca}"/>
 				</h:panelGrid>
 				<h:outputText value="Quarta-feira" />
-				<h:panelGrid columns="8">
+				<h:panelGrid columns="10">
 					<h:outputText value="Entrada: " />
 					<h:outputText
 						value="#{solicitacaoController.solicitacaoHorarioEspecialEstudante.horarioEntradaQuarta}" />
@@ -100,9 +104,11 @@
 					<h:outputText value="Saída: " />
 					<h:outputText
 						value="#{solicitacaoController.solicitacaoHorarioEspecialEstudante.horarioSaidaQuarta}" />
+					<h:outputText value="Total de Quarta: "/>
+					<h:outputText value="#{solicitacaoController.solicitacaoHorarioEspecialEstudante.totalQuarta}"/>
 				</h:panelGrid>
 				<h:outputText value="Quinta-feira " />
-				<h:panelGrid columns="8">
+				<h:panelGrid columns="10">
 					<h:outputText value="Entrada: " />
 					<h:outputText
 						value="#{solicitacaoController.solicitacaoHorarioEspecialEstudante.horarioEntradaQuinta}" />
@@ -115,9 +121,11 @@
 					<h:outputText value="Saída: " />
 					<h:outputText
 						value="#{solicitacaoController.solicitacaoHorarioEspecialEstudante.horarioSaidaQuinta}" />
+					<h:outputText value="Total de Quinta: "/>
+					<h:outputText value="#{solicitacaoController.solicitacaoHorarioEspecialEstudante.totalQuinta}"/>
 				</h:panelGrid>
 				<h:outputText value="Sexta-feira" />
-				<h:panelGrid columns="8">
+				<h:panelGrid columns="10">
 					<h:outputText value="Entrada: " />
 					<h:outputText
 						value="#{solicitacaoController.solicitacaoHorarioEspecialEstudante.horarioEntradaSexta}" />
@@ -130,9 +138,11 @@
 					<h:outputText value="Saída: " />
 					<h:outputText
 						value="#{solicitacaoController.solicitacaoHorarioEspecialEstudante.horarioSaidaSexta}" />
+					<h:outputText value="Total de Sexta: "/>
+					<h:outputText value="#{solicitacaoController.solicitacaoHorarioEspecialEstudante.totalSexta}"/>
 				</h:panelGrid>
 				<h:outputText value="Sábado" />
-				<h:panelGrid columns="8">
+				<h:panelGrid columns="10">
 					<h:outputText value="Entrada: " />
 					<h:outputText
 						value="#{solicitacaoController.solicitacaoHorarioEspecialEstudante.horarioEntradaSabado}" />
@@ -145,8 +155,14 @@
 					<h:outputText value="Saída: " />
 					<h:outputText
 						value="#{solicitacaoController.solicitacaoHorarioEspecialEstudante.horarioSaidaSabado}" />
+					<h:outputText value="Total de Sabado: "/>
+					<h:outputText value="#{solicitacaoController.solicitacaoHorarioEspecialEstudante.totalSabado}"/>
+				</h:panelGrid>
+				<h:panelGrid columns="1">
+				<h:outputText value="Total da Semana: #{solicitacaoController.solicitacaoHorarioEspecialEstudante.totalSemana}"/>
 				</h:panelGrid>
 			</h:panelGrid>
+			
 
 			<h:panelGroup id="info">
 				<rich:panel bodyClass="info">
