@@ -36,5 +36,12 @@
 		<property name="horarioSaidaQuinta" column="SOLIC_HOR_ESP_EST_QUI_SAI" />
 		<property name="horarioSaidaSexta" column="SOLIC_HOR_ESP_EST_SEX_SAI" />
 		<property name="horarioSaidaSabado" column="SOLIC_HOR_ESP_EST_SAB_SAI" />
+		<property name="totalSegunda" column="SOLIC_HOR_ESP_EST_TOT_SEG" />
+		<property name="totalTerca" column="SOLIC_HOR_ESP_EST_TOT_TER" />
+		<property name="totalQuarta" column="SOLIC_HOR_ESP_EST_TOT_QUA" />
+		<property name="totalQuinta" column="SOLIC_HOR_ESP_EST_TOT_QUI" />
+		<property name="totalSexta" column="SOLIC_HOR_ESP_EST_TOT_SEX" />
+		<property name="totalSabado" column="SOLIC_HOR_ESP_EST_TOT_SAB" />
+		<property name="totalSemana" column="SOLIC_HOR_ESP_EST_TOT_SEM" />
 	</joined-subclass>
 </hibernate-mapping>
