@@ -36,6 +36,13 @@ public class SolicitacaoHorarioEspecialEstudante extends Solicitacao {
 	private String horarioSaidaQuinta;
 	private String horarioSaidaSexta;
 	private String horarioSaidaSabado;
+	private String totalSegunda;
+	private String totalTerca;
+	private String totalQuarta;
+	private String totalQuinta;
+	private String totalSexta;
+	private String totalSabado;
+	private String totalSemana;
 
 	public ArrayList<SolicitacaoHorarioEspecialEstudante> getFiles() {
 		return files;
@@ -276,6 +283,62 @@ public class SolicitacaoHorarioEspecialEstudante extends Solicitacao {
 
 	public void setHorarioSaidaSabado(String horarioSaidaSabado) {
 		this.horarioSaidaSabado = horarioSaidaSabado;
+	}
+
+	public String getTotalSegunda() {
+		return totalSegunda;
+	}
+
+	public void setTotalSegunda(String totalSegunda) {
+		this.totalSegunda = totalSegunda;
+	}
+
+	public String getTotalTerca() {
+		return totalTerca;
+	}
+
+	public void setTotalTerca(String totalTerca) {
+		this.totalTerca = totalTerca;
+	}
+
+	public String getTotalQuarta() {
+		return totalQuarta;
+	}
+
+	public void setTotalQuarta(String totalQuarta) {
+		this.totalQuarta = totalQuarta;
+	}
+
+	public String getTotalQuinta() {
+		return totalQuinta;
+	}
+
+	public void setTotalQuinta(String totalQuinta) {
+		this.totalQuinta = totalQuinta;
+	}
+
+	public String getTotalSexta() {
+		return totalSexta;
+	}
+
+	public void setTotalSexta(String totalSexta) {
+		this.totalSexta = totalSexta;
+	}
+
+	public String getTotalSabado() {
+		return totalSabado;
+	}
+
+	public void setTotalSabado(String totalSabado) {
+		this.totalSabado = totalSabado;
+	}
+
+	public String getTotalSemana() {
+		return totalSemana;
+	}
+
+	public void setTotalSemana(String totalSemana) {
+		this.totalSemana = totalSemana;
 	}
 
 }
