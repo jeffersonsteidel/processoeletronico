@@ -63,9 +63,6 @@
 
 			<h:panelGrid columns="1">
 				<h:outputText value="Horário de Compensação: " />
-
-				
-
 				<h:outputText value="Segunda-feira " />
 				<h:panelGrid columns="9">
 					<h:outputText value="Entrada: " />
