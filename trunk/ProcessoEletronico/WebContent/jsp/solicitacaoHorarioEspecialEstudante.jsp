@@ -63,6 +63,9 @@
 
 			<h:panelGrid columns="1">
 				<h:outputText value="Horário de Compensação: " />
+
+				
+
 				<h:outputText value="Segunda-feira " />
 				<h:panelGrid columns="9">
 					<h:outputText value="Entrada: " />
@@ -73,7 +76,8 @@
 						<f:validateLength minimum="5" />
 						<a4j:support event="onchange"
 							action="#{solicitacaoHorarioEspecialEstudanteController.calcularTempo}"
-							ajaxSingle="true" reRender="total, segunda, entradaSegunda, saidaAlmocoSegunda, retornoAlmocoSegunda, saidaSegunda"></a4j:support>
+							ajaxSingle="true"
+							reRender="total, segunda, entradaSegunda, saidaAlmocoSegunda, retornoAlmocoSegunda, saidaSegunda"></a4j:support>
 					</h:inputText>
 					<h:outputText value="Saída para Almoço:" />
 					<h:inputText id="saidaAlmocoSegunda"
@@ -83,7 +87,8 @@
 						<f:validateLength minimum="5" />
 						<a4j:support event="onchange"
 							action="#{solicitacaoHorarioEspecialEstudanteController.calcularTempo}"
-							ajaxSingle="true" reRender="total, segunda, entradaSegunda, saidaAlmocoSegunda, retornoAlmocoSegunda, saidaSegunda"></a4j:support>
+							ajaxSingle="true"
+							reRender="total, segunda, entradaSegunda, saidaAlmocoSegunda, retornoAlmocoSegunda, saidaSegunda"></a4j:support>
 					</h:inputText>
 					<h:outputText value="Retorno do Almoço: " />
 					<h:inputText id="retornoAlmocoSegunda"
@@ -93,7 +98,8 @@
 						<f:validateLength minimum="5" />
 						<a4j:support event="onchange"
 							action="#{solicitacaoHorarioEspecialEstudanteController.calcularTempo}"
-							ajaxSingle="true" reRender="total, segunda, entradaSegunda, saidaAlmocoSegunda, retornoAlmocoSegunda, saidaSegunda"></a4j:support>
+							ajaxSingle="true"
+							reRender="total, segunda, entradaSegunda, saidaAlmocoSegunda, retornoAlmocoSegunda, saidaSegunda"></a4j:support>
 					</h:inputText>
 					<h:outputText value="Saída: " />
 					<h:inputText id="saidaSegunda"
@@ -103,7 +109,8 @@
 						<f:validateLength minimum="5" />
 						<a4j:support event="onchange"
 							action="#{solicitacaoHorarioEspecialEstudanteController.calcularTempo}"
-							ajaxSingle="true" reRender="total, segunda, entradaSegunda, saidaAlmocoSegunda, retornoAlmocoSegunda, saidaSegunda"></a4j:support>
+							ajaxSingle="true"
+							reRender="total, segunda, entradaSegunda, saidaAlmocoSegunda, retornoAlmocoSegunda, saidaSegunda"></a4j:support>
 					</h:inputText>
 					<h:outputText id="segunda"
 						value="#{solicitacaoHorarioEspecialEstudanteController.solicitacaoHorarioEspecialEstudante.totalSegunda}" />
@@ -118,7 +125,8 @@
 						<f:validateLength minimum="5" />
 						<a4j:support event="onchange"
 							action="#{solicitacaoHorarioEspecialEstudanteController.calcularTempo}"
-							ajaxSingle="true" reRender="total, terca, entradaTerca, saidaAlmocoTerca, retornoAlmocoTerca, saidaTerca"></a4j:support>
+							ajaxSingle="true"
+							reRender="total, terca, entradaTerca, saidaAlmocoTerca, retornoAlmocoTerca, saidaTerca"></a4j:support>
 					</h:inputText>
 					<h:outputText value="Saída para Almoço:" />
 					<h:inputText id="saidaAlmocoTerca"
@@ -128,7 +136,8 @@
 						<f:validateLength minimum="5" />
 						<a4j:support event="onchange"
 							action="#{solicitacaoHorarioEspecialEstudanteController.calcularTempo}"
-							ajaxSingle="true" reRender="total, terca, entradaTerca, saidaAlmocoTerca, retornoAlmocoTerca, saidaTerca"></a4j:support>
+							ajaxSingle="true"
+							reRender="total, terca, entradaTerca, saidaAlmocoTerca, retornoAlmocoTerca, saidaTerca"></a4j:support>
 					</h:inputText>
 					<h:outputText value="Retorno do Almoço: " />
 					<h:inputText id="retornoAlmocoTerca"
@@ -138,17 +147,19 @@
 						<f:validateLength minimum="5" />
 						<a4j:support event="onchange"
 							action="#{solicitacaoHorarioEspecialEstudanteController.calcularTempo}"
-							ajaxSingle="true" reRender="total, terca, entradaTerca, saidaAlmocoTerca, retornoAlmocoTerca, saidaTerca"></a4j:support>
+							ajaxSingle="true"
+							reRender="total, terca, entradaTerca, saidaAlmocoTerca, retornoAlmocoTerca, saidaTerca"></a4j:support>
 					</h:inputText>
 					<h:outputText value="Saída: " />
-					<h:inputText  id="saidaTerca"
+					<h:inputText id="saidaTerca"
 						value="#{solicitacaoHorarioEspecialEstudanteController.solicitacaoHorarioEspecialEstudante.horarioSaidaTerca}"
 						size="8" maxlength="5" onkeypress="mascara(this,horario);"
 						validatorMessage="O campo Saida (Terça-Feira) deve ter 4 digitos">
 						<f:validateLength minimum="5" />
 						<a4j:support event="onchange"
 							action="#{solicitacaoHorarioEspecialEstudanteController.calcularTempo}"
-							ajaxSingle="true" reRender="total, terca, entradaTerca, saidaAlmocoTerca, retornoAlmocoTerca, saidaTerca"></a4j:support>
+							ajaxSingle="true"
+							reRender="total, terca, entradaTerca, saidaAlmocoTerca, retornoAlmocoTerca, saidaTerca"></a4j:support>
 					</h:inputText>
 					<h:outputText id="terca"
 						value="#{solicitacaoHorarioEspecialEstudanteController.solicitacaoHorarioEspecialEstudante.totalTerca}" />
@@ -163,7 +174,8 @@
 						<f:validateLength minimum="5" />
 						<a4j:support event="onchange"
 							action="#{solicitacaoHorarioEspecialEstudanteController.calcularTempo}"
-							ajaxSingle="true" reRender="total, quarta, entradaQuarta, saidaAlmocoQuarta, retornoAlmocoQuarta, saidaQuarta"></a4j:support>
+							ajaxSingle="true"
+							reRender="total, quarta, entradaQuarta, saidaAlmocoQuarta, retornoAlmocoQuarta, saidaQuarta"></a4j:support>
 					</h:inputText>
 					<h:outputText value="Saída para Almoço:" />
 					<h:inputText id="saidaAlmocoQuarta"
@@ -173,7 +185,8 @@
 						<f:validateLength minimum="5" />
 						<a4j:support event="onchange"
 							action="#{solicitacaoHorarioEspecialEstudanteController.calcularTempo}"
-							ajaxSingle="true" reRender="total, quarta, entradaQuarta, saidaAlmocoQuarta, retornoAlmocoQuarta, saidaQuarta"></a4j:support>
+							ajaxSingle="true"
+							reRender="total, quarta, entradaQuarta, saidaAlmocoQuarta, retornoAlmocoQuarta, saidaQuarta"></a4j:support>
 					</h:inputText>
 					<h:outputText value="Retorno do Almoço: " />
 					<h:inputText id="retornoAlmocoQuarta"
@@ -183,17 +196,19 @@
 						<f:validateLength minimum="5" />
 						<a4j:support event="onchange"
 							action="#{solicitacaoHorarioEspecialEstudanteController.calcularTempo}"
-							ajaxSingle="true" reRender="total, quarta, entradaQuarta, saidaAlmocoQuarta, retornoAlmocoQuarta, saidaQuarta"></a4j:support>
+							ajaxSingle="true"
+							reRender="total, quarta, entradaQuarta, saidaAlmocoQuarta, retornoAlmocoQuarta, saidaQuarta"></a4j:support>
 					</h:inputText>
 					<h:outputText value="Saída: " />
-					<h:inputText  id="saidaQuarta"
+					<h:inputText id="saidaQuarta"
 						value="#{solicitacaoHorarioEspecialEstudanteController.solicitacaoHorarioEspecialEstudante.horarioSaidaQuarta}"
 						size="8" maxlength="5" onkeypress="mascara(this,horario);"
 						validatorMessage="O campo Saida (Quarta-Feira) deve ter 4 digitos">
 						<f:validateLength minimum="5" />
 						<a4j:support event="onchange"
 							action="#{solicitacaoHorarioEspecialEstudanteController.calcularTempo}"
-							ajaxSingle="true" reRender="total, quarta, entradaQuarta, saidaAlmocoQuarta, retornoAlmocoQuarta, saidaQuarta"></a4j:support>
+							ajaxSingle="true"
+							reRender="total, quarta, entradaQuarta, saidaAlmocoQuarta, retornoAlmocoQuarta, saidaQuarta"></a4j:support>
 					</h:inputText>
 					<h:outputText id="quarta"
 						value="#{solicitacaoHorarioEspecialEstudanteController.solicitacaoHorarioEspecialEstudante.totalQuarta}" />
@@ -208,7 +223,8 @@
 						<f:validateLength minimum="5" />
 						<a4j:support event="onchange"
 							action="#{solicitacaoHorarioEspecialEstudanteController.calcularTempo}"
-							ajaxSingle="true" reRender="total, quinta, entradaQuinta, saidaAlmocoQuinta, retornoAlmocoQuinta, saidaQuinta"></a4j:support>
+							ajaxSingle="true"
+							reRender="total, quinta, entradaQuinta, saidaAlmocoQuinta, retornoAlmocoQuinta, saidaQuinta"></a4j:support>
 					</h:inputText>
 					<h:outputText value="Saída para Almoço:" />
 					<h:inputText id="saidaAlmocoQuinta"
@@ -218,7 +234,8 @@
 						<f:validateLength minimum="5" />
 						<a4j:support event="onchange"
 							action="#{solicitacaoHorarioEspecialEstudanteController.calcularTempo}"
-							ajaxSingle="true" reRender="total, quinta, entradaQuinta, saidaAlmocoQuinta, retornoAlmocoQuinta, saidaQuinta"></a4j:support>
+							ajaxSingle="true"
+							reRender="total, quinta, entradaQuinta, saidaAlmocoQuinta, retornoAlmocoQuinta, saidaQuinta"></a4j:support>
 					</h:inputText>
 					<h:outputText value="Retorno do Almoço: " />
 					<h:inputText id="retornoAlmocoQuinta"
@@ -228,17 +245,19 @@
 						<f:validateLength minimum="5" />
 						<a4j:support event="onchange"
 							action="#{solicitacaoHorarioEspecialEstudanteController.calcularTempo}"
-							ajaxSingle="true" reRender="total, quinta, entradaQuinta, saidaAlmocoQuinta, retornoAlmocoQuinta, saidaQuinta"></a4j:support>
+							ajaxSingle="true"
+							reRender="total, quinta, entradaQuinta, saidaAlmocoQuinta, retornoAlmocoQuinta, saidaQuinta"></a4j:support>
 					</h:inputText>
 					<h:outputText value="Saída: " />
-					<h:inputText  id="saidaQuinta"
+					<h:inputText id="saidaQuinta"
 						value="#{solicitacaoHorarioEspecialEstudanteController.solicitacaoHorarioEspecialEstudante.horarioSaidaQuinta}"
 						size="8" maxlength="5" onkeypress="mascara(this,horario);"
 						validatorMessage="O campo Saida (Quinta-Feira) deve ter 4 digitos">
 						<f:validateLength minimum="5" />
 						<a4j:support event="onchange"
 							action="#{solicitacaoHorarioEspecialEstudanteController.calcularTempo}"
-							ajaxSingle="true" reRender="total, quinta, entradaQuinta, saidaAlmocoQuinta, retornoAlmocoQuinta, saidaQuinta"></a4j:support>
+							ajaxSingle="true"
+							reRender="total, quinta, entradaQuinta, saidaAlmocoQuinta, retornoAlmocoQuinta, saidaQuinta"></a4j:support>
 					</h:inputText>
 					<h:outputText id="quinta"
 						value="#{solicitacaoHorarioEspecialEstudanteController.solicitacaoHorarioEspecialEstudante.totalQuinta}" />
@@ -253,7 +272,8 @@
 						<f:validateLength minimum="5" />
 						<a4j:support event="onchange"
 							action="#{solicitacaoHorarioEspecialEstudanteController.calcularTempo}"
-							ajaxSingle="true" reRender="total, sexta, entradaSexta, saidaAlmocoSexta, retornoAlmocoSexta, saidaSexta"></a4j:support>
+							ajaxSingle="true"
+							reRender="total, sexta, entradaSexta, saidaAlmocoSexta, retornoAlmocoSexta, saidaSexta"></a4j:support>
 					</h:inputText>
 					<h:outputText value="Saída para Almoço:" />
 					<h:inputText id="saidaAlmocoSexta"
@@ -263,7 +283,8 @@
 						<f:validateLength minimum="5" />
 						<a4j:support event="onchange"
 							action="#{solicitacaoHorarioEspecialEstudanteController.calcularTempo}"
-							ajaxSingle="true" reRender="total, sexta, entradaSexta, saidaAlmocoSexta, retornoAlmocoSexta, saidaSexta"></a4j:support>
+							ajaxSingle="true"
+							reRender="total, sexta, entradaSexta, saidaAlmocoSexta, retornoAlmocoSexta, saidaSexta"></a4j:support>
 					</h:inputText>
 					<h:outputText value="Retorno do Almoço: " />
 					<h:inputText id="retornoAlmocoSexta"
@@ -273,17 +294,19 @@
 						<f:validateLength minimum="5" />
 						<a4j:support event="onchange"
 							action="#{solicitacaoHorarioEspecialEstudanteController.calcularTempo}"
-							ajaxSingle="true" reRender="total, sexta, entradaSexta, saidaAlmocoSexta, retornoAlmocoSexta, saidaSexta"></a4j:support>
+							ajaxSingle="true"
+							reRender="total, sexta, entradaSexta, saidaAlmocoSexta, retornoAlmocoSexta, saidaSexta"></a4j:support>
 					</h:inputText>
 					<h:outputText value="Saída: " />
-					<h:inputText  id="saidaSexta"
+					<h:inputText id="saidaSexta"
 						value="#{solicitacaoHorarioEspecialEstudanteController.solicitacaoHorarioEspecialEstudante.horarioSaidaSexta}"
 						size="8" maxlength="5" onkeypress="mascara(this,horario);"
 						validatorMessage="O campo Saida (Sexta-Feira) deve ter 4 digitos">
 						<f:validateLength minimum="5" />
 						<a4j:support event="onchange"
 							action="#{solicitacaoHorarioEspecialEstudanteController.calcularTempo}"
-							ajaxSingle="true" reRender="total, sexta, entradaSexta, saidaAlmocoSexta, retornoAlmocoSexta, saidaSexta"></a4j:support>
+							ajaxSingle="true"
+							reRender="total, sexta, entradaSexta, saidaAlmocoSexta, retornoAlmocoSexta, saidaSexta"></a4j:support>
 					</h:inputText>
 					<h:outputText id="sexta"
 						value="#{solicitacaoHorarioEspecialEstudanteController.solicitacaoHorarioEspecialEstudante.totalSexta}" />
@@ -298,7 +321,8 @@
 						<f:validateLength minimum="5" />
 						<a4j:support event="onchange"
 							action="#{solicitacaoHorarioEspecialEstudanteController.calcularTempo}"
-							ajaxSingle="true" reRender="total, sabado, entradaSabado, saidaAlmocoSabado, retornoAlmocoSabado, saidaSabado"></a4j:support>
+							ajaxSingle="true"
+							reRender="total, sabado, entradaSabado, saidaAlmocoSabado, retornoAlmocoSabado, saidaSabado"></a4j:support>
 					</h:inputText>
 					<h:outputText value="Saída para Almoço:" />
 					<h:inputText id="saidaAlmocoSabado"
@@ -308,7 +332,8 @@
 						<f:validateLength minimum="5" />
 						<a4j:support event="onchange"
 							action="#{solicitacaoHorarioEspecialEstudanteController.calcularTempo}"
-							ajaxSingle="true" reRender="total, sabado, entradaSabado, saidaAlmocoSabado, retornoAlmocoSabado, saidaSabado"></a4j:support>
+							ajaxSingle="true"
+							reRender="total, sabado, entradaSabado, saidaAlmocoSabado, retornoAlmocoSabado, saidaSabado"></a4j:support>
 					</h:inputText>
 					<h:outputText value="Retorno do Almoço: " />
 					<h:inputText id="retornoAlmocoSabado"
@@ -318,23 +343,27 @@
 						<f:validateLength minimum="5" />
 						<a4j:support event="onchange"
 							action="#{solicitacaoHorarioEspecialEstudanteController.calcularTempo}"
-							ajaxSingle="true" reRender="total, sabado, entradaSabado, saidaAlmocoSabado, retornoAlmocoSabado, saidaSabado"></a4j:support>
+							ajaxSingle="true"
+							reRender="total, sabado, entradaSabado, saidaAlmocoSabado, retornoAlmocoSabado, saidaSabado"></a4j:support>
 					</h:inputText>
 					<h:outputText value="Saída: " />
-					<h:inputText  id="saidaSabado"
+					<h:inputText id="saidaSabado"
 						value="#{solicitacaoHorarioEspecialEstudanteController.solicitacaoHorarioEspecialEstudante.horarioSaidaSabado}"
 						size="8" maxlength="5" onkeypress="mascara(this,horario);"
 						validatorMessage="O campo Saida (Sabado) deve ter 4 digitos">
 						<f:validateLength minimum="5" />
 						<a4j:support event="onchange"
 							action="#{solicitacaoHorarioEspecialEstudanteController.calcularTempo}"
-							ajaxSingle="true" reRender="total, sabado, entradaSabado, saidaAlmocoSabado, retornoAlmocoSabado, saidaSabado"></a4j:support>
+							ajaxSingle="true"
+							reRender="total, sabado, entradaSabado, saidaAlmocoSabado, retornoAlmocoSabado, saidaSabado"></a4j:support>
 					</h:inputText>
 					<h:outputText id="sabado"
 						value="#{solicitacaoHorarioEspecialEstudanteController.solicitacaoHorarioEspecialEstudante.totalSabado}" />
 				</h:panelGrid>
 			</h:panelGrid>
-			<center><h:outputText value="Total de Horas: "/><h:outputText id="total" value="#{solicitacaoHorarioEspecialEstudanteController.solicitacaoHorarioEspecialEstudante.totalSemana}"/></center>
+			<center><h:outputText value="Total de Horas: " /><h:outputText
+				id="total"
+				value="#{solicitacaoHorarioEspecialEstudanteController.solicitacaoHorarioEspecialEstudante.totalSemana}" /></center>
 
 			<rich:fileUpload
 				fileUploadListener="#{solicitacaoHorarioEspecialEstudanteController.listener}"
