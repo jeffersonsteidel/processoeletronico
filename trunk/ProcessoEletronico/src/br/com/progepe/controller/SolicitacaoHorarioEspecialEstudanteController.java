@@ -90,9 +90,7 @@ public class SolicitacaoHorarioEspecialEstudanteController implements
 				&& !(solicitacaoHorarioEspecialEstudante.getSolicitante()
 						.getRegimeTrabalho().getCodigo().toString()
 						.equals(solicitacaoHorarioEspecialEstudante
-								.getTotalSemana().substring(0, 2)))
-				&& Integer.parseInt(solicitacaoHorarioEspecialEstudante
-						.getTotalSemana().substring(3)) > 0) {
+								.getTotalSemana().substring(0, 2)))) {
 			FacesMessage message = new FacesMessage(
 					FacesMessage.SEVERITY_ERROR,
 					"O Horário de Compensação deve ser igual ao do Regime de Trabalho!",
