@@ -54,10 +54,10 @@
 				</h:outputText>
 			</h:panelGrid>
 
-			<h:panelGrid columns="1">
+			<h:panelGrid columns="1" border="1">
 				<h:outputText value="Horário de Compensação: " />
 				<h:outputText value="Segunda-feira " />
-				<h:panelGrid columns="10">
+				<h:panelGrid columns="10" border="1">
 					<h:outputText value="Entrada: " />
 					<h:outputText
 						value="#{solicitacaoController.solicitacaoHorarioEspecialEstudante.horarioEntradaSegunda}" />
@@ -74,7 +74,7 @@
 					<h:outputText value="#{solicitacaoController.solicitacaoHorarioEspecialEstudante.totalSegunda}"/>
 				</h:panelGrid>
 				<h:outputText value="Terça-feira " />
-				<h:panelGrid columns="10">
+				<h:panelGrid columns="10" border="1">
 					<h:outputText value="Entrada: " />
 					<h:outputText
 						value="#{solicitacaoController.solicitacaoHorarioEspecialEstudante.horarioEntradaTerca}" />

@@ -78,20 +78,22 @@ public class SolicitacaoHorarioEspecialEstudanteController implements
 	}
 
 	public void salvar() throws IOException, ParseException {
+		FacesMessage message;
 		if (solicitacaoHorarioEspecialEstudante.getDeclaracaoMatricula() == null) {
-			FacesMessage message = new FacesMessage(
-					FacesMessage.SEVERITY_ERROR,
+			message = new FacesMessage(FacesMessage.SEVERITY_ERROR,
 					"É necessário adicionar a Declaração de Matricula!",
 					"É necessário adicionar a Declaração de Matricula!");
 			FacesContext.getCurrentInstance().addMessage("", message);
 		} else if (!(Constantes.REGIME_DEDICACAO_EXCLUSIVA
 				.equals(solicitacaoHorarioEspecialEstudante.getSolicitante()
 						.getRegimeTrabalho().getCodigo()))
-				&& !(solicitacaoHorarioEspecialEstudante.getSolicitante()
-						.getRegimeTrabalho().getCodigo().toString()
-						.equals(solicitacaoHorarioEspecialEstudante
-								.getTotalSemana().substring(0, 2)))) {
-			FacesMessage message = new FacesMessage(
+				&& !(solicitacaoHorarioEspecialEstudante
+						.getSolicitante()
+						.getRegimeTrabalho()
+						.getCodigo()
+						.toString() +":00").equals(solicitacaoHorarioEspecialEstudante
+								.getTotalSemana())) {
+			message = new FacesMessage(
 					FacesMessage.SEVERITY_ERROR,
 					"O Horário de Compensação deve ser igual ao do Regime de Trabalho!",
 					"O Horário de Compensação deve ser igual ao do Regime de Trabalho!");
