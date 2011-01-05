@@ -225,6 +225,10 @@ public class SolicitacaoHorarioEspecialEstudanteController implements
 		}
 
 		// TERCA
+		 finalIntevalo = 0;
+		 inicioIntevalo = 0;
+		 horaFinal = 0;
+		 horaIncial = 0;
 		if (solicitacaoHorarioEspecialEstudante.getHorarioSaidaTerca() != null
 				&& solicitacaoHorarioEspecialEstudante.getHorarioSaidaTerca() != ""
 				&& solicitacaoHorarioEspecialEstudante.getHorarioEntradaTerca() != null
@@ -320,6 +324,10 @@ public class SolicitacaoHorarioEspecialEstudanteController implements
 		}
 
 		// QUARTA
+		 finalIntevalo = 0;
+		 inicioIntevalo = 0;
+		 horaFinal = 0;
+		 horaIncial = 0;
 		if (solicitacaoHorarioEspecialEstudante.getHorarioSaidaQuarta() != null
 				&& solicitacaoHorarioEspecialEstudante.getHorarioSaidaQuarta() != ""
 				&& solicitacaoHorarioEspecialEstudante
@@ -419,6 +427,10 @@ public class SolicitacaoHorarioEspecialEstudanteController implements
 		}
 
 		// QUINTA
+		 finalIntevalo = 0;
+		 inicioIntevalo = 0;
+		 horaFinal = 0;
+		 horaIncial = 0;
 		if (solicitacaoHorarioEspecialEstudante.getHorarioSaidaQuinta() != null
 				&& solicitacaoHorarioEspecialEstudante.getHorarioSaidaQuinta() != ""
 				&& solicitacaoHorarioEspecialEstudante
@@ -518,6 +530,10 @@ public class SolicitacaoHorarioEspecialEstudanteController implements
 		}
 
 		// SEXTA
+		 finalIntevalo = 0;
+		 inicioIntevalo = 0;
+		 horaFinal = 0;
+		 horaIncial = 0;
 		if (solicitacaoHorarioEspecialEstudante.getHorarioSaidaSexta() != null
 				&& solicitacaoHorarioEspecialEstudante.getHorarioSaidaSexta() != ""
 				&& solicitacaoHorarioEspecialEstudante.getHorarioEntradaSexta() != null
@@ -613,6 +629,10 @@ public class SolicitacaoHorarioEspecialEstudanteController implements
 		}
 
 		// SABADO
+		 finalIntevalo = 0;
+		 inicioIntevalo = 0;
+		 horaFinal = 0;
+		 horaIncial = 0;
 		if (solicitacaoHorarioEspecialEstudante.getHorarioSaidaSabado() != null
 				&& solicitacaoHorarioEspecialEstudante.getHorarioSaidaSabado() != ""
 				&& solicitacaoHorarioEspecialEstudante
