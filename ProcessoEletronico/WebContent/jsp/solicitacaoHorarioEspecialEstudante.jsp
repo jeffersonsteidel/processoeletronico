@@ -334,7 +334,7 @@
 						value="#{solicitacaoHorarioEspecialEstudanteController.totalSabado}" />
 				</h:panelGrid>
 			</h:panelGrid>
-			<center><h:outputText value="Total: "/><h:outputText id="total" value="#{solicitacaoHorarioEspecialEstudanteController.totalSemana}"/></center>
+			<center><h:outputText value="Total de Horas: "/><h:outputText id="total" value="#{solicitacaoHorarioEspecialEstudanteController.totalSemana}"/></center>
 
 			<rich:fileUpload
 				fileUploadListener="#{solicitacaoHorarioEspecialEstudanteController.listener}"
