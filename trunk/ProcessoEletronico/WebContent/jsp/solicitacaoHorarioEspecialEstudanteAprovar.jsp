@@ -76,7 +76,7 @@
 						<b>Horário de Retorno do Almoço</b>
 					</h:outputText>
 					<h:outputText>
-						<b>Horário de Saida</b>
+						<b>Horário de Saída</b>
 					</h:outputText>
 					<h:outputText>
 						<b>Carga Horária do Dia</b>
@@ -136,7 +136,7 @@
 						value="#{solicitacaoController.solicitacaoHorarioEspecialEstudante.horarioSaidaSexta}"></h:outputText>
 					<h:outputText
 						value="#{solicitacaoController.solicitacaoHorarioEspecialEstudante.totalSexta}"></h:outputText>
-					<h:outputText value="Sabado-Feira"></h:outputText>
+					<h:outputText value="Sabado"></h:outputText>
 					<h:outputText
 						value="#{solicitacaoController.solicitacaoHorarioEspecialEstudante.horarioEntradaSabado}"></h:outputText>
 					<h:outputText
