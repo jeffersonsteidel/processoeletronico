@@ -29,6 +29,10 @@
 			<font size="2"><b>SOLICITAÇÃO DE HORÁRIO ESPECIAL PARA
 			ESTUDANTE</b></font>
 			<h:panelGrid columns="1">
+
+
+
+
 				<h:outputText
 					value="Solicitante: #{solicitacaoController.solicitacaoHorarioEspecialEstudante.solicitante.siape} - #{solicitacaoController.solicitacaoHorarioEspecialEstudante.solicitante.nome}">
 				</h:outputText>
@@ -54,148 +58,135 @@
 				</h:outputText>
 			</h:panelGrid>
 
-			<h:panelGrid columns="1" border="1">
+			<h:panelGrid columns="1">
 				<h:outputText value="Horário de Compensação: " />
-				<h:outputText value="Segunda-feira " />
-				<h:panelGrid columns="10" border="1">
-					<h:outputText value="Entrada: " />
-					<h:outputText
-						value="#{solicitacaoController.solicitacaoHorarioEspecialEstudante.horarioEntradaSegunda}" />
-					<h:outputText value="Saída para Almoço:" />
-					<h:outputText
-						value="#{solicitacaoController.solicitacaoHorarioEspecialEstudante.horarioSaidaAlmocoSegunda}" />
-					<h:outputText value="Retorno do Almoço: " />
-					<h:outputText
-						value="#{solicitacaoController.solicitacaoHorarioEspecialEstudante.horarioRetornoAlmocoSegunda}" />
-					<h:outputText value="Saída: " />
-					<h:outputText
-						value="#{solicitacaoController.solicitacaoHorarioEspecialEstudante.horarioSaidaSegunda}" />
-					<h:outputText value="Total de Segunda: "/>
-					<h:outputText value="#{solicitacaoController.solicitacaoHorarioEspecialEstudante.totalSegunda}"/>
-				</h:panelGrid>
-				<h:outputText value="Terça-feira " />
-				<h:panelGrid columns="10" border="1">
-					<h:outputText value="Entrada: " />
-					<h:outputText
-						value="#{solicitacaoController.solicitacaoHorarioEspecialEstudante.horarioEntradaTerca}" />
-					<h:outputText value="Saída para Almoço:" />
-					<h:outputText
-						value="#{solicitacaoController.solicitacaoHorarioEspecialEstudante.horarioSaidaAlmocoTerca}" />
-					<h:outputText value="Retorno do Almoço: " />
-					<h:outputText
-						value="#{solicitacaoController.solicitacaoHorarioEspecialEstudante.horarioRetornoAlmocoTerca}" />
-					<h:outputText value="Saída: " />
-					<h:outputText
-						value="#{solicitacaoController.solicitacaoHorarioEspecialEstudante.horarioSaidaTerca}" />
-					<h:outputText value="Total de Terca: "/>
-					<h:outputText value="#{solicitacaoController.solicitacaoHorarioEspecialEstudante.totalTerca}"/>
-				</h:panelGrid>
-				<h:outputText value="Quarta-feira" />
-				<h:panelGrid columns="10">
-					<h:outputText value="Entrada: " />
-					<h:outputText
-						value="#{solicitacaoController.solicitacaoHorarioEspecialEstudante.horarioEntradaQuarta}" />
-					<h:outputText value="Saída para Almoço:" />
-					<h:outputText
-						value="#{solicitacaoController.solicitacaoHorarioEspecialEstudante.horarioSaidaAlmocoQuarta}" />
-					<h:outputText value="Retorno do Almoço: " />
-					<h:outputText
-						value="#{solicitacaoController.solicitacaoHorarioEspecialEstudante.horarioRetornoAlmocoQuarta}" />
-					<h:outputText value="Saída: " />
-					<h:outputText
-						value="#{solicitacaoController.solicitacaoHorarioEspecialEstudante.horarioSaidaQuarta}" />
-					<h:outputText value="Total de Quarta: "/>
-					<h:outputText value="#{solicitacaoController.solicitacaoHorarioEspecialEstudante.totalQuarta}"/>
-				</h:panelGrid>
-				<h:outputText value="Quinta-feira " />
-				<h:panelGrid columns="10">
-					<h:outputText value="Entrada: " />
-					<h:outputText
-						value="#{solicitacaoController.solicitacaoHorarioEspecialEstudante.horarioEntradaQuinta}" />
-					<h:outputText value="Saída para Almoço:" />
-					<h:outputText
-						value="#{solicitacaoController.solicitacaoHorarioEspecialEstudante.horarioSaidaAlmocoQuinta}" />
-					<h:outputText value="Retorno do Almoço: " />
-					<h:outputText
-						value="#{solicitacaoController.solicitacaoHorarioEspecialEstudante.horarioRetornoAlmocoQuinta}" />
-					<h:outputText value="Saída: " />
-					<h:outputText
-						value="#{solicitacaoController.solicitacaoHorarioEspecialEstudante.horarioSaidaQuinta}" />
-					<h:outputText value="Total de Quinta: "/>
-					<h:outputText value="#{solicitacaoController.solicitacaoHorarioEspecialEstudante.totalQuinta}"/>
-				</h:panelGrid>
-				<h:outputText value="Sexta-feira" />
-				<h:panelGrid columns="10">
-					<h:outputText value="Entrada: " />
-					<h:outputText
-						value="#{solicitacaoController.solicitacaoHorarioEspecialEstudante.horarioEntradaSexta}" />
-					<h:outputText value="Saída para Almoço:" />
-					<h:outputText
-						value="#{solicitacaoController.solicitacaoHorarioEspecialEstudante.horarioSaidaAlmocoSexta}" />
-					<h:outputText value="Retorno do Almoço: " />
-					<h:outputText
-						value="#{solicitacaoController.solicitacaoHorarioEspecialEstudante.horarioRetornoAlmocoSexta}" />
-					<h:outputText value="Saída: " />
-					<h:outputText
-						value="#{solicitacaoController.solicitacaoHorarioEspecialEstudante.horarioSaidaSexta}" />
-					<h:outputText value="Total de Sexta: "/>
-					<h:outputText value="#{solicitacaoController.solicitacaoHorarioEspecialEstudante.totalSexta}"/>
-				</h:panelGrid>
-				<h:outputText value="Sábado" />
-				<h:panelGrid columns="10">
-					<h:outputText value="Entrada: " />
-					<h:outputText
-						value="#{solicitacaoController.solicitacaoHorarioEspecialEstudante.horarioEntradaSabado}" />
-					<h:outputText value="Saída para Almoço:" />
-					<h:outputText
-						value="#{solicitacaoController.solicitacaoHorarioEspecialEstudante.horarioSaidaAlmocoSabado}" />
-					<h:outputText value="Retorno do Almoço: " />
-					<h:outputText
-						value="#{solicitacaoController.solicitacaoHorarioEspecialEstudante.horarioRetornoAlmocoSabado}" />
-					<h:outputText value="Saída: " />
-					<h:outputText
-						value="#{solicitacaoController.solicitacaoHorarioEspecialEstudante.horarioSaidaSabado}" />
-					<h:outputText value="Total de Sabado: "/>
-					<h:outputText value="#{solicitacaoController.solicitacaoHorarioEspecialEstudante.totalSabado}"/>
-				</h:panelGrid>
-				<h:panelGrid columns="1">
-				<h:outputText value="Total da Semana: #{solicitacaoController.solicitacaoHorarioEspecialEstudante.totalSemana}"/>
-				</h:panelGrid>
-			</h:panelGrid>
-			
 
-			<h:panelGroup id="info">
-				<rich:panel bodyClass="info">
-					<rich:dataGrid columns="1"
-						value="#{solicitacaoController.solicitacaoHorarioEspecialEstudante.files}"
-						var="file" rowKeyVar="row">
-						<rich:panel bodyClass="rich-laguna-panel-no-header">
-							<h:panelGrid columns="2">
-								<a4j:mediaOutput element="img"
-									createContent="#{solicitacaoController.paint}" value="#{row}"
-									style="width:600px; height:800px;" cacheable="false">
-								</a4j:mediaOutput>
-							</h:panelGrid>
-						</rich:panel>
-					</rich:dataGrid>
-				</rich:panel>
-			</h:panelGroup>
 
-			<h:panelGrid columns="2">
-				<h:outputText value="Justificativa: " />
-				<h:inputTextarea disabled="#{solicitacaoController.desabilitaBotao}"
-					value="#{solicitacaoController.solicitacaoHorarioEspecialEstudante.justificativa}"
-					cols="50" rows="5"></h:inputTextarea>
-			</h:panelGrid>
+				<h:panelGrid columns="6" border="1">
+					<h:outputText>
+						<b>Dia da Semana</b>
+					</h:outputText>
+					<h:outputText>
+						<b>Horário de Entrada</b>
+					</h:outputText>
+					<h:outputText>
+						<b>Horário de Saida para Almoço</b>
+					</h:outputText>
+					<h:outputText>
+						<b>Horário de Retorno do Almoço</b>
+					</h:outputText>
+					<h:outputText>
+						<b>Horário de Saida</b>
+					</h:outputText>
+					<h:outputText>
+						<b>Carga Horária do Dia</b>
+					</h:outputText>
+					<h:outputText value="Segunda-Feira"></h:outputText>
+					<h:outputText
+						value="#{solicitacaoController.solicitacaoHorarioEspecialEstudante.horarioEntradaSegunda}"></h:outputText>
+					<h:outputText
+						value="#{solicitacaoController.solicitacaoHorarioEspecialEstudante.horarioSaidaAlmocoSegunda}"></h:outputText>
+					<h:outputText
+						value="#{solicitacaoController.solicitacaoHorarioEspecialEstudante.horarioRetornoAlmocoSegunda}"></h:outputText>
+					<h:outputText
+						value="#{solicitacaoController.solicitacaoHorarioEspecialEstudante.horarioSaidaSegunda}"></h:outputText>
+					<h:outputText
+						value="#{solicitacaoController.solicitacaoHorarioEspecialEstudante.totalSegunda}"></h:outputText>
+					<h:outputText value="Terca-Feira"></h:outputText>
+					<h:outputText
+						value="#{solicitacaoController.solicitacaoHorarioEspecialEstudante.horarioEntradaTerca}"></h:outputText>
+					<h:outputText
+						value="#{solicitacaoController.solicitacaoHorarioEspecialEstudante.horarioSaidaAlmocoTerca}"></h:outputText>
+					<h:outputText
+						value="#{solicitacaoController.solicitacaoHorarioEspecialEstudante.horarioRetornoAlmocoTerca}"></h:outputText>
+					<h:outputText
+						value="#{solicitacaoController.solicitacaoHorarioEspecialEstudante.horarioSaidaTerca}"></h:outputText>
+					<h:outputText
+						value="#{solicitacaoController.solicitacaoHorarioEspecialEstudante.totalTerca}"></h:outputText>
+					<h:outputText value="Quarta-Feira"></h:outputText>
+					<h:outputText
+						value="#{solicitacaoController.solicitacaoHorarioEspecialEstudante.horarioEntradaQuarta}"></h:outputText>
+					<h:outputText
+						value="#{solicitacaoController.solicitacaoHorarioEspecialEstudante.horarioSaidaAlmocoQuarta}"></h:outputText>
+					<h:outputText
+						value="#{solicitacaoController.solicitacaoHorarioEspecialEstudante.horarioRetornoAlmocoQuarta}"></h:outputText>
+					<h:outputText
+						value="#{solicitacaoController.solicitacaoHorarioEspecialEstudante.horarioSaidaQuarta}"></h:outputText>
+					<h:outputText
+						value="#{solicitacaoController.solicitacaoHorarioEspecialEstudante.totalQuarta}"></h:outputText>
+					<h:outputText value="Quinta-Feira"></h:outputText>
+					<h:outputText
+						value="#{solicitacaoController.solicitacaoHorarioEspecialEstudante.horarioEntradaQuinta}"></h:outputText>
+					<h:outputText
+						value="#{solicitacaoController.solicitacaoHorarioEspecialEstudante.horarioSaidaAlmocoQuinta}"></h:outputText>
+					<h:outputText
+						value="#{solicitacaoController.solicitacaoHorarioEspecialEstudante.horarioRetornoAlmocoQuinta}"></h:outputText>
+					<h:outputText
+						value="#{solicitacaoController.solicitacaoHorarioEspecialEstudante.horarioSaidaQuinta}"></h:outputText>
+					<h:outputText
+						value="#{solicitacaoController.solicitacaoHorarioEspecialEstudante.totalQuinta}"></h:outputText>
+					<h:outputText value="Sexta-Feira"></h:outputText>
+					<h:outputText
+						value="#{solicitacaoController.solicitacaoHorarioEspecialEstudante.horarioEntradaSexta}"></h:outputText>
+					<h:outputText
+						value="#{solicitacaoController.solicitacaoHorarioEspecialEstudante.horarioSaidaAlmocoSexta}"></h:outputText>
+					<h:outputText
+						value="#{solicitacaoController.solicitacaoHorarioEspecialEstudante.horarioRetornoAlmocoSexta}"></h:outputText>
+					<h:outputText
+						value="#{solicitacaoController.solicitacaoHorarioEspecialEstudante.horarioSaidaSexta}"></h:outputText>
+					<h:outputText
+						value="#{solicitacaoController.solicitacaoHorarioEspecialEstudante.totalSexta}"></h:outputText>
+					<h:outputText value="Sabado-Feira"></h:outputText>
+					<h:outputText
+						value="#{solicitacaoController.solicitacaoHorarioEspecialEstudante.horarioEntradaSabado}"></h:outputText>
+					<h:outputText
+						value="#{solicitacaoController.solicitacaoHorarioEspecialEstudante.horarioSaidaAlmocoSabado}"></h:outputText>
+					<h:outputText
+						value="#{solicitacaoController.solicitacaoHorarioEspecialEstudante.horarioRetornoAlmocoSabado}"></h:outputText>
+					<h:outputText
+						value="#{solicitacaoController.solicitacaoHorarioEspecialEstudante.horarioSaidaSabado}"></h:outputText>
+					<h:outputText
+						value="#{solicitacaoController.solicitacaoHorarioEspecialEstudante.totalSabado}"></h:outputText>
+				</h:panelGrid>
+				
+	</h:panelGrid>
+<center><b><h:panelGrid columns="1" border="1">
+					<h:outputText
+						value="Total da Semana: #{solicitacaoController.solicitacaoHorarioEspecialEstudante.totalSemana}" />
+				</h:panelGrid></b></center>
+				<h:panelGroup id="info">
+					<rich:panel bodyClass="info">
+						<rich:dataGrid columns="1"
+							value="#{solicitacaoController.solicitacaoHorarioEspecialEstudante.files}"
+							var="file" rowKeyVar="row">
+							<rich:panel bodyClass="rich-laguna-panel-no-header">
+								<h:panelGrid columns="2">
+									<a4j:mediaOutput element="img"
+										createContent="#{solicitacaoController.paint}" value="#{row}"
+										style="width:600px; height:800px;" cacheable="false">
+									</a4j:mediaOutput>
+								</h:panelGrid>
+							</rich:panel>
+						</rich:dataGrid>
+					</rich:panel>
+				</h:panelGroup>
 
-			<h:panelGrid columns="2">
-				<a4j:commandButton value="Deferir" reRender="form"
-					disabled="#{solicitacaoController.desabilitaBotao}"
-					oncomplete="#{rich:component('confirmPanel')}.show()" />
-				<a4j:commandButton value="Indeferir" reRender="form"
-					disabled="#{solicitacaoController.desabilitaBotao}"
-					oncomplete="#{rich:component('confirmPanel02')}.show()" />
-			</h:panelGrid>
+				<h:panelGrid columns="2">
+					<h:outputText value="Justificativa: " />
+					<h:inputTextarea
+						disabled="#{solicitacaoController.desabilitaBotao}"
+						value="#{solicitacaoController.solicitacaoHorarioEspecialEstudante.justificativa}"
+						cols="50" rows="5"></h:inputTextarea>
+				</h:panelGrid>
+
+				<h:panelGrid columns="2">
+					<a4j:commandButton value="Deferir" reRender="form"
+						disabled="#{solicitacaoController.desabilitaBotao}"
+						oncomplete="#{rich:component('confirmPanel')}.show()" />
+					<a4j:commandButton value="Indeferir" reRender="form"
+						disabled="#{solicitacaoController.desabilitaBotao}"
+						oncomplete="#{rich:component('confirmPanel02')}.show()" />
+				</h:panelGrid>
 		</rich:panel></center>
 
 		<rich:modalPanel id="confirmPanel" autosized="true" width="200">
