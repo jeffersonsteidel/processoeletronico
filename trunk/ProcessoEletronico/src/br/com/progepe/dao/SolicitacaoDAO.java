@@ -14,6 +14,7 @@ import br.com.progepe.entity.Solicitacao;
 import br.com.progepe.entity.SolicitacaoAdicionalNoturno;
 import br.com.progepe.entity.SolicitacaoAfastamentoConjuge;
 import br.com.progepe.entity.SolicitacaoAlimentacao;
+import br.com.progepe.entity.SolicitacaoAlteracaoEndereco;
 import br.com.progepe.entity.SolicitacaoCasamento;
 import br.com.progepe.entity.SolicitacaoContaBancaria;
 import br.com.progepe.entity.SolicitacaoHorarioEspecialEstudante;
@@ -140,6 +141,15 @@ public class SolicitacaoDAO extends DAO {
 		query.setParameter("codigo", codigo);
 		HibernateUtility.commitTransaction();
 		return (SolicitacaoAdicionalNoturno) query.uniqueResult();
+	}
+	
+	public SolicitacaoAlteracaoEndereco carregarSolicitacaoAlteracaoEndereco(Long codigo) {
+		HibernateUtility.getSession().clear();
+		Query query = HibernateUtility.getSession().createQuery(
+				"from SolicitacaoAlteracaoEndereco s where s.codigo= :codigo");
+		query.setParameter("codigo", codigo);
+		HibernateUtility.commitTransaction();
+		return (SolicitacaoAlteracaoEndereco) query.uniqueResult();
 	}
 	
 	public void updateSolicitacao(Object objeto) {
