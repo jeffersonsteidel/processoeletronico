@@ -26,45 +26,39 @@
 				</f:facet>
 			</rich:messages>
 
-			<font size="2"><b>ALTERAÇÃO DE ENDEREÇO</b></font>
+			<font size="2"><b>ALTERAÇÃO DE ENDEREÇO/CONTATO</b></font>
 			<h:panelGrid columns="1">
 				<h:outputText
 					value="#{solicitacaoAlteracaoEnderecoController.solicitacaoAlteracaoEndereco.solicitante.siape} - #{solicitacaoAlteracaoEnderecoController.solicitacaoAlteracaoEndereco.solicitante.nome}">
 				</h:outputText>
 			</h:panelGrid>
 			<h:panelGrid columns="1">
-				<center><h:outputText value="Endereço Atual" /></center>
+				<center><h:outputText value="Atual" /></center>
 			</h:panelGrid>
-			<h:panelGrid columns="4">
-				<h:outputText value="Endereço: " />
-				<h:outputText value="#{solicitacaoAlteracaoEnderecoController.solicitacaoAlteracaoEndereco.solicitante.endereco.rua}"></h:outputText>
+			<h:panelGrid columns="2">
+				<h:outputText value="Endereço: #{solicitacaoAlteracaoEnderecoController.solicitacaoAlteracaoEndereco.solicitante.endereco.rua}"></h:outputText>
 
-				<h:outputText value="Número: " />
-				<h:outputText value="#{solicitacaoAlteracaoEnderecoController.solicitacaoAlteracaoEndereco.solicitante.endereco.numero}"></h:outputText>
+				<h:outputText value="Número: #{solicitacaoAlteracaoEnderecoController.solicitacaoAlteracaoEndereco.solicitante.endereco.numero}"></h:outputText>
 
-				<h:outputText value="Bairro: " />
-				<h:outputText value="#{solicitacaoAlteracaoEnderecoController.solicitacaoAlteracaoEndereco.solicitante.endereco.bairro}"></h:outputText>
+				<h:outputText value="Bairro: #{solicitacaoAlteracaoEnderecoController.solicitacaoAlteracaoEndereco.solicitante.endereco.bairro}"></h:outputText>
 
-				<h:outputText value="Complemento: " />
-				<h:outputText
-					value="#{solicitacaoAlteracaoEnderecoController.solicitacaoAlteracaoEndereco.solicitante.endereco.complemento}"></h:outputText>
+				<h:outputText value="Complemento: #{solicitacaoAlteracaoEnderecoController.solicitacaoAlteracaoEndereco.solicitante.endereco.complemento}"></h:outputText>
 
-				<h:outputText value="CEP: " />
-				<h:outputText value="#{solicitacaoAlteracaoEnderecoController.solicitacaoAlteracaoEndereco.solicitante.endereco.cep}">
+				<h:outputText value="CEP: #{solicitacaoAlteracaoEnderecoController.solicitacaoAlteracaoEndereco.solicitante.endereco.cep}">
 				</h:outputText>
 
-				<h:outputText value="Estado: " />
-				<h:outputText
-					value="#{solicitacaoAlteracaoEnderecoController.solicitacaoAlteracaoEndereco.solicitante.endereco.cidade.estado.descricao}">
+				<h:outputText value="Estado: #{solicitacaoAlteracaoEnderecoController.solicitacaoAlteracaoEndereco.solicitante.endereco.cidade.estado.descricao}">
 
 				</h:outputText>
 
-				<h:outputText value="Cidade: " />
-				<h:outputText
-					value="#{solicitacaoAlteracaoEnderecoController.solicitacaoAlteracaoEndereco.solicitante.endereco.cidade.descricao}" />
+				<h:outputText value="Cidade: #{solicitacaoAlteracaoEnderecoController.solicitacaoAlteracaoEndereco.solicitante.endereco.cidade.descricao}" />
+				
+				<h:outputText value="Telefone Residencial: #{solicitacaoAlteracaoEnderecoController.solicitacaoAlteracaoEndereco.solicitante.telefone}"> </h:outputText>
+				<h:outputText value="Celular: #{solicitacaoAlteracaoEnderecoController.solicitacaoAlteracaoEndereco.solicitante.celular}"> </h:outputText>
+				<h:outputText value="E-mail: #{solicitacaoAlteracaoEnderecoController.solicitacaoAlteracaoEndereco.solicitante.email}"> </h:outputText>
 			</h:panelGrid>
 			<h:panelGrid columns="1">
-				<center><h:outputText value="Novo Endereço" /></center>
+				<center><h:outputText value="Novo" /></center>
 			</h:panelGrid>
 			<h:panelGrid columns="4">
 				<h:outputText value="Endereço: " />
@@ -114,6 +108,25 @@
 					<f:selectItem itemLabel="SELECIONE" itemValue="" />
 					<f:selectItems value="#{solicitacaoAlteracaoEnderecoController.cidades}" />
 				</h:selectOneMenu>
+				<h:outputText value="Telefone Residencial: " />
+				<h:inputText value="#{solicitacaoAlteracaoEnderecoController.solicitacaoAlteracaoEndereco.novoTelefone}"
+				size="16" maxlength="13" required="true"
+							requiredMessage="Campo Telefone Residencial é obrigatório!"
+							onkeypress="mascara(this,telefone);"
+							validatorMessage="Campo Telefone Residencial deve ter no mínimo 13 caracteres!">
+							<f:validateLength minimum="13" />
+						</h:inputText>
+				<h:outputText value="Celular: " />
+				<h:inputText value="#{solicitacaoAlteracaoEnderecoController.solicitacaoAlteracaoEndereco.novoCelular}"
+				size="16" maxlength="13" 
+							onkeypress="mascara(this,telefone);"
+							validatorMessage="Campo Celular deve ter no mínimo 13 caracteres!">
+							<f:validateLength minimum="13" />
+						</h:inputText>
+				<h:outputText value="E-mail: " />
+						<h:inputText value="#{solicitacaoAlteracaoEnderecoController.solicitacaoAlteracaoEndereco.novoEmail}"
+							size="40" title="Colocar de preferencial o e-mail institucional!"
+							maxlength="150"></h:inputText>
 			</h:panelGrid>
 			<a4j:commandButton value="Salvar"
 				action="#{solicitacaoAlteracaoEnderecoController.salvar}"
