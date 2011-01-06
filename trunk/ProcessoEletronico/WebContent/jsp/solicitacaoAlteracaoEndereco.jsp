@@ -81,7 +81,7 @@
 				<h:outputText
 					value="#{solicitacaoAlteracaoEnderecoController.solicitacaoAlteracaoEndereco.solicitante.endereco.cidade.descricao}" />
 
-				<h:outputText value="Telefone Residencial: ">
+				<h:outputText value="Telefone: ">
 				</h:outputText>
 
 				<h:outputText
@@ -157,13 +157,13 @@
 					<f:selectItems
 						value="#{solicitacaoAlteracaoEnderecoController.cidades}" />
 				</h:selectOneMenu>
-				<h:outputText value="Telefone Residencial: " />
+				<h:outputText value="Telefone: " />
 				<h:inputText
 					value="#{solicitacaoAlteracaoEnderecoController.solicitacaoAlteracaoEndereco.novoTelefone}"
 					size="16" maxlength="13" required="true"
-					requiredMessage="Campo Telefone Residencial é obrigatório!"
+					requiredMessage="Campo Telefone é obrigatório!"
 					onkeypress="mascara(this,telefone);"
-					validatorMessage="Campo Telefone Residencial deve ter no mínimo 13 caracteres!">
+					validatorMessage="Campo Telefone deve ter no mínimo 13 caracteres!">
 					<f:validateLength minimum="13" />
 				</h:inputText>
 				<h:outputText value="Celular: " />

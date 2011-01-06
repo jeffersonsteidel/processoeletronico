@@ -82,7 +82,7 @@
 
 				<h:outputText
 					value="#{solicitacaoController.solicitacaoAlteracaoEndereco.solicitante.endereco.cidade.descricao}" />
-				<h:outputText value="Telefone Residencial: ">
+				<h:outputText value="Telefone: ">
 				</h:outputText>
 
 				<h:outputText
@@ -144,7 +144,7 @@
 
 				<h:outputText
 					value="#{solicitacaoController.solicitacaoAlteracaoEndereco.novaCidade.descricao}" />
-				<h:outputText value="Telefone Residencial: ">
+				<h:outputText value="Telefone: ">
 				</h:outputText>
 
 				<h:outputText
