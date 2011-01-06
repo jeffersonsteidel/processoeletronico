@@ -38,6 +38,9 @@
 						<h:outputText value="SERVIDOR" />
 					</h:panelGroup>
 				</f:facet>
+				<rich:menuItem submitMode="ajax" value="Adicionar Função"
+					action="#{funcaoServidorController.abrirAdicionarFuncaoServidor}"
+					icon="../images/addfuncao.gif" />
 				<rich:menuItem submitMode="ajax" value="Cadastrar Servidor"
 					action="#{servidorController.cadastrar}"
 					icon="../images/NOVOSERVIDOR.gif" />
@@ -56,15 +59,13 @@
 				<rich:menuItem submitMode="ajax" value="Listar Empregos"
 					action="#{empregoController.abrirListarEmprego}"
 					icon="../images/listemprego.gif" />
-				<rich:menuItem submitMode="ajax" value="Listar Titulações"
-					action="#{servidorTitulacaoController.abrirListarServidorTitulacao}"
-					icon="../images/listarTitulacao.gif" />
-				<rich:menuItem submitMode="ajax" value="Adicionar Função"
-					action="#{funcaoServidorController.abrirAdicionarFuncaoServidor}"
-					icon="../images/addfuncao.gif" />
 				<rich:menuItem submitMode="ajax" value="Listar Funções"
 					action="#{funcaoServidorController.abrirListarFuncoes}"
 					icon="../images/listfuncao.png" />
+				<rich:menuItem submitMode="ajax" value="Listar Titulações"
+					action="#{servidorTitulacaoController.abrirListarServidorTitulacao}"
+					icon="../images/listarTitulacao.gif" />
+
 			</rich:dropDownMenu>
 
 			<rich:dropDownMenu>
@@ -73,22 +74,24 @@
 						<h:outputText value="ATUALIZAR MEUS DADOS" />
 					</h:panelGroup>
 				</f:facet>
-				<rich:menuItem submitMode="ajax" value="Atualizar Meus Dados"
-					action="#{servidorController.buscarServidorLogado}"
-					icon="../images/ATUALIZARDADOS.gif" />
 				<rich:menuItem submitMode="ajax" value="Adicionar Dependentes"
 					action="#{dependenteController.abrirAdicionarDependentes}"
 					icon="../images/dependente.gif" />
-				<rich:menuItem submitMode="ajax" value="Cadastrar Cônjuge"
-					action="#{conjugeController.abrirCadastrarConjuge}"
-					icon="../images/casamento.gif" />
-				<rich:menuItem submitMode="ajax" value="Adicionar Titulações"
-					action="#{servidorTitulacaoController.abrirAdicionarServidorTitulacao}"
-					icon="../images/titulacoes.gif" />
-
 				<rich:menuItem submitMode="ajax" value="Adicionar Empregos"
 					action="#{empregoController.abrirEmprego}"
 					icon="../images/ico_emprego.gif" />
+				<rich:menuItem submitMode="ajax" value="Adicionar Titulações"
+					action="#{servidorTitulacaoController.abrirAdicionarServidorTitulacao}"
+					icon="../images/titulacoes.gif" />
+				<rich:menuItem submitMode="ajax" value="Atualizar Meus Dados"
+					action="#{servidorController.buscarServidorLogado}"
+					icon="../images/ATUALIZARDADOS.gif" />
+
+				<rich:menuItem submitMode="ajax" value="Cadastrar Cônjuge"
+					action="#{conjugeController.abrirCadastrarConjuge}"
+					icon="../images/casamento.gif" />
+
+
 			</rich:dropDownMenu>
 
 			<rich:dropDownMenu>
@@ -97,49 +100,53 @@
 						<h:outputText value="SOLICITAÇÕES" />
 					</h:panelGroup>
 				</f:facet>
-				<rich:menuItem submitMode="ajax" value="Alterar Conta Bancária"
-					action="#{solicitacaoContaBancariaController.abrirSolicitacaoContaBancaria}"
-					icon="../images/ALTERARCONTABANCARIA.GIF" />
-				<rich:menuItem submitMode="ajax" value="Alterar Férias"
-					action="#{solicitacaoAlteracaoFeriasController.abrirSolicitacaoAlteracaoFerias}"
-					icon="../images/alteracaoferias.gif" />
-				<rich:menuItem submitMode="ajax" value="Alterar Endereço/Contato"
-					action="#{solicitacaoAlteracaoEnderecoController.abrirSolicitacaoAlteracaoEndereco}"
-					icon="../images/alteracaoferias.gif" />
-				<rich:menuItem submitMode="ajax" value="Auxílio Alimentação"
-					action="#{solicitacaoAlimentacaoController.abrirSolicitacaoAlimentacao}"
-					icon="../images/auxilioalimentacao.gif" />
-				<rich:menuItem submitMode="ajax"
-					value="Adicional Noturno - Técnicos"
-					rendered="#{autenticacaoController.siapeAutenticado.indSecretaria}"
-					action="#{solicitacaoAdicionalNoturnoController.abrirSolicitacaoAdicionalNoturnoTecnico}"
-					icon="../images/cadastrarAdicional.jpg" />
+				<rich:menuItem submitMode="ajax" value="Adicional de Insalubridade"
+					action="#{solicitacaoAdicionalInsalubridadeController.abrirSolicitacaoAdicionalInsalubridade}"
+					icon="../images/insalubridade.gif" />
 				<rich:menuItem submitMode="ajax"
 					value="Adicional Noturno - Docentes"
 					rendered="#{autenticacaoController.siapeAutenticado.indSecretaria}"
 					action="#{solicitacaoAdicionalNoturnoController.abrirSolicitacaoAdicionalNoturnoDocentes}"
 					icon="../images/cadastrarAdicional.jpg" />
-				<rich:menuItem submitMode="ajax" value="Licença de Casamento"
-					action="#{solicitacaoCasamentoController.abrirSolicitacaoCasamento}"
-					icon="../images/listarConjuge.gif" />
+				<rich:menuItem submitMode="ajax"
+					value="Adicional Noturno - Técnicos"
+					rendered="#{autenticacaoController.siapeAutenticado.indSecretaria}"
+					action="#{solicitacaoAdicionalNoturnoController.abrirSolicitacaoAdicionalNoturnoTecnico}"
+					icon="../images/cadastrarAdicional.jpg" />
 				<rich:menuItem submitMode="ajax" value="Afastamento do Cônjuge"
 					action="#{solicitacaoAfastamentoConjugeController.abrirSolicitacaoAfastamentoConjuge}"
 					icon="../images/afastamentoconjuge.gif" />
-				<rich:menuItem submitMode="ajax" value="Licença de Óbito"
-					action="#{solicitacaoObitoController.abrirSolicitacaoObito}"
-					icon="../images/obito.gif" />
-				<rich:menuItem submitMode="ajax" value="Licença Paternidade"
-					action="#{solicitacaoLicencaPaternidadeController.abrirSolicitacaoPaternidade}"
-					icon="../images/auxiliopaternidade.gif" />
+				<rich:menuItem submitMode="ajax" value="Alterar Conta Bancária"
+					action="#{solicitacaoContaBancariaController.abrirSolicitacaoContaBancaria}"
+					icon="../images/ALTERARCONTABANCARIA.GIF" />
+				<rich:menuItem submitMode="ajax" value="Alterar Endereço/Contato"
+					action="#{solicitacaoAlteracaoEnderecoController.abrirSolicitacaoAlteracaoEndereco}"
+					icon="../images/endereco.jpg" />
+				<rich:menuItem submitMode="ajax" value="Alterar Férias"
+					action="#{solicitacaoAlteracaoFeriasController.abrirSolicitacaoAlteracaoFerias}"
+					icon="../images/alteracaoferias.gif" />
+				<rich:menuItem submitMode="ajax" value="Auxílio Alimentação"
+					action="#{solicitacaoAlimentacaoController.abrirSolicitacaoAlimentacao}"
+					icon="../images/auxilioalimentacao.gif" />
 				<rich:menuItem submitMode="ajax" value="Auxílio Transporte"
 					action="#" icon="../images/SOLICITACAOAUTOMOVEIS.gif" />
 				<rich:menuItem submitMode="ajax"
 					value="Horário Especial para Estudante"
 					action="#{solicitacaoHorarioEspecialEstudanteController.abrirSolicitacaoHorarioEspecialEstudante}"
 					icon="../images/SOLICITACAOHORARIOESPECIALESTUDANTE.gif" />
-				<rich:menuItem submitMode="ajax" value="Adicional de Insalubridade"
-					action="#{solicitacaoAdicionalInsalubridadeController.abrirSolicitacaoAdicionalInsalubridade}"
-					icon="../images/insalubridade.gif" />
+				<rich:menuItem submitMode="ajax" value="Licença de Casamento"
+					action="#{solicitacaoCasamentoController.abrirSolicitacaoCasamento}"
+					icon="../images/listarConjuge.gif" />
+
+				<rich:menuItem submitMode="ajax" value="Licença de Óbito"
+					action="#{solicitacaoObitoController.abrirSolicitacaoObito}"
+					icon="../images/obito.gif" />
+				<rich:menuItem submitMode="ajax" value="Licença Paternidade"
+					action="#{solicitacaoLicencaPaternidadeController.abrirSolicitacaoPaternidade}"
+					icon="../images/auxiliopaternidade.gif" />
+
+
+
 				<rich:menuItem submitMode="ajax"
 					value="Listar Adicional Noturno - Técnicos"
 					rendered="#{autenticacaoController.siapeAutenticado.indDiretor}"
