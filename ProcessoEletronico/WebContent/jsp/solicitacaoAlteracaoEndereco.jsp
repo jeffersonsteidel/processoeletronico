@@ -174,7 +174,8 @@
 					<f:validateLength minimum="13" />
 				</h:inputText>
 				<h:outputText value="E-mail: " />
-				<h:inputText
+				<h:inputText required="true"
+					requiredMessage="Campo E-mail é obrigatório!"
 					value="#{solicitacaoAlteracaoEnderecoController.solicitacaoAlteracaoEndereco.novoEmail}"
 					size="40" title="Colocar de preferencial o e-mail institucional!"
 					maxlength="150"></h:inputText>
