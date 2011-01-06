@@ -27,6 +27,7 @@ import br.com.progepe.entity.Solicitacao;
 import br.com.progepe.entity.SolicitacaoAdicionalNoturno;
 import br.com.progepe.entity.SolicitacaoAfastamentoConjuge;
 import br.com.progepe.entity.SolicitacaoAlimentacao;
+import br.com.progepe.entity.SolicitacaoAlteracaoEndereco;
 import br.com.progepe.entity.SolicitacaoCasamento;
 import br.com.progepe.entity.SolicitacaoContaBancaria;
 import br.com.progepe.entity.SolicitacaoHorarioEspecialEstudante;
@@ -54,6 +55,7 @@ public class SolicitacaoController implements Serializable {
 	private SolicitacaoAfastamentoConjuge solicitacaoAfastamentoConjuge;
 	private SolicitacaoAdicionalNoturno solicitacaoAdicionalNoturnoTecnico;
 	private SolicitacaoAdicionalNoturno solicitacaoAdicionalNoturnoDocente;
+	private SolicitacaoAlteracaoEndereco solicitacaoAlteracaoEndereco;
 
 	private Long codigoSolicitacao;
 	private Long tipoSolicitacao;
@@ -217,6 +219,15 @@ public class SolicitacaoController implements Serializable {
 	public void setSolicitacaoAdicionalNoturnoDocente(
 			SolicitacaoAdicionalNoturno solicitacaoAdicionalNoturnoDocente) {
 		this.solicitacaoAdicionalNoturnoDocente = solicitacaoAdicionalNoturnoDocente;
+	}
+
+	public SolicitacaoAlteracaoEndereco getSolicitacaoAlteracaoEndereco() {
+		return solicitacaoAlteracaoEndereco;
+	}
+
+	public void setSolicitacaoAlteracaoEndereco(
+			SolicitacaoAlteracaoEndereco solicitacaoAlteracaoEndereco) {
+		this.solicitacaoAlteracaoEndereco = solicitacaoAlteracaoEndereco;
 	}
 
 	public void abrirPesquisarSolicitacoes() throws ParseException {
@@ -462,6 +473,19 @@ public class SolicitacaoController implements Serializable {
 				.getExternalContext().getResponse();
 		response.sendRedirect("solicitacaoAdicionalNoturnoDocentesAprovar.jsp ");
 	}
+	
+	public void carregarSolicitacaoAlteracaoEndereco(
+			SolicitacaoAlteracaoEndereco codigoSolicitacaoAlteracaoEndereco)
+			throws IOException {
+		solicitacaoAlteracaoEndereco = (SolicitacaoAlteracaoEndereco) DAO
+				.getInstance()
+				.refresh(codigoSolicitacaoAlteracaoEndereco);
+		FacesContext context = FacesContext.getCurrentInstance();
+		HttpServletResponse response = (HttpServletResponse) context
+				.getExternalContext().getResponse();
+		response.sendRedirect("solicitacaoAlteracaoEnderecoAprovar.jsp ");
+	}
+
 
 	public void carregarSolicitacao() throws IOException, ParseException {
 		Autenticacao siapeAutenticado = (Autenticacao) FacesContext
@@ -701,6 +725,30 @@ public class SolicitacaoController implements Serializable {
 				solicitacaoAdicionalNoturnoDocente.setAtendenteLogado(servidor);
 				AdicionalNoturnoDAO.getInstance().saveOrUpdateAdicional(
 						solicitacaoAdicionalNoturnoDocente);
+			}
+			this.carregarSolicitacaoAdicionalNotunoDocente(solicitacaoAdicionalNoturnoDocente);
+		}   else if (Constantes.TIPO_SOLICITACAO_ALTERACAO_ENDERECO
+				.equals(tipoSolicitacao)) {
+			solicitacaoAlteracaoEndereco = new SolicitacaoAlteracaoEndereco();
+			solicitacaoAlteracaoEndereco.setSolicitante(new Servidor());
+			solicitacaoAlteracaoEndereco = (SolicitacaoAlteracaoEndereco) SolicitacaoDAO
+					.getInstance().carregarSolicitacaoAlteracaoEndereco(
+							codigoSolicitacao);
+			if (Constantes.STATUS_SOLICITACAO_ENCAMINHADO
+					.equals(solicitacaoAlteracaoEndereco
+							.getStatusSolicitacao().getCodigo())) {
+				this.setDesabilitaBotao(false);
+				solicitacaoAlteracaoEndereco.getStatusSolicitacao()
+						.setCodigo(Constantes.STATUS_SOLICITACAO_EM_ANALISE);
+				solicitacaoAlteracaoEndereco
+						.setDataAtendimento(new Date());
+				solicitacaoAlteracaoEndereco
+						.setAtendente(siapeAutenticado.getSiape());
+				solicitacaoAlteracaoEndereco
+						.setAtendenteLogado(new Servidor());
+				solicitacaoAlteracaoEndereco.setAtendenteLogado(servidor);
+				DAO.getInstance().saveOrUpdate(
+						solicitacaoAlteracaoEndereco);
 			}
 			this.carregarSolicitacaoAdicionalNotunoDocente(solicitacaoAdicionalNoturnoDocente);
 		}
