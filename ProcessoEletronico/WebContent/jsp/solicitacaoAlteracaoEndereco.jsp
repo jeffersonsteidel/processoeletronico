@@ -33,7 +33,7 @@
 				</h:outputText>
 			</h:panelGrid>
 			<h:panelGrid columns="1">
-				<center><h:outputText value="Endereço Atual:" /></center>
+				<center><h:outputText value="Endereço Atual" /></center>
 			</h:panelGrid>
 			<h:panelGrid columns="4">
 				<h:outputText value="Endereço: " />
@@ -64,7 +64,7 @@
 					value="#{solicitacaoAlteracaoEnderecoController.solicitacaoAlteracaoEndereco.solicitante.endereco.cidade.descricao}" />
 			</h:panelGrid>
 			<h:panelGrid columns="1">
-				<center><h:outputText value="Novo Endereço:" /></center>
+				<center><h:outputText value="Novo Endereço" /></center>
 			</h:panelGrid>
 			<h:panelGrid columns="4">
 				<h:outputText value="Endereço: " />
