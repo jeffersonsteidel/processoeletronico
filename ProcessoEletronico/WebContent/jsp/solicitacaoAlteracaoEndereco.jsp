@@ -37,31 +37,31 @@
 			</h:panelGrid>
 			<h:panelGrid columns="4">
 				<h:outputText value="Endereço: " />
-				<h:outputText value="#{servidorController.servidor.endereco.rua}"></h:outputText>
+				<h:outputText value="#{solicitacaoAlteracaoEnderecoController.solicitacaoAlteracaoEndereco.solicitante.endereco.rua}"></h:outputText>
 
 				<h:outputText value="Número: " />
-				<h:outputText value="#{servidorController.servidor.endereco.numero}"></h:outputText>
+				<h:outputText value="#{solicitacaoAlteracaoEnderecoController.solicitacaoAlteracaoEndereco.solicitante.endereco.numero}"></h:outputText>
 
 				<h:outputText value="Bairro: " />
-				<h:outputText value="#{servidorController.servidor.endereco.bairro}"></h:outputText>
+				<h:outputText value="#{solicitacaoAlteracaoEnderecoController.solicitacaoAlteracaoEndereco.solicitante.endereco.bairro}"></h:outputText>
 
 				<h:outputText value="Complemento: " />
 				<h:outputText
-					value="#{servidorController.servidor.endereco.complemento}"></h:outputText>
+					value="#{solicitacaoAlteracaoEnderecoController.solicitacaoAlteracaoEndereco.solicitante.endereco.complemento}"></h:outputText>
 
 				<h:outputText value="CEP: " />
-				<h:outputText value="#{servidorController.servidor.endereco.cep}">
+				<h:outputText value="#{solicitacaoAlteracaoEnderecoController.solicitacaoAlteracaoEndereco.solicitante.endereco.cep}">
 				</h:outputText>
 
 				<h:outputText value="Estado: " />
 				<h:outputText
-					value="#{servidorController.servidor.endereco.cidade.estado.descricao}">
+					value="#{solicitacaoAlteracaoEnderecoController.solicitacaoAlteracaoEndereco.solicitante.endereco.cidade.estado.descricao}">
 
 				</h:outputText>
 
 				<h:outputText value="Cidade: " />
 				<h:outputText id="cidade"
-					value="#{servidorController.servidor.endereco.cidade.descricao}" />
+					value="#{solicitacaoAlteracaoEnderecoController.solicitacaoAlteracaoEndereco.solicitante.endereco.cidade.descricao}" />
 			</h:panelGrid>
 			<h:panelGrid columns="1">
 				<center><h:outputText value="Novo Endereço:" /></center>
@@ -88,7 +88,7 @@
 					size="25" maxlength="25"></h:inputText>
 
 				<h:outputText value="CEP: " />
-				<h:inputText value="#{solicitacaoAlteracaoEnderecoController.solicitacaoAlteracaoEndereco.novoCcep}"
+				<h:inputText value="#{solicitacaoAlteracaoEnderecoController.solicitacaoAlteracaoEndereco.novoCep}"
 					size="20" maxlength="9" required="true"
 					requiredMessage="Campo CEP é obrigatório!"
 					validatorMessage="Campo CEP deve ter no mínimo 9 caracateres!"
@@ -98,7 +98,7 @@
 
 				<h:outputText value="Estado: " />
 				<h:selectOneMenu id="estado"
-					value="#{solicitacaoAlteracaoEnderecoController.solicitacaoAlteracaoEndereco.novaCidadeidade.estado.codigo}"
+					value="#{solicitacaoAlteracaoEnderecoController.solicitacaoAlteracaoEndereco.novaCidade.estado.codigo}"
 					required="true" requiredMessage="Campo Estado é obrigatório!">
 					<f:selectItem itemLabel="SELECIONE" itemValue="" />
 					<f:selectItems value="#{solicitacaoAlteracaoEnderecoController.estados}" />

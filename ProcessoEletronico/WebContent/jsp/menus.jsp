@@ -103,7 +103,7 @@
 				<rich:menuItem submitMode="ajax" value="Alterar Férias"
 					action="#{solicitacaoAlteracaoFeriasController.abrirSolicitacaoAlteracaoFerias}"
 					icon="../images/alteracaoferias.gif" />
-				<rich:menuItem submitMode="ajax" value="Alterar Férias"
+				<rich:menuItem submitMode="ajax" value="Alterar Endereço"
 					action="#{solicitacaoAlteracaoEnderecoController.abrirSolicitacaoAlteracaoEndereco}"
 					icon="../images/alteracaoferias.gif" />
 				<rich:menuItem submitMode="ajax" value="Auxílio Alimentação"
