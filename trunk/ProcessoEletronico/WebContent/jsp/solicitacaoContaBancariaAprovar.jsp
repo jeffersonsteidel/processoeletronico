@@ -33,7 +33,7 @@
 				</h:outputText>
 			</h:panelGrid>
 
-			<h:panelGrid columns="8">
+			<h:panelGrid columns="8" rendered="#{!solicitacaoController.desabilitaBotao}">
 				<h:outputText value="Banco Atual: ">
 				</h:outputText>
 				<h:outputText
@@ -57,7 +57,9 @@
 				<h:outputText value="Conta Corrente"
 					rendered="#{solicitacaoController.solicitacaoContaBancaria.solicitante.contaBancaria.indPoupanca == false}">
 				</h:outputText>
+			</h:panelGrid>	
 
+			<h:panelGrid columns="8">
 				<h:outputText value="Novo Banco: " />
 				<h:outputText
 					value="#{solicitacaoController.solicitacaoContaBancaria.novoBanco.descricao}">
