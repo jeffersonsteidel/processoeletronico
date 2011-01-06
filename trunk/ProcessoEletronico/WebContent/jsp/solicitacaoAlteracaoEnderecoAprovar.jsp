@@ -32,10 +32,10 @@
 					value="#{solicitacaoController.solicitacaoAlteracaoEndereco.solicitante.siape} - #{solicitacaoController.solicitacaoAlteracaoEndereco.solicitante.nome}">
 				</h:outputText>
 			</h:panelGrid>
-			<h:panelGrid columns="1">
+			<h:panelGrid columns="1" rendered="#{!solicitacaoController.desabilitaBotao}">
 				<center><h:outputText value="Endereço Atual" /></center>
 			</h:panelGrid>
-			<h:panelGrid columns="4">
+			<h:panelGrid columns="4" rendered="#{!solicitacaoController.desabilitaBotao}">
 				<h:outputText value="Endereço: " />
 				<h:outputText value="#{solicitacaoController.solicitacaoAlteracaoEndereco.solicitante.endereco.rua}"></h:outputText>
 
@@ -56,7 +56,6 @@
 				<h:outputText value="Estado: " />
 				<h:outputText
 					value="#{solicitacaoController.solicitacaoAlteracaoEndereco.solicitante.endereco.cidade.estado.descricao}">
-
 				</h:outputText>
 
 				<h:outputText value="Cidade: " />
