@@ -29,7 +29,7 @@
 			<font size="2"><b>ALTERAÇÃO DE ENDEREÇO</b></font>
 			<h:panelGrid columns="1">
 				<h:outputText
-					value="#{solicitacaoAlteracaoEnderecoController.solicitacaoAlteracaoEndereco.solicitante.siape} - #{solicitacaoAlteracaoEnderecoController.solicitacaoAlteracaoEndereco.solicitante.nome}">
+					value="#{solicitacaoController.solicitacaoAlteracaoEndereco.solicitante.siape} - #{solicitacaoController.solicitacaoAlteracaoEndereco.solicitante.nome}">
 				</h:outputText>
 			</h:panelGrid>
 			<h:panelGrid columns="1">
@@ -37,63 +37,63 @@
 			</h:panelGrid>
 			<h:panelGrid columns="4">
 				<h:outputText value="Endereço: " />
-				<h:outputText value="#{solicitacaoAlteracaoEnderecoController.solicitacaoAlteracaoEndereco.solicitante.endereco.rua}"></h:outputText>
+				<h:outputText value="#{solicitacaoController.solicitacaoAlteracaoEndereco.solicitante.endereco.rua}"></h:outputText>
 
 				<h:outputText value="Número: " />
-				<h:outputText value="#{solicitacaoAlteracaoEnderecoController.solicitacaoAlteracaoEndereco.solicitante.endereco.numero}"></h:outputText>
+				<h:outputText value="#{solicitacaoController.solicitacaoAlteracaoEndereco.solicitante.endereco.numero}"></h:outputText>
 
 				<h:outputText value="Bairro: " />
-				<h:outputText value="#{solicitacaoAlteracaoEnderecoController.solicitacaoAlteracaoEndereco.solicitante.endereco.bairro}"></h:outputText>
+				<h:outputText value="#{solicitacaoController.solicitacaoAlteracaoEndereco.solicitante.endereco.bairro}"></h:outputText>
 
 				<h:outputText value="Complemento: " />
 				<h:outputText
-					value="#{solicitacaoAlteracaoEnderecoController.solicitacaoAlteracaoEndereco.solicitante.endereco.complemento}"></h:outputText>
+					value="#{solicitacaoController.solicitacaoAlteracaoEndereco.solicitante.endereco.complemento}"></h:outputText>
 
 				<h:outputText value="CEP: " />
-				<h:outputText value="#{solicitacaoAlteracaoEnderecoController.solicitacaoAlteracaoEndereco.solicitante.endereco.cep}">
+				<h:outputText value="#{solicitacaoController.solicitacaoAlteracaoEndereco.solicitante.endereco.cep}">
 				</h:outputText>
 
 				<h:outputText value="Estado: " />
 				<h:outputText
-					value="#{solicitacaoAlteracaoEnderecoController.solicitacaoAlteracaoEndereco.solicitante.endereco.cidade.estado.descricao}">
+					value="#{solicitacaoController.solicitacaoAlteracaoEndereco.solicitante.endereco.cidade.estado.descricao}">
 
 				</h:outputText>
 
 				<h:outputText value="Cidade: " />
 				<h:outputText
-					value="#{solicitacaoAlteracaoEnderecoController.solicitacaoAlteracaoEndereco.solicitante.endereco.cidade.descricao}" />
+					value="#{solicitacaoController.solicitacaoAlteracaoEndereco.solicitante.endereco.cidade.descricao}" />
 			</h:panelGrid>
 			<h:panelGrid columns="1">
 				<center><h:outputText value="Novo Endereço" /></center>
 			</h:panelGrid>
 			<h:panelGrid columns="4">
 				<h:outputText value="Endereço: " />
-				<h:outputText value="#{solicitacaoAlteracaoEnderecoController.solicitacaoAlteracaoEndereco.novaRua}"
+				<h:outputText value="#{solicitacaoController.solicitacaoAlteracaoEndereco.novaRua}"
 					></h:outputText>
 
 				<h:outputText value="Número: " />
-				<h:outputText value="#{solicitacaoAlteracaoEnderecoController.solicitacaoAlteracaoEndereco.novoNumero}"
+				<h:outputText value="#{solicitacaoController.solicitacaoAlteracaoEndereco.novoNumero}"
 					></h:outputText>
 
 				<h:outputText value="Bairro: " />
-				<h:outputText value="#{solicitacaoAlteracaoEnderecoController.solicitacaoAlteracaoEndereco.novoBairro}"
+				<h:outputText value="#{solicitacaoController.solicitacaoAlteracaoEndereco.novoBairro}"
 					></h:outputText>
 
 				<h:outputText value="Complemento: " />
 				<h:outputText
-					value="#{solicitacaoAlteracaoEnderecoController.solicitacaoAlteracaoEndereco.novoComplemento}"
+					value="#{solicitacaoController.solicitacaoAlteracaoEndereco.novoComplemento}"
 					></h:outputText>
 
 				<h:outputText value="CEP: " />
-				<h:outputText value="#{solicitacaoAlteracaoEnderecoController.solicitacaoAlteracaoEndereco.novoCep}"
+				<h:outputText value="#{solicitacaoController.solicitacaoAlteracaoEndereco.novoCep}"
 					>
 				</h:outputText>
 
 				<h:outputText value="Estado: " />
-				<h:outputText value="#{solicitacaoAlteracaoEnderecoController.solicitacaoAlteracaoEndereco.novaCidade.estado.descricao}"/>
+				<h:outputText value="#{solicitacaoController.solicitacaoAlteracaoEndereco.novaCidade.estado.descricao}"/>
 
 				<h:outputText value="Cidade: " />
-				<h:outputText value="#{solicitacaoAlteracaoEnderecoController.solicitacaoAlteracaoEndereco.novaCidade.descricao}"/>
+				<h:outputText value="#{solicitacaoController.solicitacaoAlteracaoEndereco.novaCidade.descricao}"/>
 			</h:panelGrid>
 			<h:panelGrid columns="2">
 				<h:outputText value="Justificativa: " />
