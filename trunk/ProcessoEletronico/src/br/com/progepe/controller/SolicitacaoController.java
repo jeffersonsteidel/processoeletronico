@@ -473,19 +473,17 @@ public class SolicitacaoController implements Serializable {
 				.getExternalContext().getResponse();
 		response.sendRedirect("solicitacaoAdicionalNoturnoDocentesAprovar.jsp ");
 	}
-	
+
 	public void carregarSolicitacaoAlteracaoEndereco(
 			SolicitacaoAlteracaoEndereco codigoSolicitacaoAlteracaoEndereco)
 			throws IOException {
 		solicitacaoAlteracaoEndereco = (SolicitacaoAlteracaoEndereco) DAO
-				.getInstance()
-				.refresh(codigoSolicitacaoAlteracaoEndereco);
+				.getInstance().refresh(codigoSolicitacaoAlteracaoEndereco);
 		FacesContext context = FacesContext.getCurrentInstance();
 		HttpServletResponse response = (HttpServletResponse) context
 				.getExternalContext().getResponse();
 		response.sendRedirect("solicitacaoAlteracaoEnderecoAprovar.jsp ");
 	}
-
 
 	public void carregarSolicitacao() throws IOException, ParseException {
 		Autenticacao siapeAutenticado = (Autenticacao) FacesContext
@@ -727,7 +725,7 @@ public class SolicitacaoController implements Serializable {
 						solicitacaoAdicionalNoturnoDocente);
 			}
 			this.carregarSolicitacaoAdicionalNotunoDocente(solicitacaoAdicionalNoturnoDocente);
-		}   else if (Constantes.TIPO_SOLICITACAO_ALTERACAO_ENDERECO
+		} else if (Constantes.TIPO_SOLICITACAO_ALTERACAO_ENDERECO
 				.equals(tipoSolicitacao)) {
 			solicitacaoAlteracaoEndereco = new SolicitacaoAlteracaoEndereco();
 			solicitacaoAlteracaoEndereco.setSolicitante(new Servidor());
@@ -735,20 +733,17 @@ public class SolicitacaoController implements Serializable {
 					.getInstance().carregarSolicitacaoAlteracaoEndereco(
 							codigoSolicitacao);
 			if (Constantes.STATUS_SOLICITACAO_ENCAMINHADO
-					.equals(solicitacaoAlteracaoEndereco
-							.getStatusSolicitacao().getCodigo())) {
+					.equals(solicitacaoAlteracaoEndereco.getStatusSolicitacao()
+							.getCodigo())) {
 				this.setDesabilitaBotao(false);
-				solicitacaoAlteracaoEndereco.getStatusSolicitacao()
-						.setCodigo(Constantes.STATUS_SOLICITACAO_EM_ANALISE);
-				solicitacaoAlteracaoEndereco
-						.setDataAtendimento(new Date());
-				solicitacaoAlteracaoEndereco
-						.setAtendente(siapeAutenticado.getSiape());
-				solicitacaoAlteracaoEndereco
-						.setAtendenteLogado(new Servidor());
+				solicitacaoAlteracaoEndereco.getStatusSolicitacao().setCodigo(
+						Constantes.STATUS_SOLICITACAO_EM_ANALISE);
+				solicitacaoAlteracaoEndereco.setDataAtendimento(new Date());
+				solicitacaoAlteracaoEndereco.setAtendente(siapeAutenticado
+						.getSiape());
+				solicitacaoAlteracaoEndereco.setAtendenteLogado(new Servidor());
 				solicitacaoAlteracaoEndereco.setAtendenteLogado(servidor);
-				DAO.getInstance().saveOrUpdate(
-						solicitacaoAlteracaoEndereco);
+				DAO.getInstance().saveOrUpdate(solicitacaoAlteracaoEndereco);
 			}
 			this.carregarSolicitacaoAlteracaoEndereco(solicitacaoAlteracaoEndereco);
 		}
@@ -838,6 +833,31 @@ public class SolicitacaoController implements Serializable {
 			solicitacaoAdicionalNoturnoDocente.setDataFechamento(new Date());
 			AdicionalNoturnoDAO.getInstance().saveOrUpdateAdicional(
 					solicitacaoAdicionalNoturnoDocente);
+			this.setDesabilitaBotao(true);
+		} else if (Constantes.TIPO_SOLICITACAO_ALTERACAO_ENDERECO
+				.equals(tipoSolicitacao)) {
+			solicitacaoAlteracaoEndereco.getStatusSolicitacao().setCodigo(
+					Constantes.STATUS_SOLICITACAO_DEFERIDO);
+			solicitacaoAlteracaoEndereco.setDataFechamento(new Date());
+			SolicitacaoDAO.getInstance().updateSolicitacao(
+					solicitacaoAlteracaoEndereco);
+			solicitacaoAlteracaoEndereco.getSolicitante().getEndereco()
+					.setBairro(solicitacaoAlteracaoEndereco.getNovoBairro());
+			solicitacaoAlteracaoEndereco.getSolicitante().getEndereco()
+					.setCidade(solicitacaoAlteracaoEndereco.getNovaCidade());
+			solicitacaoAlteracaoEndereco.getSolicitante().getEndereco()
+					.setCep(solicitacaoAlteracaoEndereco.getNovoCep());
+			solicitacaoAlteracaoEndereco
+					.getSolicitante()
+					.getEndereco()
+					.setComplemento(
+							solicitacaoAlteracaoEndereco.getNovoComplemento());
+			solicitacaoAlteracaoEndereco.getSolicitante().getEndereco()
+					.setNumero(solicitacaoAlteracaoEndereco.getNovoNumero());
+			solicitacaoAlteracaoEndereco.getSolicitante().getEndereco()
+					.setRua(solicitacaoAlteracaoEndereco.getNovaRua());
+			DAO.getInstance().update(
+					solicitacaoAlteracaoEndereco.getSolicitante());
 			this.setDesabilitaBotao(true);
 		}
 	}
@@ -993,10 +1013,10 @@ public class SolicitacaoController implements Serializable {
 						"O campo Justificativa é obrigatório!!");
 				FacesContext.getCurrentInstance().addMessage("", message);
 			}
-		}  else if (Constantes.TIPO_SOLICITACAO_ALTERACAO_ENDERECO
+		} else if (Constantes.TIPO_SOLICITACAO_ALTERACAO_ENDERECO
 				.equals(tipoSolicitacao)) {
-			solicitacaoAlteracaoEndereco.getStatusSolicitacao()
-					.setCodigo(Constantes.STATUS_SOLICITACAO_INDEFERIDO);
+			solicitacaoAlteracaoEndereco.getStatusSolicitacao().setCodigo(
+					Constantes.STATUS_SOLICITACAO_INDEFERIDO);
 			solicitacaoAlteracaoEndereco.setDataFechamento(new Date());
 			if (solicitacaoAlteracaoEndereco.getJustificativa() != null
 					&& solicitacaoAlteracaoEndereco.getJustificativa() != "") {
