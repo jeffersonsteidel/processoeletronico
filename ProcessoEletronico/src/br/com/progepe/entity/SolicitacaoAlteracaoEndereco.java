@@ -10,10 +10,9 @@ public class SolicitacaoAlteracaoEndereco extends Solicitacao {
 	private String novoComplemento;
 	private String novoBairro;
 	private Cidade novaCidade;
-	private Integer ramal;
-	private String email;
-	private String telefone;
-	private String celular;
+	private String novoEmail;
+	private String novoTelefone;
+	private String novoCelular;
 	
 	public String getNovoCep() {
 		return novoCep;
@@ -63,35 +62,27 @@ public class SolicitacaoAlteracaoEndereco extends Solicitacao {
 		this.novaCidade = novaCidade;
 	}
 
-	public Integer getRamal() {
-		return ramal;
+	public String getNovoEmail() {
+		return novoEmail;
 	}
 
-	public void setRamal(Integer ramal) {
-		this.ramal = ramal;
+	public void setNovoEmail(String novoEmail) {
+		this.novoEmail = novoEmail;
 	}
 
-	public String getEmail() {
-		return email;
+	public String getNovoTelefone() {
+		return novoTelefone;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
+	public void setNovoTelefone(String novoTelefone) {
+		this.novoTelefone = novoTelefone;
 	}
 
-	public String getTelefone() {
-		return telefone;
+	public String getNovoCelular() {
+		return novoCelular;
 	}
 
-	public void setTelefone(String telefone) {
-		this.telefone = telefone;
-	}
-
-	public String getCelular() {
-		return celular;
-	}
-
-	public void setCelular(String celular) {
-		this.celular = celular;
+	public void setNovoCelular(String novoCelular) {
+		this.novoCelular = novoCelular;
 	}
 }
