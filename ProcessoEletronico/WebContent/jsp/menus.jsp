@@ -50,19 +50,19 @@
 				<rich:menuItem submitMode="ajax" value="Listar Servidores"
 					action="#{servidorController.listar}"
 					icon="../images/LISTARSERVIDORES2.gif" />
-				<rich:menuItem submitMode="ajax" value="Listar Cônjuges"
+				<rich:menuItem submitMode="ajax" value="Pesquisar Cônjuges"
 					action="#{conjugeController.abrirListarConjuge}"
 					icon="../images/conjuge.png" />
-				<rich:menuItem submitMode="ajax" value="Listar Dependentes"
+				<rich:menuItem submitMode="ajax" value="Pesquisar Dependentes"
 					action="#{dependenteController.abrirListarDependentes}"
 					icon="../images/listarDependente.png" />
-				<rich:menuItem submitMode="ajax" value="Listar Empregos"
+				<rich:menuItem submitMode="ajax" value="Pesquisar Empregos"
 					action="#{empregoController.abrirListarEmprego}"
 					icon="../images/listemprego.gif" />
-				<rich:menuItem submitMode="ajax" value="Listar Funções"
+				<rich:menuItem submitMode="ajax" value="Pesquisar Funções"
 					action="#{funcaoServidorController.abrirListarFuncoes}"
 					icon="../images/listfuncao.png" />
-				<rich:menuItem submitMode="ajax" value="Listar Titulações"
+				<rich:menuItem submitMode="ajax" value="Pesquisar Titulações"
 					action="#{servidorTitulacaoController.abrirListarServidorTitulacao}"
 					icon="../images/listarTitulacao.gif" />
 

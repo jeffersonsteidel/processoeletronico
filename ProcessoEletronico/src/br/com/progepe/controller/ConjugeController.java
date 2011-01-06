@@ -10,6 +10,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
 
+import br.com.progepe.constantes.Constantes;
 import br.com.progepe.dao.CidadeDAO;
 import br.com.progepe.dao.ConjugeDAO;
 import br.com.progepe.dao.DAO;
@@ -33,6 +34,7 @@ public class ConjugeController implements Serializable {
 	private List<SelectItem> cidadesNascimento = new ArrayList<SelectItem>();
 	private List<Conjuge> listaConjugesByFilter = new ArrayList<Conjuge>();
 	private Integer situacao = 0;
+	private Integer validado = Constantes.TODOS;
 
 	private Estado estadoNascimento;
 
@@ -126,6 +128,15 @@ public class ConjugeController implements Serializable {
 	public void setSituacao(Integer situacao) {
 		this.situacao = situacao;
 	}
+	
+
+	public Integer getValidado() {
+		return validado;
+	}
+
+	public void setValidado(Integer validado) {
+		this.validado = validado;
+	}
 
 	public void abrirCadastrarConjuge() throws ParseException {
 		try {
@@ -156,6 +167,7 @@ public class ConjugeController implements Serializable {
 		} else {
 			conjuge.setCidadeNascimento(null);
 		}
+		conjuge.setIndValidado(false);
 		DAO.getInstance().saveOrUpdate(conjuge);
 		conjuge = new Conjuge();
 		conjuge.setCidadeNascimento(new Cidade());
@@ -167,6 +179,17 @@ public class ConjugeController implements Serializable {
 		listarEstados();
 		buscarServidorLogado();
 		listarConjugesServidorLogado();
+	}
+	
+	public void validar(){
+		conjuge.setIndValidado(true);
+		DAO.getInstance().update(conjuge);
+		conjuge = new Conjuge();
+		conjuge.setCidadeNascimento(new Cidade());
+		conjuge.setRgUf(new Estado());
+		conjuge.getCidadeNascimento().setEstado(new Estado());
+		conjuge.setPais(new Pais());
+		conjuge.setServidor(new Servidor());
 	}
 
 	public void listarConjugesServidorLogado() throws Exception {
@@ -285,7 +308,7 @@ public class ConjugeController implements Serializable {
 	}
 
 	public List<Conjuge> buscarConjuges() {
-		listaConjugesByFilter = (List<Conjuge>) ConjugeDAO.getInstance().listByFilter(conjuge, situacao);
+		listaConjugesByFilter = (List<Conjuge>) ConjugeDAO.getInstance().listByFilter(conjuge, situacao, validado);
 		return listaConjugesByFilter;
 	}
 }

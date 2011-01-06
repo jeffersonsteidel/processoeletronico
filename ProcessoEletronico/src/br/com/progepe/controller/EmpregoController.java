@@ -8,6 +8,7 @@ import java.util.List;
 
 import javax.faces.context.FacesContext;
 
+import br.com.progepe.constantes.Constantes;
 import br.com.progepe.dao.DAO;
 import br.com.progepe.dao.EmpregoDAO;
 import br.com.progepe.dao.ServidorDAO;
@@ -21,6 +22,7 @@ public class EmpregoController implements Serializable {
 	private List<Emprego> listaEmpregosByFilter = new ArrayList<Emprego>();
 	private Emprego emprego;
 	private Integer situacao = 0;
+	private Integer validado = Constantes.TODOS;
 
 	public List<Emprego> getListaEmpregos() {
 		return listaEmpregos;
@@ -52,6 +54,15 @@ public class EmpregoController implements Serializable {
 
 	public void setSituacao(Integer situacao) {
 		this.situacao = situacao;
+	}
+	
+
+	public Integer getValidado() {
+		return validado;
+	}
+
+	public void setValidado(Integer validado) {
+		this.validado = validado;
 	}
 
 	public void abrirEmprego() throws Exception {
@@ -89,10 +100,18 @@ public class EmpregoController implements Serializable {
 	}
 
 	public void salvarEmprego() throws Exception {
+		emprego.setIndValidado(false);
 		DAO.getInstance().saveOrUpdate(emprego);
 		listarEmpregoServidorLogado();
 		emprego = new Emprego();
 		buscarServidorLogado();
+	}
+	
+	public void validar(){
+		emprego.setIndValidado(true);
+		DAO.getInstance().update(emprego);
+		emprego = new Emprego();
+		emprego.setServidor(new Servidor());
 	}
 
 	public void listarEmpregoServidorLogado() throws Exception {
@@ -113,7 +132,7 @@ public class EmpregoController implements Serializable {
 	}
 
 	public List<Emprego> buscarEmpregos() {
-		listaEmpregosByFilter = (List<Emprego>) EmpregoDAO.getInstance().listByFilter(emprego, situacao);
+		listaEmpregosByFilter = (List<Emprego>) EmpregoDAO.getInstance().listByFilter(emprego, situacao, validado);
 		return listaEmpregosByFilter;
 	}
 

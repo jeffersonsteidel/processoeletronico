@@ -16,6 +16,8 @@
 	<a4j:loadScript src="../js/script.js" />
 	<a4j:form id="form">
 		<center><rich:panel>
+
+			<font size="2"><b>PESQUISAR CÔNJUGE</b></font>
 			<rich:messages layout="list" errorLabelClass="errorLabel"
 				style="top:auto;" infoLabelClass="infoLabel">
 				<f:facet name="infoMarker">
@@ -25,9 +27,7 @@
 					<h:graphicImage value="../images/error.gif" />
 				</f:facet>
 			</rich:messages>
-			<font size="2"><b>PESQUISAR CÔNJUGE</b></font>
-
-			<h:panelGrid columns="7">
+			<h:panelGrid columns="9">
 				<h:outputText value="Siape do Servidor:" />
 				<h:inputText value="#{conjugeController.conjuge.servidor.siape}"
 					size="7" maxlength="7" onkeyup="mascara(this, soNumeros);"></h:inputText>
@@ -35,11 +35,16 @@
 				<h:inputText value="#{conjugeController.conjuge.servidor.nome}"
 					size="60" maxlength="120"></h:inputText>
 				<h:outputText value="Situação: " />
-				<h:selectOneMenu
-					value="#{conjugeController.situacao}">
+				<h:selectOneMenu value="#{conjugeController.situacao}">
 					<f:selectItem itemLabel="TODOS" itemValue="0" />
 					<f:selectItem itemLabel="ATIVOS" itemValue="1" />
 					<f:selectItem itemLabel="INATIVOS" itemValue="2" />
+				</h:selectOneMenu>
+				<h:outputText value="Validados: " />
+				<h:selectOneMenu value="#{conjugeController.validado}">
+					<f:selectItem itemLabel="TODOS" itemValue="0" />
+					<f:selectItem itemLabel="SIM" itemValue="1" />
+					<f:selectItem itemLabel="NÃO" itemValue="2" />
 				</h:selectOneMenu>
 				<a4j:commandButton value="Pesquisar"
 					action="#{conjugeController.buscarConjuges}"
@@ -74,6 +79,13 @@
 						</f:facet>
 						<h:outputText value="Atual" rendered="#{list.atual}" />
 						<h:outputText value="Ex" rendered="#{!list.atual}" />
+					</rich:column>
+					<rich:column width="100px" sortBy="#{list.indValidado}">
+						<f:facet name="header">
+							<h:outputText value="Validado" />
+						</f:facet>
+						<h:outputText value="SIM" rendered="#{list.indValidado}" />
+						<h:outputText value="NÃO" rendered="#{!list.indValidado}" />
 					</rich:column>
 					<rich:column>
 						<f:facet name="header">
@@ -162,7 +174,9 @@
 					rendered="#{conjugeController.conjuge.atual}" />
 				<h:outputText value="NÃO"
 					rendered="#{!conjugeController.conjuge.atual}" />
-			</h:panelGrid> <h:panelGrid columns="1">
+			</h:panelGrid> <h:panelGrid columns="2">
+				<a4j:commandButton value="Aprovar" reRender="form, listaTitulacoes"
+					action="#{conjugeController.validar}" />
 				<a4j:commandButton value="Fechar"
 					onclick="#{rich:component('editPanel')}.hide();return false;" />
 			</h:panelGrid></center>

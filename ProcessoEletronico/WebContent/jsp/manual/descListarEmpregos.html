@@ -5,15 +5,15 @@
 <body>
 <center>
 <h1>Manual Do Usuário</h1>
-<p><font size='4'>LISTAR EMPREGOS</font></p>
+<p><font size='4'>PESQUISAR EMPREGOS</font></p>
 </center>
 <b>*É necessário permissão de Administrador para visualizar esta
 tela.</b>
 <br>
 <br>
 
-Dois filtros são exibidos na tela (Siape do Servidor e Nome do
-Servidor). O Administrador insere algum dado no filtro que deseja e o
+Quatro filtros são exibidos na tela (Siape do Servidor, Nome do
+Servidor, Situação e Validados). O Administrador insere algum dado no filtro que deseja e o
 programa pesquisará baseando-se no critério fornecido. Ao clicar no
 botão
 <b>Pesquisar</b>
@@ -22,7 +22,7 @@ relacionados com o(s) filtro(s) informado(s).
 </br>
 </br>
 <center>
-<table name="listarConjuge" border="1">
+<table name="pesquisarEmprego" border="1">
 	<th><b>Campo</b></th>
 	<th><b>Descrição</b></th>
 	<th><b>Obrigatório</b></th>
@@ -44,6 +44,14 @@ relacionados com o(s) filtro(s) informado(s).
 		TODOS    - listar todos<br>
 		ATIVOS   - listar apenas os que ainda trabalham no IFPR<br>
 		INATIVOS - listar apenas os que não trabalham mais no IFPR</td>
+		<td>NÃO</td>
+	</tr>
+	<tr>
+		<td>Validados</td>
+		<td>Validação feita pela PROGEPE<br>
+		TODOS    - listar todos<br>
+		ATIVOS   - listar apenas os empregos aprovados pela PROGEPE<br>
+		INATIVOS - listar apenas os empregos que não receberam aprovação da PROGEPE</td>
 		<td>NÃO</td>
 	</tr>
 </table>
@@ -72,11 +80,13 @@ O resultado da pesquisa é uma tabela com os seguintes dados:
 <br>
 -Data de Saída
 <br>
+-Validado
+<br>
 <br>
 Ao lado direito de cada emprego presente na tabela há o campo
 <b>Visualizar</b>
 que é um link para uma página onde se pode visualizar todas as
-informações cadastradas a respeito deste emprego.
+informações cadastradas a respeito deste emprego e aprova-lo.
 <br>
 </body>
 </html>

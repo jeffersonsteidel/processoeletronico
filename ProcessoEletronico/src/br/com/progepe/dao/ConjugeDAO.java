@@ -72,7 +72,7 @@ public class ConjugeDAO extends DAO {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public List<Conjuge> listByFilter(Conjuge conjuge, Integer situacao) {
+	public List<Conjuge> listByFilter(Conjuge conjuge, Integer situacao, Integer validado) {
 		HibernateUtility.getSession().clear();
 		HibernateUtility.beginTransaction();
 		String sql = "from Conjuge c LEFT JOIN FETCH c.servidor s where 1 = 1 ";
@@ -94,6 +94,11 @@ public class ConjugeDAO extends DAO {
 		}
 		if (situacao != null && Constantes.DESATIVO.equals(situacao) ) {
 			sql += " and s.dataSaida is not null";
+		}
+		if (validado != null && Constantes.SIM.equals(validado) ) {
+			sql += " and c.indValidado = 1";
+		}else if (validado != null && Constantes.NAO.equals(validado) ) {
+			sql += " and c.indValidado = 0";
 		}
 		Query query = HibernateUtility.getSession().createQuery(sql);
 		HibernateUtility.commitTransaction();

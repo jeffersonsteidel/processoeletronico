@@ -24,8 +24,9 @@ public class Conjuge implements Serializable {
 	private String rg;
 	private String rgOrgao;
 	private Date rgDataExpedicao;
-	private Estado  rgUf;
-	
+	private Estado rgUf;
+	private Boolean indValidado;
+
 	public Long getCodigo() {
 		return codigo;
 	}
@@ -154,5 +155,12 @@ public class Conjuge implements Serializable {
 		this.rgUf = rgUf;
 	}
 
-	
+	public Boolean getIndValidado() {
+		return indValidado;
+	}
+
+	public void setIndValidado(Boolean indValidado) {
+		this.indValidado = indValidado;
+	}
+
 }
