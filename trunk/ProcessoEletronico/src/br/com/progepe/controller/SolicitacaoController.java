@@ -856,6 +856,12 @@ public class SolicitacaoController implements Serializable {
 					.setNumero(solicitacaoAlteracaoEndereco.getNovoNumero());
 			solicitacaoAlteracaoEndereco.getSolicitante().getEndereco()
 					.setRua(solicitacaoAlteracaoEndereco.getNovaRua());
+			solicitacaoAlteracaoEndereco.getSolicitante().setEmail(
+					solicitacaoAlteracaoEndereco.getNovoEmail());
+			solicitacaoAlteracaoEndereco.getSolicitante().setTelefone(
+					solicitacaoAlteracaoEndereco.getNovoTelefone());
+			solicitacaoAlteracaoEndereco.getSolicitante().setCelular(
+					solicitacaoAlteracaoEndereco.getNovoCelular());
 			DAO.getInstance().update(
 					solicitacaoAlteracaoEndereco.getSolicitante());
 			this.setDesabilitaBotao(true);
