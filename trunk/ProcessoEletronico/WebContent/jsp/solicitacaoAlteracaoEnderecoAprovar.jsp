@@ -32,65 +32,133 @@
 					value="#{solicitacaoController.solicitacaoAlteracaoEndereco.solicitante.siape} - #{solicitacaoController.solicitacaoAlteracaoEndereco.solicitante.nome}">
 				</h:outputText>
 			</h:panelGrid>
-			<h:panelGrid columns="1" rendered="#{!solicitacaoController.desabilitaBotao}">
+			<h:panelGrid columns="1"
+				rendered="#{!solicitacaoController.desabilitaBotao}">
 				<center><h:outputText value="Atual" /></center>
 			</h:panelGrid>
 
 
-			<h:panelGrid columns="2" rendered="#{!solicitacaoController.desabilitaBotao}">
+			<h:panelGrid columns="4"
+				rendered="#{!solicitacaoController.desabilitaBotao}">
 				<h:outputText value="Endereço: " />
-				<h:outputText value="#{solicitacaoController.solicitacaoAlteracaoEndereco.solicitante.endereco.rua}"></h:outputText>
+				<h:outputText
+					value="#{solicitacaoController.solicitacaoAlteracaoEndereco.solicitante.endereco.rua}"></h:outputText>
 
 
-				<h:outputText value="Número: #{solicitacaoController.solicitacaoAlteracaoEndereco.solicitante.endereco.numero}"></h:outputText>
-
-				<h:outputText value="Bairro: #{solicitacaoController.solicitacaoAlteracaoEndereco.solicitante.endereco.bairro}"></h:outputText>
-
-				<h:outputText value="Complemento: #{solicitacaoController.solicitacaoAlteracaoEndereco.solicitante.endereco.complemento}"></h:outputText>
-
-				<h:outputText value="CEP: #{solicitacaoController.solicitacaoAlteracaoEndereco.solicitante.endereco.cep}">
+				<h:outputText value="Número: ">
 				</h:outputText>
 
-				<h:outputText value="Estado: #{solicitacaoController.solicitacaoAlteracaoEndereco.solicitante.endereco.cidade.estado.descricao}">
+				<h:outputText
+					value="#{solicitacaoController.solicitacaoAlteracaoEndereco.solicitante.endereco.numero}"></h:outputText>
+
+				<h:outputText value="Bairro: ">
 				</h:outputText>
 
-				<h:outputText value="Cidade: #{solicitacaoController.solicitacaoAlteracaoEndereco.solicitante.endereco.cidade.descricao}" />
-				<h:outputText value="Telefone Residencial: #{solicitacaoController.solicitacaoAlteracaoEndereco.solicitante.telefone}"
-				/>
-				<h:outputText value="Celular: #{solicitacaoController.solicitacaoAlteracaoEndereco.solicitante.celular}"
-				 />
-				<h:outputText value="E-mail: #{solicitacaoController.solicitacaoAlteracaoEndereco.solicitante.email}"
-							></h:outputText>
+				<h:outputText
+					value="#{solicitacaoController.solicitacaoAlteracaoEndereco.solicitante.endereco.bairro}"></h:outputText>
+
+				<h:outputText value="Complemento: ">
+				</h:outputText>
+
+				<h:outputText
+					value="#{solicitacaoController.solicitacaoAlteracaoEndereco.solicitante.endereco.complemento}"></h:outputText>
+
+				<h:outputText value="CEP: ">
+				</h:outputText>
+
+				<h:outputText
+					value="#{solicitacaoController.solicitacaoAlteracaoEndereco.solicitante.endereco.cep}">
+				</h:outputText>
+
+				<h:outputText value="Estado: ">
+				</h:outputText>
+
+				<h:outputText
+					value="#{solicitacaoController.solicitacaoAlteracaoEndereco.solicitante.endereco.cidade.estado.descricao}">
+				</h:outputText>
+
+				<h:outputText value="Cidade: ">
+				</h:outputText>
+
+				<h:outputText
+					value="#{solicitacaoController.solicitacaoAlteracaoEndereco.solicitante.endereco.cidade.descricao}" />
+				<h:outputText value="Telefone Residencial: ">
+				</h:outputText>
+
+				<h:outputText
+					value="#{solicitacaoController.solicitacaoAlteracaoEndereco.solicitante.telefone}" />
+				<h:outputText value="Celular: ">
+				</h:outputText>
+
+				<h:outputText
+					value="#{solicitacaoController.solicitacaoAlteracaoEndereco.solicitante.celular}" />
+				<h:outputText value="E-mail: ">
+				</h:outputText>
+
+				<h:outputText
+					value="#{solicitacaoController.solicitacaoAlteracaoEndereco.solicitante.email}"></h:outputText>
 			</h:panelGrid>
 			<h:panelGrid columns="1">
 				<center><h:outputText value="Novo" /></center>
 			</h:panelGrid>
-			<h:panelGrid columns="2">
-				<h:outputText value="Endereço: #{solicitacaoController.solicitacaoAlteracaoEndereco.novaRua}"
-					></h:outputText>
-
-				<h:outputText value="Número: #{solicitacaoController.solicitacaoAlteracaoEndereco.novoNumero}"
-					></h:outputText>
-
-				<h:outputText value="Bairro: #{solicitacaoController.solicitacaoAlteracaoEndereco.novoBairro}"
-					></h:outputText>
-
-				<h:outputText value="Complemento: #{solicitacaoController.solicitacaoAlteracaoEndereco.novoComplemento}"
-					></h:outputText>
-
-				<h:outputText value="CEP: #{solicitacaoController.solicitacaoAlteracaoEndereco.novoCep}"
-					>
+			<h:panelGrid columns="4">
+				<h:outputText value="Endereço: ">
 				</h:outputText>
 
-				<h:outputText value="Estado: #{solicitacaoController.solicitacaoAlteracaoEndereco.novaCidade.estado.descricao}"/>
+				<h:outputText
+					value="#{solicitacaoController.solicitacaoAlteracaoEndereco.novaRua}"></h:outputText>
 
-				<h:outputText value="Cidade: #{solicitacaoController.solicitacaoAlteracaoEndereco.novaCidade.descricao}"/>
-				<h:outputText value="Telefone Residencial: #{solicitacaoAlteracaoEnderecoController.solicitacaoAlteracaoEndereco.novoTelefone}"
-				/>
-				<h:outputText value="Celular: #{solicitacaoAlteracaoEnderecoController.solicitacaoAlteracaoEndereco.novoCelular}"
-				 />
-				<h:outputText value="E-mail: #{solicitacaoAlteracaoEnderecoController.solicitacaoAlteracaoEndereco.novoEmail}"
-							></h:outputText>
+				<h:outputText value="Número: ">
+				</h:outputText>
+
+				<h:outputText
+					value="#{solicitacaoController.solicitacaoAlteracaoEndereco.novoNumero}"></h:outputText>
+
+				<h:outputText value="Bairro: ">
+				</h:outputText>
+
+				<h:outputText
+					value="#{solicitacaoController.solicitacaoAlteracaoEndereco.novoBairro}"></h:outputText>
+
+				<h:outputText value="Complemento: ">
+				</h:outputText>
+
+				<h:outputText
+					value="#{solicitacaoController.solicitacaoAlteracaoEndereco.novoComplemento}"></h:outputText>
+
+				<h:outputText value="CEP: ">
+				</h:outputText>
+
+				<h:outputText
+					value="#{solicitacaoController.solicitacaoAlteracaoEndereco.novoCep}">
+				</h:outputText>
+
+				<h:outputText value="Estado: ">
+				</h:outputText>
+
+				<h:outputText
+					value="#{solicitacaoController.solicitacaoAlteracaoEndereco.novaCidade.estado.descricao}" />
+
+				<h:outputText value="Cidade: ">
+				</h:outputText>
+
+				<h:outputText
+					value="#{solicitacaoController.solicitacaoAlteracaoEndereco.novaCidade.descricao}" />
+				<h:outputText value="Telefone Residencial: ">
+				</h:outputText>
+
+				<h:outputText
+					value="#{solicitacaoAlteracaoEnderecoController.solicitacaoAlteracaoEndereco.novoTelefone}" />
+				<h:outputText value="Celular: ">
+				</h:outputText>
+
+				<h:outputText
+					value="#{solicitacaoAlteracaoEnderecoController.solicitacaoAlteracaoEndereco.novoCelular}" />
+				<h:outputText value="E-mail: ">
+				</h:outputText>
+
+				<h:outputText
+					value="#{solicitacaoAlteracaoEnderecoController.solicitacaoAlteracaoEndereco.novoEmail}"></h:outputText>
 			</h:panelGrid>
 			<h:panelGrid columns="2">
 				<h:outputText value="Justificativa: " />
@@ -100,9 +168,11 @@
 			</h:panelGrid>
 
 			<h:panelGrid columns="2">
-				<a4j:commandButton value="Deferir" reRender="form" disabled="#{solicitacaoController.desabilitaBotao}"
+				<a4j:commandButton value="Deferir" reRender="form"
+					disabled="#{solicitacaoController.desabilitaBotao}"
 					oncomplete="#{rich:component('confirmPanel')}.show()" />
-				<a4j:commandButton value="Indeferir" reRender="form" disabled="#{solicitacaoController.desabilitaBotao}"
+				<a4j:commandButton value="Indeferir" reRender="form"
+					disabled="#{solicitacaoController.desabilitaBotao}"
 					oncomplete="#{rich:component('confirmPanel02')}.show()" />
 			</h:panelGrid>
 		</rich:panel></center>
