@@ -323,7 +323,7 @@ public class ServidorTitulacaoController implements Serializable {
 	
 	public void validar(){
 		servidorTitulacao.setIndValidado(Boolean.TRUE);
-		DAO.getInstance().saveOrUpdate(servidorTitulacao);
+		DAO.getInstance().update(servidorTitulacao);
 		servidorTitulacao = new ServidorTitulacao();
 		servidorTitulacao.setEstadoOrgaoEmissor(new Estado());
 		servidorTitulacao.setAreaConhecimento(new AreaConhecimento());

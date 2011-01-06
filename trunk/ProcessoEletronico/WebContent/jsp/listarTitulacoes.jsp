@@ -16,7 +16,8 @@
 	<a4j:loadScript src="../js/script.js" />
 	<center><a4j:form id="form">
 		<rich:panel>
-			<rich:messages layout="list" errorLabelClass="errorLabel"
+			<font size="2"><b>PESQUISAR TITULAÇÕES</b></font>
+				<rich:messages layout="list" errorLabelClass="errorLabel"
 				style="top:auto;" infoLabelClass="infoLabel">
 				<f:facet name="infoMarker">
 					<h:graphicImage value="../images/passed.gif" />
