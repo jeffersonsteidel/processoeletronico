@@ -121,7 +121,7 @@
 					icon="../images/ALTERARCONTABANCARIA.GIF" />
 				<rich:menuItem submitMode="ajax" value="Alterar Endereço/Contato"
 					action="#{solicitacaoAlteracaoEnderecoController.abrirSolicitacaoAlteracaoEndereco}"
-					icon="../images/endereco.jpg" />
+					icon="../images/endereco.gif" />
 				<rich:menuItem submitMode="ajax" value="Alterar Férias"
 					action="#{solicitacaoAlteracaoFeriasController.abrirSolicitacaoAlteracaoFerias}"
 					icon="../images/alteracaoferias.gif" />
