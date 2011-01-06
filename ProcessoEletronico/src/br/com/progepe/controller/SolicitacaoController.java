@@ -993,6 +993,23 @@ public class SolicitacaoController implements Serializable {
 						"O campo Justificativa é obrigatório!!");
 				FacesContext.getCurrentInstance().addMessage("", message);
 			}
+		}  else if (Constantes.TIPO_SOLICITACAO_ALTERACAO_ENDERECO
+				.equals(tipoSolicitacao)) {
+			solicitacaoAlteracaoEndereco.getStatusSolicitacao()
+					.setCodigo(Constantes.STATUS_SOLICITACAO_INDEFERIDO);
+			solicitacaoAlteracaoEndereco.setDataFechamento(new Date());
+			if (solicitacaoAlteracaoEndereco.getJustificativa() != null
+					&& solicitacaoAlteracaoEndereco.getJustificativa() != "") {
+				AdicionalNoturnoDAO.getInstance().saveOrUpdateAdicional(
+						solicitacaoAlteracaoEndereco);
+				this.setDesabilitaBotao(true);
+			} else {
+				FacesMessage message = new FacesMessage(
+						FacesMessage.SEVERITY_ERROR,
+						"O campo Justificativa é obrigatório!",
+						"O campo Justificativa é obrigatório!!");
+				FacesContext.getCurrentInstance().addMessage("", message);
+			}
 		}
 	}
 
