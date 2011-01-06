@@ -61,6 +61,7 @@ public class SolicitacaoAlteracaoEnderecoController implements Serializable {
 			solicitacaoAlteracaoEndereco = new SolicitacaoAlteracaoEndereco();
 			solicitacaoAlteracaoEndereco.setNovaCidade(new Cidade());
 			solicitacaoAlteracaoEndereco.getNovaCidade().setEstado(new Estado());
+			listarEstados();
 			buscarServidorLogado();
 			FacesContext.getCurrentInstance().getExternalContext()
 					.redirect("solicitacaoAlteracaoEndereco.jsp");
