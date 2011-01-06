@@ -26,6 +26,7 @@ public class Dependente implements Serializable {
 	private String rgOrgao;
 	private Date rgDataExpedicao;
 	private Estado rgUf;
+	private Boolean indValidado;
 	
 	public Long getCodigo() {
 		return codigo;
@@ -161,5 +162,13 @@ public class Dependente implements Serializable {
 
 	public void setRgUf(Estado rgUf) {
 		this.rgUf = rgUf;
+	}
+
+	public Boolean getIndValidado() {
+		return indValidado;
+	}
+
+	public void setIndValidado(Boolean indValidado) {
+		this.indValidado = indValidado;
 	}
 }

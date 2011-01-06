@@ -30,6 +30,7 @@ public class DependenteController implements Serializable {
 	private List<Dependente> listaDependentes;
 	private List<Dependente> listaDependentesFiltro;
 	private Integer situacao = 0;
+	private Integer validado = 0;
 	
 
 	public List<Dependente> getListaDependentes() {
@@ -86,6 +87,14 @@ public class DependenteController implements Serializable {
 
 	public void setSituacao(Integer situacao) {
 		this.situacao = situacao;
+	}
+
+	public Integer getValidado() {
+		return validado;
+	}
+
+	public void setValidado(Integer validado) {
+		this.validado = validado;
 	}
 
 	public void abrirAdicionarDependentes() throws Exception {
@@ -182,12 +191,21 @@ public class DependenteController implements Serializable {
 		}
 			
 		this.getListaDependentes().add(dependente);
+		dependente.setIndValidado(Boolean.FALSE);
 		DAO.getInstance().saveOrUpdate(dependente);
 		listarDependentesServidorLogado();
 		dependente = new Dependente();
 		dependente.setRgUf(new Estado());
 		dependente.setGrauParentesco(new GrauParentesco());
 		buscarServidorLogado();
+	}
+	
+	public void validar(){
+		dependente.setIndValidado(Boolean.TRUE);
+		DAO.getInstance().update(dependente);
+		dependente = new Dependente();
+		dependente.setRgUf(new Estado());
+		dependente.setGrauParentesco(new GrauParentesco());
 	}
 
 	public void listarDependentesServidorLogado() throws Exception {
@@ -201,7 +219,7 @@ public class DependenteController implements Serializable {
 	
 	public List<Dependente> listarDependentesFiltro() {
 		listaDependentesFiltro = new ArrayList<Dependente>();
-		setListaDependentesFiltro(DependenteDAO.getInstance().listByFilter(dependente, situacao));
+		setListaDependentesFiltro(DependenteDAO.getInstance().listByFilter(dependente, situacao, validado));
 		if (getListaDependentesFiltro().size() == 0) {
 			FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_WARN,
 					"Nenhum registro para o filtro informado!",

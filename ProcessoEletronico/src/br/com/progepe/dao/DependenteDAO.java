@@ -37,7 +37,7 @@ public class DependenteDAO extends DAO {
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<Dependente> listByFilter(Dependente dependente, Integer situacao) {
+	public List<Dependente> listByFilter(Dependente dependente, Integer situacao, Integer validado) {
 		HibernateUtility.getSession().clear();
 		HibernateUtility.beginTransaction();
 		String sql = "from Dependente d LEFT JOIN FETCH d.servidor s where 1 = 1 ";
@@ -64,6 +64,12 @@ public class DependenteDAO extends DAO {
 		}
 		if (situacao != null && Constantes.DESATIVO.equals(situacao) ) {
 			sql += " and s.dataSaida is not null";
+		}
+		if (validado != null && Constantes.SIM.equals(validado) ) {
+			sql += " and d.indValidado = 1";
+		}
+		if (validado != null && Constantes.NAO.equals(validado) ) {
+			sql += " and d.indValidado = 0";
 		}
 		Query query = HibernateUtility.getSession().createQuery(sql);
 		HibernateUtility.commitTransaction();

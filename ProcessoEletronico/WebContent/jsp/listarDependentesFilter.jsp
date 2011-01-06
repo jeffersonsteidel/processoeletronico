@@ -17,7 +17,17 @@
 	<center><a4j:form id="form">
 		<rich:panel>
 			<font size="2"><b>LISTAR DEPENDENTES</b></font>
-			<h:panelGrid columns="11">
+			<rich:messages layout="list" errorLabelClass="errorLabel"
+				style="top:auto;" infoLabelClass="infoLabel">
+				<f:facet name="infoMarker">
+					<h:graphicImage value="../images/passed.gif" />
+				</f:facet>
+				<f:facet name="errorMarker">
+					<h:graphicImage value="../images/error.gif" />
+				</f:facet>
+			</rich:messages>
+			
+			<h:panelGrid columns="13">
 
 				<h:outputText value="Siape: ">
 				</h:outputText>
@@ -29,13 +39,13 @@
 				<h:outputText value="Servidor: ">
 				</h:outputText>
 				<h:inputText
-					value="#{dependenteController.dependente.servidor.nome}" size="55">
+					value="#{dependenteController.dependente.servidor.nome}" size="40">
 				</h:inputText>
 
 				<h:outputText value="Dependente: ">
 				</h:outputText>
 				<h:inputText value="#{dependenteController.dependente.nome}"
-					size="55">
+					size="40">
 				</h:inputText>
 
 				<h:outputText value="Parentesco: " />
@@ -44,10 +54,16 @@
 					<f:selectItem itemLabel="SELECIONE" itemValue="" />
 					<f:selectItems value="#{dependenteController.grausParentescos}" />
 				</h:selectOneMenu>
-				
+
+				<h:outputText value="Validados: " />
+				<h:selectOneMenu value="#{dependenteController.validado}">
+					<f:selectItem itemLabel="TODOS" itemValue="0" />
+					<f:selectItem itemLabel="SIM" itemValue="1" />
+					<f:selectItem itemLabel="NÃO" itemValue="2" />
+				</h:selectOneMenu>
+
 				<h:outputText value="Situação: " />
-				<h:selectOneMenu
-					value="#{dependenteController.situacao}">
+				<h:selectOneMenu value="#{dependenteController.situacao}">
 					<f:selectItem itemLabel="TODOS" itemValue="0" />
 					<f:selectItem itemLabel="ATIVOS" itemValue="1" />
 					<f:selectItem itemLabel="INATIVOS" itemValue="2" />
@@ -57,12 +73,6 @@
 					action="#{dependenteController.listarDependentesFiltro}"
 					reRender="listaDependentes" type="submit" />
 			</h:panelGrid>
-
-			<rich:messages layout="list">
-				<f:facet name="errorMarker">
-					<h:graphicImage value="../images/error.gif" />
-				</f:facet>
-			</rich:messages>
 
 			<rich:dataTable id="listaDependentes"
 				value="#{dependenteController.listaDependentesFiltro}" var="list"
@@ -93,6 +103,14 @@
 						<h:outputText value="Grau Parentesco" />
 					</f:facet>
 					<h:outputText value="#{list.grauParentesco.descricao}" />
+				</rich:column>
+
+				<rich:column width="100px">
+					<f:facet name="header">
+						<h:outputText value="Validado" />
+					</f:facet>
+					<h:outputText value="SIM" rendered="#{list.indValidado}" />
+					<h:outputText value="NÃO" rendered="#{!list.indValidado}" />
 				</rich:column>
 
 				<rich:column>
@@ -139,16 +157,26 @@
 					value="#{dependenteController.dependente.dataNascimento}">
 					<f:convertDateTime pattern="dd/MM/yyyy" />
 				</h:outputText>
-				<h:outputText value="CPF do Dependente: " rendered="#{dependenteController.dependente.cpf != ''}"/>
-				<h:outputText value="#{dependenteController.dependente.cpf}" rendered="#{dependenteController.dependente.cpf != ''}" />
-				<h:outputText value="RG do Dependente: " rendered="#{dependenteController.dependente.rg != ''}"/>
-				<h:outputText value="#{dependenteController.dependente.rg}" rendered="#{dependenteController.dependente.rg != ''}"></h:outputText>
-				<h:outputText value="UF do RG do Dependente: " rendered="#{dependenteController.dependente.rgUf.uf != null}"/>
-				<h:outputText value="#{dependenteController.dependente.rgUf.uf}" rendered="#{dependenteController.dependente.rgUf.uf != null}"></h:outputText>
-				<h:outputText value="Orgão Emissor do RG do Dependente: " rendered="#{dependenteController.dependente.rgOrgao != ''}"/>
-				<h:outputText value="#{dependenteController.dependente.rgOrgao}" rendered="#{dependenteController.dependente.rgOrgao != ''}" />
-				<h:outputText value="Data de Expedição do RG do Dependente: " rendered="#{dependenteController.dependente.rgDataExpedicao.date!=null}"/>
-				<h:outputText rendered="#{dependenteController.dependente.rgDataExpedicao.date!=null}"
+				<h:outputText value="CPF do Dependente: "
+					rendered="#{dependenteController.dependente.cpf != ''}" />
+				<h:outputText value="#{dependenteController.dependente.cpf}"
+					rendered="#{dependenteController.dependente.cpf != ''}" />
+				<h:outputText value="RG do Dependente: "
+					rendered="#{dependenteController.dependente.rg != ''}" />
+				<h:outputText value="#{dependenteController.dependente.rg}"
+					rendered="#{dependenteController.dependente.rg != ''}"></h:outputText>
+				<h:outputText value="UF do RG do Dependente: "
+					rendered="#{dependenteController.dependente.rgUf.uf != null}" />
+				<h:outputText value="#{dependenteController.dependente.rgUf.uf}"
+					rendered="#{dependenteController.dependente.rgUf.uf != null}"></h:outputText>
+				<h:outputText value="Orgão Emissor do RG do Dependente: "
+					rendered="#{dependenteController.dependente.rgOrgao != ''}" />
+				<h:outputText value="#{dependenteController.dependente.rgOrgao}"
+					rendered="#{dependenteController.dependente.rgOrgao != ''}" />
+				<h:outputText value="Data de Expedição do RG do Dependente: "
+					rendered="#{dependenteController.dependente.rgDataExpedicao.date!=null}" />
+				<h:outputText
+					rendered="#{dependenteController.dependente.rgDataExpedicao.date!=null}"
 					value="#{dependenteController.dependente.rgDataExpedicao}">
 					<f:convertDateTime pattern="dd/MM/yyyy" />
 				</h:outputText>
@@ -188,7 +216,10 @@
 					value="#{dependenteController.dependente.dataFormacao}">
 					<f:convertDateTime pattern="dd/MM/yyyy" />
 				</h:outputText>
-			</h:panelGrid> <h:panelGrid columns="1">
+			</h:panelGrid> <h:panelGrid columns="2">
+				<a4j:commandButton value="Validar"
+					action="#{dependenteController.validar}"
+					reRender="from, listaDependentes" />
 				<a4j:commandButton value="Fechar"
 					onclick="#{rich:component('editPanel')}.hide();return false;" />
 			</h:panelGrid></center>
