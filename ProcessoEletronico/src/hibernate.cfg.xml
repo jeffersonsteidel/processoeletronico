@@ -58,6 +58,7 @@
 		<mapping resource="SolicitacaoAdicionalInsalubridade.hbm.xml" />
 		<mapping resource="SolicitacaoAdicionalNoturno.hbm.xml" />
 		<mapping resource="SolicitacaoAfastamentoConjuge.hbm.xml" />
+		<mapping resource="SolicitacaoAlteracaoEndereco.hbm.xml" />
 		<mapping resource="SolicitacaoAlteracaoFerias.hbm.xml" />
 		<mapping resource="SolicitacaoAuxilioAlimentacao.hbm.xml" />
 		<mapping resource="SolicitacaoLicencaPaternidade.hbm.xml" />
