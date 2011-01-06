@@ -10,6 +10,9 @@
 		<property name="novaRua" column="SOLIC_ALT_END_RUA" />
 		<property name="novoComplemento" column="SOLIC_ALT_END_COMP" />
 		<property name="novoBairro" column="SOLIC_ALT_END_BAIRRO" />
+		<property name="novoEmail" column="SOLIC_ALT_EMAIL" />
+		<property name="novoTelefone" column="SOLIC_ALT_TEL" />
+		<property name="novoCelular" column="SOLIC_ALT_CEL" />
 		<many-to-one name="novaCidade" class="br.com.progepe.entity.Cidade"
 			column="CID_COD" lazy="false"/>
 	</joined-subclass>
