@@ -750,7 +750,7 @@ public class SolicitacaoController implements Serializable {
 				DAO.getInstance().saveOrUpdate(
 						solicitacaoAlteracaoEndereco);
 			}
-			this.carregarSolicitacaoAdicionalNotunoDocente(solicitacaoAdicionalNoturnoDocente);
+			this.carregarSolicitacaoAlteracaoEndereco(solicitacaoAlteracaoEndereco);
 		}
 	}
 
