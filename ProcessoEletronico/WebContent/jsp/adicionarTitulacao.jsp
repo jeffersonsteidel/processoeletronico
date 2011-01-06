@@ -188,6 +188,13 @@
 						</f:facet>
 						<h:outputText value="#{list.anoConclusao}" />
 					</rich:column>
+					<rich:column width="100px" sortBy="#{list.indValidado}">
+						<f:facet name="header">
+							<h:outputText value="Validado" />
+						</f:facet>
+						<h:outputText value="SIM" rendered="#{list.indValidado}"/>
+						<h:outputText value="NÃO" rendered="#{!list.indValidado}"/>
+					</rich:column>
 
 					<rich:column>
 						<f:facet name="header">

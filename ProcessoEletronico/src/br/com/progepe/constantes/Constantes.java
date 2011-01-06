@@ -6,6 +6,9 @@ public class Constantes {
 	public static final Integer ATIVO = 1;
 	public static final Integer DESATIVO = 2;
 	
+	public static final Integer SIM = 1;
+	public static final Integer NAO = 2;
+	
 	public static final Long REGIME_DEDICACAO_EXCLUSIVA = 99L;
 	
 	public static final Long CAIXA_ECONOMICA_FEDERAL = 104L;

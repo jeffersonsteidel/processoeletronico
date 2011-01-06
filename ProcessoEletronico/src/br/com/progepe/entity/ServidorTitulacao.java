@@ -21,6 +21,7 @@ public class ServidorTitulacao implements Serializable {
 	private String orgaoEmissor;
 	private Estado estadoOrgaoEmissor;
 	private String curso;
+	private Boolean indValidado = false;
 
 	public Long getCodigo() {
 		return codigo;
@@ -126,5 +127,12 @@ public class ServidorTitulacao implements Serializable {
 	public void setAreaConhecimento(AreaConhecimento areaConhecimento) {
 		this.areaConhecimento = areaConhecimento;
 	}
-	
+
+	public Boolean getIndValidado() {
+		return indValidado;
+	}
+
+	public void setIndValidado(Boolean indValidado) {
+		this.indValidado = indValidado;
+	}
 }

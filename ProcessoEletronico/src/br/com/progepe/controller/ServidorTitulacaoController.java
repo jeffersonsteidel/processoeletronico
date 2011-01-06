@@ -37,6 +37,7 @@ public class ServidorTitulacaoController implements Serializable {
 	private Boolean indSuperior = false;
 	private List<ServidorTitulacao> listaTitulacoes = new ArrayList<ServidorTitulacao>();
 	private Integer situacao = 0;
+	private Integer validado = 0;
 
 	public List<ServidorTitulacao> getListaServidorTitulacoes() {
 		return listaServidorTitulacoes;
@@ -134,6 +135,14 @@ public class ServidorTitulacaoController implements Serializable {
 
 	public void setSituacao(Integer situacao) {
 		this.situacao = situacao;
+	}
+	
+	public Integer getValidado() {
+		return validado;
+	}
+
+	public void setValidado(Integer validado) {
+		this.validado = validado;
 	}
 
 	public void abrirAdicionarServidorTitulacao() throws Exception {
@@ -290,7 +299,7 @@ public class ServidorTitulacaoController implements Serializable {
 				servidorTitulacao.setPais(null);
 			}
 		}
-		
+		servidorTitulacao.setIndValidado(Boolean.FALSE);
 		DAO.getInstance().saveOrUpdate(servidorTitulacao);
 		listarTitulacoesServidorLogado();
 		servidorTitulacao = new ServidorTitulacao();
@@ -310,6 +319,19 @@ public class ServidorTitulacaoController implements Serializable {
 		listarEstados();
 		listarUf();
 		listarPais();
+	}
+	
+	public void validar(){
+		servidorTitulacao.setIndValidado(Boolean.TRUE);
+		DAO.getInstance().saveOrUpdate(servidorTitulacao);
+		servidorTitulacao = new ServidorTitulacao();
+		servidorTitulacao.setEstadoOrgaoEmissor(new Estado());
+		servidorTitulacao.setAreaConhecimento(new AreaConhecimento());
+		servidorTitulacao.setCidadeEstabelecimentoEnsino(new Cidade());
+		servidorTitulacao.getCidadeEstabelecimentoEnsino().setEstado(
+				new Estado());
+		servidorTitulacao.setTitulacao(new Titulacao());
+		servidorTitulacao.setPais(new Pais());
 	}
 
 	public void listarTitulacoesServidorLogado() throws Exception {
@@ -360,7 +382,7 @@ public class ServidorTitulacaoController implements Serializable {
 
 	public List<ServidorTitulacao> listarTitulacoesFiltro() {
 		listaTitulacoes = (List<ServidorTitulacao>) ServidorTitulacaoDAO
-				.getInstance().listByFilter(servidorTitulacao, situacao);
+				.getInstance().listByFilter(servidorTitulacao, situacao, validado);
 		return listaTitulacoes;
 	}
 
