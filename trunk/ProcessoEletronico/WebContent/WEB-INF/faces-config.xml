@@ -74,6 +74,11 @@ Config 1.1//EN"
 		<managed-bean-scope>session</managed-bean-scope>
 	</managed-bean>
 	<managed-bean>
+		<managed-bean-name>solicitacaoAlteracaoEnderecoController</managed-bean-name>
+		<managed-bean-class>br.com.progepe.controller.SolicitacaoAlteracaoEnderecoController</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
 		<managed-bean-name>solicitacaoAlteracaoFeriasController</managed-bean-name>
 		<managed-bean-class>br.com.progepe.controller.SolicitacaoAlteracaoFeriasController</managed-bean-class>
 		<managed-bean-scope>session</managed-bean-scope>

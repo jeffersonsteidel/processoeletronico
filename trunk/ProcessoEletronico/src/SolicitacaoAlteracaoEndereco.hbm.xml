@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping 
+	PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<joined-subclass name="br.com.progepe.entity.SolicitacaoAlteracaoEndereco" extends="br.com.progepe.entity.Solicitacao">
+		<key column="SOLIC_COD"></key>
+		<property name="novoCep" column="SOLIC_ALT_END_CEP" />
+		<property name="novoNumero" column="SOLIC_ALT_END_NUM" />
+		<property name="novoRua" column="SOLIC_ALT_END_RUA" />
+		<property name="novoComplemento" column="SOLIC_ALT_END_COMP" />
+		<property name="novoBairro" column="SOLIC_ALT_END_BAIRRO" />
+		<many-to-one name="novaCidade" class="br.com.progepe.entity.Cidade"
+			column="CID_COD" lazy="false"/>
+	</joined-subclass>
+</hibernate-mapping>
