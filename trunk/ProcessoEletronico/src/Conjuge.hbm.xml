@@ -18,6 +18,7 @@
 		<property name="cpf" column="CONJ_CPF" />
 		<property name="rg" column="CONJ_RG" />
 		<property name="rgOrgao" column="CONJ_RG_ORG_EMI" />
+		<property name="indValidado" column="CONJ_IND_VALIDADO" type="boolean"/>
 		<property name="rgDataExpedicao" column="CONJ_RG_DATA_EXP" />
 		<many-to-one name="rgUf" class="br.com.progepe.entity.Estado" 
 			column="CONJ_RG_UF" lazy="false"/>	 

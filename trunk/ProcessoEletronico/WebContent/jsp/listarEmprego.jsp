@@ -26,8 +26,16 @@
 				</f:facet>
 			</rich:messages>
 			<font size="2"><b>PESQUISAR EMPREGOS</b></font>
-
-			<h:panelGrid columns="7">
+<rich:messages layout="list" errorLabelClass="errorLabel"
+				style="top:auto;" infoLabelClass="infoLabel">
+				<f:facet name="infoMarker">
+					<h:graphicImage value="../images/passed.gif" />
+				</f:facet>
+				<f:facet name="errorMarker">
+					<h:graphicImage value="../images/error.gif" />
+				</f:facet>
+			</rich:messages>
+			<h:panelGrid columns="9">
 				<h:outputText value="Siape do Servidor:" />
 				<h:inputText value="#{empregoController.emprego.servidor.siape}"
 					size="7" maxlength="7" onkeyup="mascara(this, soNumeros);"></h:inputText>
@@ -35,16 +43,21 @@
 				<h:inputText value="#{empregoController.emprego.servidor.nome}"
 					size="60" maxlength="120"></h:inputText>
 				<h:outputText value="Situação: " />
-				<h:selectOneMenu
-					value="#{empregoController.situacao}">
+				<h:selectOneMenu value="#{empregoController.situacao}">
 					<f:selectItem itemLabel="TODOS" itemValue="0" />
 					<f:selectItem itemLabel="ATIVOS" itemValue="1" />
 					<f:selectItem itemLabel="INATIVOS" itemValue="2" />
 				</h:selectOneMenu>
+				<h:outputText value="Validados: " />
+				<h:selectOneMenu value="#{empregoController.validado}">
+					<f:selectItem itemLabel="TODOS" itemValue="0" />
+					<f:selectItem itemLabel="SIM" itemValue="1" />
+					<f:selectItem itemLabel="NÃO" itemValue="2" />
+				</h:selectOneMenu>
 				<a4j:commandButton value="Pesquisar"
 					action="#{empregoController.buscarEmpregos}"
 					reRender="listaEmpregos" type="submit" />
-				
+
 			</h:panelGrid>
 			<a4j:region>
 
@@ -94,6 +107,13 @@
 							<f:convertDateTime pattern="dd/MM/yyyy" />
 						</h:outputText>
 					</rich:column>
+					<rich:column width="100px" sortBy="#{list.indValidado}">
+						<f:facet name="header">
+							<h:outputText value="Validado" />
+						</f:facet>
+						<h:outputText value="SIM" rendered="#{list.indValidado}" />
+						<h:outputText value="NÃO" rendered="#{!list.indValidado}" />
+					</rich:column>
 
 					<rich:column>
 						<f:facet name="header">
@@ -142,7 +162,9 @@
 				<h:inputTextarea value="#{empregoController.emprego.atividades}"
 					rows="10" cols="50" disabled="true">
 				</h:inputTextarea>
-			</h:panelGrid> <h:panelGrid columns="1">
+			</h:panelGrid> <h:panelGrid columns="2">
+				<a4j:commandButton value="Aprovar" reRender="form, listaTitulacoes"
+					action="#{empregoController.validar}" />
 				<a4j:commandButton value="Fechar"
 					onclick="#{rich:component('editPanel')}.hide();return false;" />
 			</h:panelGrid></center>

@@ -11,6 +11,7 @@
 		<property name="dataAdmissao" column="EMP_DATA_ADM" />
 		<property name="dataSaida" column="EMP_DATA_SAIDA" />
 		<property name="empresa" column="EMP_EMPRESA" />
+		<property name="indValidado" column="EMP_IND_VALIDADO" type="boolean"/>
 		<property name="atividades" column="EMP_ATIVIDADE" />
 		<many-to-one name="servidor"  class="br.com.progepe.entity.Servidor"
 			column="SERV_COD" lazy="false" />
