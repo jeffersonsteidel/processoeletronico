@@ -16,7 +16,16 @@
 	<a4j:loadScript src="../js/script.js" />
 	<center><a4j:form id="form">
 		<rich:panel>
-			<h:panelGrid columns="11">
+			<rich:messages layout="list" errorLabelClass="errorLabel"
+				style="top:auto;" infoLabelClass="infoLabel">
+				<f:facet name="infoMarker">
+					<h:graphicImage value="../images/passed.gif" />
+				</f:facet>
+				<f:facet name="errorMarker">
+					<h:graphicImage value="../images/error.gif" />
+				</f:facet>
+			</rich:messages>
+			<h:panelGrid columns="13">
 				<h:outputText value="Siape: ">
 				</h:outputText>
 				<h:inputText
@@ -27,7 +36,7 @@
 				</h:outputText>
 				<h:inputText
 					value="#{servidorTitulacaoController.servidorTitulacao.servidor.nome}"
-					size="60">
+					size="35">
 				</h:inputText>
 				<h:outputText value="Titulação: " />
 				<h:selectOneMenu
@@ -36,12 +45,18 @@
 					<f:selectItems value="#{servidorTitulacaoController.titulacoes}" />
 				</h:selectOneMenu>
 
-				<h:outputText value="Area de Conhecimento: " />
+				<h:outputText value="Area Conhecimento: " />
 				<h:selectOneMenu
 					value="#{servidorTitulacaoController.servidorTitulacao.areaConhecimento.codigo}">
 					<f:selectItem itemLabel="SELECIONE" itemValue="" />
 					<f:selectItems
 						value="#{servidorTitulacaoController.areasConhecimento}" />
+				</h:selectOneMenu>
+				<h:outputText value="Validados: " />
+				<h:selectOneMenu value="#{servidorTitulacaoController.validado}">
+					<f:selectItem itemLabel="TODOS" itemValue="0" />
+					<f:selectItem itemLabel="SIM" itemValue="1" />
+					<f:selectItem itemLabel="NÃO" itemValue="2" />
 				</h:selectOneMenu>
 				<h:outputText value="Situação: " />
 				<h:selectOneMenu value="#{servidorTitulacaoController.situacao}">
@@ -53,12 +68,6 @@
 					action="#{servidorTitulacaoController.listarTitulacoesFiltro}"
 					reRender="listaTitulacoes" type="submit" />
 			</h:panelGrid>
-
-			<rich:messages layout="list">
-				<f:facet name="errorMarker">
-					<h:graphicImage value="../images/error.gif" />
-				</f:facet>
-			</rich:messages>
 
 			<rich:dataTable id="listaTitulacoes"
 				value="#{servidorTitulacaoController.listaTitulacoes}" var="list"
@@ -90,6 +99,14 @@
 						<h:outputText value="Area de Conhecimento" />
 					</f:facet>
 					<h:outputText value="#{list.areaConhecimento.descricao}" />
+				</rich:column>
+
+				<rich:column width="100px" sortBy="#{list.indValidado}">
+					<f:facet name="header">
+						<h:outputText value="Validado" />
+					</f:facet>
+					<h:outputText value="SIM" rendered="#{list.indValidado}" />
+					<h:outputText value="NÃO" rendered="#{!list.indValidado}" />
 				</rich:column>
 
 				<rich:column>
@@ -183,7 +200,9 @@
 				<h:outputText
 					value="#{servidorTitulacaoController.servidorTitulacao.estadoOrgaoEmissor.uf}"
 					rendered="#{servidorTitulacaoController.servidorTitulacao.estadoOrgaoEmissor.uf != null}"></h:outputText>
-			</h:panelGrid> <h:panelGrid columns="1">
+			</h:panelGrid> <h:panelGrid columns="2">
+				<a4j:commandButton value="Aprovar" reRender="form, listaTitulacoes"
+					action="#{servidorTitulacaoController.validar}" />
 				<a4j:commandButton value="Fechar"
 					onclick="#{rich:component('editPanel')}.hide();return false;" />
 			</h:panelGrid></center>

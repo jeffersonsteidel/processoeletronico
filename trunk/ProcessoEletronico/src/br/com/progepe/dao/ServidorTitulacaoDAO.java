@@ -40,7 +40,7 @@ public class ServidorTitulacaoDAO extends DAO {
 
 	@SuppressWarnings("unchecked")
 	public List<ServidorTitulacao> listByFilter(
-			ServidorTitulacao servidorTitulacao, Integer situacao) {
+			ServidorTitulacao servidorTitulacao, Integer situacao, Integer validado) {
 		HibernateUtility.getSession().clear();
 		HibernateUtility.beginTransaction();
 		String sql = "from ServidorTitulacao st LEFT JOIN FETCH st.servidor s where 1 = 1 ";
@@ -69,6 +69,12 @@ public class ServidorTitulacaoDAO extends DAO {
 		}
 		if (situacao != null && Constantes.DESATIVO.equals(situacao) ) {
 			sql += " and s.dataSaida is not null";
+		}
+		if (validado != null && Constantes.SIM.equals(validado) ) {
+			sql += " and st.indValidado = 1";
+		}
+		if (validado != null && Constantes.NAO.equals(validado) ) {
+			sql += " and st.indValidado is 0";
 		}
 		Query query = HibernateUtility.getSession().createQuery(sql);
 		HibernateUtility.commitTransaction();
