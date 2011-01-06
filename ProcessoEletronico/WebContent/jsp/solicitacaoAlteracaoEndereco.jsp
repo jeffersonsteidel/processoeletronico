@@ -60,7 +60,7 @@
 				</h:outputText>
 
 				<h:outputText value="Cidade: " />
-				<h:outputText id="cidade"
+				<h:outputText
 					value="#{solicitacaoAlteracaoEnderecoController.solicitacaoAlteracaoEndereco.solicitante.endereco.cidade.descricao}" />
 			</h:panelGrid>
 			<h:panelGrid columns="1">
