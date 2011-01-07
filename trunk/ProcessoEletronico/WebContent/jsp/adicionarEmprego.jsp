@@ -55,7 +55,7 @@
 						cellWidth="12px" cellHeight="12px" style="width:80px"
 						inputSize="12" />
 
-					<h:outputText value="Data de Saida: " />
+					<h:outputText value="Data de Saída: " />
 					<rich:calendar required="true"
 						requiredMessage="Campo Data de Saida é Obrigatório!"
 						value="#{empregoController.emprego.dataSaida}" locale=""

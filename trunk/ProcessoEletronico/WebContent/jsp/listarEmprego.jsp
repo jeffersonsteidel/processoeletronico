@@ -16,17 +16,8 @@
 	<a4j:loadScript src="../js/script.js" />
 	<a4j:form id="form">
 		<center><rich:panel>
-			<rich:messages layout="list" errorLabelClass="errorLabel"
-				style="top:auto;" infoLabelClass="infoLabel">
-				<f:facet name="infoMarker">
-					<h:graphicImage value="../images/passed.gif" />
-				</f:facet>
-				<f:facet name="errorMarker">
-					<h:graphicImage value="../images/error.gif" />
-				</f:facet>
-			</rich:messages>
 			<font size="2"><b>PESQUISAR EMPREGOS</b></font>
-<rich:messages layout="list" errorLabelClass="errorLabel"
+			<rich:messages layout="list" errorLabelClass="errorLabel"
 				style="top:auto;" infoLabelClass="infoLabel">
 				<f:facet name="infoMarker">
 					<h:graphicImage value="../images/passed.gif" />
@@ -42,17 +33,17 @@
 				<h:outputText value="Nome do Servidor:" />
 				<h:inputText value="#{empregoController.emprego.servidor.nome}"
 					size="60" maxlength="120"></h:inputText>
-				<h:outputText value="Situação: " />
-				<h:selectOneMenu value="#{empregoController.situacao}">
-					<f:selectItem itemLabel="TODOS" itemValue="0" />
-					<f:selectItem itemLabel="ATIVOS" itemValue="1" />
-					<f:selectItem itemLabel="INATIVOS" itemValue="2" />
-				</h:selectOneMenu>
 				<h:outputText value="Validados: " />
 				<h:selectOneMenu value="#{empregoController.validado}">
 					<f:selectItem itemLabel="TODOS" itemValue="0" />
 					<f:selectItem itemLabel="SIM" itemValue="1" />
 					<f:selectItem itemLabel="NÃO" itemValue="2" />
+				</h:selectOneMenu>
+				<h:outputText value="Situação: " />
+				<h:selectOneMenu value="#{empregoController.situacao}">
+					<f:selectItem itemLabel="TODOS" itemValue="0" />
+					<f:selectItem itemLabel="ATIVOS" itemValue="1" />
+					<f:selectItem itemLabel="INATIVOS" itemValue="2" />
 				</h:selectOneMenu>
 				<a4j:commandButton value="Pesquisar"
 					action="#{empregoController.buscarEmpregos}"
