@@ -27,13 +27,19 @@
 					<h:graphicImage value="../images/error.gif" />
 				</f:facet>
 			</rich:messages>
-			<h:panelGrid columns="9">
+			<h:panelGrid columns="11">
 				<h:outputText value="Siape do Servidor:" />
 				<h:inputText value="#{conjugeController.conjuge.servidor.siape}"
 					size="7" maxlength="7" onkeyup="mascara(this, soNumeros);"></h:inputText>
 				<h:outputText value="Nome do Servidor:" />
 				<h:inputText value="#{conjugeController.conjuge.servidor.nome}"
 					size="60" maxlength="120"></h:inputText>
+				<h:outputText value="Atuais: " />
+				<h:selectOneMenu value="#{conjugeController.atuais}">
+					<f:selectItem itemLabel="TODOS" itemValue="0" />
+					<f:selectItem itemLabel="SIM" itemValue="1" />
+					<f:selectItem itemLabel="NÃO" itemValue="2" />
+				</h:selectOneMenu>		
 				<h:outputText value="Validados: " />
 				<h:selectOneMenu value="#{conjugeController.validado}">
 					<f:selectItem itemLabel="TODOS" itemValue="0" />

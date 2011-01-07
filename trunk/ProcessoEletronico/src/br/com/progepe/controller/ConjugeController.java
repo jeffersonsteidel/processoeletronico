@@ -35,6 +35,7 @@ public class ConjugeController implements Serializable {
 	private List<Conjuge> listaConjugesByFilter = new ArrayList<Conjuge>();
 	private Integer situacao = 0;
 	private Integer validado = Constantes.TODOS;
+	private Integer atuais = Constantes.TODOS;
 
 	private Estado estadoNascimento;
 
@@ -135,6 +136,14 @@ public class ConjugeController implements Serializable {
 
 	public void setValidado(Integer validado) {
 		this.validado = validado;
+	}
+
+	public Integer getAtuais() {
+		return atuais;
+	}
+
+	public void setAtuais(Integer atuais) {
+		this.atuais = atuais;
 	}
 
 	public void abrirCadastrarConjuge() throws ParseException {
@@ -333,7 +342,7 @@ public class ConjugeController implements Serializable {
 
 	public List<Conjuge> buscarConjuges() {
 		listaConjugesByFilter = (List<Conjuge>) ConjugeDAO.getInstance()
-				.listByFilter(conjuge, situacao, validado);
+				.listByFilter(conjuge, situacao, validado, atuais);
 		return listaConjugesByFilter;
 	}
 }
