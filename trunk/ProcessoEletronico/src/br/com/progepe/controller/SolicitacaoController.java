@@ -262,7 +262,7 @@ public class SolicitacaoController implements Serializable {
 				FacesContext.getCurrentInstance().addMessage("", message);
 			}
 		}
-		if (solicitacao.getSolicitante().getSiape() != 0) {
+		if (solicitacao.getSolicitante().getSiape() != null && solicitacao.getSolicitante().getSiape() != 0) {
 			solicitacao.setSolicitante(ServidorDAO.getInstance()
 					.refreshByFilter(solicitacao.getSolicitante()));
 		}
@@ -491,261 +491,296 @@ public class SolicitacaoController implements Serializable {
 				.get("usuarioLogado");
 		Servidor servidor = new Servidor();
 		servidor.setSiape(siapeAutenticado.getSiape());
-
-		if (Constantes.TIPO_SOLICITACAO_ALTERAR_CONTA_BANCARIA
-				.equals(tipoSolicitacao)) {
-			solicitacaoContaBancaria = new SolicitacaoContaBancaria();
-			solicitacaoContaBancaria.setSolicitante(new Servidor());
-			solicitacaoContaBancaria.getSolicitante().setContaBancaria(
-					new ContaBancaria());
-			solicitacaoContaBancaria.getSolicitante().getContaBancaria()
-					.setBanco(new Banco());
-			solicitacaoContaBancaria.setNovoBanco(new Banco());
-			solicitacaoContaBancaria.setCodigo(codigoSolicitacao);
-			solicitacaoContaBancaria = (SolicitacaoContaBancaria) SolicitacaoDAO
-					.getInstance().carregarSoliciacaoContaBancaria(
-							codigoSolicitacao);
-			if (Constantes.STATUS_SOLICITACAO_ENCAMINHADO
-					.equals(solicitacaoContaBancaria.getStatusSolicitacao()
-							.getCodigo())) {
-				this.setDesabilitaBotao(false);
-				solicitacaoContaBancaria.getStatusSolicitacao().setCodigo(
-						Constantes.STATUS_SOLICITACAO_EM_ANALISE);
-				solicitacaoContaBancaria.setDataAtendimento(new Date());
-				solicitacaoContaBancaria.setAtendente(siapeAutenticado
-						.getSiape());
-				solicitacaoContaBancaria.setAtendenteLogado(new Servidor());
-				solicitacaoContaBancaria.setAtendenteLogado(servidor);
-				DAO.getInstance().saveOrUpdate(solicitacaoContaBancaria);
-			}
-			this.carregarSolicitacaoContaBancaria(solicitacaoContaBancaria);
-		} else if (Constantes.TIPO_SOLICITACAO_LICENCA_PATERNIDADE
-				.equals(tipoSolicitacao)) {
-			solicitacaoLicencaPaternidade = new SolicitacaoLicencaPaternidade();
-			solicitacaoLicencaPaternidade
-					.setFiles(new ArrayList<SolicitacaoLicencaPaternidade>());
-			solicitacaoLicencaPaternidade.setSolicitante(new Servidor());
-			solicitacaoLicencaPaternidade.setCodigo(codigoSolicitacao);
-			solicitacaoLicencaPaternidade = (SolicitacaoLicencaPaternidade) SolicitacaoDAO
-					.getInstance().carregarSolicitacaoLicencaPaternidade(
-							codigoSolicitacao);
-			if (Constantes.STATUS_SOLICITACAO_ENCAMINHADO
-					.equals(solicitacaoLicencaPaternidade
-							.getStatusSolicitacao().getCodigo())) {
-				this.setDesabilitaBotao(false);
-				solicitacaoLicencaPaternidade.getStatusSolicitacao().setCodigo(
-						Constantes.STATUS_SOLICITACAO_EM_ANALISE);
-				solicitacaoLicencaPaternidade.setDataAtendimento(new Date());
-				solicitacaoLicencaPaternidade.setAtendente(siapeAutenticado
-						.getSiape());
+		Solicitacao solicitacaoSelecionada = (Solicitacao) DAO.getInstance()
+				.getById(codigoSolicitacao, Solicitacao.class);
+		if (Constantes.STATUS_SOLICITACAO_EM_ANALISE
+				.equals(solicitacaoSelecionada.getStatusSolicitacao()
+						.getCodigo())) {
+			pesquisarSolicitacoes();
+			FacesMessage message = new FacesMessage(
+					FacesMessage.SEVERITY_ERROR,
+					"Está solicitação já está sendo analizada por outro servidor!",
+					"Está solicitação já está sendo analizada por outro servidor!");
+			FacesContext.getCurrentInstance().addMessage("", message);
+		} else {
+			if (Constantes.TIPO_SOLICITACAO_ALTERAR_CONTA_BANCARIA
+					.equals(tipoSolicitacao)) {
+				solicitacaoContaBancaria = new SolicitacaoContaBancaria();
+				solicitacaoContaBancaria.setSolicitante(new Servidor());
+				solicitacaoContaBancaria.getSolicitante().setContaBancaria(
+						new ContaBancaria());
+				solicitacaoContaBancaria.getSolicitante().getContaBancaria()
+						.setBanco(new Banco());
+				solicitacaoContaBancaria.setNovoBanco(new Banco());
+				solicitacaoContaBancaria.setCodigo(codigoSolicitacao);
+				solicitacaoContaBancaria = (SolicitacaoContaBancaria) SolicitacaoDAO
+						.getInstance().carregarSoliciacaoContaBancaria(
+								codigoSolicitacao);
+				if (Constantes.STATUS_SOLICITACAO_ENCAMINHADO
+						.equals(solicitacaoContaBancaria.getStatusSolicitacao()
+								.getCodigo())) {
+					this.setDesabilitaBotao(false);
+					solicitacaoContaBancaria.getStatusSolicitacao().setCodigo(
+							Constantes.STATUS_SOLICITACAO_EM_ANALISE);
+					solicitacaoContaBancaria.setDataAtendimento(new Date());
+					solicitacaoContaBancaria.setAtendente(siapeAutenticado
+							.getSiape());
+					solicitacaoContaBancaria.setAtendenteLogado(new Servidor());
+					solicitacaoContaBancaria.setAtendenteLogado(servidor);
+					DAO.getInstance().saveOrUpdate(solicitacaoContaBancaria);
+				}
+				this.carregarSolicitacaoContaBancaria(solicitacaoContaBancaria);
+			} else if (Constantes.TIPO_SOLICITACAO_LICENCA_PATERNIDADE
+					.equals(tipoSolicitacao)) {
+				solicitacaoLicencaPaternidade = new SolicitacaoLicencaPaternidade();
 				solicitacaoLicencaPaternidade
-						.setAtendenteLogado(new Servidor());
-				solicitacaoLicencaPaternidade.setAtendenteLogado(servidor);
-				DAO.getInstance().saveOrUpdate(solicitacaoLicencaPaternidade);
-			}
-			this.carregarSolicitacaoLicencaPaternidade(solicitacaoLicencaPaternidade);
-		} else if (Constantes.TIPO_SOLICITACAO_HORARIO_ESPECIAL_ESTUDANTE
-				.equals(tipoSolicitacao)) {
-			solicitacaoHorarioEspecialEstudante = new SolicitacaoHorarioEspecialEstudante();
-			solicitacaoHorarioEspecialEstudante
-					.setFiles(new ArrayList<SolicitacaoHorarioEspecialEstudante>());
-			solicitacaoHorarioEspecialEstudante.setSolicitante(new Servidor());
-			solicitacaoHorarioEspecialEstudante.setCodigo(codigoSolicitacao);
-			solicitacaoHorarioEspecialEstudante = (SolicitacaoHorarioEspecialEstudante) SolicitacaoDAO
-					.getInstance().carregarSolicitacaoHorarioEspecialEstudante(
-							codigoSolicitacao);
-			if (Constantes.STATUS_SOLICITACAO_ENCAMINHADO
-					.equals(solicitacaoHorarioEspecialEstudante
-							.getStatusSolicitacao().getCodigo())) {
-				this.setDesabilitaBotao(false);
-				solicitacaoHorarioEspecialEstudante.getStatusSolicitacao()
-						.setCodigo(Constantes.STATUS_SOLICITACAO_EM_ANALISE);
+						.setFiles(new ArrayList<SolicitacaoLicencaPaternidade>());
+				solicitacaoLicencaPaternidade.setSolicitante(new Servidor());
+				solicitacaoLicencaPaternidade.setCodigo(codigoSolicitacao);
+				solicitacaoLicencaPaternidade = (SolicitacaoLicencaPaternidade) SolicitacaoDAO
+						.getInstance().carregarSolicitacaoLicencaPaternidade(
+								codigoSolicitacao);
+				if (Constantes.STATUS_SOLICITACAO_ENCAMINHADO
+						.equals(solicitacaoLicencaPaternidade
+								.getStatusSolicitacao().getCodigo())) {
+					this.setDesabilitaBotao(false);
+					solicitacaoLicencaPaternidade
+							.getStatusSolicitacao()
+							.setCodigo(Constantes.STATUS_SOLICITACAO_EM_ANALISE);
+					solicitacaoLicencaPaternidade
+							.setDataAtendimento(new Date());
+					solicitacaoLicencaPaternidade.setAtendente(siapeAutenticado
+							.getSiape());
+					solicitacaoLicencaPaternidade
+							.setAtendenteLogado(new Servidor());
+					solicitacaoLicencaPaternidade.setAtendenteLogado(servidor);
+					DAO.getInstance().saveOrUpdate(
+							solicitacaoLicencaPaternidade);
+				}
+				this.carregarSolicitacaoLicencaPaternidade(solicitacaoLicencaPaternidade);
+			} else if (Constantes.TIPO_SOLICITACAO_HORARIO_ESPECIAL_ESTUDANTE
+					.equals(tipoSolicitacao)) {
+				solicitacaoHorarioEspecialEstudante = new SolicitacaoHorarioEspecialEstudante();
 				solicitacaoHorarioEspecialEstudante
-						.setDataAtendimento(new Date());
+						.setFiles(new ArrayList<SolicitacaoHorarioEspecialEstudante>());
 				solicitacaoHorarioEspecialEstudante
-						.setAtendente(siapeAutenticado.getSiape());
+						.setSolicitante(new Servidor());
 				solicitacaoHorarioEspecialEstudante
-						.setAtendenteLogado(new Servidor());
-				solicitacaoHorarioEspecialEstudante
-						.setAtendenteLogado(servidor);
-				DAO.getInstance().saveOrUpdate(
-						solicitacaoHorarioEspecialEstudante);
-			}
-			this.carregarSolicitacaoHorarioEspecialEstudante(solicitacaoHorarioEspecialEstudante);
-		} else if (Constantes.TIPO_SOLICITACAO_OBITO.equals(tipoSolicitacao)) {
-			solicitacaoObito = new SolicitacaoObito();
-			solicitacaoObito.setFiles(new ArrayList<SolicitacaoObito>());
-			solicitacaoObito.setSolicitante(new Servidor());
-			solicitacaoObito.setCodigo(codigoSolicitacao);
-			solicitacaoObito = (SolicitacaoObito) SolicitacaoDAO.getInstance()
-					.carregarSolicitacaoObito(codigoSolicitacao);
-			if (Constantes.STATUS_SOLICITACAO_ENCAMINHADO
-					.equals(solicitacaoObito.getStatusSolicitacao().getCodigo())) {
-				this.setDesabilitaBotao(false);
-				solicitacaoObito.getStatusSolicitacao().setCodigo(
-						Constantes.STATUS_SOLICITACAO_EM_ANALISE);
-				solicitacaoObito.setDataAtendimento(new Date());
-				solicitacaoObito.setAtendente(siapeAutenticado.getSiape());
-				solicitacaoObito.setAtendenteLogado(new Servidor());
-				solicitacaoObito.setAtendenteLogado(servidor);
-			}
-			DAO.getInstance().saveOrUpdate(solicitacaoObito);
-			this.carregarSolicitacaoObito(solicitacaoObito);
-		} else if (Constantes.TIPO_SOLICITACAO_LICENCA_CASAMENTO
-				.equals(tipoSolicitacao)) {
-			solicitacaoCasamento = new SolicitacaoCasamento();
-			solicitacaoCasamento
-					.setFiles(new ArrayList<SolicitacaoCasamento>());
-			solicitacaoCasamento.setSolicitante(new Servidor());
-			solicitacaoCasamento.setCodigo(codigoSolicitacao);
-			solicitacaoCasamento = (SolicitacaoCasamento) SolicitacaoDAO
-					.getInstance().carregarSolicitacaoCasamento(
-							codigoSolicitacao);
-			if (Constantes.STATUS_SOLICITACAO_ENCAMINHADO
-					.equals(solicitacaoCasamento.getStatusSolicitacao()
-							.getCodigo())) {
-				this.setDesabilitaBotao(false);
-				solicitacaoCasamento.getStatusSolicitacao().setCodigo(
-						Constantes.STATUS_SOLICITACAO_EM_ANALISE);
-				solicitacaoCasamento.setDataAtendimento(new Date());
-				solicitacaoCasamento.setAtendente(siapeAutenticado.getSiape());
-				solicitacaoCasamento.setAtendenteLogado(new Servidor());
-				solicitacaoCasamento.setAtendenteLogado(servidor);
-				DAO.getInstance().saveOrUpdate(solicitacaoCasamento);
-			}
-			this.carregarSolicitacaoCasamento(solicitacaoCasamento);
-		} else if (Constantes.TIPO_SOLICITACAO_AUXILIO_ALIMENTACAO
-				.equals(tipoSolicitacao)) {
-			solicitacaoAlimentacao = new SolicitacaoAlimentacao();
-			solicitacaoAlimentacao.setSolicitante(new Servidor());
-			solicitacaoAlimentacao.setCodigo(codigoSolicitacao);
-			solicitacaoAlimentacao = (SolicitacaoAlimentacao) SolicitacaoDAO
-					.getInstance().carregarSolicitacaoAlimentacao(
-							codigoSolicitacao);
-			if (Constantes.STATUS_SOLICITACAO_ENCAMINHADO
-					.equals(solicitacaoAlimentacao.getStatusSolicitacao()
-							.getCodigo())) {
-				this.setDesabilitaBotao(false);
-				solicitacaoAlimentacao.getStatusSolicitacao().setCodigo(
-						Constantes.STATUS_SOLICITACAO_EM_ANALISE);
-				solicitacaoAlimentacao.setDataAtendimento(new Date());
-				solicitacaoAlimentacao
-						.setAtendente(siapeAutenticado.getSiape());
-				solicitacaoAlimentacao.setAtendenteLogado(new Servidor());
-				solicitacaoAlimentacao.setAtendenteLogado(servidor);
-				DAO.getInstance().saveOrUpdate(solicitacaoAlimentacao);
-			}
-			this.carregarSolicitacaoAlimentacao(solicitacaoAlimentacao);
-		} else if (Constantes.TIPO_SOLICITACAO_AFASTAMENTO_CONJUGE
-				.equals(tipoSolicitacao)) {
-			solicitacaoAfastamentoConjuge = new SolicitacaoAfastamentoConjuge();
-			solicitacaoAfastamentoConjuge.setSolicitante(new Servidor());
-			solicitacaoAfastamentoConjuge.setCodigo(codigoSolicitacao);
-			solicitacaoAfastamentoConjuge = (SolicitacaoAfastamentoConjuge) SolicitacaoDAO
-					.getInstance().carregarSolicitacaoAfastamentoConjuge(
-							codigoSolicitacao);
-			if (Constantes.STATUS_SOLICITACAO_ENCAMINHADO
-					.equals(solicitacaoAfastamentoConjuge
-							.getStatusSolicitacao().getCodigo())) {
-				this.setDesabilitaBotao(false);
-				solicitacaoAfastamentoConjuge.getStatusSolicitacao().setCodigo(
-						Constantes.STATUS_SOLICITACAO_EM_ANALISE);
-				solicitacaoAfastamentoConjuge.setDataAtendimento(new Date());
-				solicitacaoAfastamentoConjuge.setAtendente(siapeAutenticado
-						.getSiape());
-				solicitacaoAfastamentoConjuge
-						.setAtendenteLogado(new Servidor());
-				solicitacaoAfastamentoConjuge.setAtendenteLogado(servidor);
-				DAO.getInstance().saveOrUpdate(solicitacaoAfastamentoConjuge);
-			}
-			this.carregarSolicitacaoAfasatamentoConjuge(solicitacaoAfastamentoConjuge);
-		} else if (Constantes.TIPO_SOLICITACAO_ADICIONAL_NOTURNO_TECNICOS
-				.equals(tipoSolicitacao)) {
-			solicitacaoAdicionalNoturnoTecnico = new SolicitacaoAdicionalNoturno();
-			solicitacaoAdicionalNoturnoTecnico.setSolicitante(new Servidor());
-			solicitacaoAdicionalNoturnoTecnico = (SolicitacaoAdicionalNoturno) SolicitacaoDAO
-					.getInstance().carregarSolicitacaoAdicionalNoturno(
-							codigoSolicitacao);
-			for (AdicionalNoturno item : solicitacaoAdicionalNoturnoTecnico
-					.getAdicionais()) {
-				@SuppressWarnings("deprecation")
-				String dia = SolicitacaoAdicionalNoturnoController
-						.pesquisarDiaSemana(item.getData().getDay());
-				item.setDiaSemana(dia);
-				solicitacaoAdicionalNoturnoTecnico.getListaAdicionaisTecnicos()
-						.add(item);
-			}
-			if (Constantes.STATUS_SOLICITACAO_ENCAMINHADO
-					.equals(solicitacaoAdicionalNoturnoTecnico
-							.getStatusSolicitacao().getCodigo())) {
-				this.setDesabilitaBotao(false);
-				solicitacaoAdicionalNoturnoTecnico.getStatusSolicitacao()
-						.setCodigo(Constantes.STATUS_SOLICITACAO_EM_ANALISE);
+						.setCodigo(codigoSolicitacao);
+				solicitacaoHorarioEspecialEstudante = (SolicitacaoHorarioEspecialEstudante) SolicitacaoDAO
+						.getInstance()
+						.carregarSolicitacaoHorarioEspecialEstudante(
+								codigoSolicitacao);
+				if (Constantes.STATUS_SOLICITACAO_ENCAMINHADO
+						.equals(solicitacaoHorarioEspecialEstudante
+								.getStatusSolicitacao().getCodigo())) {
+					this.setDesabilitaBotao(false);
+					solicitacaoHorarioEspecialEstudante
+							.getStatusSolicitacao()
+							.setCodigo(Constantes.STATUS_SOLICITACAO_EM_ANALISE);
+					solicitacaoHorarioEspecialEstudante
+							.setDataAtendimento(new Date());
+					solicitacaoHorarioEspecialEstudante
+							.setAtendente(siapeAutenticado.getSiape());
+					solicitacaoHorarioEspecialEstudante
+							.setAtendenteLogado(new Servidor());
+					solicitacaoHorarioEspecialEstudante
+							.setAtendenteLogado(servidor);
+					DAO.getInstance().saveOrUpdate(
+							solicitacaoHorarioEspecialEstudante);
+				}
+				this.carregarSolicitacaoHorarioEspecialEstudante(solicitacaoHorarioEspecialEstudante);
+			} else if (Constantes.TIPO_SOLICITACAO_OBITO
+					.equals(tipoSolicitacao)) {
+				solicitacaoObito = new SolicitacaoObito();
+				solicitacaoObito.setFiles(new ArrayList<SolicitacaoObito>());
+				solicitacaoObito.setSolicitante(new Servidor());
+				solicitacaoObito.setCodigo(codigoSolicitacao);
+				solicitacaoObito = (SolicitacaoObito) SolicitacaoDAO
+						.getInstance().carregarSolicitacaoObito(
+								codigoSolicitacao);
+				if (Constantes.STATUS_SOLICITACAO_ENCAMINHADO
+						.equals(solicitacaoObito.getStatusSolicitacao()
+								.getCodigo())) {
+					this.setDesabilitaBotao(false);
+					solicitacaoObito.getStatusSolicitacao().setCodigo(
+							Constantes.STATUS_SOLICITACAO_EM_ANALISE);
+					solicitacaoObito.setDataAtendimento(new Date());
+					solicitacaoObito.setAtendente(siapeAutenticado.getSiape());
+					solicitacaoObito.setAtendenteLogado(new Servidor());
+					solicitacaoObito.setAtendenteLogado(servidor);
+				}
+				DAO.getInstance().saveOrUpdate(solicitacaoObito);
+				this.carregarSolicitacaoObito(solicitacaoObito);
+			} else if (Constantes.TIPO_SOLICITACAO_LICENCA_CASAMENTO
+					.equals(tipoSolicitacao)) {
+				solicitacaoCasamento = new SolicitacaoCasamento();
+				solicitacaoCasamento
+						.setFiles(new ArrayList<SolicitacaoCasamento>());
+				solicitacaoCasamento.setSolicitante(new Servidor());
+				solicitacaoCasamento.setCodigo(codigoSolicitacao);
+				solicitacaoCasamento = (SolicitacaoCasamento) SolicitacaoDAO
+						.getInstance().carregarSolicitacaoCasamento(
+								codigoSolicitacao);
+				if (Constantes.STATUS_SOLICITACAO_ENCAMINHADO
+						.equals(solicitacaoCasamento.getStatusSolicitacao()
+								.getCodigo())) {
+					this.setDesabilitaBotao(false);
+					solicitacaoCasamento.getStatusSolicitacao().setCodigo(
+							Constantes.STATUS_SOLICITACAO_EM_ANALISE);
+					solicitacaoCasamento.setDataAtendimento(new Date());
+					solicitacaoCasamento.setAtendente(siapeAutenticado
+							.getSiape());
+					solicitacaoCasamento.setAtendenteLogado(new Servidor());
+					solicitacaoCasamento.setAtendenteLogado(servidor);
+					DAO.getInstance().saveOrUpdate(solicitacaoCasamento);
+				}
+				this.carregarSolicitacaoCasamento(solicitacaoCasamento);
+			} else if (Constantes.TIPO_SOLICITACAO_AUXILIO_ALIMENTACAO
+					.equals(tipoSolicitacao)) {
+				solicitacaoAlimentacao = new SolicitacaoAlimentacao();
+				solicitacaoAlimentacao.setSolicitante(new Servidor());
+				solicitacaoAlimentacao.setCodigo(codigoSolicitacao);
+				solicitacaoAlimentacao = (SolicitacaoAlimentacao) SolicitacaoDAO
+						.getInstance().carregarSolicitacaoAlimentacao(
+								codigoSolicitacao);
+				if (Constantes.STATUS_SOLICITACAO_ENCAMINHADO
+						.equals(solicitacaoAlimentacao.getStatusSolicitacao()
+								.getCodigo())) {
+					this.setDesabilitaBotao(false);
+					solicitacaoAlimentacao.getStatusSolicitacao().setCodigo(
+							Constantes.STATUS_SOLICITACAO_EM_ANALISE);
+					solicitacaoAlimentacao.setDataAtendimento(new Date());
+					solicitacaoAlimentacao.setAtendente(siapeAutenticado
+							.getSiape());
+					solicitacaoAlimentacao.setAtendenteLogado(new Servidor());
+					solicitacaoAlimentacao.setAtendenteLogado(servidor);
+					DAO.getInstance().saveOrUpdate(solicitacaoAlimentacao);
+				}
+				this.carregarSolicitacaoAlimentacao(solicitacaoAlimentacao);
+			} else if (Constantes.TIPO_SOLICITACAO_AFASTAMENTO_CONJUGE
+					.equals(tipoSolicitacao)) {
+				solicitacaoAfastamentoConjuge = new SolicitacaoAfastamentoConjuge();
+				solicitacaoAfastamentoConjuge.setSolicitante(new Servidor());
+				solicitacaoAfastamentoConjuge.setCodigo(codigoSolicitacao);
+				solicitacaoAfastamentoConjuge = (SolicitacaoAfastamentoConjuge) SolicitacaoDAO
+						.getInstance().carregarSolicitacaoAfastamentoConjuge(
+								codigoSolicitacao);
+				if (Constantes.STATUS_SOLICITACAO_ENCAMINHADO
+						.equals(solicitacaoAfastamentoConjuge
+								.getStatusSolicitacao().getCodigo())) {
+					this.setDesabilitaBotao(false);
+					solicitacaoAfastamentoConjuge
+							.getStatusSolicitacao()
+							.setCodigo(Constantes.STATUS_SOLICITACAO_EM_ANALISE);
+					solicitacaoAfastamentoConjuge
+							.setDataAtendimento(new Date());
+					solicitacaoAfastamentoConjuge.setAtendente(siapeAutenticado
+							.getSiape());
+					solicitacaoAfastamentoConjuge
+							.setAtendenteLogado(new Servidor());
+					solicitacaoAfastamentoConjuge.setAtendenteLogado(servidor);
+					DAO.getInstance().saveOrUpdate(
+							solicitacaoAfastamentoConjuge);
+				}
+				this.carregarSolicitacaoAfasatamentoConjuge(solicitacaoAfastamentoConjuge);
+			} else if (Constantes.TIPO_SOLICITACAO_ADICIONAL_NOTURNO_TECNICOS
+					.equals(tipoSolicitacao)) {
+				solicitacaoAdicionalNoturnoTecnico = new SolicitacaoAdicionalNoturno();
 				solicitacaoAdicionalNoturnoTecnico
-						.setDataAtendimento(new Date());
-				solicitacaoAdicionalNoturnoTecnico
-						.setAtendente(siapeAutenticado.getSiape());
-				solicitacaoAdicionalNoturnoTecnico
-						.setAtendenteLogado(new Servidor());
-				solicitacaoAdicionalNoturnoTecnico.setAtendenteLogado(servidor);
-				AdicionalNoturnoDAO.getInstance().saveOrUpdateAdicional(
-						solicitacaoAdicionalNoturnoTecnico);
-			}
-			this.carregarSolicitacaoAdicionalNotunoTecnico(solicitacaoAdicionalNoturnoTecnico);
-		} else if (Constantes.TIPO_SOLICITACAO_ADICIONAL_NOTURNO_DOCENTES
-				.equals(tipoSolicitacao)) {
-			solicitacaoAdicionalNoturnoDocente = new SolicitacaoAdicionalNoturno();
-			solicitacaoAdicionalNoturnoDocente.setSolicitante(new Servidor());
-			solicitacaoAdicionalNoturnoDocente = (SolicitacaoAdicionalNoturno) SolicitacaoDAO
-					.getInstance().carregarSolicitacaoAdicionalNoturno(
-							codigoSolicitacao);
-			for (AdicionalNoturno item : solicitacaoAdicionalNoturnoDocente
-					.getAdicionais()) {
-				@SuppressWarnings("deprecation")
-				String dia = SolicitacaoAdicionalNoturnoController
-						.pesquisarDiaSemana(item.getData().getDay());
-				item.setDiaSemana(dia);
-				solicitacaoAdicionalNoturnoDocente.getListaAdicionaisDocente()
-						.add(item);
-			}
-			if (Constantes.STATUS_SOLICITACAO_ENCAMINHADO
-					.equals(solicitacaoAdicionalNoturnoDocente
-							.getStatusSolicitacao().getCodigo())) {
-				this.setDesabilitaBotao(false);
-				solicitacaoAdicionalNoturnoDocente.getStatusSolicitacao()
-						.setCodigo(Constantes.STATUS_SOLICITACAO_EM_ANALISE);
+						.setSolicitante(new Servidor());
+				solicitacaoAdicionalNoturnoTecnico = (SolicitacaoAdicionalNoturno) SolicitacaoDAO
+						.getInstance().carregarSolicitacaoAdicionalNoturno(
+								codigoSolicitacao);
+				for (AdicionalNoturno item : solicitacaoAdicionalNoturnoTecnico
+						.getAdicionais()) {
+					@SuppressWarnings("deprecation")
+					String dia = SolicitacaoAdicionalNoturnoController
+							.pesquisarDiaSemana(item.getData().getDay());
+					item.setDiaSemana(dia);
+					solicitacaoAdicionalNoturnoTecnico
+							.getListaAdicionaisTecnicos().add(item);
+				}
+				if (Constantes.STATUS_SOLICITACAO_ENCAMINHADO
+						.equals(solicitacaoAdicionalNoturnoTecnico
+								.getStatusSolicitacao().getCodigo())) {
+					this.setDesabilitaBotao(false);
+					solicitacaoAdicionalNoturnoTecnico
+							.getStatusSolicitacao()
+							.setCodigo(Constantes.STATUS_SOLICITACAO_EM_ANALISE);
+					solicitacaoAdicionalNoturnoTecnico
+							.setDataAtendimento(new Date());
+					solicitacaoAdicionalNoturnoTecnico
+							.setAtendente(siapeAutenticado.getSiape());
+					solicitacaoAdicionalNoturnoTecnico
+							.setAtendenteLogado(new Servidor());
+					solicitacaoAdicionalNoturnoTecnico
+							.setAtendenteLogado(servidor);
+					AdicionalNoturnoDAO.getInstance().saveOrUpdateAdicional(
+							solicitacaoAdicionalNoturnoTecnico);
+				}
+				this.carregarSolicitacaoAdicionalNotunoTecnico(solicitacaoAdicionalNoturnoTecnico);
+			} else if (Constantes.TIPO_SOLICITACAO_ADICIONAL_NOTURNO_DOCENTES
+					.equals(tipoSolicitacao)) {
+				solicitacaoAdicionalNoturnoDocente = new SolicitacaoAdicionalNoturno();
 				solicitacaoAdicionalNoturnoDocente
-						.setDataAtendimento(new Date());
-				solicitacaoAdicionalNoturnoDocente
-						.setAtendente(siapeAutenticado.getSiape());
-				solicitacaoAdicionalNoturnoDocente
-						.setAtendenteLogado(new Servidor());
-				solicitacaoAdicionalNoturnoDocente.setAtendenteLogado(servidor);
-				AdicionalNoturnoDAO.getInstance().saveOrUpdateAdicional(
-						solicitacaoAdicionalNoturnoDocente);
+						.setSolicitante(new Servidor());
+				solicitacaoAdicionalNoturnoDocente = (SolicitacaoAdicionalNoturno) SolicitacaoDAO
+						.getInstance().carregarSolicitacaoAdicionalNoturno(
+								codigoSolicitacao);
+				for (AdicionalNoturno item : solicitacaoAdicionalNoturnoDocente
+						.getAdicionais()) {
+					@SuppressWarnings("deprecation")
+					String dia = SolicitacaoAdicionalNoturnoController
+							.pesquisarDiaSemana(item.getData().getDay());
+					item.setDiaSemana(dia);
+					solicitacaoAdicionalNoturnoDocente
+							.getListaAdicionaisDocente().add(item);
+				}
+				if (Constantes.STATUS_SOLICITACAO_ENCAMINHADO
+						.equals(solicitacaoAdicionalNoturnoDocente
+								.getStatusSolicitacao().getCodigo())) {
+					this.setDesabilitaBotao(false);
+					solicitacaoAdicionalNoturnoDocente
+							.getStatusSolicitacao()
+							.setCodigo(Constantes.STATUS_SOLICITACAO_EM_ANALISE);
+					solicitacaoAdicionalNoturnoDocente
+							.setDataAtendimento(new Date());
+					solicitacaoAdicionalNoturnoDocente
+							.setAtendente(siapeAutenticado.getSiape());
+					solicitacaoAdicionalNoturnoDocente
+							.setAtendenteLogado(new Servidor());
+					solicitacaoAdicionalNoturnoDocente
+							.setAtendenteLogado(servidor);
+					AdicionalNoturnoDAO.getInstance().saveOrUpdateAdicional(
+							solicitacaoAdicionalNoturnoDocente);
+				}
+				this.carregarSolicitacaoAdicionalNotunoDocente(solicitacaoAdicionalNoturnoDocente);
+			} else if (Constantes.TIPO_SOLICITACAO_ALTERACAO_ENDERECO
+					.equals(tipoSolicitacao)) {
+				solicitacaoAlteracaoEndereco = new SolicitacaoAlteracaoEndereco();
+				solicitacaoAlteracaoEndereco.setSolicitante(new Servidor());
+				solicitacaoAlteracaoEndereco = (SolicitacaoAlteracaoEndereco) SolicitacaoDAO
+						.getInstance().carregarSolicitacaoAlteracaoEndereco(
+								codigoSolicitacao);
+				if (Constantes.STATUS_SOLICITACAO_ENCAMINHADO
+						.equals(solicitacaoAlteracaoEndereco
+								.getStatusSolicitacao().getCodigo())) {
+					this.setDesabilitaBotao(false);
+					solicitacaoAlteracaoEndereco
+							.getStatusSolicitacao()
+							.setCodigo(Constantes.STATUS_SOLICITACAO_EM_ANALISE);
+					solicitacaoAlteracaoEndereco.setDataAtendimento(new Date());
+					solicitacaoAlteracaoEndereco.setAtendente(siapeAutenticado
+							.getSiape());
+					solicitacaoAlteracaoEndereco
+							.setAtendenteLogado(new Servidor());
+					solicitacaoAlteracaoEndereco.setAtendenteLogado(servidor);
+					DAO.getInstance()
+							.saveOrUpdate(solicitacaoAlteracaoEndereco);
+				}
+				this.carregarSolicitacaoAlteracaoEndereco(solicitacaoAlteracaoEndereco);
 			}
-			this.carregarSolicitacaoAdicionalNotunoDocente(solicitacaoAdicionalNoturnoDocente);
-		} else if (Constantes.TIPO_SOLICITACAO_ALTERACAO_ENDERECO
-				.equals(tipoSolicitacao)) {
-			solicitacaoAlteracaoEndereco = new SolicitacaoAlteracaoEndereco();
-			solicitacaoAlteracaoEndereco.setSolicitante(new Servidor());
-			solicitacaoAlteracaoEndereco = (SolicitacaoAlteracaoEndereco) SolicitacaoDAO
-					.getInstance().carregarSolicitacaoAlteracaoEndereco(
-							codigoSolicitacao);
-			if (Constantes.STATUS_SOLICITACAO_ENCAMINHADO
-					.equals(solicitacaoAlteracaoEndereco.getStatusSolicitacao()
-							.getCodigo())) {
-				this.setDesabilitaBotao(false);
-				solicitacaoAlteracaoEndereco.getStatusSolicitacao().setCodigo(
-						Constantes.STATUS_SOLICITACAO_EM_ANALISE);
-				solicitacaoAlteracaoEndereco.setDataAtendimento(new Date());
-				solicitacaoAlteracaoEndereco.setAtendente(siapeAutenticado
-						.getSiape());
-				solicitacaoAlteracaoEndereco.setAtendenteLogado(new Servidor());
-				solicitacaoAlteracaoEndereco.setAtendenteLogado(servidor);
-				DAO.getInstance().saveOrUpdate(solicitacaoAlteracaoEndereco);
-			}
-			this.carregarSolicitacaoAlteracaoEndereco(solicitacaoAlteracaoEndereco);
 		}
 	}
 
