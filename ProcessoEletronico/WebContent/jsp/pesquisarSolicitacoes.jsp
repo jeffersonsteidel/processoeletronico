@@ -17,11 +17,18 @@
 		<rich:panel>
 			<font size="2"><b>LISTAR SOLICITAÇÕES</b></font>
 			<h:panelGrid columns="11">
-				<h:outputText value="Siape do Solicitante: ">
+				<h:outputText value="Siape Solicitante: ">
 				</h:outputText>
 				<h:inputText
 					value="#{solicitacaoController.solicitacao.solicitante.siape}"
-					size="10" maxlength="7" onkeyup="mascara(this, soNumeros);">
+					size="5" maxlength="7" onkeyup="mascara(this, soNumeros);">
+				</h:inputText>
+				
+				<h:outputText value="Siape Atendente: ">
+				</h:outputText>
+				<h:inputText
+					value="#{solicitacaoController.solicitacao.atendente}"
+					size="5" maxlength="7" onkeyup="mascara(this, soNumeros);">
 				</h:inputText>
 
 				<h:outputText value="Tipo Solicitação: " />
@@ -43,12 +50,12 @@
 					<rich:calendar value="#{solicitacaoController.dataAberturaInicial}"
 						locale="" popup="true" datePattern="dd/MM/yyyy"
 						showApplyButton="#" cellWidth="12px" cellHeight="12px"
-						style="width:80px" />
+						style="width:80px" inputSize="10"/>
 					<h:outputText value="a" />
 					<rich:calendar value="#{solicitacaoController.dataAberturaFinal}"
 						locale="" popup="true" datePattern="dd/MM/yyyy"
 						showApplyButton="#" cellWidth="12px" cellHeight="12px"
-						style="width:80px" />
+						style="width:80px" inputSize="10"/>
 				</h:panelGrid>
 
 				<a4j:commandButton value="Pesquisar"

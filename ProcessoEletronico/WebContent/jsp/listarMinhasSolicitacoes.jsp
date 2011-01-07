@@ -17,6 +17,11 @@
 		<rich:panel>
 			<font size="2"><b>MINHAS SOLICITAÇÕES</b></font>
 			<h:panelGrid columns="9">
+				<h:outputText value="Siape do Atendente: ">
+				</h:outputText>
+				<h:inputText value="#{solicitacaoController.solicitacao.atendente}"
+					size="10" maxlength="7" onkeyup="mascara(this, soNumeros);">
+				</h:inputText>
 				<h:outputText value="Data de Abertura Entre: " />
 				<h:panelGrid columns="3">
 					<rich:calendar value="#{solicitacaoController.dataAberturaInicial}"
@@ -48,8 +53,8 @@
 					action="#{solicitacaoController.pesquisarMinhasSolicitacoes}"
 					reRender="listaSolicitacoes, form" type="submit" />
 			</h:panelGrid>
-			
-			
+
+
 			<rich:messages layout="list" errorLabelClass="errorLabel"
 				style="top:auto;" infoLabelClass="infoLabel">
 				<f:facet name="infoMarker">
