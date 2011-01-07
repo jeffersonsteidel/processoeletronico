@@ -34,17 +34,17 @@
 				<h:outputText value="Nome do Servidor:" />
 				<h:inputText value="#{conjugeController.conjuge.servidor.nome}"
 					size="60" maxlength="120"></h:inputText>
-				<h:outputText value="Situação: " />
-				<h:selectOneMenu value="#{conjugeController.situacao}">
-					<f:selectItem itemLabel="TODOS" itemValue="0" />
-					<f:selectItem itemLabel="ATIVOS" itemValue="1" />
-					<f:selectItem itemLabel="INATIVOS" itemValue="2" />
-				</h:selectOneMenu>
 				<h:outputText value="Validados: " />
 				<h:selectOneMenu value="#{conjugeController.validado}">
 					<f:selectItem itemLabel="TODOS" itemValue="0" />
 					<f:selectItem itemLabel="SIM" itemValue="1" />
 					<f:selectItem itemLabel="NÃO" itemValue="2" />
+				</h:selectOneMenu>	
+				<h:outputText value="Situação: " />
+				<h:selectOneMenu value="#{conjugeController.situacao}">
+					<f:selectItem itemLabel="TODOS" itemValue="0" />
+					<f:selectItem itemLabel="ATIVOS" itemValue="1" />
+					<f:selectItem itemLabel="INATIVOS" itemValue="2" />
 				</h:selectOneMenu>
 				<a4j:commandButton value="Pesquisar"
 					action="#{conjugeController.buscarConjuges}"
