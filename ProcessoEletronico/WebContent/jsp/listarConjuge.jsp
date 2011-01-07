@@ -61,15 +61,15 @@
 						</f:facet>
 						<h:outputText value="#{list.servidor.siape}" />
 					</rich:column>
-					<rich:column width="700px" sortBy="#{list.servidor.nome}">
+					<rich:column width="500px" sortBy="#{list.servidor.nome}">
 						<f:facet name="header">
 							<h:outputText value="Servidor" />
 						</f:facet>
 						<h:outputText value="#{list.servidor.nome}" />
 					</rich:column>
-					<rich:column width="435px" sortBy="#{list.nome}">
+					<rich:column width="550px" sortBy="#{list.nome}">
 						<f:facet name="header">
-							<h:outputText value="Nome" />
+							<h:outputText value="Nome do Cônjuge" />
 						</f:facet>
 						<h:outputText value="#{list.nome}" />
 					</rich:column>
