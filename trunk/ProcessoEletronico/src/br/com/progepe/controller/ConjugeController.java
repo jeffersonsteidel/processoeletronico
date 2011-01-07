@@ -112,7 +112,7 @@ public class ConjugeController implements Serializable {
 	public void setTexto(String texto) {
 		this.texto = texto;
 	}
-	
+
 	public List<Conjuge> getListaConjugesByFilter() {
 		return listaConjugesByFilter;
 	}
@@ -128,7 +128,6 @@ public class ConjugeController implements Serializable {
 	public void setSituacao(Integer situacao) {
 		this.situacao = situacao;
 	}
-	
 
 	public Integer getValidado() {
 		return validado;
@@ -154,6 +153,8 @@ public class ConjugeController implements Serializable {
 			conjugeList = ConjugeDAO.getInstance().listByServidor(conjuge);
 			if (conjugeList.size() > 0) {
 				texto = "Você já possui cônjuge cadastrado, caso tenha separado cadastre o novo  cônjuge.";
+			} else {
+				texto = "";
 			}
 			FacesContext.getCurrentInstance().getExternalContext()
 					.redirect("cadastrarConjuge.jsp");
@@ -163,26 +164,48 @@ public class ConjugeController implements Serializable {
 	}
 
 	public void salvarConjuge() throws Exception {
+		Integer existeAtual = 0;
 		if (conjuge.getIndEstrangeiro() == false) {
 			conjuge.setPais(null);
 		} else {
 			conjuge.setCidadeNascimento(null);
 		}
-		conjuge.setIndValidado(false);
-		DAO.getInstance().saveOrUpdate(conjuge);
-		conjuge = new Conjuge();
-		conjuge.setCidadeNascimento(new Cidade());
-		conjuge.setRgUf(new Estado());
-		conjuge.getCidadeNascimento().setEstado(new Estado());
-		conjuge.setPais(new Pais());
-		listarPais();
-		listarUfs();
-		listarEstados();
-		buscarServidorLogado();
 		listarConjugesServidorLogado();
+		if(conjuge.getCodigo() == null){
+			conjugeList.add(conjuge);
+		}
+		for (Conjuge item : conjugeList) {
+			if (item.getCodigo().equals(conjuge.getCodigo())) {
+				item = conjuge;
+			}
+			if(item.getAtual()){
+					existeAtual = existeAtual + 1;
+			}
+		}
+		if (existeAtual <= 1) {
+			conjuge.setIndValidado(false);
+			DAO.getInstance().saveOrUpdate(conjuge);
+			conjuge = new Conjuge();
+			conjuge.setCidadeNascimento(new Cidade());
+			conjuge.setRgUf(new Estado());
+			conjuge.getCidadeNascimento().setEstado(new Estado());
+			conjuge.setPais(new Pais());
+			cidadesNascimento = new ArrayList<SelectItem>();
+			listarPais();
+			listarUfs();
+			listarEstados();
+			buscarServidorLogado();
+			listarConjugesServidorLogado();
+		} else {
+			FacesMessage message = new FacesMessage(
+					FacesMessage.SEVERITY_ERROR,
+					"Você já possui um cônjuge na condição atual, por favor edite o registro para cadastrar um novo cônjuge!",
+					"Você já possui um cônjuge na condição atual, por favor edite o registro para cadastrar um novo cônjuge!");
+			FacesContext.getCurrentInstance().addMessage("", message);
+		}
 	}
-	
-	public void validar(){
+
+	public void validar() {
 		conjuge.setIndValidado(true);
 		DAO.getInstance().update(conjuge);
 		conjuge = new Conjuge();
@@ -197,7 +220,7 @@ public class ConjugeController implements Serializable {
 		conjugeList = ConjugeDAO.getInstance().listByServidor(conjuge);
 		if (conjugeList.isEmpty()) {
 			conjugeList = new ArrayList<Conjuge>();
-		} 
+		}
 	}
 
 	public void buscarServidorLogado() throws IOException, ParseException {
@@ -221,7 +244,7 @@ public class ConjugeController implements Serializable {
 		FacesContext context = FacesContext.getCurrentInstance();
 		conjuge = (Conjuge) context.getExternalContext().getRequestMap()
 				.get("list");
-		if(conjuge.getCidadeNascimento() != null){
+		if (conjuge.getCidadeNascimento() != null) {
 			listarCidadesNascimentoConjuge();
 		}
 	}
@@ -291,7 +314,7 @@ public class ConjugeController implements Serializable {
 		conjuge.setCidadeNascimento(new Cidade());
 		conjuge.getCidadeNascimento().setEstado(new Estado());
 	}
-	
+
 	public void abrirListarConjuge() throws Exception {
 		try {
 			listaConjugesByFilter.clear();
@@ -309,7 +332,8 @@ public class ConjugeController implements Serializable {
 	}
 
 	public List<Conjuge> buscarConjuges() {
-		listaConjugesByFilter = (List<Conjuge>) ConjugeDAO.getInstance().listByFilter(conjuge, situacao, validado);
+		listaConjugesByFilter = (List<Conjuge>) ConjugeDAO.getInstance()
+				.listByFilter(conjuge, situacao, validado);
 		return listaConjugesByFilter;
 	}
 }

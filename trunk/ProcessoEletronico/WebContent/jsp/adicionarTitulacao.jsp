@@ -163,13 +163,13 @@
 					value="#{servidorTitulacaoController.listaServidorTitulacoes}"
 					var="list" width="1150px" columnClasses="center" rows="15"
 					reRender="ds">
-					<rich:column width="500px" sortBy="#{list.titulacao.descricao}">
+					<rich:column width="350px" sortBy="#{list.titulacao.descricao}">
 						<f:facet name="header">
 							<h:outputText value="Titulacao" />
 						</f:facet>
 						<h:outputText value="#{list.titulacao.descricao}" />
 					</rich:column>
-					<rich:column width="400px" sortBy="#{list.curso}">
+					<rich:column width="550px" sortBy="#{list.curso}">
 						<f:facet name="header">
 							<h:outputText value="Curso" />
 						</f:facet>
