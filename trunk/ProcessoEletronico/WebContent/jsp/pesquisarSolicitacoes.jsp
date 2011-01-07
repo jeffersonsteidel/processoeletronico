@@ -99,7 +99,7 @@
 					</h:outputText>
 				</rich:column>
 
-				<rich:column width="250px" sortBy="#{list.dataAtentimento}">
+				<rich:column width="250px" sortBy="#{list.dataAtendimento}">
 					<f:facet name="header">
 						<h:outputText value="Data Atendimento" />
 					</f:facet>
