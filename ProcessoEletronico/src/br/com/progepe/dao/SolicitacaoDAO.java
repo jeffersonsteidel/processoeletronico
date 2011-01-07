@@ -46,6 +46,10 @@ public class SolicitacaoDAO extends DAO {
 				&& solicitacao.getSolicitante().getSiape() != 0) {
 			c.add(Restrictions.like("solicitante", solicitacao.getSolicitante()));
 		}
+		if (solicitacao.getAtendente()!= null
+				&& solicitacao.getAtendente() != 0) {
+			c.add(Restrictions.like("atendente", solicitacao.getAtendente()));
+		}
 		if (dataSolicitacaoInicial != null && dataSolicitacaoFinal != null) {
 			c.add(Restrictions.between("dataAbertura", dataSolicitacaoInicial,
 					dataSolicitacaoFinal));

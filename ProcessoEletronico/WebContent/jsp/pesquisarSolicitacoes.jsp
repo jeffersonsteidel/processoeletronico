@@ -68,10 +68,10 @@
 
 			<rich:dataTable id="listaSolicitacoes"
 				value="#{solicitacaoController.solicitacoes}" var="list"
-				width="1150px" columnClasses="center" rows="15" reRender="ds">
-				<rich:column width="40px" sortBy="#{list.solicitante.siape}">
+				width="1190px" columnClasses="center" rows="15" reRender="ds">
+				<rich:column width="25px" sortBy="#{list.solicitante.siape}">
 					<f:facet name="header">
-						<h:outputText value="Siape do Solicitante" />
+						<h:outputText value="Solicitante" />
 					</f:facet>
 					<h:outputText value="#{list.solicitante.siape}" />
 				</rich:column>
@@ -83,7 +83,7 @@
 					<h:outputText value="#{list.solicitante.nome}" />
 				</rich:column>
 
-				<rich:column width="350px" sortBy="#{list.dataAbertura}">
+				<rich:column width="250px" sortBy="#{list.dataAbertura}">
 					<f:facet name="header">
 						<h:outputText value="Data Abertura" />
 					</f:facet>
@@ -92,7 +92,7 @@
 					</h:outputText>
 				</rich:column>
 
-				<rich:column width="350px" sortBy="#{list.dataAtentimento}">
+				<rich:column width="250px" sortBy="#{list.dataAtentimento}">
 					<f:facet name="header">
 						<h:outputText value="Data Atendimento" />
 					</f:facet>
@@ -103,7 +103,7 @@
 					<h:outputText value="-" rendered="#{list.dataAtendimento == null}" />
 				</rich:column>
 
-				<rich:column width="350px" sortBy="#{list.dataFechamento}">
+				<rich:column width="250px" sortBy="#{list.dataFechamento}">
 					<f:facet name="header">
 						<h:outputText value="Data Fechamento" />
 					</f:facet>
@@ -112,6 +112,17 @@
 						<f:convertDateTime locale="pt_BR" pattern="dd/MM/yyyy - HH:mm:ss" />
 					</h:outputText>
 					<h:outputText value="-" rendered="#{list.dataFechamento == null}" />
+				</rich:column>
+				
+				<rich:column width="280px" sortBy="#{list.atendenteLogado}">
+					<f:facet name="header">
+						<h:outputText value="Atendente" />
+					</f:facet>
+					<h:outputText value="#{list.atendenteLogado.nome}"
+						rendered="#{list.atendenteLogado.nome!=null}">
+					</h:outputText>
+					<h:outputText value="-"
+						rendered="#{list.atendenteLogado.nome==null}"></h:outputText>
 				</rich:column>
 
 				<rich:column width="400px"
@@ -122,7 +133,7 @@
 					<h:outputText value="#{list.tipoSolicitacao.descricao}" />
 				</rich:column>
 
-				<rich:column width="280px"
+				<rich:column width="240px"
 					sortBy="#{list.statusSolicitacao.descricao}">
 					<f:facet name="header">
 						<h:outputText value="Status" />
@@ -131,7 +142,7 @@
 				</rich:column>
 
 
-				<rich:column>
+				<rich:column width="30px">
 					<f:facet name="header">
 						<h:outputText value="Visualizar" />
 					</f:facet>

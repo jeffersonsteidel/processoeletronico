@@ -268,6 +268,14 @@ public class SolicitacaoController implements Serializable {
 		}
 		this.setSolicitacoes(SolicitacaoDAO.getInstance().listByFilter(
 				solicitacao, dataAberturaInicial, dataAberturaFinal));
+		for (Solicitacao item : this.getSolicitacoes()) {
+			Servidor servidor = new Servidor();
+			servidor.setSiape(item.getAtendente());
+			if (item.getAtendente() != null) {
+				item.setAtendenteLogado(ServidorDAO.getInstance()
+						.refreshBySiape(servidor));
+			}
+		}
 		dataAberturaInicial = null;
 		dataAberturaFinal = null;
 		solicitacao = new Solicitacao();
