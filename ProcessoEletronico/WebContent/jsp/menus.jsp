@@ -44,9 +44,6 @@
 				<rich:menuItem submitMode="ajax" value="Cadastrar Servidor"
 					action="#{servidorController.cadastrar}"
 					icon="../images/NOVOSERVIDOR.gif" />
-				<rich:menuItem submitMode="ajax" value="Pesquisar Servidor"
-					action="#{servidorController.pesquisarServidores}"
-					icon="../images/PESQUISARSERVIDOR.gif" />
 				<rich:menuItem submitMode="ajax" value="Listar Servidores"
 					action="#{servidorController.listar}"
 					icon="../images/LISTARSERVIDORES2.gif" />
@@ -62,10 +59,12 @@
 				<rich:menuItem submitMode="ajax" value="Pesquisar Funções"
 					action="#{funcaoServidorController.abrirListarFuncoes}"
 					icon="../images/listfuncao.png" />
+				<rich:menuItem submitMode="ajax" value="Pesquisar Servidor"
+					action="#{servidorController.pesquisarServidores}"
+					icon="../images/PESQUISARSERVIDOR.gif" />
 				<rich:menuItem submitMode="ajax" value="Pesquisar Titulações"
 					action="#{servidorTitulacaoController.abrirListarServidorTitulacao}"
 					icon="../images/listarTitulacao.gif" />
-
 			</rich:dropDownMenu>
 
 			<rich:dropDownMenu>
