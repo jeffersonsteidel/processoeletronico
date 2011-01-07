@@ -6,6 +6,7 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 
 import br.com.progepe.constantes.Constantes;
@@ -47,7 +48,7 @@ public class EmpregoController implements Serializable {
 	public void setListaEmpregosByFilter(List<Emprego> listaEmpregosByFilter) {
 		this.listaEmpregosByFilter = listaEmpregosByFilter;
 	}
-	
+
 	public Integer getSituacao() {
 		return situacao;
 	}
@@ -55,7 +56,6 @@ public class EmpregoController implements Serializable {
 	public void setSituacao(Integer situacao) {
 		this.situacao = situacao;
 	}
-	
 
 	public Integer getValidado() {
 		return validado;
@@ -100,14 +100,23 @@ public class EmpregoController implements Serializable {
 	}
 
 	public void salvarEmprego() throws Exception {
-		emprego.setIndValidado(false);
-		DAO.getInstance().saveOrUpdate(emprego);
-		listarEmpregoServidorLogado();
-		emprego = new Emprego();
-		buscarServidorLogado();
+		if (emprego.getDataAdmissao().after(emprego.getDataSaida())
+				|| emprego.getDataAdmissao().equals(emprego.getDataSaida())) {
+			FacesMessage message = new FacesMessage(
+					FacesMessage.SEVERITY_ERROR,
+					"A Data de Saída Final deve ser maior que Data de Admissão!",
+					"A Data de Saída Final deve ser maior que Data de Admissão!");
+			FacesContext.getCurrentInstance().addMessage("", message);
+		} else {
+			emprego.setIndValidado(false);
+			DAO.getInstance().saveOrUpdate(emprego);
+			listarEmpregoServidorLogado();
+			emprego = new Emprego();
+			buscarServidorLogado();
+		}
 	}
-	
-	public void validar(){
+
+	public void validar() {
 		emprego.setIndValidado(true);
 		DAO.getInstance().update(emprego);
 		emprego = new Emprego();
@@ -132,7 +141,8 @@ public class EmpregoController implements Serializable {
 	}
 
 	public List<Emprego> buscarEmpregos() {
-		listaEmpregosByFilter = (List<Emprego>) EmpregoDAO.getInstance().listByFilter(emprego, situacao, validado);
+		listaEmpregosByFilter = (List<Emprego>) EmpregoDAO.getInstance()
+				.listByFilter(emprego, situacao, validado);
 		return listaEmpregosByFilter;
 	}
 
