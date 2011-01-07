@@ -149,6 +149,7 @@ public class ConjugeController implements Serializable {
 			listarUfs();
 			listarEstados();
 			buscarServidorLogado();
+			conjuge.setAtual(true);
 			conjugeList = new ArrayList<Conjuge>();
 			conjugeList = ConjugeDAO.getInstance().listByServidor(conjuge);
 			if (conjugeList.size() > 0) {
