@@ -21,14 +21,14 @@
 				</h:outputText>
 				<h:inputText
 					value="#{solicitacaoController.solicitacao.solicitante.siape}"
-					size="5" maxlength="7" onkeyup="mascara(this, soNumeros);">
+					size="8" maxlength="7" onkeyup="mascara(this, soNumeros);">
 				</h:inputText>
 				
 				<h:outputText value="Siape Atendente: ">
 				</h:outputText>
 				<h:inputText
 					value="#{solicitacaoController.solicitacao.atendente}"
-					size="5" maxlength="7" onkeyup="mascara(this, soNumeros);">
+					size="8" maxlength="7" onkeyup="mascara(this, soNumeros);">
 				</h:inputText>
 
 				<h:outputText value="Tipo Solicitação: " />
@@ -50,12 +50,12 @@
 					<rich:calendar value="#{solicitacaoController.dataAberturaInicial}"
 						locale="" popup="true" datePattern="dd/MM/yyyy"
 						showApplyButton="#" cellWidth="12px" cellHeight="12px"
-						style="width:80px" inputSize="10"/>
+						style="width:80px" inputSize="12"/>
 					<h:outputText value="a" />
 					<rich:calendar value="#{solicitacaoController.dataAberturaFinal}"
 						locale="" popup="true" datePattern="dd/MM/yyyy"
 						showApplyButton="#" cellWidth="12px" cellHeight="12px"
-						style="width:80px" inputSize="10"/>
+						style="width:80px" inputSize="12"/>
 				</h:panelGrid>
 
 				<a4j:commandButton value="Pesquisar"
