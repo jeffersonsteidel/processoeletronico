@@ -56,6 +56,8 @@ public class SolicitacaoController implements Serializable {
 	private SolicitacaoAdicionalNoturno solicitacaoAdicionalNoturnoTecnico;
 	private SolicitacaoAdicionalNoturno solicitacaoAdicionalNoturnoDocente;
 	private SolicitacaoAlteracaoEndereco solicitacaoAlteracaoEndereco;
+	
+	Solicitacao solicitacaoTemp = new Solicitacao();
 
 	private Long codigoSolicitacao;
 	private Long tipoSolicitacao;
@@ -276,6 +278,7 @@ public class SolicitacaoController implements Serializable {
 						.refreshBySiape(servidor));
 			}
 		}
+		solicitacaoTemp = solicitacao;
 		dataAberturaInicial = null;
 		dataAberturaFinal = null;
 		solicitacao = new Solicitacao();
@@ -1099,5 +1102,12 @@ public class SolicitacaoController implements Serializable {
 			stream.write(solicitacaoCasamento.getFiles().get((Integer) object)
 					.getCertidaoCasamento());
 		}
+	}
+	
+	
+	public void retornarUltimaPesquisa() throws ParseException{
+		abrirPesquisarSolicitacoes();
+		solicitacao = solicitacaoTemp;
+		pesquisarSolicitacoes();
 	}
 }
