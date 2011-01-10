@@ -1,0 +1,14 @@
+drop EVENT
+  retornaStatusSolicitacao;
+  
+CREATE EVENT
+  retornaStatusSolicitacao
+ON SCHEDULE
+EVERY 1 SECOND
+DO
+UPDATE solicitacao SET serv_cod_atendente = null,solic_dt_atendimento = null, sta_solic_cod = 1 where sta_solic_cod = 2 and solic_dt_atendimento < DATE_SUB(NOW() , INTERVAL 30 MINUTE);
+
+SET GLOBAL event_scheduler = ON;
+SET GLOBAL event_scheduler = 1;
+SHOW PROCESSLIST;
+
