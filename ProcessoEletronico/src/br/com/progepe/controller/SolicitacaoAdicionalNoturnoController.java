@@ -115,7 +115,7 @@ public class SolicitacaoAdicionalNoturnoController implements Serializable {
 			List<AdicionalNoturno> listaAdicionaisTecnicos) {
 		this.listaAdicionaisTecnicos = listaAdicionaisTecnicos;
 	}
-	
+
 	public Boolean getIndEncaminharDocente() {
 		return indEncaminharDocente;
 	}
@@ -142,7 +142,8 @@ public class SolicitacaoAdicionalNoturnoController implements Serializable {
 			solicitacaoAdicionalNoturno.setLotacao(new Lotacao());
 			buscarServidorLogado();
 			listarLotacoes();
-			solicitacaoAdicionalNoturno.setLotacao(solicitacaoAdicionalNoturno.getSolicitante().getLotacao());
+			solicitacaoAdicionalNoturno.setLotacao(solicitacaoAdicionalNoturno
+					.getSolicitante().getLotacao());
 			listarServidoresTecnicosCampus();
 			FacesContext.getCurrentInstance().getExternalContext()
 					.redirect("solicitacaoAdicionalNoturnoTecnico.jsp");
@@ -162,7 +163,8 @@ public class SolicitacaoAdicionalNoturnoController implements Serializable {
 			professoresCampus = new ArrayList<SelectItem>();
 			buscarServidorLogado();
 			listarLotacoes();
-			solicitacaoAdicionalNoturno.setLotacao(solicitacaoAdicionalNoturno.getSolicitante().getLotacao());
+			solicitacaoAdicionalNoturno.setLotacao(solicitacaoAdicionalNoturno
+					.getSolicitante().getLotacao());
 			listarProfessoresCampus();
 			FacesContext.getCurrentInstance().getExternalContext()
 					.redirect("solicitacaoAdicionalNoturnoDocentes.jsp");
@@ -181,7 +183,8 @@ public class SolicitacaoAdicionalNoturnoController implements Serializable {
 			indEncaminharTecnico = false;
 			buscarDiretor();
 			listarLotacoes();
-			solicitacaoAdicionalNoturno.setLotacao(solicitacaoAdicionalNoturno.getServidor().getLotacao());
+			solicitacaoAdicionalNoturno.setLotacao(solicitacaoAdicionalNoturno
+					.getServidor().getLotacao());
 			listarAdicionaisTecnicosAprovacao();
 			FacesContext.getCurrentInstance().getExternalContext()
 					.redirect("listarSolicitacaoAdicionalNoturnoTecnicos.jsp");
@@ -200,7 +203,8 @@ public class SolicitacaoAdicionalNoturnoController implements Serializable {
 			indEncaminharDocente = false;
 			listarLotacoes();
 			buscarDiretor();
-			solicitacaoAdicionalNoturno.setLotacao(solicitacaoAdicionalNoturno.getServidor().getLotacao());
+			solicitacaoAdicionalNoturno.setLotacao(solicitacaoAdicionalNoturno
+					.getServidor().getLotacao());
 			listarAdicionaisDocentesAprovacao();
 			FacesContext.getCurrentInstance().getExternalContext()
 					.redirect("listarSolicitacaoAdicionalNoturnoDocentes.jsp");
@@ -216,20 +220,20 @@ public class SolicitacaoAdicionalNoturnoController implements Serializable {
 		solicitacaoAdicionalNoturno = AdicionalNoturnoDAO.getInstance()
 				.carregarSolicitacaoAdicionalNoturno(
 						solicitacaoAdicionalNoturno.getLotacao(), true);
-		if(solicitacaoAdicionalNoturno == null){
+		if (solicitacaoAdicionalNoturno == null) {
 			listaAdicionaisDocentes = new ArrayList<AdicionalNoturno>();
 			solicitacaoAdicionalNoturno = new SolicitacaoAdicionalNoturno();
 			solicitacaoAdicionalNoturno.setServidor(new Servidor());
 			solicitacaoAdicionalNoturno.setLotacao(new Lotacao());
 			indEncaminharDocente = false;
-			FacesMessage message = new FacesMessage(
-					FacesMessage.SEVERITY_INFO, "Nenhum adicional encontrado para esse campus!",
+			FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO,
+					"Nenhum adicional encontrado para esse campus!",
 					"Nenhum adicional encontrado para esse campus!");
 			FacesContext.getCurrentInstance().addMessage("", message);
-		}else{
+		} else {
 			List<AdicionalNoturno> listAdicionalNoturno = new ArrayList<AdicionalNoturno>();
-			listAdicionalNoturno
-					.addAll(solicitacaoAdicionalNoturno.getAdicionais());
+			listAdicionalNoturno.addAll(solicitacaoAdicionalNoturno
+					.getAdicionais());
 			for (AdicionalNoturno adicional : listAdicionalNoturno) {
 				adicional.setDiaSemana(pesquisarDiaSemana(adicional.getData()
 						.getDay()));
@@ -254,8 +258,8 @@ public class SolicitacaoAdicionalNoturnoController implements Serializable {
 			solicitacaoAdicionalNoturno.setServidor(new Servidor());
 			solicitacaoAdicionalNoturno.setLotacao(new Lotacao());
 			indEncaminharTecnico = false;
-			FacesMessage message = new FacesMessage(
-					FacesMessage.SEVERITY_INFO, "Nenhum adicional encontrado para esse campus!",
+			FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO,
+					"Nenhum adicional encontrado para esse campus!",
 					"Nenhum adicional encontrado para esse campus!");
 			FacesContext.getCurrentInstance().addMessage("", message);
 		} else {
@@ -388,6 +392,36 @@ public class SolicitacaoAdicionalNoturnoController implements Serializable {
 					"Campo Motivo é obrigatório!");
 			FacesContext.getCurrentInstance().addMessage("", message);
 		}
+
+		// Validação e calculo de hora
+		if (adicionalNoturno.getHoraInicial() != null
+				&& adicionalNoturno.getHoraInicial() != ""
+				&& adicionalNoturno.getHoraFinal() != null
+				&& adicionalNoturno.getHoraFinal() != "") {
+			Integer horaInicial = Integer.parseInt(adicionalNoturno
+					.getHoraInicial().substring(0, 2));
+			Integer horaFinal = Integer.parseInt(adicionalNoturno
+					.getHoraFinal().substring(0, 2));
+
+			if (horaInicial > 5 && horaInicial < 22) {
+				ok = false;
+				FacesMessage message = new FacesMessage(
+						FacesMessage.SEVERITY_ERROR,
+						"O Período de Adicional Noturno deve ser compreendido entre 22:00h e 05:00h!",
+						"O Período de Adicional Noturno deve ser compreendido entre 22:00h e 05:00h!");
+				FacesContext.getCurrentInstance().addMessage("", message);
+			}
+
+			if (horaFinal > 5 && horaFinal < 22) {
+				ok = false;
+				FacesMessage message = new FacesMessage(
+						FacesMessage.SEVERITY_ERROR,
+						"O Período de Adicional Noturno deve ser compreendido entre 22:00h e 05:00h!",
+						"O Período de Adicional Noturno deve ser compreendido entre 22:00h e 05:00h!");
+				FacesContext.getCurrentInstance().addMessage("", message);
+			}
+		}
+
 		if (ok) {
 			List<Servidor> tecnicoList = new ArrayList<Servidor>();
 			tecnicoList = ServidorDAO.getInstance().listTecnicosByCampus(
@@ -482,6 +516,35 @@ public class SolicitacaoAdicionalNoturnoController implements Serializable {
 					"Campo Hora Final é obrigatório!");
 			FacesContext.getCurrentInstance().addMessage("", message);
 		}
+
+		// Validação e calculo de hora
+		if (adicionalNoturno.getHoraInicial() != null
+				&& adicionalNoturno.getHoraInicial() != ""
+				&& adicionalNoturno.getHoraFinal() != null
+				&& adicionalNoturno.getHoraFinal() != "") {
+			Integer horaInicial = Integer.parseInt(adicionalNoturno
+					.getHoraInicial().substring(0, 2));
+			Integer horaFinal = Integer.parseInt(adicionalNoturno
+					.getHoraFinal().substring(0, 2));
+
+			if (horaInicial > 5 && horaInicial < 22) {
+				ok = false;
+				FacesMessage message = new FacesMessage(
+						FacesMessage.SEVERITY_ERROR,
+						"O Período de Adicional Noturno deve ser compreendido entre 22:00h e 05:00h!",
+						"O Período de Adicional Noturno deve ser compreendido entre 22:00h e 05:00h!");
+				FacesContext.getCurrentInstance().addMessage("", message);
+			}
+
+			if (horaFinal > 5 && horaFinal < 22) {
+				ok = false;
+				FacesMessage message = new FacesMessage(
+						FacesMessage.SEVERITY_ERROR,
+						"O Período de Adicional Noturno deve ser compreendido entre 22:00h e 05:00h!",
+						"O Período de Adicional Noturno deve ser compreendido entre 22:00h e 05:00h!");
+				FacesContext.getCurrentInstance().addMessage("", message);
+			}
+		}
 		if (ok) {
 			List<Servidor> professorList = new ArrayList<Servidor>();
 			professorList = ServidorDAO.getInstance().listDocentesByCampus(
@@ -546,7 +609,7 @@ public class SolicitacaoAdicionalNoturnoController implements Serializable {
 				solicitacaoAdicionalNoturno);
 		indEncaminharDocente = false;
 	}
-	
+
 	public void encaminharTecnicos() throws IOException, ParseException {
 		solicitacaoAdicionalNoturno.getAdicionais().clear();
 		solicitacaoAdicionalNoturno.getAdicionais().addAll(
@@ -572,7 +635,6 @@ public class SolicitacaoAdicionalNoturnoController implements Serializable {
 		adicionalNoturno = new AdicionalNoturno();
 		adicionalNoturno.setServidor(new Servidor());
 	}
-	
 
 	public static String pesquisarDiaSemana(int diaSemana) {
 		String diaSemanaString = null;
