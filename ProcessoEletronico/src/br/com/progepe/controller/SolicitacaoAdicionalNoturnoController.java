@@ -217,9 +217,11 @@ public class SolicitacaoAdicionalNoturnoController implements Serializable {
 	public List<AdicionalNoturno> listarAdicionaisDocentesAprovacao()
 			throws ParseException, IOException {
 		listaAdicionaisDocentes.clear();
-		solicitacaoAdicionalNoturno = AdicionalNoturnoDAO.getInstance()
-				.carregarSolicitacaoAdicionalNoturno(
+		List<SolicitacaoAdicionalNoturno> solicitacoes = new ArrayList<SolicitacaoAdicionalNoturno>();
+		solicitacoes = AdicionalNoturnoDAO.getInstance()
+				.carregarSolicitacaoAdicionalNoturnoDocentes(
 						solicitacaoAdicionalNoturno.getLotacao(), true);
+		solicitacaoAdicionalNoturno = solicitacoes.get(0);
 		if (solicitacaoAdicionalNoturno == null) {
 			listaAdicionaisDocentes = new ArrayList<AdicionalNoturno>();
 			solicitacaoAdicionalNoturno = new SolicitacaoAdicionalNoturno();
