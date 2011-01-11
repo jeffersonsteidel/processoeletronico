@@ -27,7 +27,7 @@
 				</f:facet>
 			</rich:messages>
 
-			<font size="2"><b>SOLICITAÇÕES DE ADICIONAL NOTURNO -
+			<font size="2"><b>LISTAR ADICIONAL NOTURNO -
 			DOCENTES</b></font>
 			<h:panelGrid columns="2">
 				<h:outputText
