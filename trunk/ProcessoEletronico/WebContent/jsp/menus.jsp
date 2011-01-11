@@ -112,10 +112,11 @@
 				<rich:menuItem submitMode="ajax" value="Afastamento do Cônjuge"
 					action="#{solicitacaoAfastamentoConjugeController.abrirSolicitacaoAfastamentoConjuge}"
 					icon="../images/afastamentoconjuge.gif" />
-				<rich:menuItem submitMode="ajax" value="Alterar Conta Bancária"
+				<rich:menuItem submitMode="ajax" value="Alteração de Conta Bancária"
 					action="#{solicitacaoContaBancariaController.abrirSolicitacaoContaBancaria}"
 					icon="../images/ALTERARCONTABANCARIA.GIF" />
-				<rich:menuItem submitMode="ajax" value="Alterar Endereço/Contato"
+				<rich:menuItem submitMode="ajax"
+					value="Alteração de Endereço/Contato"
 					action="#{solicitacaoAlteracaoEnderecoController.abrirSolicitacaoAlteracaoEndereco}"
 					icon="../images/endereco.gif" />
 				<rich:menuItem submitMode="ajax" value="Alterar Férias"
@@ -133,25 +134,21 @@
 				<rich:menuItem submitMode="ajax" value="Licença de Casamento"
 					action="#{solicitacaoCasamentoController.abrirSolicitacaoCasamento}"
 					icon="../images/listarConjuge.gif" />
-
 				<rich:menuItem submitMode="ajax" value="Licença de Óbito"
 					action="#{solicitacaoObitoController.abrirSolicitacaoObito}"
 					icon="../images/obito.gif" />
 				<rich:menuItem submitMode="ajax" value="Licença Paternidade"
 					action="#{solicitacaoLicencaPaternidadeController.abrirSolicitacaoPaternidade}"
 					icon="../images/auxiliopaternidade.gif" />
-
-
-
-				<rich:menuItem submitMode="ajax"
-					value="Listar Adicional Noturno - Técnicos"
-					rendered="#{autenticacaoController.siapeAutenticado.indDiretor}"
-					action="#{solicitacaoAdicionalNoturnoController.abrirListarSolicitacaoAdicionalNoturnoTecnicos}"
-					icon="../images/listarAdicional.jpg" />
 				<rich:menuItem submitMode="ajax"
 					value="Listar Adicional Noturno - Docentes"
 					rendered="#{autenticacaoController.siapeAutenticado.indDiretor}"
 					action="#{solicitacaoAdicionalNoturnoController.abrirListarSolicitacaoAdicionalNoturnoDocentes}"
+					icon="../images/listarAdicional.jpg" />
+				<rich:menuItem submitMode="ajax"
+					value="Listar Adicional Noturno - Técnicos"
+					rendered="#{autenticacaoController.siapeAutenticado.indDiretor}"
+					action="#{solicitacaoAdicionalNoturnoController.abrirListarSolicitacaoAdicionalNoturnoTecnicos}"
 					icon="../images/listarAdicional.jpg" />
 				<rich:menuItem submitMode="ajax" value="Listar Solicitações"
 					rendered="#{autenticacaoController.siapeAutenticado.indAdministrador}"

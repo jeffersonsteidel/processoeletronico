@@ -26,7 +26,7 @@
 				</f:facet>
 			</rich:messages>
 
-			<font size="2"><b>SOLICITAÇÃO DE HORÁRIO ESPECIAL PARA
+			<font size="2"><b>HORÁRIO ESPECIAL PARA
 			ESTUDANTE</b></font>
 			<h:panelGrid columns="1">
 				<h:outputText

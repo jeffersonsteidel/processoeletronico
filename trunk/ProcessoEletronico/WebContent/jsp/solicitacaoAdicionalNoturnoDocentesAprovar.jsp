@@ -26,7 +26,7 @@
 					<h:graphicImage value="../images/error.gif" />
 				</f:facet>
 			</rich:messages>
-			<font size="2"><b>SOLICITAÇÕES DE ADICIONAL NOTURNO -
+			<font size="2"><b>ADICIONAL NOTURNO -
 			DOCENTES</b></font>
 			<br><h:outputText
 				value="Solicitante: #{solicitacaoController.solicitacaoAdicionalNoturnoDocente.solicitante.siape} - #{solicitacaoController.solicitacaoAdicionalNoturnoDocente.solicitante.nome}" />
