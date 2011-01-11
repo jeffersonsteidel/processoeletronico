@@ -34,7 +34,7 @@ public class DocumentoImagemController implements Serializable {
 	private List<SelectItem> dependentes = new ArrayList<SelectItem>();
 	private List<SelectItem> conjuges = new ArrayList<SelectItem>();
 	private List<SelectItem> tiposDocumentos = new ArrayList<SelectItem>();
-	private Integer titularDocumeto;
+	private Integer titularDocumento = 1;
 
 	public DocumentoImagem getDocumentoImagem() {
 		return documentoImagem;
@@ -100,12 +100,26 @@ public class DocumentoImagemController implements Serializable {
 		this.documentoList = documentoList;
 	}
 
-	public Integer getTitularDocumeto() {
-		return titularDocumeto;
+	public Integer getTitularDocumento() {
+		return titularDocumento;
 	}
 
-	public void setTitularDocumeto(Integer titularDocumeto) {
-		this.titularDocumeto = titularDocumeto;
+	public void setTitularDocumento(Integer titularDocumento) {
+		this.titularDocumento = titularDocumento;
+	}
+	
+	public void abrirAdicionarDocumentos() {
+		try {
+			documentoImagem = new DocumentoImagem();
+			buscarServidorLogado();
+			listarTiposDocumentos();
+			listarDependentes();
+			listarConjuges();
+			FacesContext.getCurrentInstance().getExternalContext()
+					.redirect("anexarDocumentos.jsp");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	@SuppressWarnings("unchecked")
@@ -125,7 +139,7 @@ public class DocumentoImagemController implements Serializable {
 	public List<SelectItem> listarConjuges() {
 		conjuges = new ArrayList<SelectItem>();
 		List<Conjuge> conjugeList = new ArrayList<Conjuge>();
-		conjugeList = DAO.getInstance().list(TipoDocumento.class, "descricao");
+		conjugeList = DAO.getInstance().list(Conjuge.class, "nome");
 		for (Conjuge conjuge : conjugeList) {
 			conjuges.add(new SelectItem(conjuge.getCodigo(), conjuge.getNome()));
 		}
@@ -136,28 +150,16 @@ public class DocumentoImagemController implements Serializable {
 	public List<SelectItem> listarDependentes() {
 		dependentes = new ArrayList<SelectItem>();
 		List<Dependente> dependenteList = new ArrayList<Dependente>();
-		dependenteList = DAO.getInstance().list(TipoDocumento.class,
-				"descricao");
+		dependenteList = DAO.getInstance().list(Dependente.class,
+				"nome");
 		for (Dependente dependente : dependenteList) {
-			conjuges.add(new SelectItem(dependente.getCodigo(), dependente
+			dependentes.add(new SelectItem(dependente.getCodigo(), dependente
 					.getNome()));
 		}
-		return conjuges;
+		return dependentes;
 	}
 
-	public void abrirAdicionarDocumentos() {
-		try {
-			documentoImagem = new DocumentoImagem();
-			buscarServidorLogado();
-			listarTiposDocumentos();
-			listarDependentes();
-			listarConjuges();
-			FacesContext.getCurrentInstance().getExternalContext()
-					.redirect("anexarDocumentos.jsp");
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
+	
 
 	public void abrirPesquisarDocumentos() {
 		try {
