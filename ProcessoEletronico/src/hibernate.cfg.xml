@@ -38,6 +38,7 @@
 		<mapping resource="CorPele.hbm.xml" />
 		<mapping resource="Dependente.hbm.xml" />
 		<mapping resource="Documento.hbm.xml" />
+		<mapping resource="DocumentoImagem.hbm.xml" />
 		<mapping resource="Emprego.hbm.xml" />
 		<mapping resource="Endereco.hbm.xml" />
 		<mapping resource="Estado.hbm.xml" />
@@ -67,6 +68,7 @@
 		<mapping resource="SolicitacaoHorarioEspecialEstudante.hbm.xml" />
 		<mapping resource="SolicitacaoObito.hbm.xml" />
 		<mapping resource="StatusSolicitacao.hbm.xml" />
+		<mapping resource="TipoDocumento.hbm.xml" />
 		<mapping resource="TipoFuncao.hbm.xml" />
 		<mapping resource="TipoPortaria.hbm.xml" />
 		<mapping resource="TipoSolicitacao.hbm.xml" />
