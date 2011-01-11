@@ -40,13 +40,13 @@
 
 			<h:panelGrid columns="3">
 				<h:selectOneRadio id="radios"
-					value="#{documentoImagemController.titularDocumento}"
-					required="Campo Titular do Documento é obrigatório!">
+					value="#{documentoImagemController.titularDocumento}" required="true"
+					requiredMessage="Campo Titular do Documento é obrigatório!">
 					<f:selectItem itemValue="1" itemLabel="Servidor" />
 					<f:selectItem itemValue="2" itemLabel="Cônjuge" />
 					<f:selectItem itemValue="3" itemLabel="Dependente" />
 					<a4j:support event="onclick" action="#"
-						 ajaxSingle="true" reRender="nomeTitular, conjuge, dependente"></a4j:support>
+						 ajaxSingle="true" reRender="form"></a4j:support>
 				</h:selectOneRadio>
 			</h:panelGrid>
 
