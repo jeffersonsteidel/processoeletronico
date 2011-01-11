@@ -79,6 +79,9 @@
 				<rich:menuItem submitMode="ajax" value="Adicionar Dependente"
 					action="#{dependenteController.abrirAdicionarDependentes}"
 					icon="../images/dependente.gif" />
+				<rich:menuItem submitMode="ajax" value="Adicionar Documentos"
+					action="#{documentoImagemController.abrirAdicionarDocumentos}"
+					icon="../images/documentos.gif" />	
 				<rich:menuItem submitMode="ajax" value="Adicionar Emprego"
 					action="#{empregoController.abrirEmprego}"
 					icon="../images/ico_emprego.gif" />
