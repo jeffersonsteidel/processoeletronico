@@ -25,7 +25,7 @@
 					<h:graphicImage value="../images/error.gif" />
 				</f:facet>
 			</rich:messages>
-			<font size="2"><b>LISTAR FUNÇÕES</b></font>
+			<font size="2"><b>PESQUISAR FUNÇÕES</b></font>
 
 			<h:panelGrid columns="11">
 
