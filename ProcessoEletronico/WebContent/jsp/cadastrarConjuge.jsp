@@ -34,7 +34,8 @@
 				</h:outputText>
 			</h:panelGrid>
 
-			<h:outputText value="#{conjugeController.texto}" />
+			<h:outputText style="color: #00008B"
+				value="#{conjugeController.texto}" />
 
 			<h:panelGrid columns="4">
 				<h:outputText value="Nome do Cônjuge ">

@@ -36,7 +36,7 @@
 			</h:panelGrid>
 			<h:panelGrid
 				rendered="#{solicitacaoAdicionalNoturnoController.indVarias}">
-				<center><h:outputText style="color:green"
+				<center><h:outputText style="color: #00008B"
 					value="Existe outro adicional encontrado para este campus"></h:outputText>
 				</center>
 			</h:panelGrid>
