@@ -28,7 +28,8 @@
 
 			<font size="2"><b>ANEXAR DOCUMENTOS</b></font>
 			<h:panelGrid columns="2">
-				<h:outputText value="#{documentoImagemController.documentoImagem.servidor.siape} - #{documentoImagemController.documentoImagem.servidor.nome}">
+				<h:outputText
+					value="#{documentoImagemController.documentoImagem.servidor.siape} - #{documentoImagemController.documentoImagem.servidor.nome}">
 				</h:outputText>
 			</h:panelGrid>
 
@@ -38,24 +39,31 @@
 			</h:panelGrid>
 
 			<h:panelGrid columns="3">
-				<h:selectOneRadio id="radios" value=""
+				<h:selectOneRadio id="radios"
+					value="#{documentoImagemController.titularDocumento}"
 					required="Campo Titular do Documento é obrigatório!">
 					<f:selectItem itemValue="1" itemLabel="Servidor" />
 					<f:selectItem itemValue="2" itemLabel="Cônjuge" />
 					<f:selectItem itemValue="3" itemLabel="Dependente" />
+					<a4j:support event="onclick" action="#"
+						 ajaxSingle="true" reRender="nomeTitular, conjuge, dependente"></a4j:support>
 				</h:selectOneRadio>
 			</h:panelGrid>
 
-			<h:outputText value="Nome do Titular do Documento: " />
+			<h:outputText value="Nome do Titular do Documento: " id="nomeTitular"
+				rendered="#{documentoImagemController.titularDocumento != 1}" />
 			<h:panelGrid columns="3">
-				<h:selectOneMenu value="#{documentoImagemController.conjuge.codigo}"
+				<h:selectOneMenu id="conjuge"
+					rendered="#{documentoImagemController.titularDocumento == 2}"
+					value="#{documentoImagemController.documentoImagem.conjuge.codigo}"
 					required="true"
 					requiredMessage="Campo Nome do Titular do Documento é obrigatório!">
 					<f:selectItem itemLabel="SELECIONE" itemValue="" />
 					<f:selectItems value="#{documentoImagemController.conjuges}" />
 				</h:selectOneMenu>
-				<h:selectOneMenu
-					value="#{documentoImagemController.dependente.codigo}"
+				<h:selectOneMenu id="dependente"
+					rendered="#{documentoImagemController.titularDocumento == 3}"
+					value="#{documentoImagemController.documentoImagem.dependente.codigo}"
 					required="true"
 					requiredMessage="Campo Nome do Titular do Documento é obrigatório!">
 					<f:selectItem itemLabel="SELECIONE" itemValue="" />
@@ -63,42 +71,44 @@
 				</h:selectOneMenu>
 			</h:panelGrid>
 
-
-
 			<h:outputText value="Tipo de Documento: " />
 			<h:selectOneMenu value="#" required="true"
 				requiredMessage="Campo Tipo de Documento é obrigatório!">
 				<f:selectItem itemLabel="SELECIONE" itemValue="" />
 				<f:selectItems value="#{documentoImagemController.tiposDocumentos}" />
 			</h:selectOneMenu>
+
+			<rich:fileUpload
+				fileUploadListener="#{documentoImagemController.listener}"
+				maxFilesQuantity="3" required="true"
+				addControlLabel="Adicionar Documento" id="upload"
+				transferErrorLabel="Falha Ao realizar Transferência"
+				doneLabelClass="Finalizada" autoclear="true" immediateUpload="true"
+				listWidth="270px" stopControlLabel="Parar"
+				acceptedTypes="jpg, gif, png" allowFlash="true"
+				sizeErrorLabel="Foto muito grande" uploadControlLabel="Carregar"
+				listHeight="70px">
+				<a4j:support event="onuploadcomplete" reRender="info" />
+			</rich:fileUpload>
 			<a4j:commandButton value="Salvar" action="#" reRender="form" />
-		</rich:panel> <rich:fileUpload
-			fileUploadListener="#{documentoImagemController.listener}"
-			maxFilesQuantity="3" required="true"
-			addControlLabel="Adicionar Documento" id="upload"
-			transferErrorLabel="Falha Ao realizar Transferência"
-			doneLabelClass="Finalizada" autoclear="true" immediateUpload="true"
-			listWidth="270px" stopControlLabel="Parar"
-			acceptedTypes="jpg, gif, png" allowFlash="true"
-			sizeErrorLabel="Foto muito grande" uploadControlLabel="Carregar"
-			listHeight="70px">
-			<a4j:support event="onuploadcomplete" reRender="info" />
-		</rich:fileUpload> <a4j:commandButton value="Salvar" action="#" reRender="form" /> <h:panelGroup
-			id="info">
-			<rich:panel bodyClass="info">
-				<rich:dataGrid columns="1" value="#{documetoImagemController.files}"
-					var="file" rowKeyVar="row">
-					<rich:panel bodyClass="rich-laguna-panel-no-header">
-						<h:panelGrid columns="2">
-							<a4j:mediaOutput element="img"
-								createContent="#{documetoImagemController.paint}" value="#{row}"
-								style="width:600px; height:800px;" cacheable="false">
-							</a4j:mediaOutput>
-						</h:panelGrid>
-					</rich:panel>
-				</rich:dataGrid>
-			</rich:panel>
-		</h:panelGroup></center>
+			<h:panelGroup id="info">
+				<rich:panel bodyClass="info">
+					<rich:dataGrid columns="1"
+						value="#{documetoImagemController.files}" var="file"
+						rowKeyVar="row">
+						<rich:panel bodyClass="rich-laguna-panel-no-header">
+							<h:panelGrid columns="2">
+								<a4j:mediaOutput element="img"
+									createContent="#{documetoImagemController.paint}"
+									value="#{row}" style="width:600px; height:800px;"
+									cacheable="false">
+								</a4j:mediaOutput>
+							</h:panelGrid>
+						</rich:panel>
+					</rich:dataGrid>
+				</rich:panel>
+			</h:panelGroup>
+		</rich:panel></center>
 	</a4j:form>
 </f:view>
 </body>
