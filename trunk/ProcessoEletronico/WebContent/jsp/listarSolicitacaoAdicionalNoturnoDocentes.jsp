@@ -29,6 +29,12 @@
 
 			<font size="2"><b>LISTAR ADICIONAL NOTURNO -
 			DOCENTES</b></font>
+			<h:panelGrid rendered="#{solicitacaoAdicionalNoturnoController.indEmpty}"><center>
+				<h:outputText style="color:red" value="Nenhum adicional encontrado para este campus"></h:outputText>
+			</center></h:panelGrid>
+			<h:panelGrid rendered="#{solicitacaoAdicionalNoturnoController.indVarias}"><center>
+				<h:outputText style="color:red" value="Existe outro adicional encontrado para este campus"></h:outputText>
+			</center></h:panelGrid>
 			<h:panelGrid columns="2">
 				<h:outputText
 					value="Diretor: #{solicitacaoAdicionalNoturnoController.solicitacaoAdicionalNoturno.servidor.siape} - #{solicitacaoAdicionalNoturnoController.solicitacaoAdicionalNoturno.servidor.nome}">
@@ -50,11 +56,6 @@
 					<f:selectItems
 						value="#{solicitacaoAdicionalNoturnoController.lotacoes}" />
 				</h:selectOneMenu>
-			</h:panelGrid>
-
-			<h:panelGrid columns="1" 
-				rendered="#{solicitacaoAdicionalNoturnoController.solicitacaoAdicionalNoturno.solicitante == null}">
-				<h:outputText value="Nenhum adicional encontrado!" />
 			</h:panelGrid>
 
 			<h:panelGrid columns="1">

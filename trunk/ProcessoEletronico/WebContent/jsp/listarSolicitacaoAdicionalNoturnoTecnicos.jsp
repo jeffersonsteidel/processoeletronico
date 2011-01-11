@@ -49,10 +49,7 @@
 				</h:selectOneMenu>
 			</h:panelGrid>
 			
-			<h:panelGrid columns="1" 
-				rendered="#{solicitacaoAdicionalNoturnoController.solicitacaoAdicionalNoturno.solicitante == null}">
-				<h:outputText value="Nenhum adicional encontrado!" />
-			</h:panelGrid>
+			
 
 			<h:panelGrid columns="1">
 				<rich:dataTable id="listaSolicitacoesAdicionalTecnicos"
