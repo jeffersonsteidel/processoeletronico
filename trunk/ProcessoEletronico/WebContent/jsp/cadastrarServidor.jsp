@@ -149,7 +149,7 @@
 							<f:validateLength minimum="10" />
 						</h:inputText>
 							
-						<h:outputText value="Data de Admissão no Órgão: " />
+						<h:outputText value="Data de Admissão no IFPR: " />
 						<rich:calendar value="#{servidorController.servidor.dataAdmissao}"
 							locale="" popup="true" datePattern="dd/MM/yyyy"
 							showApplyButton="#" cellWidth="12px" cellHeight="12px"
