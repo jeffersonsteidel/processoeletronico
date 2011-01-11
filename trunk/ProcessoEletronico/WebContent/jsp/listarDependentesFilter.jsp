@@ -16,7 +16,7 @@
 	<a4j:loadScript src="../js/script.js" />
 	<center><a4j:form id="form">
 		<rich:panel>
-			<font size="2"><b>LISTAR DEPENDENTES</b></font>
+			<font size="2"><b>PESQUISAR DEPENDENTES</b></font>
 			<rich:messages layout="list" errorLabelClass="errorLabel"
 				style="top:auto;" infoLabelClass="infoLabel">
 				<f:facet name="infoMarker">

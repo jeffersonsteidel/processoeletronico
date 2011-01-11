@@ -73,24 +73,21 @@
 						<h:outputText value="ATUALIZAR MEUS DADOS" />
 					</h:panelGroup>
 				</f:facet>
-				<rich:menuItem submitMode="ajax" value="Adicionar Dependentes"
+				<rich:menuItem submitMode="ajax" value="Adicionar Cônjuge"
+					action="#{conjugeController.abrirCadastrarConjuge}"
+					icon="../images/casamento.gif" />
+				<rich:menuItem submitMode="ajax" value="Adicionar Dependente"
 					action="#{dependenteController.abrirAdicionarDependentes}"
 					icon="../images/dependente.gif" />
-				<rich:menuItem submitMode="ajax" value="Adicionar Empregos"
+				<rich:menuItem submitMode="ajax" value="Adicionar Emprego"
 					action="#{empregoController.abrirEmprego}"
 					icon="../images/ico_emprego.gif" />
-				<rich:menuItem submitMode="ajax" value="Adicionar Titulações"
+				<rich:menuItem submitMode="ajax" value="Adicionar Titulação"
 					action="#{servidorTitulacaoController.abrirAdicionarServidorTitulacao}"
 					icon="../images/titulacoes.gif" />
 				<rich:menuItem submitMode="ajax" value="Atualizar Meus Dados"
 					action="#{servidorController.buscarServidorLogado}"
 					icon="../images/ATUALIZARDADOS.gif" />
-
-				<rich:menuItem submitMode="ajax" value="Cadastrar Cônjuge"
-					action="#{conjugeController.abrirCadastrarConjuge}"
-					icon="../images/casamento.gif" />
-
-
 			</rich:dropDownMenu>
 
 			<rich:dropDownMenu>
