@@ -14,6 +14,7 @@ import org.richfaces.event.UploadEvent;
 import org.richfaces.model.UploadItem;
 
 import br.com.progepe.dao.DAO;
+import br.com.progepe.dao.DocumentoImagemDAO;
 import br.com.progepe.dao.ServidorDAO;
 import br.com.progepe.entity.Autenticacao;
 import br.com.progepe.entity.Conjuge;
@@ -104,10 +105,6 @@ public class DocumentoImagemController implements Serializable {
 		return titularDocumento;
 	}
 
-	public void setTitularDocumento(Integer titularDocumento) {
-		this.titularDocumento = titularDocumento;
-	}
-	
 	public void abrirAdicionarDocumentos() {
 		try {
 			documentoImagem = new DocumentoImagem();
@@ -135,31 +132,30 @@ public class DocumentoImagemController implements Serializable {
 		return tiposDocumentos;
 	}
 
-	@SuppressWarnings("unchecked")
-	public List<SelectItem> listarConjuges() {
+	public List<SelectItem> listarConjuges() throws Exception {
 		conjuges = new ArrayList<SelectItem>();
 		List<Conjuge> conjugeList = new ArrayList<Conjuge>();
-		conjugeList = DAO.getInstance().list(Conjuge.class, "nome");
+		buscarServidorLogado();
+		conjugeList = DocumentoImagemDAO.getInstance().listConjugeByServidor(
+				documentoImagem.getServidor());
 		for (Conjuge conjuge : conjugeList) {
 			conjuges.add(new SelectItem(conjuge.getCodigo(), conjuge.getNome()));
 		}
 		return conjuges;
 	}
 
-	@SuppressWarnings("unchecked")
-	public List<SelectItem> listarDependentes() {
+	public List<SelectItem> listarDependentes() throws Exception {
 		dependentes = new ArrayList<SelectItem>();
 		List<Dependente> dependenteList = new ArrayList<Dependente>();
-		dependenteList = DAO.getInstance().list(Dependente.class,
-				"nome");
+		buscarServidorLogado();
+		dependenteList = DocumentoImagemDAO.getInstance()
+				.listDependenteByServidor(documentoImagem.getServidor());
 		for (Dependente dependente : dependenteList) {
 			dependentes.add(new SelectItem(dependente.getCodigo(), dependente
 					.getNome()));
 		}
 		return dependentes;
 	}
-
-	
 
 	public void abrirPesquisarDocumentos() {
 		try {
@@ -168,6 +164,7 @@ public class DocumentoImagemController implements Serializable {
 			documentoImagem.setConjuge(new Conjuge());
 			documentoImagem.setServidor(new Servidor());
 			documentoImagem.setDependente(new Dependente());
+			documentoImagem.setTipoDocumento(new TipoDocumento());
 			FacesContext.getCurrentInstance().getExternalContext()
 					.redirect("pesquisarDocumentos.jsp");
 		} catch (Exception e) {
@@ -212,18 +209,22 @@ public class DocumentoImagemController implements Serializable {
 
 	public void salvar() throws Exception {
 		documentoImagem.setIndValidado(false);
+		if (!titularDocumento.equals(1)) {
+			documentoImagem.setServidor(null);
+		}
 		DAO.getInstance().save(documentoImagem);
 		documentoImagem = new DocumentoImagem();
 		documentoImagem.setConjuge(new Conjuge());
 		documentoImagem.setServidor(new Servidor());
 		documentoImagem.setDependente(new Dependente());
+		documentoImagem.setTipoDocumento(new TipoDocumento());
 		buscarServidorLogado();
 		listarTiposDocumentos();
 		listarDependentes();
 		listarConjuges();
 	}
-	
-	public void validar(){
+
+	public void validar() {
 		DAO.getInstance().update(documentoImagem);
 	}
 }
