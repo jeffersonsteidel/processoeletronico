@@ -2,7 +2,8 @@ package br.com.progepe.dao;
 
 import java.util.List;
 
-import org.hibernate.Query;
+import org.hibernate.Criteria;
+import org.hibernate.criterion.Restrictions;
 
 import br.com.progepe.entity.Conjuge;
 import br.com.progepe.entity.Dependente;
@@ -26,20 +27,26 @@ public class DocumentoImagemDAO extends DAO {
 	public List<Conjuge> listConjugeByServidor(Servidor servidor) {
 		HibernateUtility.getSession().clear();
 		HibernateUtility.beginTransaction();
-		String sql = "from Conjuge c INNER JOIN Servidor s on c.servidor.codigo = s.codigo";
-		Query query = HibernateUtility.getSession().createQuery(sql);
+		Criteria c = HibernateUtility.getSession()
+				.createCriteria(Conjuge.class);
+		if (servidor != null) {
+			c.add(Restrictions.like("servidor", servidor));
+		}
 		HibernateUtility.commitTransaction();
-		return (List<Conjuge>) query.list();
+		return c.list();
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	public List<Dependente> listDependenteByServidor(Servidor servidor) {
 		HibernateUtility.getSession().clear();
 		HibernateUtility.beginTransaction();
-		String sql = "from Dependente d INNER JOIN Servidor s on d.servidor.codigo = s.codigo";
-		Query query = HibernateUtility.getSession().createQuery(sql);
+		Criteria c = HibernateUtility.getSession().createCriteria(
+				Dependente.class);
+		if (servidor != null) {
+			c.add(Restrictions.like("servidor", servidor));
+		}
 		HibernateUtility.commitTransaction();
-		return (List<Dependente>) query.list();
+		return c.list();
 	}
-	
+
 }

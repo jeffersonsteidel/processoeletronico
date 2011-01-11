@@ -105,8 +105,13 @@ public class DocumentoImagemController implements Serializable {
 		return titularDocumento;
 	}
 
+	public void setTitularDocumento(Integer titularDocumento) {
+		this.titularDocumento = titularDocumento;
+	}
+
 	public void abrirAdicionarDocumentos() {
 		try {
+			titularDocumento = 1;
 			documentoImagem = new DocumentoImagem();
 			buscarServidorLogado();
 			listarTiposDocumentos();
@@ -209,9 +214,12 @@ public class DocumentoImagemController implements Serializable {
 
 	public void salvar() throws Exception {
 		documentoImagem.setIndValidado(false);
-		if (!titularDocumento.equals(1)) {
+		if(titularDocumento.equals(1)){
+			documentoImagem.setServidor(ServidorDAO.getInstance().refreshBySiape(documentoImagem.getServidor()));
+		}else{
 			documentoImagem.setServidor(null);
 		}
+		
 		DAO.getInstance().save(documentoImagem);
 		documentoImagem = new DocumentoImagem();
 		documentoImagem.setConjuge(new Conjuge());
