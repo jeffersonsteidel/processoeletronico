@@ -39,6 +39,9 @@ public class SolicitacaoAdicionalNoturnoController implements Serializable {
 	private Boolean indEncaminharDocente = false;
 	private Boolean indEncaminharTecnico = false;
 
+	private Boolean indEmpty = false;
+	private Boolean indVarias = false;
+
 	public List<SelectItem> getLotacoes() {
 		return lotacoes;
 	}
@@ -132,6 +135,22 @@ public class SolicitacaoAdicionalNoturnoController implements Serializable {
 		this.indEncaminharTecnico = indEncaminharTecnico;
 	}
 
+	public Boolean getIndEmpty() {
+		return indEmpty;
+	}
+
+	public void setIndEmpty(Boolean indEmpty) {
+		this.indEmpty = indEmpty;
+	}
+
+	public Boolean getIndVarias() {
+		return indVarias;
+	}
+
+	public void setIndVarias(Boolean indVarias) {
+		this.indVarias = indVarias;
+	}
+
 	public void abrirSolicitacaoAdicionalNoturnoTecnico() throws ParseException {
 		try {
 			solicitacaoAdicionalNoturno = new SolicitacaoAdicionalNoturno();
@@ -216,23 +235,22 @@ public class SolicitacaoAdicionalNoturnoController implements Serializable {
 	@SuppressWarnings("deprecation")
 	public List<AdicionalNoturno> listarAdicionaisDocentesAprovacao()
 			throws ParseException, IOException {
+		this.setIndEmpty(false);
+		this.setIndVarias(false);
 		listaAdicionaisDocentes.clear();
 		List<SolicitacaoAdicionalNoturno> solicitacoes = new ArrayList<SolicitacaoAdicionalNoturno>();
 		solicitacoes = AdicionalNoturnoDAO.getInstance()
 				.carregarSolicitacaoAdicionalNoturnoDocentes(
 						solicitacaoAdicionalNoturno.getLotacao(), true);
-		solicitacaoAdicionalNoturno = solicitacoes.get(0);
-		if (solicitacaoAdicionalNoturno == null) {
+		if (solicitacoes.isEmpty()) {
 			listaAdicionaisDocentes = new ArrayList<AdicionalNoturno>();
 			solicitacaoAdicionalNoturno = new SolicitacaoAdicionalNoturno();
 			solicitacaoAdicionalNoturno.setServidor(new Servidor());
 			solicitacaoAdicionalNoturno.setLotacao(new Lotacao());
 			indEncaminharDocente = false;
-			FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO,
-					"Nenhum adicional encontrado para esse campus!",
-					"Nenhum adicional encontrado para esse campus!");
-			FacesContext.getCurrentInstance().addMessage("", message);
-		} else {
+			this.setIndEmpty(true);
+		} else if (1 <= solicitacoes.size()) {
+			solicitacaoAdicionalNoturno = solicitacoes.get(0);
 			List<AdicionalNoturno> listAdicionalNoturno = new ArrayList<AdicionalNoturno>();
 			listAdicionalNoturno.addAll(solicitacaoAdicionalNoturno
 					.getAdicionais());
@@ -242,6 +260,9 @@ public class SolicitacaoAdicionalNoturnoController implements Serializable {
 				listaAdicionaisDocentes.add(adicional);
 			}
 			indEncaminharDocente = true;
+			if (1 < solicitacoes.size()) {
+				this.setIndVarias(true);
+			}
 		}
 		buscarDiretor();
 		return this.listaAdicionaisDocentes;
