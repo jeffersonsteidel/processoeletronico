@@ -23,19 +23,8 @@ public class AdicionalNoturnoDAO extends DAO {
 		return instance;
 	}
 	
-	public SolicitacaoAdicionalNoturno carregarSolicitacaoAdicionalNoturno(
-			Lotacao codigoLotacao, Boolean indDocente) {
-		HibernateUtility.getSession().clear();
-		Query query = HibernateUtility.getSession().createQuery(
-				"from SolicitacaoAdicionalNoturno s where s.lotacao= :codigoLotacao and s.statusSolicitacao is null and s.indDocente = :indDocente");
-		query.setParameter("codigoLotacao", codigoLotacao);
-		query.setParameter("indDocente", indDocente);
-		HibernateUtility.commitTransaction();
-		return (SolicitacaoAdicionalNoturno) query.uniqueResult();
-	}
-	
 	@SuppressWarnings("unchecked")
-	public List<SolicitacaoAdicionalNoturno> carregarSolicitacaoAdicionalNoturnoDocentes(
+	public List<SolicitacaoAdicionalNoturno> carregarSolicitacaoAdicionalNoturno(
 			Lotacao codigoLotacao, Boolean indDocente) {
 		HibernateUtility.getSession().clear();
 		Query query = HibernateUtility.getSession().createQuery(

@@ -26,20 +26,35 @@
 					<h:graphicImage value="../images/error.gif" />
 				</f:facet>
 			</rich:messages>
-			<font size="2"><b>LISTAR ADICIONAL NOTURNO -
-			TÉCNICOS</b></font>
+			<font size="2"><b>LISTAR ADICIONAL NOTURNO - TÉCNICOS</b></font>
+
+			<h:panelGrid
+				rendered="#{solicitacaoAdicionalNoturnoController.indEmpty}">
+				<center><h:outputText style="color:red"
+					value="Nenhum adicional encontrado para este campus"></h:outputText>
+				</center>
+			</h:panelGrid>
+			<h:panelGrid
+				rendered="#{solicitacaoAdicionalNoturnoController.indVarias}">
+				<center><h:outputText style="color:green"
+					value="Existe outro adicional encontrado para este campus"></h:outputText>
+				</center>
+			</h:panelGrid>
+
 			<h:panelGrid columns="2">
 				<h:outputText
 					value="Diretor: #{solicitacaoAdicionalNoturnoController.solicitacaoAdicionalNoturno.servidor.siape} - #{solicitacaoAdicionalNoturnoController.solicitacaoAdicionalNoturno.servidor.nome}">
 				</h:outputText>
 			</h:panelGrid>
 			<h:panelGrid columns="2">
-				<h:outputText rendered="#{solicitacaoAdicionalNoturnoController.solicitacaoAdicionalNoturno.solicitante != null}"
+				<h:outputText
+					rendered="#{solicitacaoAdicionalNoturnoController.solicitacaoAdicionalNoturno.solicitante != null}"
 					value="Secretário: #{solicitacaoAdicionalNoturnoController.solicitacaoAdicionalNoturno.solicitante.siape} - #{solicitacaoAdicionalNoturnoController.solicitacaoAdicionalNoturno.solicitante.nome}">
 				</h:outputText>
 			</h:panelGrid>
 
-			<h:panelGrid columns="7" id="campus" rendered="#{solicitacaoAdicionalNoturnoController.solicitacaoAdicionalNoturno.solicitante != null}">
+			<h:panelGrid columns="7" id="campus"
+				rendered="#{solicitacaoAdicionalNoturnoController.solicitacaoAdicionalNoturno.solicitante != null}">
 				<h:outputText value="Campus: " />
 				<h:selectOneMenu disabled="true"
 					value="#{solicitacaoAdicionalNoturnoController.solicitacaoAdicionalNoturno.lotacao.codigo}">
@@ -48,8 +63,8 @@
 						value="#{solicitacaoAdicionalNoturnoController.lotacoes}" />
 				</h:selectOneMenu>
 			</h:panelGrid>
-			
-			
+
+
 
 			<h:panelGrid columns="1">
 				<rich:dataTable id="listaSolicitacoesAdicionalTecnicos"
@@ -89,11 +104,11 @@
 
 					<rich:column width="940px" sortBy="#{list.motivo}">
 						<f:facet name="header">
-						<h:outputText value="Motivo" />
-					</f:facet>
-					<h:outputText value="#{list.motivo}" />
+							<h:outputText value="Motivo" />
+						</f:facet>
+						<h:outputText value="#{list.motivo}" />
 					</rich:column>
-					
+
 					<rich:column width="100px">
 						<f:facet name="header">
 							<h:outputText value="Aprovação" />
@@ -104,11 +119,12 @@
 			</h:panelGrid>
 			<h:panelGrid columns="1">
 				<a4j:commandButton
-					action="#{solicitacaoAdicionalNoturnoController.encaminharTecnicos}" id="encaminhar" reRender="form"
-					value="Encaminhar Para Progepe" disabled="#{!solicitacaoAdicionalNoturnoController.indEncaminharTecnico}"></a4j:commandButton>
-			</h:panelGrid></a4j:form>
-	</rich:panel>
-	</center>
+					action="#{solicitacaoAdicionalNoturnoController.encaminharTecnicos}"
+					id="encaminhar" reRender="form" value="Encaminhar Para Progepe"
+					disabled="#{!solicitacaoAdicionalNoturnoController.indEncaminharTecnico}"></a4j:commandButton>
+			</h:panelGrid>
+		</a4j:form>
+	</rich:panel></center>
 </f:view>
 </body>
 </html>

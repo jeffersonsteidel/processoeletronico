@@ -240,7 +240,7 @@ public class SolicitacaoAdicionalNoturnoController implements Serializable {
 		listaAdicionaisDocentes.clear();
 		List<SolicitacaoAdicionalNoturno> solicitacoes = new ArrayList<SolicitacaoAdicionalNoturno>();
 		solicitacoes = AdicionalNoturnoDAO.getInstance()
-				.carregarSolicitacaoAdicionalNoturnoDocentes(
+				.carregarSolicitacaoAdicionalNoturno(
 						solicitacaoAdicionalNoturno.getLotacao(), true);
 		if (solicitacoes.isEmpty()) {
 			listaAdicionaisDocentes = new ArrayList<AdicionalNoturno>();
@@ -271,31 +271,34 @@ public class SolicitacaoAdicionalNoturnoController implements Serializable {
 	@SuppressWarnings("deprecation")
 	public List<AdicionalNoturno> listarAdicionaisTecnicosAprovacao()
 			throws ParseException, IOException {
+		this.setIndEmpty(false);
+		this.setIndVarias(false);
 		listaAdicionaisTecnicos.clear();
-		solicitacaoAdicionalNoturno = AdicionalNoturnoDAO.getInstance()
+		List<SolicitacaoAdicionalNoturno> solicitacoes = new ArrayList<SolicitacaoAdicionalNoturno>();
+		solicitacoes = AdicionalNoturnoDAO.getInstance()
 				.carregarSolicitacaoAdicionalNoturno(
 						solicitacaoAdicionalNoturno.getLotacao(), false);
-		if (solicitacaoAdicionalNoturno == null) {
+		if (solicitacoes.isEmpty()) {
 			listaAdicionaisTecnicos = new ArrayList<AdicionalNoturno>();
 			solicitacaoAdicionalNoturno = new SolicitacaoAdicionalNoturno();
 			solicitacaoAdicionalNoturno.setServidor(new Servidor());
 			solicitacaoAdicionalNoturno.setLotacao(new Lotacao());
 			indEncaminharTecnico = false;
-			FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO,
-					"Nenhum adicional encontrado para esse campus!",
-					"Nenhum adicional encontrado para esse campus!");
-			FacesContext.getCurrentInstance().addMessage("", message);
-		} else {
-
-			List<AdicionalNoturno> listaAdicionaisTecnicosAprovacao = new ArrayList<AdicionalNoturno>();
-			listaAdicionaisTecnicosAprovacao.addAll(solicitacaoAdicionalNoturno
+			this.setIndEmpty(true);
+		} else if (1 <= solicitacoes.size()) {
+			solicitacaoAdicionalNoturno = solicitacoes.get(0);
+			List<AdicionalNoturno> listAdicionalNoturno = new ArrayList<AdicionalNoturno>();
+			listAdicionalNoturno.addAll(solicitacaoAdicionalNoturno
 					.getAdicionais());
-			for (AdicionalNoturno adicional : listaAdicionaisTecnicosAprovacao) {
+			for (AdicionalNoturno adicional : listAdicionalNoturno) {
 				adicional.setDiaSemana(pesquisarDiaSemana(adicional.getData()
 						.getDay()));
 				listaAdicionaisTecnicos.add(adicional);
 			}
 			indEncaminharTecnico = true;
+			if (1 < solicitacoes.size()) {
+				this.setIndVarias(true);
+			}
 		}
 		buscarDiretor();
 		return this.listaAdicionaisTecnicos;
