@@ -50,6 +50,9 @@
 				<rich:menuItem submitMode="ajax" value="Pesquisar Cônjuges"
 					action="#{conjugeController.abrirListarConjuge}"
 					icon="../images/conjuge.png" />
+				<rich:menuItem submitMode="ajax" value="Pesquisar Documentos"
+					action="#{documentoImagemController.abrirPesquisarDocumentos}"
+					icon="../images/listarDocumentos.gif" />	
 				<rich:menuItem submitMode="ajax" value="Pesquisar Dependentes"
 					action="#{dependenteController.abrirListarDependentes}"
 					icon="../images/listarDependente.png" />
