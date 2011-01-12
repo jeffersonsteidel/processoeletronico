@@ -3,13 +3,13 @@ package br.com.progepe.dao;
 import java.util.List;
 
 import org.hibernate.Criteria;
+import org.hibernate.Query;
 import org.hibernate.criterion.Restrictions;
 
 import br.com.progepe.entity.Conjuge;
 import br.com.progepe.entity.Dependente;
 import br.com.progepe.entity.DocumentoImagem;
 import br.com.progepe.entity.Servidor;
-import br.com.progepe.entity.Solicitacao;
 
 public class DocumentoImagemDAO extends DAO {
 
@@ -54,28 +54,23 @@ public class DocumentoImagemDAO extends DAO {
 	@SuppressWarnings("unchecked")
 	public List<DocumentoImagem> listByFilter(DocumentoImagem documentoImagem,
 			Integer titularDocumento) {
-		HibernateUtility.beginTransaction();
 		HibernateUtility.getSession().clear();
-
-		Criteria c = HibernateUtility.getSession().createCriteria(
-				Solicitacao.class);
-		if (documentoImagem.getServidor() != null
-				&& documentoImagem.getServidor().getSiape() != 0) {
-			c.add(Restrictions.like("servidor", documentoImagem.getServidor()));
+		String sql;
+		sql = "from DocumentoImagem di where di.tipoDocumento.codigo = :codigoTipoDocumento ";
+		if (titularDocumento == 1) {
+			sql += " and di.servidor.siape = :siapeServidor";
 		}
-		if (titularDocumento.equals(2)) {
-			c.add(Restrictions.isNotNull("conjuge"));
+		if (titularDocumento == 2) {
+			sql += "and di.conjuge.servidor.siape =: siapeServidor";
 		}
-		if (titularDocumento.equals(3)) {
-			c.add(Restrictions.isNotNull("dependente"));
+		if (titularDocumento == 3) {
+			sql += "and di.dependente.servidor.siape =: siapeServidor";
 		}
-		if (documentoImagem.getTipoDocumento() != null
-				&& documentoImagem.getTipoDocumento().getCodigo() != 0) {
-			c.add(Restrictions.like("tipoDocumento",
-					documentoImagem.getTipoDocumento()));
-		}
+		Query query = HibernateUtility.getSession().createQuery(sql);
+		query.setParameter("codigoTipoDocumento", documentoImagem
+				.getTipoDocumento().getCodigo());
+		query.setParameter("siapeServidor", documentoImagem.getServidor().getSiape());
 		HibernateUtility.commitTransaction();
-		return c.list();
+		return (List<DocumentoImagem>) query.list();
 	}
-
 }
