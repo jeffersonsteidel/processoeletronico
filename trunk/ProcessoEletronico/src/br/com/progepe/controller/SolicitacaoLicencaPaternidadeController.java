@@ -26,6 +26,7 @@ public class SolicitacaoLicencaPaternidadeController implements Serializable {
 	private static final long serialVersionUID = -333995781063775201L;
 
 	SolicitacaoLicencaPaternidade solicitacaoLicencaPaternidade;
+	String texto;
 
 	public SolicitacaoLicencaPaternidade getSolicitacaoLicencaPaternidade() {
 		return solicitacaoLicencaPaternidade;
@@ -36,8 +37,17 @@ public class SolicitacaoLicencaPaternidadeController implements Serializable {
 		this.solicitacaoLicencaPaternidade = solicitacaoLicencaPaternidade;
 	}
 
+	public String getTexto() {
+		return texto;
+	}
+
+	public void setTexto(String texto) {
+		this.texto = texto;
+	}
+
 	public void abrirSolicitacaoPaternidade() throws ParseException {
 		try {
+			texto = "";
 			solicitacaoLicencaPaternidade = new SolicitacaoLicencaPaternidade();
 			solicitacaoLicencaPaternidade.getFiles().clear();
 			buscarServidorLogado();
@@ -95,6 +105,7 @@ public class SolicitacaoLicencaPaternidadeController implements Serializable {
 			solicitacaoLicencaPaternidade
 					.setFiles(new ArrayList<SolicitacaoLicencaPaternidade>());
 			buscarServidorLogado();
+			texto = "Clique aqui para ir para tela de cadastro de dependentes, lá você poderá adicionar seu filho(a) como seu dependedente!";
 		}
 	}
 
