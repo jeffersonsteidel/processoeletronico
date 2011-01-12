@@ -283,7 +283,20 @@ public class DocumentoImagemController implements Serializable {
 		documentoImagem.setIndValidado(true);
 		DAO.getInstance().update(documentoImagem);
 	}
-	
+
+	public void abrirPesquisarMeusDocumentos() throws Exception {
+		documentoList.clear();
+		titularDocumento = 0;
+		documentoImagem = new DocumentoImagem();
+		documentoImagem.setConjuge(new Conjuge());
+		documentoImagem.setDependente(new Dependente());
+		documentoImagem.setTipoDocumento(new TipoDocumento());
+		buscarServidorLogado();
+		listarTiposDocumentos();
+		FacesContext.getCurrentInstance().getExternalContext()
+				.redirect("pesquisarMeusDocumentos.jsp");
+	}
+
 	public void pesquisarDocumentos(){
 		documentoList = DocumentoImagemDAO.getInstance().listByFilter(documentoImagem, titularDocumento);
 	}
