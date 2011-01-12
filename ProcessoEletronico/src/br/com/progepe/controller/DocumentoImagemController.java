@@ -171,6 +171,7 @@ public class DocumentoImagemController implements Serializable {
 			documentoImagem.setServidor(new Servidor());
 			documentoImagem.setDependente(new Dependente());
 			documentoImagem.setTipoDocumento(new TipoDocumento());
+			listarTiposDocumentos();
 			FacesContext.getCurrentInstance().getExternalContext()
 					.redirect("pesquisarDocumentos.jsp");
 		} catch (Exception e) {
@@ -281,5 +282,15 @@ public class DocumentoImagemController implements Serializable {
 	public void validar() {
 		documentoImagem.setIndValidado(true);
 		DAO.getInstance().update(documentoImagem);
+	}
+	
+	public void pesquisarDocumentos(){
+		documentoList = DocumentoImagemDAO.getInstance().listByFilter(documentoImagem, titularDocumento);
+	}
+	
+	public void carregar() throws Exception {
+		FacesContext context = FacesContext.getCurrentInstance();
+		documentoImagem = (DocumentoImagem) context.getExternalContext().getRequestMap()
+				.get("list");
 	}
 }
