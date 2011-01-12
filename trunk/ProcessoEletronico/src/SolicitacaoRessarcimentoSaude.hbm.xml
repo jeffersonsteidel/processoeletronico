@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping 
+	PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<joined-subclass name="br.com.progepe.entity.SolicitacaoRessarcimentoSaude"
+		extends="br.com.progepe.entity.Solicitacao">
+		<key column="SOLIC_COD"></key>
+		<property name="comprovante" column="SOLIC_RES_SAU_COMPROVANTE" />
+		<property name="dataPagamento" column="SOLIC_RES_DATA_PAGAMENTO" />
+		<property name="valor" column="SOLIC_RES_SAU_VALOR" />
+		<many-to-one name="ressarcimentoSaude"
+			class="br.com.progepe.entity.RessarcimentoSaude" column="RES_SAU_COD"
+			lazy="false" />
+	</joined-subclass>
+</hibernate-mapping>

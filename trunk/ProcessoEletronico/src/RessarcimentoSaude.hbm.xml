@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping 
+	PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="br.com.progepe.entity.RessarcimentoSaude" table="RESSARCIMENTOSAUDE">
+		<id name="codigo" column="RES_SAU_COD">
+			<generator class="increment"></generator>
+		</id>
+		<property name="indImplantado" column="RES_SAU_IND_IMPLANTADO" type="boolean" />
+		<property name="nomePlano" column="RES_SAU_NOME_PLANO" />
+		<property name="numeroContrato" column="RES_SAU_NUM_CONT" />
+
+		<many-to-one name="tipoPlano" class="br.com.progepe.entity.TipoPlano"
+			column="TIP_PLA_COD" lazy="false" />
+		<many-to-one name="servidor" class="br.com.progepe.entity.Servidor"
+			column="SERV_COD" lazy="false" />
+	</class>
+</hibernate-mapping>
