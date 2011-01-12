@@ -24,6 +24,11 @@
 				<f:facet name="errorMarker">
 					<h:graphicImage value="../images/error.gif" />
 				</f:facet>
+				<a4j:region>
+					<a4j:commandLink
+						action="#{dependenteController.abrirAdicionarDependentes}"
+						value="#{solicitacaoLicencaPaternidadeController.texto}"></a4j:commandLink>
+				</a4j:region>
 			</rich:messages>
 
 			<font size="2"><b>LICENÇA PATERNIDADE</b></font>
