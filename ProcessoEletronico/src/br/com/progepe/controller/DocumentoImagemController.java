@@ -200,6 +200,7 @@ public class DocumentoImagemController implements Serializable {
 			conjuges = new ArrayList<SelectItem>();
 			dependentes = new ArrayList<SelectItem>();
 		}
+		quantidadeArquivos = 0;
 		documentoImagem.setImagem1(null);
 		documentoImagem.setImagem2(null);
 		documentoImagem.setImagem3(null);
@@ -239,52 +240,42 @@ public class DocumentoImagemController implements Serializable {
 		if (titularDocumento.equals(1)) {
 			documentoImagem.setServidor(ServidorDAO.getInstance()
 					.refreshBySiape(documentoImagem.getServidor()));
-		} else {
-			if (titularDocumento.equals(1)) {
-				documentoImagem.setServidor(ServidorDAO.getInstance()
-						.refreshBySiape(documentoImagem.getServidor()));
-				documentoImagem.setConjuge(null);
-				documentoImagem.setDependente(null);
-			} else if (titularDocumento.equals(2)) {
-				documentoImagem.setServidor(null);
-				Conjuge conjuge = (Conjuge) DAO.getInstance().refresh(
-						documentoImagem.getConjuge());
-				documentoImagem.setConjuge(conjuge);
-				documentoImagem.setDependente(null);
-			} else if (titularDocumento.equals(3)) {
-				documentoImagem.setServidor(null);
-				documentoImagem.setConjuge(null);
-				Dependente dependente = (Dependente) DAO.getInstance().refresh(
-						documentoImagem.getDependente());
-				documentoImagem.setDependente(dependente);
-			}
+			documentoImagem.setConjuge(null);
+			documentoImagem.setDependente(null);
+		} else if (titularDocumento.equals(2)) {
+			documentoImagem.setServidor(null);
+			Conjuge conjuge = (Conjuge) DAO.getInstance().refresh(
+					documentoImagem.getConjuge());
+			documentoImagem.setConjuge(conjuge);
+			documentoImagem.setDependente(null);
+		} else if (titularDocumento.equals(3)) {
+			documentoImagem.setServidor(null);
+			documentoImagem.setConjuge(null);
+			Dependente dependente = (Dependente) DAO.getInstance().refresh(
+					documentoImagem.getDependente());
+			documentoImagem.setDependente(dependente);
+		}
 
+		if (documentoImagem.getImagem1() == null) {
+			FacesMessage message = new FacesMessage(
+					FacesMessage.SEVERITY_ERROR,
+					"É necessário adicionar um Documento!",
+					"É necessário adicionar um Documento!");
+			FacesContext.getCurrentInstance().addMessage("", message);
+		} else {
 			DAO.getInstance().save(documentoImagem);
 			documentoImagem = new DocumentoImagem();
+			documentoImagem.setImagem1(null);
+			documentoImagem.setImagem2(null);
+			documentoImagem.setImagem3(null);
 			documentoImagem.setConjuge(new Conjuge());
 			documentoImagem.setServidor(new Servidor());
 			documentoImagem.setDependente(new Dependente());
 			documentoImagem.setTipoDocumento(new TipoDocumento());
-			if (documentoImagem.getImagem1() == null) {
-				FacesMessage message = new FacesMessage(
-						FacesMessage.SEVERITY_ERROR,
-						"É necessário adicionar um Documento!",
-						"É necessário adicionar um Documento!");
-				FacesContext.getCurrentInstance().addMessage("", message);
-			} else {
-				DAO.getInstance().save(documentoImagem);
-				documentoImagem = new DocumentoImagem();
-				documentoImagem.setImagem1(null);
-				documentoImagem.setImagem2(null);
-				documentoImagem.setImagem3(null);
-				documentoImagem.setConjuge(new Conjuge());
-				documentoImagem.setServidor(new Servidor());
-				documentoImagem.setDependente(new Dependente());
-				documentoImagem.setTipoDocumento(new TipoDocumento());
-				files = new ArrayList<DocumentoImagem>();
-			}
-			buscarServidorLogado();
+			files = new ArrayList<DocumentoImagem>();
+			quantidadeArquivos = 0;
 		}
+		buscarServidorLogado();
 	}
 
 	public void validar() {
