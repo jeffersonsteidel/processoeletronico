@@ -12,10 +12,14 @@
 		<property name="imagem3" column="DOC_IMG_IMAGEM3" />
 		<property name="indValidado" column="DOC_IMG_VALIDADO" />
 		<property name="motivo" column="DOC_IMG_MOTIVO" />
-		
-		<many-to-one name="tipoDocumento" class="br.com.progepe.entity.TipoDocumento" column="TIP_DOC_COD" lazy="false" />
-		<many-to-one name="servidor" class="br.com.progepe.entity.Servidor" column="SERV_COD" lazy="false"/>
-		<many-to-one name="conjuge" class="br.com.progepe.entity.Conjuge" column="CONJ_COD" lazy="false"/>
-		<many-to-one name="dependente" class="br.com.progepe.entity.Dependente" column="DEP_COD" lazy="false"/>
+
+		<many-to-one name="tipoDocumento" class="br.com.progepe.entity.TipoDocumento"
+			column="TIP_DOC_COD" lazy="false" />
+		<many-to-one name="servidor" class="br.com.progepe.entity.Servidor"
+			column="SERV_COD" lazy="false" />
+		<many-to-one name="conjuge" class="br.com.progepe.entity.Conjuge"
+			column="CONJ_COD" lazy="false" />
+		<many-to-one name="dependente" class="br.com.progepe.entity.Dependente"
+			column="DEP_COD" lazy="false" />
 	</class>
 </hibernate-mapping>
