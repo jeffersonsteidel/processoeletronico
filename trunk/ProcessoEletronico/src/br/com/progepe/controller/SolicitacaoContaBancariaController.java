@@ -114,6 +114,7 @@ public class SolicitacaoContaBancariaController implements Serializable {
 				Constantes.STATUS_SOLICITACAO_ENCAMINHADO);
 		DAO.getInstance().saveOrUpdate(solicitacaoContaBancaria);
 		solicitacaoContaBancaria = new SolicitacaoContaBancaria();
+		solicitacaoContaBancaria.setNovoBanco(new Banco());
 		buscarServidorLogado();
 	}
 }

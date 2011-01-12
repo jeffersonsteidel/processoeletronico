@@ -166,6 +166,7 @@ public class DocumentoImagemController implements Serializable {
 	public void abrirPesquisarDocumentos() {
 		try {
 			documentoList.clear();
+			titularDocumento = 1;
 			documentoImagem = new DocumentoImagem();
 			documentoImagem.setConjuge(new Conjuge());
 			documentoImagem.setServidor(new Servidor());
@@ -286,7 +287,7 @@ public class DocumentoImagemController implements Serializable {
 
 	public void abrirPesquisarMeusDocumentos() throws Exception {
 		documentoList.clear();
-		titularDocumento = 0;
+		titularDocumento = 1;
 		documentoImagem = new DocumentoImagem();
 		documentoImagem.setConjuge(new Conjuge());
 		documentoImagem.setDependente(new Dependente());
