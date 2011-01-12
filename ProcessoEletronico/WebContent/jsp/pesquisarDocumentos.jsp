@@ -24,7 +24,7 @@
 				<h:outputText value="Tipo Documento: " />
 				<h:selectOneMenu value="#{documentoImagemController.documentoImagem.tipoDocumento.codigo}">
 					<f:selectItem itemLabel="SELECIONE" itemValue="" />
-					<f:selectItems value="#{documentoImagemController..tiposDocumentos}" />
+					<f:selectItems value="#{documentoImagemController.tiposDocumentos}" />
 				</h:selectOneMenu>
 
 				<h:outputText value="Titular do Documento: ">
