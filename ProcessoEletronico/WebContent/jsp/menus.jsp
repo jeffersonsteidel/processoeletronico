@@ -94,7 +94,7 @@
 				<rich:menuItem submitMode="ajax" value="Atualizar Meus Dados"
 					action="#{servidorController.buscarServidorLogado}"
 					icon="../images/ATUALIZARDADOS.gif" />
-				<rich:menuItem submitMode="ajax" value="Pesquisar Meus Documentos"
+				<rich:menuItem submitMode="ajax" value="Meus Documentos"
 					action="#{documentoImagemController.abrirPesquisarMeusDocumentos}"
 					icon="../images/listarDocumentos.gif" />	
 			</rich:dropDownMenu>

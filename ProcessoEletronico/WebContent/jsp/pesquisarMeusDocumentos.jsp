@@ -56,7 +56,7 @@
 
 				<rich:column width="280px">
 					<f:facet name="header">
-						<h:outputText value="Titular:" />
+						<h:outputText value="Nome do Titular" />
 					</f:facet>
 					<h:outputText value="#{list.servidor.nome}"
 						rendered="#{1 == documentoImagemController.titularDocumento}" />
@@ -66,14 +66,14 @@
 						rendered="#{3 == documentoImagemController.titularDocumento}" />
 				</rich:column>
 
-				<rich:column width="280px" sortBy="#{list.tipoDocumento.descricao}">
+				<rich:column width="280px" >
 					<f:facet name="header">
 						<h:outputText value="Tipo de Documento" />
 					</f:facet>
 					<h:outputText value="#{list.tipoDocumento.descricao}" />
 				</rich:column>
 
-				<rich:column width="280px" sortBy="#{list.indValidado}">
+				<rich:column width="280px">
 					<f:facet name="header">
 						<h:outputText value="Validado" />
 					</f:facet>
