@@ -63,21 +63,26 @@
 				width="1150px" columnClasses="center" rows="15" reRender="ds">
 
 
-				<rich:column width="500px" sortBy="#{list.servidor.nome}">
+				<rich:column width="500px">
 					<f:facet name="header">
 						<h:outputText value="Nome do Titular" />
 					</f:facet>
-					<h:outputText value="#{list.servidor.nome}" />
+					<h:outputText value="#{list.servidor.nome} - (SERVIDOR)"
+						rendered="#{list.servidor.codigo != null}" />
+					<h:outputText value="#{list.conjuge.nome} - (CÔNJUGE)"
+						rendered="#{list.conjuge.codigo != null}" />
+					<h:outputText value="#{list.dependente.nome} - (DEPENDENTE)"
+						rendered="#{list.dependente.codigo != null}" />
 				</rich:column>
 
-				<rich:column width="500px" sortBy="#{list.tipoDocumento.descricao}">
+				<rich:column width="500px">
 					<f:facet name="header">
 						<h:outputText value="Tipo Documento" />
 					</f:facet>
 					<h:outputText value="#{list.tipoDocumento.descricao}" />
 				</rich:column>
 
-				<rich:column width="100px" sortBy="#{list.indValidado}">
+				<rich:column width="100px">
 					<f:facet name="header">
 						<h:outputText value="Validado" />
 					</f:facet>
@@ -106,11 +111,12 @@
 			</rich:dataTable>
 		</rich:panel>
 	</a4j:form></center>
-	<center><rich:modalPanel id="editPanel" autosized="false" width="700" height="400" style="overflow: auto;">
+	<center><rich:modalPanel id="editPanel" autosized="false"
+		width="700" height="400" style="overflow: auto;">
 		<h:form>
 			<center><font size="2"><b>IMAGEM DO DOCUMENTO</b></font> <h:panelGroup
 				id="info">
-				<rich:panel bodyClass="info" >
+				<rich:panel bodyClass="info">
 					<rich:dataGrid columns="1"
 						value="#{documentoImagemController.documentoImagem.imagem1}"
 						var="file" rowKeyVar="row">

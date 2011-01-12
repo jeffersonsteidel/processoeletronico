@@ -56,20 +56,17 @@ public class DocumentoImagemDAO extends DAO {
 			Integer titularDocumento) {
 		HibernateUtility.getSession().clear();
 		String sql;
-		sql = "from DocumentoImagem di where di.tipoDocumento.codigo = :codigoTipoDocumento ";
+		sql = "from DocumentoImagem di where di.tipoDocumento.codigo =" +documentoImagem.getTipoDocumento().getCodigo();
 		if (titularDocumento == 1) {
-			sql += " and di.servidor.siape = :siapeServidor";
+			sql += " and di.servidor.siape = "+ documentoImagem.getServidor().getSiape();
 		}
 		if (titularDocumento == 2) {
-			sql += "and di.conjuge.servidor.siape =: siapeServidor";
+			sql += "and di.conjuge.servidor.siape ="+ documentoImagem.getServidor().getSiape();
 		}
 		if (titularDocumento == 3) {
-			sql += "and di.dependente.servidor.siape =: siapeServidor";
+			sql += "and di.dependente.servidor.siape =" + documentoImagem.getServidor().getSiape();
 		}
 		Query query = HibernateUtility.getSession().createQuery(sql);
-		query.setParameter("codigoTipoDocumento", documentoImagem
-				.getTipoDocumento().getCodigo());
-		query.setParameter("siapeServidor", documentoImagem.getServidor().getSiape());
 		HibernateUtility.commitTransaction();
 		return (List<DocumentoImagem>) query.list();
 	}
