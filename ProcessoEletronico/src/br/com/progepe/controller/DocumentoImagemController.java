@@ -29,8 +29,8 @@ public class DocumentoImagemController implements Serializable {
 
 	DocumentoImagem documentoImagem;
 
-	private List<DocumentoImagem> files = new ArrayList<DocumentoImagem>();
-	private List<DocumentoImagem> documentoList;
+	private List<DocumentoImagem> files;
+	private List<DocumentoImagem> documentoList = new ArrayList<DocumentoImagem>();
 	private Integer quantidadeArquivos = 0;
 	private List<SelectItem> servidores = new ArrayList<SelectItem>();
 	private List<SelectItem> dependentes = new ArrayList<SelectItem>();
@@ -115,6 +115,7 @@ public class DocumentoImagemController implements Serializable {
 			files = new ArrayList<DocumentoImagem>();
 			titularDocumento = 1;
 			documentoImagem = new DocumentoImagem();
+			documentoImagem.setTipoDocumento(new TipoDocumento());
 			buscarServidorLogado();
 			listarTiposDocumentos();
 			FacesContext.getCurrentInstance().getExternalContext()
@@ -122,24 +123,6 @@ public class DocumentoImagemController implements Serializable {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-	}
-
-	public void carregarComboTitular() throws Exception {
-		if (titularDocumento == 2) {
-			documentoImagem.setConjuge(new Conjuge());
-			listarConjuges();
-		} else if (titularDocumento == 3) {
-			documentoImagem.setDependente(new Dependente());
-			listarDependentes();
-		} else {
-			documentoImagem.setServidor(new Servidor());
-			conjuges = new ArrayList<SelectItem>();
-			dependentes = new ArrayList<SelectItem>();
-		}
-		documentoImagem.setImagem1(null);
-		documentoImagem.setImagem2(null);
-		documentoImagem.setImagem3(null);
-		files.clear();
 	}
 
 	@SuppressWarnings("unchecked")
@@ -205,6 +188,24 @@ public class DocumentoImagemController implements Serializable {
 				documentoImagem.getServidor()));
 	}
 
+	public void carregarComboTitular() throws Exception {
+		if (titularDocumento == 2) {
+			documentoImagem.setConjuge(new Conjuge());
+			listarConjuges();
+		} else if (titularDocumento == 3) {
+			documentoImagem.setDependente(new Dependente());
+			listarDependentes();
+		} else {
+			documentoImagem.setServidor(new Servidor());
+			conjuges = new ArrayList<SelectItem>();
+			dependentes = new ArrayList<SelectItem>();
+		}
+		documentoImagem.setImagem1(null);
+		documentoImagem.setImagem2(null);
+		documentoImagem.setImagem3(null);
+		files.clear();
+	}
+
 	public void listener(UploadEvent event) throws Exception {
 		UploadItem item = event.getUploadItem();
 		quantidadeArquivos++;
@@ -219,18 +220,18 @@ public class DocumentoImagemController implements Serializable {
 	}
 
 	public void paint1(OutputStream stream, Object object) throws IOException {
-		if(documentoImagem.getImagem1() != null)
-		stream.write(documentoImagem.getImagem1());
+		if (documentoImagem.getImagem1() != null)
+			stream.write(documentoImagem.getImagem1());
 	}
 
 	public void paint2(OutputStream stream, Object object) throws IOException {
-		if(documentoImagem.getImagem2() != null)
-		stream.write(documentoImagem.getImagem2());
+		if (documentoImagem.getImagem2() != null)
+			stream.write(documentoImagem.getImagem2());
 	}
 
 	public void paint3(OutputStream stream, Object object) throws IOException {
-		if(documentoImagem.getImagem3() != null)
-		stream.write(documentoImagem.getImagem3());
+		if (documentoImagem.getImagem3() != null)
+			stream.write(documentoImagem.getImagem3());
 	}
 
 	public void salvar() throws Exception {
@@ -238,41 +239,52 @@ public class DocumentoImagemController implements Serializable {
 		if (titularDocumento.equals(1)) {
 			documentoImagem.setServidor(ServidorDAO.getInstance()
 					.refreshBySiape(documentoImagem.getServidor()));
-			documentoImagem.setConjuge(null);
-			documentoImagem.setDependente(null);
-		} else if (titularDocumento.equals(2)) {
-			documentoImagem.setServidor(null);
-			Conjuge conjuge = (Conjuge) DAO.getInstance().refresh(
-					documentoImagem.getConjuge());
-			documentoImagem.setConjuge(conjuge);
-			documentoImagem.setDependente(null);
-		} else if (titularDocumento.equals(3)) {
-			documentoImagem.setServidor(null);
-			documentoImagem.setConjuge(null);
-			Dependente dependente = (Dependente) DAO.getInstance().refresh(
-					documentoImagem.getDependente());
-			documentoImagem.setDependente(dependente);
-		}
-
-		if (documentoImagem.getImagem1() == null) {
-			FacesMessage message = new FacesMessage(
-					FacesMessage.SEVERITY_ERROR,
-					"É necessário adicionar um Documento!",
-					"É necessário adicionar um Documento!");
-			FacesContext.getCurrentInstance().addMessage("", message);
 		} else {
+			if (titularDocumento.equals(1)) {
+				documentoImagem.setServidor(ServidorDAO.getInstance()
+						.refreshBySiape(documentoImagem.getServidor()));
+				documentoImagem.setConjuge(null);
+				documentoImagem.setDependente(null);
+			} else if (titularDocumento.equals(2)) {
+				documentoImagem.setServidor(null);
+				Conjuge conjuge = (Conjuge) DAO.getInstance().refresh(
+						documentoImagem.getConjuge());
+				documentoImagem.setConjuge(conjuge);
+				documentoImagem.setDependente(null);
+			} else if (titularDocumento.equals(3)) {
+				documentoImagem.setServidor(null);
+				documentoImagem.setConjuge(null);
+				Dependente dependente = (Dependente) DAO.getInstance().refresh(
+						documentoImagem.getDependente());
+				documentoImagem.setDependente(dependente);
+			}
+
 			DAO.getInstance().save(documentoImagem);
 			documentoImagem = new DocumentoImagem();
-			documentoImagem.setImagem1(null);
-			documentoImagem.setImagem2(null);
-			documentoImagem.setImagem3(null);
 			documentoImagem.setConjuge(new Conjuge());
 			documentoImagem.setServidor(new Servidor());
 			documentoImagem.setDependente(new Dependente());
 			documentoImagem.setTipoDocumento(new TipoDocumento());
-			files = new ArrayList<DocumentoImagem>();
+			if (documentoImagem.getImagem1() == null) {
+				FacesMessage message = new FacesMessage(
+						FacesMessage.SEVERITY_ERROR,
+						"É necessário adicionar um Documento!",
+						"É necessário adicionar um Documento!");
+				FacesContext.getCurrentInstance().addMessage("", message);
+			} else {
+				DAO.getInstance().save(documentoImagem);
+				documentoImagem = new DocumentoImagem();
+				documentoImagem.setImagem1(null);
+				documentoImagem.setImagem2(null);
+				documentoImagem.setImagem3(null);
+				documentoImagem.setConjuge(new Conjuge());
+				documentoImagem.setServidor(new Servidor());
+				documentoImagem.setDependente(new Dependente());
+				documentoImagem.setTipoDocumento(new TipoDocumento());
+				files = new ArrayList<DocumentoImagem>();
+			}
+			buscarServidorLogado();
 		}
-		buscarServidorLogado();
 	}
 
 	public void validar() {
