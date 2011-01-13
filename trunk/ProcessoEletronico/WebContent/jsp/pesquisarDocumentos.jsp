@@ -30,16 +30,12 @@
 				</h:outputText>
 				<h:inputText
 					value="#{documentoImagemController.documentoImagem.servidor.siape}"
-					size="10" maxlength="7" onkeyup="mascara(this, soNumeros);"
-					required="true"
-					requiredMessage="O campo Siape do Servidor é Obrigatório">
+					size="10" maxlength="7" onkeyup="mascara(this, soNumeros);">
 				</h:inputText>
 
 				<h:outputText value="Tipo Documento: " />
 				<h:selectOneMenu
-					value="#{documentoImagemController.documentoImagem.tipoDocumento.codigo}"
-					required="true"
-					requiredMessage="O campo Tipo Documento é Obrigatório">
+					value="#{documentoImagemController.documentoImagem.tipoDocumento.codigo}">
 					<f:selectItem itemLabel="SELECIONE" itemValue="" />
 					<f:selectItems value="#{documentoImagemController.tiposDocumentos}" />
 				</h:selectOneMenu>
@@ -55,10 +51,10 @@
 				
 				<h:outputText value="Validado:" />
 				<h:selectOneMenu
-					value="#{documentoImagemController.documentoImagem.indValidado}">
-					<f:selectItem itemLabel="TODOS" itemValue="" />
-					<f:selectItem itemLabel="SIM" itemValue="true" />
-					<f:selectItem itemLabel="NÃO" itemValue="false" />
+					value="#{documentoImagemController.validado}">
+					<f:selectItem itemLabel="TODOS" itemValue="0" />
+					<f:selectItem itemLabel="SIM" itemValue="1" />
+					<f:selectItem itemLabel="NÃO" itemValue="2" />
 				</h:selectOneMenu>
 
 				<a4j:commandButton value="Pesquisar"
