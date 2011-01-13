@@ -14,6 +14,7 @@ import javax.faces.model.SelectItem;
 import org.richfaces.event.UploadEvent;
 import org.richfaces.model.UploadItem;
 
+import br.com.progepe.constantes.Constantes;
 import br.com.progepe.dao.DAO;
 import br.com.progepe.dao.DocumentoImagemDAO;
 import br.com.progepe.dao.ServidorDAO;
@@ -37,6 +38,8 @@ public class DocumentoImagemController implements Serializable {
 	private List<SelectItem> conjuges = new ArrayList<SelectItem>();
 	private List<SelectItem> tiposDocumentos = new ArrayList<SelectItem>();
 	private Integer titularDocumento = 1;
+	private Integer validado = 0;
+	
 
 	public DocumentoImagem getDocumentoImagem() {
 		return documentoImagem;
@@ -109,6 +112,14 @@ public class DocumentoImagemController implements Serializable {
 	public void setTitularDocumento(Integer titularDocumento) {
 		this.titularDocumento = titularDocumento;
 	}
+	
+	public Integer getValidado() {
+		return validado;
+	}
+
+	public void setValidado(Integer validado) {
+		this.validado = validado;
+	}
 
 	public void abrirAdicionarDocumentos() {
 		try {
@@ -172,7 +183,6 @@ public class DocumentoImagemController implements Serializable {
 			documentoImagem.setServidor(new Servidor());
 			documentoImagem.setDependente(new Dependente());
 			documentoImagem.setTipoDocumento(new TipoDocumento());
-			documentoImagem.setIndValidado(null);
 			listarTiposDocumentos();
 			FacesContext.getCurrentInstance().getExternalContext()
 					.redirect("pesquisarDocumentos.jsp");
@@ -293,7 +303,6 @@ public class DocumentoImagemController implements Serializable {
 		documentoImagem.setConjuge(new Conjuge());
 		documentoImagem.setDependente(new Dependente());
 		documentoImagem.setTipoDocumento(new TipoDocumento());
-		documentoImagem.setIndValidado(null);
 		buscarServidorLogado();
 		listarTiposDocumentos();
 		FacesContext.getCurrentInstance().getExternalContext()
@@ -301,17 +310,8 @@ public class DocumentoImagemController implements Serializable {
 	}
 
 	public void pesquisarDocumentos() {
-		if (documentoImagem.getIndValidado() != false) {
+		if (Constantes.SIM.equals(validado) || validado == 0 ) {
 			Boolean validacao = true;
-			if (documentoImagem.getServidor().getSiape() == null
-					|| documentoImagem.getServidor().getSiape() == 0) {
-				validacao = false;
-				FacesMessage message = new FacesMessage(
-						FacesMessage.SEVERITY_ERROR,
-						"O campo Tipo do Documento é obrigatório!",
-						"O campo Tipo do Documento é obrigatório!");
-				FacesContext.getCurrentInstance().addMessage("", message);
-			}
 			if (documentoImagem.getTipoDocumento().getCodigo() == null
 					|| documentoImagem.getTipoDocumento().getCodigo() == 0) {
 				validacao = false;
@@ -321,13 +321,22 @@ public class DocumentoImagemController implements Serializable {
 						"O campo Siape do Servidor é obrigatório!");
 				FacesContext.getCurrentInstance().addMessage("", message);
 			}
+			if (documentoImagem.getServidor().getSiape() == null
+					|| documentoImagem.getServidor().getSiape() == 0) {
+				validacao = false;
+				FacesMessage message = new FacesMessage(
+						FacesMessage.SEVERITY_ERROR,
+						"O campo Tipo do Documento é obrigatório!",
+						"O campo Tipo do Documento é obrigatório!");
+				FacesContext.getCurrentInstance().addMessage("", message);
+			}
 			if (validacao) {
 				documentoList = DocumentoImagemDAO.getInstance().listByFilter(
-						documentoImagem, titularDocumento);
+						documentoImagem, titularDocumento, validado);
 			}
 		} else {
 			documentoList = DocumentoImagemDAO.getInstance().listByFilter(
-					documentoImagem, titularDocumento);
+					documentoImagem, titularDocumento, validado);
 		}
 	}
 

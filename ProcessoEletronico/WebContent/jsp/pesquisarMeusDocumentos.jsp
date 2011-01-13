@@ -34,10 +34,10 @@
 
 				<h:outputText value="Validado:" />
 				<h:selectOneMenu
-					value="#{documentoImagemController.documentoImagem.indValidado}">
-					<f:selectItem itemLabel="TODOS" itemValue="" />
-					<f:selectItem itemLabel="SIM" itemValue="true" />
-					<f:selectItem itemLabel="NÃO" itemValue="false" />
+					value="#{documentoImagemController.validado}">
+					<f:selectItem itemLabel="TODOS" itemValue="0" />
+					<f:selectItem itemLabel="SIM" itemValue="1" />
+					<f:selectItem itemLabel="NÃO" itemValue="2" />
 				</h:selectOneMenu>
 
 				<a4j:commandButton value="Pesquisar"

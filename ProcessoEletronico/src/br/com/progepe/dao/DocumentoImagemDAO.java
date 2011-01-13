@@ -54,7 +54,7 @@ public class DocumentoImagemDAO extends DAO {
 
 	@SuppressWarnings("unchecked")
 	public List<DocumentoImagem> listByFilter(DocumentoImagem documentoImagem,
-			Integer titularDocumento) {
+			Integer titularDocumento, Integer validado) {
 		HibernateUtility.getSession().clear();
 		String sql;
 		sql = "from DocumentoImagem di where 1= 1 ";
@@ -70,15 +70,15 @@ public class DocumentoImagemDAO extends DAO {
 		if (titularDocumento == 3) {
 			sql += "and di.dependente.servidor.siape =" + documentoImagem.getServidor().getSiape();
 		}
-		if(documentoImagem.getIndValidado()){
+		if(validado == 1){
 			sql += "and di.indValidado = 1";
 		}
-		if(!documentoImagem.getIndValidado()){
+		if(validado == 2){
 			sql += "and di.indValidado = 0";
 		}
 		Query query = HibernateUtility.getSession().createQuery(sql);
 		HibernateUtility.commitTransaction();
-		if(!documentoImagem.getIndValidado()){
+		if(validado == 2){
 			return (List<DocumentoImagem>) query.setMaxResults(Constantes.RETORNO_MAXIMO_DOCUMENTOS_IMAGENS_NAO_VALIDADOS).list();
 		}
 		return (List<DocumentoImagem>) query.list();
