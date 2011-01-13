@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping 
+	PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="br.com.progepe.entity.DependenteRessarcimentoSaude" table="DEPENDENTERESSARCIMENTOSAUDE">
+		<id name="codigo" column="DEP_RES_SAU_COD">
+			<generator class="increment"></generator>
+		</id>
+		<property name="carteirinha" column="DEP_RES_SAU_CARTEIRINHA" />
+		<many-to-one name="conjuge" class="br.com.progepe.entity.Conjuge"
+			column="CONJ_COD" lazy="false" />
+		<many-to-one name="dependente" class="br.com.progepe.entity.Dependente"
+			column="DEP_COD" lazy="false" />
+		<many-to-one name="ressarcimentoSaude" class="br.com.progepe.entity.RessarcimentoSaude"
+			column="RES_SAU_COD" lazy="false" />
+	</class>
+</hibernate-mapping>
