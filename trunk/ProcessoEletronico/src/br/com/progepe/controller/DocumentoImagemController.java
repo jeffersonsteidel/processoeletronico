@@ -39,7 +39,6 @@ public class DocumentoImagemController implements Serializable {
 	private List<SelectItem> tiposDocumentos = new ArrayList<SelectItem>();
 	private Integer titularDocumento = 1;
 	private Integer validado = 0;
-	
 
 	public DocumentoImagem getDocumentoImagem() {
 		return documentoImagem;
@@ -112,7 +111,7 @@ public class DocumentoImagemController implements Serializable {
 	public void setTitularDocumento(Integer titularDocumento) {
 		this.titularDocumento = titularDocumento;
 	}
-	
+
 	public Integer getValidado() {
 		return validado;
 	}
@@ -310,10 +309,10 @@ public class DocumentoImagemController implements Serializable {
 	}
 
 	public void pesquisarDocumentos() {
-		if (Constantes.SIM.equals(validado) || validado == 0 ) {
+		if (Constantes.SIM.equals(validado) || validado == 0) {
 			Boolean validacao = true;
-			if (documentoImagem.getTipoDocumento().getCodigo() == null
-					|| documentoImagem.getTipoDocumento().getCodigo() == 0) {
+			if (documentoImagem.getServidor().getSiape() == null
+					|| documentoImagem.getServidor().getSiape() == 0) {
 				validacao = false;
 				FacesMessage message = new FacesMessage(
 						FacesMessage.SEVERITY_ERROR,
@@ -321,8 +320,8 @@ public class DocumentoImagemController implements Serializable {
 						"O campo Siape do Servidor é obrigatório!");
 				FacesContext.getCurrentInstance().addMessage("", message);
 			}
-			if (documentoImagem.getServidor().getSiape() == null
-					|| documentoImagem.getServidor().getSiape() == 0) {
+			if (documentoImagem.getTipoDocumento().getCodigo() == null
+					|| documentoImagem.getTipoDocumento().getCodigo() == 0) {
 				validacao = false;
 				FacesMessage message = new FacesMessage(
 						FacesMessage.SEVERITY_ERROR,

@@ -45,7 +45,7 @@
 				<f:selectItem itemValue="3" itemLabel="Dependente" />
 				<a4j:support event="onchange"
 					action="#{documentoImagemController.carregarComboTitular}"
-					ajaxSingle="true" reRender="titular, info"></a4j:support>
+					ajaxSingle="true" reRender="titular, info, upload"></a4j:support>
 			</h:selectOneRadio>
 			</h:panelGrid>
 
@@ -80,7 +80,7 @@
 				<f:selectItems value="#{documentoImagemController.tiposDocumentos}" />
 			</h:selectOneMenu>
 
-			<rich:fileUpload
+			<rich:fileUpload 
 				rendered="#{documentoImagemController.documentoImagem.codigo == null}"
 				fileUploadListener="#{documentoImagemController.listener}"
 				maxFilesQuantity="3" clearAllControlLabel="Limpar Todos"
