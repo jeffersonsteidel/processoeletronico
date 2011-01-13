@@ -35,6 +35,7 @@
 		<mapping resource="ContaBancaria.hbm.xml" />
 		<mapping resource="CorPele.hbm.xml" />
 		<mapping resource="Dependente.hbm.xml" />
+		<mapping resource="DependenteRessarcimentoSaude.hbm.xml" />
 		<mapping resource="Documento.hbm.xml" />
 		<mapping resource="DocumentoImagem.hbm.xml" />
 		<mapping resource="Emprego.hbm.xml" />
