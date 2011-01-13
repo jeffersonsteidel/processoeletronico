@@ -58,28 +58,37 @@ public class DocumentoImagemDAO extends DAO {
 		HibernateUtility.getSession().clear();
 		String sql;
 		sql = "from DocumentoImagem di where 1= 1 ";
-		if (documentoImagem.getTipoDocumento().getCodigo() !=  null && documentoImagem.getTipoDocumento().getCodigo() != 0) {
-			sql += " and di.tipoDocumento.codigo =" +documentoImagem.getTipoDocumento().getCodigo();
+		if (Constantes.SIM.equals(validado) || validado == 0) {
+			if (documentoImagem.getTipoDocumento().getCodigo() != null
+					&& documentoImagem.getTipoDocumento().getCodigo() != 0) {
+				sql += " and di.tipoDocumento.codigo ="
+						+ documentoImagem.getTipoDocumento().getCodigo();
+			}
+			if (titularDocumento == 1) {
+				sql += " and di.servidor.siape = "
+						+ documentoImagem.getServidor().getSiape();
+			}
+			if (titularDocumento == 2) {
+				sql += "and di.conjuge.servidor.siape ="
+						+ documentoImagem.getServidor().getSiape();
+			}
+			if (titularDocumento == 3) {
+				sql += "and di.dependente.servidor.siape ="
+						+ documentoImagem.getServidor().getSiape();
+			}
 		}
-		if (titularDocumento == 1) {
-			sql += " and di.servidor.siape = "+ documentoImagem.getServidor().getSiape();
-		}
-		if (titularDocumento == 2) {
-			sql += "and di.conjuge.servidor.siape ="+ documentoImagem.getServidor().getSiape();
-		}
-		if (titularDocumento == 3) {
-			sql += "and di.dependente.servidor.siape =" + documentoImagem.getServidor().getSiape();
-		}
-		if(validado == 1){
+		if (validado == 1) {
 			sql += "and di.indValidado = 1";
 		}
-		if(validado == 2){
+		if (validado == 2) {
 			sql += "and di.indValidado = 0";
 		}
 		Query query = HibernateUtility.getSession().createQuery(sql);
 		HibernateUtility.commitTransaction();
-		if(validado == 2){
-			return (List<DocumentoImagem>) query.setMaxResults(Constantes.RETORNO_MAXIMO_DOCUMENTOS_IMAGENS_NAO_VALIDADOS).list();
+		if (validado == 2) {
+			return (List<DocumentoImagem>) query.setMaxResults(
+					Constantes.RETORNO_MAXIMO_DOCUMENTOS_IMAGENS_NAO_VALIDADOS)
+					.list();
 		}
 		return (List<DocumentoImagem>) query.list();
 	}
