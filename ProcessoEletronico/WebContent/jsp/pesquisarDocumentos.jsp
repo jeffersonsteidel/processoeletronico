@@ -52,6 +52,14 @@
 					<f:selectItem itemLabel="CÔNJUGE" itemValue="2" />
 					<f:selectItem itemLabel="DEPENDENTE" itemValue="3" />
 				</h:selectOneMenu>
+				
+				<h:outputText value="Validado:" />
+				<h:selectOneMenu
+					value="#{documentoImagemController.documentoImagem.indValidado}">
+					<f:selectItem itemLabel="TODOS" itemValue="" />
+					<f:selectItem itemLabel="SIM" itemValue="true" />
+					<f:selectItem itemLabel="NÃO" itemValue="false" />
+				</h:selectOneMenu>
 
 				<a4j:commandButton value="Pesquisar"
 					action="#{documentoImagemController.pesquisarDocumentos}"

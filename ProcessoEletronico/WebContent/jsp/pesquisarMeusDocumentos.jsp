@@ -28,11 +28,18 @@
 				<h:outputText value="Titular do Documento: " />
 				<h:selectOneMenu
 					value="#{documentoImagemController.titularDocumento}">
-					<f:selectItem itemLabel="Servidor" itemValue="1" />
-					<f:selectItem itemLabel="Cônjuge" itemValue="2" />
-					<f:selectItem itemLabel="Dependente" itemValue="3" />
+					<f:selectItem itemLabel="SERVIDOR" itemValue="1" />
+					<f:selectItem itemLabel="CÔNJUGE" itemValue="2" />
+					<f:selectItem itemLabel="DEPENDENTE" itemValue="3" />
 				</h:selectOneMenu>
 
+				<h:outputText value="Validado:" />
+				<h:selectOneMenu
+					value="#{documentoImagemController.documentoImagem.indValidado}">
+					<f:selectItem itemLabel="TODOS" itemValue="" />
+					<f:selectItem itemLabel="SIM" itemValue="true" />
+					<f:selectItem itemLabel="NÃO" itemValue="false" />
+				</h:selectOneMenu>
 
 				<a4j:commandButton value="Pesquisar"
 					action="#{documentoImagemController.pesquisarDocumentos}"
@@ -50,36 +57,36 @@
 				</f:facet>
 			</rich:messages>
 
-			<rich:dataTable id="listaDocumentos"
+			<rich:dataTable id="listaDocumento"
 				value="#{documentoImagemController.documentoList}" var="list"
-				width="1160px" columnClasses="center" rows="15" reRender="ds">
+				width="1150px" columnClasses="center" rows="15" reRender="ds">
 
-				<rich:column width="280px">
+
+				<rich:column width="500px">
 					<f:facet name="header">
 						<h:outputText value="Nome do Titular" />
 					</f:facet>
-					<h:outputText value="#{list.servidor.nome}"
-						rendered="#{1 == documentoImagemController.titularDocumento}" />
-					<h:outputText value="#{list.conjuge.nome}"
-						rendered="#{2 == documentoImagemController.titularDocumento}" />
-					<h:outputText value="#{list.dependente.nome}"
-						rendered="#{3 == documentoImagemController.titularDocumento}" />
+					<h:outputText value="#{list.servidor.nome} - (SERVIDOR)"
+						rendered="#{list.servidor.codigo != null}" />
+					<h:outputText value="#{list.conjuge.nome} - (CÔNJUGE)"
+						rendered="#{list.conjuge.codigo != null}" />
+					<h:outputText value="#{list.dependente.nome} - (DEPENDENTE)"
+						rendered="#{list.dependente.codigo != null}" />
 				</rich:column>
 
-				<rich:column width="280px" >
+				<rich:column width="500px">
 					<f:facet name="header">
-						<h:outputText value="Tipo de Documento" />
+						<h:outputText value="Tipo Documento" />
 					</f:facet>
 					<h:outputText value="#{list.tipoDocumento.descricao}" />
 				</rich:column>
 
-				<rich:column width="280px">
+				<rich:column width="100px">
 					<f:facet name="header">
 						<h:outputText value="Validado" />
 					</f:facet>
-					<h:outputText value="SIM" rendered="#{list.indValidado}">
-					</h:outputText>
-					<h:outputText value="NÃO" rendered="#{!list.indValidado}"></h:outputText>
+					<h:outputText value="SIM" rendered="#{list.indValidado}" />
+					<h:outputText value="NÃO" rendered="#{!list.indValidado}" />
 				</rich:column>
 
 				<rich:column>
