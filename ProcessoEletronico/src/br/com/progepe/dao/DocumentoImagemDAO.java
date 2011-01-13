@@ -6,6 +6,7 @@ import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.criterion.Restrictions;
 
+import br.com.progepe.constantes.Constantes;
 import br.com.progepe.entity.Conjuge;
 import br.com.progepe.entity.Dependente;
 import br.com.progepe.entity.DocumentoImagem;
@@ -56,7 +57,10 @@ public class DocumentoImagemDAO extends DAO {
 			Integer titularDocumento) {
 		HibernateUtility.getSession().clear();
 		String sql;
-		sql = "from DocumentoImagem di where di.tipoDocumento.codigo =" +documentoImagem.getTipoDocumento().getCodigo();
+		sql = "from DocumentoImagem di where 1= 1 ";
+		if (documentoImagem.getTipoDocumento().getCodigo() !=  null && documentoImagem.getTipoDocumento().getCodigo() != 0) {
+			sql += " and di.tipoDocumento.codigo =" +documentoImagem.getTipoDocumento().getCodigo();
+		}
 		if (titularDocumento == 1) {
 			sql += " and di.servidor.siape = "+ documentoImagem.getServidor().getSiape();
 		}
@@ -74,6 +78,9 @@ public class DocumentoImagemDAO extends DAO {
 		}
 		Query query = HibernateUtility.getSession().createQuery(sql);
 		HibernateUtility.commitTransaction();
+		if(!documentoImagem.getIndValidado()){
+			return (List<DocumentoImagem>) query.setMaxResults(Constantes.RETORNO_MAXIMO_DOCUMENTOS_IMAGENS_NAO_VALIDADOS).list();
+		}
 		return (List<DocumentoImagem>) query.list();
 	}
 }

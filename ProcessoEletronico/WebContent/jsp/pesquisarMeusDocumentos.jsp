@@ -18,8 +18,7 @@
 			<font size="2"><b>MEUS DOCUMENTOS</b></font>
 			<h:panelGrid columns="9">
 				<h:outputText value="Tipo do Documento: " />
-				<h:selectOneMenu required="true"
-					requiredMessage="O campo Tipo do Documento é obrigatório"
+				<h:selectOneMenu
 					value="#{documentoImagemController.documentoImagem.tipoDocumento.codigo}">
 					<f:selectItem itemLabel="SELECIONE" itemValue="" />
 					<f:selectItems value="#{documentoImagemController.tiposDocumentos}" />

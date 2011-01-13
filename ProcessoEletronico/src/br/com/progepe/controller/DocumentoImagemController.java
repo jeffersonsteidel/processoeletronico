@@ -172,6 +172,7 @@ public class DocumentoImagemController implements Serializable {
 			documentoImagem.setServidor(new Servidor());
 			documentoImagem.setDependente(new Dependente());
 			documentoImagem.setTipoDocumento(new TipoDocumento());
+			documentoImagem.setIndValidado(null);
 			listarTiposDocumentos();
 			FacesContext.getCurrentInstance().getExternalContext()
 					.redirect("pesquisarDocumentos.jsp");
@@ -292,19 +293,47 @@ public class DocumentoImagemController implements Serializable {
 		documentoImagem.setConjuge(new Conjuge());
 		documentoImagem.setDependente(new Dependente());
 		documentoImagem.setTipoDocumento(new TipoDocumento());
+		documentoImagem.setIndValidado(null);
 		buscarServidorLogado();
 		listarTiposDocumentos();
 		FacesContext.getCurrentInstance().getExternalContext()
 				.redirect("pesquisarMeusDocumentos.jsp");
 	}
 
-	public void pesquisarDocumentos(){
-		documentoList = DocumentoImagemDAO.getInstance().listByFilter(documentoImagem, titularDocumento);
+	public void pesquisarDocumentos() {
+		if (documentoImagem.getIndValidado() != false) {
+			Boolean validacao = true;
+			if (documentoImagem.getServidor().getSiape() == null
+					|| documentoImagem.getServidor().getSiape() == 0) {
+				validacao = false;
+				FacesMessage message = new FacesMessage(
+						FacesMessage.SEVERITY_ERROR,
+						"O campo Tipo do Documento é obrigatório!",
+						"O campo Tipo do Documento é obrigatório!");
+				FacesContext.getCurrentInstance().addMessage("", message);
+			}
+			if (documentoImagem.getTipoDocumento().getCodigo() == null
+					|| documentoImagem.getTipoDocumento().getCodigo() == 0) {
+				validacao = false;
+				FacesMessage message = new FacesMessage(
+						FacesMessage.SEVERITY_ERROR,
+						"O campo Siape do Servidor é obrigatório!",
+						"O campo Siape do Servidor é obrigatório!");
+				FacesContext.getCurrentInstance().addMessage("", message);
+			}
+			if (validacao) {
+				documentoList = DocumentoImagemDAO.getInstance().listByFilter(
+						documentoImagem, titularDocumento);
+			}
+		} else {
+			documentoList = DocumentoImagemDAO.getInstance().listByFilter(
+					documentoImagem, titularDocumento);
+		}
 	}
-	
+
 	public void carregar() throws Exception {
 		FacesContext context = FacesContext.getCurrentInstance();
-		documentoImagem = (DocumentoImagem) context.getExternalContext().getRequestMap()
-				.get("list");
+		documentoImagem = (DocumentoImagem) context.getExternalContext()
+				.getRequestMap().get("list");
 	}
 }
