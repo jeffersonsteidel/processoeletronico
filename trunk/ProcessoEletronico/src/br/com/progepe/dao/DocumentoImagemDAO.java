@@ -66,6 +66,12 @@ public class DocumentoImagemDAO extends DAO {
 		if (titularDocumento == 3) {
 			sql += "and di.dependente.servidor.siape =" + documentoImagem.getServidor().getSiape();
 		}
+		if(documentoImagem.getIndValidado()){
+			sql += "and di.indValidado = 1";
+		}
+		if(!documentoImagem.getIndValidado()){
+			sql += "and di.indValidado = 0";
+		}
 		Query query = HibernateUtility.getSession().createQuery(sql);
 		HibernateUtility.commitTransaction();
 		return (List<DocumentoImagem>) query.list();
