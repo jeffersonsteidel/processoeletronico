@@ -49,6 +49,11 @@ Config 1.1//EN"
 		<managed-bean-scope>session</managed-bean-scope>
 	</managed-bean>
 	<managed-bean>
+		<managed-bean-name>ressarcimentoSaudeController</managed-bean-name>
+		<managed-bean-class>br.com.progepe.controller.RessarcimentoSaudeController</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
 		<managed-bean-name>servidorController</managed-bean-name>
 		<managed-bean-class>br.com.progepe.controller.ServidorController</managed-bean-class>
 		<managed-bean-scope>session</managed-bean-scope>

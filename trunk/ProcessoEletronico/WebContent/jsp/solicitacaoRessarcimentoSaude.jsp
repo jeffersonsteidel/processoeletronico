@@ -42,7 +42,7 @@
 					requiredMessage="Campo Data de Pagamento é obrigatório!" />
 			<h:outputText value="Valor do Pagamento: " />
 						<h:inputText value="#{solicitacaoRessarcimentoSaudeController.solicitacaoRessarcimentoSaude.valor}"
-							size="10" required="true"
+							size="10" required="true" maxlength="7"
 							requiredMessage="Campo Valor do Pagamento é obrigatório!"
 							onkeypress="mascara(this,moeda);"></h:inputText>
 			</h:panelGrid>

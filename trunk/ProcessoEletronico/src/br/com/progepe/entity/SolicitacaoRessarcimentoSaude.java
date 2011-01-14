@@ -9,7 +9,7 @@ public class SolicitacaoRessarcimentoSaude extends Solicitacao {
 	private static final long serialVersionUID = -1595653461934669946L;
 	private byte[] comprovante;
 	private Date dataPagamento;
-	private Float valor;
+	private Double valor;
 	private RessarcimentoSaude ressarcimentoSaude;
 
 	public byte[] getComprovante() {
@@ -28,11 +28,11 @@ public class SolicitacaoRessarcimentoSaude extends Solicitacao {
 		this.dataPagamento = dataPagamento;
 	}
 
-	public Float getValor() {
+	public Double getValor() {
 		return valor;
 	}
 
-	public void setValor(Float valor) {
+	public void setValor(Double valor) {
 		this.valor = valor;
 	}
 
