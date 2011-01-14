@@ -52,7 +52,7 @@
 					icon="../images/conjuge.png" />
 				<rich:menuItem submitMode="ajax" value="Pesquisar Documentos"
 					action="#{documentoImagemController.abrirPesquisarDocumentos}"
-					icon="../images/listarDocumentos.gif" />	
+					icon="../images/listarDocumentos.gif" />
 				<rich:menuItem submitMode="ajax" value="Pesquisar Dependentes"
 					action="#{dependenteController.abrirListarDependentes}"
 					icon="../images/listarDependente.png" />
@@ -84,7 +84,7 @@
 					icon="../images/dependente.gif" />
 				<rich:menuItem submitMode="ajax" value="Adicionar Documentos"
 					action="#{documentoImagemController.abrirAdicionarDocumentos}"
-					icon="../images/documentos.gif" />	
+					icon="../images/documentos.gif" />
 				<rich:menuItem submitMode="ajax" value="Adicionar Emprego"
 					action="#{empregoController.abrirEmprego}"
 					icon="../images/ico_emprego.gif" />
@@ -96,7 +96,7 @@
 					icon="../images/ATUALIZARDADOS.gif" />
 				<rich:menuItem submitMode="ajax" value="Meus Documentos"
 					action="#{documentoImagemController.abrirPesquisarMeusDocumentos}"
-					icon="../images/listarDocumentos.gif" />	
+					icon="../images/listarDocumentos.gif" />
 			</rich:dropDownMenu>
 
 			<rich:dropDownMenu>
@@ -170,7 +170,17 @@
 					action="#{solicitacaoController.abrirMinhasSolicitacoes}"
 					icon="../images/MINHASSOLICITACOES.GIF" />
 			</rich:dropDownMenu>
-
+			<rich:dropDownMenu>
+				<f:facet name="label">
+					<h:panelGroup>
+						<h:outputText value="RESSARCIMENTO SAÚDE" />
+					</h:panelGroup>
+				</f:facet>
+				<rich:menuItem submitMode="ajax" value="Cadastrar Ressarcimento Saúde"
+					action="#{ressarcimentoSaudeController.abrirRessarcimentoSaude}"
+					icon="../images/novafuncao.png" />
+				
+			</rich:dropDownMenu>
 			<rich:dropDownMenu>
 				<f:facet name="label">
 					<h:panelGroup>

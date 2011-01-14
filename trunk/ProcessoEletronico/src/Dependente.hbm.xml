@@ -22,7 +22,8 @@
 		<property name="indNecessidadesEspeciais" column="DEP_IND_NEC_ESP"
 			type="boolean" />
 		<property name="indValidado" column="DEP_IND_VALIDADO"
-			type="boolean" />	
+			type="boolean" />
+			<property name="indRessarcimentoSaude" column="DEP_IND_SAUDE" type="boolean" />	
 		<many-to-one name="grauParentesco" class="br.com.progepe.entity.GrauParentesco"
 			column="GRAU_PAR_COD_DEP" lazy="false" />
 		<many-to-one name="servidor" class="br.com.progepe.entity.Servidor"
