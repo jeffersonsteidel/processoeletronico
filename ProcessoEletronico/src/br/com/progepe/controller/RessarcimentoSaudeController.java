@@ -1,6 +1,7 @@
 package br.com.progepe.controller;
 
 import java.io.IOException;
+import java.io.OutputStream;
 import java.io.Serializable;
 import java.text.ParseException;
 import java.util.ArrayList;
@@ -9,10 +10,17 @@ import java.util.List;
 import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
 
+import org.richfaces.event.UploadEvent;
+import org.richfaces.model.UploadItem;
+
 import br.com.progepe.dao.DAO;
+import br.com.progepe.dao.RessarcimentoSaudeDAO;
 import br.com.progepe.dao.ServidorDAO;
 import br.com.progepe.entity.Autenticacao;
+import br.com.progepe.entity.Conjuge;
+import br.com.progepe.entity.Dependente;
 import br.com.progepe.entity.RessarcimentoSaude;
+import br.com.progepe.entity.RessarcimentoSaudeContrato;
 import br.com.progepe.entity.Servidor;
 import br.com.progepe.entity.TipoPlano;
 
@@ -21,6 +29,9 @@ public class RessarcimentoSaudeController implements Serializable {
 
 	private RessarcimentoSaude ressarcimentoSaude;
 	private List<SelectItem> tiposPlanos = new ArrayList<SelectItem>();
+	private List<Conjuge> conjuges = new ArrayList<Conjuge>();
+	private List<Dependente> dependentes = new ArrayList<Dependente>();
+	private List<RessarcimentoSaudeContrato> files = new ArrayList<RessarcimentoSaudeContrato>();
 
 	public RessarcimentoSaude getRessarcimentoSaude() {
 		return ressarcimentoSaude;
@@ -38,12 +49,50 @@ public class RessarcimentoSaudeController implements Serializable {
 		this.tiposPlanos = tiposPlanos;
 	}
 
+	public List<Conjuge> getConjuges() {
+		return conjuges;
+	}
+
+	public void setConjuges(List<Conjuge> conjuges) {
+		this.conjuges = conjuges;
+	}
+
+	public List<Dependente> getDependentes() {
+		return dependentes;
+	}
+
+	public void setDependentes(List<Dependente> dependentes) {
+		this.dependentes = dependentes;
+	}
+
+	public List<RessarcimentoSaudeContrato> getFiles() {
+		return files;
+	}
+
+	public void setFiles(List<RessarcimentoSaudeContrato> files) {
+		this.files = files;
+	}
+
 	public void abrirRessarcimentoSaude() {
 		try {
+			dependentes = new ArrayList<Dependente>();
+			conjuges = new ArrayList<Conjuge>();
 			ressarcimentoSaude = new RessarcimentoSaude();
 			ressarcimentoSaude.setTipoPlano(new TipoPlano());
 			buscarServidorLogado();
 			listarTipoPlano();
+			dependentes = RessarcimentoSaudeDAO.getInstance()
+					.listarDependenteComCarteirinhaPorServidor(
+							ressarcimentoSaude.getServidor());
+			conjuges = RessarcimentoSaudeDAO.getInstance()
+					.listarConjugeComCarteirinhaPorServidor(
+							ressarcimentoSaude.getServidor());
+			if(null == dependentes){
+				dependentes = new ArrayList<Dependente>();
+			}
+			if(null == conjuges){
+				conjuges = new ArrayList<Conjuge>();
+			}
 			FacesContext.getCurrentInstance().getExternalContext()
 					.redirect("ressarcimentoSaude.jsp");
 		} catch (Exception e) {
@@ -73,4 +122,16 @@ public class RessarcimentoSaudeController implements Serializable {
 				.refreshBySiape(ressarcimentoSaude.getServidor()));
 	}
 
+	public void listener(UploadEvent event) throws Exception {
+		UploadItem item = event.getUploadItem();
+		RessarcimentoSaudeContrato ressarcimentoSaudeContrato = new RessarcimentoSaudeContrato();
+		ressarcimentoSaudeContrato.setPagina(item.getData());
+		files.add(ressarcimentoSaudeContrato);
+	}
+
+	public void paint(OutputStream stream, Object object) throws Exception {
+		for (RessarcimentoSaudeContrato ressarcimentoSaudeContrato : files) {
+			stream.write(ressarcimentoSaudeContrato.getPagina());
+		}
+	}
 }

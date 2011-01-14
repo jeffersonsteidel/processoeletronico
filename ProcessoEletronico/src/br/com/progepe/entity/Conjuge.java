@@ -26,6 +26,7 @@ public class Conjuge implements Serializable {
 	private Date rgDataExpedicao;
 	private Estado rgUf;
 	private Boolean indValidado;
+	private Boolean indRessarcimentoSaude;
 
 	public Long getCodigo() {
 		return codigo;
@@ -161,6 +162,14 @@ public class Conjuge implements Serializable {
 
 	public void setIndValidado(Boolean indValidado) {
 		this.indValidado = indValidado;
+	}
+
+	public Boolean getIndRessarcimentoSaude() {
+		return indRessarcimentoSaude;
+	}
+
+	public void setIndRessarcimentoSaude(Boolean indRessarcimentoSaude) {
+		this.indRessarcimentoSaude = indRessarcimentoSaude;
 	}
 
 }
