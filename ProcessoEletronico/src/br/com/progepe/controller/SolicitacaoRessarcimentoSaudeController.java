@@ -76,14 +76,14 @@ public class SolicitacaoRessarcimentoSaudeController implements Serializable {
 				.setRessarcimentoSaude(new RessarcimentoSaude());
 		buscarServidorLogado();
 	}
-
+	
 	public void listener(UploadEvent event) throws Exception {
 		UploadItem item = event.getUploadItem();
 		solicitacaoRessarcimentoSaude.setComprovante(item.getData());
 	}
 
-	public void paint1(OutputStream stream, Object object) throws IOException {
+	public void paint(OutputStream stream, Object object) throws IOException {
 		if (solicitacaoRessarcimentoSaude.getComprovante() != null)
-			solicitacaoRessarcimentoSaude.getComprovante();
+			stream.write(solicitacaoRessarcimentoSaude.getComprovante());
 	}
 }

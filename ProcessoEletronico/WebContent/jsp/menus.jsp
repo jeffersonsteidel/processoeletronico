@@ -149,6 +149,9 @@
 				<rich:menuItem submitMode="ajax" value="Licença Paternidade"
 					action="#{solicitacaoLicencaPaternidadeController.abrirSolicitacaoPaternidade}"
 					icon="../images/auxiliopaternidade.gif" />
+				<rich:menuItem submitMode="ajax" value="Ressarcimento Saúde"
+					action="#{solicitacaoRessarcimentoSaudeController.abrirSolicitacaoRessarcimentoSaude}"
+					icon="../images/auxiliopaternidade.gif" />
 				<rich:menuItem submitMode="ajax"
 					value="Listar Adicional Noturno - Docentes"
 					rendered="#{autenticacaoController.siapeAutenticado.indDiretor}"
