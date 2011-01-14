@@ -293,6 +293,7 @@ public class DocumentoImagemController implements Serializable {
 	public void validar() {
 		documentoImagem.setIndValidado(true);
 		DAO.getInstance().update(documentoImagem);
+		documentoImagem.setServidor(new Servidor());
 	}
 
 	public void abrirPesquisarMeusDocumentos() throws Exception {
