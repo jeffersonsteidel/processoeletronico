@@ -10,6 +10,7 @@ public class SolicitacaoRessarcimentoSaude extends Solicitacao {
 	private byte[] comprovante;
 	private Date dataPagamento;
 	private Double valor;
+	private Double valorPago;
 	private RessarcimentoSaude ressarcimentoSaude;
 
 	public byte[] getComprovante() {
@@ -42,6 +43,14 @@ public class SolicitacaoRessarcimentoSaude extends Solicitacao {
 
 	public void setRessarcimentoSaude(RessarcimentoSaude ressarcimentoSaude) {
 		this.ressarcimentoSaude = ressarcimentoSaude;
+	}
+
+	public Double getValorPago() {
+		return valorPago;
+	}
+
+	public void setValorPago(Double valorPago) {
+		this.valorPago = valorPago;
 	}
 
 }

@@ -9,6 +9,7 @@
 		<property name="comprovante" column="SOLIC_RES_SAU_COMPROVANTE" />
 		<property name="dataPagamento" column="SOLIC_RES_SAU_DATA_PAGAMENTO" />
 		<property name="valor" column="SOLIC_RES_SAU_VALOR" />
+		<property name="valorPago" column="SOLIC_RES_SAU_VALOR_PAGO" />
 		<many-to-one name="ressarcimentoSaude"
 			class="br.com.progepe.entity.RessarcimentoSaude" column="RES_SAU_COD"
 			lazy="false" />
