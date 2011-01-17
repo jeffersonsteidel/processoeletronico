@@ -31,6 +31,7 @@ public class RessarcimentoSaudeController implements Serializable {
 	private List<SelectItem> tiposPlanos = new ArrayList<SelectItem>();
 	private List<Conjuge> conjuges = new ArrayList<Conjuge>();
 	private List<Dependente> dependentes = new ArrayList<Dependente>();
+	private Boolean indParticular = false;
 	private List<RessarcimentoSaudeContrato> files = new ArrayList<RessarcimentoSaudeContrato>();
 
 	public RessarcimentoSaude getRessarcimentoSaude() {
@@ -65,6 +66,10 @@ public class RessarcimentoSaudeController implements Serializable {
 		this.dependentes = dependentes;
 	}
 
+	public void setIndParticular(Boolean indParticular) {
+		this.indParticular = indParticular;
+	}
+
 	public List<RessarcimentoSaudeContrato> getFiles() {
 		return files;
 	}
@@ -73,24 +78,30 @@ public class RessarcimentoSaudeController implements Serializable {
 		this.files = files;
 	}
 
+	public Boolean getIndParticular() {
+		return indParticular;
+	}
+
 	public void abrirRessarcimentoSaude() {
 		try {
-			dependentes = new ArrayList<Dependente>();
-			conjuges = new ArrayList<Conjuge>();
+			this.setDependentes(new ArrayList<Dependente>());
+			this.setConjuges(new ArrayList<Conjuge>());
 			ressarcimentoSaude = new RessarcimentoSaude();
 			ressarcimentoSaude.setTipoPlano(new TipoPlano());
 			buscarServidorLogado();
 			listarTipoPlano();
+			this.setFiles(new ArrayList<RessarcimentoSaudeContrato>());
+			validarNomePlano();
 			dependentes = RessarcimentoSaudeDAO.getInstance()
 					.listarDependenteComCarteirinhaPorServidor(
 							ressarcimentoSaude.getServidor());
 			conjuges = RessarcimentoSaudeDAO.getInstance()
 					.listarConjugeComCarteirinhaPorServidor(
 							ressarcimentoSaude.getServidor());
-			if(null == dependentes){
+			if (null == dependentes) {
 				dependentes = new ArrayList<Dependente>();
 			}
-			if(null == conjuges){
+			if (null == conjuges) {
 				conjuges = new ArrayList<Conjuge>();
 			}
 			FacesContext.getCurrentInstance().getExternalContext()
@@ -133,5 +144,17 @@ public class RessarcimentoSaudeController implements Serializable {
 		for (RessarcimentoSaudeContrato ressarcimentoSaudeContrato : files) {
 			stream.write(ressarcimentoSaudeContrato.getPagina());
 		}
+	}
+
+	public void validarNomePlano() {
+		if (!ressarcimentoSaude.getTipoPlano().getCodigo().equals(3L)) {
+			this.setIndParticular(false);
+		} else {
+			this.setIndParticular(true);
+		}
+	}
+	
+	public void salvar (){
+		RessarcimentoSaudeDAO.getInstance().saveRessarcimentoSaude(ressarcimentoSaude, files);
 	}
 }

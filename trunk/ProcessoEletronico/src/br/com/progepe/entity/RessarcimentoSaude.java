@@ -1,8 +1,6 @@
 package br.com.progepe.entity;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 
 public class RessarcimentoSaude implements Serializable {
 
@@ -16,8 +14,6 @@ public class RessarcimentoSaude implements Serializable {
 	private Boolean indImplantado;
 	private String nomePlano;
 	private String numeroContrato;
-	private List<RessarcimentoSaudeContrato> files;
-
 
 	public Long getCodigo() {
 		return codigo;
@@ -66,15 +62,5 @@ public class RessarcimentoSaude implements Serializable {
 	public void setNumeroContrato(String numeroContrato) {
 		this.numeroContrato = numeroContrato;
 	}
-
-	public List<RessarcimentoSaudeContrato> getFiles() {
-		return files;
-	}
-
-	public void setFiles(List<RessarcimentoSaudeContrato> files) {
-		this.files = files;
-	}
-	
-	
 
 }
