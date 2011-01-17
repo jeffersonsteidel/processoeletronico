@@ -34,6 +34,7 @@ public class RessarcimentoSaudeController implements Serializable {
 	private List<Dependente> dependentes = new ArrayList<Dependente>();
 	private Boolean indParticular = false;
 	private List<RessarcimentoSaudeContrato> files = new ArrayList<RessarcimentoSaudeContrato>();
+	RessarcimentoSaudeContrato ressarcimentoSaudeContrato;
 
 	public RessarcimentoSaude getRessarcimentoSaude() {
 		return ressarcimentoSaude;
@@ -82,6 +83,16 @@ public class RessarcimentoSaudeController implements Serializable {
 	public Boolean getIndParticular() {
 		return indParticular;
 	}
+	
+
+	public RessarcimentoSaudeContrato getRessarcimentoSaudeContrato() {
+		return ressarcimentoSaudeContrato;
+	}
+
+	public void setRessarcimentoSaudeContrato(
+			RessarcimentoSaudeContrato ressarcimentoSaudeContrato) {
+		this.ressarcimentoSaudeContrato = ressarcimentoSaudeContrato;
+	}
 
 	public void abrirRessarcimentoSaude() {
 		try {
@@ -93,12 +104,8 @@ public class RessarcimentoSaudeController implements Serializable {
 			listarTipoPlano();
 			this.setFiles(new ArrayList<RessarcimentoSaudeContrato>());
 			validarNomePlano();
-			dependentes = RessarcimentoSaudeDAO.getInstance()
-					.listarDependenteComCarteirinhaPorServidor(
-							ressarcimentoSaude.getServidor());
-			conjuges = RessarcimentoSaudeDAO.getInstance()
-					.listarConjugeComCarteirinhaPorServidor(
-							ressarcimentoSaude.getServidor());
+			conjuges = RessarcimentoSaudeDAO.getInstance().listarConjugePorServidor(ressarcimentoSaude.getServidor());
+			dependentes =  RessarcimentoSaudeDAO.getInstance().listarDependentePorServidor(ressarcimentoSaude.getServidor());
 			if (null == dependentes) {
 				dependentes = new ArrayList<Dependente>();
 			}
@@ -136,15 +143,16 @@ public class RessarcimentoSaudeController implements Serializable {
 
 	public void listener(UploadEvent event) throws Exception {
 		UploadItem item = event.getUploadItem();
-		RessarcimentoSaudeContrato ressarcimentoSaudeContrato = new RessarcimentoSaudeContrato();
+		ressarcimentoSaudeContrato = new RessarcimentoSaudeContrato();
 		ressarcimentoSaudeContrato.setPagina(item.getData());
 		files.add(ressarcimentoSaudeContrato);
 	}
-
+	
 	public void paint(OutputStream stream, Object object) throws Exception {
-		for (RessarcimentoSaudeContrato ressarcimentoSaudeContrato : files) {
-			stream.write(ressarcimentoSaudeContrato.getPagina());
-		}
+		 if (getFiles().size() > 0) {
+             stream.write(this.getFiles().get((Integer) object)
+                             .getPagina());
+     }
 	}
 
 	public void validarNomePlano() {

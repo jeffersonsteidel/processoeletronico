@@ -178,7 +178,7 @@
 				</f:facet>
 				<rich:menuItem submitMode="ajax" value="Cadastrar Ressarcimento Saúde"
 					action="#{ressarcimentoSaudeController.abrirRessarcimentoSaude}"
-					icon="../images/novafuncao.png" />
+					icon="../images/ressarcimentoSaude.jpg" />
 				
 			</rich:dropDownMenu>
 			<rich:dropDownMenu>

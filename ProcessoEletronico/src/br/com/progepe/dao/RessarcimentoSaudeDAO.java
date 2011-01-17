@@ -28,29 +28,30 @@ public class RessarcimentoSaudeDAO extends DAO {
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<Conjuge> listarConjugeComCarteirinhaPorServidor(
+	public List<Dependente> listarDependentePorServidor(
 			Servidor servidor) {
 		HibernateUtility.getSession().clear();
 		HibernateUtility.beginTransaction();
-		String sql = "from Conjuge c LEFT JOIN FETCH c.servidor s where c.indRessarcimentoSaude = true AND s.siape = "
-				+ servidor.getSiape();
-		Query query = HibernateUtility.getSession().createQuery(sql);
-		HibernateUtility.commitTransaction();
-		return (List<Conjuge>) query.list();
-	}
-
-	@SuppressWarnings("unchecked")
-	public List<Dependente> listarDependenteComCarteirinhaPorServidor(
-			Servidor servidor) {
-		HibernateUtility.getSession().clear();
-		HibernateUtility.beginTransaction();
-		String sql = "from Dependente d LEFT JOIN FETCH d.servidor s WHERE d.indRessarcimentoSaude = true AND s.siape = "
+		String sql = "from Dependente d LEFT JOIN FETCH d.servidor s WHERE s.siape = "
 				+ servidor.getSiape();
 		Query query = HibernateUtility.getSession().createQuery(sql);
 		HibernateUtility.commitTransaction();
 		return (List<Dependente>) query.list();
 	}
 
+	@SuppressWarnings("unchecked")
+	public List<Conjuge> listarConjugePorServidor(
+			Servidor servidor) {
+		HibernateUtility.getSession().clear();
+		HibernateUtility.beginTransaction();
+		String sql = "from Conjuge c LEFT JOIN FETCH c.servidor s WHERE s.siape = "
+				+ servidor.getSiape();
+		Query query = HibernateUtility.getSession().createQuery(sql);
+		HibernateUtility.commitTransaction();
+		return (List<Conjuge>) query.list();
+	}
+
+	
 	public void saveRessarcimentoSaude(RessarcimentoSaude ressarcimentoSaude,
 			List<RessarcimentoSaudeContrato> list) {
 		try {
