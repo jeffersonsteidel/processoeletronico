@@ -13,6 +13,7 @@ import javax.faces.model.SelectItem;
 import org.richfaces.event.UploadEvent;
 import org.richfaces.model.UploadItem;
 
+import br.com.progepe.constantes.Constantes;
 import br.com.progepe.dao.DAO;
 import br.com.progepe.dao.RessarcimentoSaudeDAO;
 import br.com.progepe.dao.ServidorDAO;
@@ -147,7 +148,7 @@ public class RessarcimentoSaudeController implements Serializable {
 	}
 
 	public void validarNomePlano() {
-		if (!ressarcimentoSaude.getTipoPlano().getCodigo().equals(3L)) {
+		if (!Constantes.TIPO_PLANO_PARTICULAR.equals(ressarcimentoSaude.getTipoPlano().getCodigo())) {
 			this.setIndParticular(false);
 		} else {
 			this.setIndParticular(true);
