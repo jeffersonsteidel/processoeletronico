@@ -161,19 +161,17 @@
 				<a4j:support event="onuploadcomplete" reRender="info" />
 			</rich:fileUpload>
 			<a4j:commandButton value="Salvar"
-				action="#{ressarcimentoSaudeController.salvar}"
-				reRender="form" />
+				action="#{ressarcimentoSaudeController.salvar}" reRender="form" />
+
 
 			<h:panelGroup id="info">
 				<rich:panel bodyClass="info">
-					<rich:dataGrid columns="1"
-						value="#{solicitacaoRessarcimentoSaudeController.solicitacaoRessarcimentoSaude.comprovante}"
-						var="file" rowKeyVar="row">
+					<rich:dataGrid columns="1" var="file" rowKeyVar="row">
 						<rich:panel bodyClass="rich-laguna-panel-no-header">
 							<h:panelGrid columns="2">
 								<a4j:mediaOutput element="img"
-									createContent="#{solicitacaoRessarcimentoSaudeController.paint}"
-									value="#{row}" style="width:600px; height:800px;"
+									createContent="#{ressarcimentoSaudeController.paint}" value="#{row}"
+									style="width:640px; height:480px; overflow:auto;"
 									cacheable="false">
 								</a4j:mediaOutput>
 							</h:panelGrid>
