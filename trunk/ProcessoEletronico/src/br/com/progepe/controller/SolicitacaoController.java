@@ -33,6 +33,7 @@ import br.com.progepe.entity.SolicitacaoContaBancaria;
 import br.com.progepe.entity.SolicitacaoHorarioEspecialEstudante;
 import br.com.progepe.entity.SolicitacaoLicencaPaternidade;
 import br.com.progepe.entity.SolicitacaoObito;
+import br.com.progepe.entity.SolicitacaoRessarcimentoSaude;
 import br.com.progepe.entity.StatusSolicitacao;
 import br.com.progepe.entity.TipoSolicitacao;
 
@@ -56,7 +57,8 @@ public class SolicitacaoController implements Serializable {
 	private SolicitacaoAdicionalNoturno solicitacaoAdicionalNoturnoTecnico;
 	private SolicitacaoAdicionalNoturno solicitacaoAdicionalNoturnoDocente;
 	private SolicitacaoAlteracaoEndereco solicitacaoAlteracaoEndereco;
-	
+	private SolicitacaoRessarcimentoSaude solicitacaoRessarcimentoSaude;
+
 	Solicitacao solicitacaoTemp = new Solicitacao();
 
 	private Long codigoSolicitacao;
@@ -232,6 +234,15 @@ public class SolicitacaoController implements Serializable {
 		this.solicitacaoAlteracaoEndereco = solicitacaoAlteracaoEndereco;
 	}
 
+	public SolicitacaoRessarcimentoSaude getSolicitacaoRessarcimentoSaude() {
+		return solicitacaoRessarcimentoSaude;
+	}
+
+	public void setSolicitacaoRessarcimentoSaude(
+			SolicitacaoRessarcimentoSaude solicitacaoRessarcimentoSaude) {
+		this.solicitacaoRessarcimentoSaude = solicitacaoRessarcimentoSaude;
+	}
+
 	public void abrirPesquisarSolicitacoes() throws ParseException {
 		try {
 			solicitacoes = new ArrayList<Solicitacao>();
@@ -264,7 +275,8 @@ public class SolicitacaoController implements Serializable {
 				FacesContext.getCurrentInstance().addMessage("", message);
 			}
 		}
-		if (solicitacao.getSolicitante().getSiape() != null && solicitacao.getSolicitante().getSiape() != 0) {
+		if (solicitacao.getSolicitante().getSiape() != null
+				&& solicitacao.getSolicitante().getSiape() != 0) {
 			solicitacao.setSolicitante(ServidorDAO.getInstance()
 					.refreshByFilter(solicitacao.getSolicitante()));
 		}
@@ -494,6 +506,17 @@ public class SolicitacaoController implements Serializable {
 		HttpServletResponse response = (HttpServletResponse) context
 				.getExternalContext().getResponse();
 		response.sendRedirect("solicitacaoAlteracaoEnderecoAprovar.jsp ");
+	}
+
+	public void carregarSolicitacaoRessarcimentoSaude(
+			SolicitacaoRessarcimentoSaude codigoSolicitacaoRessarcimentoSaude)
+			throws IOException {
+		solicitacaoRessarcimentoSaude = (SolicitacaoRessarcimentoSaude) DAO
+				.getInstance().refresh(codigoSolicitacaoRessarcimentoSaude);
+		FacesContext context = FacesContext.getCurrentInstance();
+		HttpServletResponse response = (HttpServletResponse) context
+				.getExternalContext().getResponse();
+		response.sendRedirect("solicitacaoRessarcimentoSaudeAprovar.jsp ");
 	}
 
 	public void carregarSolicitacao() throws IOException, ParseException {
@@ -791,6 +814,32 @@ public class SolicitacaoController implements Serializable {
 							.saveOrUpdate(solicitacaoAlteracaoEndereco);
 				}
 				this.carregarSolicitacaoAlteracaoEndereco(solicitacaoAlteracaoEndereco);
+			} else if (Constantes.TIPO_SOLICITACAO_RESSARCIMENTO_SAUDE
+					.equals(tipoSolicitacao)) {
+				solicitacaoRessarcimentoSaude = new SolicitacaoRessarcimentoSaude();
+				solicitacaoRessarcimentoSaude.setSolicitante(new Servidor());
+				solicitacaoRessarcimentoSaude.setCodigo(codigoSolicitacao);
+				solicitacaoRessarcimentoSaude = (SolicitacaoRessarcimentoSaude) SolicitacaoDAO
+						.getInstance().carregarSolicitacaoRessarcimentoSaude(
+								codigoSolicitacao);
+				if (Constantes.STATUS_SOLICITACAO_ENCAMINHADO
+						.equals(solicitacaoRessarcimentoSaude
+								.getStatusSolicitacao().getCodigo())) {
+					this.setDesabilitaBotao(false);
+					solicitacaoRessarcimentoSaude
+							.getStatusSolicitacao()
+							.setCodigo(Constantes.STATUS_SOLICITACAO_EM_ANALISE);
+					solicitacaoRessarcimentoSaude
+							.setDataAtendimento(new Date());
+					solicitacaoRessarcimentoSaude.setAtendente(siapeAutenticado
+							.getSiape());
+					solicitacaoRessarcimentoSaude
+							.setAtendenteLogado(new Servidor());
+					solicitacaoRessarcimentoSaude.setAtendenteLogado(servidor);
+					DAO.getInstance().saveOrUpdate(
+							solicitacaoRessarcimentoSaude);
+				}
+				this.carregarSolicitacaoRessarcimentoSaude(solicitacaoRessarcimentoSaude);
 			}
 		}
 	}
@@ -910,6 +959,13 @@ public class SolicitacaoController implements Serializable {
 					solicitacaoAlteracaoEndereco.getNovoCelular());
 			DAO.getInstance().update(
 					solicitacaoAlteracaoEndereco.getSolicitante());
+			this.setDesabilitaBotao(true);
+		} else if (Constantes.TIPO_SOLICITACAO_RESSARCIMENTO_SAUDE
+				.equals(tipoSolicitacao)) {
+			solicitacaoRessarcimentoSaude.getStatusSolicitacao().setCodigo(
+					Constantes.STATUS_SOLICITACAO_DEFERIDO);
+			solicitacaoRessarcimentoSaude.setDataFechamento(new Date());
+			DAO.getInstance().update(solicitacaoRessarcimentoSaude);
 			this.setDesabilitaBotao(true);
 		}
 	}
@@ -1082,6 +1138,22 @@ public class SolicitacaoController implements Serializable {
 						"O campo Justificativa é obrigatório!!");
 				FacesContext.getCurrentInstance().addMessage("", message);
 			}
+		} else if (Constantes.TIPO_SOLICITACAO_RESSARCIMENTO_SAUDE
+				.equals(tipoSolicitacao)) {
+			solicitacaoRessarcimentoSaude.getStatusSolicitacao().setCodigo(
+					Constantes.STATUS_SOLICITACAO_INDEFERIDO);
+			solicitacaoRessarcimentoSaude.setDataFechamento(new Date());
+			if (solicitacaoRessarcimentoSaude.getJustificativa() != null
+					&& solicitacaoRessarcimentoSaude.getJustificativa() != "") {
+				DAO.getInstance().update(solicitacaoRessarcimentoSaude);
+				this.setDesabilitaBotao(true);
+			} else {
+				FacesMessage message = new FacesMessage(
+						FacesMessage.SEVERITY_ERROR,
+						"O campo Justificativa é obrigatório!",
+						"O campo Justificativa é obrigatório!!");
+				FacesContext.getCurrentInstance().addMessage("", message);
+			}
 		}
 	}
 
@@ -1101,11 +1173,13 @@ public class SolicitacaoController implements Serializable {
 				.equals(tipoSolicitacao)) {
 			stream.write(solicitacaoCasamento.getFiles().get((Integer) object)
 					.getCertidaoCasamento());
+		} else if (Constantes.TIPO_SOLICITACAO_RESSARCIMENTO_SAUDE
+				.equals(tipoSolicitacao)) {
+			stream.write(solicitacaoRessarcimentoSaude.getComprovante());
 		}
 	}
-	
-	
-	public void retornarUltimaPesquisa() throws ParseException{
+
+	public void retornarUltimaPesquisa() throws ParseException {
 		abrirPesquisarSolicitacoes();
 		solicitacao = solicitacaoTemp;
 		pesquisarSolicitacoes();
