@@ -33,30 +33,35 @@
 				</h:outputText>
 			</h:panelGrid>
 
-			<h:panelGrid columns="2">
+			<h:panelGrid id="grid" columns="2">
 
 				<h:outputText value="Tipo do Plano: " />
-				<h:selectOneMenu id="tipoPlano" required="true" requiredMessage="O campo Tipo do Plano é obrigatório!"
+				<h:selectOneMenu id="tipoPlano" required="true"
+					requiredMessage="O campo Tipo do Plano é obrigatório!"
 					value="#{ressarcimentoSaudeController.ressarcimentoSaude.tipoPlano.codigo}">
 					<f:selectItem itemLabel="SELECIONE" itemValue="" />
-					<f:selectItems
-						value="#{ressarcimentoSaudeController.tiposPlanos}" />
+					<f:selectItems value="#{ressarcimentoSaudeController.tiposPlanos}" />
+					<a4j:support event="onchange"
+						action="#{ressarcimentoSaudeController.validarNomePlano}"
+						ajaxSingle="true" reRender="grid"></a4j:support>
 				</h:selectOneMenu>
 
-				<h:outputText value="Nome do Plano: "
-					rendered="#{ressarcimentoSaudeController.ressarcimentoSaude.tipoPlano.codigo == 3}" />
-				<h:inputText
+				<h:outputText value="Nome do Plano: " id="nomePlanoOutput"
+					rendered="#{ressarcimentoSaudeController.indParticular}" />
+				<h:inputText id="nomePlano"
 					value="#{ressarcimentoSaudeController.ressarcimentoSaude.nomePlano}"
-					rendered="#{ressarcimentoSaudeController.ressarcimentoSaude.tipoPlano.codigo == 3}" />
+					rendered="#{ressarcimentoSaudeController.indParticular}" />
 				<h:outputText value="Numero do Contrato: " />
-				<h:inputText required="true" requiredMessage="O campo Numero do Contrato é obrigatório!"
-					value="#{ressarcimentoSaudeController.ressarcimentoSaude.nomePlano}"/>
-			</h:panelGrid>	
-				<h:outputText value="Adicionar Cônjuge" rendered="#{not empty ressarcimentoSaudeController.conjuges}"/>
-				<rich:dataTable id="listarConjugesSolicitante"
+				<h:inputText required="true"
+					requiredMessage="O campo Numero do Contrato é obrigatório!"
+					value="#{ressarcimentoSaudeController.ressarcimentoSaude.nomePlano}" />
+			</h:panelGrid>
+			<h:outputText value="Adicionar Cônjuge"
+				rendered="#{not empty ressarcimentoSaudeController.conjuges}" />
+			<rich:dataTable id="listarConjugesSolicitante"
 				rendered="#{not empty ressarcimentoSaudeController.conjuges}"
-				value="#{ressarcimentoSaudeController.conjuges}" var="list" width="1160px"
-				columnClasses="center" rows="15" reRender="ds">
+				value="#{ressarcimentoSaudeController.conjuges}" var="list"
+				width="1160px" columnClasses="center" rows="15" reRender="ds">
 				<rich:column width="435px" sortBy="#{list.nome}">
 					<f:facet name="header">
 						<h:outputText value="Nome" />
@@ -78,22 +83,23 @@
 				</rich:column>
 				<rich:column>
 					<f:facet name="header">
-					<h:outputText value="Incluir"/>
+						<h:outputText value="Incluir" />
 					</f:facet>
 					<h:selectBooleanCheckbox id="incluir"
-					value="#{list.indRessarcimentoSaude}">
-				</h:selectBooleanCheckbox>
+						value="#{list.indRessarcimentoSaude}">
+					</h:selectBooleanCheckbox>
 				</rich:column>
 				<f:facet name="footer">
 					<rich:datascroller id="ds"></rich:datascroller>
 				</f:facet>
 			</rich:dataTable>
-				
-<h:outputText value="Adicionar Dependente" rendered="#{not empty ressarcimentoSaudeController.dependentes}"/>
-				<rich:dataTable id="listarDependentesSolicitante"
+
+			<h:outputText value="Adicionar Dependente"
+				rendered="#{not empty ressarcimentoSaudeController.dependentes}" />
+			<rich:dataTable id="listarDependentesSolicitante"
 				rendered="#{not empty ressarcimentoSaudeController.dependentes}"
-				value="#{ressarcimentoSaudeController.dependentes}" var="list" width="1160px"
-				columnClasses="center" rows="15" reRender="ds">
+				value="#{ressarcimentoSaudeController.dependentes}" var="list"
+				width="1160px" columnClasses="center" rows="15" reRender="ds">
 				<rich:column width="435px" sortBy="#{list.nome}">
 					<f:facet name="header">
 						<h:outputText value="Nome" />
@@ -106,6 +112,12 @@
 					</f:facet>
 					<h:outputText value="#{list.cpf}" />
 				</rich:column>
+				<rich:column width="280px" sortBy="#{list.grauParentesco.descricao}">
+					<f:facet name="header">
+						<h:outputText value="Grau de Parentesco" />
+					</f:facet>
+					<h:outputText value="#{list.grauParentesco.descricao}" />
+				</rich:column>
 				<rich:column width="280px" sortBy="#{list.indEstudante}">
 					<f:facet name="header">
 						<h:outputText value="Estudante" />
@@ -117,16 +129,18 @@
 					<f:facet name="header">
 						<h:outputText value="Necessidades Especiais" />
 					</f:facet>
-					<h:outputText value="SIM" rendered="#{list.indNecessidadesEspeciais}" />
-					<h:outputText value="NÃO" rendered="#{!list.indNecessidadesEspeciais}" />
+					<h:outputText value="SIM"
+						rendered="#{list.indNecessidadesEspeciais}" />
+					<h:outputText value="NÃO"
+						rendered="#{!list.indNecessidadesEspeciais}" />
 				</rich:column>
 				<rich:column>
 					<f:facet name="header">
-					<h:outputText value="Incluir"/>
+						<h:outputText value="Incluir" />
 					</f:facet>
 					<h:selectBooleanCheckbox id="incluir"
-					value="#{list.indRessarcimentoSaude}">
-				</h:selectBooleanCheckbox>
+						value="#{list.indRessarcimentoSaude}">
+					</h:selectBooleanCheckbox>
 				</rich:column>
 				<f:facet name="footer">
 					<rich:datascroller id="ds"></rich:datascroller>
@@ -136,8 +150,8 @@
 			<rich:fileUpload
 				fileUploadListener="#{ressarcimentoSaudeController.listener}"
 				maxFilesQuantity="1" required="true"
-				requiredMessage="É necessário adicionar o Comprovante de Pagamento!"
-				addControlLabel="Adicionar Comprovante de Pagamento" id="upload"
+				requiredMessage="É necessário adicionar o Contrato!"
+				addControlLabel="Adicionar Contrato" id="upload"
 				transferErrorLabel="Falha Ao realizar Transferência"
 				doneLabelClass="Finalizada" autoclear="true" immediateUpload="true"
 				listWidth="270px" stopControlLabel="Parar"
@@ -147,7 +161,7 @@
 				<a4j:support event="onuploadcomplete" reRender="info" />
 			</rich:fileUpload>
 			<a4j:commandButton value="Salvar"
-				action="#{solicitacaoRessarcimentoSaudeController.salvar}"
+				action="#{ressarcimentoSaudeController.salvar}"
 				reRender="form" />
 
 			<h:panelGroup id="info">
