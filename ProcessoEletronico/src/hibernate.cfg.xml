@@ -7,7 +7,7 @@
 		<!-- Database connection settings -->
 		<property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
 		<property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
-		<property name="hibernate.connection.url">jdbc:mysql://192.168.3.134/ifpr</property>
+		<property name="hibernate.connection.url">jdbc:mysql://192.168.3.130/ifpr</property>
 		<property name="hibernate.connection.username">marlon</property>
 		<property name="hibernate.connection.password">ifpr</property>
 		<property name="hibernate.connection.autoReconnect">true</property>
