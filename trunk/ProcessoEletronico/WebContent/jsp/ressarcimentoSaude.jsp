@@ -33,7 +33,7 @@
 				</h:outputText>
 			</h:panelGrid>
 
-			<h:panelGrid id="grid" columns="2">
+			<h:panelGrid id="grid" columns="6">
 
 				<h:outputText value="Tipo do Plano: " />
 				<h:selectOneMenu id="tipoPlano" required="true"
@@ -48,39 +48,24 @@
 
 				<h:outputText value="Nome do Plano: " id="nomePlanoOutput"
 					rendered="#{ressarcimentoSaudeController.indParticular}" />
-				<h:inputText id="nomePlano"
+				<h:inputText id="nomePlano" required="true" requiredMessage="O campo Nome do Plano é obrigatório!"
 					value="#{ressarcimentoSaudeController.ressarcimentoSaude.nomePlano}"
 					rendered="#{ressarcimentoSaudeController.indParticular}" />
 				<h:outputText value="Numero do Contrato: " />
 				<h:inputText required="true"
 					requiredMessage="O campo Numero do Contrato é obrigatório!"
-					value="#{ressarcimentoSaudeController.ressarcimentoSaude.nomePlano}" />
+					value="#{ressarcimentoSaudeController.ressarcimentoSaude.numeroContrato}" />
 			</h:panelGrid>
-			<h:outputText value="Adicionar Cônjuge"
+
+			<br>
+			<h:outputText value="Selecione o Cônjuge para adiciona-lo(a) no plano"
 				rendered="#{not empty ressarcimentoSaudeController.conjuges}" />
+			<br>
 			<rich:dataTable id="listarConjugesSolicitante"
 				rendered="#{not empty ressarcimentoSaudeController.conjuges}"
 				value="#{ressarcimentoSaudeController.conjuges}" var="list"
-				width="1160px" columnClasses="center" rows="15" reRender="ds">
-				<rich:column width="435px" sortBy="#{list.nome}">
-					<f:facet name="header">
-						<h:outputText value="Nome" />
-					</f:facet>
-					<h:outputText value="#{list.nome}" />
-				</rich:column>
-				<rich:column width="280px" sortBy="#{list.cpf}">
-					<f:facet name="header">
-						<h:outputText value="CPF" />
-					</f:facet>
-					<h:outputText value="#{list.cpf}" />
-				</rich:column>
-				<rich:column width="280px" sortBy="#{list.atual}">
-					<f:facet name="header">
-						<h:outputText value="Atual" />
-					</f:facet>
-					<h:outputText value="Atual" rendered="#{list.atual}" />
-					<h:outputText value="Ex" rendered="#{!list.atual}" />
-				</rich:column>
+				width="700px" columnClasses="center" rows="15" reRender="ds">
+
 				<rich:column>
 					<f:facet name="header">
 						<h:outputText value="Incluir" />
@@ -89,43 +74,61 @@
 						value="#{list.indRessarcimentoSaude}">
 					</h:selectBooleanCheckbox>
 				</rich:column>
-				<f:facet name="footer">
-					<rich:datascroller id="ds"></rich:datascroller>
-				</f:facet>
-			</rich:dataTable>
 
-			<h:outputText value="Adicionar Dependente"
-				rendered="#{not empty ressarcimentoSaudeController.dependentes}" />
-			<rich:dataTable id="listarDependentesSolicitante"
-				rendered="#{not empty ressarcimentoSaudeController.dependentes}"
-				value="#{ressarcimentoSaudeController.dependentes}" var="list"
-				width="1160px" columnClasses="center" rows="15" reRender="ds">
-				<rich:column width="435px" sortBy="#{list.nome}">
+				<rich:column width="435px">
 					<f:facet name="header">
 						<h:outputText value="Nome" />
 					</f:facet>
 					<h:outputText value="#{list.nome}" />
 				</rich:column>
-				<rich:column width="280px" sortBy="#{list.cpf}">
+
+				<rich:column width="280px">
 					<f:facet name="header">
-						<h:outputText value="CPF" />
+						<h:outputText value="Atual" />
 					</f:facet>
-					<h:outputText value="#{list.cpf}" />
+					<h:outputText value="Atual" rendered="#{list.atual}" />
+					<h:outputText value="Ex" rendered="#{!list.atual}" />
 				</rich:column>
-				<rich:column width="280px" sortBy="#{list.grauParentesco.descricao}">
+			</rich:dataTable>
+			<br>
+			<h:outputText
+				value="Selecione os Dependentes que deseja adicionar ao plano:"
+				rendered="#{not empty ressarcimentoSaudeController.dependentes}" />
+			<br>
+			<rich:dataTable id="listarDependentesSolicitante"
+				rendered="#{not empty ressarcimentoSaudeController.dependentes}"
+				value="#{ressarcimentoSaudeController.dependentes}" var="list"
+				width="700px" columnClasses="center" rows="15" reRender="ds">
+
+				<rich:column>
+					<f:facet name="header">
+						<h:outputText value="Incluir" />
+					</f:facet>
+					<h:selectBooleanCheckbox id="incluir"
+						value="#{list.indRessarcimentoSaude}">
+					</h:selectBooleanCheckbox>
+				</rich:column>
+
+				<rich:column width="435px">
+					<f:facet name="header">
+						<h:outputText value="Nome" />
+					</f:facet>
+					<h:outputText value="#{list.nome}" />
+				</rich:column>
+				<rich:column width="280px">
 					<f:facet name="header">
 						<h:outputText value="Grau de Parentesco" />
 					</f:facet>
 					<h:outputText value="#{list.grauParentesco.descricao}" />
 				</rich:column>
-				<rich:column width="280px" sortBy="#{list.indEstudante}">
+				<rich:column width="280px">
 					<f:facet name="header">
 						<h:outputText value="Estudante" />
 					</f:facet>
 					<h:outputText value="SIM" rendered="#{list.indEstudante}" />
 					<h:outputText value="NÃO" rendered="#{!list.indEstudante}" />
 				</rich:column>
-				<rich:column width="280px" sortBy="#{list.indNecessidadesEspeciais}">
+				<rich:column width="280px">
 					<f:facet name="header">
 						<h:outputText value="Necessidades Especiais" />
 					</f:facet>
@@ -134,22 +137,11 @@
 					<h:outputText value="NÃO"
 						rendered="#{!list.indNecessidadesEspeciais}" />
 				</rich:column>
-				<rich:column>
-					<f:facet name="header">
-						<h:outputText value="Incluir" />
-					</f:facet>
-					<h:selectBooleanCheckbox id="incluir"
-						value="#{list.indRessarcimentoSaude}">
-					</h:selectBooleanCheckbox>
-				</rich:column>
-				<f:facet name="footer">
-					<rich:datascroller id="ds"></rich:datascroller>
-				</f:facet>
 			</rich:dataTable>
-
+			<br>
 			<rich:fileUpload
 				fileUploadListener="#{ressarcimentoSaudeController.listener}"
-				maxFilesQuantity="1" required="true"
+				required="true"
 				requiredMessage="É necessário adicionar o Contrato!"
 				addControlLabel="Adicionar Contrato" id="upload"
 				transferErrorLabel="Falha Ao realizar Transferência"
@@ -167,12 +159,14 @@
 
 			<h:panelGroup id="info">
 				<rich:panel bodyClass="info">
-				<rich:dataGrid value="#{ressarcimentoSaudeController.ressarcimentoSaude.files}"
-					var="file" rowKeyVar="row">
+					<rich:dataGrid
+						value="#{ressarcimentoSaudeController.ressarcimentoSaude.files}"
+						var="file" rowKeyVar="row">
 						<rich:panel bodyClass="rich-laguna-panel-no-header">
 							<h:panelGrid columns="2">
 								<a4j:mediaOutput element="img"
-									createContent="#{ressarcimentoSaudeController.paint}" value="#{row}"
+									createContent="#{ressarcimentoSaudeController.paint}"
+									value="#{row}"
 									style="width:640px; height:480px; overflow:auto;"
 									cacheable="false">
 								</a4j:mediaOutput>

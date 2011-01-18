@@ -10,7 +10,6 @@ import org.hibernate.Query;
 import br.com.progepe.entity.Conjuge;
 import br.com.progepe.entity.Dependente;
 import br.com.progepe.entity.RessarcimentoSaude;
-import br.com.progepe.entity.RessarcimentoSaudeContrato;
 import br.com.progepe.entity.Servidor;
 
 public class RessarcimentoSaudeDAO extends DAO {
@@ -28,8 +27,7 @@ public class RessarcimentoSaudeDAO extends DAO {
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<Dependente> listarDependentePorServidor(
-			Servidor servidor) {
+	public List<Dependente> listarDependentePorServidor(Servidor servidor) {
 		HibernateUtility.getSession().clear();
 		HibernateUtility.beginTransaction();
 		String sql = "from Dependente d LEFT JOIN FETCH d.servidor s WHERE s.siape = "
@@ -40,8 +38,7 @@ public class RessarcimentoSaudeDAO extends DAO {
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<Conjuge> listarConjugePorServidor(
-			Servidor servidor) {
+	public List<Conjuge> listarConjugePorServidor(Servidor servidor) {
 		HibernateUtility.getSession().clear();
 		HibernateUtility.beginTransaction();
 		String sql = "from Conjuge c LEFT JOIN FETCH c.servidor s WHERE s.siape = "
@@ -51,27 +48,21 @@ public class RessarcimentoSaudeDAO extends DAO {
 		return (List<Conjuge>) query.list();
 	}
 
-	
 	public void saveRessarcimentoSaude(RessarcimentoSaude ressarcimentoSaude,
 			List<Dependente> dependentes, List<Conjuge> conjuges) {
 		try {
 			HibernateUtility.getSession().clear();
 			HibernateUtility.beginTransaction();
-			HibernateUtility.getSession().save(ressarcimentoSaude);
-			List<RessarcimentoSaudeContrato> list = ressarcimentoSaude.getFiles();
-			ressarcimentoSaude.setFiles(null);
-			ressarcimentoSaude = (RessarcimentoSaude) DAO.getInstance()
-					.refresh(ressarcimentoSaude);
-			for (RessarcimentoSaudeContrato ressarcimentoSaudeContrato : list) {
-				ressarcimentoSaudeContrato
-						.setRessarcimentoSaude(ressarcimentoSaude);
-				HibernateUtility.getSession().save(ressarcimentoSaudeContrato);
+			HibernateUtility.getSession().saveOrUpdate(ressarcimentoSaude);
+			for (Conjuge conjuge : conjuges) {
+				HibernateUtility.getSession().update(conjuge);
 			}
-			for(Conjuge conjuge: conjuges){
-					DAO.getInstance().update(conjuge);
+			for (Dependente dependente : dependentes) {
+				HibernateUtility.getSession().update(dependente);
 			}
-			for(Dependente dependente: dependentes){
-					DAO.getInstance().update(dependente);
+			for (int i = 0; i < ressarcimentoSaude.getFiles().size(); i++) {
+				//IMPLEMENTAR AQUI /PARA SALVAR O CONTRATO
+
 			}
 			HibernateUtility.commitTransaction();
 			FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO,
