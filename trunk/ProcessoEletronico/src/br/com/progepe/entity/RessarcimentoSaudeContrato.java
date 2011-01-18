@@ -9,9 +9,8 @@ public class RessarcimentoSaudeContrato implements Serializable {
 	 */
 	private static final long serialVersionUID = 8858939815459194427L;
 	private Long codigo;
-	private RessarcimentoSaude ressarcimentoSaude;
+	private Servidor servidor;
 	private byte[] pagina;
-	
 
 	public Long getCodigo() {
 		return codigo;
@@ -21,12 +20,12 @@ public class RessarcimentoSaudeContrato implements Serializable {
 		this.codigo = codigo;
 	}
 
-	public RessarcimentoSaude getRessarcimentoSaude() {
-		return ressarcimentoSaude;
+	public Servidor getServidor() {
+		return servidor;
 	}
 
-	public void setRessarcimentoSaude(RessarcimentoSaude ressarcimentoSaude) {
-		this.ressarcimentoSaude = ressarcimentoSaude;
+	public void setServidor(Servidor servidor) {
+		this.servidor = servidor;
 	}
 
 	public byte[] getPagina() {
