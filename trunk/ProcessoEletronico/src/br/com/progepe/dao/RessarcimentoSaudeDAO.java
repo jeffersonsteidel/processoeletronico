@@ -53,17 +53,25 @@ public class RessarcimentoSaudeDAO extends DAO {
 
 	
 	public void saveRessarcimentoSaude(RessarcimentoSaude ressarcimentoSaude,
-			List<RessarcimentoSaudeContrato> list) {
+			List<Dependente> dependentes, List<Conjuge> conjuges) {
 		try {
 			HibernateUtility.getSession().clear();
 			HibernateUtility.beginTransaction();
 			HibernateUtility.getSession().save(ressarcimentoSaude);
+			List<RessarcimentoSaudeContrato> list = ressarcimentoSaude.getFiles();
+			ressarcimentoSaude.setFiles(null);
 			ressarcimentoSaude = (RessarcimentoSaude) DAO.getInstance()
 					.refresh(ressarcimentoSaude);
 			for (RessarcimentoSaudeContrato ressarcimentoSaudeContrato : list) {
 				ressarcimentoSaudeContrato
 						.setRessarcimentoSaude(ressarcimentoSaude);
 				HibernateUtility.getSession().save(ressarcimentoSaudeContrato);
+			}
+			for(Conjuge conjuge: conjuges){
+					DAO.getInstance().update(conjuge);
+			}
+			for(Dependente dependente: dependentes){
+					DAO.getInstance().update(dependente);
 			}
 			HibernateUtility.commitTransaction();
 			FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO,
