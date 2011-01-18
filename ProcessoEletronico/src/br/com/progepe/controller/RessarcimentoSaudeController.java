@@ -33,7 +33,6 @@ public class RessarcimentoSaudeController implements Serializable {
 	private List<Conjuge> conjuges = new ArrayList<Conjuge>();
 	private List<Dependente> dependentes = new ArrayList<Dependente>();
 	private Boolean indParticular = false;
-	private List<RessarcimentoSaudeContrato> files = new ArrayList<RessarcimentoSaudeContrato>();
 	RessarcimentoSaudeContrato ressarcimentoSaudeContrato;
 
 	public RessarcimentoSaude getRessarcimentoSaude() {
@@ -72,14 +71,6 @@ public class RessarcimentoSaudeController implements Serializable {
 		this.indParticular = indParticular;
 	}
 
-	public List<RessarcimentoSaudeContrato> getFiles() {
-		return files;
-	}
-
-	public void setFiles(List<RessarcimentoSaudeContrato> files) {
-		this.files = files;
-	}
-
 	public Boolean getIndParticular() {
 		return indParticular;
 	}
@@ -102,7 +93,6 @@ public class RessarcimentoSaudeController implements Serializable {
 			ressarcimentoSaude.setTipoPlano(new TipoPlano());
 			buscarServidorLogado();
 			listarTipoPlano();
-			this.setFiles(new ArrayList<RessarcimentoSaudeContrato>());
 			validarNomePlano();
 			conjuges = RessarcimentoSaudeDAO.getInstance().listarConjugePorServidor(ressarcimentoSaude.getServidor());
 			dependentes =  RessarcimentoSaudeDAO.getInstance().listarDependentePorServidor(ressarcimentoSaude.getServidor());
@@ -145,12 +135,12 @@ public class RessarcimentoSaudeController implements Serializable {
 		UploadItem item = event.getUploadItem();
 		ressarcimentoSaudeContrato = new RessarcimentoSaudeContrato();
 		ressarcimentoSaudeContrato.setPagina(item.getData());
-		files.add(ressarcimentoSaudeContrato);
+		ressarcimentoSaude.getFiles().add(ressarcimentoSaudeContrato);
 	}
 	
 	public void paint(OutputStream stream, Object object) throws Exception {
-		 if (getFiles().size() > 0) {
-             stream.write(this.getFiles().get((Integer) object)
+		 if (ressarcimentoSaude.getFiles().size() > 0) {
+             stream.write(ressarcimentoSaude.getFiles().get((Integer) object)
                              .getPagina());
      }
 	}
@@ -164,6 +154,6 @@ public class RessarcimentoSaudeController implements Serializable {
 	}
 	
 	public void salvar (){
-		RessarcimentoSaudeDAO.getInstance().saveRessarcimentoSaude(ressarcimentoSaude, files);
+	//	RessarcimentoSaudeDAO.getInstance().saveRessarcimentoSaude(ressarcimentoSaude, files);
 	}
 }
