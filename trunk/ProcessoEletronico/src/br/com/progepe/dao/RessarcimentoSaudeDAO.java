@@ -10,6 +10,7 @@ import org.hibernate.Query;
 import br.com.progepe.entity.Conjuge;
 import br.com.progepe.entity.Dependente;
 import br.com.progepe.entity.RessarcimentoSaude;
+import br.com.progepe.entity.RessarcimentoSaudeContrato;
 import br.com.progepe.entity.Servidor;
 
 public class RessarcimentoSaudeDAO extends DAO {
@@ -61,8 +62,10 @@ public class RessarcimentoSaudeDAO extends DAO {
 				HibernateUtility.getSession().update(dependente);
 			}
 			for (int i = 0; i < ressarcimentoSaude.getFiles().size(); i++) {
-				//IMPLEMENTAR AQUI /PARA SALVAR O CONTRATO
-
+				RessarcimentoSaudeContrato ressarcimentoSaudeContrato = new RessarcimentoSaudeContrato();
+				ressarcimentoSaudeContrato.setServidor(ressarcimentoSaude.getServidor());
+				ressarcimentoSaudeContrato.setPagina(ressarcimentoSaude.getFiles().get(i).getPagina());
+				HibernateUtility.getSession().saveOrUpdate(ressarcimentoSaudeContrato);
 			}
 			HibernateUtility.commitTransaction();
 			FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO,
