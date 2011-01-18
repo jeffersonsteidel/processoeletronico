@@ -10,8 +10,8 @@
 		</id>
 		<property name="pagina" column="RES_SAU_CONT_PAGINA" />
 
-		<many-to-one name="ressarcimentoSaude"
-			class="br.com.progepe.entity.RessarcimentoSaude" column="RES_SAU_COD"
+		<many-to-one name="servidor"
+			class="br.com.progepe.entity.Servidor" column="SERV_COD"
 			lazy="false" />
 	</class>
 </hibernate-mapping>
