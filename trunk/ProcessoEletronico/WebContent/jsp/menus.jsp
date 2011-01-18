@@ -176,10 +176,11 @@
 						<h:outputText value="RESSARCIMENTO SAÚDE" />
 					</h:panelGroup>
 				</f:facet>
-				<rich:menuItem submitMode="ajax" value="Cadastrar Ressarcimento Saúde"
+				<rich:menuItem submitMode="ajax"
+					value="Cadastrar Ressarcimento Saúde"
 					action="#{ressarcimentoSaudeController.abrirRessarcimentoSaude}"
 					icon="../images/ressarcimentoSaude.jpg" />
-				
+
 			</rich:dropDownMenu>
 			<rich:dropDownMenu>
 				<f:facet name="label">
@@ -222,8 +223,13 @@
 					<h:panelGroup>
 						<h:outputText value="ADMINISTRAÇÃO" />
 					</h:panelGroup>
-
 				</f:facet>
+				<rich:menuItem submitMode="ajax" value="Cadastrar Cargo"
+					action="#{cargoController.abrirCadastrarCargo}"
+					icon="../images/cadastrarCargo.gif" />
+				<rich:menuItem submitMode="ajax" value="Listar Cargos"
+					action="#{cargoController.abrirListarCargos}"
+					icon="../images/listarCargo.gif" />
 				<rich:menuItem submitMode="ajax" value="Nova Função"
 					action="#{funcaoController.abrirNovaFuncao}"
 					icon="../images/novafuncao.png" />
