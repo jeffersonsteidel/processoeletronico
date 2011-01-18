@@ -141,7 +141,7 @@
 			<br>
 			<rich:fileUpload
 				fileUploadListener="#{ressarcimentoSaudeController.listener}"
-				required="true"
+				required="true" maxFilesQuantity="20"
 				requiredMessage="É necessário adicionar o Contrato!"
 				addControlLabel="Adicionar Contrato" id="upload"
 				transferErrorLabel="Falha Ao realizar Transferência"
