@@ -11,6 +11,7 @@ public class RessarcimentoSaudeContrato implements Serializable {
 	private Long codigo;
 	private RessarcimentoSaude ressarcimentoSaude;
 	private byte[] pagina;
+	
 
 	public Long getCodigo() {
 		return codigo;
