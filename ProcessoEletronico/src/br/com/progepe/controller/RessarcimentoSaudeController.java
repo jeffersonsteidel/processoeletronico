@@ -154,6 +154,8 @@ public class RessarcimentoSaudeController implements Serializable {
 	}
 	
 	public void salvar (){
-	//	RessarcimentoSaudeDAO.getInstance().saveRessarcimentoSaude(ressarcimentoSaude, files);
+		RessarcimentoSaudeDAO.getInstance().saveRessarcimentoSaude(ressarcimentoSaude, dependentes, conjuges);
+		this.setIndParticular(false);
+		this.ressarcimentoSaude.setFiles(new ArrayList<RessarcimentoSaudeContrato>());
 	}
 }
