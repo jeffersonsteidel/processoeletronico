@@ -61,11 +61,9 @@ public class RessarcimentoSaudeDAO extends DAO {
 			for (Dependente dependente : dependentes) {
 				HibernateUtility.getSession().update(dependente);
 			}
-			for (int i = 0; i < ressarcimentoSaude.getFiles().size(); i++) {
-				RessarcimentoSaudeContrato ressarcimentoSaudeContrato = new RessarcimentoSaudeContrato();
-				ressarcimentoSaudeContrato.setServidor(ressarcimentoSaude.getServidor());
-				ressarcimentoSaudeContrato.setPagina(ressarcimentoSaude.getFiles().get(i).getPagina());
-				HibernateUtility.getSession().saveOrUpdate(ressarcimentoSaudeContrato);
+			for(RessarcimentoSaudeContrato contrato: ressarcimentoSaude.getFiles()){
+				contrato.setServidor(ressarcimentoSaude.getServidor());
+				HibernateUtility.getSession().saveOrUpdate(contrato);
 			}
 			HibernateUtility.commitTransaction();
 			FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO,
