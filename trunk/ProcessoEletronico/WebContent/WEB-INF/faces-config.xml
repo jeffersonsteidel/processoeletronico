@@ -49,6 +49,11 @@ Config 1.1//EN"
 		<managed-bean-scope>session</managed-bean-scope>
 	</managed-bean>
 	<managed-bean>
+		<managed-bean-name>lotacaoController</managed-bean-name>
+		<managed-bean-class>br.com.progepe.controller.LotacaoController</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
 		<managed-bean-name>portariaController</managed-bean-name>
 		<managed-bean-class>br.com.progepe.controller.PortariaController</managed-bean-class>
 		<managed-bean-scope>session</managed-bean-scope>
