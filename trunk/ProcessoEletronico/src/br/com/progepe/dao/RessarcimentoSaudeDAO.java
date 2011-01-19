@@ -1,5 +1,6 @@
 package br.com.progepe.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.faces.application.FacesMessage;
@@ -7,6 +8,7 @@ import javax.faces.context.FacesContext;
 
 import org.hibernate.Query;
 
+import br.com.progepe.constantes.Constantes;
 import br.com.progepe.entity.Conjuge;
 import br.com.progepe.entity.Dependente;
 import br.com.progepe.entity.RessarcimentoSaude;
@@ -61,7 +63,8 @@ public class RessarcimentoSaudeDAO extends DAO {
 			for (Dependente dependente : dependentes) {
 				HibernateUtility.getSession().update(dependente);
 			}
-			for(RessarcimentoSaudeContrato contrato: ressarcimentoSaude.getFiles()){
+			for (RessarcimentoSaudeContrato contrato : ressarcimentoSaude
+					.getFiles()) {
 				contrato.setServidor(ressarcimentoSaude.getServidor());
 				HibernateUtility.getSession().saveOrUpdate(contrato);
 			}
@@ -77,5 +80,48 @@ public class RessarcimentoSaudeDAO extends DAO {
 					"Erro ao comunicar com o servidor!");
 			FacesContext.getCurrentInstance().addMessage("", message);
 		}
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<RessarcimentoSaude> listByFilter(
+			RessarcimentoSaude ressarcimentoSaude, Integer implantado) {
+		HibernateUtility.getSession().clear();
+		String sql;
+		sql = "from RessarcimentoSaude rs where 1= 1 ";
+		if (ressarcimentoSaude.getTipoPlano().getCodigo() != null
+				&& ressarcimentoSaude.getTipoPlano().getCodigo() != 0) {
+			sql += " and rs.tipoPlano.codigo ="
+					+ ressarcimentoSaude.getTipoPlano().getCodigo();
+		}
+		if (ressarcimentoSaude.getServidor() != null
+				&& ressarcimentoSaude.getServidor().getSiape() != 0) {
+			sql += " and rs.servidor.siape = "
+					+ ressarcimentoSaude.getServidor().getSiape();
+		}
+		if (implantado == 1) {
+			sql += "and rs.indImplantado = 1";
+		}
+		if (implantado == 2) {
+			sql += "and rs.indImplantado = 0";
+		}
+		Query query = HibernateUtility.getSession().createQuery(sql);
+		HibernateUtility.commitTransaction();
+		if (Constantes.NAO.equals(implantado)) {
+			return (List<RessarcimentoSaude>) query
+					.setMaxResults(
+							Constantes.RETORNO_MAXIMO_RESSARCIMENTOS_SAUDE_NAO_VALIDADOS)
+					.list();
+		}
+		return (List<RessarcimentoSaude>) query.list();
+	}
+	
+	@SuppressWarnings("unchecked")
+	public ArrayList<RessarcimentoSaudeContrato> getContratos(RessarcimentoSaude ressarcimentoSaude){
+		HibernateUtility.getSession().clear();
+		String sql;
+		sql = "from RessarcimentoSaudeContrato c where c.servidor.siape = "+ ressarcimentoSaude.getServidor().getSiape();
+		Query query = HibernateUtility.getSession().createQuery(sql);
+		HibernateUtility.commitTransaction();
+		return (ArrayList<RessarcimentoSaudeContrato>) query.list();
 	}
 }

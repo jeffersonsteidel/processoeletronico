@@ -7,6 +7,7 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
 
@@ -34,6 +35,9 @@ public class RessarcimentoSaudeController implements Serializable {
 	private List<Dependente> dependentes = new ArrayList<Dependente>();
 	private Boolean indParticular = false;
 	RessarcimentoSaudeContrato ressarcimentoSaudeContrato;
+	private Integer implantado;
+	private List<RessarcimentoSaude> ressarcimentoList = new ArrayList<RessarcimentoSaude>();
+	private RessarcimentoSaude ressarcimentoSaudeTemp;
 
 	public RessarcimentoSaude getRessarcimentoSaude() {
 		return ressarcimentoSaude;
@@ -74,7 +78,6 @@ public class RessarcimentoSaudeController implements Serializable {
 	public Boolean getIndParticular() {
 		return indParticular;
 	}
-	
 
 	public RessarcimentoSaudeContrato getRessarcimentoSaudeContrato() {
 		return ressarcimentoSaudeContrato;
@@ -83,6 +86,30 @@ public class RessarcimentoSaudeController implements Serializable {
 	public void setRessarcimentoSaudeContrato(
 			RessarcimentoSaudeContrato ressarcimentoSaudeContrato) {
 		this.ressarcimentoSaudeContrato = ressarcimentoSaudeContrato;
+	}
+
+	public Integer getImplantado() {
+		return implantado;
+	}
+
+	public void setImplantado(Integer implantado) {
+		this.implantado = implantado;
+	}
+
+	public List<RessarcimentoSaude> getRessarcimentoList() {
+		return ressarcimentoList;
+	}
+
+	public void setRessarcimentoList(List<RessarcimentoSaude> ressarcimentoList) {
+		this.ressarcimentoList = ressarcimentoList;
+	}
+	
+	public RessarcimentoSaude getRessarcimentoSaudeTemp() {
+		return ressarcimentoSaudeTemp;
+	}
+
+	public void setRessarcimentoSaudeTemp(RessarcimentoSaude ressarcimentoSaudeTemp) {
+		this.ressarcimentoSaudeTemp = ressarcimentoSaudeTemp;
 	}
 
 	public void abrirRessarcimentoSaude() {
@@ -94,8 +121,11 @@ public class RessarcimentoSaudeController implements Serializable {
 			buscarServidorLogado();
 			listarTipoPlano();
 			validarNomePlano();
-			conjuges = RessarcimentoSaudeDAO.getInstance().listarConjugePorServidor(ressarcimentoSaude.getServidor());
-			dependentes =  RessarcimentoSaudeDAO.getInstance().listarDependentePorServidor(ressarcimentoSaude.getServidor());
+			conjuges = RessarcimentoSaudeDAO.getInstance()
+					.listarConjugePorServidor(ressarcimentoSaude.getServidor());
+			dependentes = RessarcimentoSaudeDAO.getInstance()
+					.listarDependentePorServidor(
+							ressarcimentoSaude.getServidor());
 			if (null == dependentes) {
 				dependentes = new ArrayList<Dependente>();
 			}
@@ -137,25 +167,100 @@ public class RessarcimentoSaudeController implements Serializable {
 		ressarcimentoSaudeContrato.setPagina(item.getData());
 		ressarcimentoSaude.getFiles().add(ressarcimentoSaudeContrato);
 	}
-	
+
 	public void paint(OutputStream stream, Object object) throws Exception {
-		 if (ressarcimentoSaude.getFiles().size() > 0) {
-             stream.write(ressarcimentoSaude.getFiles().get((Integer) object)
-                             .getPagina());
-     }
+		if (ressarcimentoSaude.getFiles().size() > 0) {
+			stream.write(ressarcimentoSaude.getFiles().get((Integer) object)
+					.getPagina());
+		}
 	}
 
 	public void validarNomePlano() {
-		if (!Constantes.TIPO_PLANO_PARTICULAR.equals(ressarcimentoSaude.getTipoPlano().getCodigo())) {
+		if (!Constantes.TIPO_PLANO_PARTICULAR.equals(ressarcimentoSaude
+				.getTipoPlano().getCodigo())) {
 			this.setIndParticular(false);
 		} else {
 			this.setIndParticular(true);
 		}
 	}
-	
-	public void salvar (){
-		RessarcimentoSaudeDAO.getInstance().saveRessarcimentoSaude(ressarcimentoSaude, dependentes, conjuges);
+
+	public void salvar() {
+		ressarcimentoSaude.setIndImplantado(false);
+		RessarcimentoSaudeDAO.getInstance().saveRessarcimentoSaude(
+				ressarcimentoSaude, dependentes, conjuges);
 		this.setIndParticular(false);
-		this.ressarcimentoSaude.setFiles(new ArrayList<RessarcimentoSaudeContrato>());
+		this.ressarcimentoSaude
+				.setFiles(new ArrayList<RessarcimentoSaudeContrato>());
+	}
+
+	public void pesquisar() {
+		Boolean validacao = true;
+		if (Constantes.SIM.equals(implantado)
+				|| Constantes.TODOS.equals(implantado)) {
+			if (ressarcimentoSaudeTemp.getServidor().getSiape() == null
+					|| ressarcimentoSaudeTemp.getServidor().getSiape() == 0) {
+				validacao = false;
+				FacesMessage message = new FacesMessage(
+						FacesMessage.SEVERITY_ERROR,
+						"O campo Siape do Servidor é obrigatório!",
+						"O campo Siape do Servidor é obrigatório!");
+				FacesContext.getCurrentInstance().addMessage("", message);
+			}
+			if (ressarcimentoSaudeTemp.getTipoPlano().getCodigo() == null
+					|| ressarcimentoSaudeTemp.getTipoPlano().getCodigo() == 0) {
+				validacao = false;
+				FacesMessage message = new FacesMessage(
+						FacesMessage.SEVERITY_ERROR,
+						"O campo Tipo do Plano é obrigatório!",
+						"O campo Tipo do Plano é obrigatório!");
+				FacesContext.getCurrentInstance().addMessage("", message);
+			}
+
+		}
+		if (validacao) {
+			ressarcimentoList = RessarcimentoSaudeDAO.getInstance()
+					.listByFilter(ressarcimentoSaudeTemp, implantado);
+		}
+	}
+
+	public void carregar() {
+		FacesContext context = FacesContext.getCurrentInstance();
+		ressarcimentoSaude = (RessarcimentoSaude) context.getExternalContext()
+				.getRequestMap().get("list");
+		validarNomePlano();
+		ressarcimentoSaude.setFiles(RessarcimentoSaudeDAO.getInstance()
+				.getContratos(ressarcimentoSaude));
+	}
+
+	public void abrirListar() {
+		try {
+			ressarcimentoSaudeTemp = new RessarcimentoSaude();
+			ressarcimentoSaudeTemp.setServidor(new Servidor());
+			ressarcimentoSaudeTemp.setTipoPlano(new TipoPlano());
+			ressarcimentoList = new ArrayList<RessarcimentoSaude>();
+			ressarcimentoSaude = new RessarcimentoSaude();
+			ressarcimentoSaude.setServidor(new Servidor());
+			ressarcimentoSaude.setTipoPlano(new TipoPlano());
+			ressarcimentoSaude
+					.setFiles(new ArrayList<RessarcimentoSaudeContrato>());
+			listarTipoPlano();
+			implantado = 0;
+			FacesContext.getCurrentInstance().getExternalContext()
+					.redirect("listarRessarcimentoSaude.jsp");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void implantar() {
+		ressarcimentoSaude.setIndImplantado(true);
+		DAO.getInstance().update(ressarcimentoSaude);
+		ressarcimentoList = new ArrayList<RessarcimentoSaude>();
+		ressarcimentoSaude = new RessarcimentoSaude();
+		ressarcimentoSaude.setServidor(new Servidor());
+		ressarcimentoSaude.setTipoPlano(new TipoPlano());
+		ressarcimentoSaude
+				.setFiles(new ArrayList<RessarcimentoSaudeContrato>());
+		pesquisar();
 	}
 }
