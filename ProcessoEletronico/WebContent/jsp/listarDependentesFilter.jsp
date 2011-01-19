@@ -219,7 +219,7 @@
 			</h:panelGrid> <h:panelGrid columns="2">
 				<a4j:commandButton value="Validar"
 					action="#{dependenteController.validar}"
-					reRender="from, listaDependentes" />
+					reRender="form, listaDependentes" />
 				<a4j:commandButton value="Fechar"
 					onclick="#{rich:component('editPanel')}.hide();return false;" />
 			</h:panelGrid></center>

@@ -21,6 +21,7 @@ public class Constantes {
 	public static final Long ENSINO_MEDIO = 8L;
 	
 	public static final Integer RETORNO_MAXIMO_DOCUMENTOS_IMAGENS_NAO_VALIDADOS = 10;
+	public static final Integer RETORNO_MAXIMO_RESSARCIMENTOS_SAUDE_NAO_VALIDADOS = 10;
 	
 	public static final Long STATUS_SOLICITACAO_ENCAMINHADO = 1L;
 	public static final Long STATUS_SOLICITACAO_EM_ANALISE = 2L;

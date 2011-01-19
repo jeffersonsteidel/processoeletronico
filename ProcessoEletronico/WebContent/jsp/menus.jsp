@@ -180,6 +180,10 @@
 					value="Cadastrar Ressarcimento Saúde"
 					action="#{ressarcimentoSaudeController.abrirRessarcimentoSaude}"
 					icon="../images/ressarcimentoSaude.jpg" />
+				<rich:menuItem submitMode="ajax"
+					value="Pesquisar Ressarcimento Saúde"
+					action="#{ressarcimentoSaudeController.abrirListar}"
+					icon="../images/ressarcimentoSaude.jpg" />
 
 			</rich:dropDownMenu>
 			<rich:dropDownMenu>
