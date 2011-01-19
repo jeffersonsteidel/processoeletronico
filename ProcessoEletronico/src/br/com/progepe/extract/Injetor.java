@@ -138,7 +138,9 @@ public class Injetor {
 			servidor.getCargo().setCodigo(1L);
 			servidor.getPais().setCodigo(24L);
 			try{
-			DAO.getInstance().saveFitaEspelho(servidor);
+			if(servidor.getSiape() == 6343867 ){
+				DAO.getInstance().saveFitaEspelho(servidor);
+			}
 			}catch (Exception e) {
 				e.printStackTrace();
 			}
