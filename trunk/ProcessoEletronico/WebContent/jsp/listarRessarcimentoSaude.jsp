@@ -145,7 +145,7 @@
 								<a4j:mediaOutput element="img"
 									createContent="#{ressarcimentoSaudeController.paint}"
 									value="#{row}"
-									style="width:640px; height:480px; overflow:auto;"
+									style="width:600px; height:800px; overflow:auto;"
 									cacheable="false">
 								</a4j:mediaOutput>
 							</h:panelGrid>
