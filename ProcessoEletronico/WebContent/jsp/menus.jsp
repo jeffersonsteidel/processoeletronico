@@ -231,12 +231,12 @@
 				<rich:menuItem submitMode="ajax" value="Cadastrar Cargo"
 					action="#{cargoController.abrirCadastrarCargo}"
 					icon="../images/cadastrarCargo.gif" />
-				<rich:menuItem submitMode="ajax" value="Listar Cargos"
-					action="#{cargoController.abrirListarCargos}"
-					icon="../images/listarCargo.gif" />
 				<rich:menuItem submitMode="ajax" value="Cadastrar Lotação"
 					action="#{lotacaoController.abrirCadastrarLotacao}"
 					icon="../images/cadastrarLotacao.gif" />
+				<rich:menuItem submitMode="ajax" value="Listar Cargos"
+					action="#{cargoController.abrirListarCargos}"
+					icon="../images/listarCargo.gif" />
 				<rich:menuItem submitMode="ajax" value="Listar Lotações"
 					action="#{lotacaoController.abrirListarLotacoes}"
 					icon="../images/listarLotacao.gif" />

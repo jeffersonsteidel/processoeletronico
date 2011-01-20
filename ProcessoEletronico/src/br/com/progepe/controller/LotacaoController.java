@@ -50,7 +50,22 @@ public class LotacaoController implements Serializable {
 	public void setIndNovo(Boolean indNovo) {
 		this.indNovo = indNovo;
 	}
+	
+	public List<SelectItem> getEstados() {
+		return estados;
+	}
 
+	public void setEstados(List<SelectItem> estados) {
+		this.estados = estados;
+	}
+
+	public List<SelectItem> getCidades() {
+		return cidades;
+	}
+
+	public void setCidades(List<SelectItem> cidades) {
+		this.cidades = cidades;
+	}
 
 	@SuppressWarnings("unchecked")
 	public void abrirListarLotacoes() throws ParseException {
@@ -70,7 +85,12 @@ public class LotacaoController implements Serializable {
 	
 	public void abrirCadastrarLotacao() throws ParseException {
 		try {
+			indNovo = true;
 			lotacao = new Lotacao();
+			lotacao.setEndereco(new Endereco());
+			lotacao.getEndereco().setCidade(new Cidade());
+			lotacao.getEndereco().getCidade().setEstado(new Estado());		
+			listarEstados();
 			FacesContext.getCurrentInstance().getExternalContext()
 					.redirect("cadastrarLotacao.jsp");
 		} catch (IOException e) {
@@ -79,9 +99,12 @@ public class LotacaoController implements Serializable {
 	}
 	
 	public void carregar() throws IOException {
+		indNovo = false;
 		FacesContext context = FacesContext.getCurrentInstance();
 		lotacao = (Lotacao) context.getExternalContext().getRequestMap()
 				.get("list");
+		listarEstados();
+		listarCidades();
 		FacesContext.getCurrentInstance().getExternalContext()
 				.redirect("cadastrarLotacao.jsp");
 	}
@@ -111,8 +134,6 @@ public class LotacaoController implements Serializable {
 		return cidades;
 	}
 	
-	
-	
 	public void salvar() {
 		if (indNovo) {
 			DAO.getInstance().save(lotacao);
@@ -120,9 +141,9 @@ public class LotacaoController implements Serializable {
 			DAO.getInstance().update(lotacao);
 		}
 		lotacao = new Lotacao();
-		//lotacao.setClasse(new Classe());
-	}
-
-	
-
+		lotacao.setEndereco(new Endereco());
+		lotacao.getEndereco().setCidade(new Cidade());
+		lotacao.getEndereco().getCidade().setEstado(new Estado());		
+		lotacaoList = new ArrayList<Lotacao>();
+		}
 }

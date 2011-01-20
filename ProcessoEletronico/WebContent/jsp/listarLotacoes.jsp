@@ -39,7 +39,7 @@
 					</f:facet>
 					<h:outputText value="#{list.descricao}" />
 				</rich:column>
-				
+
 				<rich:column width="200px" sortBy="#{list.diretorAdministrativo}"
 					filterBy="#{list.descricao}" filterEvent="onkeyup">
 					<f:facet name="header">
@@ -47,7 +47,7 @@
 					</f:facet>
 					<h:outputText value="#{list.diretorAdministrativo}" />
 				</rich:column>
-				
+
 				<rich:column width="200px" sortBy="#{list.diretorGeral}"
 					filterBy="#{list.descricao}" filterEvent="onkeyup">
 					<f:facet name="header">
@@ -55,16 +55,17 @@
 					</f:facet>
 					<h:outputText value="#{list.diretorGeral}" />
 				</rich:column>
-				
+
 				<rich:column width="200px" sortBy="#{list.endereco}"
 					filterBy="#{list.descricao}" filterEvent="onkeyup">
 					<f:facet name="header">
 						<h:outputText value="Endereço" />
 					</f:facet>
-					<h:outputText value="#{list.endereco}" />
+					<h:outputText rendered="#{list.endereco.rua != null}"
+						value="#{list.endereco.rua}, #{endereco.numero} - #{endereco.bairro}
+					 - #{endereco.complemento}- #{endereco.cep} - #{endereco.cidade.descricao}" />
+					<h:outputText rendered="#{list.endereco.rua == null}" value="" />
 				</rich:column>
-				
-				
 
 				<rich:column width="50px">
 					<f:facet name="header">
@@ -76,6 +77,8 @@
 							width="20" height="18" id="editar" />
 						<f:setPropertyActionListener value="#{list.codigo}"
 							target="#{lotacaoController.lotacao.codigo}" />
+						<f:setPropertyActionListener value="#{list.endereco.cidade.estado.codigo}"
+							target="#{lotacaoController.lotacao.endereco.cidade.estado.codigo}" />
 					</a4j:commandLink>
 					<rich:toolTip for="editar" value="Editar" />
 				</rich:column>
