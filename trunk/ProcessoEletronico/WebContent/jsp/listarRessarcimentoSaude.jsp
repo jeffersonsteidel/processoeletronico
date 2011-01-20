@@ -129,7 +129,6 @@
 			<h:panelGrid columns="1">
 			<br>
 				<h:outputText value="Servidor: #{ressarcimentoSaudeController.ressarcimentoSaude.servidor.siape} - #{ressarcimentoSaudeController.ressarcimentoSaude.servidor.nome}" />
-			<br>
 				<h:outputText value="Tipo do Plano: #{ressarcimentoSaudeController.ressarcimentoSaude.tipoPlano.descricao}"/>
 				<h:outputText value="Nome do Plano: #{ressarcimentoSaudeController.ressarcimentoSaude.nomePlano}" rendered="#{ressarcimentoSaudeController.indParticular}"/>
 				<h:outputText value="Numero do Contrato: #{ressarcimentoSaudeController.ressarcimentoSaude.numeroContrato}"/>
