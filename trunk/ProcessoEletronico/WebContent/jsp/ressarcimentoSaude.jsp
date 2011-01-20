@@ -48,17 +48,19 @@
 
 				<h:outputText value="Nome do Plano: " id="nomePlanoOutput"
 					rendered="#{ressarcimentoSaudeController.indParticular}" />
-				<h:inputText id="nomePlano" required="true" requiredMessage="O campo Nome do Plano é obrigatório!"
+				<h:inputText id="nomePlano" required="true" maxlength="100"
+					requiredMessage="O campo Nome do Plano é obrigatório!"
 					value="#{ressarcimentoSaudeController.ressarcimentoSaude.nomePlano}"
 					rendered="#{ressarcimentoSaudeController.indParticular}" />
 				<h:outputText value="Numero do Contrato: " />
-				<h:inputText required="true"
+				<h:inputText required="true" maxlength="15"
 					requiredMessage="O campo Numero do Contrato é obrigatório!"
 					value="#{ressarcimentoSaudeController.ressarcimentoSaude.numeroContrato}" />
 			</h:panelGrid>
 
 			<br>
-			<h:outputText value="Selecione o Cônjuge para adiciona-lo(a) no plano"
+			<h:outputText
+				value="Selecione o Cônjuge para adiciona-lo(a) no plano"
 				rendered="#{not empty ressarcimentoSaudeController.conjuges}" />
 			<br>
 			<rich:dataTable id="listarConjugesSolicitante"
@@ -167,7 +169,7 @@
 								<a4j:mediaOutput element="img"
 									createContent="#{ressarcimentoSaudeController.paint}"
 									value="#{row}"
-									style="width:640px; height:480px; overflow:auto;"
+									style="width:600px; height:800px; overflow:auto;"
 									cacheable="false">
 								</a4j:mediaOutput>
 							</h:panelGrid>
