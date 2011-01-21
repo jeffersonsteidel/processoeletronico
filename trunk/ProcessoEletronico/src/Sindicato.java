@@ -3,12 +3,12 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.text.ParseException;
 
-public class TESTE {
+public class Sindicato {
 
 	public static void main(String[] args) throws ParseException {
 		try {
 			BufferedReader br = new BufferedReader(new FileReader(
-					"C://TESTE.txt"));
+					"C://SINDICATO.txt"));
 			while (br.ready()) {
 				String linha = br.readLine();
 				if (linha.length() > 96 && (!(linha.contains("Benef. Nome")) && !(linha.contains("Id.")))) {

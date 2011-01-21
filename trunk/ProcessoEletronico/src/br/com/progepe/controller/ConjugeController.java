@@ -184,7 +184,7 @@ public class ConjugeController implements Serializable {
 			conjugeList.add(conjuge);
 		}
 		for (Conjuge item : conjugeList) {
-			if (item.getCodigo().equals(conjuge.getCodigo())) {
+			if (conjuge.getCodigo() != null &&  item.getCodigo().equals(conjuge.getCodigo())) {
 				item = conjuge;
 			}
 			if(item.getAtual()){
@@ -211,6 +211,7 @@ public class ConjugeController implements Serializable {
 					"Você já possui um cônjuge na condição atual, por favor edite o registro para cadastrar um novo cônjuge!",
 					"Você já possui um cônjuge na condição atual, por favor edite o registro para cadastrar um novo cônjuge!");
 			FacesContext.getCurrentInstance().addMessage("", message);
+			conjugeList.remove(conjuge);
 		}
 	}
 
