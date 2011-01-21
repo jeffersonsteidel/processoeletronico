@@ -84,7 +84,7 @@ public class RessarcimentoSaudeDAO extends DAO {
 
 	@SuppressWarnings("unchecked")
 	public List<RessarcimentoSaude> listByFilter(
-			RessarcimentoSaude ressarcimentoSaude, Integer implantado) {
+			RessarcimentoSaude ressarcimentoSaude, Integer implantado, Integer situacao) {
 		HibernateUtility.getSession().clear();
 		String sql;
 		sql = "from RessarcimentoSaude rs where 1= 1 ";
@@ -104,6 +104,13 @@ public class RessarcimentoSaudeDAO extends DAO {
 		if (implantado == 2) {
 			sql += "and rs.indImplantado = 0";
 		}
+		if (situacao == 1) {
+			sql += " and rs.servidor.dataSaida is null";
+		}
+		if (situacao == 2) {
+			sql += " and rs.servidor.dataSaida is not null";
+		}
+		
 		Query query = HibernateUtility.getSession().createQuery(sql);
 		HibernateUtility.commitTransaction();
 		if (Constantes.NAO.equals(implantado)) {

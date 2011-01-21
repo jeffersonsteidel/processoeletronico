@@ -89,20 +89,20 @@
 
 				<h:outputText value="Telefone: " />
 				<h:inputText
-					requiredMessage="Campo Descrição do Telefone é obrigatório!"
+					requiredMessage="Campo Telefone é obrigatório!"
 					required="true" value="#{lotacaoController.lotacao.telefone}"
 					onkeypress="mascara(this, telefone);"
 					size="20" maxlength="13"></h:inputText>
 
 				<h:outputText value="Email: " />
 				<h:inputText
-					requiredMessage="Campo Descrição do E-mail é obrigatório!"
+					requiredMessage="Campo E-mail é obrigatório!"
 					required="true" value="#{lotacaoController.lotacao.email}"
 					size="70" maxlength="120"></h:inputText>
 
 				<h:outputText value="Site: " />
 				<h:inputText
-					requiredMessage="Campo Descrição do Site é obrigatório!"
+					requiredMessage="Campo Site é obrigatório!"
 					required="true" value="#{lotacaoController.lotacao.site}" size="90"
 					maxlength="130"></h:inputText>
 
