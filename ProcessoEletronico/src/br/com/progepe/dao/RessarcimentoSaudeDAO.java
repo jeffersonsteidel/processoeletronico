@@ -152,4 +152,15 @@ public class RessarcimentoSaudeDAO extends DAO {
 		HibernateUtility.commitTransaction();
 		return (ArrayList<RessarcimentoSaudeContrato>) query.list();
 	}
+
+	@SuppressWarnings("unchecked")
+	public List<RessarcimentoSaude> recuperarRessarcimentosAnteriores(
+			Servidor servidor) {
+		HibernateUtility.getSession().clear();
+		String sql = "from RessarcimentoSaude rs where rs.servidor.codigo = "
+				+ servidor.getCodigo();
+		Query query = HibernateUtility.getSession().createQuery(sql);
+		HibernateUtility.commitTransaction();
+		return (List<RessarcimentoSaude>) query.list();
+	}
 }

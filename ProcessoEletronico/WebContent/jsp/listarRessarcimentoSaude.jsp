@@ -253,17 +253,17 @@
 			</h:panelGroup> 
 				<h:panelGrid columns="2">
 				<h:outputText value="Justificativa: " />
-				<h:inputTextarea disabled="#{ressarcimentoSaudeController.ressarcimentoSaude.status.codigo != 2}"
+				<h:inputTextarea disabled="#{!ressarcimentoSaudeController.botaoHabilitado}"
 					value="#{ressarcimentoSaudeController.ressarcimentoSaude.justificativa}"
-					cols="50" rows="5"></h:inputTextarea>
+					cols="50" rows="5" id="justificativa"></h:inputTextarea>
 			</h:panelGrid>
-			<h:panelGrid columns="2">
-				<a4j:commandButton value="Deferir"
-					action="#{ressarcimentoSaudeController.deferir}" rendered="#{ressarcimentoSaudeController.ressarcimentoSaude.status.codigo ==2}"
-					reRender="listaRessarcimento" />
-				<a4j:commandButton value="Indeferir" rendered="#{ressarcimentoSaudeController.ressarcimentoSaude.status.codigo ==2}"
-					action="#{ressarcimentoSaudeController.indeferir}"
-					reRender="listaRessarcimento" />
+			<h:panelGrid columns="3">
+				<a4j:commandButton value="Deferir" id="deferir"
+					action="#{ressarcimentoSaudeController.deferir}" disabled="#{!ressarcimentoSaudeController.botaoHabilitado}"
+					reRender="listaRessarcimento, deferir, indeferir, justificativa" />
+				<a4j:commandButton value="Indeferir" disabled="#{!ressarcimentoSaudeController.botaoHabilitado}"
+					action="#{ressarcimentoSaudeController.indeferir}" id="indeferir"
+					reRender="listaRessarcimento, deferir, indeferir, justificativa" />
 				<a4j:commandButton value="Fechar"
 					onclick="#{rich:component('editPanel')}.hide();return false;" />
 			</h:panelGrid></center>

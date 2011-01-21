@@ -40,6 +40,9 @@ public class RessarcimentoSaudeController implements Serializable {
 	private RessarcimentoSaude ressarcimentoSaudeTemp;
 	private Integer situacao;
 	private List<SelectItem> status = new ArrayList<SelectItem>();
+	private Boolean botaoHabilitado = false;
+	private RessarcimentoSaude ressarcimentoAnterior;
+	private Boolean existeAnterior;
 
 	public RessarcimentoSaude getRessarcimentoSaude() {
 		return ressarcimentoSaude;
@@ -114,7 +117,6 @@ public class RessarcimentoSaudeController implements Serializable {
 	public void setSituacao(Integer situacao) {
 		this.situacao = situacao;
 	}
-	
 
 	public List<SelectItem> getStatus() {
 		return status;
@@ -124,8 +126,34 @@ public class RessarcimentoSaudeController implements Serializable {
 		this.status = status;
 	}
 
+	public Boolean getBotaoHabilitado() {
+		return botaoHabilitado;
+	}
+
+	public void setBotaoHabilitado(Boolean botaoHabilitado) {
+		this.botaoHabilitado = botaoHabilitado;
+	}
+
+	public RessarcimentoSaude getRessarcimentoAnterior() {
+		return ressarcimentoAnterior;
+	}
+
+	public void setRessarcimentoAnterior(
+			RessarcimentoSaude ressarcimentoAnterior) {
+		this.ressarcimentoAnterior = ressarcimentoAnterior;
+	}
+
+	public Boolean getExisteAnterior() {
+		return existeAnterior;
+	}
+
+	public void setExisteAnterior(Boolean existeAnterior) {
+		this.existeAnterior = existeAnterior;
+	}
+
 	public void abrirRessarcimentoSaude() {
 		try {
+			existeAnterior = false;
 			this.setDependentes(new ArrayList<Dependente>());
 			this.setConjuges(new ArrayList<Conjuge>());
 			ressarcimentoSaude = new RessarcimentoSaude();
@@ -134,6 +162,18 @@ public class RessarcimentoSaudeController implements Serializable {
 			buscarServidorLogado();
 			listarTipoPlano();
 			validarNomePlano();
+			List<RessarcimentoSaude> ressarcimentoList = RessarcimentoSaudeDAO
+					.getInstance().recuperarRessarcimentosAnteriores(
+							ressarcimentoSaude.getServidor());
+			if (ressarcimentoList != null && !ressarcimentoList.isEmpty()) {
+				existeAnterior = true;
+				ressarcimentoAnterior = ressarcimentoList.get(0);
+				for(RessarcimentoSaude ressarcimento: ressarcimentoList){
+					if(ressarcimento.getCodigo()>ressarcimentoAnterior.getCodigo()){
+						ressarcimentoAnterior=ressarcimento;
+					}
+				}
+			}
 			conjuges = RessarcimentoSaudeDAO.getInstance()
 					.listarConjugePorServidor(ressarcimentoSaude.getServidor(),
 							false);
@@ -215,8 +255,8 @@ public class RessarcimentoSaudeController implements Serializable {
 
 	public void pesquisar() {
 		Boolean validacao = true;
-		if (!Constantes.STATUS_SOLICITACAO_ENCAMINHADO.equals(ressarcimentoSaudeTemp.getStatus().getCodigo())
-				) {
+		if (!Constantes.STATUS_SOLICITACAO_ENCAMINHADO
+				.equals(ressarcimentoSaudeTemp.getStatus().getCodigo())) {
 			if (ressarcimentoSaudeTemp.getServidor().getSiape() == null
 					|| ressarcimentoSaudeTemp.getServidor().getSiape() == 0) {
 				validacao = false;
@@ -247,11 +287,13 @@ public class RessarcimentoSaudeController implements Serializable {
 		FacesContext context = FacesContext.getCurrentInstance();
 		ressarcimentoSaude = (RessarcimentoSaude) context.getExternalContext()
 				.getRequestMap().get("list");
-		if (ressarcimentoSaude.getStatus() != null
-				&& ressarcimentoSaude.getStatus().getCodigo() == 1L) {
+		botaoHabilitado = false;
+		if (Constantes.STATUS_SOLICITACAO_ENCAMINHADO.equals(ressarcimentoSaude
+				.getStatus().getCodigo())) {
 			ressarcimentoSaude.setStatus(new StatusSolicitacao());
 			ressarcimentoSaude.getStatus().setCodigo(
 					Constantes.STATUS_SOLICITACAO_EM_ANALISE);
+			botaoHabilitado = true;
 		}
 		validarNomePlano();
 		conjuges.clear();
@@ -310,6 +352,7 @@ public class RessarcimentoSaudeController implements Serializable {
 		ressarcimentoSaude
 				.setFiles(new ArrayList<RessarcimentoSaudeContrato>());
 		pesquisar();
+		botaoHabilitado = false;
 	}
 
 	public void indeferir() {
@@ -318,14 +361,10 @@ public class RessarcimentoSaudeController implements Serializable {
 				Constantes.STATUS_SOLICITACAO_INDEFERIDO);
 		DAO.getInstance().update(ressarcimentoSaude);
 		ressarcimentoList = new ArrayList<RessarcimentoSaude>();
-		ressarcimentoSaude = new RessarcimentoSaude();
-		ressarcimentoSaude.setServidor(new Servidor());
-		ressarcimentoSaude.setTipoPlano(new TipoPlano());
-		ressarcimentoSaude.setStatus(new StatusSolicitacao());
-		ressarcimentoSaude
-				.setFiles(new ArrayList<RessarcimentoSaudeContrato>());
 		pesquisar();
+		botaoHabilitado = false;
 	}
+
 	@SuppressWarnings("unchecked")
 	public List<SelectItem> listarStatus() {
 		status = new ArrayList<SelectItem>();
@@ -333,10 +372,10 @@ public class RessarcimentoSaudeController implements Serializable {
 		statusSolicitacoesList = DAO.getInstance().list(
 				StatusSolicitacao.class, "descricao");
 		for (StatusSolicitacao statusSolicitacao : statusSolicitacoesList) {
-			status.add(new SelectItem(
-					statusSolicitacao.getCodigo(), statusSolicitacao
-							.getDescricao()));
+			status.add(new SelectItem(statusSolicitacao.getCodigo(),
+					statusSolicitacao.getDescricao()));
 		}
 		return status;
 	}
+
 }
