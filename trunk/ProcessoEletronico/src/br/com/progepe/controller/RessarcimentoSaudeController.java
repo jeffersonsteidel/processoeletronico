@@ -38,6 +38,7 @@ public class RessarcimentoSaudeController implements Serializable {
 	private Integer implantado;
 	private List<RessarcimentoSaude> ressarcimentoList = new ArrayList<RessarcimentoSaude>();
 	private RessarcimentoSaude ressarcimentoSaudeTemp;
+	private Integer situacao;
 
 	public RessarcimentoSaude getRessarcimentoSaude() {
 		return ressarcimentoSaude;
@@ -103,13 +104,22 @@ public class RessarcimentoSaudeController implements Serializable {
 	public void setRessarcimentoList(List<RessarcimentoSaude> ressarcimentoList) {
 		this.ressarcimentoList = ressarcimentoList;
 	}
-	
+
 	public RessarcimentoSaude getRessarcimentoSaudeTemp() {
 		return ressarcimentoSaudeTemp;
 	}
 
-	public void setRessarcimentoSaudeTemp(RessarcimentoSaude ressarcimentoSaudeTemp) {
+	public void setRessarcimentoSaudeTemp(
+			RessarcimentoSaude ressarcimentoSaudeTemp) {
 		this.ressarcimentoSaudeTemp = ressarcimentoSaudeTemp;
+	}
+	
+	public Integer getSituacao() {
+		return situacao;
+	}
+
+	public void setSituacao(Integer situacao) {
+		this.situacao = situacao;
 	}
 
 	public void abrirRessarcimentoSaude() {
@@ -189,6 +199,8 @@ public class RessarcimentoSaudeController implements Serializable {
 		RessarcimentoSaudeDAO.getInstance().saveRessarcimentoSaude(
 				ressarcimentoSaude, dependentes, conjuges);
 		this.setIndParticular(false);
+		ressarcimentoSaude = new RessarcimentoSaude();
+		ressarcimentoSaude.setTipoPlano(new TipoPlano());
 		this.ressarcimentoSaude
 				.setFiles(new ArrayList<RessarcimentoSaudeContrato>());
 	}
@@ -219,7 +231,7 @@ public class RessarcimentoSaudeController implements Serializable {
 		}
 		if (validacao) {
 			ressarcimentoList = RessarcimentoSaudeDAO.getInstance()
-					.listByFilter(ressarcimentoSaudeTemp, implantado);
+					.listByFilter(ressarcimentoSaudeTemp, implantado, situacao);
 		}
 	}
 
@@ -234,6 +246,7 @@ public class RessarcimentoSaudeController implements Serializable {
 
 	public void abrirListar() {
 		try {
+			situacao = Constantes.TODOS;
 			ressarcimentoSaudeTemp = new RessarcimentoSaude();
 			ressarcimentoSaudeTemp.setServidor(new Servidor());
 			ressarcimentoSaudeTemp.setTipoPlano(new TipoPlano());
@@ -244,7 +257,7 @@ public class RessarcimentoSaudeController implements Serializable {
 			ressarcimentoSaude
 					.setFiles(new ArrayList<RessarcimentoSaudeContrato>());
 			listarTipoPlano();
-			implantado = 0;
+			implantado = Constantes.TODOS;
 			FacesContext.getCurrentInstance().getExternalContext()
 					.redirect("listarRessarcimentoSaude.jsp");
 		} catch (IOException e) {
