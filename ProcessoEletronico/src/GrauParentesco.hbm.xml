@@ -5,8 +5,9 @@
 <hibernate-mapping>
 	<class name="br.com.progepe.entity.GrauParentesco" table="GRAUPARENTESCO">
 		<id name="codigo" column="GRAU_PAR_COD">
-			<generator class="increment"></generator>  
+			<generator class="increment"></generator>
 		</id>
 		<property name="descricao" column="GRAU_PAR_DESC" />
+		<property name="indSaude" column="GRAU_PAR_IND_SAUDE" type="boolean" />
 	</class>
 </hibernate-mapping>

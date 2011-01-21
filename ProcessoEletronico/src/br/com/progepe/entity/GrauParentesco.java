@@ -9,6 +9,7 @@ public class GrauParentesco implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private Long codigo;
 	private String descricao;
+	private Boolean indSaude; 
 
 	public Long getCodigo() {
 		return codigo;
@@ -25,4 +26,13 @@ public class GrauParentesco implements Serializable {
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
+
+	public Boolean getIndSaude() {
+		return indSaude;
+	}
+
+	public void setIndSaude(Boolean indSaude) {
+		this.indSaude = indSaude;
+	}
+	
 }
