@@ -40,11 +40,11 @@
 					<f:selectItems value="#{ressarcimentoSaudeController.tiposPlanos}" />
 				</h:selectOneMenu>
 
-				<h:outputText value="Implantado:" />
-				<h:selectOneMenu value="#{ressarcimentoSaudeController.implantado}">
-					<f:selectItem itemLabel="TODOS" itemValue="0" />
-					<f:selectItem itemLabel="SIM" itemValue="1" />
-					<f:selectItem itemLabel="NÃO" itemValue="2" />
+				<h:outputText value="Status: " />
+				<h:selectOneMenu
+					value="#{ressarcimentoSaudeController.ressarcimentoSaudeTemp.status.codigo}">
+					<f:selectItem itemLabel="SELECIONE" itemValue="" />
+					<f:selectItems value="#{ressarcimentoSaudeController.status}" />
 				</h:selectOneMenu>
 
 				<h:outputText value="Situação: " />
@@ -85,29 +85,58 @@
 					<h:outputText value="#{list.nomePlano}" />
 				</rich:column>
 
-				<rich:column width="100px">
+			<rich:column width="240px"
+					sortBy="#{list.status.descricao}">
 					<f:facet name="header">
-						<h:outputText value="Implantado" />
+						<h:outputText value="Status" />
 					</f:facet>
-					<h:outputText value="SIM" rendered="#{list.indImplantado}" />
-					<h:outputText value="NÃO" rendered="#{!list.indImplantado}" />
+					<h:outputText value="#{list.status.descricao}" />
 				</rich:column>
 
 				<rich:column>
 					<f:facet name="header">
 						<h:outputText value="Visualizar" />
 					</f:facet>
-					<a4j:commandLink action="#{ressarcimentoSaudeController.carregar}"
+					<a4j:commandLink rendered="#{list.status.codigo == 1}" 
+					action="#{ressarcimentoSaudeController.carregar}"
 						reRender="editPanel" ajaxSingle="true"
 						oncomplete="#{rich:component('editPanel')}.show()">
-						<h:graphicImage value="../images/edit.gif" style="border:0"
-							width="20" height="18" id="editar" />
+						<h:graphicImage value="../images/encaminhado.png" style="border:0"
+							width="20" height="18" id="encaminhado" />
 						<f:setPropertyActionListener value="#{list.codigo}"
 							target="#{ressarcimentoSaudeController.ressarcimentoSaude.codigo}" />
 					</a4j:commandLink>
-					<rich:toolTip for="editar" value="Editar" />
+					<a4j:commandLink rendered="#{list.status.codigo == 2}"
+						action="#"
+						reRender="listaSolicitacoes" ajaxSingle="true">
+						<h:graphicImage value="../images/analize.gif" style="border:0"
+							width="20" height="18" id="emAnalise" />
+						</a4j:commandLink>
+					<a4j:commandLink rendered="#{list.status.codigo == 3}" 
+					action="#{ressarcimentoSaudeController.carregar}"
+						reRender="editPanel" ajaxSingle="true"
+						oncomplete="#{rich:component('editPanel')}.show()">
+						<h:graphicImage value="../images/deferido.gif" style="border:0"
+							width="20" height="18" id="deferido" />
+						<f:setPropertyActionListener value="#{list.codigo}"
+							target="#{ressarcimentoSaudeController.ressarcimentoSaude.codigo}" />
+					</a4j:commandLink>
+					<a4j:commandLink rendered="#{list.status.codigo == 4}" 
+					action="#{ressarcimentoSaudeController.carregar}"
+						reRender="editPanel" ajaxSingle="true"
+						oncomplete="#{rich:component('editPanel')}.show()">
+						<h:graphicImage value="../images/indeferido.gif" style="border:0"
+							width="20" height="18" id="indeferido" />
+						<f:setPropertyActionListener value="#{list.codigo}"
+							target="#{ressarcimentoSaudeController.ressarcimentoSaude.codigo}" />
+					</a4j:commandLink>
+					<rich:toolTip for="encaminhado" value="Encaminhado" />
+					<rich:toolTip for="emAnalise" value="Você não pode abrir uma solicitação que está em Análise!" />
+					<rich:toolTip for="deferido" value="Deferido" />
+					<rich:toolTip for="indeferido" value="Indeferido" />
 				</rich:column>
-
+				
+				
 				<f:facet name="footer">
 					<rich:datascroller id="ds"></rich:datascroller>
 				</f:facet>
@@ -222,8 +251,11 @@
 					</rich:dataGrid>
 				</rich:panel>
 			</h:panelGroup> <h:panelGrid columns="2">
-				<a4j:commandButton value="Implantar"
-					action="#{ressarcimentoSaudeController.implantar}"
+				<a4j:commandButton value="Deferir"
+					action="#{ressarcimentoSaudeController.deferir}" rendered="#{ressarcimentoSaudeController.ressarcimentoSaude.status.codigo ==2}"
+					reRender="listaRessarcimento" />
+				<a4j:commandButton value="Indeferir" rendered="#{ressarcimentoSaudeController.ressarcimentoSaude.status.codigo ==2}"
+					action="#{ressarcimentoSaudeController.indeferir}"
 					reRender="listaRessarcimento" />
 				<a4j:commandButton value="Fechar"
 					onclick="#{rich:component('editPanel')}.hide();return false;" />

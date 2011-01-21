@@ -7,8 +7,6 @@
 		<id name="codigo" column="RES_SAU_COD">
 			<generator class="increment"></generator>
 		</id>
-		<property name="indImplantado" column="RES_SAU_IND_IMPLANTADO"
-			type="boolean" />
 		<property name="nomePlano" column="RES_SAU_NOME_PLANO" />
 		<property name="numeroContrato" column="RES_SAU_NUM_CONT" />
 		<property name="dataAdesao" column="RES_SAU_DT_ADESAO" />
@@ -16,5 +14,7 @@
 			column="TIP_PLA_COD" lazy="false" />
 		<many-to-one name="servidor" class="br.com.progepe.entity.Servidor"
 			column="SERV_COD" lazy="false" />
+		<many-to-one name="status" class="br.com.progepe.entity.StatusSolicitacao"
+			column="STA_SOLIC_COD" lazy="false" />
 	</class>
 </hibernate-mapping>
