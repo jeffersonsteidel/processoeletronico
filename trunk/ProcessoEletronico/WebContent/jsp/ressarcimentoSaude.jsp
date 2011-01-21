@@ -32,7 +32,40 @@
 					value="#{ressarcimentoSaudeController.ressarcimentoSaude.servidor.siape} - #{ressarcimentoSaudeController.ressarcimentoSaude.servidor.nome}">
 				</h:outputText>
 			</h:panelGrid>
+			<h:panelGrid>
+				<center><h:outputText
+					value="Ultimo Ressarcimento Cadastrado"
+					rendered="#{ressarcimentoSaudeController.existeAnterior}" /></center>
+			</h:panelGrid>
+			<h:panelGrid columns="8">
 
+				<h:outputText value="Tipo do Plano: "
+					rendered="#{ressarcimentoSaudeController.existeAnterior}" />
+				<h:outputText
+					rendered="#{ressarcimentoSaudeController.existeAnterior}"
+					value="#{ressarcimentoSaudeController.ressarcimentoAnterior.tipoPlano.descricao}" />
+
+				<h:outputText value="Nome do Plano: "
+					rendered="#{ressarcimentoSaudeController.existeAnterior}" />
+				<h:outputText
+					rendered="#{ressarcimentoSaudeController.existeAnterior}"
+					value="#{ressarcimentoSaudeController.ressarcimentoAnterior.nomePlano}" />
+				<h:outputText value="Numero do Contrato: "
+					rendered="#{ressarcimentoSaudeController.existeAnterior}" />
+				<h:outputText
+					value="#{ressarcimentoSaudeController.ressarcimentoAnterior.numeroContrato}"
+					rendered="#{ressarcimentoSaudeController.existeAnterior}" />
+				<h:outputText value="Data de Adesão: "
+					rendered="#{ressarcimentoSaudeController.existeAnterior}" />
+				<h:outputText
+					rendered="#{ressarcimentoSaudeController.existeAnterior}"
+					value="#{ressarcimentoSaudeController.ressarcimentoAnterior.dataAdesao}">
+					<f:convertDateTime pattern="dd/MM/yyyy" />
+				</h:outputText>
+			</h:panelGrid>
+			<h:panelGrid rendered="#{ressarcimentoSaudeController.existeAnterior}">
+				<center><h:outputText value="Novo Ressarcimento" /></center>
+			</h:panelGrid>
 			<h:panelGrid id="grid" columns="8">
 
 				<h:outputText value="Tipo do Plano: " />
@@ -58,11 +91,11 @@
 					value="#{ressarcimentoSaudeController.ressarcimentoSaude.numeroContrato}" />
 				<h:outputText value="Data de Adesão: " />
 				<rich:calendar required="true"
-						requiredMessage="Campo Data de Adesão é Obrigatório!"
-						value="#{ressarcimentoSaudeController.ressarcimentoSaude.dataAdesao}" locale=""
-						popup="true" datePattern="dd/MM/yyyy" showApplyButton="#"
-						cellWidth="12px" cellHeight="12px" style="width:80px"
-						inputSize="12" />
+					requiredMessage="Campo Data de Adesão é Obrigatório!"
+					value="#{ressarcimentoSaudeController.ressarcimentoSaude.dataAdesao}"
+					locale="" popup="true" datePattern="dd/MM/yyyy" showApplyButton="#"
+					cellWidth="12px" cellHeight="12px" style="width:80px"
+					inputSize="12" />
 			</h:panelGrid>
 
 			<br>
