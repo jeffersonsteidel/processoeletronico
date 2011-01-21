@@ -201,6 +201,9 @@ public class DependenteController implements Serializable {
 	}
 	
 	public void validar(){
+		if (null == dependente.getRgUf().getCodigo() ||  Constantes.ZERO.equals(dependente.getRgUf().getCodigo())) {
+			dependente.setRgUf(null);
+		}
 		dependente.setIndValidado(Boolean.TRUE);
 		DAO.getInstance().update(dependente);
 		dependente = new Dependente();
