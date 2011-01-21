@@ -30,12 +30,13 @@ public class RessarcimentoSaudeDAO extends DAO {
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<Dependente> listarDependentePorServidor(Servidor servidor, Boolean validar) {
+	public List<Dependente> listarDependentePorServidor(Servidor servidor,
+			Boolean validar) {
 		HibernateUtility.getSession().clear();
 		HibernateUtility.beginTransaction();
 		String sql = "from Dependente d LEFT JOIN FETCH d.servidor s WHERE d.indValidado = 1 and d.grauParentesco.indSaude = 1 and s.siape = "
 				+ servidor.getSiape();
-		if(validar){
+		if (validar) {
 			sql += " and d.indRessarcimentoSaude = 1";
 		}
 		Query query = HibernateUtility.getSession().createQuery(sql);
@@ -44,12 +45,13 @@ public class RessarcimentoSaudeDAO extends DAO {
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<Conjuge> listarConjugePorServidor(Servidor servidor, Boolean validar) {
+	public List<Conjuge> listarConjugePorServidor(Servidor servidor,
+			Boolean validar) {
 		HibernateUtility.getSession().clear();
 		HibernateUtility.beginTransaction();
 		String sql = "from Conjuge c LEFT JOIN FETCH c.servidor s WHERE c.indValidado = 1 and s.siape = "
 				+ servidor.getSiape();
-		if(validar){
+		if (validar) {
 			sql += " and c.indRessarcimentoSaude = 1";
 		}
 		Query query = HibernateUtility.getSession().createQuery(sql);
@@ -105,19 +107,30 @@ public class RessarcimentoSaudeDAO extends DAO {
 			sql += " and rs.servidor.siape = "
 					+ ressarcimentoSaude.getServidor().getSiape();
 		}
-		if (ressarcimentoSaude.getStatus()!=null && ressarcimentoSaude.getStatus().getCodigo() == 1L) {
+		if (situacao == 1) {
+			sql += " and rs.servidor.dataSaida is null";
+		}
+		if (situacao == 2) {
+			sql += " and rs.servidor.dataSaida is not null";
+		}
+		if (ressarcimentoSaude.getStatus() != null
+				&& ressarcimentoSaude.getStatus().getCodigo() == 1L) {
 			sql += "and rs.status.codigo = 1";
-		}else if (ressarcimentoSaude.getStatus()!=null && ressarcimentoSaude.getStatus().getCodigo() == 2L) {
+		} else if (ressarcimentoSaude.getStatus() != null
+				&& ressarcimentoSaude.getStatus().getCodigo() == 2L) {
 			sql += "and rs.status.codigo = 2";
-		}else if (ressarcimentoSaude.getStatus()!=null && ressarcimentoSaude.getStatus().getCodigo() == 3L) {
+		} else if (ressarcimentoSaude.getStatus() != null
+				&& ressarcimentoSaude.getStatus().getCodigo() == 3L) {
 			sql += "and rs.status.codigo = 3";
-		}else if (ressarcimentoSaude.getStatus()!=null && ressarcimentoSaude.getStatus().getCodigo() == 4L) {
+		} else if (ressarcimentoSaude.getStatus() != null
+				&& ressarcimentoSaude.getStatus().getCodigo() == 4L) {
 			sql += "and rs.status.codigo = 4";
 		}
-		
+
 		Query query = HibernateUtility.getSession().createQuery(sql);
 		HibernateUtility.commitTransaction();
-		if (Constantes.STATUS_SOLICITACAO_ENCAMINHADO.equals(ressarcimentoSaude.getStatus().getCodigo())) {
+		if (Constantes.STATUS_SOLICITACAO_ENCAMINHADO.equals(ressarcimentoSaude
+				.getStatus().getCodigo())) {
 			return (List<RessarcimentoSaude>) query
 					.setMaxResults(
 							Constantes.RETORNO_MAXIMO_RESSARCIMENTOS_SAUDE_NAO_VALIDADOS)
@@ -125,13 +138,16 @@ public class RessarcimentoSaudeDAO extends DAO {
 		}
 		return (List<RessarcimentoSaude>) query.list();
 	}
-	
+
 	@SuppressWarnings("unchecked")
-	public ArrayList<RessarcimentoSaudeContrato> getContratos(RessarcimentoSaude ressarcimentoSaude){
+	public ArrayList<RessarcimentoSaudeContrato> getContratos(
+			RessarcimentoSaude ressarcimentoSaude) {
 		HibernateUtility.getSession().clear();
 		String sql;
-		sql = "from RessarcimentoSaudeContrato c where c.servidor.siape = "+ ressarcimentoSaude.getServidor().getSiape();
-		sql += " and c.dataAdesao = '" +ressarcimentoSaude.getDataAdesao()+"'"; 
+		sql = "from RessarcimentoSaudeContrato c where c.servidor.siape = "
+				+ ressarcimentoSaude.getServidor().getSiape();
+		sql += " and c.dataAdesao = '" + ressarcimentoSaude.getDataAdesao()
+				+ "'";
 		Query query = HibernateUtility.getSession().createQuery(sql);
 		HibernateUtility.commitTransaction();
 		return (ArrayList<RessarcimentoSaudeContrato>) query.list();

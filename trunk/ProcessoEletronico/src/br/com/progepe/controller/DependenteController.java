@@ -243,6 +243,9 @@ public class DependenteController implements Serializable {
 		FacesContext context = FacesContext.getCurrentInstance();
 		dependente = (Dependente) context.getExternalContext().getRequestMap()
 				.get("list");
+		if(dependente.getRgUf() == null){
+			dependente.setRgUf(new Estado());
+		}
 	}
 
 	public void validarEstudante(){
