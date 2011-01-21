@@ -91,7 +91,7 @@ public class RessarcimentoSaudeDAO extends DAO {
 
 	@SuppressWarnings("unchecked")
 	public List<RessarcimentoSaude> listByFilter(
-			RessarcimentoSaude ressarcimentoSaude, Integer implantado, Integer situacao) {
+			RessarcimentoSaude ressarcimentoSaude, Integer situacao) {
 		HibernateUtility.getSession().clear();
 		String sql;
 		sql = "from RessarcimentoSaude rs where 1= 1 ";
@@ -105,22 +105,19 @@ public class RessarcimentoSaudeDAO extends DAO {
 			sql += " and rs.servidor.siape = "
 					+ ressarcimentoSaude.getServidor().getSiape();
 		}
-		if (implantado == 1) {
-			sql += "and rs.indImplantado = 1";
-		}
-		if (implantado == 2) {
-			sql += "and rs.indImplantado = 0";
-		}
-		if (situacao == 1) {
-			sql += " and rs.servidor.dataSaida is null";
-		}
-		if (situacao == 2) {
-			sql += " and rs.servidor.dataSaida is not null";
+		if (ressarcimentoSaude.getStatus()!=null && ressarcimentoSaude.getStatus().getCodigo() == 1L) {
+			sql += "and rs.status.codigo = 1";
+		}else if (ressarcimentoSaude.getStatus()!=null && ressarcimentoSaude.getStatus().getCodigo() == 2L) {
+			sql += "and rs.status.codigo = 2";
+		}else if (ressarcimentoSaude.getStatus()!=null && ressarcimentoSaude.getStatus().getCodigo() == 3L) {
+			sql += "and rs.status.codigo = 3";
+		}else if (ressarcimentoSaude.getStatus()!=null && ressarcimentoSaude.getStatus().getCodigo() == 4L) {
+			sql += "and rs.status.codigo = 4";
 		}
 		
 		Query query = HibernateUtility.getSession().createQuery(sql);
 		HibernateUtility.commitTransaction();
-		if (Constantes.NAO.equals(implantado)) {
+		if (Constantes.STATUS_SOLICITACAO_ENCAMINHADO.equals(ressarcimentoSaude.getStatus().getCodigo())) {
 			return (List<RessarcimentoSaude>) query
 					.setMaxResults(
 							Constantes.RETORNO_MAXIMO_RESSARCIMENTOS_SAUDE_NAO_VALIDADOS)

@@ -13,11 +13,11 @@ public class RessarcimentoSaude implements Serializable {
 	private Long codigo;
 	private TipoPlano tipoPlano;
 	private Servidor servidor;
-	private Boolean indImplantado;
 	private String nomePlano;
 	private String numeroContrato;
 	private ArrayList<RessarcimentoSaudeContrato> files = new ArrayList<RessarcimentoSaudeContrato>();
 	private Date dataAdesao;
+	private StatusSolicitacao status;
 
 	public Long getCodigo() {
 		return codigo;
@@ -41,14 +41,6 @@ public class RessarcimentoSaude implements Serializable {
 
 	public void setServidor(Servidor servidor) {
 		this.servidor = servidor;
-	}
-
-	public Boolean getIndImplantado() {
-		return indImplantado;
-	}
-
-	public void setIndImplantado(Boolean indImplantado) {
-		this.indImplantado = indImplantado;
 	}
 
 	public String getNomePlano() {
@@ -82,5 +74,13 @@ public class RessarcimentoSaude implements Serializable {
 	public void setDataAdesao(Date dataAdesao) {
 		this.dataAdesao = dataAdesao;
 	}
-	
+
+	public StatusSolicitacao getStatus() {
+		return status;
+	}
+
+	public void setStatus(StatusSolicitacao status) {
+		this.status = status;
+	}
+
 }
