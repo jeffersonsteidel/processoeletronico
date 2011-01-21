@@ -18,6 +18,7 @@ public class RessarcimentoSaude implements Serializable {
 	private ArrayList<RessarcimentoSaudeContrato> files = new ArrayList<RessarcimentoSaudeContrato>();
 	private Date dataAdesao;
 	private StatusSolicitacao status;
+	private String justificativa;
 
 	public Long getCodigo() {
 		return codigo;
@@ -83,4 +84,12 @@ public class RessarcimentoSaude implements Serializable {
 		this.status = status;
 	}
 
+	public String getJustificativa() {
+		return justificativa;
+	}
+
+	public void setJustificativa(String justificativa) {
+		this.justificativa = justificativa;
+	}
+	
 }

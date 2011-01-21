@@ -250,7 +250,14 @@
 						</rich:panel>
 					</rich:dataGrid>
 				</rich:panel>
-			</h:panelGroup> <h:panelGrid columns="2">
+			</h:panelGroup> 
+				<h:panelGrid columns="2">
+				<h:outputText value="Justificativa: " />
+				<h:inputTextarea disabled="#{ressarcimentoSaudeController.ressarcimentoSaude.status.codigo != 2}"
+					value="#{ressarcimentoSaudeController.ressarcimentoSaude.justificativa}"
+					cols="50" rows="5"></h:inputTextarea>
+			</h:panelGrid>
+			<h:panelGrid columns="2">
 				<a4j:commandButton value="Deferir"
 					action="#{ressarcimentoSaudeController.deferir}" rendered="#{ressarcimentoSaudeController.ressarcimentoSaude.status.codigo ==2}"
 					reRender="listaRessarcimento" />
