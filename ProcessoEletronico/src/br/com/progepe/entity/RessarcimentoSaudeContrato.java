@@ -1,6 +1,7 @@
 package br.com.progepe.entity;
 
 import java.io.Serializable;
+import java.util.Date;
 
 public class RessarcimentoSaudeContrato implements Serializable {
 
@@ -11,6 +12,7 @@ public class RessarcimentoSaudeContrato implements Serializable {
 	private Long codigo;
 	private Servidor servidor;
 	private byte[] pagina;
+	private Date dataAdesao;
 
 	public Long getCodigo() {
 		return codigo;
@@ -36,4 +38,12 @@ public class RessarcimentoSaudeContrato implements Serializable {
 		this.pagina = pagina;
 	}
 
+	public Date getDataAdesao() {
+		return dataAdesao;
+	}
+
+	public void setDataAdesao(Date dataAdesao) {
+		this.dataAdesao = dataAdesao;
+	}
+	
 }

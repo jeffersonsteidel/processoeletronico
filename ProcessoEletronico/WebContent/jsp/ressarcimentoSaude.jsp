@@ -33,7 +33,7 @@
 				</h:outputText>
 			</h:panelGrid>
 
-			<h:panelGrid id="grid" columns="6">
+			<h:panelGrid id="grid" columns="8">
 
 				<h:outputText value="Tipo do Plano: " />
 				<h:selectOneMenu id="tipoPlano" required="true"
@@ -56,6 +56,13 @@
 				<h:inputText required="true" maxlength="15"
 					requiredMessage="O campo Numero do Contrato é obrigatório!"
 					value="#{ressarcimentoSaudeController.ressarcimentoSaude.numeroContrato}" />
+				<h:outputText value="Data de Adesão: " />
+				<rich:calendar required="true"
+						requiredMessage="Campo Data de Adesão é Obrigatório!"
+						value="#{ressarcimentoSaudeController.ressarcimentoSaude.dataAdesao}" locale=""
+						popup="true" datePattern="dd/MM/yyyy" showApplyButton="#"
+						cellWidth="12px" cellHeight="12px" style="width:80px"
+						inputSize="12" />
 			</h:panelGrid>
 
 			<br>

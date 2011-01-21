@@ -30,22 +30,28 @@ public class RessarcimentoSaudeDAO extends DAO {
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<Dependente> listarDependentePorServidor(Servidor servidor) {
+	public List<Dependente> listarDependentePorServidor(Servidor servidor, Boolean validar) {
 		HibernateUtility.getSession().clear();
 		HibernateUtility.beginTransaction();
 		String sql = "from Dependente d LEFT JOIN FETCH d.servidor s WHERE d.indValidado = 1 and d.grauParentesco.indSaude = 1 and s.siape = "
 				+ servidor.getSiape();
+		if(validar){
+			sql += " and d.indRessarcimentoSaude = 1";
+		}
 		Query query = HibernateUtility.getSession().createQuery(sql);
 		HibernateUtility.commitTransaction();
 		return (List<Dependente>) query.list();
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<Conjuge> listarConjugePorServidor(Servidor servidor) {
+	public List<Conjuge> listarConjugePorServidor(Servidor servidor, Boolean validar) {
 		HibernateUtility.getSession().clear();
 		HibernateUtility.beginTransaction();
 		String sql = "from Conjuge c LEFT JOIN FETCH c.servidor s WHERE c.indValidado = 1 and s.siape = "
 				+ servidor.getSiape();
+		if(validar){
+			sql += " and c.indRessarcimentoSaude = 1";
+		}
 		Query query = HibernateUtility.getSession().createQuery(sql);
 		HibernateUtility.commitTransaction();
 		return (List<Conjuge>) query.list();
@@ -65,6 +71,7 @@ public class RessarcimentoSaudeDAO extends DAO {
 			}
 			for (RessarcimentoSaudeContrato contrato : ressarcimentoSaude
 					.getFiles()) {
+				contrato.setDataAdesao(ressarcimentoSaude.getDataAdesao());
 				contrato.setServidor(ressarcimentoSaude.getServidor());
 				HibernateUtility.getSession().saveOrUpdate(contrato);
 			}
@@ -127,6 +134,7 @@ public class RessarcimentoSaudeDAO extends DAO {
 		HibernateUtility.getSession().clear();
 		String sql;
 		sql = "from RessarcimentoSaudeContrato c where c.servidor.siape = "+ ressarcimentoSaude.getServidor().getSiape();
+		sql += " and c.dataAdesao = '" +ressarcimentoSaude.getDataAdesao()+"'"; 
 		Query query = HibernateUtility.getSession().createQuery(sql);
 		HibernateUtility.commitTransaction();
 		return (ArrayList<RessarcimentoSaudeContrato>) query.list();
