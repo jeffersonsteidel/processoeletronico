@@ -25,7 +25,6 @@
 				</f:facet>
 			</rich:messages>
 			<font size="2"><b>LISTAR RESSARCIMENTO SAÚDE</b></font>
-		
 			<h:panelGrid columns="13">
 				<h:outputText value="Siape do Servidor: ">
 				</h:outputText>
@@ -42,20 +41,19 @@
 				</h:selectOneMenu>
 
 				<h:outputText value="Implantado:" />
-				<h:selectOneMenu
-					value="#{ressarcimentoSaudeController.implantado}">
+				<h:selectOneMenu value="#{ressarcimentoSaudeController.implantado}">
 					<f:selectItem itemLabel="TODOS" itemValue="0" />
 					<f:selectItem itemLabel="SIM" itemValue="1" />
 					<f:selectItem itemLabel="NÃO" itemValue="2" />
 				</h:selectOneMenu>
-				
+
 				<h:outputText value="Situação: " />
 				<h:selectOneMenu value="#{ressarcimentoSaudeController.situacao}">
 					<f:selectItem itemLabel="TODOS" itemValue="0" />
 					<f:selectItem itemLabel="ATIVOS" itemValue="1" />
 					<f:selectItem itemLabel="INATIVOS" itemValue="2" />
 				</h:selectOneMenu>
-			
+
 				<a4j:commandButton value="Pesquisar"
 					action="#{ressarcimentoSaudeController.pesquisar}"
 					reRender="listaRessarcimento" type="submit" />
@@ -70,7 +68,7 @@
 					<f:facet name="header">
 						<h:outputText value="Servidor" />
 					</f:facet>
-					<h:outputText value="#{list.servidor.nome}"/>
+					<h:outputText value="#{list.servidor.nome}" />
 				</rich:column>
 
 				<rich:column width="500px">
@@ -79,12 +77,12 @@
 					</f:facet>
 					<h:outputText value="#{list.tipoPlano.descricao}" />
 				</rich:column>
-				
+
 				<rich:column width="500px">
 					<f:facet name="header">
 						<h:outputText value="Nome Plano" />
 					</f:facet>
-					<h:outputText value="#{list.nomePlano}"/>
+					<h:outputText value="#{list.nomePlano}" />
 				</rich:column>
 
 				<rich:column width="100px">
@@ -114,15 +112,16 @@
 					<rich:datascroller id="ds"></rich:datascroller>
 				</f:facet>
 			</rich:dataTable>
-			
+
 		</rich:panel>
 	</a4j:form></center>
-	
+
 	<center><rich:modalPanel id="editPanel" autosized="false"
 		style="overflow: auto;" height="500" width="1000">
 		<f:facet name="header">
 			<h:panelGroup>
-				<center><h:outputText value="Detalhes do Ressarcimento Saúde"></h:outputText></center>
+				<center><h:outputText
+					value="Detalhes do Ressarcimento Saúde"></h:outputText></center>
 			</h:panelGroup>
 		</f:facet>
 		<f:facet name="controls">
@@ -132,16 +131,80 @@
 			</h:panelGroup>
 		</f:facet>
 		<h:form>
-			<center>
-			<h:panelGrid columns="1">
+			<center><h:panelGrid columns="1">
+				<h:outputText
+					value="Servidor: #{ressarcimentoSaudeController.ressarcimentoSaude.servidor.siape} - #{ressarcimentoSaudeController.ressarcimentoSaude.servidor.nome}" />
+				<h:outputText
+					value="Tipo do Plano: #{ressarcimentoSaudeController.ressarcimentoSaude.tipoPlano.descricao}" />
+				<h:outputText
+					value="Nome do Plano: #{ressarcimentoSaudeController.ressarcimentoSaude.nomePlano}"
+					rendered="#{ressarcimentoSaudeController.indParticular}" />
+				<h:outputText
+					value="Numero do Contrato: #{ressarcimentoSaudeController.ressarcimentoSaude.numeroContrato}" />
+				<h:outputText value="Data Adesão:" />
+				<h:outputText
+					value="#{ressarcimentoSaudeController.ressarcimentoSaude.dataAdesao}">
+					<f:convertDateTime pattern="dd/MM/yyyy" />
+				</h:outputText>
+			</h:panelGrid> <h:outputText value="Cônjuge"
+				rendered="#{not empty ressarcimentoSaudeController.conjuges}" /> <rich:dataTable
+				id="listarConjugesSolicitante"
+				rendered="#{not empty ressarcimentoSaudeController.conjuges}"
+				value="#{ressarcimentoSaudeController.conjuges}" var="list"
+				width="700px" columnClasses="center" rows="15" reRender="ds">
+
+				<rich:column width="435px">
+					<f:facet name="header">
+						<h:outputText value="Nome" />
+					</f:facet>
+					<h:outputText value="#{list.nome}" />
+				</rich:column>
+
+				<rich:column width="280px">
+					<f:facet name="header">
+						<h:outputText value="Atual" />
+					</f:facet>
+					<h:outputText value="Atual" rendered="#{list.atual}" />
+					<h:outputText value="Ex" rendered="#{!list.atual}" />
+				</rich:column>
+			</rich:dataTable> <br>
+			<h:outputText value="Dependentes:"
+				rendered="#{not empty ressarcimentoSaudeController.dependentes}" />
 			<br>
-				<h:outputText value="Servidor: #{ressarcimentoSaudeController.ressarcimentoSaude.servidor.siape} - #{ressarcimentoSaudeController.ressarcimentoSaude.servidor.nome}" />
-				<h:outputText value="Tipo do Plano: #{ressarcimentoSaudeController.ressarcimentoSaude.tipoPlano.descricao}"/>
-				<h:outputText value="Nome do Plano: #{ressarcimentoSaudeController.ressarcimentoSaude.nomePlano}" rendered="#{ressarcimentoSaudeController.indParticular}"/>
-				<h:outputText value="Numero do Contrato: #{ressarcimentoSaudeController.ressarcimentoSaude.numeroContrato}"/>
-			<br>
-			</h:panelGrid> 
-			<h:panelGroup id="info">
+			<rich:dataTable id="listarDependentesSolicitante"
+				rendered="#{not empty ressarcimentoSaudeController.dependentes}"
+				value="#{ressarcimentoSaudeController.dependentes}" var="list"
+				width="700px" columnClasses="center" rows="15" reRender="ds">
+
+				<rich:column width="435px">
+					<f:facet name="header">
+						<h:outputText value="Nome" />
+					</f:facet>
+					<h:outputText value="#{list.nome}" />
+				</rich:column>
+				<rich:column width="280px">
+					<f:facet name="header">
+						<h:outputText value="Grau de Parentesco" />
+					</f:facet>
+					<h:outputText value="#{list.grauParentesco.descricao}" />
+				</rich:column>
+				<rich:column width="280px">
+					<f:facet name="header">
+						<h:outputText value="Estudante" />
+					</f:facet>
+					<h:outputText value="SIM" rendered="#{list.indEstudante}" />
+					<h:outputText value="NÃO" rendered="#{!list.indEstudante}" />
+				</rich:column>
+				<rich:column width="280px">
+					<f:facet name="header">
+						<h:outputText value="Necessidades Especiais" />
+					</f:facet>
+					<h:outputText value="SIM"
+						rendered="#{list.indNecessidadesEspeciais}" />
+					<h:outputText value="NÃO"
+						rendered="#{!list.indNecessidadesEspeciais}" />
+				</rich:column>
+			</rich:dataTable> <h:panelGroup id="info">
 				<rich:panel bodyClass="info">
 					<rich:dataGrid
 						value="#{ressarcimentoSaudeController.ressarcimentoSaude.files}"
@@ -158,11 +221,10 @@
 						</rich:panel>
 					</rich:dataGrid>
 				</rich:panel>
-			</h:panelGroup>
-			<h:panelGrid columns="2">
+			</h:panelGroup> <h:panelGrid columns="2">
 				<a4j:commandButton value="Implantar"
 					action="#{ressarcimentoSaudeController.implantar}"
-					reRender="listaRessarcimento"/>
+					reRender="listaRessarcimento" />
 				<a4j:commandButton value="Fechar"
 					onclick="#{rich:component('editPanel')}.hide();return false;" />
 			</h:panelGrid></center>

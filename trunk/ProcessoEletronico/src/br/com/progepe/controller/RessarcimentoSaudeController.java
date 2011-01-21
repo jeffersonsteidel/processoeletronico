@@ -113,7 +113,7 @@ public class RessarcimentoSaudeController implements Serializable {
 			RessarcimentoSaude ressarcimentoSaudeTemp) {
 		this.ressarcimentoSaudeTemp = ressarcimentoSaudeTemp;
 	}
-	
+
 	public Integer getSituacao() {
 		return situacao;
 	}
@@ -132,10 +132,11 @@ public class RessarcimentoSaudeController implements Serializable {
 			listarTipoPlano();
 			validarNomePlano();
 			conjuges = RessarcimentoSaudeDAO.getInstance()
-					.listarConjugePorServidor(ressarcimentoSaude.getServidor());
+					.listarConjugePorServidor(ressarcimentoSaude.getServidor(),
+							false);
 			dependentes = RessarcimentoSaudeDAO.getInstance()
 					.listarDependentePorServidor(
-							ressarcimentoSaude.getServidor());
+							ressarcimentoSaude.getServidor(), false);
 			if (null == dependentes) {
 				dependentes = new ArrayList<Dependente>();
 			}
@@ -194,7 +195,7 @@ public class RessarcimentoSaudeController implements Serializable {
 		}
 	}
 
-	public void salvar() {
+	public void salvar() throws IOException, ParseException {
 		ressarcimentoSaude.setIndImplantado(false);
 		RessarcimentoSaudeDAO.getInstance().saveRessarcimentoSaude(
 				ressarcimentoSaude, dependentes, conjuges);
@@ -203,6 +204,7 @@ public class RessarcimentoSaudeController implements Serializable {
 		ressarcimentoSaude.setTipoPlano(new TipoPlano());
 		this.ressarcimentoSaude
 				.setFiles(new ArrayList<RessarcimentoSaudeContrato>());
+		buscarServidorLogado();
 	}
 
 	public void pesquisar() {
@@ -240,6 +242,20 @@ public class RessarcimentoSaudeController implements Serializable {
 		ressarcimentoSaude = (RessarcimentoSaude) context.getExternalContext()
 				.getRequestMap().get("list");
 		validarNomePlano();
+		conjuges.clear();
+		dependentes.clear();
+		conjuges = RessarcimentoSaudeDAO.getInstance()
+				.listarConjugePorServidor(ressarcimentoSaude.getServidor(),
+						true);
+		dependentes = RessarcimentoSaudeDAO.getInstance()
+				.listarDependentePorServidor(ressarcimentoSaude.getServidor(),
+						true);
+		if (null == dependentes) {
+			dependentes = new ArrayList<Dependente>();
+		}
+		if (null == conjuges) {
+			conjuges = new ArrayList<Conjuge>();
+		}
 		ressarcimentoSaude.setFiles(RessarcimentoSaudeDAO.getInstance()
 				.getContratos(ressarcimentoSaude));
 	}
@@ -254,6 +270,8 @@ public class RessarcimentoSaudeController implements Serializable {
 			ressarcimentoSaude = new RessarcimentoSaude();
 			ressarcimentoSaude.setServidor(new Servidor());
 			ressarcimentoSaude.setTipoPlano(new TipoPlano());
+			this.setDependentes(new ArrayList<Dependente>());
+			this.setConjuges(new ArrayList<Conjuge>());
 			ressarcimentoSaude
 					.setFiles(new ArrayList<RessarcimentoSaudeContrato>());
 			listarTipoPlano();

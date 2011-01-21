@@ -2,6 +2,7 @@ package br.com.progepe.entity;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class RessarcimentoSaude implements Serializable {
 
@@ -16,6 +17,7 @@ public class RessarcimentoSaude implements Serializable {
 	private String nomePlano;
 	private String numeroContrato;
 	private ArrayList<RessarcimentoSaudeContrato> files = new ArrayList<RessarcimentoSaudeContrato>();
+	private Date dataAdesao;
 
 	public Long getCodigo() {
 		return codigo;
@@ -72,4 +74,13 @@ public class RessarcimentoSaude implements Serializable {
 	public void setFiles(ArrayList<RessarcimentoSaudeContrato> files) {
 		this.files = files;
 	}
+
+	public Date getDataAdesao() {
+		return dataAdesao;
+	}
+
+	public void setDataAdesao(Date dataAdesao) {
+		this.dataAdesao = dataAdesao;
+	}
+	
 }

@@ -7,10 +7,11 @@
 		<id name="codigo" column="RES_SAU_COD">
 			<generator class="increment"></generator>
 		</id>
-		<property name="indImplantado" column="RES_SAU_IND_IMPLANTADO" type="boolean" />
+		<property name="indImplantado" column="RES_SAU_IND_IMPLANTADO"
+			type="boolean" />
 		<property name="nomePlano" column="RES_SAU_NOME_PLANO" />
 		<property name="numeroContrato" column="RES_SAU_NUM_CONT" />
-
+		<property name="dataAdesao" column="RES_SAU_DT_ADESAO" />
 		<many-to-one name="tipoPlano" class="br.com.progepe.entity.TipoPlano"
 			column="TIP_PLA_COD" lazy="false" />
 		<many-to-one name="servidor" class="br.com.progepe.entity.Servidor"
