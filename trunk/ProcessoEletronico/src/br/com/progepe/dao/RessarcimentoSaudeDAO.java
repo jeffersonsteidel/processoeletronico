@@ -33,7 +33,7 @@ public class RessarcimentoSaudeDAO extends DAO {
 	public List<Dependente> listarDependentePorServidor(Servidor servidor) {
 		HibernateUtility.getSession().clear();
 		HibernateUtility.beginTransaction();
-		String sql = "from Dependente d LEFT JOIN FETCH d.servidor s WHERE s.siape = "
+		String sql = "from Dependente d LEFT JOIN FETCH d.servidor s WHERE d.indValidado = 1 and d.grauParentesco.indSaude = 1 and s.siape = "
 				+ servidor.getSiape();
 		Query query = HibernateUtility.getSession().createQuery(sql);
 		HibernateUtility.commitTransaction();
@@ -44,7 +44,7 @@ public class RessarcimentoSaudeDAO extends DAO {
 	public List<Conjuge> listarConjugePorServidor(Servidor servidor) {
 		HibernateUtility.getSession().clear();
 		HibernateUtility.beginTransaction();
-		String sql = "from Conjuge c LEFT JOIN FETCH c.servidor s WHERE s.siape = "
+		String sql = "from Conjuge c LEFT JOIN FETCH c.servidor s WHERE c.indValidado = 1 and s.siape = "
 				+ servidor.getSiape();
 		Query query = HibernateUtility.getSession().createQuery(sql);
 		HibernateUtility.commitTransaction();
