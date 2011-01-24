@@ -17,6 +17,7 @@ public class Progressao implements Serializable {
 	private Padrao padraoNovo;
 	private Date dataProgressao;
 	private String portaria;
+	private Motivo motivo;
 
 	public Long getCodigo() {
 		return codigo;
@@ -81,4 +82,13 @@ public class Progressao implements Serializable {
 	public void setPortaria(String portaria) {
 		this.portaria = portaria;
 	}
+
+	public Motivo getMotivo() {
+		return motivo;
+	}
+
+	public void setMotivo(Motivo motivo) {
+		this.motivo = motivo;
+	}
+	
 }
