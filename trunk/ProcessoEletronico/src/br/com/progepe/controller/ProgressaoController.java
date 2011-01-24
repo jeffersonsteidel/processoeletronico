@@ -18,7 +18,6 @@ import br.com.progepe.entity.Classe;
 import br.com.progepe.entity.Endereco;
 import br.com.progepe.entity.Estado;
 import br.com.progepe.entity.Lotacao;
-import br.com.progepe.entity.Motivo;
 import br.com.progepe.entity.Padrao;
 import br.com.progepe.entity.Progressao;
 import br.com.progepe.entity.Servidor;
@@ -102,7 +101,6 @@ public class ProgressaoController implements Serializable {
 			progressao.setClasseNova(new Classe());
 			progressao.setPadraoAntigo(progressao.getServidor().getPadrao());
 			progressao.setPadraoNovo(new Padrao());
-			progressao.setMotivo(new Motivo());
 			FacesContext.getCurrentInstance().getExternalContext()
 					.redirect("cadastrarLotacao.jsp");
 		} catch (IOException e) {
@@ -135,16 +133,6 @@ public class ProgressaoController implements Serializable {
 		return padroes;
 	}
 	
-	@SuppressWarnings("unchecked")
-	public List<SelectItem> listarMotivos() {
-		motivos = new ArrayList<SelectItem>();
-		List<Motivo> motivoList = new ArrayList<Motivo>();
-		motivoList = DAO.getInstance().list(Motivo.class, "descricao");
-		for (Motivo motivo : motivoList) {
-			motivos.add(new SelectItem(motivo.getCodigo(), motivo.getDescricao()));
-		}
-		return motivos;
-	}
 	
 	public void salvar() {
 		if (indNovo) {
@@ -157,6 +145,5 @@ public class ProgressaoController implements Serializable {
 		progressao.setClasseNova(new Classe());
 		progressao.setPadraoAntigo(progressao.getServidor().getPadrao());
 		progressao.setPadraoNovo(new Padrao());
-		progressao.setMotivo(new Motivo());
 		}
 }
