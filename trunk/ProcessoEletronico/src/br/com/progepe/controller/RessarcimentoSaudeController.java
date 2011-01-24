@@ -168,9 +168,10 @@ public class RessarcimentoSaudeController implements Serializable {
 			if (ressarcimentoList != null && !ressarcimentoList.isEmpty()) {
 				existeAnterior = true;
 				ressarcimentoAnterior = ressarcimentoList.get(0);
-				for(RessarcimentoSaude ressarcimento: ressarcimentoList){
-					if(ressarcimento.getCodigo()>ressarcimentoAnterior.getCodigo()){
-						ressarcimentoAnterior=ressarcimento;
+				for (RessarcimentoSaude ressarcimento : ressarcimentoList) {
+					if (ressarcimento.getCodigo() > ressarcimentoAnterior
+							.getCodigo()) {
+						ressarcimentoAnterior = ressarcimento;
 					}
 				}
 			}
@@ -356,13 +357,21 @@ public class RessarcimentoSaudeController implements Serializable {
 	}
 
 	public void indeferir() {
-		ressarcimentoSaude.setStatus(new StatusSolicitacao());
-		ressarcimentoSaude.getStatus().setCodigo(
-				Constantes.STATUS_SOLICITACAO_INDEFERIDO);
-		DAO.getInstance().update(ressarcimentoSaude);
-		ressarcimentoList = new ArrayList<RessarcimentoSaude>();
-		pesquisar();
-		botaoHabilitado = false;
+		if (ressarcimentoSaude.getJustificativa() == null) {
+			FacesMessage message = new FacesMessage(
+					FacesMessage.SEVERITY_ERROR,
+					"O campo Justificativa é obrigatório!",
+					"O campo Justificativa é obrigatório!");
+			FacesContext.getCurrentInstance().addMessage("", message);
+		} else {
+			ressarcimentoSaude.setStatus(new StatusSolicitacao());
+			ressarcimentoSaude.getStatus().setCodigo(
+					Constantes.STATUS_SOLICITACAO_INDEFERIDO);
+			DAO.getInstance().update(ressarcimentoSaude);
+			ressarcimentoList = new ArrayList<RessarcimentoSaude>();
+			pesquisar();
+			botaoHabilitado = false;
+		}
 	}
 
 	@SuppressWarnings("unchecked")
