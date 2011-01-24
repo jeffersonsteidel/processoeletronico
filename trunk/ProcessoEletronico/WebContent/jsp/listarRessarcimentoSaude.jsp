@@ -15,15 +15,6 @@
 	<jsp:directive.include file="menus.jsp" />
 	<center><a4j:form id="form">
 		<rich:panel>
-			<rich:messages layout="list" errorLabelClass="errorLabel"
-				style="top:auto;" infoLabelClass="infoLabel">
-				<f:facet name="infoMarker">
-					<h:graphicImage value="../images/passed.gif" />
-				</f:facet>
-				<f:facet name="errorMarker">
-					<h:graphicImage value="../images/error.gif" />
-				</f:facet>
-			</rich:messages>
 			<font size="2"><b>LISTAR RESSARCIMENTO SAÚDE</b></font>
 			<h:panelGrid columns="13">
 				<h:outputText value="Siape do Servidor: ">
@@ -254,7 +245,16 @@
 						</rich:panel>
 					</rich:dataGrid>
 				</rich:panel>
-			</h:panelGroup> 
+			</h:panelGroup>
+			<rich:messages layout="list" errorLabelClass="errorLabel"
+				style="top:auto;" infoLabelClass="infoLabel">
+				<f:facet name="infoMarker">
+					<h:graphicImage value="../images/passed.gif" />
+				</f:facet>
+				<f:facet name="errorMarker">
+					<h:graphicImage value="../images/error.gif" />
+				</f:facet>
+			</rich:messages> 
 				<h:panelGrid columns="2">
 				<h:outputText value="Justificativa: " />
 				<h:inputTextarea disabled="#{!ressarcimentoSaudeController.botaoHabilitado}"

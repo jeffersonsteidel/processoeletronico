@@ -357,7 +357,7 @@ public class RessarcimentoSaudeController implements Serializable {
 	}
 
 	public void indeferir() {
-		if (ressarcimentoSaude.getJustificativa() == null) {
+		if (ressarcimentoSaude.getJustificativa() == null || ressarcimentoSaude.getJustificativa().equals("")) {
 			FacesMessage message = new FacesMessage(
 					FacesMessage.SEVERITY_ERROR,
 					"O campo Justificativa é obrigatório!",
