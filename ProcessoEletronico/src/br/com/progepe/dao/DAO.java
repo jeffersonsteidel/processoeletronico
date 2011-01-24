@@ -149,7 +149,7 @@ public class DAO implements BaseDAO {
 		HibernateUtility.getSession().clear();
 		HibernateUtility.beginTransaction();
 		HibernateUtility.getSession().save(servidor);
-		if (servidor.getSiape().equals(6343867)) {
+		if (servidor.getSiape().equals(1836576)) {
 			HibernateUtility.getSession().getTransaction().commit();
 		}
 	}
