@@ -160,16 +160,20 @@
 			</h:panelGroup>
 		</f:facet>
 		<h:form>
-			<center><h:panelGrid columns="1">
+			<center><h:panelGrid columns="2">
 				<h:outputText
-					value="Servidor: #{ressarcimentoSaudeController.ressarcimentoSaude.servidor.siape} - #{ressarcimentoSaudeController.ressarcimentoSaude.servidor.nome}" />
+					value="Servidor: " />
+				<h:outputText value="#{ressarcimentoSaudeController.ressarcimentoSaude.servidor.siape} - #{ressarcimentoSaudeController.ressarcimentoSaude.servidor.nome}" />
 				<h:outputText
-					value="Tipo do Plano: #{ressarcimentoSaudeController.ressarcimentoSaude.tipoPlano.descricao}" />
+					value="Tipo do Plano: " />
+				<h:outputText value="#{ressarcimentoSaudeController.ressarcimentoSaude.tipoPlano.descricao}" />
 				<h:outputText
-					value="Nome do Plano: #{ressarcimentoSaudeController.ressarcimentoSaude.nomePlano}"
+					value="Nome do Plano: " />
+				<h:outputText value="#{ressarcimentoSaudeController.ressarcimentoSaude.nomePlano}"
 					rendered="#{ressarcimentoSaudeController.indParticular}" />
 				<h:outputText
-					value="Numero do Contrato: #{ressarcimentoSaudeController.ressarcimentoSaude.numeroContrato}" />
+					value="Numero do Contrato: " />
+				<h:outputText value="#{ressarcimentoSaudeController.ressarcimentoSaude.numeroContrato}" />
 				<h:outputText value="Data Adesão:" />
 				<h:outputText
 					value="#{ressarcimentoSaudeController.ressarcimentoSaude.dataAdesao}">
