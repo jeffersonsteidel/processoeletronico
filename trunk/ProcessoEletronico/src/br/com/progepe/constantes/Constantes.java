@@ -45,4 +45,6 @@ public class Constantes {
 	public static final Long TIPO_PLANO_SINDICATO = 2L;
 	public static final Long TIPO_PLANO_PARTICULAR = 3L;
 	
+	public static final Long TIPO_PROGRESSAO_CAPACITACAO = 1L;
+	
 }
