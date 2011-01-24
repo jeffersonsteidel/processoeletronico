@@ -50,6 +50,7 @@
 		<mapping resource="Padrao.hbm.xml" />
 		<mapping resource="Pais.hbm.xml" />
 		<mapping resource="Portaria.hbm.xml" />
+		<mapping resource="Progressao.hbm.xml" />
 		<mapping resource="RegimeTrabalho.hbm.xml" />
 		<mapping resource="RessarcimentoSaude.hbm.xml" />
 		<mapping resource="RessarcimentoSaudeContrato.hbm.xml" />
@@ -74,6 +75,7 @@
 		<mapping resource="TipoFuncao.hbm.xml" />
 		<mapping resource="TipoPlano.hbm.xml" />
 		<mapping resource="TipoPortaria.hbm.xml" />
+		<mapping resource="TipoProgressao.hbm.xml" />
 		<mapping resource="TipoSolicitacao.hbm.xml" />
 		<mapping resource="Titulacao.hbm.xml" />
 	</session-factory>
