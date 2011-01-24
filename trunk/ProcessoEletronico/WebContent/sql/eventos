@@ -15,6 +15,6 @@ SHOW PROCESSLIST;
 -- SETA dep_ind_saude PARA 0 AONDE o dependente não tiver necessidades especiais E (o dependente for maior de 24 anos OU (o dependente for maior de 21 anos E não for estudante))
 
 create event ValidaDependenteRessarcimentoSaude
-ON SCHEDULE EVERY 1 day
+ON SCHEDULE EVERY 1 second
 do
 update dependente set dep_ind_saude = 0 where  dep_ind_nec_esp = 0 and (dep_data_nasc <DATE_SUB(NOW() , INTERVAL 24 year) or (dep_ind_est = 0 and dep_data_nasc < DATE_SUB(NOW() , INTERVAL 21 year) ))  
