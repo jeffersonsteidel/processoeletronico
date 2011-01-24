@@ -647,6 +647,8 @@ public class FitaEspelho {
 						html = html + "DIR. GERAL/ C. FOZ";
 					} else if (linha.substring(215, 224).equals("000000116")) {
 						html = html + "N. A. DE IRATI";
+					}else if (linha.substring(215, 224).equals("000000010")) {
+						html = html + "AUDITORIA";
 					} else {
 						html = html + linha.substring(215, 224);
 					}
