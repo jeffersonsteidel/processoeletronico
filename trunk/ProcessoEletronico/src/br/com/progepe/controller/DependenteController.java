@@ -192,6 +192,7 @@ public class DependenteController implements Serializable {
 			
 		this.getListaDependentes().add(dependente);
 		dependente.setIndValidado(Boolean.FALSE);
+		dependente.setIndRessarcimentoSaude(Boolean.TRUE);
 		DAO.getInstance().saveOrUpdate(dependente);
 		listarDependentesServidorLogado();
 		dependente = new Dependente();
