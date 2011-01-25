@@ -46,9 +46,9 @@
 					value="#{ressarcimentoSaudeController.ressarcimentoAnterior.tipoPlano.descricao}" />
 
 				<h:outputText value="Nome do Plano: "
-					rendered="#{ressarcimentoSaudeController.existeAnterior}" />
+					rendered="#{ressarcimentoSaudeController.existeAnterior && ressarcimentoSaudeController.indParticular}" />
 				<h:outputText
-					rendered="#{ressarcimentoSaudeController.existeAnterior}"
+					rendered="#{ressarcimentoSaudeController.existeAnterior && ressarcimentoSaudeController.indParticular}"
 					value="#{ressarcimentoSaudeController.ressarcimentoAnterior.nomePlano}" />
 				<h:outputText value="Numero do Contrato: "
 					rendered="#{ressarcimentoSaudeController.existeAnterior}" />

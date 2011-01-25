@@ -648,7 +648,7 @@ public class FitaEspelho {
 					} else if (linha.substring(215, 224).equals("000000116")) {
 						html = html + "N. A. DE IRATI";
 					}else if (linha.substring(215, 224).equals("000000010")) {
-						html = html + "AUDITORIA";
+						html = html + "AUDITORIA INTERNA";
 					} else {
 						html = html + linha.substring(215, 224);
 					}
