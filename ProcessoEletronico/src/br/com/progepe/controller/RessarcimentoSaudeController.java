@@ -172,6 +172,9 @@ public class RessarcimentoSaudeController implements Serializable {
 					if (ressarcimento.getCodigo() > ressarcimentoAnterior
 							.getCodigo()) {
 						ressarcimentoAnterior = ressarcimento;
+						if(Constantes.TIPO_PLANO_PARTICULAR.equals(ressarcimentoAnterior.getTipoPlano().getCodigo())){
+							this.setIndParticular(true);
+						}
 					}
 				}
 			}
