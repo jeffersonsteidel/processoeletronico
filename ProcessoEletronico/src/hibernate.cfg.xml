@@ -1,5 +1,4 @@
-
- <!DOCTYPE hibernate-configuration PUBLIC
+<!DOCTYPE hibernate-configuration PUBLIC
 	"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
 	"http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
@@ -22,8 +21,6 @@
 		<property name="hibernate.cache.use_query_cache">false</property>
 		<property name="hibernate.cache.use_second_level_cache">false</property>
 
-
-		<!-- <mapping resource="Progressao.hbm.xml" /> -->
 		<mapping resource="AdicionalNoturno.hbm.xml" />
 		<mapping resource="AreaConhecimento.hbm.xml" />
 		<mapping resource="Autenticacao.hbm.xml" />
