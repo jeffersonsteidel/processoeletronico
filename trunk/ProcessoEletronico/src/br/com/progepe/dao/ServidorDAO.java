@@ -49,11 +49,11 @@ public class ServidorDAO extends DAO {
 		if (servidor.getCargo().getCodigo() != 0) {
 			c.add(Restrictions.like("cargo", servidor.getCargo()));
 		}
-		
-		if (situacao != null && Constantes.ATIVO.equals(situacao) ) {
+
+		if (situacao != null && Constantes.ATIVO.equals(situacao)) {
 			c.add(Restrictions.isNull("dataSaida"));
 		}
-		if (situacao != null && Constantes.DESATIVO.equals(situacao) ) {
+		if (situacao != null && Constantes.DESATIVO.equals(situacao)) {
 			c.add(Restrictions.isNotNull("dataSaida"));
 		}
 		HibernateUtility.commitTransaction();
@@ -69,7 +69,13 @@ public class ServidorDAO extends DAO {
 			c.add(Restrictions.like("siape", servidor.getSiape()));
 		}
 		HibernateUtility.commitTransaction();
-		return (Servidor) c.uniqueResult();
+		Servidor servidorTemp = new Servidor();
+		servidorTemp = (Servidor) c.uniqueResult();
+		if (servidorTemp == null) {
+			return null;
+		} else {
+			return servidorTemp;
+		}
 	}
 
 	public Servidor refreshByFilter(Servidor servidor) {
@@ -122,7 +128,7 @@ public class ServidorDAO extends DAO {
 		HibernateUtility.commitTransaction();
 		return (List<Servidor>) query.list();
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	public List<Servidor> listAniversariantes(Integer mes) {
 		HibernateUtility.getSession().clear();

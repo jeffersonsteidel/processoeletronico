@@ -2,8 +2,7 @@ package br.com.progepe.dao;
 
 import java.util.List;
 
-import org.hibernate.Criteria;
-import org.hibernate.criterion.Restrictions;
+import org.hibernate.Query;
 
 import br.com.progepe.entity.Servidor;
 import br.com.progepe.entity.ServidorTitulacao;
@@ -26,16 +25,11 @@ public class ProgressaoDAO extends DAO {
 	public List<ServidorTitulacao> listTitulacoesServidor(
 			Servidor servidor) {
 		HibernateUtility.getSession().clear();
-		HibernateUtility.beginTransaction();
-
-		Criteria c = HibernateUtility.getSession().createCriteria(
-				ServidorTitulacao.class);
-		c.add(Restrictions.like("indValidado", 1));
-		if (servidor != null) {
-			c.add(Restrictions.like("servidor", servidor));
-		}
+		Query query = HibernateUtility.getSession().createQuery(
+				"from ServidorTitulacao  st where st.indValidado = 1 and st.servidor = :servidor");
+		query.setParameter("servidor", servidor);
 		HibernateUtility.commitTransaction();
-		return c.list();
+		return (List<ServidorTitulacao>) query.list();
 	}
 
 	
