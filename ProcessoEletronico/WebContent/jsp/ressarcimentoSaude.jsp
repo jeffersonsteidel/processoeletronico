@@ -38,7 +38,8 @@
 					style="font-weight:bold"
 					rendered="#{ressarcimentoSaudeController.existeAnterior}" /></center>
 			</h:panelGrid>
-			<h:panelGrid columns="8">
+			
+			<h:panelGrid columns="10">
 
 				<h:outputText value="Tipo do Plano: "
 					rendered="#{ressarcimentoSaudeController.existeAnterior}" />
@@ -63,24 +64,23 @@
 					value="#{ressarcimentoSaudeController.ressarcimentoAnterior.dataAdesao}">
 					<f:convertDateTime pattern="dd/MM/yyyy" />
 				</h:outputText>
+				<h:outputText value="Status: "
+					rendered="#{ressarcimentoSaudeController.existeAnterior}" />
+				<h:outputText
+					value="#{ressarcimentoSaudeController.ressarcimentoAnterior.status.descricao}"
+					rendered="#{ressarcimentoSaudeController.existeAnterior}" />
 			</h:panelGrid>
 			<h:panelGrid
 				rendered="#{ressarcimentoSaudeController.existeAnterior}">
 				<center><h:outputText value="Novo Ressarcimento" /></center>
 			</h:panelGrid>
-			<h:panelGrid id="grid" columns="8">
-
-				<h:outputText value="Tipo do Plano: " />
-				<h:selectOneMenu id="tipoPlano" required="true"
-					requiredMessage="O campo Tipo do Plano é obrigatório!"
-					value="#{ressarcimentoSaudeController.ressarcimentoSaude.tipoPlano.codigo}">
-					<f:selectItem itemLabel="SELECIONE" itemValue="" />
-					<f:selectItems value="#{ressarcimentoSaudeController.tiposPlanos}" />
-					<a4j:support event="onchange"
-						action="#{ressarcimentoSaudeController.validarNomePlano}"
-						ajaxSingle="true" reRender="grid"></a4j:support>
-				</h:selectOneMenu>
-
+			 <h:selectOneRadio value="#{ressarcimentoSaudeController.ressarcimentoSaude.tipoPlano.codigo}">
+                        <f:selectItems value="#{ressarcimentoSaudeController.tiposPlanos}" />
+                        <a4j:support event="onchange"
+						action="#{ressarcimentoSaudeController.validarTipoPlano}"
+						ajaxSingle="true" reRender="form"></a4j:support>
+              </h:selectOneRadio>
+			<h:panelGrid columns="6" rendered="#{ressarcimentoSaudeController.indParticular}">
 				<h:outputText value="Nome do Plano: " id="nomePlanoOutput"
 					rendered="#{ressarcimentoSaudeController.indParticular}" />
 				<h:inputText id="nomePlano" required="true" maxlength="100"
@@ -185,7 +185,7 @@
 			<br>
 			<rich:fileUpload
 				fileUploadListener="#{ressarcimentoSaudeController.listener}"
-				required="true" maxFilesQuantity="20"
+				required="true" maxFilesQuantity="20" 
 				requiredMessage="É necessário adicionar o Contrato!"
 				addControlLabel="Adicionar Contrato" id="upload"
 				transferErrorLabel="Falha Ao realizar Transferência"
