@@ -30,7 +30,7 @@ public class ProgressaoController implements Serializable {
 	private List<SelectItem> padroes = new ArrayList<SelectItem>();
 	private List<SelectItem> tiposProgressoes = new ArrayList<SelectItem>();
 	private Boolean indCapacitacao;
-	private List<ServidorTitulacao> titulacoes  = new ArrayList<ServidorTitulacao>();
+	private List<ServidorTitulacao> titulacoes = new ArrayList<ServidorTitulacao>();
 
 	public Progressao getProgressao() {
 		return progressao;
@@ -79,7 +79,7 @@ public class ProgressaoController implements Serializable {
 	public void setTiposProgressoes(List<SelectItem> tiposProgressoes) {
 		this.tiposProgressoes = tiposProgressoes;
 	}
-	
+
 	public List<ServidorTitulacao> getTitulacoes() {
 		return titulacoes;
 	}
@@ -93,7 +93,6 @@ public class ProgressaoController implements Serializable {
 			indCapacitacao = false;
 			titulacoes.clear();
 			listarPadroes();
-			listarClasses();
 			listarTiposProgressoes();
 			progressao = new Progressao();
 			progressao.setServidor(new Servidor());
@@ -110,21 +109,11 @@ public class ProgressaoController implements Serializable {
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<SelectItem> listarClasses() {
-		classes = new ArrayList<SelectItem>();
-		List<Classe> classeList = new ArrayList<Classe>();
-		classeList = DAO.getInstance().list(Classe.class, "sigla");
-		for (Classe classe : classeList) {
-			classes.add(new SelectItem(classe.getCodigo(), classe.getSigla()));
-		}
-		return classes;
-	}
-
-	@SuppressWarnings("unchecked")
 	public List<SelectItem> listarTiposProgressoes() {
 		tiposProgressoes = new ArrayList<SelectItem>();
 		List<TipoProgressao> tipoProgressaoList = new ArrayList<TipoProgressao>();
-		tipoProgressaoList = DAO.getInstance().list(TipoProgressao.class, "descricao");
+		tipoProgressaoList = DAO.getInstance().list(TipoProgressao.class,
+				"descricao");
 		for (TipoProgressao tipoProgressao : tipoProgressaoList) {
 			tiposProgressoes.add(new SelectItem(tipoProgressao.getCodigo(),
 					tipoProgressao.getDescricao()));
@@ -145,7 +134,7 @@ public class ProgressaoController implements Serializable {
 	}
 
 	public void salvar() {
-			DAO.getInstance().save(progressao);
+		DAO.getInstance().save(progressao);
 		progressao = new Progressao();
 		progressao.setClasseAntiga(progressao.getServidor().getCargo()
 				.getClasse());
@@ -153,7 +142,7 @@ public class ProgressaoController implements Serializable {
 		progressao.setPadraoAntigo(progressao.getServidor().getPadrao());
 		progressao.setPadraoNovo(new Padrao());
 	}
-	
+
 	public void buscarServidor() throws IOException, ParseException {
 		progressao.setServidor(ServidorDAO.getInstance().refreshBySiape(
 				progressao.getServidor()));
@@ -165,12 +154,29 @@ public class ProgressaoController implements Serializable {
 			FacesContext.getCurrentInstance().addMessage("", message);
 		}
 	}
-	
-	public void validarTipoProgressao(){
-		if(progressao.getTipoProgressao() != null && progressao.getTipoProgressao().getCodigo().equals(Constantes.TIPO_PROGRESSAO_CAPACITACAO)){
+
+	public void validarTipoProgressao() {
+		if (progressao.getTipoProgressao() != null
+				&& progressao.getTipoProgressao().getCodigo()
+						.equals(Constantes.TIPO_PROGRESSAO_CAPACITACAO)) {
 			indCapacitacao = true;
-			titulacoes = ProgressaoDAO.getInstance().listTitulacoesServidor(progressao.getServidor());
-		}else{
+			if (progressao.getServidor().getCodigo() == null || Constantes.ZERO.equals(progressao.getServidor().getCodigo())) {
+				FacesMessage message = new FacesMessage(
+						FacesMessage.SEVERITY_ERROR, "Informe o Siape do Servidor!",
+						"Informe o Siape do Servidor!");
+				FacesContext.getCurrentInstance().addMessage("", message);
+				progressao.setTipoProgressao(new TipoProgressao());
+			} else {
+				titulacoes = ProgressaoDAO.getInstance()
+						.listTitulacoesServidor(progressao.getServidor());
+				if(titulacoes.isEmpty()){
+					FacesMessage message = new FacesMessage(
+							FacesMessage.SEVERITY_ERROR, "Não existem Titulações para este Servidor!",
+							"Não existem Titulações para este Servidor!");
+					FacesContext.getCurrentInstance().addMessage("", message);
+				}
+			}
+		} else {
 			indCapacitacao = false;
 			titulacoes.clear();
 		}

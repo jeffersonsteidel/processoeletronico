@@ -69,21 +69,28 @@
 					cellWidth="12px" cellHeight="12px" style="width:80px"
 					inputSize="12" required="true"
 					requiredMessage="Campo Data da Progressão é obrigatório!" />
-				<h:outputText value="Motivo: "></h:outputText>
+				<h:outputText value="Tipo Progressão: "></h:outputText>
 				<h:selectOneMenu
 					value="#{progressaoController.progressao.tipoProgressao.codigo}"
-					required="true" requiredMessage="Campo Motivo é obrigatório!" >
+					required="true"
+					requiredMessage="Campo Tipo Progressão é obrigatório!">
 					<f:selectItem itemLabel="SELECIONE" itemValue="" />
 					<f:selectItems value="#{progressaoController.tiposProgressoes}" />
 					<a4j:support event="onchange"
 						action="#{progressaoController.validarTipoProgressao}"
-						ajaxSingle="true" reRender="listaTitulacoes"></a4j:support>
+						ajaxSingle="true" reRender="titulacoes, listaTitulacoes"></a4j:support>
 				</h:selectOneMenu>
+				<h:outputText value="Portaria: "></h:outputText>
+				<h:inputText value="#{progressaoController.progressao.portaria}"
+					size="40" maxlength="60"
+					requiredMessage="Campo Portaria é obrigatório!" required="true"></h:inputText>
 			</h:panelGrid>
-			<rich:dataTable id="listaTitulacoes"
-					value="#{progressaoController.titulacoes}"
-					var="list" width="1150px" columnClasses="center" rows="15"
-					rendered="#{progressaoController.indCapacitacao}">
+
+			<h:panelGrid columns="1" id="titulacoes">
+				<rich:dataTable id="listaTitulacoes"
+					value="#{progressaoController.titulacoes}" var="list"
+					width="1150px" columnClasses="center" rows="15"
+					rendered="#{not empty progressaoController.titulacoes}">
 					<rich:column width="350px" sortBy="#{list.titulacao.descricao}">
 						<f:facet name="header">
 							<h:outputText value="Titulacao" />
@@ -104,6 +111,7 @@
 						<h:outputText value="#{list.areaConhecimento.descricao}" />
 					</rich:column>
 				</rich:dataTable>
+			</h:panelGrid>
 			<h:panelGrid columns="2">
 				<a4j:commandButton value="Salvar"
 					action="#{lotacaoController.salvar}" reRender="form" />
