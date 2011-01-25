@@ -34,7 +34,11 @@ public class RessarcimentoSaudeController implements Serializable {
 	private List<SelectItem> tiposPlanos = new ArrayList<SelectItem>();
 	private List<Conjuge> conjuges = new ArrayList<Conjuge>();
 	private List<Dependente> dependentes = new ArrayList<Dependente>();
+
 	private Boolean indParticular = false;
+	private Boolean indGEAP = false;
+	private Boolean indSindicato = false;
+
 	RessarcimentoSaudeContrato ressarcimentoSaudeContrato;
 	private List<RessarcimentoSaude> ressarcimentoList = new ArrayList<RessarcimentoSaude>();
 	private RessarcimentoSaude ressarcimentoSaudeTemp;
@@ -151,8 +155,28 @@ public class RessarcimentoSaudeController implements Serializable {
 		this.existeAnterior = existeAnterior;
 	}
 
+	public Boolean getIndGEAP() {
+		return indGEAP;
+	}
+
+	public void setIndGEAP(Boolean indGEAP) {
+		this.indGEAP = indGEAP;
+	}
+
+	public Boolean getIndSindicato() {
+		return indSindicato;
+	}
+
+	public void setIndSindicato(Boolean indSindicato) {
+		this.indSindicato = indSindicato;
+	}
+
 	public void abrirRessarcimentoSaude() {
 		try {
+			indGEAP = false;
+			indParticular = false;
+			indSindicato = false;
+			
 			existeAnterior = false;
 			this.setDependentes(new ArrayList<Dependente>());
 			this.setConjuges(new ArrayList<Conjuge>());
@@ -161,7 +185,7 @@ public class RessarcimentoSaudeController implements Serializable {
 			ressarcimentoSaude.setStatus(new StatusSolicitacao());
 			buscarServidorLogado();
 			listarTipoPlano();
-			validarNomePlano();
+			validarTipoPlano();
 			List<RessarcimentoSaude> ressarcimentoList = RessarcimentoSaudeDAO
 					.getInstance().recuperarRessarcimentosAnteriores(
 							ressarcimentoSaude.getServidor());
@@ -235,28 +259,49 @@ public class RessarcimentoSaudeController implements Serializable {
 		}
 	}
 
-	public void validarNomePlano() {
-		if (!Constantes.TIPO_PLANO_PARTICULAR.equals(ressarcimentoSaude
+	public void validarTipoPlano() {
+		if (Constantes.TIPO_PLANO_PARTICULAR.equals(ressarcimentoSaude
+				.getTipoPlano().getCodigo())) {
+			this.setIndParticular(true);
+			this.setIndGEAP(false);
+			this.setIndSindicato(false);
+		} else if (Constantes.TIPO_PLANO_GEAPE.equals(ressarcimentoSaude
 				.getTipoPlano().getCodigo())) {
 			this.setIndParticular(false);
-		} else {
-			this.setIndParticular(true);
+			this.setIndGEAP(true);
+			this.setIndSindicato(false);
+		} else if (Constantes.TIPO_PLANO_SINDICATO.equals(ressarcimentoSaude
+				.getTipoPlano().getCodigo())) {
+			this.setIndParticular(false);
+			this.setIndGEAP(false);
+			this.setIndSindicato(true);
 		}
 	}
 
 	public void salvar() throws IOException, ParseException {
-		ressarcimentoSaude.setStatus(new StatusSolicitacao());
-		ressarcimentoSaude.getStatus().setCodigo(
-				Constantes.STATUS_SOLICITACAO_ENCAMINHADO);
-		RessarcimentoSaudeDAO.getInstance().saveRessarcimentoSaude(
-				ressarcimentoSaude, dependentes, conjuges);
-		this.setIndParticular(false);
-		ressarcimentoSaude = new RessarcimentoSaude();
-		ressarcimentoSaude.setTipoPlano(new TipoPlano());
-		ressarcimentoSaude.setStatus(new StatusSolicitacao());
-		this.ressarcimentoSaude
-				.setFiles(new ArrayList<RessarcimentoSaudeContrato>());
-		buscarServidorLogado();
+		if (ressarcimentoSaude.getFiles().isEmpty() && (indParticular || indGEAP)) {
+			FacesMessage message = new FacesMessage(
+					FacesMessage.SEVERITY_ERROR,
+					"É obrigatório adicionar o Contrato!",
+					"É obrigatório adicionar o Contrato!");
+			FacesContext.getCurrentInstance().addMessage("", message);
+			
+		} else {
+			ressarcimentoSaude.setStatus(new StatusSolicitacao());
+			ressarcimentoSaude.getStatus().setCodigo(
+					Constantes.STATUS_SOLICITACAO_ENCAMINHADO);
+			RessarcimentoSaudeDAO.getInstance().saveRessarcimentoSaude(
+					ressarcimentoSaude, dependentes, conjuges);
+			indGEAP = false;
+			indParticular = false;
+			indSindicato = false;
+			ressarcimentoSaude = new RessarcimentoSaude();
+			ressarcimentoSaude.setTipoPlano(new TipoPlano());
+			ressarcimentoSaude.setStatus(new StatusSolicitacao());
+			this.ressarcimentoSaude
+					.setFiles(new ArrayList<RessarcimentoSaudeContrato>());
+			buscarServidorLogado();
+		}
 	}
 
 	public void pesquisar() {
@@ -274,7 +319,7 @@ public class RessarcimentoSaudeController implements Serializable {
 			ressarcimentoSaude.setStatus(new StatusSolicitacao());
 			botaoHabilitado = true;
 		}
-		validarNomePlano();
+		validarTipoPlano();
 		conjuges.clear();
 		dependentes.clear();
 		conjuges = RessarcimentoSaudeDAO.getInstance()
