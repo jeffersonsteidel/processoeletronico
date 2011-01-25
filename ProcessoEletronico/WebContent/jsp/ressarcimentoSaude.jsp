@@ -34,7 +34,8 @@
 			</h:panelGrid>
 			<h:panelGrid>
 				<center><h:outputText
-					value="Ultimo Ressarcimento Cadastrado"
+					value="Você já possui um Ressarcimento Cadastrado, se optar em cadastrar um novo Ressarcimento será considerado o de maior data de adesão"
+					style="font-weight:bold"
 					rendered="#{ressarcimentoSaudeController.existeAnterior}" /></center>
 			</h:panelGrid>
 			<h:panelGrid columns="8">
@@ -63,7 +64,8 @@
 					<f:convertDateTime pattern="dd/MM/yyyy" />
 				</h:outputText>
 			</h:panelGrid>
-			<h:panelGrid rendered="#{ressarcimentoSaudeController.existeAnterior}">
+			<h:panelGrid
+				rendered="#{ressarcimentoSaudeController.existeAnterior}">
 				<center><h:outputText value="Novo Ressarcimento" /></center>
 			</h:panelGrid>
 			<h:panelGrid id="grid" columns="8">

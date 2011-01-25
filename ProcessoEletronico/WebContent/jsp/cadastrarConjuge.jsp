@@ -34,7 +34,7 @@
 				</h:outputText>
 			</h:panelGrid>
 
-			<h:outputText style="color: #00008B"
+			<h:outputText  style="font-weight:bold"
 				value="#{conjugeController.texto}" />
 
 			<h:panelGrid columns="4">
