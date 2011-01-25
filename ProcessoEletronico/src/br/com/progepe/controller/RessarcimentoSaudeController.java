@@ -172,7 +172,9 @@ public class RessarcimentoSaudeController implements Serializable {
 					if (ressarcimento.getCodigo() > ressarcimentoAnterior
 							.getCodigo()) {
 						ressarcimentoAnterior = ressarcimento;
-						if(Constantes.TIPO_PLANO_PARTICULAR.equals(ressarcimentoAnterior.getTipoPlano().getCodigo())){
+						if (Constantes.TIPO_PLANO_PARTICULAR
+								.equals(ressarcimentoAnterior.getTipoPlano()
+										.getCodigo())) {
 							this.setIndParticular(true);
 						}
 					}
@@ -258,33 +260,8 @@ public class RessarcimentoSaudeController implements Serializable {
 	}
 
 	public void pesquisar() {
-		Boolean validacao = true;
-		if (!Constantes.STATUS_SOLICITACAO_ENCAMINHADO
-				.equals(ressarcimentoSaudeTemp.getStatus().getCodigo())) {
-			if (ressarcimentoSaudeTemp.getServidor().getSiape() == null
-					|| ressarcimentoSaudeTemp.getServidor().getSiape() == 0) {
-				validacao = false;
-				FacesMessage message = new FacesMessage(
-						FacesMessage.SEVERITY_ERROR,
-						"O campo Siape do Servidor é obrigatório!",
-						"O campo Siape do Servidor é obrigatório!");
-				FacesContext.getCurrentInstance().addMessage("", message);
-			}
-			if (ressarcimentoSaudeTemp.getTipoPlano().getCodigo() == null
-					|| ressarcimentoSaudeTemp.getTipoPlano().getCodigo() == 0) {
-				validacao = false;
-				FacesMessage message = new FacesMessage(
-						FacesMessage.SEVERITY_ERROR,
-						"O campo Tipo do Plano é obrigatório!",
-						"O campo Tipo do Plano é obrigatório!");
-				FacesContext.getCurrentInstance().addMessage("", message);
-			}
-
-		}
-		if (validacao) {
-			ressarcimentoList = RessarcimentoSaudeDAO.getInstance()
-					.listByFilter(ressarcimentoSaudeTemp, situacao);
-		}
+		ressarcimentoList = RessarcimentoSaudeDAO.getInstance().listByFilter(
+				ressarcimentoSaudeTemp, situacao);
 	}
 
 	public void carregar() {
@@ -295,8 +272,6 @@ public class RessarcimentoSaudeController implements Serializable {
 		if (Constantes.STATUS_SOLICITACAO_ENCAMINHADO.equals(ressarcimentoSaude
 				.getStatus().getCodigo())) {
 			ressarcimentoSaude.setStatus(new StatusSolicitacao());
-			ressarcimentoSaude.getStatus().setCodigo(
-					Constantes.STATUS_SOLICITACAO_EM_ANALISE);
 			botaoHabilitado = true;
 		}
 		validarNomePlano();
@@ -360,7 +335,8 @@ public class RessarcimentoSaudeController implements Serializable {
 	}
 
 	public void indeferir() {
-		if (ressarcimentoSaude.getJustificativa() == null || ressarcimentoSaude.getJustificativa().equals("")) {
+		if (ressarcimentoSaude.getJustificativa() == null
+				|| ressarcimentoSaude.getJustificativa().equals("")) {
 			FacesMessage message = new FacesMessage(
 					FacesMessage.SEVERITY_ERROR,
 					"O campo Justificativa é obrigatório!",
