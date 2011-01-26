@@ -410,6 +410,8 @@ public class FitaEspelho {
 			html = html + "<th>SEXO</th>";
 			html = html + "<th>DATA DE NASCIMENTO</th>";
 			html = html + "<th>ESTADO CIVIL</th>";
+			html = html + "<th>NIVEL ESCOLARIDADE</th>";
+			html = html + "<th>TITULAÇÃO</th>";
 			html = html + "<th>ENDEREÇO</th>";
 			html = html + "<th>NUMERO</th>";
 			html = html + "<th>COMPLEMENTO</th>";
@@ -433,6 +435,11 @@ public class FitaEspelho {
 			html = html + "<th>SITUAÇÃO</th>";
 			html = html + "<th>GRUPO INGR. ORGÃO</th>";
 			html = html + "<th>OCORRENC. INGR. ORGÃO</th>";
+			html = html + "<th>AFASTAMENTO GRUPO</th>";
+			html = html + "<th>AFASTAMENTO OCORRENCIA</th>";
+			
+			html = html + "<th>CODIGO NIVEL FUNÇÃO</th>";
+			html = html + "<th>FUNÇÃO DATA SAIDA</th>";
 			html = html + "</tr>";
 
 			while (br.ready()) {
@@ -480,6 +487,12 @@ public class FitaEspelho {
 					}
 
 					if (tipoRegistro.equals(1)) {
+						html = html + "<td>" + linha.substring(162, 164)
+						+ "</td>";
+						
+						html = html + "<td>" + linha.substring(164, 166)
+						+ "</td>";
+						
 						html = html + "<td>" + linha.substring(201, 241)
 								+ "</td>";
 						html = html + "<td>" + linha.substring(241, 247)
@@ -711,6 +724,17 @@ public class FitaEspelho {
 					
 					html = html + "<td>" + linha.substring(246,248)+" </td>";
 					html = html + "<td>" + linha.substring(248,251)+" </td>";
+					
+					html = html + "<td>" + linha.substring(342,344)+" </td>";
+					html = html + "<td>" + linha.substring(344,347)+" </td>";
+					
+					html = html + "<td>" + linha.substring(142,147)+" </td>";
+					
+					html = html + "<td>" + linha.substring(158, 160) + "/"
+					+ linha.substring(160, 162) + "/"
+					+ linha.substring(162, 166) + "</td>";
+					
+
 
 					html = html + "</tr>";
 				}
