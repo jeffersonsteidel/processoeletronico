@@ -19,6 +19,8 @@
 			column="PAD_COD_NOVO" lazy="false" />
 		<many-to-one name="tipoProgressao" class="br.com.progepe.entity.TipoProgressao"
 			column="TIP_PROG_COD"  lazy="false" />		
+		<many-to-one name="servidorTitulacao" class="br.com.progepe.entity.ServidorTitulacao"
+			column="TIT_COD"  lazy="false" />		
 		<property name="dataProgressao" column="PROG_DATA" />	
 		<property name="portaria" column="PROG_PORT" />			
 	</class>
