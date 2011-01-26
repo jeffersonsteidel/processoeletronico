@@ -183,6 +183,7 @@ public class RessarcimentoSaudeController implements Serializable {
 			ressarcimentoSaude = new RessarcimentoSaude();
 			ressarcimentoSaude.setTipoPlano(new TipoPlano());
 			ressarcimentoSaude.setStatus(new StatusSolicitacao());
+			ressarcimentoSaude.getTipoPlano().setCodigo(Constantes.TIPO_PLANO_PARTICULAR);
 			buscarServidorLogado();
 			listarTipoPlano();
 			validarTipoPlano();
@@ -411,4 +412,12 @@ public class RessarcimentoSaudeController implements Serializable {
 		return status;
 	}
 
+	public void carregarRessarcimentoAnterior(){
+		ressarcimentoSaude = ressarcimentoAnterior;
+		ressarcimentoSaude.setStatus(new StatusSolicitacao());
+		ressarcimentoSaude.setJustificativa(null);
+		ressarcimentoSaude.setFiles(RessarcimentoSaudeDAO.getInstance()
+				.getContratos(ressarcimentoSaude));
+		validarTipoPlano();
+	}
 }
