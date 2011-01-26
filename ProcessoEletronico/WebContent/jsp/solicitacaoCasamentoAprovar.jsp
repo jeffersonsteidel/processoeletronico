@@ -43,6 +43,19 @@
 				<h:outputText
 					value="#{solicitacaoController.solicitacaoCasamento.numeroCertidao}">
 				</h:outputText>
+				
+				<h:outputText value="Data do Casamento: "></h:outputText>
+				<h:outputText 
+					value="#{solicitacaoController.solicitacaoCasamento.dataCasamento}">
+					<f:convertDateTime locale="pt_BR" pattern="dd/MM/yyyy" />
+				</h:outputText>
+				
+				<h:outputText value="Data de Retorno ao Trabalho: "></h:outputText>
+				<h:outputText 
+					value="#{solicitacaoController.solicitacaoCasamento.dataRetorno}">
+					<f:convertDateTime locale="pt_BR" pattern="dd/MM/yyyy" />
+				</h:outputText>
+				
 			</h:panelGrid>
 
 			<a4j:region>

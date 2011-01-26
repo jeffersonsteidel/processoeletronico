@@ -10,5 +10,7 @@
 		<property name="numeroCertidao" column="SOLIC_NUM_CERT_CASAMENTO" />
 		<property name="certidaoCasamento" column="SOLIC_CERTIDAO" />
 		<property name="documentoValidado" column="SOLIC_DOC_VALIDADO" type="boolean"/>
+		<property name="dataCasamento" column="SOLIC_DATA_CASAMENTO" />
+		<property name="dataRetorno" column="SOLIC_DATA_RETORNO" />
 	</joined-subclass>
 </hibernate-mapping>
