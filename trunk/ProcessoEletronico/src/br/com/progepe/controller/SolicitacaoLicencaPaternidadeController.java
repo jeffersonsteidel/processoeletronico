@@ -5,6 +5,7 @@ import java.io.OutputStream;
 import java.io.Serializable;
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 
 import javax.faces.application.FacesMessage;
@@ -117,5 +118,14 @@ public class SolicitacaoLicencaPaternidadeController implements Serializable {
 		System.out.println(solicitacaoLicencaPaternidade.getDataNascimento());
 		FacesContext.getCurrentInstance().getExternalContext()
 				.redirect("solicitacaoLicencaPaternidadeAprovar.jsp");
+	}
+	
+	public void calcularRetorno(){
+		if(solicitacaoLicencaPaternidade.getDataNascimento() != null){
+			Calendar calendar = Calendar.getInstance();  
+			calendar.setTime(solicitacaoLicencaPaternidade.getDataNascimento());  
+			calendar.add(Calendar.DATE, Constantes.QUANTIDADE_DIAS_LICENCA_PATERNIDADE);  
+			solicitacaoLicencaPaternidade.setDataRetorno(calendar.getTime());
+		}
 	}
 }
