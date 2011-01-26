@@ -163,4 +163,20 @@ public class RessarcimentoSaudeDAO extends DAO {
 		HibernateUtility.commitTransaction();
 		return (List<RessarcimentoSaude>) query.list();
 	}
+	
+	public void updateRessarcimento(RessarcimentoSaude ressarcimento){
+		try {
+			HibernateUtility.getSession().clear();
+			HibernateUtility.beginTransaction();
+			HibernateUtility.getSession().update(ressarcimento);
+			HibernateUtility.commitTransaction();
+		} catch (Exception e) {
+			HibernateUtility.rollbackTransaction();
+			FacesMessage message = new FacesMessage(
+					FacesMessage.SEVERITY_ERROR,
+					"Erro ao comunicar com o servidor!",
+					"Erro ao comunicar com o servidor!");
+			FacesContext.getCurrentInstance().addMessage("", message);
+		}
+	}
 }

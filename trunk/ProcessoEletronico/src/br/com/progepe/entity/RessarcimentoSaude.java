@@ -19,6 +19,7 @@ public class RessarcimentoSaude implements Serializable {
 	private Date dataAdesao;
 	private StatusSolicitacao status;
 	private String justificativa;
+	private Boolean indAtual;
 
 	public Long getCodigo() {
 		return codigo;
@@ -91,5 +92,13 @@ public class RessarcimentoSaude implements Serializable {
 	public void setJustificativa(String justificativa) {
 		this.justificativa = justificativa;
 	}
-	
+
+	public Boolean getIndAtual() {
+		return indAtual;
+	}
+
+	public void setIndAtual(Boolean indAtual) {
+		this.indAtual = indAtual;
+	}
+
 }

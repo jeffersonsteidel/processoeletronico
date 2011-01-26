@@ -34,70 +34,73 @@
 			</h:panelGrid>
 			<h:panelGrid>
 				<center><h:outputText
-					value="Você já possui um Ressarcimento Cadastrado, se optar em cadastrar um novo Ressarcimento será considerado o de maior data de adesão"
+					value="Você já possui um Ressarcimento Cadastrado"
 					style="font-weight:bold"
-					rendered="#{ressarcimentoSaudeController.existeAnterior}" /></center>
+					rendered="#{ressarcimentoSaudeController.existeAnterior && !ressarcimentoSaudeController.ressarcimentoNovo}" /></center>
 			</h:panelGrid>
 
 			<h:panelGrid columns="10">
 				<h:outputText value="Tipo do Plano: "
-					rendered="#{ressarcimentoSaudeController.existeAnterior}" />
+					rendered="#{ressarcimentoSaudeController.existeAnterior && !ressarcimentoSaudeController.ressarcimentoNovo}" />
 				<h:outputText
-					rendered="#{ressarcimentoSaudeController.existeAnterior}"
+					rendered="#{ressarcimentoSaudeController.existeAnterior && !ressarcimentoSaudeController.ressarcimentoNovo}"
 					value="#{ressarcimentoSaudeController.ressarcimentoAnterior.tipoPlano.descricao}" />
 
 				<h:outputText value="Nome do Plano: "
-					rendered="#{ressarcimentoSaudeController.existeAnterior && ressarcimentoSaudeController.ressarcimentoAnterior.tipoPlano.codigo == 3}" />
+					rendered="#{ressarcimentoSaudeController.existeAnterior && ressarcimentoSaudeController.ressarcimentoAnterior.tipoPlano.codigo == 3 && !ressarcimentoSaudeController.ressarcimentoNovo}" />
 				<h:outputText
-					rendered="#{ressarcimentoSaudeController.existeAnterior && ressarcimentoSaudeController.ressarcimentoAnterior.tipoPlano.codigo == 3}"
+					rendered="#{ressarcimentoSaudeController.existeAnterior && ressarcimentoSaudeController.ressarcimentoAnterior.tipoPlano.codigo == 3 && !ressarcimentoSaudeController.ressarcimentoNovo}"
 					value="#{ressarcimentoSaudeController.ressarcimentoAnterior.nomePlano}" />
 
 				<h:outputText value="Numero do Contrato: "
-					rendered="#{ressarcimentoSaudeController.existeAnterior && ressarcimentoSaudeController.ressarcimentoAnterior.tipoPlano.codigo == 3}" />
+					rendered="#{ressarcimentoSaudeController.existeAnterior && ressarcimentoSaudeController.ressarcimentoAnterior.tipoPlano.codigo == 3 && !ressarcimentoSaudeController.ressarcimentoNovo}" />
 				<h:outputText
 					value="#{ressarcimentoSaudeController.ressarcimentoAnterior.numeroContrato}"
-					rendered="#{ressarcimentoSaudeController.existeAnterior && ressarcimentoSaudeController.ressarcimentoAnterior.tipoPlano.codigo == 3}" />
+					rendered="#{ressarcimentoSaudeController.existeAnterior && ressarcimentoSaudeController.ressarcimentoAnterior.tipoPlano.codigo == 3 && !ressarcimentoSaudeController.ressarcimentoNovo}" />
 
 				<h:outputText value="Data de Adesão: "
-					rendered="#{ressarcimentoSaudeController.existeAnterior && ressarcimentoSaudeController.ressarcimentoAnterior.tipoPlano.codigo == 3}" />
+					rendered="#{ressarcimentoSaudeController.existeAnterior && ressarcimentoSaudeController.ressarcimentoAnterior.tipoPlano.codigo == 3 && !ressarcimentoSaudeController.ressarcimentoNovo}" />
 				<h:outputText
-					rendered="#{ressarcimentoSaudeController.existeAnterior && ressarcimentoSaudeController.ressarcimentoAnterior.tipoPlano.codigo == 3}"
+					rendered="#{ressarcimentoSaudeController.existeAnterior && ressarcimentoSaudeController.ressarcimentoAnterior.tipoPlano.codigo == 3 && !ressarcimentoSaudeController.ressarcimentoNovo}"
 					value="#{ressarcimentoSaudeController.ressarcimentoAnterior.dataAdesao}">
 					<f:convertDateTime pattern="dd/MM/yyyy" />
 				</h:outputText>
 			</h:panelGrid>
 
-			<h:panelGrid columns="3">
+			<h:panelGrid columns="2">
 				<h:outputText value="Status: "
-					rendered="#{ressarcimentoSaudeController.existeAnterior}" />
+					rendered="#{ressarcimentoSaudeController.existeAnterior && !ressarcimentoSaudeController.ressarcimentoNovo}" />
 				<h:outputText
 					value="#{ressarcimentoSaudeController.ressarcimentoAnterior.status.descricao}"
-					rendered="#{ressarcimentoSaudeController.existeAnterior}" />
-				<rich:toolTip for="encaminhado" value="Encaminhado" />
-				<rich:toolTip for="emAnalise"
-					value="Você não pode abrir uma solicitação que está em Análise!" />
-				<rich:toolTip for="deferido" value="Deferido" />
-				<rich:toolTip for="indeferido" value="Indeferido" />
+					rendered="#{ressarcimentoSaudeController.existeAnterior && !ressarcimentoSaudeController.ressarcimentoNovo}" />
+				<h:outputText
+					value="Ativo: "
+					rendered="#{ressarcimentoSaudeController.existeAnterior && !ressarcimentoSaudeController.ressarcimentoNovo}" />
+				<h:outputText
+					value="SIM"
+					rendered="#{ressarcimentoSaudeController.existeAnterior && !ressarcimentoSaudeController.ressarcimentoNovo && ressarcimentoSaudeController.ressarcimentoAnterior.indAtual}" />
+				<h:outputText
+					value="NÃO"
+					rendered="#{ressarcimentoSaudeController.existeAnterior && !ressarcimentoSaudeController.ressarcimentoNovo && !ressarcimentoSaudeController.ressarcimentoAnterior.indAtual}" />
 			</h:panelGrid>
-			
+
 			<h:panelGrid columns="1" style="text-align: center"
-				rendered="#{ressarcimentoSaudeController.existeAnterior && ressarcimentoSaudeController.ressarcimentoAnterior.status.codigo == 4}">
+				rendered="#{ressarcimentoSaudeController.existeAnterior && ressarcimentoSaudeController.ressarcimentoAnterior.status.codigo == 4 && !ressarcimentoSaudeController.ressarcimentoNovo}">
 				<h:outputText value="Motivo do Indeferimento" />
 				<h:inputTextarea cols="50" rows="5"
 					value="#{ressarcimentoSaudeController.ressarcimentoAnterior.justificativa}"
 					disabled="true" />
-				<a4j:commandButton value="Corrigir"
-					action="#{ressarcimentoSaudeController.carregarRessarcimentoAnterior}" reRender="form" />
+			</h:panelGrid>
+			<h:panelGrid
+				rendered="#{ressarcimentoSaudeController.existeAnterior && !ressarcimentoSaudeController.ressarcimentoNovo}">
 				<a4j:commandButton value="Adicionar Novo Plano"
+					oncomplete="#{rich:component('confirmPanel')}.show()"
 					reRender="form" />
 			</h:panelGrid>
-
-			<h:panelGrid
-				rendered="#{ressarcimentoSaudeController.existeAnterior}">
-				<center><h:outputText value="Novo Ressarcimento" /></center>
-			</h:panelGrid>
-			<h:outputText value="Tipo do Plano: " />
+			<h:outputText value="Tipo do Plano: "
+				rendered="#{ressarcimentoSaudeController.ressarcimentoNovo}" />
 			<h:selectOneRadio
+				rendered="#{ressarcimentoSaudeController.ressarcimentoNovo}"
 				value="#{ressarcimentoSaudeController.ressarcimentoSaude.tipoPlano.codigo}"
 				required="true"
 				requiredMessage="O campo Tipo de Plano é obrigatório!">
@@ -107,7 +110,8 @@
 					ajaxSingle="true" reRender="form"></a4j:support>
 			</h:selectOneRadio>
 
-			<h:panelGrid columns="6">
+			<h:panelGrid columns="6"
+				rendered="#{ressarcimentoSaudeController.ressarcimentoNovo}">
 
 				<h:outputText value="Nome do Plano: " id="nomePlanoOutput"
 					rendered="#{ressarcimentoSaudeController.indParticular}" />
@@ -116,8 +120,10 @@
 					value="#{ressarcimentoSaudeController.ressarcimentoSaude.nomePlano}"
 					rendered="#{ressarcimentoSaudeController.indParticular}" />
 
-				<h:outputText value="Numero do Contrato: " rendered="#{ressarcimentoSaudeController.indParticular}" />
-				<h:inputText required="true" maxlength="15" rendered="#{ressarcimentoSaudeController.indParticular}" 
+				<h:outputText value="Numero do Contrato: "
+					rendered="#{ressarcimentoSaudeController.indParticular}" />
+				<h:inputText required="true" maxlength="15"
+					rendered="#{ressarcimentoSaudeController.indParticular}"
 					requiredMessage="O campo Numero do Contrato é obrigatório!"
 					value="#{ressarcimentoSaudeController.ressarcimentoSaude.numeroContrato}" />
 
@@ -133,10 +139,10 @@
 			<br>
 			<h:outputText
 				value="Selecione o Cônjuge para adiciona-lo(a) no plano"
-				rendered="#{not empty ressarcimentoSaudeController.conjuges}" />
+				rendered="#{not empty ressarcimentoSaudeController.conjuges && ressarcimentoSaudeController.ressarcimentoNovo}" />
 			<br>
 			<rich:dataTable id="listarConjugesSolicitante"
-				rendered="#{not empty ressarcimentoSaudeController.conjuges}"
+				rendered="#{not empty ressarcimentoSaudeController.conjuges && ressarcimentoSaudeController.ressarcimentoNovo}"
 				value="#{ressarcimentoSaudeController.conjuges}" var="list"
 				width="700px" columnClasses="center" rows="15" reRender="ds">
 
@@ -167,10 +173,10 @@
 			<br>
 			<h:outputText
 				value="Selecione os Dependentes que deseja adicionar ao plano:"
-				rendered="#{not empty ressarcimentoSaudeController.dependentes}" />
+				rendered="#{not empty ressarcimentoSaudeController.dependentes && ressarcimentoSaudeController.ressarcimentoNovo}" />
 			<br>
 			<rich:dataTable id="listarDependentesSolicitante"
-				rendered="#{not empty ressarcimentoSaudeController.dependentes}"
+				rendered="#{not empty ressarcimentoSaudeController.dependentes && ressarcimentoSaudeController.ressarcimentoNovo}"
 				value="#{ressarcimentoSaudeController.dependentes}" var="list"
 				width="700px" columnClasses="center" rows="15" reRender="ds">
 
@@ -214,7 +220,7 @@
 			</rich:dataTable>
 			<br>
 			<rich:fileUpload
-				rendered="#{!ressarcimentoSaudeController.indSindicato}"
+				rendered="#{!ressarcimentoSaudeController.indSindicato && ressarcimentoSaudeController.ressarcimentoNovo}"
 				fileUploadListener="#{ressarcimentoSaudeController.listener}"
 				required="true" maxFilesQuantity="20"
 				requiredMessage="É necessário adicionar o Contrato!"
@@ -229,10 +235,11 @@
 			</rich:fileUpload>
 
 			<a4j:commandButton value="Salvar"
+				rendered="#{ressarcimentoSaudeController.ressarcimentoNovo}"
 				action="#{ressarcimentoSaudeController.salvar}" reRender="form" />
 
 			<h:panelGroup id="info"
-				rendered="#{!ressarcimentoSaudeController.indSindicato}">
+				rendered="#{!ressarcimentoSaudeController.indSindicato && ressarcimentoSaudeController.ressarcimentoNovo}">
 				<rich:panel bodyClass="info">
 					<rich:dataGrid
 						value="#{ressarcimentoSaudeController.ressarcimentoSaude.files}"
@@ -251,6 +258,33 @@
 				</rich:panel>
 			</h:panelGroup>
 		</rich:panel></center>
+
+		<rich:modalPanel id="confirmPanel" autosized="true" width="200">
+			<f:facet name="header">
+				<h:outputText
+					value="Aviso"
+					style="padding-right:15px;" />
+			</f:facet>
+			<h:form>
+			<h:outputText
+					value="Para solicitar um novo Ressarcimento Saúde o atual será desativado. Deseja continuar?"/>
+				<table width="100%">
+					<tbody>
+						<tr>
+							<td align="center" width="50%"><a4j:commandButton
+								value="Sim" ajaxSingle="true"
+								action="#{ressarcimentoSaudeController.desativarRessarcimento}"
+								oncomplete="#{rich:component('confirmPanel')}.hide();"
+								reRender="form" /></td>
+							<td align="center" width="50%"><a4j:commandButton
+								value="Não"
+								onclick="#{rich:component('confirmPanel')}.hide();return false;" />
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</h:form>
+		</rich:modalPanel>
 	</a4j:form>
 </f:view>
 </body>
