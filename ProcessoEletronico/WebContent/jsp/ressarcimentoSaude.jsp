@@ -88,7 +88,8 @@
 					disabled="true" />
 				<a4j:commandButton value="Corrigir"
 					action="#{ressarcimentoSaudeController.carregarRessarcimentoAnterior}" reRender="form" />
-
+				<a4j:commandButton value="Adicionar Novo Plano"
+					reRender="form" />
 			</h:panelGrid>
 
 			<h:panelGrid
@@ -106,8 +107,7 @@
 					ajaxSingle="true" reRender="form"></a4j:support>
 			</h:selectOneRadio>
 
-			<h:panelGrid columns="6"
-				rendered="#{ressarcimentoSaudeController.indParticular}">
+			<h:panelGrid columns="6">
 
 				<h:outputText value="Nome do Plano: " id="nomePlanoOutput"
 					rendered="#{ressarcimentoSaudeController.indParticular}" />
@@ -116,8 +116,8 @@
 					value="#{ressarcimentoSaudeController.ressarcimentoSaude.nomePlano}"
 					rendered="#{ressarcimentoSaudeController.indParticular}" />
 
-				<h:outputText value="Numero do Contrato: " />
-				<h:inputText required="true" maxlength="15"
+				<h:outputText value="Numero do Contrato: " rendered="#{ressarcimentoSaudeController.indParticular}" />
+				<h:inputText required="true" maxlength="15" rendered="#{ressarcimentoSaudeController.indParticular}" 
 					requiredMessage="O campo Numero do Contrato é obrigatório!"
 					value="#{ressarcimentoSaudeController.ressarcimentoSaude.numeroContrato}" />
 
