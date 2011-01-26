@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import javax.faces.application.FacesMessage;
@@ -14,6 +15,7 @@ import br.com.progepe.constantes.Constantes;
 import br.com.progepe.dao.DAO;
 import br.com.progepe.dao.ProgressaoDAO;
 import br.com.progepe.dao.ServidorDAO;
+import br.com.progepe.entity.Cargo;
 import br.com.progepe.entity.Classe;
 import br.com.progepe.entity.Padrao;
 import br.com.progepe.entity.Progressao;
@@ -88,6 +90,21 @@ public class ProgressaoController implements Serializable {
 		this.titulacoes = titulacoes;
 	}
 
+	@SuppressWarnings("unchecked")
+	public void abrirListarProgressao() throws ParseException {
+		try {
+			progressao = new Progressao();
+			progressaoList = new ArrayList<Progressao>();
+			progressao.getServidor().setCargo(new Cargo());
+			progressaoList = (List<Progressao>) DAO.getInstance().list(Progressao.class,
+					"codigo");
+			FacesContext.getCurrentInstance().getExternalContext()
+					.redirect("listarProgressoes.jsp");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	public void abrirCadastrarProgressao() throws ParseException {
 		try {
 			indCapacitacao = false;
@@ -133,6 +150,15 @@ public class ProgressaoController implements Serializable {
 		}
 		return padroes;
 	}
+	
+	public void calcularProximaProgressao(){
+		if(progressao.getDataProgressao() != null){
+			Calendar calendar = Calendar.getInstance();  
+			   calendar.setTime(progressao.getDataProgressao());  
+			   calendar.add(Calendar.MONTH, Constantes.QUANTIDADE_MESES_PROGRESSAO);  
+			progressao.setDataProximaProgressao(calendar.getTime());
+		}
+	}
 
 	public void salvar() {
 		DAO.getInstance().save(progressao);
@@ -156,6 +182,17 @@ public class ProgressaoController implements Serializable {
 			FacesContext.getCurrentInstance().addMessage("", message);
 		}
 	}
+	
+	public void carregar() throws IOException {
+		FacesContext context = FacesContext.getCurrentInstance();
+		progressao = (Progressao) context.getExternalContext().getRequestMap()
+				.get("list");
+		listarTiposProgressoes();
+		listarPadroes();
+		FacesContext.getCurrentInstance().getExternalContext()
+				.redirect("cadastrarProgressao.jsp");
+	}
+
 
 	public void validarTipoProgressao() {
 		if (progressao.getTipoProgressao() != null

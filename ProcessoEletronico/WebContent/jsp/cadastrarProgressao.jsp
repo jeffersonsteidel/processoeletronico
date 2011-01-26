@@ -25,7 +25,7 @@
 					<h:graphicImage value="../images/error.gif" />
 				</f:facet>
 			</rich:messages>
-			<font size="2"><b>CADASTRAR PROGRESSÃO</b></font>
+			<font size="2"><b>CADASTRAR PROGRESSÃO - MÉRITO</b></font>
 
 			<h:panelGrid columns="4">
 				<h:outputText value="Siape do Servidor: ">
@@ -68,24 +68,30 @@
 					popup="true" datePattern="dd/MM/yyyy" showApplyButton="#"
 					cellWidth="12px" cellHeight="12px" style="width:80px"
 					inputSize="12" required="true"
-					requiredMessage="Campo Data da Progressão é obrigatório!" />
+					requiredMessage="Campo Data da Progressão é obrigatório!">
+					<a4j:support event="onchanged"
+						action="#{progressaoController.calcularProximaProgressao}"
+						ajaxSingle="true" reRender="dataProxima"></a4j:support>
+				</rich:calendar>
+
+
+				<h:outputText value="Data da Próxima Progressão: " />
+				<rich:calendar id="dataProxima"
+					value="#{progressaoController.progressao.dataProximaProgressao}"
+					locale="" popup="true" datePattern="dd/MM/yyyy" showApplyButton="#"
+					cellWidth="12px" cellHeight="12px" style="width:80px"
+					inputSize="12" disabled="true" />
+
 				<h:outputText value="Tipo Progressão: "></h:outputText>
-				<h:selectOneMenu
-					value="#{progressaoController.progressao.tipoProgressao.codigo}"
-					required="true"
-					requiredMessage="Campo Tipo Progressão é obrigatório!">
-					<f:selectItem itemLabel="SELECIONE" itemValue="" />
-					<f:selectItems value="#{progressaoController.tiposProgressoes}" />
-					<a4j:support event="onchange"
-						action="#{progressaoController.validarTipoProgressao}"
-						ajaxSingle="true" reRender="titulacoes, listaTitulacoes"></a4j:support>
-				</h:selectOneMenu>
+				<h:outputText value="MÉRITO"></h:outputText>
+
+
 				<h:outputText value="Portaria: "></h:outputText>
 				<h:inputText value="#{progressaoController.progressao.portaria}"
 					size="40" maxlength="60"
 					requiredMessage="Campo Portaria é obrigatório!" required="true"></h:inputText>
 			</h:panelGrid>
-
+			<%-- 
 			<h:panelGrid columns="1" id="titulacoes">
 				
 				<rich:dataTable id="listaTitulacoes"
@@ -128,6 +134,7 @@
 				<a4j:commandButton value="Salvar"
 					action="#{lotacaoController.salvar}" reRender="form" />
 			</h:panelGrid>
+			 --%>
 		</rich:panel></center>
 	</a4j:form>
 </f:view>
