@@ -18,6 +18,7 @@ public class Progressao implements Serializable {
 	private Date dataProgressao;
 	private String portaria;
 	private TipoProgressao tipoProgressao;
+	private ServidorTitulacao servidorTitulacao;
 
 	public Long getCodigo() {
 		return codigo;
@@ -89,6 +90,14 @@ public class Progressao implements Serializable {
 
 	public void setTipoProgressao(TipoProgressao tipoProgressao) {
 		this.tipoProgressao = tipoProgressao;
+	}
+
+	public ServidorTitulacao getServidorTitulacao() {
+		return servidorTitulacao;
+	}
+
+	public void setServidorTitulacao(ServidorTitulacao servidorTitulacao) {
+		this.servidorTitulacao = servidorTitulacao;
 	}
 
 }

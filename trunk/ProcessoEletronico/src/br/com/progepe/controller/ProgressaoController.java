@@ -101,6 +101,7 @@ public class ProgressaoController implements Serializable {
 			progressao.setPadraoAntigo(new Padrao());
 			progressao.setPadraoNovo(new Padrao());
 			progressao.setTipoProgressao(new TipoProgressao());
+			progressao.setServidorTitulacao(new ServidorTitulacao());
 			FacesContext.getCurrentInstance().getExternalContext()
 					.redirect("cadastrarProgressao.jsp");
 		} catch (IOException e) {
@@ -141,6 +142,7 @@ public class ProgressaoController implements Serializable {
 		progressao.setClasseNova(new Classe());
 		progressao.setPadraoAntigo(progressao.getServidor().getPadrao());
 		progressao.setPadraoNovo(new Padrao());
+		progressao.setServidorTitulacao(new ServidorTitulacao());
 	}
 
 	public void buscarServidor() throws IOException, ParseException {
