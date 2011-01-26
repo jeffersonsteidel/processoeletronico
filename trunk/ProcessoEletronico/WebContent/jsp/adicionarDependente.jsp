@@ -60,7 +60,9 @@
 
 					<h:outputText value="CPF do Dependente: " />
 					<h:inputText value="#{dependenteController.dependente.cpf}"
-						size="16" maxlength="14" id="cpf" onkeypress="mascara(this,cpf);">
+						required="true"
+						requiredMessage="Campo CPF do Dependente é obrigatório!" size="16"
+						maxlength="14" id="cpf" onkeypress="mascara(this,cpf);">
 						<a4j:support event="onchange"
 							action="#{dependenteController.validarCPF}" ajaxSingle="true"
 							reRender="cpf, confirmPanel, messages"></a4j:support>
@@ -71,7 +73,8 @@
 						size="16" maxlength="13"></h:inputText>
 
 					<h:outputText value="UF do RG do Dependente: " />
-					<h:selectOneMenu value="#{dependenteController.dependente.rgUf.codigo}">
+					<h:selectOneMenu
+						value="#{dependenteController.dependente.rgUf.codigo}">
 						<f:selectItem itemLabel="SELECIONE" itemValue="" />
 						<f:selectItems value="#{dependenteController.ufs}" />
 					</h:selectOneMenu>
@@ -109,8 +112,9 @@
 					<h:outputText value="Estudante Universitário: " />
 					<h:selectBooleanCheckbox id="estudanteUniversitario"
 						value="#{dependenteController.dependente.indEstudante}">
-						<a4j:support event="onchange" action="#{dependenteController.validarEstudante}" ajaxSingle="true"
-							reRender="faculdade, curso, dataFormacao"></a4j:support>
+						<a4j:support event="onchange"
+							action="#{dependenteController.validarEstudante}"
+							ajaxSingle="true" reRender="faculdade, curso, dataFormacao"></a4j:support>
 					</h:selectBooleanCheckbox>
 
 					<h:outputText value="Estabelecimento de Ensino: ">
@@ -160,13 +164,13 @@
 						</f:facet>
 						<h:outputText value="#{list.grauParentesco.descricao}" />
 					</rich:column>
-					
+
 					<rich:column width="100px">
 						<f:facet name="header">
 							<h:outputText value="Validado" />
 						</f:facet>
 						<h:outputText value="SIM" rendered="#{list.indValidado}" />
-						<h:outputText value="NÃO" rendered="#{!list.indValidado}"/>
+						<h:outputText value="NÃO" rendered="#{!list.indValidado}" />
 					</rich:column>
 
 					<rich:column>
