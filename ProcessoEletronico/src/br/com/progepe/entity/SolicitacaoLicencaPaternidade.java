@@ -10,6 +10,7 @@ public class SolicitacaoLicencaPaternidade extends Solicitacao {
 	private byte[] certidaoNascimento;
 	private Boolean documentoValidado = false; 
 	private Date dataNascimento;
+	private Date dataRetorno;
 	private ArrayList<SolicitacaoLicencaPaternidade> files = new ArrayList<SolicitacaoLicencaPaternidade>();
 	
 	public byte[] getCertidaoNascimento() {
@@ -37,5 +38,12 @@ public class SolicitacaoLicencaPaternidade extends Solicitacao {
 	public void setFiles(ArrayList<SolicitacaoLicencaPaternidade> files) {
 		this.files = files;
 	}
+	public Date getDataRetorno() {
+		return dataRetorno;
+	}
+	public void setDataRetorno(Date dataRetorno) {
+		this.dataRetorno = dataRetorno;
+	}
+	
 }
 

@@ -39,7 +39,7 @@
 				</h:outputText>
 			</h:panelGrid>
 
-			<h:panelGrid columns="2">
+			<h:panelGrid columns="4">
 				<h:outputText value="Data de Nascimento do Filho(a): "></h:outputText>
 				<rich:calendar
 					value="#{solicitacaoLicencaPaternidadeController.solicitacaoLicencaPaternidade.dataNascimento}"
@@ -47,7 +47,18 @@
 					cellWidth="12px" cellHeight="12px" style="width:80px"
 					required="true" inputSize="12" ajaxSingle="true"
 					requiredMessage="Campo Data de Nascimento do Filho(a) é obrigatório!">
+					<a4j:support event="onchanged"
+						action="#{solicitacaoLicencaPaternidadeController.calcularRetorno}"
+						ajaxSingle="true" reRender="form"></a4j:support>
 				</rich:calendar>
+				
+				<h:outputText value="Data de Retorno ao Trabalho: "
+					rendered="#{solicitacaoLicencaPaternidadeController.solicitacaoLicencaPaternidade.dataRetorno != null}"></h:outputText>
+				<h:outputText 
+					value="#{solicitacaoLicencaPaternidadeController.solicitacaoLicencaPaternidade.dataRetorno}"
+					rendered="#{solicitacaoLicencaPaternidadeController.solicitacaoLicencaPaternidade.dataRetorno != null}">
+					<f:convertDateTime locale="pt_BR" pattern="dd/MM/yyyy" />
+				</h:outputText>
 			</h:panelGrid>
 			<rich:fileUpload
 				fileUploadListener="#{solicitacaoLicencaPaternidadeController.listener}"

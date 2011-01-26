@@ -36,12 +36,14 @@
 
 			<h:panelGrid columns="2">
 				<h:outputText value="Data de Nascimento do Filho(a): "></h:outputText>
-				<rich:calendar
-					value="#{solicitacaoController.solicitacaoLicencaPaternidade.dataNascimento}"
-					datePattern="dd/MM/yyyy" showApplyButton="#"
-					cellWidth="12px" cellHeight="12px" style="width:80px"
-					inputSize="12" ajaxSingle="true" disabled="true">
-				</rich:calendar>
+				<h:outputText value="#{solicitacaoController.solicitacaoLicencaPaternidade.dataNascimento}">
+					<f:convertDateTime locale="pt_BR" pattern="dd/MM/yyyy" />
+				</h:outputText>	
+				<h:outputText value="Data de Retorno ao Trabalho: "></h:outputText>
+				<h:outputText 
+					value="#{solicitacaoController.solicitacaoLicencaPaternidade.dataRetorno}">
+					<f:convertDateTime locale="pt_BR" pattern="dd/MM/yyyy" />
+				</h:outputText>
 			</h:panelGrid>
 			<h:panelGroup id="info">
 				<rich:panel bodyClass="info">
