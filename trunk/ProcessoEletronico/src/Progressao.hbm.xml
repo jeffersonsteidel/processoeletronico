@@ -21,7 +21,8 @@
 			column="TIP_PROG_COD"  lazy="false" />		
 		<many-to-one name="servidorTitulacao" class="br.com.progepe.entity.ServidorTitulacao"
 			column="TIT_COD"  lazy="false" />		
-		<property name="dataProgressao" column="PROG_DATA" />	
+		<property name="dataProgressao" column="PROG_DATA" />
+		<property name="dataProximaProgressao" column="PROG_DATE_PROX_PROG" />	
 		<property name="portaria" column="PROG_PORT" />			
 	</class>
 </hibernate-mapping>

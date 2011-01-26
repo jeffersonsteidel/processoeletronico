@@ -16,6 +16,7 @@ public class Progressao implements Serializable {
 	private Padrao padraoAntigo;
 	private Padrao padraoNovo;
 	private Date dataProgressao;
+	private Date dataProximaProgressao;
 	private String portaria;
 	private TipoProgressao tipoProgressao;
 	private ServidorTitulacao servidorTitulacao;
@@ -70,6 +71,14 @@ public class Progressao implements Serializable {
 
 	public Date getDataProgressao() {
 		return dataProgressao;
+	}
+
+	public Date getDataProximaProgressao() {
+		return dataProximaProgressao;
+	}
+
+	public void setDataProximaProgressao(Date dataProximaProgressao) {
+		this.dataProximaProgressao = dataProximaProgressao;
 	}
 
 	public void setDataProgressao(Date dataProgressao) {

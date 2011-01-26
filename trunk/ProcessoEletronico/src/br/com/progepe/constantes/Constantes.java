@@ -9,6 +9,8 @@ public class Constantes {
 	public static final Integer SIM = 1;
 	public static final Integer NAO = 2;
 	
+	public static final Integer QUANTIDADE_MESES_PROGRESSAO = 18;
+	
 	public static final Long REGIME_DEDICACAO_EXCLUSIVA = 99L;
 	
 	public static final Long CAIXA_ECONOMICA_FEDERAL = 104L;
