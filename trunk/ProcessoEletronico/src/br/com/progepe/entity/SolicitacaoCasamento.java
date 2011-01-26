@@ -11,7 +11,7 @@ public class SolicitacaoCasamento extends Solicitacao {
 	private Integer numeroCertidao;
 	private byte[] certidaoCasamento;
 	private Boolean documentoValidado = false;
-	private Date dataCasemento;
+	private Date dataCasamento;
 	private Date dataRetorno;
 	private ArrayList<SolicitacaoCasamento> files = new ArrayList<SolicitacaoCasamento>();
 
@@ -55,12 +55,12 @@ public class SolicitacaoCasamento extends Solicitacao {
 		this.files = files;
 	}
 
-	public Date getDataCasemento() {
-		return dataCasemento;
+	public Date getDataCasamento() {
+		return dataCasamento;
 	}
 
-	public void setDataCasemento(Date dataCasemento) {
-		this.dataCasemento = dataCasemento;
+	public void setDataCasamento(Date dataCasamento) {
+		this.dataCasamento = dataCasamento;
 	}
 
 	public Date getDataRetorno() {

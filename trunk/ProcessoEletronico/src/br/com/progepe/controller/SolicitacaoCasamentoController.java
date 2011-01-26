@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.io.Serializable;
 import java.text.ParseException;
+import java.util.Calendar;
 import java.util.Date;
 
 import javax.faces.application.FacesMessage;
@@ -99,5 +100,14 @@ public class SolicitacaoCasamentoController implements Serializable {
 		UploadItem item = event.getUploadItem();
 		solicitacaoCasamento.setCertidaoCasamento(item.getData());
 		solicitacaoCasamento.getFiles().add(solicitacaoCasamento);
+	}
+	
+	public void calcularRetorno(){
+		if(solicitacaoCasamento.getDataCasamento() != null){
+			Calendar calendar = Calendar.getInstance();  
+			calendar.setTime(solicitacaoCasamento.getDataCasamento());  
+			calendar.add(Calendar.DATE, Constantes.QUANTIDADE_DIAS_LICENCA_CASAMENTO);  
+			solicitacaoCasamento.setDataRetorno(calendar.getTime());
+		}
 	}
 }

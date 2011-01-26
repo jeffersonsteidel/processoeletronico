@@ -52,6 +52,27 @@
 					onkeypress="mascara(this,soNumeros);"
 					requiredMessage="Campo Número da Certidão de Casamento é obrigatório!">
 				</h:inputText>
+				
+				<h:outputText value="Data do Casamento: "></h:outputText>
+				<rich:calendar
+					value="#{solicitacaoCasamentoController.solicitacaoCasamento.dataCasamento}"
+					locale="" popup="true" datePattern="dd/MM/yyyy" showApplyButton="#"
+					cellWidth="12px" cellHeight="12px" style="width:80px"
+					required="true" inputSize="12" ajaxSingle="true"
+					requiredMessage="Campo Data do Casamento é obrigatório!">
+					<a4j:support event="onchanged"
+						action="#{solicitacaoCasamentoController.calcularRetorno}"
+						ajaxSingle="true" reRender="form"></a4j:support>
+				</rich:calendar>
+				
+				<h:outputText value="Data de Retorno ao Trabalho: "
+					rendered="#{solicitacaoCasamentoController.solicitacaoCasamento.dataRetorno != null}"></h:outputText>
+				<h:outputText 
+					value="#{solicitacaoCasamentoController.solicitacaoCasamento.dataRetorno}"
+					rendered="#{solicitacaoCasamentoController.solicitacaoCasamento.dataRetorno != null}">
+					<f:convertDateTime locale="pt_BR" pattern="dd/MM/yyyy" />
+				</h:outputText>
+				
 			</h:panelGrid>
 
 			<rich:fileUpload
