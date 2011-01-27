@@ -18,11 +18,8 @@ public class FitaEspelhoCodigos {
 			html = html + "<body>";
 			html = html + "<table name='table' border='1'>";
 			html = html + "<tr>";
-			
-			int i = 0;
-			//TIPO 01
 
-			
+			// TIPO 01
 			html = html + "<th>UNIDADE PAGADORA</th>";
 			html = html + "<th>MATRÍCULA SIAPE</th>";
 			html = html + "<th>DV MATRÍCULA</th>";
@@ -59,7 +56,6 @@ public class FitaEspelhoCodigos {
 			html = html + "<th>Nº DO TITULAR DE ELEITOR</th>";
 			html = html + "<th>FILLER</th>";
 
-			
 			// TIPO 02
 			html = html + "<th>SIGLA DO REGIME JURÍDICO</th>";
 			html = html + "<th>CÓDIGO DA SITUAÇÃO DO SERVIDOR</th>";
@@ -104,48 +100,50 @@ public class FitaEspelhoCodigos {
 			html = html + "<th>LOTAÇÃO UNIDADE ORGANIZACIONAL</th>";
 			html = html + "<th>LOTAÇÃO DATA</th>";
 			html = html + "<th>LOCALIZAÇÃO ÓRGÃO</th>";
-			html = html + "<th>LOCALIZAÇÃO UNIDADE ORGANIZACIONAL</th>";		
+			html = html + "<th>LOCALIZAÇÃO UNIDADE ORGANIZACIONAL</th>";
 			html = html + "<th>OCORRÊNCIA INGRESSO ÓRGÃO GRUPO</th>";
 			html = html + "<th>OCORRÊNCIA INGRESSO ÓRGÃO OCORRÊNCIA</th>";
 			html = html + "<th>OCORRÊNCIA INGRESSO ÓRGÃO DATA</th>";
 			html = html + "<th>DIPLOMA LEGAL CÓDIGO</th>";
 			html = html + "<th>DIPLOMA LEGAL NÚMERO</th>";
-			html = html + "<th>DIPLOMA LEGAL DATA PUBLICAÇÃO</th>";		
+			html = html + "<th>DIPLOMA LEGAL DATA PUBLICAÇÃO</th>";
 			html = html + "<th>OCORRÊNCIA INGRESSO SERV. PUBLICO GRUPO</th>";
-			html = html + "<th>OCORRÊNCIA INGRESSO SERV. PUBLICO OCORRÊNCIA</th>";
+			html = html
+					+ "<th>OCORRÊNCIA INGRESSO SERV. PUBLICO OCORRÊNCIA</th>";
 			html = html + "<th>OCORRÊNCIA INGRESSO SERV. PUBLICO DATA</th>";
 			html = html + "<th>DIPLOMA LEGAL CÓDIGO</th>";
 			html = html + "<th>DIPLOMA LEGAL NÚMERO</th>";
-			html = html + "<th>DIPLOMA LEGAL DATA PUBLICAÇÃO</th>";		
+			html = html + "<th>DIPLOMA LEGAL DATA PUBLICAÇÃO</th>";
 			html = html + "<th>OCORRÊNCIA DE EXCLUSÃO GRUPO</th>";
 			html = html + "<th>OCORRÊNCIA DE EXCLUSÃO OCORRÊNCIA</th>";
 			html = html + "<th>OCORRÊNCIA DE EXCLUSÃO DATA</th>";
 			html = html + "<th>DIPLOMA LEGAL CÓDIGO</th>";
 			html = html + "<th>DIPLOMA LEGAL NÚMERO</th>";
-			html = html + "<th>DIPLOMA LEGAL DATA PUBLICAÇÃO</th>";		
+			html = html + "<th>DIPLOMA LEGAL DATA PUBLICAÇÃO</th>";
 			html = html + "<th>OCORRÊNCIA AFASTAMENTO GRUPO</th>";
 			html = html + "<th>OCORRÊNCIA AFASTAMENTO OCORRÊNCIA</th>";
 			html = html + "<th>OCORRÊNCIA AFASTAMENTO DATA INICIO</th>";
 			html = html + "<th>OCORRÊNCIA AFASTAMENTO DATA TÉRMIO</th>";
 			html = html + "<th>DIPLOMA LEGAL CÓDIGO</th>";
 			html = html + "<th>DIPLOMA LEGAL NÚMERO</th>";
-			html = html + "<th>DIPLOMA LEGAL DATA PUBLICAÇÃO</th>";		
+			html = html + "<th>DIPLOMA LEGAL DATA PUBLICAÇÃO</th>";
 			html = html + "<th>OCORRÊNCIA DE INATIVIDADE GRUPO</th>";
 			html = html + "<th>OCORRÊNCIA DE INATIVIDADE OCORRÊNCIA</th>";
 			html = html + "<th>OCORRÊNCIA DE INATIVIDADE DATA</th>";
 			html = html + "<th>DIPLOMA LEGAL CÓDIGO</th>";
 			html = html + "<th>DIPLOMA LEGAL NÚMERO</th>";
-			html = html + "<th>DIPLOMA LEGAL DATA PUBLICAÇÃO</th>";		
+			html = html + "<th>DIPLOMA LEGAL DATA PUBLICAÇÃO</th>";
 			html = html + "<th>OCORRÊNCIA DE APOSENTADORIA Nº DO PROCESSO</th>";
 			html = html + "<th>OCORRÊNCIA DE APOSENTADORIA ANO PREVISTO</th>";
-			html = html + "<th>OCORRÊNCIA DE APOSENTADORIA OPÇÃO APOSENT. TOTAL</th>";
-			html = html + "<th>UORG DE CONTROLE</th>";		
+			html = html
+					+ "<th>OCORRÊNCIA DE APOSENTADORIA OPÇÃO APOSENT. TOTAL</th>";
+			html = html + "<th>UORG DE CONTROLE</th>";
 			html = html + "<th>OCORRÊNCIA DE MODIF. FUNCIONAL GRUPO</th>";
 			html = html + "<th>OCORRÊNCIA DE MODIF. FUNCIONAL OCORRÊNCIA</th>";
 			html = html + "<th>OCORRÊNCIA DE MODIF. FUNCIONAL DATA</th>";
 			html = html + "<th>DIPLOMA LEGAL CÓDIGO</th>";
 			html = html + "<th>DIPLOMA LEGAL NÚMERO</th>";
-			html = html + "<th>DIPLOMA LEGAL DATA PUBLICAÇÃO</th>";		
+			html = html + "<th>DIPLOMA LEGAL DATA PUBLICAÇÃO</th>";
 			html = html + "<th>REGIME JURÍDICO - ANTERIOR</th>";
 			html = html + "<th>SITUAÇÃO SERVIDOR - ANTERIOR</th>";
 			html = html + "<th>MUDANÇA ÓRGÃO DESTINO</th>";
@@ -156,64 +154,84 @@ public class FitaEspelhoCodigos {
 			html = html + "<th>CÓDIGO ÓRGÃO EXTINTO/MODIFICADO</th>";
 			html = html + "<th>MATRÍCULA SERVIDOR EXTINTA/MODIFICADA</th>";
 			html = html + "<th>ÓRGÃO ATUAL</th>";
-			html = html + "<th>MATRÍCULA ATUAL</th>";		
+			html = html + "<th>MATRÍCULA ATUAL</th>";
 			html = html + "<th>MUDANÇA UNIDADE PAGADORA CÓDIGO UPAG</th>";
 			html = html + "<th>MUDANÇA UNIDADE PAGADORA DATA LIBERAÇÃO</th>";
 			html = html + "<th>MUDANÇA UNIDADE PAGADORA MOTIVO</th>";
-			html = html + "<th>INDICADOR DE PAGAMENTO SERVIDOR</th>";		
+			html = html + "<th>INDICADOR DE PAGAMENTO SERVIDOR</th>";
 			html = html + "<th>REGISTRO DE ÓBITO NOME CARTÓRIO</th>";
 			html = html + "<th>REGISTRO DE ÓBITO Nº DO LIVRO</th>";
 			html = html + "<th>REGISTRO DE ÓBITO Nº DA FOLHA</th>";
 			html = html + "<th>REGISTRO DE ÓBITO Nº DO REGISTRO</th>";
-			html = html + "<th>REGISTRO DE ÓBITO DATA</th>";			
+			html = html + "<th>REGISTRO DE ÓBITO DATA</th>";
 			html = html + "<th>INDICADOR DE EXCLUSÃO INSTITUIDOR</th>";
 			html = html + "<th>DATA DE EXCLUSÃO DO INSTITUIDOR</th>";
 			html = html + "<th>VALE ALIMENTAÇÃO TIPO</th>";
 			html = html + "<th>VALE ALIMENTAÇÃO DATA INICIO</th>";
-			html = html + "<th>VALE ALIMENTAÇÃO DATA FIM</th>";		
+			html = html + "<th>VALE ALIMENTAÇÃO DATA FIM</th>";
 			html = html + "<th>INDICADOR DE OPERADOR DE RAIO-X</th>";
 			html = html + "<th>ÓRGÃO REQUISITANTE</th>";
 			html = html + "<th>CÓDIGO DA VAGA</th>";
 			html = html + "<th>MÊS DE CONCESSÃO DO ANUÊNIO</th>";
-			html = html + "<th>PERCENTUAL DE OPERADOR DE RAIO-X</th>";		
-			html = html + "<th>GRUPO - INGR. SERV. PÚB. - POSSE CÓDIGO DO GRUPO</th>";
-			html = html + "<th>GRUPO - INGR. SERV. PÚB. - POSSE OCORRÊNCIA</th>";
+			html = html + "<th>PERCENTUAL DE OPERADOR DE RAIO-X</th>";
+			html = html
+					+ "<th>GRUPO - INGR. SERV. PÚB. - POSSE CÓDIGO DO GRUPO</th>";
+			html = html
+					+ "<th>GRUPO - INGR. SERV. PÚB. - POSSE OCORRÊNCIA</th>";
 			html = html + "<th>GRUPO - INGR. SERV. PÚB. - POSSE DATA</th>";
-			html = html + "<th>GRUPO - INGR. SERV. PÚB. - POSSE CÓDIGO DIPLOMA</th>";
-			html = html + "<th>GRUPO - INGR. SERV. PÚB. - POSSE CÓDIGO DATA DIPLOMA</th>";
-			html = html + "<th>GRUPO - INGR. SERV. PÚB. - POSSE NÚMERO DO DIPLOMA</th>";		
-			html = html + "<th>GRUPO REVERSÃO À ATIVIDADE GRUPO DE OCORRÊNCIA</th>";
-			html = html + "<th>GRUPO REVERSÃO À ATIVIDADE CÓDIGO OCORRÊNCIA</th>";
-			html = html + "<th>GRUPO REVERSÃO À ATIVIDADE DATA DA OCORRÊNCIA</th>";
-			html = html + "<th>GRUPO REVERSÃO À ATIVIDADE CÓDIGO DO DIPLOMA</th>";
-			html = html + "<th>GRUPO REVERSÃO À ATIVIDADE DATA PUBLICAÇÃO DIPLOMA</th>";
-			html = html + "<th>GRUPO REVERSÃO À ATIVIDADE NÚMERO DO DIPLOMA</th>";			
+			html = html
+					+ "<th>GRUPO - INGR. SERV. PÚB. - POSSE CÓDIGO DIPLOMA</th>";
+			html = html
+					+ "<th>GRUPO - INGR. SERV. PÚB. - POSSE CÓDIGO DATA DIPLOMA</th>";
+			html = html
+					+ "<th>GRUPO - INGR. SERV. PÚB. - POSSE NÚMERO DO DIPLOMA</th>";
+			html = html
+					+ "<th>GRUPO REVERSÃO À ATIVIDADE GRUPO DE OCORRÊNCIA</th>";
+			html = html
+					+ "<th>GRUPO REVERSÃO À ATIVIDADE CÓDIGO OCORRÊNCIA</th>";
+			html = html
+					+ "<th>GRUPO REVERSÃO À ATIVIDADE DATA DA OCORRÊNCIA</th>";
+			html = html
+					+ "<th>GRUPO REVERSÃO À ATIVIDADE CÓDIGO DO DIPLOMA</th>";
+			html = html
+					+ "<th>GRUPO REVERSÃO À ATIVIDADE DATA PUBLICAÇÃO DIPLOMA</th>";
+			html = html
+					+ "<th>GRUPO REVERSÃO À ATIVIDADE NÚMERO DO DIPLOMA</th>";
 			html = html + "<th>INDICADOR DE CÁLCULO AUTOMÁTICO CARGO</th>";
 			html = html + "<th>INDICADOR DE CÁLCULO AUTOMÁTICO FUNÇÃO</th>";
-			html = html + "<th>INDICADOR DE CÁLCULO AUTOMÁTICO SALÁRIO FAMÍLIA</th>";
-			html = html + "<th>INDICADOR DE CÁLCULO AUTOMÁTICO ADICIONAL POR TEMPO DE SERVIÇO</th>";
+			html = html
+					+ "<th>INDICADOR DE CÁLCULO AUTOMÁTICO SALÁRIO FAMÍLIA</th>";
+			html = html
+					+ "<th>INDICADOR DE CÁLCULO AUTOMÁTICO ADICIONAL POR TEMPO DE SERVIÇO</th>";
 			html = html + "<th>INDICADOR DE CÁLCULO AUTOMÁTICO FGTS</th>";
-			html = html + "<th>INDICADOR DE CÁLCULO AUTOMÁTICO PREVIDÊNCIA SOCIAL</th>";
-			html = html + "<th>INDICADOR DE CÁLCULO AUTOMÁTICO IMPOSTO DE RENDA</th>";
-			html = html + "<th>INDICADOR DE CÁLCULO AUTOMÁTICO MARGEM CONSIGNÁVEL</th>";
-			html = html + "<th>INDICADOR DE CÁLCULO AUTOMÁTICO CONTRIBUIÇÃO SINDICAL</th>";
-			html = html + "<th>INDICADOR DE CÁLCULO AUTOMÁTICO ADIANTAMENTO 13º SALÁRIO</th>";
-			html = html + "<th>INDICADOR DE CÁLCULO AUTOMÁTICO 13º SALÁRIO</th>";
-			html = html + "<th>INDICADOR DE CÁLCULO AUTOMÁTICO ABATE TETO CONSTITUCIONAL</th>";
-			html = html + "<th>INDICADOR DE CÁLCULO AUTOMÁTICO PLANO SEGURIDADE SOCIAL 6%</th>";
+			html = html
+					+ "<th>INDICADOR DE CÁLCULO AUTOMÁTICO PREVIDÊNCIA SOCIAL</th>";
+			html = html
+					+ "<th>INDICADOR DE CÁLCULO AUTOMÁTICO IMPOSTO DE RENDA</th>";
+			html = html
+					+ "<th>INDICADOR DE CÁLCULO AUTOMÁTICO MARGEM CONSIGNÁVEL</th>";
+			html = html
+					+ "<th>INDICADOR DE CÁLCULO AUTOMÁTICO CONTRIBUIÇÃO SINDICAL</th>";
+			html = html
+					+ "<th>INDICADOR DE CÁLCULO AUTOMÁTICO ADIANTAMENTO 13º SALÁRIO</th>";
+			html = html
+					+ "<th>INDICADOR DE CÁLCULO AUTOMÁTICO 13º SALÁRIO</th>";
+			html = html
+					+ "<th>INDICADOR DE CÁLCULO AUTOMÁTICO ABATE TETO CONSTITUCIONAL</th>";
+			html = html
+					+ "<th>INDICADOR DE CÁLCULO AUTOMÁTICO PLANO SEGURIDADE SOCIAL 6%</th>";
 			html = html + "<th>INDICADOR DE CÁLCULO AUTOMÁTICO FÉRIAS</th>";
 			html = html + "<th>INDICADOR DE CÁLCULO AUTOMÁTICO PENSÃO</th>";
 			html = html + "<th>INDICADOR DE CÁLCULO AUTOMÁTICO BENEFÍCIOS</th>";
 			html = html + "<th>INDICADOR DE CÁLCULO AUTOMÁTICO IPMF/CPMF</th>";
 			html = html + "<th>INDICADOR DE CÁLCULO AUTOMÁTICO RAIS</th>";
-			html = html + "<th>INDICADOR DE CÁLCULO AUTOMÁTICO DIFERENÇA DE URV</th>";
-			html = html + "<th>INDICADOR DE CÁLCULO AUTOMÁTICO ADIANTEMENTO</th>";
-			html = html + "<th>INDICADOR DE CÁLCULO AUTOMÁTICO RENDIMENTO PASEP</th>";
-			
-		
-			
-			
-			
+			html = html
+					+ "<th>INDICADOR DE CÁLCULO AUTOMÁTICO DIFERENÇA DE URV</th>";
+			html = html
+					+ "<th>INDICADOR DE CÁLCULO AUTOMÁTICO ADIANTEMENTO</th>";
+			html = html
+					+ "<th>INDICADOR DE CÁLCULO AUTOMÁTICO RENDIMENTO PASEP</th>";
+
 			html = html + "</tr>";
 
 			while (br.ready()) {
@@ -222,7 +240,7 @@ public class FitaEspelhoCodigos {
 						.parseInt(linha.substring(17, 18));
 				if (tipoRegistro.equals(1)) {
 					html = html + "<tr>";
-					html = html + "<td>" + linha.substring(0,9) + "</td>";
+					html = html + "<td>" + linha.substring(0, 9) + "</td>";
 					html = html + "<td>" + linha.substring(9, 16) + "</td>";
 					html = html + "<td>" + linha.substring(16, 17) + "</td>";
 					html = html + "<td>" + linha.substring(18, 20) + "</td>";
@@ -257,159 +275,158 @@ public class FitaEspelhoCodigos {
 					html = html + "<td>" + linha.substring(361, 362) + "</td>";
 					html = html + "<td>" + linha.substring(362, 375) + "</td>";
 					html = html + "<td>" + linha.substring(375, 764) + "</td>";
-					
+
 				}
 				if (tipoRegistro.equals(2)) {
 					html = html + "<td>" + linha.substring(20, 23) + "</td>";
 					html = html + "<td>" + linha.substring(23, 25) + "</td>";
-					html = html + "<td>" + linha.substring(25,31) + "</td>";
-					html = html + "<td>" + linha.substring(31,36) + "</td>";
-					html = html + "<td>" + linha.substring(36,38) + "</td>";
-					html = html + "<td>" + linha.substring(38,41) + "</td>";
-					html = html + "<td>" + linha.substring(41,47) + "</td>";
-					html = html + "<td>" + linha.substring(47,60) + "</td>";
-					html = html + "<td>" + linha.substring(60,68) + "</td>";
-					html = html + "<td>" + linha.substring(68,71) + "</td>";
-					html = html + "<td>" + linha.substring(71,77) + "</td>";
-					html = html + "<td>" + linha.substring(77,90) + "</td>";
-					html = html + "<td>" + linha.substring(90,92) + "</td>";
-					html = html + "<td>" + linha.substring(92,94) + "</td>";
-					html = html + "<td>" + linha.substring(94,102) + "</td>";
-					html = html + "<td>" + linha.substring(102,103) + "</td>";
-					html = html + "<td>" + linha.substring(103,109) + "</td>";
-					html = html + "<td>" + linha.substring(109,111) + "</td>";
-					html = html + "<td>" + linha.substring(111,113) + "</td>";
-					html = html + "<td>" + linha.substring(113,116) + "</td>";
-					html = html + "<td>" + linha.substring(116,119) + "</td>";
-					html = html + "<td>" + linha.substring(119,120) + "</td>";
-					html = html + "<td>" + linha.substring(120,123) + "</td>";
-					html = html + "<td>" + linha.substring(123,131) + "</td>";
-					html = html + "<td>" + linha.substring(131,139) + "</td>";
-					html = html + "<td>" + linha.substring(139,142) + "</td>";
-					html = html + "<td>" + linha.substring(142,147) + "</td>";
-					html = html + "<td>" + linha.substring(147,149) + "</td>";
-					html = html + "<td>" + linha.substring(149,150) + "</td>";
-					html = html + "<td>" + linha.substring(150,158) + "</td>";
-					html = html + "<td>" + linha.substring(158,166) + "</td>";
-					html = html + "<td>" + linha.substring(166,175) + "</td>";
-					html = html + "<td>" + linha.substring(175,178) + "</td>";
-					html = html + "<td>" + linha.substring(178,183) + "</td>";
-					html = html + "<td>" + linha.substring(183,185) + "</td>";
-					html = html + "<td>" + linha.substring(185,186) + "</td>";
-					html = html + "<td>" + linha.substring(186,194) + "</td>";
-					html = html + "<td>" + linha.substring(194,202) + "</td>";
-					html = html + "<td>" + linha.substring(202,211) + "</td>";
-					html = html + "<td>" + linha.substring(211,215) + "</td>";
-					html = html + "<td>" + linha.substring(215,224) + "</td>";
-					html = html + "<td>" + linha.substring(224,232) + "</td>";
-					html = html + "<td>" + linha.substring(232,237) + "</td>";
-					html = html + "<td>" + linha.substring(237,246) + "</td>";
-					html = html + "<td>" + linha.substring(246,248) + "</td>";
-					html = html + "<td>" + linha.substring(248,251) + "</td>";
-					html = html + "<td>" + linha.substring(251,259) + "</td>";
-					html = html + "<td>" + linha.substring(259,261) + "</td>";
-					html = html + "<td>" + linha.substring(261,270) + "</td>";
-					html = html + "<td>" + linha.substring(270,278) + "</td>";
-					html = html + "<td>" + linha.substring(278,280) + "</td>";
-					html = html + "<td>" + linha.substring(280,283) + "</td>";
-					html = html + "<td>" + linha.substring(283,291) + "</td>";
-					html = html + "<td>" + linha.substring(291,293) + "</td>";
-					html = html + "<td>" + linha.substring(293,302) + "</td>";
-					html = html + "<td>" + linha.substring(302,310) + "</td>";
-					html = html + "<td>" + linha.substring(310,312) + "</td>";
-					html = html + "<td>" + linha.substring(312,315) + "</td>";
-					html = html + "<td>" + linha.substring(315,323) + "</td>";
-					html = html + "<td>" + linha.substring(323,325) + "</td>";
-					html = html + "<td>" + linha.substring(325,334) + "</td>";		
-					html = html + "<td>" + linha.substring(334,342) + "</td>";
-					html = html + "<td>" + linha.substring(342,344) + "</td>";
-					html = html + "<td>" + linha.substring(344,347) + "</td>";
-					html = html + "<td>" + linha.substring(347,355) + "</td>";
-					html = html + "<td>" + linha.substring(355,363) + "</td>";
-					html = html + "<td>" + linha.substring(363,365) + "</td>";
-					html = html + "<td>" + linha.substring(365,374) + "</td>";		
-					html = html + "<td>" + linha.substring(374,382) + "</td>";
-					html = html + "<td>" + linha.substring(382,384) + "</td>";
-					html = html + "<td>" + linha.substring(384,387) + "</td>";
-					html = html + "<td>" + linha.substring(387,395) + "</td>";
-					html = html + "<td>" + linha.substring(395,397) + "</td>";
-					html = html + "<td>" + linha.substring(397,406) + "</td>";
-					html = html + "<td>" + linha.substring(406,414) + "</td>";		
-					html = html + "<td>" + linha.substring(414,429) + "</td>";
-					html = html + "<td>" + linha.substring(429,433) + "</td>";
-					html = html + "<td>" + linha.substring(433,434) + "</td>";
-					html = html + "<td>" + linha.substring(434,443) + "</td>";
-					html = html + "<td>" + linha.substring(443,445) + "</td>";
-					html = html + "<td>" + linha.substring(445,448) + "</td>";
-					html = html + "<td>" + linha.substring(448,456) + "</td>";
-					html = html + "<td>" + linha.substring(456,458) + "</td>";		
-					html = html + "<td>" + linha.substring(458,467) + "</td>";
-					html = html + "<td>" + linha.substring(467,675) + "</td>";
-					html = html + "<td>" + linha.substring(475,478) + "</td>";
-					html = html + "<td>" + linha.substring(478,480) + "</td>";
-					html = html + "<td>" + linha.substring(480,485) + "</td>";
-					html = html + "<td>" + linha.substring(485,493) + "</td>";
-					html = html + "<td>" + linha.substring(493,498) + "</td>";		
-					html = html + "<td>" + linha.substring(498,503) + "</td>";
-					html = html + "<td>" + linha.substring(503,510) + "</td>";
-					html = html + "<td>" + linha.substring(510,515) + "</td>";
-					html = html + "<td>" + linha.substring(515,522) + "</td>";
-					html = html + "<td>" + linha.substring(522,527) + "</td>";
-					html = html + "<td>" + linha.substring(527,534) + "</td>";
-					html = html + "<td>" + linha.substring(534,543) + "</td>";		
-					html = html + "<td>" + linha.substring(543,551) + "</td>";
-					html = html + "<td>" + linha.substring(551,552) + "</td>";
-					html = html + "<td>" + linha.substring(552,553) + "</td>";
-					html = html + "<td>" + linha.substring(553,603) + "</td>";
-					html = html + "<td>" + linha.substring(603,611) + "</td>";
-					html = html + "<td>" + linha.substring(611,617) + "</td>";
-					html = html + "<td>" + linha.substring(617,625) + "</td>";		
-					html = html + "<td>" + linha.substring(625,633) + "</td>";
-					html = html + "<td>" + linha.substring(633,634) + "</td>";
-					html = html + "<td>" + linha.substring(634,642) + "</td>";
-					html = html + "<td>" + linha.substring(642,643) + "</td>";
-					html = html + "<td>" + linha.substring(643,651) + "</td>";
-					html = html + "<td>" + linha.substring(651,659) + "</td>";
-					html = html + "<td>" + linha.substring(659,660) + "</td>";		
-					html = html + "<td>" + linha.substring(660,665) + "</td>";
-					html = html + "<td>" + linha.substring(665,672) + "</td>";
-					html = html + "<td>" + linha.substring(672,674) + "</td>";
-					html = html + "<td>" + linha.substring(674,679) + "</td>";
-					html = html + "<td>" + linha.substring(679,681) + "</td>";
-					html = html + "<td>" + linha.substring(681,684) + "</td>";
-					html = html + "<td>" + linha.substring(684,692) + "</td>";		
-					html = html + "<td>" + linha.substring(692,694) + "</td>";
-					html = html + "<td>" + linha.substring(694,702) + "</td>";
-					html = html + "<td>" + linha.substring(702,711) + "</td>";
-					html = html + "<td>" + linha.substring(711,713) + "</td>";
-					html = html + "<td>" + linha.substring(713,716) + "</td>";
-					html = html + "<td>" + linha.substring(716,724) + "</td>";
-					html = html + "<td>" + linha.substring(724,726) + "</td>";		
-					html = html + "<td>" + linha.substring(726,734) + "</td>";
-					html = html + "<td>" + linha.substring(734,743) + "</td>";
-					html = html + "<td>" + linha.substring(743,744) + "</td>";
-					html = html + "<td>" + linha.substring(744,745) + "</td>";
-					html = html + "<td>" + linha.substring(745,746) + "</td>";
-					html = html + "<td>" + linha.substring(746,747) + "</td>";
-					html = html + "<td>" + linha.substring(747,748) + "</td>";		
-					html = html + "<td>" + linha.substring(748,749) + "</td>";
-					html = html + "<td>" + linha.substring(749,750) + "</td>";
-					html = html + "<td>" + linha.substring(750,751) + "</td>";
-					html = html + "<td>" + linha.substring(751,752) + "</td>";
-					html = html + "<td>" + linha.substring(752,753) + "</td>";
-					html = html + "<td>" + linha.substring(753,754) + "</td>";
-					html = html + "<td>" + linha.substring(754,755) + "</td>";		
-					html = html + "<td>" + linha.substring(755,756) + "</td>";
-					html = html + "<td>" + linha.substring(756,757) + "</td>";
-					html = html + "<td>" + linha.substring(757,758) + "</td>";
-					html = html + "<td>" + linha.substring(758,759) + "</td>";
-					html = html + "<td>" + linha.substring(759,760) + "</td>";
-					html = html + "<td>" + linha.substring(760,761) + "</td>";
-					html = html + "<td>" + linha.substring(761,762) + "</td>";		
-					html = html + "<td>" + linha.substring(762,763) + "</td>";
-					html = html + "<td>" + linha.substring(763,764) + "</td>";
+					html = html + "<td>" + linha.substring(25, 31) + "</td>";
+					html = html + "<td>" + linha.substring(31, 36) + "</td>";
+					html = html + "<td>" + linha.substring(36, 38) + "</td>";
+					html = html + "<td>" + linha.substring(38, 41) + "</td>";
+					html = html + "<td>" + linha.substring(41, 47) + "</td>";
+					html = html + "<td>" + linha.substring(47, 60) + "</td>";
+					html = html + "<td>" + linha.substring(60, 68) + "</td>";
+					html = html + "<td>" + linha.substring(68, 71) + "</td>";
+					html = html + "<td>" + linha.substring(71, 77) + "</td>";
+					html = html + "<td>" + linha.substring(77, 90) + "</td>";
+					html = html + "<td>" + linha.substring(90, 92) + "</td>";
+					html = html + "<td>" + linha.substring(92, 94) + "</td>";
+					html = html + "<td>" + linha.substring(94, 102) + "</td>";
+					html = html + "<td>" + linha.substring(102, 103) + "</td>";
+					html = html + "<td>" + linha.substring(103, 109) + "</td>";
+					html = html + "<td>" + linha.substring(109, 111) + "</td>";
+					html = html + "<td>" + linha.substring(111, 113) + "</td>";
+					html = html + "<td>" + linha.substring(113, 116) + "</td>";
+					html = html + "<td>" + linha.substring(116, 119) + "</td>";
+					html = html + "<td>" + linha.substring(119, 120) + "</td>";
+					html = html + "<td>" + linha.substring(120, 123) + "</td>";
+					html = html + "<td>" + linha.substring(123, 131) + "</td>";
+					html = html + "<td>" + linha.substring(131, 139) + "</td>";
+					html = html + "<td>" + linha.substring(139, 142) + "</td>";
+					html = html + "<td>" + linha.substring(142, 147) + "</td>";
+					html = html + "<td>" + linha.substring(147, 149) + "</td>";
+					html = html + "<td>" + linha.substring(149, 150) + "</td>";
+					html = html + "<td>" + linha.substring(150, 158) + "</td>";
+					html = html + "<td>" + linha.substring(158, 166) + "</td>";
+					html = html + "<td>" + linha.substring(166, 175) + "</td>";
+					html = html + "<td>" + linha.substring(175, 178) + "</td>";
+					html = html + "<td>" + linha.substring(178, 183) + "</td>";
+					html = html + "<td>" + linha.substring(183, 185) + "</td>";
+					html = html + "<td>" + linha.substring(185, 186) + "</td>";
+					html = html + "<td>" + linha.substring(186, 194) + "</td>";
+					html = html + "<td>" + linha.substring(194, 202) + "</td>";
+					html = html + "<td>" + linha.substring(202, 211) + "</td>";
+					html = html + "<td>" + linha.substring(211, 215) + "</td>";
+					html = html + "<td>" + linha.substring(215, 224) + "</td>";
+					html = html + "<td>" + linha.substring(224, 232) + "</td>";
+					html = html + "<td>" + linha.substring(232, 237) + "</td>";
+					html = html + "<td>" + linha.substring(237, 246) + "</td>";
+					html = html + "<td>" + linha.substring(246, 248) + "</td>";
+					html = html + "<td>" + linha.substring(248, 251) + "</td>";
+					html = html + "<td>" + linha.substring(251, 259) + "</td>";
+					html = html + "<td>" + linha.substring(259, 261) + "</td>";
+					html = html + "<td>" + linha.substring(261, 270) + "</td>";
+					html = html + "<td>" + linha.substring(270, 278) + "</td>";
+					html = html + "<td>" + linha.substring(278, 280) + "</td>";
+					html = html + "<td>" + linha.substring(280, 283) + "</td>";
+					html = html + "<td>" + linha.substring(283, 291) + "</td>";
+					html = html + "<td>" + linha.substring(291, 293) + "</td>";
+					html = html + "<td>" + linha.substring(293, 302) + "</td>";
+					html = html + "<td>" + linha.substring(302, 310) + "</td>";
+					html = html + "<td>" + linha.substring(310, 312) + "</td>";
+					html = html + "<td>" + linha.substring(312, 315) + "</td>";
+					html = html + "<td>" + linha.substring(315, 323) + "</td>";
+					html = html + "<td>" + linha.substring(323, 325) + "</td>";
+					html = html + "<td>" + linha.substring(325, 334) + "</td>";
+					html = html + "<td>" + linha.substring(334, 342) + "</td>";
+					html = html + "<td>" + linha.substring(342, 344) + "</td>";
+					html = html + "<td>" + linha.substring(344, 347) + "</td>";
+					html = html + "<td>" + linha.substring(347, 355) + "</td>";
+					html = html + "<td>" + linha.substring(355, 363) + "</td>";
+					html = html + "<td>" + linha.substring(363, 365) + "</td>";
+					html = html + "<td>" + linha.substring(365, 374) + "</td>";
+					html = html + "<td>" + linha.substring(374, 382) + "</td>";
+					html = html + "<td>" + linha.substring(382, 384) + "</td>";
+					html = html + "<td>" + linha.substring(384, 387) + "</td>";
+					html = html + "<td>" + linha.substring(387, 395) + "</td>";
+					html = html + "<td>" + linha.substring(395, 397) + "</td>";
+					html = html + "<td>" + linha.substring(397, 406) + "</td>";
+					html = html + "<td>" + linha.substring(406, 414) + "</td>";
+					html = html + "<td>" + linha.substring(414, 429) + "</td>";
+					html = html + "<td>" + linha.substring(429, 433) + "</td>";
+					html = html + "<td>" + linha.substring(433, 434) + "</td>";
+					html = html + "<td>" + linha.substring(434, 443) + "</td>";
+					html = html + "<td>" + linha.substring(443, 445) + "</td>";
+					html = html + "<td>" + linha.substring(445, 448) + "</td>";
+					html = html + "<td>" + linha.substring(448, 456) + "</td>";
+					html = html + "<td>" + linha.substring(456, 458) + "</td>";
+					html = html + "<td>" + linha.substring(458, 467) + "</td>";
+					html = html + "<td>" + linha.substring(467, 675) + "</td>";
+					html = html + "<td>" + linha.substring(475, 478) + "</td>";
+					html = html + "<td>" + linha.substring(478, 480) + "</td>";
+					html = html + "<td>" + linha.substring(480, 485) + "</td>";
+					html = html + "<td>" + linha.substring(485, 493) + "</td>";
+					html = html + "<td>" + linha.substring(493, 498) + "</td>";
+					html = html + "<td>" + linha.substring(498, 503) + "</td>";
+					html = html + "<td>" + linha.substring(503, 510) + "</td>";
+					html = html + "<td>" + linha.substring(510, 515) + "</td>";
+					html = html + "<td>" + linha.substring(515, 522) + "</td>";
+					html = html + "<td>" + linha.substring(522, 527) + "</td>";
+					html = html + "<td>" + linha.substring(527, 534) + "</td>";
+					html = html + "<td>" + linha.substring(534, 543) + "</td>";
+					html = html + "<td>" + linha.substring(543, 551) + "</td>";
+					html = html + "<td>" + linha.substring(551, 552) + "</td>";
+					html = html + "<td>" + linha.substring(552, 553) + "</td>";
+					html = html + "<td>" + linha.substring(553, 603) + "</td>";
+					html = html + "<td>" + linha.substring(603, 611) + "</td>";
+					html = html + "<td>" + linha.substring(611, 617) + "</td>";
+					html = html + "<td>" + linha.substring(617, 625) + "</td>";
+					html = html + "<td>" + linha.substring(625, 633) + "</td>";
+					html = html + "<td>" + linha.substring(633, 634) + "</td>";
+					html = html + "<td>" + linha.substring(634, 642) + "</td>";
+					html = html + "<td>" + linha.substring(642, 643) + "</td>";
+					html = html + "<td>" + linha.substring(643, 651) + "</td>";
+					html = html + "<td>" + linha.substring(651, 659) + "</td>";
+					html = html + "<td>" + linha.substring(659, 660) + "</td>";
+					html = html + "<td>" + linha.substring(660, 665) + "</td>";
+					html = html + "<td>" + linha.substring(665, 672) + "</td>";
+					html = html + "<td>" + linha.substring(672, 674) + "</td>";
+					html = html + "<td>" + linha.substring(674, 679) + "</td>";
+					html = html + "<td>" + linha.substring(679, 681) + "</td>";
+					html = html + "<td>" + linha.substring(681, 684) + "</td>";
+					html = html + "<td>" + linha.substring(684, 692) + "</td>";
+					html = html + "<td>" + linha.substring(692, 694) + "</td>";
+					html = html + "<td>" + linha.substring(694, 702) + "</td>";
+					html = html + "<td>" + linha.substring(702, 711) + "</td>";
+					html = html + "<td>" + linha.substring(711, 713) + "</td>";
+					html = html + "<td>" + linha.substring(713, 716) + "</td>";
+					html = html + "<td>" + linha.substring(716, 724) + "</td>";
+					html = html + "<td>" + linha.substring(724, 726) + "</td>";
+					html = html + "<td>" + linha.substring(726, 734) + "</td>";
+					html = html + "<td>" + linha.substring(734, 743) + "</td>";
+					html = html + "<td>" + linha.substring(743, 744) + "</td>";
+					html = html + "<td>" + linha.substring(744, 745) + "</td>";
+					html = html + "<td>" + linha.substring(745, 746) + "</td>";
+					html = html + "<td>" + linha.substring(746, 747) + "</td>";
+					html = html + "<td>" + linha.substring(747, 748) + "</td>";
+					html = html + "<td>" + linha.substring(748, 749) + "</td>";
+					html = html + "<td>" + linha.substring(749, 750) + "</td>";
+					html = html + "<td>" + linha.substring(750, 751) + "</td>";
+					html = html + "<td>" + linha.substring(751, 752) + "</td>";
+					html = html + "<td>" + linha.substring(752, 753) + "</td>";
+					html = html + "<td>" + linha.substring(753, 754) + "</td>";
+					html = html + "<td>" + linha.substring(754, 755) + "</td>";
+					html = html + "<td>" + linha.substring(755, 756) + "</td>";
+					html = html + "<td>" + linha.substring(756, 757) + "</td>";
+					html = html + "<td>" + linha.substring(757, 758) + "</td>";
+					html = html + "<td>" + linha.substring(758, 759) + "</td>";
+					html = html + "<td>" + linha.substring(759, 760) + "</td>";
+					html = html + "<td>" + linha.substring(760, 761) + "</td>";
+					html = html + "<td>" + linha.substring(761, 762) + "</td>";
+					html = html + "<td>" + linha.substring(762, 763) + "</td>";
+					html = html + "<td>" + linha.substring(763, 764) + "</td>";
 
-					System.out.println(i++);
 					html = html + "</tr>";
 
 				}
