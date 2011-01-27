@@ -58,7 +58,28 @@
 					onkeypress="mascara(this,soNumeros);"
 					requiredMessage="Campo Número da Certidão de Óbito é obrigatório!">
 				</h:inputText>
-			</h:panelGrid>
+				
+				<h:outputText value="Data do Óbito: "></h:outputText>
+				<rich:calendar
+					value="#{solicitacaoObitoController.solicitacaoObito.dataObito}"
+					locale="" popup="true" datePattern="dd/MM/yyyy" showApplyButton="#"
+					cellWidth="12px" cellHeight="12px" style="width:80px"
+					required="true" inputSize="12" ajaxSingle="true"
+					requiredMessage="Campo Data do Óbito é obrigatório!">
+					<a4j:support event="onchanged"
+						action="#{solicitacaoObitoController.calcularRetorno}"
+						ajaxSingle="true" reRender="dataRetorno"></a4j:support>
+				</rich:calendar>
+				</h:panelGrid>
+				<h:panelGrid columns="2" id="dataRetorno">
+				<h:outputText value="Data de Retorno ao Trabalho: " 
+					rendered="#{solicitacaoObitoController.solicitacaoObito.dataRetorno != null}"></h:outputText>
+				<h:outputText
+					value="#{solicitacaoObitoController.solicitacaoObito.dataRetorno}"
+					rendered="#{solicitacaoObitoController.solicitacaoObito.dataRetorno != null}">
+					<f:convertDateTime locale="pt_BR" pattern="dd/MM/yyyy" />
+				</h:outputText>
+				</h:panelGrid>
 
 			<rich:fileUpload
 				fileUploadListener="#{solicitacaoObitoController.listener}"
