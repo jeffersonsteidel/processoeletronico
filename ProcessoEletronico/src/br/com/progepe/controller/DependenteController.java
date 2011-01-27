@@ -31,7 +31,6 @@ public class DependenteController implements Serializable {
 	private List<Dependente> listaDependentesFiltro;
 	private Integer situacao = 0;
 	private Integer validado = 0;
-	
 
 	public List<Dependente> getListaDependentes() {
 		return listaDependentes;
@@ -72,15 +71,16 @@ public class DependenteController implements Serializable {
 	public void setUfs(List<SelectItem> ufs) {
 		this.ufs = ufs;
 	}
-	
+
 	public List<Dependente> getListaDependentesFiltro() {
 		return listaDependentesFiltro;
 	}
 
-	public void setListaDependentesFiltro(List<Dependente> listaDependentesFiltro) {
+	public void setListaDependentesFiltro(
+			List<Dependente> listaDependentesFiltro) {
 		this.listaDependentesFiltro = listaDependentesFiltro;
 	}
-	
+
 	public Integer getSituacao() {
 		return situacao;
 	}
@@ -122,7 +122,7 @@ public class DependenteController implements Serializable {
 			dependente = new Dependente();
 			dependente.setServidor(new Servidor());
 			dependente.setRgUf(new Estado());
-			dependente.setGrauParentesco(new GrauParentesco()); 
+			dependente.setGrauParentesco(new GrauParentesco());
 			listarGrauParentesco();
 			FacesContext.getCurrentInstance().getExternalContext()
 					.redirect("listarDependentesFilter.jsp");
@@ -130,7 +130,7 @@ public class DependenteController implements Serializable {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void buscarServidorLogado() throws IOException, ParseException {
 		dependente.setServidor(new Servidor());
 		Autenticacao siapeAutenticado = (Autenticacao) FacesContext
@@ -165,13 +165,16 @@ public class DependenteController implements Serializable {
 		return ufs;
 	}
 
-	public void validarCPF() {
+	public boolean validarCPF() {
 		if (!Validator.validaCPF(dependente.getCpf())) {
 			FacesMessage message = new FacesMessage(
 					FacesMessage.SEVERITY_ERROR, "Campo CPF inválido!",
 					"Campo CPF inválido!");
 			FacesContext.getCurrentInstance().addMessage("", message);
 			dependente.setCpf("");
+			return false;
+		} else {
+			return true;
 		}
 	}
 
@@ -189,19 +192,22 @@ public class DependenteController implements Serializable {
 		if (Constantes.ZERO.equals(dependente.getRgUf().getCodigo())) {
 			dependente.setRgUf(null);
 		}
-			
+
 		this.getListaDependentes().add(dependente);
 		dependente.setIndValidado(Boolean.FALSE);
-		DAO.getInstance().saveOrUpdate(dependente);
+		if (validarCPF()) {
+			DAO.getInstance().saveOrUpdate(dependente);
+		}
 		listarDependentesServidorLogado();
 		dependente = new Dependente();
 		dependente.setRgUf(new Estado());
 		dependente.setGrauParentesco(new GrauParentesco());
 		buscarServidorLogado();
 	}
-	
-	public void validar(){
-		if (null == dependente.getRgUf().getCodigo() ||  Constantes.ZERO.equals(dependente.getRgUf().getCodigo())) {
+
+	public void validar() {
+		if (null == dependente.getRgUf().getCodigo()
+				|| Constantes.ZERO.equals(dependente.getRgUf().getCodigo())) {
 			dependente.setRgUf(null);
 		}
 		dependente.setIndValidado(Boolean.TRUE);
@@ -219,10 +225,11 @@ public class DependenteController implements Serializable {
 			listaDependentes = new ArrayList<Dependente>();
 		}
 	}
-	
+
 	public List<Dependente> listarDependentesFiltro() {
 		listaDependentesFiltro = new ArrayList<Dependente>();
-		setListaDependentesFiltro(DependenteDAO.getInstance().listByFilter(dependente, situacao, validado));
+		setListaDependentesFiltro(DependenteDAO.getInstance().listByFilter(
+				dependente, situacao, validado));
 		if (getListaDependentesFiltro().size() == 0) {
 			FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_WARN,
 					"Nenhum registro para o filtro informado!",
@@ -239,20 +246,20 @@ public class DependenteController implements Serializable {
 		DAO.getInstance().delete(dependente);
 		dependente = new Dependente();
 		dependente.setGrauParentesco(new GrauParentesco());
-     	abrirAdicionarDependentes();
+		abrirAdicionarDependentes();
 	}
 
 	public void carregar() throws Exception {
 		FacesContext context = FacesContext.getCurrentInstance();
 		dependente = (Dependente) context.getExternalContext().getRequestMap()
 				.get("list");
-		if(dependente.getRgUf() == null){
+		if (dependente.getRgUf() == null) {
 			dependente.setRgUf(new Estado());
 		}
 	}
 
-	public void validarEstudante(){
-		if(!dependente.getIndEstudante()){
+	public void validarEstudante() {
+		if (!dependente.getIndEstudante()) {
 			dependente.setCurso(null);
 			dependente.setFaculdade(null);
 			dependente.setDataFormacao(null);
