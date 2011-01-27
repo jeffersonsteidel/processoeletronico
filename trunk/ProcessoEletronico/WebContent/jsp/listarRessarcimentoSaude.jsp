@@ -166,13 +166,14 @@
 				<h:outputText
 					value="Tipo do Plano: " />
 				<h:outputText value="#{ressarcimentoSaudeController.ressarcimentoSaude.tipoPlano.descricao}" />
-				<h:outputText
+				<h:outputText rendered="#{ressarcimentoSaudeController.ressarcimentoSaude.nomePlano != null}" 
 					value="Nome do Plano: " />
 				<h:outputText value="#{ressarcimentoSaudeController.ressarcimentoSaude.nomePlano}"
-					rendered="#{ressarcimentoSaudeController.indParticular}" />
-				<h:outputText
+					rendered="#{ressarcimentoSaudeController.ressarcimentoSaude.nomePlano != null}" />
+				<h:outputText 	rendered="#{ressarcimentoSaudeController.ressarcimentoSaude.numeroContrato != null}"
 					value="Numero do Contrato: " />
-				<h:outputText value="#{ressarcimentoSaudeController.ressarcimentoSaude.numeroContrato}" />
+				<h:outputText value="#{ressarcimentoSaudeController.ressarcimentoSaude.numeroContrato}" 
+				rendered="#{ressarcimentoSaudeController.ressarcimentoSaude.numeroContrato != null}"/>
 				<h:outputText value="Data Adesão:" />
 				<h:outputText
 					value="#{ressarcimentoSaudeController.ressarcimentoSaude.dataAdesao}">
