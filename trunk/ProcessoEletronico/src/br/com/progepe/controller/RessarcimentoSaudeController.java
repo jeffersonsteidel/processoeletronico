@@ -15,9 +15,7 @@ import org.richfaces.event.UploadEvent;
 import org.richfaces.model.UploadItem;
 
 import br.com.progepe.constantes.Constantes;
-import br.com.progepe.dao.ConjugeDAO;
 import br.com.progepe.dao.DAO;
-import br.com.progepe.dao.DependenteDAO;
 import br.com.progepe.dao.RessarcimentoSaudeDAO;
 import br.com.progepe.dao.ServidorDAO;
 import br.com.progepe.entity.Autenticacao;
@@ -40,6 +38,7 @@ public class RessarcimentoSaudeController implements Serializable {
 	private Boolean indParticular = false;
 	private Boolean indGEAP = false;
 	private Boolean indSindicato = false;
+	private Boolean indRessarcimentoAtual = false;
 
 	RessarcimentoSaudeContrato ressarcimentoSaudeContrato;
 	private List<RessarcimentoSaude> ressarcimentoList = new ArrayList<RessarcimentoSaude>();
@@ -182,11 +181,20 @@ public class RessarcimentoSaudeController implements Serializable {
 		this.ressarcimentoNovo = ressarcimentoNovo;
 	}
 
+	public Boolean getIndRessarcimentoAtual() {
+		return indRessarcimentoAtual;
+	}
+
+	public void setIndRessarcimentoAtual(Boolean indRessarcimentoAtual) {
+		this.indRessarcimentoAtual = indRessarcimentoAtual;
+	}
+
 	public void abrirRessarcimentoSaude() {
 		try {
 			indGEAP = false;
 			indParticular = false;
 			indSindicato = false;
+			indRessarcimentoAtual = false;
 
 			existeAnterior = false;
 			ressarcimentoNovo = true;
@@ -343,6 +351,7 @@ public class RessarcimentoSaudeController implements Serializable {
 			indGEAP = false;
 			indParticular = false;
 			indSindicato = false;
+			indRessarcimentoAtual = true;
 			ressarcimentoSaude = new RessarcimentoSaude();
 			ressarcimentoSaude.setTipoPlano(new TipoPlano());
 			ressarcimentoSaude.getTipoPlano().setCodigo(
