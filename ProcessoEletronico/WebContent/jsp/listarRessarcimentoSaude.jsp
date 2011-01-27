@@ -42,8 +42,8 @@
 				<h:outputText value="Situação do Ressarcimento: " />
 				<h:selectOneMenu value="#{ressarcimentoSaudeController.indAtual}">
 					<f:selectItem itemLabel="TODOS" itemValue="0" />
-					<f:selectItem itemLabel="ATIVOS" itemValue="1" />
-					<f:selectItem itemLabel="INATIVOS" itemValue="2" />
+					<f:selectItem itemLabel="ATUAL" itemValue="1" />
+					<f:selectItem itemLabel="NÃO ATUAL" itemValue="2" />
 				</h:selectOneMenu>
 
 				<h:outputText value="Situação do Servidor: " />
