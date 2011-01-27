@@ -90,6 +90,30 @@ public class RessarcimentoSaudeDAO extends DAO {
 			FacesContext.getCurrentInstance().addMessage("", message);
 		}
 	}
+	
+	public void updateLists(List<Dependente> dependentes, List<Conjuge> conjuges) {
+		try {
+			HibernateUtility.getSession().clear();
+			HibernateUtility.beginTransaction();
+			for (Conjuge conjuge : conjuges) {
+				HibernateUtility.getSession().update(conjuge);
+			}
+			for (Dependente dependente : dependentes) {
+				HibernateUtility.getSession().update(dependente);
+			}
+			HibernateUtility.commitTransaction();
+			FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO,
+					"Item salvo com sucesso!", "Item salvo com sucesso!");
+			FacesContext.getCurrentInstance().addMessage("", message);
+		} catch (Exception e) {
+			HibernateUtility.rollbackTransaction();
+			FacesMessage message = new FacesMessage(
+					FacesMessage.SEVERITY_ERROR,
+					"Erro ao comunicar com o servidor!",
+					"Erro ao comunicar com o servidor!");
+			FacesContext.getCurrentInstance().addMessage("", message);
+		}
+	}
 
 	@SuppressWarnings("unchecked")
 	public List<RessarcimentoSaude> listByFilter(
