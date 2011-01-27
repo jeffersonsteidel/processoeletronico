@@ -35,8 +35,8 @@
 			<h:panelGrid>
 				<center><h:outputText
 					value="Você já possui um Ressarcimento Cadastrado"
-					style="font-weight:bold"
-					rendered="#{ressarcimentoSaudeController.existeAnterior && !ressarcimentoSaudeController.ressarcimentoNovo}" /></center>
+					style="font-weight:bold" 
+					rendered="#{ressarcimentoSaudeController.existeAnterior && !ressarcimentoSaudeController.ressarcimentoNovo && !ressarcimentoSaudeController.indRessarcimentoAtual}" /></center>
 			</h:panelGrid>
 
 			<h:panelGrid columns="10">
@@ -275,7 +275,7 @@
 			<h:form>
 				<h:outputText style="text-align: center;"
 					value="Para solicitar um novo Ressarcimento Saúde o atual será desativado. Deseja continuar?" />
-				<h:panelGrid columns="2">
+				<h:panelGrid columns="2"  style="text-align: center;">
 					<a4j:commandButton value="Sim" ajaxSingle="true"
 						action="#{ressarcimentoSaudeController.desativarRessarcimento}"
 						oncomplete="#{rich:component('confirmPanel')}.hide();"
