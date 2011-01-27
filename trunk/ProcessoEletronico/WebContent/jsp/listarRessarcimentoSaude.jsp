@@ -38,8 +38,15 @@
 					<f:selectItem itemLabel="SELECIONE" itemValue="" />
 					<f:selectItems value="#{ressarcimentoSaudeController.status}" />
 				</h:selectOneMenu>
+				
+				<h:outputText value="Situação do Ressarcimento: " />
+				<h:selectOneMenu value="#{ressarcimentoSaudeController.indAtual}">
+					<f:selectItem itemLabel="TODOS" itemValue="0" />
+					<f:selectItem itemLabel="ATIVOS" itemValue="1" />
+					<f:selectItem itemLabel="INATIVOS" itemValue="2" />
+				</h:selectOneMenu>
 
-				<h:outputText value="Situação: " />
+				<h:outputText value="Situação do Servidor: " />
 				<h:selectOneMenu value="#{ressarcimentoSaudeController.situacao}">
 					<f:selectItem itemLabel="TODOS" itemValue="0" />
 					<f:selectItem itemLabel="ATIVOS" itemValue="1" />

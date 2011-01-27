@@ -39,6 +39,7 @@ public class RessarcimentoSaudeController implements Serializable {
 	private Boolean indGEAP = false;
 	private Boolean indSindicato = false;
 	private Boolean indRessarcimentoAtual = false;
+	private Integer indAtual;
 
 	RessarcimentoSaudeContrato ressarcimentoSaudeContrato;
 	private List<RessarcimentoSaude> ressarcimentoList = new ArrayList<RessarcimentoSaude>();
@@ -187,6 +188,14 @@ public class RessarcimentoSaudeController implements Serializable {
 
 	public void setIndRessarcimentoAtual(Boolean indRessarcimentoAtual) {
 		this.indRessarcimentoAtual = indRessarcimentoAtual;
+	}
+
+	public Integer getIndAtual() {
+		return indAtual;
+	}
+
+	public void setIndAtual(Integer indAtual) {
+		this.indAtual = indAtual;
 	}
 
 	public void abrirRessarcimentoSaude() {
@@ -403,7 +412,7 @@ public class RessarcimentoSaudeController implements Serializable {
 
 	public void pesquisar() {
 		ressarcimentoList = RessarcimentoSaudeDAO.getInstance().listByFilter(
-				ressarcimentoSaudeTemp, situacao);
+				ressarcimentoSaudeTemp, situacao, indAtual);
 	}
 
 	public void carregar() {

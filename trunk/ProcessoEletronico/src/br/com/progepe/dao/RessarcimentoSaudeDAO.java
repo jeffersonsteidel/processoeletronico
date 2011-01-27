@@ -117,7 +117,7 @@ public class RessarcimentoSaudeDAO extends DAO {
 
 	@SuppressWarnings("unchecked")
 	public List<RessarcimentoSaude> listByFilter(
-			RessarcimentoSaude ressarcimentoSaude, Integer situacao) {
+			RessarcimentoSaude ressarcimentoSaude, Integer situacao, Integer atual) {
 		HibernateUtility.getSession().clear();
 		String sql;
 		sql = "from RessarcimentoSaude rs where 1= 1 ";
@@ -149,6 +149,11 @@ public class RessarcimentoSaudeDAO extends DAO {
 		} else if (ressarcimentoSaude.getStatus() != null
 				&& ressarcimentoSaude.getStatus().getCodigo() == 4L) {
 			sql += "and rs.status.codigo = 4";
+		}
+		if(atual == 1L){
+			sql += "and rs.indAtual = 1";
+		}else if(atual == 2L){
+			sql += "and rs.indAtual = 0";
 		}
 
 		Query query = HibernateUtility.getSession().createQuery(sql);
