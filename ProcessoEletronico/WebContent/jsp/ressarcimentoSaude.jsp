@@ -73,14 +73,11 @@
 				<h:outputText
 					value="#{ressarcimentoSaudeController.ressarcimentoAnterior.status.descricao}"
 					rendered="#{ressarcimentoSaudeController.existeAnterior && !ressarcimentoSaudeController.ressarcimentoNovo}" />
-				<h:outputText
-					value="Ativo: "
+				<h:outputText value="Ativo: "
 					rendered="#{ressarcimentoSaudeController.existeAnterior && !ressarcimentoSaudeController.ressarcimentoNovo}" />
-				<h:outputText
-					value="SIM"
+				<h:outputText value="SIM"
 					rendered="#{ressarcimentoSaudeController.existeAnterior && !ressarcimentoSaudeController.ressarcimentoNovo && ressarcimentoSaudeController.ressarcimentoAnterior.indAtual}" />
-				<h:outputText
-					value="NÃO"
+				<h:outputText value="NÃO"
 					rendered="#{ressarcimentoSaudeController.existeAnterior && !ressarcimentoSaudeController.ressarcimentoNovo && !ressarcimentoSaudeController.ressarcimentoAnterior.indAtual}" />
 			</h:panelGrid>
 
@@ -259,30 +256,22 @@
 			</h:panelGroup>
 		</rich:panel></center>
 
-		<rich:modalPanel id="confirmPanel" autosized="true" width="200">
+		<rich:modalPanel id="confirmPanel" autosized="true" width="250"
+			style="text-align: center;">
 			<f:facet name="header">
-				<h:outputText
-					value="Aviso"
-					style="padding-right:15px;" />
+				<h:outputText value="Aviso" style="padding-right:15px;" />
 			</f:facet>
 			<h:form>
-			<h:outputText
-					value="Para solicitar um novo Ressarcimento Saúde o atual será desativado. Deseja continuar?"/>
-				<table width="100%">
-					<tbody>
-						<tr>
-							<td align="center" width="50%"><a4j:commandButton
-								value="Sim" ajaxSingle="true"
-								action="#{ressarcimentoSaudeController.desativarRessarcimento}"
-								oncomplete="#{rich:component('confirmPanel')}.hide();"
-								reRender="form" /></td>
-							<td align="center" width="50%"><a4j:commandButton
-								value="Não"
-								onclick="#{rich:component('confirmPanel')}.hide();return false;" />
-							</td>
-						</tr>
-					</tbody>
-				</table>
+				<h:outputText style="text-align: center;"
+					value="Para solicitar um novo Ressarcimento Saúde o atual será desativado. Deseja continuar?" />
+				<h:panelGrid columns="2">
+					<a4j:commandButton value="Sim" ajaxSingle="true"
+						action="#{ressarcimentoSaudeController.desativarRessarcimento}"
+						oncomplete="#{rich:component('confirmPanel')}.hide();"
+						reRender="form" />
+					<a4j:commandButton value="Não"
+						onclick="#{rich:component('confirmPanel')}.hide();return false;" />
+				</h:panelGrid>
 			</h:form>
 		</rich:modalPanel>
 	</a4j:form>
