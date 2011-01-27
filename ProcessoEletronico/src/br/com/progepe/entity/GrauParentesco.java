@@ -10,6 +10,7 @@ public class GrauParentesco implements Serializable {
 	private Long codigo;
 	private String descricao;
 	private Boolean indSaude; 
+	private Boolean  indObito;
 
 	public Long getCodigo() {
 		return codigo;
@@ -33,6 +34,14 @@ public class GrauParentesco implements Serializable {
 
 	public void setIndSaude(Boolean indSaude) {
 		this.indSaude = indSaude;
+	}
+
+	public Boolean getIndObito() {
+		return indObito;
+	}
+
+	public void setIndObito(Boolean indObito) {
+		this.indObito = indObito;
 	}
 	
 }

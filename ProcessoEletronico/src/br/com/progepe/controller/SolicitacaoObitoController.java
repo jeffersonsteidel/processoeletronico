@@ -17,6 +17,7 @@ import org.richfaces.model.UploadItem;
 
 import br.com.progepe.constantes.Constantes;
 import br.com.progepe.dao.DAO;
+import br.com.progepe.dao.GrauParentescoDAO;
 import br.com.progepe.dao.ServidorDAO;
 import br.com.progepe.entity.Autenticacao;
 import br.com.progepe.entity.GrauParentesco;
@@ -104,12 +105,10 @@ public class SolicitacaoObitoController implements Serializable {
 		solicitacaoObito.getFiles().add(solicitacaoObito);
 	}
 
-	@SuppressWarnings("unchecked")
 	public List<SelectItem> listarGrauParentesco() {
 		grausParentescos = new ArrayList<SelectItem>();
 		List<GrauParentesco> grauParentescosList = new ArrayList<GrauParentesco>();
-		grauParentescosList = DAO.getInstance().list(GrauParentesco.class,
-				"descricao");
+		grauParentescosList = GrauParentescoDAO.getInstance().listByObito();
 		for (GrauParentesco grauParentesco : grauParentescosList) {
 			grausParentescos.add(new SelectItem(grauParentesco.getCodigo(),
 					grauParentesco.getDescricao()));
