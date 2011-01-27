@@ -401,7 +401,7 @@ public class FitaEspelhoCodigos {
 					html = html + "<td>" + linha.substring(754,755) + "</td>";		
 					html = html + "<td>" + linha.substring(755,756) + "</td>";
 					html = html + "<td>" + linha.substring(756,757) + "</td>";
-					html = html + "<td>" + linha.substring(577,758) + "</td>";
+					html = html + "<td>" + linha.substring(757,758) + "</td>";
 					html = html + "<td>" + linha.substring(758,759) + "</td>";
 					html = html + "<td>" + linha.substring(759,760) + "</td>";
 					html = html + "<td>" + linha.substring(760,761) + "</td>";
