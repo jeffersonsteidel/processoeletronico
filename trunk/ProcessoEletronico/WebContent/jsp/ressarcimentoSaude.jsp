@@ -135,11 +135,15 @@
 
 			<br>
 			<h:outputText
-				value="Selecione o Cônjuge para adiciona-lo(a) no plano"
+				value="Selecione o Cônjuge para adiciona-lo(a) no plano:"
 				rendered="#{not empty ressarcimentoSaudeController.conjuges && ressarcimentoSaudeController.ressarcimentoNovo}" />
 			<br>
+			<h:outputText
+				value="Cônjuges:"
+				rendered="#{not empty ressarcimentoSaudeController.conjuges && !ressarcimentoSaudeController.ressarcimentoNovo}" />
+			<br>
 			<rich:dataTable id="listarConjugesSolicitante"
-				rendered="#{not empty ressarcimentoSaudeController.conjuges && ressarcimentoSaudeController.ressarcimentoNovo}"
+				rendered="#{not empty ressarcimentoSaudeController.conjuges}"
 				value="#{ressarcimentoSaudeController.conjuges}" var="list"
 				width="700px" columnClasses="center" rows="15" reRender="ds">
 
@@ -172,8 +176,12 @@
 				value="Selecione os Dependentes que deseja adicionar ao plano:"
 				rendered="#{not empty ressarcimentoSaudeController.dependentes && ressarcimentoSaudeController.ressarcimentoNovo}" />
 			<br>
+			<h:outputText
+				value="Dependentes:"
+				rendered="#{not empty ressarcimentoSaudeController.dependentes && !ressarcimentoSaudeController.ressarcimentoNovo}" />
+			<br>
 			<rich:dataTable id="listarDependentesSolicitante"
-				rendered="#{not empty ressarcimentoSaudeController.dependentes && ressarcimentoSaudeController.ressarcimentoNovo}"
+				rendered="#{not empty ressarcimentoSaudeController.dependentes}"
 				value="#{ressarcimentoSaudeController.dependentes}" var="list"
 				width="700px" columnClasses="center" rows="15" reRender="ds">
 
@@ -234,6 +242,9 @@
 			<a4j:commandButton value="Salvar"
 				rendered="#{ressarcimentoSaudeController.ressarcimentoNovo}"
 				action="#{ressarcimentoSaudeController.salvar}" reRender="form" />
+			<a4j:commandButton value="Atualizar Dependentes/Cônjuges"
+				rendered="#{!ressarcimentoSaudeController.ressarcimentoNovo}"
+				action="#{ressarcimentoSaudeController.atualizarDependentes}" reRender="form" />
 
 			<h:panelGroup id="info"
 				rendered="#{!ressarcimentoSaudeController.indSindicato && ressarcimentoSaudeController.ressarcimentoNovo}">
