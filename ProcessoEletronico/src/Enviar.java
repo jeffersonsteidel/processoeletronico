@@ -28,7 +28,8 @@ public class Enviar {
 
 	@SuppressWarnings("static-access")
 	public Enviar(String remetente, String destinatario, String assunto,
-			String smtpHost, String porta, String usuario, String senha, String conteudoDoEmail) {
+			String smtpHost, String porta, String usuario, String senha,
+			String conteudoDoEmail) {
 		this.remetente = remetente;
 		this.destinatario = destinatario;
 		this.assunto = assunto;
@@ -40,15 +41,15 @@ public class Enviar {
 		this.propriedades = System.getProperties();
 		this.propriedades.put("mail.smtp.host", this.smtpHost);
 		this.propriedades.put("mail.smtp.auth", "true");
-		this.propriedades.put("mail.debug", "true");
-		this.propriedades.put("mail.smtp.debug", "true");
+		this.propriedades.put("mail.debug", "false");
+		this.propriedades.put("mail.smtp.debug", "false");
 		this.propriedades.put("mail.smtp.port", this.porta);
 		this.propriedades.put("mail.smtp.starttls.enable", "false");
 		this.propriedades.put("mail.smtp.socketFactory.port", this.porta);
 		this.propriedades.put("mail.smtp.socketFactory.fallback", "false");
 		this.propriedades.put("mail.smtp.socketFactory.class",
 				"javax.net.ssl.SSLSocketFactory");
-		this.propriedades.put("mail.smtp.user", "jefferson.steidel@ifpr.edu.br");
+		this.propriedades.put("mail.smtp.user", "processo.verde@ifpr.edu.br");
 		Authenticator auth = new Autenticacao();
 		this.sessao = Session.getDefaultInstance(this.propriedades, auth);
 		try {
@@ -68,8 +69,14 @@ public class Enviar {
 
 	public static void main(String args[]) {
 		@SuppressWarnings("unused")
-		Enviar enviar = new Enviar("jefferson.steidel@ifpr.edu.br",
-				"jefferson.steidel@ifpr.edu.br", "PROCESSO VERDE - PROGEPE", "smtp.gmail.com","465",
-				"jefferson.steidel@ifpr.edu.br", "suaSenhaAqui", "ESTE AQUI  É o CONTEÚDO DO E-MAIL");
+		Enviar enviar = new Enviar(
+				"processo.verde@ifpr.edu.br",
+				"evelyn.schandler@ifpr.edu.br",
+				"PROCESSO VERDE - PROGEPE",
+				"smtp.gmail.com",
+				"465",
+				"processo.verde@ifpr.edu.br",
+				"ifpr10",
+				"ESTE É UM E-MAIL TESTE ENVIADO PELO SISTEMA PROCESSO VERDE AUTOMATICAMENTE!\nPOR FAVOR NÃO RESPONDER.");
 	}
 }
