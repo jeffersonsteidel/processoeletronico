@@ -9,5 +9,6 @@
 		</id>
 		<property name="descricao" column="GRAU_PAR_DESC" />
 		<property name="indSaude" column="GRAU_PAR_IND_SAUDE" type="boolean" />
+		<property name="indObito" column="GRAU_PAR_IND_OBITO" type="boolean" />
 	</class>
 </hibernate-mapping>
