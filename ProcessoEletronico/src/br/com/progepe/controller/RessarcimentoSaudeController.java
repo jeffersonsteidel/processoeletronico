@@ -194,7 +194,8 @@ public class RessarcimentoSaudeController implements Serializable {
 			ressarcimentoSaude.setTipoPlano(new TipoPlano());
 			ressarcimentoSaude.setStatus(new StatusSolicitacao());
 			ressarcimentoSaude.getTipoPlano().setCodigo(
-					Constantes.TIPO_PLANO_PARTICULAR);
+					Constantes.TIPO_PLANO_SINDICATO);
+			ressarcimentoSaude.setFiles(new ArrayList<RessarcimentoSaudeContrato>());
 			buscarServidorLogado();
 			listarTipoPlano();
 			validarTipoPlano();
@@ -278,16 +279,28 @@ public class RessarcimentoSaudeController implements Serializable {
 			this.setIndParticular(true);
 			this.setIndGEAP(false);
 			this.setIndSindicato(false);
+			ressarcimentoSaude.setDataAdesao(null);
+			ressarcimentoSaude.setNumeroContrato(null);
+			ressarcimentoSaude.setNomePlano(null);
+			ressarcimentoSaude.setFiles(new ArrayList<RessarcimentoSaudeContrato>());
 		} else if (Constantes.TIPO_PLANO_GEAPE.equals(ressarcimentoSaude
 				.getTipoPlano().getCodigo())) {
 			this.setIndParticular(false);
 			this.setIndGEAP(true);
 			this.setIndSindicato(false);
+			ressarcimentoSaude.setDataAdesao(null);
+			ressarcimentoSaude.setNumeroContrato(null);
+			ressarcimentoSaude.setNomePlano(null);
+			ressarcimentoSaude.setFiles(new ArrayList<RessarcimentoSaudeContrato>());
 		} else if (Constantes.TIPO_PLANO_SINDICATO.equals(ressarcimentoSaude
 				.getTipoPlano().getCodigo())) {
 			this.setIndParticular(false);
 			this.setIndGEAP(false);
 			this.setIndSindicato(true);
+			ressarcimentoSaude.setDataAdesao(null);
+			ressarcimentoSaude.setNumeroContrato(null);
+			ressarcimentoSaude.setNomePlano(null);
+			ressarcimentoSaude.setFiles(new ArrayList<RessarcimentoSaudeContrato>());
 		}
 	}
 
