@@ -139,7 +139,7 @@
 				rendered="#{not empty ressarcimentoSaudeController.conjuges && ressarcimentoSaudeController.ressarcimentoNovo}" />
 			<br>
 			<h:outputText
-				value="Cônjuges:"
+				value="Selecione o Cônjuge para adiciona-lo(a) no plano ou desmarque para remove-lo do plano:"
 				rendered="#{not empty ressarcimentoSaudeController.conjuges && !ressarcimentoSaudeController.ressarcimentoNovo}" />
 			<br>
 			<rich:dataTable id="listarConjugesSolicitante"
@@ -177,7 +177,7 @@
 				rendered="#{not empty ressarcimentoSaudeController.dependentes && ressarcimentoSaudeController.ressarcimentoNovo}" />
 			<br>
 			<h:outputText
-				value="Dependentes:"
+				value="Selecione o Dependente para adiciona-lo(a) no plano ou desmarque para remove-lo do plano:"
 				rendered="#{not empty ressarcimentoSaudeController.dependentes && !ressarcimentoSaudeController.ressarcimentoNovo}" />
 			<br>
 			<rich:dataTable id="listarDependentesSolicitante"
@@ -242,7 +242,8 @@
 			<a4j:commandButton value="Salvar"
 				rendered="#{ressarcimentoSaudeController.ressarcimentoNovo}"
 				action="#{ressarcimentoSaudeController.salvar}" reRender="form" />
-			<a4j:commandButton value="Atualizar Dependentes/Cônjuges"
+				
+			<a4j:commandButton value="Adicionar/Remover Dependentes/Cônjuges"
 				rendered="#{!ressarcimentoSaudeController.ressarcimentoNovo}"
 				action="#{ressarcimentoSaudeController.atualizarDependentes}" reRender="form" />
 
