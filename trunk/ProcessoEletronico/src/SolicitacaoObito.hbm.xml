@@ -9,6 +9,8 @@
 		<property name="nomeFalecido" column="SOLIC_NOME_FALECIDO" />
 		<property name="numeroCertidao" column="SOLIC_NUMERO_CERTIDAO" />
 		<property name="certidaoObito" column="SOLIC_CERTIDAO_OBITO" />
+		<property name="dataObito" column="SOLIC_DATA_OBITO" />
+		<property name="dataRetorno" column="SOLIC_DATA_RETORNO"/>
 		<property name="documentoValidado" column="SOLIC_DOC_VALIDADO" type="boolean"/>
 		<many-to-one name="grauParentesco" class="br.com.progepe.entity.GrauParentesco"
 			column="GRAU_PAR_COD" />

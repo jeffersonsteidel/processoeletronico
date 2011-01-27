@@ -12,8 +12,8 @@ public class Constantes {
 	public static final Integer QUANTIDADE_MESES_PROGRESSAO = 18;
 	
 	public static final Integer QUANTIDADE_DIAS_LICENCA_PATERNIDADE = 5;
-	
 	public static final Integer QUANTIDADE_DIAS_LICENCA_CASAMENTO = 8;
+	public static final Integer QUANTIDADE_DIAS_LICENCA_OBITO = 8;
 	
 	public static final Long REGIME_DEDICACAO_EXCLUSIVA = 99L;
 	

@@ -48,6 +48,19 @@
 				<h:outputText
 					value="#{solicitacaoController.solicitacaoObito.numeroCertidao}">
 				</h:outputText>
+				
+				<h:outputText value="Data do Óbito: "></h:outputText>
+				<h:outputText 
+					value="#{solicitacaoController.solicitacaoObito.dataObito}">
+					<f:convertDateTime locale="pt_BR" pattern="dd/MM/yyyy" />
+				</h:outputText>
+				
+				<h:outputText value="Data de Retorno ao Trabalho: "></h:outputText>
+				<h:outputText 
+					value="#{solicitacaoController.solicitacaoObito.dataRetorno}">
+					<f:convertDateTime locale="pt_BR" pattern="dd/MM/yyyy" />
+				</h:outputText>
+				
 			</h:panelGrid>
 
 			<h:panelGroup id="info">

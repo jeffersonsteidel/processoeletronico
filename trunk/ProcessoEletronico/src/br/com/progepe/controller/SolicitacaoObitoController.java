@@ -5,6 +5,7 @@ import java.io.OutputStream;
 import java.io.Serializable;
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -114,5 +115,14 @@ public class SolicitacaoObitoController implements Serializable {
 					grauParentesco.getDescricao()));
 		}
 		return grausParentescos;
+	}
+	
+	public void calcularRetorno(){
+		if(solicitacaoObito.getDataObito() != null){
+			Calendar calendar = Calendar.getInstance();  
+			calendar.setTime(solicitacaoObito.getDataObito());  
+			calendar.add(Calendar.DATE, Constantes.QUANTIDADE_DIAS_LICENCA_OBITO);  
+			solicitacaoObito.setDataRetorno(calendar.getTime());
+		}
 	}
 }
