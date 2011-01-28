@@ -413,7 +413,7 @@ public class FitaEspelhoCodigos {
 			html = html + "</body>";
 			html = html + "</html>";
 
-			FileOutputStream file = new FileOutputStream("C:\\Relatorio.html");
+			FileOutputStream file = new FileOutputStream("C:\\Relatorio2.html");
 			PrintStream print = new PrintStream(file);
 			print.println(html);
 			System.out.println("Arquivo gerado com sucesso!!!");
