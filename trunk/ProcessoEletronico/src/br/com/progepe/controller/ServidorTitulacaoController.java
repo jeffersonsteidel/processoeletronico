@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.faces.context.FacesContext;
@@ -21,6 +22,7 @@ import br.com.progepe.entity.Estado;
 import br.com.progepe.entity.Pais;
 import br.com.progepe.entity.Servidor;
 import br.com.progepe.entity.ServidorTitulacao;
+import br.com.progepe.entity.StatusSolicitacao;
 import br.com.progepe.entity.Titulacao;
 
 public class ServidorTitulacaoController implements Serializable {
@@ -149,6 +151,7 @@ public class ServidorTitulacaoController implements Serializable {
 		try {
 			listaServidorTitulacoes.clear();
 			servidorTitulacao = new ServidorTitulacao();
+			servidorTitulacao.setStatusSolicitacao(new StatusSolicitacao());
 			servidorTitulacao.setEstadoOrgaoEmissor(new Estado());
 			servidorTitulacao.setPais(new Pais());
 			servidorTitulacao.setAreaConhecimento(new AreaConhecimento());
@@ -299,7 +302,8 @@ public class ServidorTitulacaoController implements Serializable {
 				servidorTitulacao.setPais(null);
 			}
 		}
-		servidorTitulacao.setIndValidado(Boolean.FALSE);
+		servidorTitulacao.getStatusSolicitacao().setCodigo(Constantes.STATUS_SOLICITACAO_ENCAMINHADO);
+		servidorTitulacao.setDataAbertura(new Date());
 		DAO.getInstance().saveOrUpdate(servidorTitulacao);
 		listarTitulacoesServidorLogado();
 		servidorTitulacao = new ServidorTitulacao();
@@ -321,8 +325,23 @@ public class ServidorTitulacaoController implements Serializable {
 		listarPais();
 	}
 	
-	public void validar(){
-		servidorTitulacao.setIndValidado(Boolean.TRUE);
+	public void deferir(){
+		servidorTitulacao.getStatusSolicitacao().setCodigo(Constantes.STATUS_SOLICITACAO_DEFERIDO);
+		servidorTitulacao.setDataFechamento(new Date());
+		DAO.getInstance().update(servidorTitulacao);
+		servidorTitulacao = new ServidorTitulacao();
+		servidorTitulacao.setEstadoOrgaoEmissor(new Estado());
+		servidorTitulacao.setAreaConhecimento(new AreaConhecimento());
+		servidorTitulacao.setCidadeEstabelecimentoEnsino(new Cidade());
+		servidorTitulacao.getCidadeEstabelecimentoEnsino().setEstado(
+				new Estado());
+		servidorTitulacao.setTitulacao(new Titulacao());
+		servidorTitulacao.setPais(new Pais());
+	}
+	
+	public void indeferir(){
+		servidorTitulacao.getStatusSolicitacao().setCodigo(Constantes.STATUS_SOLICITACAO_INDEFERIDO);
+		servidorTitulacao.setDataFechamento(new Date());
 		DAO.getInstance().update(servidorTitulacao);
 		servidorTitulacao = new ServidorTitulacao();
 		servidorTitulacao.setEstadoOrgaoEmissor(new Estado());
