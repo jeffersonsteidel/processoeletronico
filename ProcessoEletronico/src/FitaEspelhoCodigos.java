@@ -13,6 +13,8 @@ public class FitaEspelhoCodigos {
 			BufferedReader br = new BufferedReader(new FileReader(
 					"C://FITA.txt"));
 
+			int i = 0; 
+			
 			String html = "";
 			html = html + "<html>";
 			html = html + "<body>";
@@ -38,10 +40,10 @@ public class FitaEspelhoCodigos {
 			html = html + "<th>NATURALIDADE</th>";
 			html = html + "<th>PAIS</th>";
 			html = html + "<th>ANO CHEGADA</th>";
-			html = html + "<th>QUANTIDADE DE DEPENDENTES IP</th>";
+			html = html + "<th>QUANTIDADE DE DEPENDENTES IR</th>";
 			html = html + "<th>QUANTIDADE DE DEPENDENTES SF</th>";
 			html = html + "<th>DATA 1º EMPREGO</th>";
-			html = html + "<th>IDENTIFICAÇÃO ORIGEM IP</th>";
+			html = html + "<th>IDENTIFICAÇÃO ORIGEM</th>";
 			html = html + "<th>ENDEREÇO LOGRADOURO</th>";
 			html = html + "<th>ENDEREÇO NÚMERO</th>";
 			html = html + "<th>ENDEREÇO COMPLEMENTO</th>";
@@ -134,7 +136,7 @@ public class FitaEspelhoCodigos {
 			html = html + "<th>DIPLOMA LEGAL DATA PUBLICAÇÃO</th>";
 			html = html + "<th>OCORRÊNCIA DE APOSENTADORIA Nº DO PROCESSO</th>";
 			html = html + "<th>OCORRÊNCIA DE APOSENTADORIA ANO PREVISTO</th>";
-			html = html	+ "<th>OCORRÊNCIA DE APOSENTADORIA OPÇÃO APOSENT. TOTAL</th>";
+			html = html	+ "<th>OCORRÊNCIA DE APOSENTADORIA OPÇÃO APOSENT. INTEGRAL</th>";
 			html = html + "<th>UORG DE CONTROLE</th>";
 			html = html + "<th>OCORRÊNCIA DE MODIF. FUNCIONAL GRUPO</th>";
 			html = html + "<th>OCORRÊNCIA DE MODIF. FUNCIONAL OCORRÊNCIA</th>";
@@ -172,63 +174,39 @@ public class FitaEspelhoCodigos {
 			html = html + "<th>CÓDIGO DA VAGA</th>";
 			html = html + "<th>MÊS DE CONCESSÃO DO ANUÊNIO</th>";
 			html = html + "<th>PERCENTUAL DE OPERADOR DE RAIO-X</th>";
-			html = html
-					+ "<th>GRUPO - INGR. SERV. PÚB. - POSSE CÓDIGO DO GRUPO</th>";
-			html = html
-					+ "<th>GRUPO - INGR. SERV. PÚB. - POSSE OCORRÊNCIA</th>";
+			html = html	+ "<th>GRUPO - INGR. SERV. PÚB. - POSSE CÓDIGO DO GRUPO</th>";
+			html = html	+ "<th>GRUPO - INGR. SERV. PÚB. - POSSE OCORRÊNCIA</th>";
 			html = html + "<th>GRUPO - INGR. SERV. PÚB. - POSSE DATA</th>";
-			html = html
-					+ "<th>GRUPO - INGR. SERV. PÚB. - POSSE CÓDIGO DIPLOMA</th>";
-			html = html
-					+ "<th>GRUPO - INGR. SERV. PÚB. - POSSE CÓDIGO DATA DIPLOMA</th>";
-			html = html
-					+ "<th>GRUPO - INGR. SERV. PÚB. - POSSE NÚMERO DO DIPLOMA</th>";
-			html = html
-					+ "<th>GRUPO REVERSÃO À ATIVIDADE GRUPO DE OCORRÊNCIA</th>";
-			html = html
-					+ "<th>GRUPO REVERSÃO À ATIVIDADE CÓDIGO OCORRÊNCIA</th>";
-			html = html
-					+ "<th>GRUPO REVERSÃO À ATIVIDADE DATA DA OCORRÊNCIA</th>";
-			html = html
-					+ "<th>GRUPO REVERSÃO À ATIVIDADE CÓDIGO DO DIPLOMA</th>";
-			html = html
-					+ "<th>GRUPO REVERSÃO À ATIVIDADE DATA PUBLICAÇÃO DIPLOMA</th>";
-			html = html
-					+ "<th>GRUPO REVERSÃO À ATIVIDADE NÚMERO DO DIPLOMA</th>";
+			html = html	+ "<th>GRUPO - INGR. SERV. PÚB. - POSSE CÓDIGO DIPLOMA</th>";
+			html = html	+ "<th>GRUPO - INGR. SERV. PÚB. - POSSE CÓDIGO DATA DIPLOMA</th>";
+			html = html	+ "<th>GRUPO - INGR. SERV. PÚB. - POSSE NÚMERO DO DIPLOMA</th>";
+			html = html	+ "<th>GRUPO REVERSÃO À ATIVIDADE GRUPO DE OCORRÊNCIA</th>";
+			html = html	+ "<th>GRUPO REVERSÃO À ATIVIDADE CÓDIGO OCORRÊNCIA</th>";
+			html = html	+ "<th>GRUPO REVERSÃO À ATIVIDADE DATA DA OCORRÊNCIA</th>";
+			html = html	+ "<th>GRUPO REVERSÃO À ATIVIDADE CÓDIGO DO DIPLOMA</th>";
+			html = html	+ "<th>GRUPO REVERSÃO À ATIVIDADE DATA PUBLICAÇÃO DIPLOMA</th>";
+			html = html	+ "<th>GRUPO REVERSÃO À ATIVIDADE NÚMERO DO DIPLOMA</th>";
 			html = html + "<th>INDICADOR DE CÁLCULO AUTOMÁTICO CARGO</th>";
 			html = html + "<th>INDICADOR DE CÁLCULO AUTOMÁTICO FUNÇÃO</th>";
-			html = html
-					+ "<th>INDICADOR DE CÁLCULO AUTOMÁTICO SALÁRIO FAMÍLIA</th>";
-			html = html
-					+ "<th>INDICADOR DE CÁLCULO AUTOMÁTICO ADICIONAL POR TEMPO DE SERVIÇO</th>";
-			html = html + "<th>INDICADOR DE CÁLCULO AUTOMÁTICO FGTS</th>";
-			html = html
-					+ "<th>INDICADOR DE CÁLCULO AUTOMÁTICO PREVIDÊNCIA SOCIAL</th>";
-			html = html
-					+ "<th>INDICADOR DE CÁLCULO AUTOMÁTICO IMPOSTO DE RENDA</th>";
-			html = html
-					+ "<th>INDICADOR DE CÁLCULO AUTOMÁTICO MARGEM CONSIGNÁVEL</th>";
-			html = html
-					+ "<th>INDICADOR DE CÁLCULO AUTOMÁTICO CONTRIBUIÇÃO SINDICAL</th>";
-			html = html
-					+ "<th>INDICADOR DE CÁLCULO AUTOMÁTICO ADIANTAMENTO 13º SALÁRIO</th>";
-			html = html
-					+ "<th>INDICADOR DE CÁLCULO AUTOMÁTICO 13º SALÁRIO</th>";
-			html = html
-					+ "<th>INDICADOR DE CÁLCULO AUTOMÁTICO ABATE TETO CONSTITUCIONAL</th>";
-			html = html
-					+ "<th>INDICADOR DE CÁLCULO AUTOMÁTICO PLANO SEGURIDADE SOCIAL 6%</th>";
-			html = html + "<th>INDICADOR DE CÁLCULO AUTOMÁTICO FÉRIAS</th>";
-			html = html + "<th>INDICADOR DE CÁLCULO AUTOMÁTICO PENSÃO</th>";
-			html = html + "<th>INDICADOR DE CÁLCULO AUTOMÁTICO BENEFÍCIOS</th>";
-			html = html + "<th>INDICADOR DE CÁLCULO AUTOMÁTICO IPMF/CPMF</th>";
-			html = html + "<th>INDICADOR DE CÁLCULO AUTOMÁTICO RAIS</th>";
-			html = html
-					+ "<th>INDICADOR DE CÁLCULO AUTOMÁTICO DIFERENÇA DE URV</th>";
-			html = html
-					+ "<th>INDICADOR DE CÁLCULO AUTOMÁTICO ADIANTEMENTO</th>";
-			html = html
-					+ "<th>INDICADOR DE CÁLCULO AUTOMÁTICO RENDIMENTO PASEP</th>";
+			html = html	+ "<th>INDICADOR DE CÁLCULO AUTOMÁTICO SALÁRIO FAMÍLIA</th>";
+			html = html	+ "<th>INDICADOR DE CÁLCULO AUTOMÁTICO ADICIONAL POR TEMPO DE SERVIÇO</th>";
+			html = html + "<th>FGTS</th>";
+			html = html + "<th>PREVIDÊNCIA SOCIAL</th>";
+			html = html + "<th>IMPOSTO DE RENDA</th>";
+			html = html	+ "<th>MARGEM CONSIGNÁVEL</th>";
+			html = html + "<th>CONTRIBUIÇÃO SINDICAL</th>";
+			html = html	+ "<th>ADIANTAMENTO 13º SALÁRIO</th>";
+			html = html + "<th>ABATE TETO CONSTITUCIONAL</th>";
+			html = html	+ "<th>13º SALÁRIO</th>";
+			html = html + "<th>PLANO SEGURIDADE SOCIAL 6%</th>";
+			html = html + "<th>FÉRIAS</th>";
+			html = html + "<th>PENSÃO</th>";
+			html = html + "<th>BENEFÍCIOS</th>";
+			html = html + "<th>IPMF/CPMF</th>";
+			html = html + "<th>RAIS</th>";
+			html = html	+ "<th>DIFERENÇA DE URV</th>";
+			html = html	+ "<th>ADIANTEMENTO</th>";
+			html = html	+ "<th>RENDIMENTO PASEP</th>";
 
 			html = html + "</tr>";
 
@@ -270,7 +248,7 @@ public class FitaEspelhoCodigos {
 					html = html + "<td>" + linha.substring(333, 347) + "</td>";
 					html = html + "<td>" + linha.substring(347, 352) + "</td>";
 					html = html + "<td>" + linha.substring(352, 360) + "</td>";
-					html = html + "<td>" + linha.substring(361, 362) + "</td>";
+					html = html + "<td>" + linha.substring(360, 362) + "</td>";
 					html = html + "<td>" + linha.substring(362, 375) + "</td>";
 					html = html + "<td>" + linha.substring(375, 764) + "</td>";
 
@@ -425,8 +403,10 @@ public class FitaEspelhoCodigos {
 					html = html + "<td>" + linha.substring(762, 763) + "</td>";
 					html = html + "<td>" + linha.substring(763, 764) + "</td>";
 
+					System.out.println(i++);
 					html = html + "</tr>";
 
+					
 				}
 			}
 			html = html + "</table>";
