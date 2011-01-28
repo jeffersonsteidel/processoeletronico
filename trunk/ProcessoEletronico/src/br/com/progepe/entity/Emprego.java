@@ -14,6 +14,12 @@ public class Emprego implements Serializable {
 	private String atividades;
 	private Servidor servidor;
 	private Boolean indValidado;
+	private Date dataAbertura;
+	private Integer atendente;
+	private Date dataAtendimento;
+	private Date dataFechamento;
+	private String justificativa;
+	private StatusSolicitacao statusSolicitacao;
 
 	public Long getCodigo() {
 		return codigo;
@@ -77,6 +83,54 @@ public class Emprego implements Serializable {
 
 	public void setIndValidado(Boolean indValidado) {
 		this.indValidado = indValidado;
+	}
+
+	public Date getDataAbertura() {
+		return dataAbertura;
+	}
+
+	public void setDataAbertura(Date dataAbertura) {
+		this.dataAbertura = dataAbertura;
+	}
+
+	public Integer getAtendente() {
+		return atendente;
+	}
+
+	public void setAtendente(Integer atendente) {
+		this.atendente = atendente;
+	}
+
+	public Date getDataAtendimento() {
+		return dataAtendimento;
+	}
+
+	public void setDataAtendimento(Date dataAtendimento) {
+		this.dataAtendimento = dataAtendimento;
+	}
+
+	public Date getDataFechamento() {
+		return dataFechamento;
+	}
+
+	public void setDataFechamento(Date dataFechamento) {
+		this.dataFechamento = dataFechamento;
+	}
+
+	public String getJustificativa() {
+		return justificativa;
+	}
+
+	public void setJustificativa(String justificativa) {
+		this.justificativa = justificativa;
+	}
+
+	public StatusSolicitacao getStatusSolicitacao() {
+		return statusSolicitacao;
+	}
+
+	public void setStatusSolicitacao(StatusSolicitacao statusSolicitacao) {
+		this.statusSolicitacao = statusSolicitacao;
 	}
 
 }
