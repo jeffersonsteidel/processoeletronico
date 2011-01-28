@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.faces.application.FacesMessage;
@@ -180,19 +181,22 @@ public class ConjugeController implements Serializable {
 			conjuge.setCidadeNascimento(null);
 		}
 		listarConjugesServidorLogado();
-		if(conjuge.getCodigo() == null){
+		if (conjuge.getCodigo() == null) {
 			conjugeList.add(conjuge);
 		}
 		for (Conjuge item : conjugeList) {
-			if (conjuge.getCodigo() != null &&  item.getCodigo().equals(conjuge.getCodigo())) {
+			if (conjuge.getCodigo() != null
+					&& item.getCodigo().equals(conjuge.getCodigo())) {
 				item = conjuge;
 			}
-			if(item.getAtual()){
-					existeAtual = existeAtual + 1;
+			if (item.getAtual()) {
+				existeAtual = existeAtual + 1;
 			}
 		}
 		if (existeAtual <= 1) {
-			conjuge.setIndValidado(false);
+			conjuge.getStatusSolicitacao().setCodigo(
+					Constantes.STATUS_SOLICITACAO_ENCAMINHADO);
+			conjuge.setDataAbertura(new Date());
 			DAO.getInstance().saveOrUpdate(conjuge);
 			conjuge = new Conjuge();
 			conjuge.setCidadeNascimento(new Cidade());
@@ -215,8 +219,10 @@ public class ConjugeController implements Serializable {
 		}
 	}
 
-	public void validar() {
-		conjuge.setIndValidado(true);
+	public void deferir() {
+		conjuge.getStatusSolicitacao().setCodigo(
+				Constantes.STATUS_SOLICITACAO_DEFERIDO);
+		conjuge.setDataFechamento(new Date());
 		DAO.getInstance().update(conjuge);
 		conjuge = new Conjuge();
 		conjuge.setCidadeNascimento(new Cidade());
@@ -224,6 +230,28 @@ public class ConjugeController implements Serializable {
 		conjuge.getCidadeNascimento().setEstado(new Estado());
 		conjuge.setPais(new Pais());
 		conjuge.setServidor(new Servidor());
+	}
+
+	public void indeferir() {
+		if (conjuge.getJustificativa() != null
+				&& !conjuge.getJustificativa().isEmpty()) {
+			conjuge.getStatusSolicitacao().setCodigo(
+					Constantes.STATUS_SOLICITACAO_INDEFERIDO);
+			conjuge.setDataFechamento(new Date());
+			DAO.getInstance().update(conjuge);
+			conjuge = new Conjuge();
+			conjuge.setCidadeNascimento(new Cidade());
+			conjuge.setRgUf(new Estado());
+			conjuge.getCidadeNascimento().setEstado(new Estado());
+			conjuge.setPais(new Pais());
+			conjuge.setServidor(new Servidor());
+		} else {
+			FacesMessage message = new FacesMessage(
+					FacesMessage.SEVERITY_ERROR,
+					"O campo Justificativa é obrigatório!",
+					"O campo Justificativa é obrigatório!");
+			FacesContext.getCurrentInstance().addMessage("", message);
+		}
 	}
 
 	public void listarConjugesServidorLogado() throws Exception {
