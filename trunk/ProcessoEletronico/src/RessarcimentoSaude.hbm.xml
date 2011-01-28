@@ -12,11 +12,16 @@
 		<property name="dataAdesao" column="RES_SAU_DT_ADESAO" />
 		<property name="justificativa" column="RES_SAU_JUST" />
 		<property name="indAtual" column="RES_SAU_IND_ATUAL" />
+		<property name="dataAbertura" column="RES_SAU_DATA_ABERTURA" />
+		<property name="dataAtendimento" column="RES_SAU_DATA_ATENDIMENTO" />
+		<property name="dataFechamento" column="RES_SAU_DATA_FECHAMENTO" />
+		<property name="atendente" column="RES_SAU_ATENDENTE" />
 		<many-to-one name="tipoPlano" class="br.com.progepe.entity.TipoPlano"
 			column="TIP_PLA_COD" lazy="false" />
 		<many-to-one name="servidor" class="br.com.progepe.entity.Servidor"
 			column="SERV_COD" lazy="false" />
-		<many-to-one name="status" class="br.com.progepe.entity.StatusSolicitacao"
-			column="STA_SOLIC_COD" lazy="false" />
+		<many-to-one name="status"
+			class="br.com.progepe.entity.StatusSolicitacao" column="STA_SOLIC_COD"
+			lazy="false" />
 	</class>
 </hibernate-mapping>

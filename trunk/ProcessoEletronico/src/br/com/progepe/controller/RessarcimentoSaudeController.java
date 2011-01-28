@@ -5,6 +5,7 @@ import java.io.OutputStream;
 import java.io.Serializable;
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.faces.application.FacesMessage;
@@ -50,6 +51,8 @@ public class RessarcimentoSaudeController implements Serializable {
 	private RessarcimentoSaude ressarcimentoAnterior;
 	private Boolean existeAnterior;
 	private Boolean ressarcimentoNovo;
+
+	private Servidor atendente = new Servidor();
 
 	public RessarcimentoSaude getRessarcimentoSaude() {
 		return ressarcimentoSaude;
@@ -198,13 +201,21 @@ public class RessarcimentoSaudeController implements Serializable {
 		this.indAtual = indAtual;
 	}
 
+	public Servidor getAtendente() {
+		return atendente;
+	}
+
+	public void setAtendente(Servidor atendente) {
+		this.atendente = atendente;
+	}
+
 	public void abrirRessarcimentoSaude() {
 		try {
 			indGEAP = false;
 			indParticular = false;
 			indSindicato = false;
 			indRessarcimentoAtual = false;
-
+			atendente = new Servidor();
 			existeAnterior = false;
 			ressarcimentoNovo = true;
 			this.setDependentes(new ArrayList<Dependente>());
@@ -236,6 +247,12 @@ public class RessarcimentoSaudeController implements Serializable {
 							this.setIndParticular(true);
 						}
 					}
+				}
+				if (ressarcimentoSaude.getAtendente() != null
+						&& !ressarcimentoSaude.getAtendente().equals(0)) {
+					atendente.setSiape(ressarcimentoAnterior.getAtendente());
+					atendente = ServidorDAO.getInstance().refreshBySiape(
+							atendente);
 				}
 			}
 			conjuges = RessarcimentoSaudeDAO.getInstance()
@@ -340,7 +357,9 @@ public class RessarcimentoSaudeController implements Serializable {
 			ressarcimentoSaude.getStatus().setCodigo(
 					Constantes.STATUS_SOLICITACAO_ENCAMINHADO);
 			ressarcimentoSaude.setIndAtual(true);
-			ressarcimentoSaude.setJustificativa("");
+			ressarcimentoSaude.setDataAbertura(new Date());
+			ressarcimentoSaude.setJustificativa(null);
+			ressarcimentoSaude.setAtendente(null);
 			if (indSindicato) {
 				ressarcimentoSaude.setNomePlano(null);
 				ressarcimentoSaude.setNumeroContrato(null);
@@ -416,14 +435,31 @@ public class RessarcimentoSaudeController implements Serializable {
 	}
 
 	public void carregar() {
+		ressarcimentoSaude = new RessarcimentoSaude();
 		FacesContext context = FacesContext.getCurrentInstance();
 		ressarcimentoSaude = (RessarcimentoSaude) context.getExternalContext()
 				.getRequestMap().get("list");
+		ressarcimentoSaude = (RessarcimentoSaude) DAO.getInstance().refresh(
+				ressarcimentoSaude);
 		botaoHabilitado = false;
 		if (Constantes.STATUS_SOLICITACAO_ENCAMINHADO.equals(ressarcimentoSaude
-				.getStatus().getCodigo())) {
+				.getStatus().getCodigo()) && ressarcimentoSaude.getIndAtual()) {
 			ressarcimentoSaude.setStatus(new StatusSolicitacao());
+			ressarcimentoSaude.getStatus().setCodigo(
+					Constantes.STATUS_SOLICITACAO_EM_ANALISE);
+			Autenticacao siapeAutenticado = (Autenticacao) FacesContext
+					.getCurrentInstance().getExternalContext().getSessionMap()
+					.get("usuarioLogado");
+			ressarcimentoSaude.setAtendente(siapeAutenticado.getSiape());
+			ressarcimentoSaude.setDataAtendimento(new Date());
+			RessarcimentoSaudeDAO.getInstance().updateRessarcimento(
+					ressarcimentoSaude);
 			botaoHabilitado = true;
+		} else if (!Constantes.STATUS_SOLICITACAO_ENCAMINHADO
+				.equals(ressarcimentoSaude.getStatus().getCodigo())) {
+			atendente = new Servidor();
+			atendente.setSiape(ressarcimentoSaude.getAtendente());
+			atendente = ServidorDAO.getInstance().refreshByFilter(atendente);
 		}
 		validarTipoPlano();
 		conjuges.clear();
@@ -442,6 +478,8 @@ public class RessarcimentoSaudeController implements Serializable {
 		}
 		ressarcimentoSaude.setFiles(RessarcimentoSaudeDAO.getInstance()
 				.getContratos(ressarcimentoSaude));
+
+		
 	}
 
 	public void abrirListar() {
@@ -473,6 +511,11 @@ public class RessarcimentoSaudeController implements Serializable {
 		ressarcimentoSaude.setStatus(new StatusSolicitacao());
 		ressarcimentoSaude.getStatus().setCodigo(
 				Constantes.STATUS_SOLICITACAO_DEFERIDO);
+		Autenticacao siapeAutenticado = (Autenticacao) FacesContext
+				.getCurrentInstance().getExternalContext().getSessionMap()
+				.get("usuarioLogado");
+		ressarcimentoSaude.setAtendente(siapeAutenticado.getSiape());
+		ressarcimentoSaude.setDataFechamento(new Date());
 		DAO.getInstance().update(ressarcimentoSaude);
 		ressarcimentoList = new ArrayList<RessarcimentoSaude>();
 		ressarcimentoSaude = new RessarcimentoSaude();
@@ -497,6 +540,7 @@ public class RessarcimentoSaudeController implements Serializable {
 			ressarcimentoSaude.setStatus(new StatusSolicitacao());
 			ressarcimentoSaude.getStatus().setCodigo(
 					Constantes.STATUS_SOLICITACAO_INDEFERIDO);
+			ressarcimentoSaude.setDataFechamento(new Date());
 			DAO.getInstance().update(ressarcimentoSaude);
 			ressarcimentoList = new ArrayList<RessarcimentoSaude>();
 			pesquisar();

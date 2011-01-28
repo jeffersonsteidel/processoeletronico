@@ -98,7 +98,7 @@
 					</f:facet>
 					<a4j:commandLink rendered="#{list.status.codigo == 1}" 
 					action="#{ressarcimentoSaudeController.carregar}"
-						reRender="editPanel" ajaxSingle="true"
+						reRender="editPanel,listaRessarcimento" ajaxSingle="true"
 						oncomplete="#{rich:component('editPanel')}.show()">
 						<h:graphicImage value="../images/encaminhado.png" style="border:0"
 							width="20" height="18" id="encaminhado" />
@@ -107,7 +107,7 @@
 					</a4j:commandLink>
 					<a4j:commandLink rendered="#{list.status.codigo == 2}"
 						action="#"
-						reRender="listaSolicitacoes" ajaxSingle="true">
+						ajaxSingle="true">
 						<h:graphicImage value="../images/analize.gif" style="border:0"
 							width="20" height="18" id="emAnalise" />
 						</a4j:commandLink>

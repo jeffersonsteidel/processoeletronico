@@ -34,7 +34,7 @@ public class RessarcimentoSaudeDAO extends DAO {
 			Boolean validar) {
 		HibernateUtility.getSession().clear();
 		HibernateUtility.beginTransaction();
-		String sql = "from Dependente d LEFT JOIN FETCH d.servidor s WHERE d.indValidado = 1 and d.grauParentesco.indSaude = 1 and (d.indRessarcimentoSaude is null or d.indRessarcimentoSaude = 1) and s.siape = "
+		String sql = "from Dependente d LEFT JOIN FETCH d.servidor s WHERE d.statusSolicitacao = 4 and d.grauParentesco.indSaude = 1 and (d.indRessarcimentoSaude is null or d.indRessarcimentoSaude = 1) and s.siape = "
 				+ servidor.getSiape();
 		if (validar) {
 			sql += " and d.indRessarcimentoSaude = 1";
@@ -49,7 +49,7 @@ public class RessarcimentoSaudeDAO extends DAO {
 			Boolean validar) {
 		HibernateUtility.getSession().clear();
 		HibernateUtility.beginTransaction();
-		String sql = "from Conjuge c LEFT JOIN FETCH c.servidor s WHERE c.indValidado = 1 and s.siape = "
+		String sql = "from Conjuge c LEFT JOIN FETCH c.servidor s WHERE c.statusSolicitacao = 4 and s.siape = "
 				+ servidor.getSiape();
 		if (validar) {
 			sql += " and c.indRessarcimentoSaude = 1";

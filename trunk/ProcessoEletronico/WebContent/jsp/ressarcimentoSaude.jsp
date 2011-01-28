@@ -35,7 +35,7 @@
 			<h:panelGrid>
 				<center><h:outputText
 					value="Você já possui um Ressarcimento Cadastrado"
-					style="font-weight:bold" 
+					style="font-weight:bold"
 					rendered="#{ressarcimentoSaudeController.existeAnterior && !ressarcimentoSaudeController.ressarcimentoNovo && !ressarcimentoSaudeController.indRessarcimentoAtual}" /></center>
 			</h:panelGrid>
 
@@ -65,6 +65,21 @@
 					value="#{ressarcimentoSaudeController.ressarcimentoAnterior.dataAdesao}">
 					<f:convertDateTime pattern="dd/MM/yyyy" />
 				</h:outputText>
+
+				<h:outputText value="Data de Atendimento: "
+					rendered="#{ressarcimentoSaudeController.existeAnterior && ressarcimentoSaudeController.ressarcimentoAnterior.dataAtendimento.date!= null && !ressarcimentoSaudeController.ressarcimentoNovo}" />
+				<h:outputText
+					rendered="#{ressarcimentoSaudeController.existeAnterior && ressarcimentoSaudeController.ressarcimentoAnterior.dataAtendimento.date!= null && !ressarcimentoSaudeController.ressarcimentoNovo}"
+					value="#{ressarcimentoSaudeController.ressarcimentoAnterior.dataAtendimento}">
+					<f:convertDateTime pattern="dd/MM/yyyy" />
+				</h:outputText>
+
+				<h:outputText value="Atendente:"
+					rendered="#{ressarcimentoSaudeController.existeAnterior && ressarcimentoSaudeController.atendente.siape!=null && !ressarcimentoSaudeController.ressarcimentoNovo}">
+				</h:outputText>
+				<h:outputText
+					rendered="#{ressarcimentoSaudeController.existeAnterior && ressarcimentoSaudeController.atendente.siape!=null && !ressarcimentoSaudeController.ressarcimentoNovo}"
+					value="#{ressarcimentoSaudeController.atendente.nome}"></h:outputText>
 			</h:panelGrid>
 
 			<h:panelGrid columns="2">
@@ -242,10 +257,11 @@
 			<a4j:commandButton value="Salvar"
 				rendered="#{ressarcimentoSaudeController.ressarcimentoNovo}"
 				action="#{ressarcimentoSaudeController.salvar}" reRender="form" />
-				
+
 			<a4j:commandButton value="Adicionar/Remover Dependentes/Cônjuges"
-				rendered="#{!ressarcimentoSaudeController.ressarcimentoNovo}"
-				action="#{ressarcimentoSaudeController.atualizarDependentes}" reRender="form" />
+				rendered="#{!ressarcimentoSaudeController.ressarcimentoNovo && (not empty ressarcimentoSaudeController.dependentes || not empty ressarcimentoSaudeController.conjuges )}"
+				action="#{ressarcimentoSaudeController.atualizarDependentes}"
+				reRender="form" />
 
 			<h:panelGroup id="info"
 				rendered="#{!ressarcimentoSaudeController.indSindicato && ressarcimentoSaudeController.ressarcimentoNovo}">
@@ -276,7 +292,7 @@
 			<h:form>
 				<h:outputText style="text-align: center;"
 					value="Para solicitar um novo Ressarcimento Saúde o atual será desativado. Deseja continuar?" />
-				<h:panelGrid columns="2"  style="text-align: center;">
+				<h:panelGrid columns="2" style="text-align: center;">
 					<a4j:commandButton value="Sim" ajaxSingle="true"
 						action="#{ressarcimentoSaudeController.desativarRessarcimento}"
 						oncomplete="#{rich:component('confirmPanel')}.hide();"
