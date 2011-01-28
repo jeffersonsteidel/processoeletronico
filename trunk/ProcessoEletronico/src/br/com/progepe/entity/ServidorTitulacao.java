@@ -1,6 +1,7 @@
 package br.com.progepe.entity;
 
 import java.io.Serializable;
+import java.util.Date;
 
 public class ServidorTitulacao implements Serializable {
 
@@ -21,7 +22,12 @@ public class ServidorTitulacao implements Serializable {
 	private String orgaoEmissor;
 	private Estado estadoOrgaoEmissor;
 	private String curso;
-	private Boolean indValidado = false;
+	private Integer atendente;
+	private Date dataAtendimento;
+	private Date dataAbertura;
+	private Date dataFechamento;
+	private String justificativa;
+	private StatusSolicitacao statusSolicitacao;
 
 	public Long getCodigo() {
 		return codigo;
@@ -128,11 +134,52 @@ public class ServidorTitulacao implements Serializable {
 		this.areaConhecimento = areaConhecimento;
 	}
 
-	public Boolean getIndValidado() {
-		return indValidado;
+	public Integer getAtendente() {
+		return atendente;
 	}
 
-	public void setIndValidado(Boolean indValidado) {
-		this.indValidado = indValidado;
+	public void setAtendente(Integer atendente) {
+		this.atendente = atendente;
 	}
+
+	public Date getDataAtendimento() {
+		return dataAtendimento;
+	}
+
+	public void setDataAtendimento(Date dataAtendimento) {
+		this.dataAtendimento = dataAtendimento;
+	}
+
+	public Date getDataAbertura() {
+		return dataAbertura;
+	}
+
+	public void setDataAbertura(Date dataAbertura) {
+		this.dataAbertura = dataAbertura;
+	}
+
+	public Date getDataFechamento() {
+		return dataFechamento;
+	}
+
+	public void setDataFechamento(Date dataFechamento) {
+		this.dataFechamento = dataFechamento;
+	}
+
+	public String getJustificativa() {
+		return justificativa;
+	}
+
+	public void setJustificativa(String justificativa) {
+		this.justificativa = justificativa;
+	}
+
+	public StatusSolicitacao getStatusSolicitacao() {
+		return statusSolicitacao;
+	}
+
+	public void setStatusSolicitacao(StatusSolicitacao statusSolicitacao) {
+		this.statusSolicitacao = statusSolicitacao;
+	}
+	
 }

@@ -7,7 +7,6 @@ DO
 UPDATE solicitacao SET serv_cod_atendente = null,solic_dt_atendimento = null, sta_solic_cod = 1 where sta_solic_cod = 2 and solic_dt_atendimento < DATE_SUB(NOW() , INTERVAL 30 MINUTE);
 
 -- SETA dep_ind_saude PARA 0 AONDE o dependente não tiver necessidades especiais E (o dependente for maior de 24 anos OU (o dependente for maior de 21 anos E não for estudante))
-
 create event ValidaDependenteRessarcimentoSaude
 ON SCHEDULE EVERY 1 second
 do
@@ -20,6 +19,14 @@ ON SCHEDULE
 EVERY 1 SECOND
 DO
 UPDATE emprego SET emp_atendente = null,emp_data_atendimento = null, sta_solic_cod = 1 where sta_solic_cod = 2 and emp_data_atendimento < DATE_SUB(NOW() , INTERVAL 30 MINUTE);
+
+-- RETORNO O STATUS DOS SERVIDOR TITULACAO QUE ESTÃO EM ANÁLISE A MAIS DE 30 MINUTOS  
+CREATE EVENT
+  retornaStatusServidorTitulacao
+ON SCHEDULE
+EVERY 1 SECOND
+DO
+UPDATE servidortitulacao SET serv_tit_atendente = null, serv_tit_data_atendimento = null, sta_solic_cod = 1 where sta_solic_cod = 2 and serv_tit_data_atendimento < DATE_SUB(NOW() , INTERVAL 30 MINUTE);
 
 --DEIXAR ESSA PARTE POR ULTIMO
 SET GLOBAL event_scheduler = ON;

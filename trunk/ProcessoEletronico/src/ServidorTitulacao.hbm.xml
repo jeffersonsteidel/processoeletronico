@@ -13,7 +13,11 @@
 		<property name="registroConselho" column="SERV_TIT_REG_CONC" />
 		<property name="curso" column="SERV_TIT_CURSO" />
 		<property name="orgaoEmissor" column="SERV_TIT_ORG_EMI" />
-		<property name="indValidado" column="SERV_TIT_IND_VALIDADO" type="boolean" />
+		<property name="atendente" column="SERV_TIT_ATENDENTE" />
+		<property name="dataAtendimento" column="SERV_TIT_DATA_ATENDIMENTO" />
+		<property name="dataAbertura" column="SERV_TIT_DATA_ABERTURA" />
+		<property name="dataFechamento" column="SERV_TIT_DATA_FECHAMENTO" />
+		<property name="justificativa" column="SERV_TIT_JUSTIFICATIVA" />
 		<many-to-one name="servidor" class="br.com.progepe.entity.Servidor"
 			column="SERV_COD" lazy="false" />
 		<many-to-one name="titulacao" class="br.com.progepe.entity.Titulacao"
@@ -26,5 +30,7 @@
 			column="AREA_CONH_COD"  lazy="false" />
 		<many-to-one name="pais" class="br.com.progepe.entity.Pais"
 			column="PAIS_COD_ESTAB_ENS" lazy="false" />
+		<many-to-one name="statusSolicitacao" class="br.com.progepe.entity.StatusSolicitacao"
+			column="STA_SOLIC_COD" lazy="false" />	
 	</class>
 </hibernate-mapping>

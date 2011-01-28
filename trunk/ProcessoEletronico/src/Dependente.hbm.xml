@@ -19,9 +19,12 @@
 		<property name="dataFormacao" column="DEP_DATA_FORMACAO" />
 		<property name="indEstudante" column="DEP_IND_EST" type="boolean" />
 		<property name="indIr" column="DEP_IND_IR" type="boolean" />
+		<property name="atendente" column="DEP_ATENDENTE" />
+		<property name="dataAtendimento" column="DEP_DATA_ATENDIMENTO" />
+		<property name="dataAbertura" column="DEP_DATA_ABERTURA" />
+		<property name="dataFechamento" column="DEP_DATA_FECHAMENTO" />
+		<property name="justificativa" column="DEP_JUSTIFICATIVA" />
 		<property name="indNecessidadesEspeciais" column="DEP_IND_NEC_ESP"
-			type="boolean" />
-		<property name="indValidado" column="DEP_IND_VALIDADO"
 			type="boolean" />
 			<property name="indRessarcimentoSaude" column="DEP_IND_SAUDE" type="boolean" />	
 		<many-to-one name="grauParentesco" class="br.com.progepe.entity.GrauParentesco"
@@ -30,5 +33,7 @@
 			column="SERV_COD" lazy="false" />
 		<many-to-one name="rgUf" class="br.com.progepe.entity.Estado" 
 			column="DEP_RG_UF" lazy="false"/>	
+		<many-to-one name="statusSolicitacao" class="br.com.progepe.entity.StatusSolicitacao"
+			column="STA_SOLIC_COD" lazy="false" />		
 	</class>
 </hibernate-mapping>
