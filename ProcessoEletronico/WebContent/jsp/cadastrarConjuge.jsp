@@ -34,7 +34,7 @@
 				</h:outputText>
 			</h:panelGrid>
 
-			<h:outputText  style="font-weight:bold"
+			<h:outputText style="font-weight:bold"
 				value="#{conjugeController.texto}" />
 
 			<h:panelGrid columns="4">
@@ -162,12 +162,12 @@
 			<a4j:commandButton value="Voltar" onclick="history.go(-1)"
 				rendered="#{autenticacaoController.siapeAutenticado.indAdministrador}">
 			</a4j:commandButton>
+			
+			
 			<rich:dataTable id="listarConjugesSolicitante"
 				rendered="#{not empty conjugeController.conjugeList}"
 				value="#{conjugeController.conjugeList}" var="list" width="1160px"
 				columnClasses="center" rows="15" reRender="ds">
-
-
 				<rich:column width="435px" sortBy="#{list.nome}">
 					<f:facet name="header">
 						<h:outputText value="Nome" />
@@ -189,13 +189,6 @@
 					<h:outputText value="Atual" rendered="#{list.atual}" />
 					<h:outputText value="Ex" rendered="#{!list.atual}" />
 				</rich:column>
-				<rich:column width="100px" sortBy="#{list.indValidado}">
-					<f:facet name="header">
-						<h:outputText value="Validado" />
-					</f:facet>
-					<h:outputText value="SIM" rendered="#{list.indValidado}" />
-					<h:outputText value="NÃO" rendered="#{!list.indValidado}" />
-				</rich:column>
 				<rich:column>
 					<f:facet name="header">
 						<h:outputText value="Editar" />
@@ -209,16 +202,47 @@
 					</a4j:commandLink>
 					<rich:toolTip for="editar" value="Editar" />
 				</rich:column>
-
+				<rich:column width="30px">
+					<f:facet name="header">
+						<h:outputText value="Status" />
+					</f:facet>
+					<a4j:commandLink rendered="#{list.statusSolicitacao.codigo == 1}"
+						action="#" reRender="listarConjugesSolicitante" ajaxSingle="true">
+						<h:graphicImage value="../images/encaminhado.png" style="border:0"
+							width="20" height="18" id="encaminhado" />
+						<f:setPropertyActionListener value="#{list.codigo}"
+							target="#{conjugeController.conjuge.codigo}" />
+					</a4j:commandLink>
+					<a4j:commandLink rendered="#{list.statusSolicitacao.codigo == 2}"
+						action="#" reRender="listarConjugesSolicitante" ajaxSingle="true">
+						<h:graphicImage value="../images/analize.gif" style="border:0"
+							width="20" height="18" id="emAnalise" />
+					</a4j:commandLink>
+					<a4j:commandLink rendered="#{list.statusSolicitacao.codigo == 3}"
+						action="#" reRender="listarConjugesSolicitante" ajaxSingle="true">
+						<h:graphicImage value="../images/deferido.gif" style="border:0"
+							width="20" height="18" id="deferido" />
+						<f:setPropertyActionListener value="#{list.codigo}"
+							target="#{conjugeController.conjuge.codigo}" />
+					</a4j:commandLink>
+					<a4j:commandLink rendered="#{list.statusSolicitacao.codigo == 4}"
+						action="#"
+						reRender="listarConjugesSolicitante" ajaxSingle="true">
+						<h:graphicImage value="../images/indeferido.gif" style="border:0"
+							width="20" height="18" id="indeferido" />
+						<f:setPropertyActionListener value="#{list.codigo}"
+							target="#{conjugeController.conjuge.codigo}" />
+					</a4j:commandLink>
+					<rich:toolTip for="encaminhado" value="Encaminhado" />
+					<rich:toolTip for="emAnalise"
+						value="Você não pode abrir uma solicitação que está em Análise!" />
+					<rich:toolTip for="deferido" value="Deferido" />
+					<rich:toolTip for="indeferido" value="Indeferido" />
+				</rich:column>
 				<f:facet name="footer">
 					<rich:datascroller id="ds"></rich:datascroller>
 				</f:facet>
 			</rich:dataTable>
-
-
-
-
-
 		</rich:panel></center>
 	</a4j:form>
 </f:view>
