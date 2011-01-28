@@ -18,16 +18,24 @@
 		<property name="cpf" column="CONJ_CPF" />
 		<property name="rg" column="CONJ_RG" />
 		<property name="rgOrgao" column="CONJ_RG_ORG_EMI" />
-		<property name="indValidado" column="CONJ_IND_VALIDADO" type="boolean"/>
-		<property name="indRessarcimentoSaude" column="CONJ_IND_SAUDE" type="boolean"/>
+		<property name="atendente" column="CONJ_ATENDENTE" />
+		<property name="dataAtendimento" column="CONJ_DATA_ATENDIMENTO" />
+		<property name="dataAbertura" column="CONJ_DATA_ABERTURA" />
+		<property name="dataFechamento" column="CONJ_DATA_FECHAMENTO" />
+		<property name="justificativa" column="CONJ_JUSTIFICATIVA" />
+		<property name="indRessarcimentoSaude" column="CONJ_IND_SAUDE"
+			type="boolean" />
 		<property name="rgDataExpedicao" column="CONJ_RG_DATA_EXP" />
-		<many-to-one name="rgUf" class="br.com.progepe.entity.Estado" 
-			column="CONJ_RG_UF" lazy="false"/>	 
+		<many-to-one name="rgUf" class="br.com.progepe.entity.Estado"
+			column="CONJ_RG_UF" lazy="false" />
 		<many-to-one name="cidadeNascimento" class="br.com.progepe.entity.Cidade"
 			column="CID_COD_CID_NASC" lazy="false" />
 		<many-to-one name="servidor" class="br.com.progepe.entity.Servidor"
 			column="SERV_COD" lazy="false" />
 		<many-to-one name="pais" class="br.com.progepe.entity.Pais"
 			column="PAIS_COD" lazy="false" />
+		<many-to-one name="statusSolicitacao"
+			class="br.com.progepe.entity.StatusSolicitacao" column="STA_SOLIC_COD"
+			lazy="false" />
 	</class>
 </hibernate-mapping>
