@@ -16,7 +16,6 @@
 		<property name="atendente" column="EMP_ATENDENTE" />
 		<property name="justificativa" column="EMP_JUSTIFICATIVA" />
 		<property name="empresa" column="EMP_EMPRESA" />
-		<property name="indValidado" column="EMP_IND_VALIDADO" type="boolean"/>
 		<property name="atividades" column="EMP_ATIVIDADE" />
 		<many-to-one name="servidor"  class="br.com.progepe.entity.Servidor"
 			column="SERV_COD" lazy="false" />
