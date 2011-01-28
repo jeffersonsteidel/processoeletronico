@@ -28,6 +28,15 @@ EVERY 1 SECOND
 DO
 UPDATE servidortitulacao SET serv_tit_atendente = null, serv_tit_data_atendimento = null, sta_solic_cod = 1 where sta_solic_cod = 2 and serv_tit_data_atendimento < DATE_SUB(NOW() , INTERVAL 30 MINUTE);
 
+-- RETORNO O STATUS DOS CONJUGES QUE ESTÃO EM ANÁLISE A MAIS DE 30 MINUTOS  
+CREATE EVENT
+  retornaStatusConjuges
+ON SCHEDULE
+EVERY 1 SECOND
+DO
+UPDATE conjuge SET conj_atendente = null, conj_data_atendimento = null, sta_solic_cod = 1 where sta_solic_cod = 2 and conj_data_atendimento < DATE_SUB(NOW() , INTERVAL 30 MINUTE);
+
+
 --DEIXAR ESSA PARTE POR ULTIMO
 SET GLOBAL event_scheduler = ON;
 SET GLOBAL event_scheduler = 1;
