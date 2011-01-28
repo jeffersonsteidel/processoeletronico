@@ -62,9 +62,9 @@ public class FitaEspelhoCodigos {
 			html = html + "<th>CARTEIRA DE TRABALHO NÚMERO</th>";
 			html = html + "<th>CARTEIRA DE TRABALHO SÉRIE</th>";
 			html = html + "<th>CARTEIRA DE TRABALHO UF</th>";
-			html = html + "<th>BANCO PAGAMENTO DATA OPÇÃO</th>";
 			html = html + "<th>BANCO PAGAMENTO BANCO</th>";
-			html = html + "<th>BANCO AGÊNCIA</th>";
+			html = html + "<th>BANCO PAGAMENTO AGÊNCIA</th>";
+			html = html + "<th>BANCO CONTA CORRENTE</th>";
 			html = html + "<th>FGTS DATA DE OPÇÃO</th>";
 			html = html + "<th>FGTS BANCO</th>";
 			html = html + "<th>FGTS AGÊNCIA</th>";
@@ -108,9 +108,8 @@ public class FitaEspelhoCodigos {
 			html = html + "<th>DIPLOMA LEGAL NÚMERO</th>";
 			html = html + "<th>DIPLOMA LEGAL DATA PUBLICAÇÃO</th>";
 			html = html + "<th>OCORRÊNCIA INGRESSO SERV. PUBLICO GRUPO</th>";
-			html = html
-					+ "<th>OCORRÊNCIA INGRESSO SERV. PUBLICO OCORRÊNCIA</th>";
-			html = html + "<th>OCORRÊNCIA INGRESSO SERV. PUBLICO DATA</th>";
+			html = html	+ "<th>OCORRÊNCIA INGRESSO SERV. PUBLICO OCORRÊNCIA</th>";
+			html = html + "<th>OORRCÊNCIA INGRESSO SERV. PUBLICO DATA</th>";
 			html = html + "<th>DIPLOMA LEGAL CÓDIGO</th>";
 			html = html + "<th>DIPLOMA LEGAL NÚMERO</th>";
 			html = html + "<th>DIPLOMA LEGAL DATA PUBLICAÇÃO</th>";
@@ -135,8 +134,7 @@ public class FitaEspelhoCodigos {
 			html = html + "<th>DIPLOMA LEGAL DATA PUBLICAÇÃO</th>";
 			html = html + "<th>OCORRÊNCIA DE APOSENTADORIA Nº DO PROCESSO</th>";
 			html = html + "<th>OCORRÊNCIA DE APOSENTADORIA ANO PREVISTO</th>";
-			html = html
-					+ "<th>OCORRÊNCIA DE APOSENTADORIA OPÇÃO APOSENT. TOTAL</th>";
+			html = html	+ "<th>OCORRÊNCIA DE APOSENTADORIA OPÇÃO APOSENT. TOTAL</th>";
 			html = html + "<th>UORG DE CONTROLE</th>";
 			html = html + "<th>OCORRÊNCIA DE MODIF. FUNCIONAL GRUPO</th>";
 			html = html + "<th>OCORRÊNCIA DE MODIF. FUNCIONAL OCORRÊNCIA</th>";
@@ -278,7 +276,7 @@ public class FitaEspelhoCodigos {
 
 				}
 				if (tipoRegistro.equals(2)) {
-					html = html + "<td>" + linha.substring(20, 23) + "</td>";
+					html = html + "<td>" + linha.substring(20, 23) + "</td>"; 
 					html = html + "<td>" + linha.substring(23, 25) + "</td>";
 					html = html + "<td>" + linha.substring(25, 31) + "</td>";
 					html = html + "<td>" + linha.substring(31, 36) + "</td>";
@@ -362,7 +360,7 @@ public class FitaEspelhoCodigos {
 					html = html + "<td>" + linha.substring(448, 456) + "</td>";
 					html = html + "<td>" + linha.substring(456, 458) + "</td>";
 					html = html + "<td>" + linha.substring(458, 467) + "</td>";
-					html = html + "<td>" + linha.substring(467, 675) + "</td>";
+					html = html + "<td>" + linha.substring(467, 475) + "</td>";
 					html = html + "<td>" + linha.substring(475, 478) + "</td>";
 					html = html + "<td>" + linha.substring(478, 480) + "</td>";
 					html = html + "<td>" + linha.substring(480, 485) + "</td>";
