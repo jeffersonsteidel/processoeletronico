@@ -13,7 +13,6 @@ public class Emprego implements Serializable {
 	private String empresa;
 	private String atividades;
 	private Servidor servidor;
-	private Boolean indValidado;
 	private Date dataAbertura;
 	private Integer atendente;
 	private Date dataAtendimento;
@@ -75,14 +74,6 @@ public class Emprego implements Serializable {
 
 	public void setServidor(Servidor servidor) {
 		this.servidor = servidor;
-	}
-
-	public Boolean getIndValidado() {
-		return indValidado;
-	}
-
-	public void setIndValidado(Boolean indValidado) {
-		this.indValidado = indValidado;
 	}
 
 	public Date getDataAbertura() {

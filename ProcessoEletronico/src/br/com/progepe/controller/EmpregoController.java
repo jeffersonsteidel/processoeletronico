@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.faces.application.FacesMessage;
@@ -108,7 +109,8 @@ public class EmpregoController implements Serializable {
 					"A Data de Saída Final deve ser maior que Data de Admissão!");
 			FacesContext.getCurrentInstance().addMessage("", message);
 		} else {
-			emprego.setIndValidado(false);
+			emprego.getStatusSolicitacao().setCodigo(Constantes.STATUS_SOLICITACAO_ENCAMINHADO);
+			emprego.setDataAbertura(new Date());
 			DAO.getInstance().saveOrUpdate(emprego);
 			listarEmpregoServidorLogado();
 			emprego = new Emprego();
@@ -116,11 +118,26 @@ public class EmpregoController implements Serializable {
 		}
 	}
 
-	public void validar() {
-		emprego.setIndValidado(true);
+	public void deferir() {
+		emprego.getStatusSolicitacao().setCodigo(Constantes.STATUS_SOLICITACAO_DEFERIDO);
 		DAO.getInstance().update(emprego);
 		emprego = new Emprego();
 		emprego.setServidor(new Servidor());
+	}
+	
+	public void indeferir() {
+		if(emprego.getJustificativa() != null || !emprego.getJustificativa().isEmpty() ){
+		emprego.getStatusSolicitacao().setCodigo(Constantes.STATUS_SOLICITACAO_INDEFERIDO);
+		DAO.getInstance().update(emprego);
+		emprego = new Emprego();
+		emprego.setServidor(new Servidor());
+		}else{
+			FacesMessage message = new FacesMessage(
+					FacesMessage.SEVERITY_ERROR,
+					"Campo Justificativa é obrigatório!",
+					"Campo Justificativa é obrigatório!");
+			FacesContext.getCurrentInstance().addMessage("", message);
+		}
 	}
 
 	public void listarEmpregoServidorLogado() throws Exception {
