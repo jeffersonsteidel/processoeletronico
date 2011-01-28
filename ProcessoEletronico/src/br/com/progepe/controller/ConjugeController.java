@@ -22,6 +22,7 @@ import br.com.progepe.entity.Conjuge;
 import br.com.progepe.entity.Estado;
 import br.com.progepe.entity.Pais;
 import br.com.progepe.entity.Servidor;
+import br.com.progepe.entity.StatusSolicitacao;
 import br.com.progepe.validator.Validator;
 
 public class ConjugeController implements Serializable {
@@ -150,6 +151,7 @@ public class ConjugeController implements Serializable {
 	public void abrirCadastrarConjuge() throws ParseException {
 		try {
 			conjuge = new Conjuge();
+			conjuge.setStatusSolicitacao(new StatusSolicitacao());
 			conjuge.setCidadeNascimento(new Cidade());
 			conjuge.setRgUf(new Estado());
 			conjuge.getCidadeNascimento().setEstado(new Estado());

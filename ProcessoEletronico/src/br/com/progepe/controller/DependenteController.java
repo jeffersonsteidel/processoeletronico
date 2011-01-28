@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.faces.application.FacesMessage;
@@ -19,6 +20,7 @@ import br.com.progepe.entity.Dependente;
 import br.com.progepe.entity.Estado;
 import br.com.progepe.entity.GrauParentesco;
 import br.com.progepe.entity.Servidor;
+import br.com.progepe.entity.StatusSolicitacao;
 import br.com.progepe.validator.Validator;
 
 public class DependenteController implements Serializable {
@@ -100,6 +102,7 @@ public class DependenteController implements Serializable {
 	public void abrirAdicionarDependentes() throws Exception {
 		try {
 			dependente = new Dependente();
+			dependente.setStatusSolicitacao(new StatusSolicitacao());
 			dependente.setRgUf(new Estado());
 			listaDependentes = new ArrayList<Dependente>();
 			listaDependentes.clear();
@@ -194,7 +197,9 @@ public class DependenteController implements Serializable {
 		}
 
 		this.getListaDependentes().add(dependente);
-		dependente.setIndValidado(Boolean.FALSE);
+		dependente.getStatusSolicitacao().setCodigo(
+				Constantes.STATUS_SOLICITACAO_ENCAMINHADO);
+		dependente.setDataAbertura(new Date());
 		if (validarCPF()) {
 			DAO.getInstance().saveOrUpdate(dependente);
 		}
@@ -205,16 +210,39 @@ public class DependenteController implements Serializable {
 		buscarServidorLogado();
 	}
 
-	public void validar() {
+	public void deferir() {
 		if (null == dependente.getRgUf().getCodigo()
 				|| Constantes.ZERO.equals(dependente.getRgUf().getCodigo())) {
 			dependente.setRgUf(null);
 		}
-		dependente.setIndValidado(Boolean.TRUE);
+		dependente.getStatusSolicitacao().setCodigo(
+				Constantes.STATUS_SOLICITACAO_DEFERIDO);
+		dependente.setDataFechamento(new Date());
 		DAO.getInstance().update(dependente);
 		dependente = new Dependente();
 		dependente.setRgUf(new Estado());
 		dependente.setGrauParentesco(new GrauParentesco());
+	}
+
+	public void indeferir() {
+		if(dependente.getJustificativa() != null && !dependente.getJustificativa().isEmpty()){
+		if (null == dependente.getRgUf().getCodigo()
+				|| Constantes.ZERO.equals(dependente.getRgUf().getCodigo())) {
+			dependente.setRgUf(null);
+		}
+		dependente.getStatusSolicitacao().setCodigo(Constantes.STATUS_SOLICITACAO_DEFERIDO);
+		dependente.setDataFechamento(new Date());
+		DAO.getInstance().update(dependente);
+		dependente = new Dependente();
+		dependente.setRgUf(new Estado());
+		dependente.setGrauParentesco(new GrauParentesco());
+		}else{
+			FacesMessage message = new FacesMessage(
+					FacesMessage.SEVERITY_ERROR,
+					"O campo Justificativa é obrigatório!",
+					"O campo Justificativa é obrigatório!");
+			FacesContext.getCurrentInstance().addMessage("", message);
+		}
 	}
 
 	public void listarDependentesServidorLogado() throws Exception {
