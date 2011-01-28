@@ -1,3 +1,4 @@
+import java.util.List;
 import java.util.Properties;
 
 import javax.mail.Authenticator;
@@ -8,7 +9,9 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
-public class Enviar {
+import br.com.progepe.entity.Servidor;
+
+public class EnviarEmail {
 	private String remetente;
 	private String destinatario;
 	private String smtpHost;
@@ -26,8 +29,28 @@ public class Enviar {
 		}
 	}
 
+	public void aplicarEmail(List<Servidor> servidores) {
+		String remetente = "processo.verde@ifpr.edu.br";
+		String smtpHost = "smtp.gmail.com";
+		String porta = "465";
+		String usuario = "processo.verde@ifpr.edu.br";
+		String senha = "ifpr10";
+
+		assunto = "";
+		conteudoDoEmail = "";
+		try{	
+		for (Servidor item : servidores) {
+			@SuppressWarnings("unused")
+			EnviarEmail enviar = new EnviarEmail(remetente, item.getEmail(),
+					assunto, smtpHost, porta, usuario, senha, conteudoDoEmail);
+		}
+		}catch (Exception e) {
+			System.err.println(e);
+		}
+	}
+
 	@SuppressWarnings("static-access")
-	public Enviar(String remetente, String destinatario, String assunto,
+	public EnviarEmail(String remetente, String destinatario, String assunto,
 			String smtpHost, String porta, String usuario, String senha,
 			String conteudoDoEmail) {
 		this.remetente = remetente;
@@ -65,18 +88,5 @@ public class Enviar {
 		} catch (Exception err) {
 			System.out.println("Erro ao enviar mensagem");
 		}
-	}
-
-	public static void main(String args[]) {
-		@SuppressWarnings("unused")
-		Enviar enviar = new Enviar(
-				"processo.verde@ifpr.edu.br",
-				"evelyn.schandler@ifpr.edu.br",
-				"PROCESSO VERDE - PROGEPE",
-				"smtp.gmail.com",
-				"465",
-				"processo.verde@ifpr.edu.br",
-				"ifpr10",
-				"ESTE É UM E-MAIL TESTE ENVIADO PELO SISTEMA PROCESSO VERDE AUTOMATICAMENTE!\nPOR FAVOR NÃO RESPONDER.");
 	}
 }

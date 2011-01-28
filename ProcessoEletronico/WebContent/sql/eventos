@@ -1,6 +1,4 @@
-drop EVENT
-  retornaStatusSolicitacao;
-  
+-- RETORNO O STATUS DAS SOLICITAÇÃOES QUE ESTÃO EM ANÁLISE A MAIS DE 30 MINUTOS  
 CREATE EVENT
   retornaStatusSolicitacao
 ON SCHEDULE
@@ -8,13 +6,23 @@ EVERY 1 SECOND
 DO
 UPDATE solicitacao SET serv_cod_atendente = null,solic_dt_atendimento = null, sta_solic_cod = 1 where sta_solic_cod = 2 and solic_dt_atendimento < DATE_SUB(NOW() , INTERVAL 30 MINUTE);
 
-SET GLOBAL event_scheduler = ON;
-SET GLOBAL event_scheduler = 1;
-SHOW PROCESSLIST;
-
 -- SETA dep_ind_saude PARA 0 AONDE o dependente não tiver necessidades especiais E (o dependente for maior de 24 anos OU (o dependente for maior de 21 anos E não for estudante))
 
 create event ValidaDependenteRessarcimentoSaude
 ON SCHEDULE EVERY 1 second
 do
 update dependente set dep_ind_saude = 0 where  dep_ind_nec_esp = 0 and (dep_data_nasc <DATE_SUB(NOW() , INTERVAL 24 year) or (dep_ind_est = 0 and dep_data_nasc < DATE_SUB(NOW() , INTERVAL 21 year) ))  
+
+-- RETORNO O STATUS DOS EMPREGOS QUE ESTÃO EM ANÁLISE A MAIS DE 30 MINUTOS  
+CREATE EVENT
+  retornaStatusEmprego
+ON SCHEDULE
+EVERY 1 SECOND
+DO
+UPDATE emprego SET emp_atendente = null,emp_data_atendimento = null, sta_solic_cod = 1 where sta_solic_cod = 2 and emp_data_atendimento < DATE_SUB(NOW() , INTERVAL 30 MINUTE);
+
+--DEIXAR ESSA PARTE POR ULTIMO
+SET GLOBAL event_scheduler = ON;
+SET GLOBAL event_scheduler = 1;
+SHOW PROCESSLIST;
+
