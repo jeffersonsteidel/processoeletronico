@@ -28,6 +28,12 @@ public class Dependente implements Serializable {
 	private Estado rgUf;
 	private Boolean indValidado;
 	private Boolean indRessarcimentoSaude;
+	private Integer atendente;
+	private Date dataAtendimento;
+	private Date dataAbertura;
+	private Date dataFechamento;
+	private String justificativa;
+	private StatusSolicitacao statusSolicitacao;
 
 	public Long getCodigo() {
 		return codigo;
@@ -181,4 +187,51 @@ public class Dependente implements Serializable {
 		this.indRessarcimentoSaude = indRessarcimentoSaude;
 	}
 
+	public Integer getAtendente() {
+		return atendente;
+	}
+
+	public void setAtendente(Integer atendente) {
+		this.atendente = atendente;
+	}
+
+	public Date getDataAtendimento() {
+		return dataAtendimento;
+	}
+
+	public void setDataAtendimento(Date dataAtendimento) {
+		this.dataAtendimento = dataAtendimento;
+	}
+
+	public Date getDataAbertura() {
+		return dataAbertura;
+	}
+
+	public void setDataAbertura(Date dataAbertura) {
+		this.dataAbertura = dataAbertura;
+	}
+
+	public Date getDataFechamento() {
+		return dataFechamento;
+	}
+
+	public void setDataFechamento(Date dataFechamento) {
+		this.dataFechamento = dataFechamento;
+	}
+
+	public String getJustificativa() {
+		return justificativa;
+	}
+
+	public void setJustificativa(String justificativa) {
+		this.justificativa = justificativa;
+	}
+
+	public StatusSolicitacao getStatusSolicitacao() {
+		return statusSolicitacao;
+	}
+
+	public void setStatusSolicitacao(StatusSolicitacao statusSolicitacao) {
+		this.statusSolicitacao = statusSolicitacao;
+	}
 }
