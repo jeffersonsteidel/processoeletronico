@@ -112,7 +112,7 @@
 						<h:outputText value="#{list.dataSaida}">
 							<f:convertDateTime pattern="dd/MM/yyyy" />
 						</h:outputText>
-					</rich:column>					
+					</rich:column>
 
 					<rich:column>
 						<f:facet name="header">
@@ -129,54 +129,47 @@
 					</rich:column>
 
 					<rich:column width="30px">
-					<f:facet name="header">
-						<h:outputText value="Status" />
-					</f:facet>
-					
-					<a4j:commandLink rendered="#{list.statusSolicitacao.codigo == 1}"
-						action="#{solicitacaoController.carregarSolicitacao}"
-						reRender="listaSolicitacoes" ajaxSingle="true">
-						<h:graphicImage value="../images/encaminhado.png" style="border:0"
-							width="20" height="18" id="encaminhado" />
-						<f:setPropertyActionListener value="#{list.codigo}"
-							target="#{solicitacaoController.codigoSolicitacao}" />
-						<f:setPropertyActionListener
-							value="#{list.tipoSolicitacao.codigo}"
-							target="#{solicitacaoController.tipoSolicitacao}" />
-					</a4j:commandLink>
-					<a4j:commandLink rendered="#{list.statusSolicitacao.codigo == 2}"
-						action="#"
-						reRender="listaSolicitacoes" ajaxSingle="true">
-						<h:graphicImage value="../images/analize.gif" style="border:0"
-							width="20" height="18" id="emAnalise" />
-					</a4j:commandLink>
-					<a4j:commandLink rendered="#{list.statusSolicitacao.codigo == 3}"
-						action="#{solicitacaoController.carregarSolicitacao}"
-						reRender="listaSolicitacoes" ajaxSingle="true">
-						<h:graphicImage value="../images/deferido.gif" style="border:0"
-							width="20" height="18" id="deferido" />
-						<f:setPropertyActionListener value="#{list.codigo}"
-							target="#{solicitacaoController.codigoSolicitacao}" />
-						<f:setPropertyActionListener
-							value="#{list.tipoSolicitacao.codigo}"
-							target="#{solicitacaoController.tipoSolicitacao}" />
-					</a4j:commandLink>
-					<a4j:commandLink rendered="#{list.statusSolicitacao.codigo == 4}"
-						action="#{solicitacaoController.carregarSolicitacao}"
-						reRender="listaSolicitacoes" ajaxSingle="true">
-						<h:graphicImage value="../images/indeferido.gif" style="border:0"
-							width="20" height="18" id="indeferido" />
-						<f:setPropertyActionListener value="#{list.codigo}"
-							target="#{solicitacaoController.codigoSolicitacao}" />
-						<f:setPropertyActionListener
-							value="#{list.tipoSolicitacao.codigo}"
-							target="#{solicitacaoController.tipoSolicitacao}" />
-					</a4j:commandLink>
-					<rich:toolTip for="encaminhado" value="Encaminhado" />
-					<rich:toolTip for="emAnalise" value="Você não pode abrir uma solicitação que está em Análise!" />
-					<rich:toolTip for="deferido" value="Deferido" />
-					<rich:toolTip for="indeferido" value="Indeferido" />
-				</rich:column>
+						<f:facet name="header">
+							<h:outputText value="Status" />
+						</f:facet>
+
+						<a4j:commandLink rendered="#{list.statusSolicitacao.codigo == 1}"
+							action="#{empregoController.carregar}" reRender="painel"
+							ajaxSingle="true" oncomplete="#{rich:component('painel')}.show()">
+							<h:graphicImage value="../images/encaminhado.png"
+								style="border:0" width="20" height="18" id="encaminhado" />
+							<f:setPropertyActionListener value="#{list.codigo}"
+								target="#{empregoController.emprego.codigo}" />
+						</a4j:commandLink>
+
+						<a4j:commandLink rendered="#{list.statusSolicitacao.codigo == 2}"
+							action="#" reRender="listaEmpregos" ajaxSingle="true">
+							<h:graphicImage value="../images/analize.gif" style="border:0"
+								width="20" height="18" id="emAnalise" />
+						</a4j:commandLink>
+
+						<a4j:commandLink rendered="#{list.statusSolicitacao.codigo == 3}"
+							action="#" reRender="listaEmpregos" ajaxSingle="true">
+							<h:graphicImage value="../images/deferido.gif" style="border:0"
+								width="20" height="18" id="deferido" />
+							<f:setPropertyActionListener value="#{list.codigo}"
+								target="#{empregoController.emprego.codigo}" />
+						</a4j:commandLink>
+
+						<a4j:commandLink rendered="#{list.statusSolicitacao.codigo == 4}"
+							action="#" reRender="painel" ajaxSingle="true">
+							<h:graphicImage value="../images/indeferido.gif" style="border:0"
+								width="20" height="18" id="indeferido" />
+							<f:setPropertyActionListener value="#{list.codigo}"
+								target="#{empregoController.emprego.codigo}" />
+						</a4j:commandLink>
+
+						<rich:toolTip for="encaminhado" value="Encaminhado" />
+						<rich:toolTip for="emAnalise" value="Em Análise" />
+						<rich:toolTip for="deferido" value="Deferido" />
+						<rich:toolTip for="indeferido" value="Indeferido" />
+					</rich:column>
+
 					<f:facet name="footer">
 						<rich:datascroller id="ds"></rich:datascroller>
 					</f:facet>
@@ -184,28 +177,66 @@
 			</a4j:region>
 		</rich:panel></center>
 	</a4j:form>
-	<center><rich:modalPanel id="deletePanel" autosized="true"
-		width="200">
+
+	<center><rich:modalPanel id="painel" autosized="true"
+		width="250" style="text-align:center;">
 		<f:facet name="header">
-			<h:outputText value="Deseja realmente deletar este item?"
-				style="padding-right:15px;" />
+			<h:panelGroup>
+				<h:outputText value="Detalhes do Status"></h:outputText>
+			</h:panelGroup>
 		</f:facet>
-		<h:form>
-			<table width="100%">
-				<tbody>
-					<tr>
-						<td align="center" width="50%"><a4j:commandButton value="Sim"
-							ajaxSingle="true" action="#{empregoController.remover}"
-							oncomplete="#{rich:component('deletePanel')}.hide();"
-							reRender="listaTitulacoes, form" /></td>
-						<td align="center" width="50%"><a4j:commandButton value="Não"
-							onclick="#{rich:component('deletePanel')}.hide();return false;" />
-						</td>
-					</tr>
-				</tbody>
-			</table>
-		</h:form>
+		<f:facet name="controls">
+			<h:panelGroup>
+				<h:graphicImage value="../images/close.gif"
+					onclick="#{rich:component('painel')}.hide();" />
+			</h:panelGroup>
+		</f:facet>
+		<h:panelGrid columns="2">
+			<h:outputText value="Status: " />
+			<h:outputText
+				rendered="#{empregoController.emprego.statusSolicitacao.descricao != null}"
+				value="#{empregoController.emprego.statusSolicitacao.descricao}">
+			</h:outputText>
+			<h:outputText
+				rendered="#{empregoController.emprego.atendente != null}"
+				value="Atendente: " />
+			<h:outputText
+				rendered="#{empregoController.emprego.atendente!= null}"
+				value="#{empregoController.atendente.nome}">
+			</h:outputText>
+
+			<h:outputText value="Data Abertura: " />
+			<h:outputText
+				rendered="#{empregoController.emprego.dataAbertura != null}"
+				value="#{empregoController.emprego.dataAbertura}">
+				<f:convertDateTime pattern="dd/MM/yyyy" />
+			</h:outputText>
+			<h:outputText
+				rendered="#{empregoController.emprego.dataAtendimento != null}"
+				value="Data Atendimento: " />
+			<h:outputText
+				rendered="#{empregoController.emprego.dataAtendimento != null}"
+				value="#{empregoController.emprego.dataAtendimento}">
+				<f:convertDateTime pattern="dd/MM/yyyy" />
+			</h:outputText>
+			<h:outputText
+				rendered="#{empregoController.emprego.dataFechamento != null}"
+				value="Data Fechamento: " />
+			<h:outputText
+				rendered="#{empregoController.emprego.dataFechamento.date != null}"
+				value="#{empregoController.emprego.dataFechamento}">
+				<f:convertDateTime pattern="dd/MM/yyyy" />
+			</h:outputText>
+			<h:outputText
+				rendered="#{empregoController.emprego.justificativa != null}"
+				value="Justificativa: " />
+			<h:outputText
+				rendered="#{empregoController.emprego.justificativa != null}"
+				value="#{empregoController.emprego.justificativa}">
+			</h:outputText>
+		</h:panelGrid>
 	</rich:modalPanel></center>
+
 </f:view>
 </body>
 </html>
