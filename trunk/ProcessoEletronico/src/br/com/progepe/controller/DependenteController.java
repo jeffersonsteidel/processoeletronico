@@ -258,6 +258,7 @@ public class DependenteController implements Serializable {
 		dependente = new Dependente();
 		dependente.setRgUf(new Estado());
 		dependente.setGrauParentesco(new GrauParentesco());
+		dependente.setStatusSolicitacao(new StatusSolicitacao());
 		pesquisarDependentesFiltro();
 		desabilitarBotoes = true;
 	}
