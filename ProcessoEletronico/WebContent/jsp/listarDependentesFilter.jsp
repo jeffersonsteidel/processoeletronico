@@ -269,9 +269,9 @@
 			</h:panelGrid>
 			<h:panelGrid columns="2" style="text-align: center;">
 				<a4j:commandButton value="Deferir" reRender="form, listaDependentes, confirmPanel" ajaxSingle="true" disabled="#{dependenteController.dependente.statusSolicitacao.codigo > 2}"
-					oncomplete="#{rich:component('confirmPanel')}.show()" />
+					onclick="Richfaces.showModalPanel('confirmPanel')" />
 				<a4j:commandButton value="Indeferir" reRender="form, listaDependentes, confirmPanel02"  ajaxSingle="true"  disabled="#{dependenteController.dependente.statusSolicitacao.codigo > 2}"
-					oncomplete="#{rich:component('confirmPanel02')}.show()" />
+					onclick="Richfaces.showModalPanel('confirmPanel02')" />
 			</h:panelGrid>
 			<h:panelGrid columns="1" rendered="#{dependenteController.dependente.statusSolicitacao.codigo > 2 && autenticacaoController.siapeAutenticado.indAdministrador}">
 			<a4j:commandButton value="Voltar" action="#" />
