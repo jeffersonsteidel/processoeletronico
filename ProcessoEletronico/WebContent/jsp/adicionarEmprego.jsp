@@ -64,6 +64,7 @@
 						inputSize="12" />
 
 				</h:panelGrid>
+				
 				<h:panelGrid columns="4">
 					<center><h:outputText value="Atividades: " /> <h:inputTextarea
 						value="#{empregoController.emprego.atividades}" rows="10"
@@ -118,14 +119,20 @@
 						<f:facet name="header">
 							<h:outputText value="Editar" />
 						</f:facet>
-						<a4j:commandLink action="#{empregoController.carregar}"
-							reRender="listaEmpregos, form" ajaxSingle="true">
+						<a4j:commandLink action="#{empregoController.carregar}" rendered="#{list.statusSolicitacao.codigo > 2 }"
+							reRender="listaEmpregos, form" ajaxSingle="true" >
 							<h:graphicImage value="../images/edit.gif" style="border:0"
-								width="20" height="18" id="editar" />
+								width="20" height="18" id="editar"/>
 							<f:setPropertyActionListener value="#{list.codigo}"
 								target="#{empregoController.emprego.codigo}" />
 						</a4j:commandLink>
+						<a4j:commandLink action="#" rendered="#{list.statusSolicitacao.codigo <= 2}"
+							reRender="listaEmpregos, form" ajaxSingle="true">
+							<h:graphicImage value="../images/edit.gif" style="border:0"
+								width="20" height="18" id="editarNPermitido" />
+						</a4j:commandLink>
 						<rich:toolTip for="editar" value="Editar" />
+						<rich:toolTip for="editarNPermitido" value="Você somente poderá editar dependentes deferidos ou indeferidos!" />
 					</rich:column>
 
 					<rich:column width="30px">
@@ -205,7 +212,7 @@
 				value="#{empregoController.atendente.nome}">
 			</h:outputText>
 
-			<h:outputText value="Data Abertura: " />
+			<h:outputText value="Data Ultima Auteração: " />
 			<h:outputText
 				rendered="#{empregoController.emprego.dataAbertura != null}"
 				value="#{empregoController.emprego.dataAbertura}">

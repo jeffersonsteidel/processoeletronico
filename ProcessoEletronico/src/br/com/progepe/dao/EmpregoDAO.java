@@ -39,7 +39,7 @@ public class EmpregoDAO extends DAO {
 	
 	@SuppressWarnings("unchecked")
 	public List<Emprego> listByFilter(
-			Emprego emprego, Integer situacao, Integer validado) {
+			Emprego emprego, Integer situacao) {
 		HibernateUtility.getSession().clear();
 		HibernateUtility.beginTransaction();
 		String sql = "from Emprego e LEFT JOIN FETCH e.servidor s where 1 = 1 ";
@@ -55,11 +55,8 @@ public class EmpregoDAO extends DAO {
 		if (situacao != null && Constantes.DESATIVO.equals(situacao) ) {
 			sql += " and s.dataSaida is not null";
 		}
-		if (validado != null && Constantes.SIM.equals(validado) ) {
-			sql += " and e.indValidado = 1";
-		}
-		if (validado != null && Constantes.NAO.equals(validado) ) {
-			sql += " and e.indValidado = 0";
+		if(emprego.getStatusSolicitacao()!= null && emprego.getStatusSolicitacao().getCodigo() != 0){
+			sql += " and e.statusSolicitacao.codigo = " + emprego.getStatusSolicitacao().getCodigo();
 		}
 		Query query = HibernateUtility.getSession().createQuery(sql);
 		HibernateUtility.commitTransaction();
