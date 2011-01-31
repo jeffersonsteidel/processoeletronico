@@ -26,6 +26,7 @@ import br.com.progepe.validator.Validator;
 public class DependenteController implements Serializable {
 	private static final long serialVersionUID = -333995781063775201L;
 	private Dependente dependente;
+	private Dependente dependenteFilter;
 	private Servidor servidor;
 	private List<SelectItem> grausParentescos = new ArrayList<SelectItem>();
 	private List<SelectItem> ufs = new ArrayList<SelectItem>();
@@ -116,6 +117,13 @@ public class DependenteController implements Serializable {
 	public void setStatusSolicitacoes(List<SelectItem> statusSolicitacoes) {
 		this.statusSolicitacoes = statusSolicitacoes;
 	}
+	public Dependente getDependenteFilter() {
+		return dependenteFilter;
+	}
+
+	public void setDependenteFilter(Dependente dependenteFilter) {
+		this.dependenteFilter = dependenteFilter;
+	}
 
 	public void abrirAdicionarDependentes() throws Exception {
 		try {
@@ -140,11 +148,11 @@ public class DependenteController implements Serializable {
 		try {
 			listaDependentesFiltro = new ArrayList<Dependente>();
 			listaDependentesFiltro.clear();
-			dependente = new Dependente();
-			dependente.setServidor(new Servidor());
-			dependente.setRgUf(new Estado());
-			dependente.setGrauParentesco(new GrauParentesco());
-			dependente.setStatusSolicitacao(new StatusSolicitacao());
+			dependenteFilter = new Dependente();
+			dependenteFilter.setServidor(new Servidor());
+			dependenteFilter.setRgUf(new Estado());
+			dependenteFilter.setGrauParentesco(new GrauParentesco());
+			dependenteFilter.setStatusSolicitacao(new StatusSolicitacao());
 			listarGrauParentesco();
 			listarStatusSolicitacoes();
 			FacesContext.getCurrentInstance().getExternalContext()
@@ -163,6 +171,7 @@ public class DependenteController implements Serializable {
 		dependente.setServidor(ServidorDAO.getInstance().refreshBySiape(
 				dependente.getServidor()));
 	}
+	
 
 	@SuppressWarnings("unchecked")
 	public List<SelectItem> listarGrauParentesco() {
@@ -228,6 +237,7 @@ public class DependenteController implements Serializable {
 		dependente = new Dependente();
 		dependente.setRgUf(new Estado());
 		dependente.setGrauParentesco(new GrauParentesco());
+		dependente.setStatusSolicitacao(new StatusSolicitacao());
 		buscarServidorLogado();
 	}
 
@@ -247,7 +257,7 @@ public class DependenteController implements Serializable {
 
 	public void indeferir() {
 		if (dependente.getJustificativa() != null
-				&& dependente.getJustificativa() != "") {
+				|| dependente.getJustificativa() != "") {
 			if (null == dependente.getRgUf().getCodigo()
 					|| Constantes.ZERO.equals(dependente.getRgUf().getCodigo())) {
 				dependente.setRgUf(null);
@@ -277,10 +287,10 @@ public class DependenteController implements Serializable {
 		}
 	}
 
-	public List<Dependente> listarDependentesFiltro() {
+	public List<Dependente> pesquisarDependentesFiltro() {
 		listaDependentesFiltro = new ArrayList<Dependente>();
 		setListaDependentesFiltro(DependenteDAO.getInstance().listByFilter(
-				dependente, situacao, ativo));
+				dependenteFilter, situacao, ativo));
 		if (getListaDependentesFiltro().size() == 0) {
 			FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_WARN,
 					"Nenhum registro para o filtro informado!",
@@ -307,7 +317,7 @@ public class DependenteController implements Serializable {
 		if (dependente.getRgUf() == null) {
 			dependente.setRgUf(new Estado());
 		}
-		buscarAtentente();
+		buscarAtendente();
 	}
 
 	public void ativarDesativar() throws Exception {
@@ -340,15 +350,18 @@ public class DependenteController implements Serializable {
 				.getStatusSolicitacao().getCodigo())) {
 			dependente.getStatusSolicitacao().setCodigo(
 					Constantes.STATUS_SOLICITACAO_EM_ANALISE);
-			dependente.setAtendente(dependente.getServidor().getSiape());
+			atendente = new Servidor();
 			dependente.setDataAtendimento(new Date());
+			buscarAtendente();
+			dependente.setAtendente(atendente.getSiape());
 			DependenteDAO.getInstance().updateDependente(dependente);
+			pesquisarDependentesFiltro();
 		} else if (Constantes.STATUS_SOLICITACAO_EM_ANALISE.equals(dependente
 				.getStatusSolicitacao().getCodigo())) {
 			FacesMessage message = new FacesMessage(
 					FacesMessage.SEVERITY_ERROR,
-					"Este Dependente já está sendo analizada por outro servidor!",
-					"Está Dependente já está sendo analizada por outro servidor!");
+					"Este Dependente já está sendo analizado por outro servidor!",
+					"Este Dependente já está sendo analizado por outro servidor!");
 			FacesContext.getCurrentInstance().addMessage("", message);
 		}
 	}
@@ -367,12 +380,14 @@ public class DependenteController implements Serializable {
 		return statusSolicitacoes;
 	}
 
-	public void buscarAtentente() {
+	public void buscarAtendente() {
 		if (!(Constantes.STATUS_SOLICITACAO_ENCAMINHADO.equals(dependente
 				.getStatusSolicitacao().getCodigo()))) {
-			atendente = new Servidor();
-			atendente.setSiape(dependente.getAtendente());
-			atendente = (Servidor) ServidorDAO.getInstance().refreshBySiape(atendente);
+			Autenticacao siapeAutenticado = (Autenticacao) FacesContext
+			.getCurrentInstance().getExternalContext().getSessionMap()
+			.get("usuarioLogado");
+			atendente.setSiape(siapeAutenticado.getSiape());
+			atendente =  ServidorDAO.getInstance().refreshBySiape(atendente);	
 		}
 	}
 }
