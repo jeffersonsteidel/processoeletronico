@@ -36,6 +36,7 @@ public class DependenteController implements Serializable {
 	private Integer situacao = 0;
 	private Integer ativo = 0;
 	private Servidor atendente;
+	private Boolean desabilitarBotoes = false; 
 
 	public List<Dependente> getListaDependentes() {
 		return listaDependentes;
@@ -124,6 +125,14 @@ public class DependenteController implements Serializable {
 
 	public void setDependenteFilter(Dependente dependenteFilter) {
 		this.dependenteFilter = dependenteFilter;
+	}
+	
+	public Boolean getDesabilitarBotoes() {
+		return desabilitarBotoes;
+	}
+
+	public void setDesabilitarBotoes(Boolean desabilitarBotoes) {
+		this.desabilitarBotoes = desabilitarBotoes;
 	}
 
 	public void abrirAdicionarDependentes() throws Exception {
@@ -250,6 +259,7 @@ public class DependenteController implements Serializable {
 		dependente.setRgUf(new Estado());
 		dependente.setGrauParentesco(new GrauParentesco());
 		pesquisarDependentesFiltro();
+		desabilitarBotoes = true;
 	}
 
 	public void indeferir() {
@@ -268,8 +278,9 @@ public class DependenteController implements Serializable {
 			dependente = new Dependente();
 			dependente.setRgUf(new Estado());
 			dependente.setGrauParentesco(new GrauParentesco());
+			pesquisarDependentesFiltro();
+			desabilitarBotoes = true;
 		}
-		pesquisarDependentesFiltro();
 	}
 
 	public void listarDependentesServidorLogado() throws Exception {
@@ -318,13 +329,11 @@ public class DependenteController implements Serializable {
 		FacesContext context = FacesContext.getCurrentInstance();
 		dependente = (Dependente) context.getExternalContext().getRequestMap()
 				.get("list");
-		if (dependente.getRgUf() == null) {
-			dependente.setRgUf(new Estado());
-		}
 		dependente.setIndAtivo(!dependente.getIndAtivo());
 		dependente.setDataFechamento(null);
 		dependente.setAtendente(null);
 		dependente.setDataAtendimento(null);
+		dependente.getStatusSolicitacao().setCodigo(Constantes.STATUS_SOLICITACAO_ENCAMINHADO);
 		DAO.getInstance().update(dependente);
 	}
 

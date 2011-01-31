@@ -191,6 +191,7 @@
 							<h:outputText value="Ativar/Desativar" />
 						</f:facet>
 						<a4j:commandLink action="#{dependenteController.ativarDesativar}"
+							reRender="listaDependentes"
 							rendered="#{list.statusSolicitacao.codigo > 2}" ajaxSingle="true">
 							<h:graphicImage id="ativo" value="../images/ativar.gif"
 								style="border:0" width="20" height="18"
@@ -199,6 +200,7 @@
 								target="#{dependenteController.dependente.codigo}" />
 						</a4j:commandLink>
 						<a4j:commandLink action="#{dependenteController.ativarDesativar}"
+							reRender="listaDependentes"
 							rendered="#{list.statusSolicitacao.codigo > 2}" ajaxSingle="true">
 							<h:graphicImage id="inativo" value="../images/desativar.gif"
 								style="border:0" width="20" height="18"

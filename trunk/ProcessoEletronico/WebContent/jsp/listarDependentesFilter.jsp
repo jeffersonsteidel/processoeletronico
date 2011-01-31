@@ -260,12 +260,12 @@
 			<a4j:commandButton value="Deferir" id="deferir"
 				reRender="form, listaDependentes, painel, confirmPanel"
 				ajaxSingle="true"
-				disabled="#{dependenteController.dependente.statusSolicitacao.codigo > 2}"
+				disabled="#{dependenteController.dependente.statusSolicitacao.codigo > 2 || dependenteController.desabilitarBotoes}"
 				onclick="Richfaces.showModalPanel('confirmPanel')" />
 			<a4j:commandButton value="Indeferir" id="indeferir"
 				reRender="form, listaDependentes,painel, confirmPanel02"
 				ajaxSingle="true"
-				disabled="#{dependenteController.dependente.statusSolicitacao.codigo > 2}"
+				disabled="#{dependenteController.dependente.statusSolicitacao.codigo > 2 || dependenteController.desabilitarBotoes}"
 				onclick="Richfaces.showModalPanel('confirmPanel02')" />
 		</h:panelGrid></center>
 	</rich:modalPanel></center>
