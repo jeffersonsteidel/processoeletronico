@@ -352,7 +352,11 @@ public class DependenteController implements Serializable {
 					Constantes.STATUS_SOLICITACAO_EM_ANALISE);
 			atendente = new Servidor();
 			dependente.setDataAtendimento(new Date());
-			buscarAtendente();
+			Autenticacao siapeAutenticado = (Autenticacao) FacesContext
+			.getCurrentInstance().getExternalContext().getSessionMap()
+			.get("usuarioLogado");
+			atendente.setSiape(siapeAutenticado.getSiape());
+			atendente =  ServidorDAO.getInstance().refreshBySiape(atendente);	
 			dependente.setAtendente(atendente.getSiape());
 			DependenteDAO.getInstance().updateDependente(dependente);
 			pesquisarDependentesFiltro();
@@ -383,11 +387,9 @@ public class DependenteController implements Serializable {
 	public void buscarAtendente() {
 		if (!(Constantes.STATUS_SOLICITACAO_ENCAMINHADO.equals(dependente
 				.getStatusSolicitacao().getCodigo()))) {
-			Autenticacao siapeAutenticado = (Autenticacao) FacesContext
-			.getCurrentInstance().getExternalContext().getSessionMap()
-			.get("usuarioLogado");
-			atendente.setSiape(siapeAutenticado.getSiape());
-			atendente =  ServidorDAO.getInstance().refreshBySiape(atendente);	
+			atendente = new Servidor();
+			atendente.setSiape(dependente.getAtendente());
+			atendente = ServidorDAO.getInstance().refreshBySiape(atendente);
 		}
 	}
 }
