@@ -365,6 +365,10 @@ public class DependenteController implements Serializable {
 			dependente.setAtendente(atendente.getSiape());
 			DependenteDAO.getInstance().updateDependente(dependente);
 			pesquisarDependentesFiltro();
+			if(dependente
+					.getStatusSolicitacao().getCodigo()< Constantes.STATUS_SOLICITACAO_DEFERIDO){
+				desabilitarBotoes = false;
+			}
 		} else if (Constantes.STATUS_SOLICITACAO_EM_ANALISE.equals(dependente
 				.getStatusSolicitacao().getCodigo())) {
 			FacesMessage message = new FacesMessage(
