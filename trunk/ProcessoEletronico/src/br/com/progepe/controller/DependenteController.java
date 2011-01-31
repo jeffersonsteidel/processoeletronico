@@ -335,6 +335,7 @@ public class DependenteController implements Serializable {
 		dependente.setDataAtendimento(null);
 		dependente.getStatusSolicitacao().setCodigo(Constantes.STATUS_SOLICITACAO_ENCAMINHADO);
 		DAO.getInstance().update(dependente);
+		pesquisarDependentesFiltro();
 	}
 
 	public void validarEstudante() {
