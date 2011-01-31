@@ -19,6 +19,7 @@
 		<property name="dataFormacao" column="DEP_DATA_FORMACAO" />
 		<property name="indEstudante" column="DEP_IND_EST" type="boolean" />
 		<property name="indIr" column="DEP_IND_IR" type="boolean" />
+		<property name="indAtivo" column="DEP_IND_ATIVO" type="boolean" />
 		<property name="atendente" column="DEP_ATENDENTE" />
 		<property name="dataAtendimento" column="DEP_DATA_ATENDIMENTO" />
 		<property name="dataAbertura" column="DEP_DATA_ABERTURA" />

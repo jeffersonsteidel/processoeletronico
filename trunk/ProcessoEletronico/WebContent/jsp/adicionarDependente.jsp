@@ -168,14 +168,20 @@
 						<f:facet name="header">
 							<h:outputText value="Editar" />
 						</f:facet>
-						<a4j:commandLink action="#{dependenteController.carregar}"
+						<a4j:commandLink action="#{dependenteController.carregar}" rendered="#{list.statusSolicitacao.codigo > 2}"
 							reRender="listaDependentes, form" ajaxSingle="true">
 							<h:graphicImage value="../images/edit.gif" style="border:0"
 								width="20" height="18" id="editar" />
 							<f:setPropertyActionListener value="#{list.codigo}"
 								target="#{dependenteController.dependente.codigo}" />
 						</a4j:commandLink>
+						<a4j:commandLink action="#" rendered="#{list.statusSolicitacao.codigo < 2}"
+							reRender="listaDependentes, form" ajaxSingle="true">
+							<h:graphicImage value="../images/edit.gif" style="border:0"
+								width="20" height="18" id="editarNPermitido" />
+						</a4j:commandLink>
 						<rich:toolTip for="editar" value="Editar" />
+						<rich:toolTip for="editarNPermitido" value="Você somente poderá editar dependentes deferidos ou indeferidos!" />
 					</rich:column>
 					<rich:column>
 						<f:facet name="header">
@@ -195,27 +201,27 @@
 					<f:facet name="header">
 						<h:outputText value="Status" />
 					</f:facet>
-					<a4j:commandLink rendered="#{list.statusSolicitacao.codigo == 1}"
-						action="#" reRender="listarConjugesSolicitante" ajaxSingle="true">
+					<a4j:commandLink rendered="#{list.statusSolicitacao.codigo == 1}" oncomplete="#{rich:component('painel')}.show()"
+						action="#{dependenteController.carregar}" reRender="listarConjugesSolicitante" ajaxSingle="true">
 						<h:graphicImage value="../images/encaminhado.png" style="border:0"
 							width="20" height="18" id="encaminhado" />
 						<f:setPropertyActionListener value="#{list.codigo}"
 							target="#{dependenteController.dependente.codigo}" />
 					</a4j:commandLink>
-					<a4j:commandLink rendered="#{list.statusSolicitacao.codigo == 2}"
+					<a4j:commandLink rendered="#{list.statusSolicitacao.codigo == 2}" oncomplete="#{rich:component('painel')}.show()"
 						action="#" reRender="listaDependentes" ajaxSingle="true">
 						<h:graphicImage value="../images/analize.gif" style="border:0"
 							width="20" height="18" id="emAnalise" />
 					</a4j:commandLink>
 					<a4j:commandLink rendered="#{list.statusSolicitacao.codigo == 3}"
-						action="#" reRender="listaDependentes" ajaxSingle="true">
+						action="#{dependenteController.carregar}" reRender="listaDependentes" ajaxSingle="true" oncomplete="#{rich:component('painel')}.show()">
 						<h:graphicImage value="../images/deferido.gif" style="border:0"
 							width="20" height="18" id="deferido" />
 						<f:setPropertyActionListener value="#{list.codigo}"
 							target="#{dependenteController.dependente.codigo}" />
 					</a4j:commandLink>
 					<a4j:commandLink rendered="#{list.statusSolicitacao.codigo == 4}"
-						action="#"
+						action="#{dependenteController.carregar}"  oncomplete="#{rich:component('painel')}.show()"
 						reRender="listaDependentes" ajaxSingle="true">
 						<h:graphicImage value="../images/indeferido.gif" style="border:0"
 							width="20" height="18" id="indeferido" />
@@ -235,6 +241,63 @@
 				</rich:dataTable>
 			</a4j:region>
 
+		<center><rich:modalPanel id="painel" autosized="true"
+		width="250" style="text-align:center;">
+		<f:facet name="header">
+			<h:panelGroup>
+				<h:outputText value="Detalhes do Status"></h:outputText>
+			</h:panelGroup>
+		</f:facet>
+		<f:facet name="controls">
+			<h:panelGroup>
+				<h:graphicImage value="../images/close.gif"
+					onclick="#{rich:component('painel')}.hide();" />
+			</h:panelGroup>
+		</f:facet>
+		<h:panelGrid columns="2">
+			<h:outputText value="Status: " />
+			<h:outputText
+				rendered="#{dependenteController.dependente.statusSolicitacao.descricao != null}"
+				value="#{dependenteController.dependente.statusSolicitacao.descricao}">
+			</h:outputText>
+			<h:outputText value="Data da Última Alteração: " />
+			<h:outputText
+				rendered="#{dependenteController.dependente.dataAbertura != null}"
+				value="#{dependenteController.dependente.dataAbertura}">
+				<f:convertDateTime pattern="dd/MM/yyyy" />
+			</h:outputText>
+			<h:outputText
+				rendered="#{dependenteController.dependente.dataAtendimento != null}"
+				value="Data Atendimento: " />
+			<h:outputText
+				rendered="#{dependenteController.dependente.dataAtendimento != null}"
+				value="#{dependenteController.dependente.dataAtendimento}">
+				<f:convertDateTime pattern="dd/MM/yyyy" />
+			</h:outputText>
+			<h:outputText
+				rendered="#{dependenteController.dependente.atendente != null}"
+				value="Atendente: " />
+			<h:outputText
+				rendered="#{dependenteController.dependente.atendente!= null}"
+				value="#{dependenteController.atendente.nome}">
+			</h:outputText>
+			<h:outputText
+				rendered="#{dependenteController.dependente.dataFechamento != null}"
+				value="Data Fechamento: " />
+			<h:outputText
+				rendered="#{dependenteController.dependente.dataFechamento.date != null}"
+				value="#{dependenteController.dependente.dataFechamento}">
+				<f:convertDateTime pattern="dd/MM/yyyy" />
+			</h:outputText>
+			<h:outputText
+				rendered="#{dependenteController.dependente.justificativa != null}"
+				value="Justificativa: " />
+			<h:outputText
+				rendered="#{dependenteController.dependente.justificativa != null}"
+				value="#{dependenteController.dependente.justificativa}">
+			</h:outputText>
+		</h:panelGrid>
+	</rich:modalPanel></center>
 
 
 			<center><rich:modalPanel id="deletePanel" autosized="true"

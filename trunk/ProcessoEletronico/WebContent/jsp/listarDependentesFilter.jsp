@@ -54,15 +54,15 @@
 					<f:selectItem itemLabel="SELECIONE" itemValue="" />
 					<f:selectItems value="#{dependenteController.grausParentescos}" />
 				</h:selectOneMenu>
-
-				<h:outputText value="Validados: " />
-				<h:selectOneMenu value="#{dependenteController.validado}">
+				
+				<h:outputText value="Situação do Dependente: " />
+				<h:selectOneMenu value="#{dependenteController.ativo}">
 					<f:selectItem itemLabel="TODOS" itemValue="0" />
-					<f:selectItem itemLabel="SIM" itemValue="1" />
-					<f:selectItem itemLabel="NÃO" itemValue="2" />
+					<f:selectItem itemLabel="ATIVOS" itemValue="1" />
+					<f:selectItem itemLabel="INATIVOS" itemValue="2" />
 				</h:selectOneMenu>
 
-				<h:outputText value="Situação: " />
+				<h:outputText value="Situação do Servidor: " />
 				<h:selectOneMenu value="#{dependenteController.situacao}">
 					<f:selectItem itemLabel="TODOS" itemValue="0" />
 					<f:selectItem itemLabel="ATIVOS" itemValue="1" />
