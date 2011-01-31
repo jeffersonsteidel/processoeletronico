@@ -9,13 +9,16 @@ import java.util.List;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
+import javax.faces.model.SelectItem;
 
 import br.com.progepe.constantes.Constantes;
 import br.com.progepe.dao.DAO;
 import br.com.progepe.dao.EmpregoDAO;
 import br.com.progepe.dao.ServidorDAO;
 import br.com.progepe.entity.Autenticacao;
+import br.com.progepe.entity.Dependente;
 import br.com.progepe.entity.Emprego;
+import br.com.progepe.entity.Estado;
 import br.com.progepe.entity.Servidor;
 import br.com.progepe.entity.StatusSolicitacao;
 
@@ -23,9 +26,9 @@ public class EmpregoController implements Serializable {
 	private static final long serialVersionUID = -333995781063775201L;
 	private List<Emprego> listaEmpregos = new ArrayList<Emprego>();
 	private List<Emprego> listaEmpregosByFilter = new ArrayList<Emprego>();
+	private List<SelectItem> statusSolicitacoes = new ArrayList<SelectItem>();
 	private Emprego emprego;
 	private Integer situacao = 0;
-	private Integer validado = Constantes.TODOS;
 	private Servidor atendente;
 
 	public List<Emprego> getListaEmpregos() {
@@ -38,6 +41,7 @@ public class EmpregoController implements Serializable {
 
 	public Emprego getEmprego() {
 		return emprego;
+		
 	}
 
 	public void setEmprego(Emprego emprego) {
@@ -52,20 +56,20 @@ public class EmpregoController implements Serializable {
 		this.listaEmpregosByFilter = listaEmpregosByFilter;
 	}
 
+	public List<SelectItem> getStatusSolicitacoes() {
+		return statusSolicitacoes;
+	}
+
+	public void setStatusSolicitacoes(List<SelectItem> statusSolicitacoes) {
+		this.statusSolicitacoes = statusSolicitacoes;
+	}
+
 	public Integer getSituacao() {
 		return situacao;
 	}
 
 	public void setSituacao(Integer situacao) {
 		this.situacao = situacao;
-	}
-
-	public Integer getValidado() {
-		return validado;
-	}
-
-	public void setValidado(Integer validado) {
-		this.validado = validado;
 	}
 
 	public Servidor getAtendente() {
@@ -91,14 +95,27 @@ public class EmpregoController implements Serializable {
 
 	public void abrirListarEmprego() throws Exception {
 		try {
+			listarStatusSolicitacoes();
 			listaEmpregosByFilter.clear();
 			emprego = new Emprego();
+			emprego.setStatusSolicitacao(new StatusSolicitacao());
 			emprego.setServidor(new Servidor());
 			FacesContext.getCurrentInstance().getExternalContext()
 					.redirect("listarEmprego.jsp");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<SelectItem> listarStatusSolicitacoes() {
+		statusSolicitacoes = new ArrayList<SelectItem>();
+		List<StatusSolicitacao> statusSolicitacao = new ArrayList<StatusSolicitacao>();
+		statusSolicitacao = DAO.getInstance().list(StatusSolicitacao.class, "descricao");
+		for (StatusSolicitacao status : statusSolicitacao) {
+			statusSolicitacoes.add(new SelectItem(status.getCodigo(), status.getDescricao()));
+		}
+		return statusSolicitacoes;
 	}
 
 	public void buscarServidorLogado() throws IOException, ParseException {
@@ -168,6 +185,18 @@ public class EmpregoController implements Serializable {
 		FacesContext context = FacesContext.getCurrentInstance();
 		emprego = (Emprego) context.getExternalContext().getRequestMap()
 				.get("list");
+		emprego = (Emprego) DAO.getInstance().refresh(emprego);
+		if(emprego.getStatusSolicitacao().getCodigo() != Constantes.STATUS_SOLICITACAO_EM_ANALISE){
+		emprego.setStatusSolicitacao(new StatusSolicitacao());
+		emprego.getStatusSolicitacao().setCodigo(Constantes.STATUS_SOLICITACAO_EM_ANALISE);
+		Autenticacao siapeAutenticado = (Autenticacao) FacesContext
+		.getCurrentInstance().getExternalContext().getSessionMap()
+		.get("usuarioLogado");
+		emprego.setAtendente(siapeAutenticado.getSiape());
+		emprego.setDataAtendimento(new Date());
+		DAO.getInstance().update(emprego);
+		}
+		
 	}
 	
 	public void verificarStatus() throws Exception {
@@ -184,7 +213,7 @@ public class EmpregoController implements Serializable {
 
 	public List<Emprego> buscarEmpregos() {
 		listaEmpregosByFilter = (List<Emprego>) EmpregoDAO.getInstance()
-				.listByFilter(emprego, situacao, validado);
+				.listByFilter(emprego, situacao);
 		return listaEmpregosByFilter;
 	}
 

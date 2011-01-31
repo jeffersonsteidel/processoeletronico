@@ -33,11 +33,11 @@
 				<h:outputText value="Nome do Servidor:" />
 				<h:inputText value="#{empregoController.emprego.servidor.nome}"
 					size="60" maxlength="120"></h:inputText>
-				<h:outputText value="Validados: " />
-				<h:selectOneMenu value="#{empregoController.validado}">
-					<f:selectItem itemLabel="TODOS" itemValue="0" />
-					<f:selectItem itemLabel="SIM" itemValue="1" />
-					<f:selectItem itemLabel="NÃO" itemValue="2" />
+				<h:outputText value="Status: " />
+				<h:selectOneMenu
+					value="#{empregoController.emprego.statusSolicitacao.codigo}">
+					<f:selectItem itemLabel="SELECIONE" itemValue="" />
+					<f:selectItems value="#{empregoController.statusSolicitacoes}" />
 				</h:selectOneMenu>
 				<h:outputText value="Situação: " />
 				<h:selectOneMenu value="#{empregoController.situacao}">
@@ -98,28 +98,51 @@
 							<f:convertDateTime pattern="dd/MM/yyyy" />
 						</h:outputText>
 					</rich:column>
-					<rich:column width="100px" sortBy="#{list.indValidado}">
-						<f:facet name="header">
-							<h:outputText value="Validado" />
-						</f:facet>
-						<h:outputText value="SIM" rendered="#{list.indValidado}" />
-						<h:outputText value="NÃO" rendered="#{!list.indValidado}" />
-					</rich:column>
+	
 
-					<rich:column>
-						<f:facet name="header">
-							<h:outputText value="Visualizar" />
-						</f:facet>
-						<a4j:commandLink action="#{empregoController.carregar}"
-							reRender="editPanel" ajaxSingle="true"
-							oncomplete="#{rich:component('editPanel')}.show()">
-							<h:graphicImage value="../images/edit.gif" style="border:0"
-								width="20" height="18" id="editar" />
-							<f:setPropertyActionListener value="#{list.codigo}"
-								target="#{empregoController.emprego.codigo}" />
-						</a4j:commandLink>
-						<rich:toolTip for="visualizar" value="Visualizar" />
-					</rich:column>
+						
+					<rich:column width="30px">
+					<f:facet name="header">		
+						<h:outputText value="Visualizar" />
+					</f:facet>
+
+					<a4j:commandLink rendered="#{list.statusSolicitacao.codigo == 1}"
+						action="#{empregoController.carregar}" oncomplete="#{rich:component('panel')}.show()"
+						reRender="panel, listaEmpregos" ajaxSingle="true"> 
+						<h:graphicImage value="../images/encaminhado.png" style="border:0"
+							width="20" height="18" id="encaminhado" />
+						<f:setPropertyActionListener value="#{list.codigo}"
+							target="#{empregoController.emprego.codigo}" />
+					</a4j:commandLink>
+					
+					<a4j:commandLink rendered="#{list.statusSolicitacao.codigo == 2}"
+						action="#"
+						reRender="panel" ajaxSingle="true">
+						<h:graphicImage value="../images/analize.gif" style="border:0"
+							width="20" height="18" id="emAnalise" />
+					</a4j:commandLink>
+					
+					<a4j:commandLink rendered="#{list.statusSolicitacao.codigo == 3}"
+						action="#{empregoController.carregar}" oncomplete="#{rich:component('painel')}.show()"
+						reRender="panel" ajaxSingle="true">
+						<h:graphicImage value="../images/deferido.gif" style="border:0"
+							width="20" height="18" id="deferido" />
+					</a4j:commandLink>
+					
+					<a4j:commandLink rendered="#{list.statusSolicitacao.codigo == 4}"
+						action="#{empregoController.carregar}" oncomplete="#{rich:component('painel')}.show()"
+						reRender="panel" ajaxSingle="true">
+						<h:graphicImage value="../images/indeferido.gif" style="border:0"
+							width="20" height="18" id="indeferido" />
+							
+					</a4j:commandLink>
+					<rich:toolTip for="encaminhado" value="Encaminhado" />
+					<rich:toolTip for="emAnalise" value="Analise" />
+					<rich:toolTip for="deferido" value="Deferido" />
+					<rich:toolTip for="indeferido" value="Indeferido" />
+				</rich:column>
+				
+		
 					<f:facet name="footer">
 						<rich:datascroller id="ds"></rich:datascroller>
 					</f:facet>
@@ -127,7 +150,7 @@
 			</a4j:region>
 		</rich:panel></center>
 	</a4j:form>
-	<center><rich:modalPanel id="editPanel" autosized="true"
+	<center><rich:modalPanel id="panel" autosized="true"
 		width="400">
 		<h:form>
 			<center><font size="2"><b>DETALHES DO EMPREGO</b></font> <h:panelGrid
@@ -153,11 +176,13 @@
 				<h:inputTextarea value="#{empregoController.emprego.atividades}"
 					rows="10" cols="50" disabled="true">
 				</h:inputTextarea>
-			</h:panelGrid> <h:panelGrid columns="2">
-				<a4j:commandButton value="Aprovar" reRender="form, listaTitulacoes"
-					action="#{empregoController.validar}" />
+			</h:panelGrid> <h:panelGrid columns="3">
+				<a4j:commandButton value="Deferir" reRender="form, listaEmpregos"
+					action="#{empregoController.defirir}" />
+			<a4j:commandButton value="Indeferir" reRender="form, listaEmpregos"
+					action="#{empregoController.indeferir}" />
 				<a4j:commandButton value="Fechar"
-					onclick="#{rich:component('editPanel')}.hide();return false;" />
+					onclick="#{rich:component('panel')}.hide();return false;" />
 			</h:panelGrid></center>
 		</h:form>
 	</rich:modalPanel></center>
