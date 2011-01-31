@@ -117,6 +117,7 @@ public class DependenteController implements Serializable {
 	public void setStatusSolicitacoes(List<SelectItem> statusSolicitacoes) {
 		this.statusSolicitacoes = statusSolicitacoes;
 	}
+
 	public Dependente getDependenteFilter() {
 		return dependenteFilter;
 	}
@@ -171,7 +172,6 @@ public class DependenteController implements Serializable {
 		dependente.setServidor(ServidorDAO.getInstance().refreshBySiape(
 				dependente.getServidor()));
 	}
-	
 
 	@SuppressWarnings("unchecked")
 	public List<SelectItem> listarGrauParentesco() {
@@ -242,10 +242,6 @@ public class DependenteController implements Serializable {
 	}
 
 	public void deferir() {
-		if (null == dependente.getRgUf().getCodigo()
-				|| Constantes.ZERO.equals(dependente.getRgUf().getCodigo())) {
-			dependente.setRgUf(null);
-		}
 		dependente.getStatusSolicitacao().setCodigo(
 				Constantes.STATUS_SOLICITACAO_DEFERIDO);
 		dependente.setDataFechamento(new Date());
@@ -253,29 +249,27 @@ public class DependenteController implements Serializable {
 		dependente = new Dependente();
 		dependente.setRgUf(new Estado());
 		dependente.setGrauParentesco(new GrauParentesco());
+		pesquisarDependentesFiltro();
 	}
 
 	public void indeferir() {
-		if (dependente.getJustificativa() != null
-				|| dependente.getJustificativa() != "") {
-			if (null == dependente.getRgUf().getCodigo()
-					|| Constantes.ZERO.equals(dependente.getRgUf().getCodigo())) {
-				dependente.setRgUf(null);
-			}
-			dependente.getStatusSolicitacao().setCodigo(
-					Constantes.STATUS_SOLICITACAO_DEFERIDO);
-			dependente.setDataFechamento(new Date());
-			DAO.getInstance().update(dependente);
-			dependente = new Dependente();
-			dependente.setRgUf(new Estado());
-			dependente.setGrauParentesco(new GrauParentesco());
-		} else {
+		if (dependente.getJustificativa() == null
+				|| dependente.getJustificativa() == "") {
 			FacesMessage message = new FacesMessage(
 					FacesMessage.SEVERITY_ERROR,
 					"O campo Justificativa é obrigatório!",
 					"O campo Justificativa é obrigatório!");
 			FacesContext.getCurrentInstance().addMessage("", message);
+		} else {
+			dependente.getStatusSolicitacao().setCodigo(
+					Constantes.STATUS_SOLICITACAO_INDEFERIDO);
+			dependente.setDataFechamento(new Date());
+			DAO.getInstance().update(dependente);
+			dependente = new Dependente();
+			dependente.setRgUf(new Estado());
+			dependente.setGrauParentesco(new GrauParentesco());
 		}
+		pesquisarDependentesFiltro();
 	}
 
 	public void listarDependentesServidorLogado() throws Exception {
@@ -353,10 +347,10 @@ public class DependenteController implements Serializable {
 			atendente = new Servidor();
 			dependente.setDataAtendimento(new Date());
 			Autenticacao siapeAutenticado = (Autenticacao) FacesContext
-			.getCurrentInstance().getExternalContext().getSessionMap()
-			.get("usuarioLogado");
+					.getCurrentInstance().getExternalContext().getSessionMap()
+					.get("usuarioLogado");
 			atendente.setSiape(siapeAutenticado.getSiape());
-			atendente =  ServidorDAO.getInstance().refreshBySiape(atendente);	
+			atendente = ServidorDAO.getInstance().refreshBySiape(atendente);
 			dependente.setAtendente(atendente.getSiape());
 			DependenteDAO.getInstance().updateDependente(dependente);
 			pesquisarDependentesFiltro();

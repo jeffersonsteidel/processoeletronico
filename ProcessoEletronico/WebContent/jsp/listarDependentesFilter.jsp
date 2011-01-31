@@ -253,17 +253,14 @@
 				value="#{dependenteController.dependente.justificativa}" cols="50"
 				rows="5"></h:inputTextarea>
 		</h:panelGrid> <h:panelGrid columns="2" style="text-align: center;">
-			<a4j:commandButton value="Deferir"
-				reRender="form, listaDependentes, confirmPanel" ajaxSingle="true"
+			<a4j:commandButton value="Deferir" id="deferir"
+				reRender="form, listaDependentes, painel, confirmPanel" ajaxSingle="true"
 				disabled="#{dependenteController.dependente.statusSolicitacao.codigo > 2}"
 				onclick="Richfaces.showModalPanel('confirmPanel')" />
-			<a4j:commandButton value="Indeferir"
-				reRender="form, listaDependentes, confirmPanel02" ajaxSingle="true"
+			<a4j:commandButton value="Indeferir" id="indeferir"
+				reRender="form, listaDependentes,painel, confirmPanel02" ajaxSingle="true"
 				disabled="#{dependenteController.dependente.statusSolicitacao.codigo > 2}"
 				onclick="Richfaces.showModalPanel('confirmPanel02')" />
-		</h:panelGrid> <h:panelGrid columns="1"
-			rendered="#{dependenteController.dependente.statusSolicitacao.codigo > 2 && autenticacaoController.siapeAutenticado.indAdministrador}">
-			<a4j:commandButton value="Voltar" action="#" />
 		</h:panelGrid></center>
 	</rich:modalPanel></center>
 
@@ -280,7 +277,7 @@
 						<td align="center" width="50%"><a4j:commandButton value="Sim"
 							ajaxSingle="true" action="#{dependenteController.deferir}"
 							oncomplete="#{rich:component('confirmPanel')}.hide();"
-							reRender="form" /></td>
+							reRender="listaDependentes, deferir, indeferir" /></td>
 						<td align="center" width="50%"><a4j:commandButton value="Não"
 							onclick="#{rich:component('confirmPanel')}.hide();return false;" />
 						</td>
@@ -300,7 +297,7 @@
 						<td align="center" width="50%"><a4j:commandButton value="Sim"
 							ajaxSingle="true" action="#{dependenteController.indeferir}"
 							oncomplete="#{rich:component('confirmPanel02')}.hide();"
-							reRender="form" /></td>
+							reRender="listaDependentes, deferir, indeferir"  /></td>
 						<td align="center" width="50%"><a4j:commandButton value="Não"
 							onclick="#{rich:component('confirmPanel02')}.hide();return false;" />
 						</td>
