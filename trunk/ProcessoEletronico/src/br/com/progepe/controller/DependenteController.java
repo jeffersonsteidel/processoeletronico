@@ -247,7 +247,7 @@ public class DependenteController implements Serializable {
 
 	public void indeferir() {
 		if (dependente.getJustificativa() != null
-				&& !dependente.getJustificativa().isEmpty()) {
+				&& dependente.getJustificativa() != "") {
 			if (null == dependente.getRgUf().getCodigo()
 					|| Constantes.ZERO.equals(dependente.getRgUf().getCodigo())) {
 				dependente.setRgUf(null);
