@@ -17,6 +17,7 @@ import br.com.progepe.dao.ServidorDAO;
 import br.com.progepe.entity.Autenticacao;
 import br.com.progepe.entity.Emprego;
 import br.com.progepe.entity.Servidor;
+import br.com.progepe.entity.StatusSolicitacao;
 
 public class EmpregoController implements Serializable {
 	private static final long serialVersionUID = -333995781063775201L;
@@ -25,6 +26,7 @@ public class EmpregoController implements Serializable {
 	private Emprego emprego;
 	private Integer situacao = 0;
 	private Integer validado = Constantes.TODOS;
+	private Servidor atendente;
 
 	public List<Emprego> getListaEmpregos() {
 		return listaEmpregos;
@@ -66,10 +68,19 @@ public class EmpregoController implements Serializable {
 		this.validado = validado;
 	}
 
+	public Servidor getAtendente() {
+		return atendente;
+	}
+
+	public void setAtendente(Servidor atendente) {
+		this.atendente = atendente;
+	}
+	
 	public void abrirEmprego() throws Exception {
 		try {
 			listaEmpregos.clear();
 			emprego = new Emprego();
+			emprego.setStatusSolicitacao(new StatusSolicitacao());
 			listarEmpregoServidorLogado();
 			FacesContext.getCurrentInstance().getExternalContext()
 					.redirect("adicionarEmprego.jsp");
@@ -99,6 +110,8 @@ public class EmpregoController implements Serializable {
 		emprego.setServidor(ServidorDAO.getInstance().refreshBySiape(
 				emprego.getServidor()));
 	}
+	
+	
 
 	public void salvarEmprego() throws Exception {
 		if (emprego.getDataAdmissao().after(emprego.getDataSaida())
@@ -155,6 +168,18 @@ public class EmpregoController implements Serializable {
 		FacesContext context = FacesContext.getCurrentInstance();
 		emprego = (Emprego) context.getExternalContext().getRequestMap()
 				.get("list");
+	}
+	
+	public void verificarStatus() throws Exception {
+		FacesContext context = FacesContext.getCurrentInstance();
+		emprego = (Emprego) context.getExternalContext().getRequestMap()
+				.get("list");
+		if(!Constantes.STATUS_SOLICITACAO_ENCAMINHADO.equals(emprego.getStatusSolicitacao().getCodigo())){
+			atendente = new Servidor();
+			atendente.setSiape(emprego.getAtendente());
+			atendente = ServidorDAO.getInstance().refreshBySiape(atendente);
+		
+		}
 	}
 
 	public List<Emprego> buscarEmpregos() {
