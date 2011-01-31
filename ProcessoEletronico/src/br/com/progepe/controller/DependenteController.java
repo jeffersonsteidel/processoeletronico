@@ -32,7 +32,8 @@ public class DependenteController implements Serializable {
 	private List<Dependente> listaDependentes;
 	private List<Dependente> listaDependentesFiltro;
 	private Integer situacao = 0;
-	private Integer validado = 0;
+	private Integer ativo = 0;
+	private Servidor atendente; 
 
 	public List<Dependente> getListaDependentes() {
 		return listaDependentes;
@@ -91,12 +92,20 @@ public class DependenteController implements Serializable {
 		this.situacao = situacao;
 	}
 
-	public Integer getValidado() {
-		return validado;
+	public Integer getAtivo() {
+		return ativo;
 	}
 
-	public void setValidado(Integer validado) {
-		this.validado = validado;
+	public void setAtivo(Integer ativo) {
+		this.ativo = ativo;
+	}
+	
+	public Servidor getAtendente() {
+		return atendente;
+	}
+
+	public void setAtendente(Servidor atendente) {
+		this.atendente = atendente;
 	}
 
 	public void abrirAdicionarDependentes() throws Exception {
@@ -196,6 +205,7 @@ public class DependenteController implements Serializable {
 			dependente.setRgUf(null);
 		}
 
+		dependente.setIndAtivo(true);
 		this.getListaDependentes().add(dependente);
 		dependente.getStatusSolicitacao().setCodigo(
 				Constantes.STATUS_SOLICITACAO_ENCAMINHADO);
@@ -257,7 +267,7 @@ public class DependenteController implements Serializable {
 	public List<Dependente> listarDependentesFiltro() {
 		listaDependentesFiltro = new ArrayList<Dependente>();
 		setListaDependentesFiltro(DependenteDAO.getInstance().listByFilter(
-				dependente, situacao, validado));
+				dependente, situacao, ativo));
 		if (getListaDependentesFiltro().size() == 0) {
 			FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_WARN,
 					"Nenhum registro para o filtro informado!",

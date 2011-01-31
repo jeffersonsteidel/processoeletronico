@@ -33,6 +33,7 @@ public class Dependente implements Serializable {
 	private Date dataFechamento;
 	private String justificativa;
 	private StatusSolicitacao statusSolicitacao;
+	private Boolean indAtivo = true;
 
 	public Long getCodigo() {
 		return codigo;
@@ -224,5 +225,13 @@ public class Dependente implements Serializable {
 
 	public void setStatusSolicitacao(StatusSolicitacao statusSolicitacao) {
 		this.statusSolicitacao = statusSolicitacao;
+	}
+
+	public Boolean getIndAtivo() {
+		return indAtivo;
+	}
+
+	public void setIndAtivo(Boolean indAtivo) {
+		this.indAtivo = indAtivo;
 	}
 }
