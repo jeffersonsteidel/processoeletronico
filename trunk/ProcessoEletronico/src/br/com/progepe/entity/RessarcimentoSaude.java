@@ -20,6 +20,10 @@ public class RessarcimentoSaude implements Serializable {
 	private StatusSolicitacao status;
 	private String justificativa;
 	private Boolean indAtual;
+	private Date dataAbertura;
+	private Date dataAtendimento;
+	private Date dataFechamento;
+	private Integer atendente;
 
 	public Long getCodigo() {
 		return codigo;
@@ -99,6 +103,38 @@ public class RessarcimentoSaude implements Serializable {
 
 	public void setIndAtual(Boolean indAtual) {
 		this.indAtual = indAtual;
+	}
+
+	public Date getDataAbertura() {
+		return dataAbertura;
+	}
+
+	public void setDataAbertura(Date dataAbertura) {
+		this.dataAbertura = dataAbertura;
+	}
+
+	public Date getDataAtendimento() {
+		return dataAtendimento;
+	}
+
+	public void setDataAtendimento(Date dataAtendimento) {
+		this.dataAtendimento = dataAtendimento;
+	}
+
+	public Date getDataFechamento() {
+		return dataFechamento;
+	}
+
+	public void setDataFechamento(Date dataFechamento) {
+		this.dataFechamento = dataFechamento;
+	}
+
+	public Integer getAtendente() {
+		return atendente;
+	}
+
+	public void setAtendente(Integer atendente) {
+		this.atendente = atendente;
 	}
 
 }
