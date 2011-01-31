@@ -176,9 +176,9 @@
 							<f:setPropertyActionListener value="#{list.codigo}"
 								target="#{dependenteController.dependente.codigo}" />
 						</a4j:commandLink>
-						<a4j:commandLink action="#"
+						<a4j:commandLink 
 							rendered="#{list.statusSolicitacao.codigo <= 2}"
-							reRender="listaDependentes, form" ajaxSingle="true">
+							reRender="listaDependentes" ajaxSingle="true">
 							<h:graphicImage value="../images/edit.gif" style="border:0"
 								width="20" height="18" id="editarNPermitido" />
 						</a4j:commandLink>
@@ -273,7 +273,7 @@
 			</a4j:region>
 
 			<center><rich:modalPanel id="painel" autosized="true"
-				width="250" style="text-align:center;">
+				width="350">
 				<f:facet name="header">
 					<h:panelGroup>
 						<h:outputText value="Detalhes do Status"></h:outputText>

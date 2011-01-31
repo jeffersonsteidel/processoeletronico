@@ -307,6 +307,7 @@ public class DependenteController implements Serializable {
 		if (dependente.getRgUf() == null) {
 			dependente.setRgUf(new Estado());
 		}
+		buscarAtentente();
 	}
 
 	public void ativarDesativar() throws Exception {
@@ -330,22 +331,28 @@ public class DependenteController implements Serializable {
 			dependente.setDataFormacao(null);
 		}
 	}
-	
-	public void validar(){
+
+	public void validar() {
 		FacesContext context = FacesContext.getCurrentInstance();
 		dependente = (Dependente) context.getExternalContext().getRequestMap()
 				.get("list");
-		if (dependente.getRgUf() == null) {
-			dependente.setRgUf(new Estado());
-		}
-		if(Constantes.STATUS_SOLICITACAO_EM_ANALISE.equals(dependente.getStatusSolicitacao().getCodigo())){
-			dependente.getStatusSolicitacao().setCodigo(Constantes.STATUS_SOLICITACAO_EM_ANALISE);
+		if (Constantes.STATUS_SOLICITACAO_ENCAMINHADO.equals(dependente
+				.getStatusSolicitacao().getCodigo())) {
+			dependente.getStatusSolicitacao().setCodigo(
+					Constantes.STATUS_SOLICITACAO_EM_ANALISE);
 			dependente.setAtendente(dependente.getServidor().getSiape());
 			dependente.setDataAtendimento(new Date());
-			DAO.getInstance().update(dependente);
+			DependenteDAO.getInstance().updateDependente(dependente);
+		} else if (Constantes.STATUS_SOLICITACAO_EM_ANALISE.equals(dependente
+				.getStatusSolicitacao().getCodigo())) {
+			FacesMessage message = new FacesMessage(
+					FacesMessage.SEVERITY_ERROR,
+					"Este Dependente já está sendo analizada por outro servidor!",
+					"Está Dependente já está sendo analizada por outro servidor!");
+			FacesContext.getCurrentInstance().addMessage("", message);
 		}
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	public List<SelectItem> listarStatusSolicitacoes() {
 		statusSolicitacoes = new ArrayList<SelectItem>();
@@ -358,5 +365,14 @@ public class DependenteController implements Serializable {
 							.getDescricao()));
 		}
 		return statusSolicitacoes;
+	}
+
+	public void buscarAtentente() {
+		if (!(Constantes.STATUS_SOLICITACAO_ENCAMINHADO.equals(dependente
+				.getStatusSolicitacao().getCodigo()))) {
+			atendente = new Servidor();
+			atendente.setSiape(dependente.getAtendente());
+			atendente = (Servidor) ServidorDAO.getInstance().refreshBySiape(atendente);
+		}
 	}
 }
