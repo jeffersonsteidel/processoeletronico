@@ -22,14 +22,15 @@
 				<h:outputText value="Siape: ">
 				</h:outputText>
 				<h:inputText
-					value="#{dependenteController.dependenteFilter.servidor.siape}" size="7"
-					maxlength="7" onkeyup="mascara(this, soNumeros);">
+					value="#{dependenteController.dependenteFilter.servidor.siape}"
+					size="7" maxlength="7" onkeyup="mascara(this, soNumeros);">
 				</h:inputText>
 
 				<h:outputText value="Servidor: ">
 				</h:outputText>
 				<h:inputText
-					value="#{dependenteController.dependenteFilter.servidor.nome}" size="25">
+					value="#{dependenteController.dependenteFilter.servidor.nome}"
+					size="25">
 				</h:inputText>
 
 				<h:outputText value="Dependente: ">
@@ -106,15 +107,18 @@
 					<f:facet name="header">
 						<h:outputText value="Visualizar" />
 					</f:facet>
-					<a4j:commandLink 
-						action="#{dependenteController.validar}" reRender="listaDependentes, painel"
+					<a4j:commandLink action="#{dependenteController.validar}"
+						reRender="listaDependentes, painel"
 						oncomplete="Richfaces.showModalPanel('painel')" ajaxSingle="true">
-						<h:graphicImage value="../images/encaminhado.png" style="border:0"  
-							width="20" height="18" id="encaminhado" rendered="#{list.statusSolicitacao.codigo == 1}" />
+						<h:graphicImage value="../images/encaminhado.png" style="border:0"
+							width="20" height="18" id="encaminhado"
+							rendered="#{list.statusSolicitacao.codigo == 1}" />
 						<h:graphicImage value="../images/indeferido.gif" style="border:0"
-							width="20" height="18" id="indeferido" rendered="#{list.statusSolicitacao.codigo == 4}"/>	
+							width="20" height="18" id="indeferido"
+							rendered="#{list.statusSolicitacao.codigo == 4}" />
 						<h:graphicImage value="../images/deferido.gif" style="border:0"
-							width="20" height="18" id="deferido" rendered="#{list.statusSolicitacao.codigo == 3}" />	
+							width="20" height="18" id="deferido"
+							rendered="#{list.statusSolicitacao.codigo == 3}" />
 						<f:setPropertyActionListener value="#{list}"
 							target="#{dependenteController.dependente}" />
 					</a4j:commandLink>
@@ -247,18 +251,20 @@
 			</h:outputText>
 		</h:panelGrid>
 		<center><h:panelGrid columns="2" style="text-align: center;">
-			<h:outputText value="Justificativa: " />
-			<h:inputTextarea
-				disabled="#{dependenteController.dependente.statusSolicitacao.codigo > 2}"
-				value="#{dependenteController.dependente.justificativa}" cols="50"
-				rows="5"></h:inputTextarea>
-		</h:panelGrid> <h:panelGrid columns="2" style="text-align: center;">
+				<h:outputText value="Justificativa: " />
+				<h:inputTextarea
+					disabled="#{dependenteController.dependente.statusSolicitacao.codigo > 2}"
+					value="#{dependenteController.dependente.justificativa}" cols="50"
+					rows="5"></h:inputTextarea>
+		</h:panelGrid> <h:panelGrid columns="2" id="botoes" style="text-align: center;">
 			<a4j:commandButton value="Deferir" id="deferir"
-				reRender="form, listaDependentes, painel, confirmPanel" ajaxSingle="true"
+				reRender="form, listaDependentes, painel, confirmPanel"
+				ajaxSingle="true"
 				disabled="#{dependenteController.dependente.statusSolicitacao.codigo > 2}"
 				onclick="Richfaces.showModalPanel('confirmPanel')" />
 			<a4j:commandButton value="Indeferir" id="indeferir"
-				reRender="form, listaDependentes,painel, confirmPanel02" ajaxSingle="true"
+				reRender="form, listaDependentes,painel, confirmPanel02"
+				ajaxSingle="true"
 				disabled="#{dependenteController.dependente.statusSolicitacao.codigo > 2}"
 				onclick="Richfaces.showModalPanel('confirmPanel02')" />
 		</h:panelGrid></center>
@@ -277,7 +283,7 @@
 						<td align="center" width="50%"><a4j:commandButton value="Sim"
 							ajaxSingle="true" action="#{dependenteController.deferir}"
 							oncomplete="#{rich:component('confirmPanel')}.hide();"
-							reRender="listaDependentes, deferir, indeferir" /></td>
+							reRender="listaDependentes, botoes" /></td>
 						<td align="center" width="50%"><a4j:commandButton value="Não"
 							onclick="#{rich:component('confirmPanel')}.hide();return false;" />
 						</td>
@@ -297,7 +303,7 @@
 						<td align="center" width="50%"><a4j:commandButton value="Sim"
 							ajaxSingle="true" action="#{dependenteController.indeferir}"
 							oncomplete="#{rich:component('confirmPanel02')}.hide();"
-							reRender="listaDependentes, deferir, indeferir"  /></td>
+							reRender="listaDependentes, botoes" /></td>
 						<td align="center" width="50%"><a4j:commandButton value="Não"
 							onclick="#{rich:component('confirmPanel02')}.hide();return false;" />
 						</td>
