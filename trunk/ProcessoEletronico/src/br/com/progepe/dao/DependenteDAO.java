@@ -59,6 +59,11 @@ public class DependenteDAO extends DAO {
 			sql += " and d.grauParentesco = "
 					+ dependente.getGrauParentesco().getCodigo();
 		}
+		if (dependente.getStatusSolicitacao().getCodigo() != null
+				&& dependente.getStatusSolicitacao().getCodigo() != 0) {
+			sql += " and d.statusSolicitacao.codigo = "
+				+ dependente.getStatusSolicitacao().getCodigo();
+		}
 		if (situacao != null && Constantes.ATIVO.equals(situacao) ) {
 			sql += " and s.dataSaida is null";
 		}

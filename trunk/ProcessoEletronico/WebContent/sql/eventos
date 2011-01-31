@@ -1,16 +1,24 @@
--- RETORNO O STATUS DAS SOLICITAÇÃOES QUE ESTÃO EM ANÁLISE A MAIS DE 30 MINUTOS  
+DROP EVENT retornaStatusSolicitacao;
+DROP EVENT validaDependenteRessarcimentoSaude;
+DROP EVENT retornaStatusEmprego;
+DROP EVENT retornaStatusServidorTitulacao;
+DROP EVENT retornaStatusConjuges;
+DROP EVENT retornaStatusDependente;
+
+
+-- RETORNO O STATUS DAS SOLICITAÇÃOES QUE ESTÃO EM ANÁLISE A MAIS DE 30 MINUTOS 
 CREATE EVENT
   retornaStatusSolicitacao
 ON SCHEDULE
 EVERY 1 SECOND
 DO
-UPDATE solicitacao SET serv_cod_atendente = null,solic_dt_atendimento = null, sta_solic_cod = 1 where sta_solic_cod = 2 and solic_dt_atendimento < DATE_SUB(NOW() , INTERVAL 30 MINUTE);
+UPDATE solicitacao SET serv_cod_atendente = null,solic_dt_atendimento = null, sta_solic_cod = 1 WHERE sta_solic_cod = 2 AND solic_dt_atendimento < DATE_SUB(NOW() , INTERVAL 30 MINUTE);
 
 -- SETA dep_ind_saude PARA 0 AONDE o dependente não tiver necessidades especiais E (o dependente for maior de 24 anos OU (o dependente for maior de 21 anos E não for estudante))
-create event validaDependenteRessarcimentoSaude
+CREATE EVENT validaDependenteRessarcimentoSaude
 ON SCHEDULE EVERY 1 second
 do
-update dependente set dep_ind_saude = 0 where  dep_ind_nec_esp = 0 and (dep_data_nasc <DATE_SUB(NOW() , INTERVAL 24 year) or (dep_ind_est = 0 and dep_data_nasc < DATE_SUB(NOW() , INTERVAL 21 year) ))  
+UPDATE dependente SET dep_ind_saude = 0 WHERE  dep_ind_nec_esp = 0 and (dep_data_nasc <DATE_SUB(NOW() , INTERVAL 24 year) OR (dep_ind_est = 0 AND dep_data_nasc < DATE_SUB(NOW() , INTERVAL 21 year) ))  
 
 -- RETORNO O STATUS DOS EMPREGOS QUE ESTÃO EM ANÁLISE A MAIS DE 30 MINUTOS  
 CREATE EVENT
@@ -18,7 +26,7 @@ CREATE EVENT
 ON SCHEDULE
 EVERY 1 SECOND
 DO
-UPDATE emprego SET emp_atendente = null,emp_data_atendimento = null, emp_justificativa = null, sta_solic_cod = 1 where sta_solic_cod = 2 and emp_data_atendimento < DATE_SUB(NOW() , INTERVAL 30 MINUTE);
+UPDATE emprego SET emp_atendente = null,emp_data_atendimento = null, emp_justificativa = null, sta_solic_cod = 1 WHERE sta_solic_cod = 2 AND emp_data_atendimento < DATE_SUB(NOW() , INTERVAL 30 MINUTE);
 
 -- RETORNO O STATUS DOS SERVIDOR TITULACAO QUE ESTÃO EM ANÁLISE A MAIS DE 30 MINUTOS  
 CREATE EVENT
@@ -26,7 +34,7 @@ CREATE EVENT
 ON SCHEDULE
 EVERY 1 SECOND
 DO
-UPDATE servidortitulacao SET serv_tit_atendente = null, serv_tit_data_atendimento = null,  serv_tit_justificativa = null, sta_solic_cod = 1 where sta_solic_cod = 2 and serv_tit_data_atendimento < DATE_SUB(NOW() , INTERVAL 30 MINUTE);
+UPDATE servidortitulacao SET serv_tit_atendente = null, serv_tit_data_atendimento = null,  serv_tit_justificativa = null, sta_solic_cod = 1 WHERE sta_solic_cod = 2 and serv_tit_data_atendimento < DATE_SUB(NOW() , INTERVAL 30 MINUTE);
 
 -- RETORNO O STATUS DOS CONJUGES QUE ESTÃO EM ANÁLISE A MAIS DE 30 MINUTOS  
 CREATE EVENT
@@ -34,7 +42,7 @@ CREATE EVENT
 ON SCHEDULE
 EVERY 1 SECOND
 DO
-UPDATE conjuge SET conj_atendente = null, conj_data_atendimento = null, conj_justificativa = null, sta_solic_cod = 1 where sta_solic_cod = 2 and conj_data_atendimento < DATE_SUB(NOW() , INTERVAL 30 MINUTE);
+UPDATE conjuge SET conj_atendente = null, conj_data_atendimento = null, conj_justificativa = null, sta_solic_cod = 1 WHERE sta_solic_cod = 2 AND conj_data_atendimento < DATE_SUB(NOW() , INTERVAL 30 MINUTE);
 
 -- RETORNO O STATUS DOS DEPENDENTES QUE ESTÃO EM ANÁLISE A MAIS DE 30 MINUTOS  
 CREATE EVENT
@@ -42,7 +50,7 @@ CREATE EVENT
 ON SCHEDULE
 EVERY 1 SECOND
 DO
-UPDATE dependente SET dep_atendente = null, dep_data_atendimento = null, dep_justificativa = null, sta_solic_cod = 1 where sta_solic_cod = 2 and dep_data_atendimento < DATE_SUB(NOW() , INTERVAL 30 MINUTE);
+UPDATE dependente SET dep_atendente = null, dep_data_atendimento = null, dep_justificativa = null, sta_solic_cod = 1 WHERE sta_solic_cod = 2 AND dep_data_atendimento < DATE_SUB(NOW() , INTERVAL 30 MINUTE);
 
 --DEIXAR ESSA PARTE POR ULTIMO
 SET GLOBAL event_scheduler = ON;

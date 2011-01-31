@@ -29,11 +29,12 @@ public class DependenteController implements Serializable {
 	private Servidor servidor;
 	private List<SelectItem> grausParentescos = new ArrayList<SelectItem>();
 	private List<SelectItem> ufs = new ArrayList<SelectItem>();
+	private List<SelectItem> statusSolicitacoes = new ArrayList<SelectItem>();
 	private List<Dependente> listaDependentes;
 	private List<Dependente> listaDependentesFiltro;
 	private Integer situacao = 0;
 	private Integer ativo = 0;
-	private Servidor atendente; 
+	private Servidor atendente;
 
 	public List<Dependente> getListaDependentes() {
 		return listaDependentes;
@@ -99,13 +100,21 @@ public class DependenteController implements Serializable {
 	public void setAtivo(Integer ativo) {
 		this.ativo = ativo;
 	}
-	
+
 	public Servidor getAtendente() {
 		return atendente;
 	}
 
 	public void setAtendente(Servidor atendente) {
 		this.atendente = atendente;
+	}
+
+	public List<SelectItem> getStatusSolicitacoes() {
+		return statusSolicitacoes;
+	}
+
+	public void setStatusSolicitacoes(List<SelectItem> statusSolicitacoes) {
+		this.statusSolicitacoes = statusSolicitacoes;
 	}
 
 	public void abrirAdicionarDependentes() throws Exception {
@@ -135,7 +144,9 @@ public class DependenteController implements Serializable {
 			dependente.setServidor(new Servidor());
 			dependente.setRgUf(new Estado());
 			dependente.setGrauParentesco(new GrauParentesco());
+			dependente.setStatusSolicitacao(new StatusSolicitacao());
 			listarGrauParentesco();
+			listarStatusSolicitacoes();
 			FacesContext.getCurrentInstance().getExternalContext()
 					.redirect("listarDependentesFilter.jsp");
 		} catch (IOException e) {
@@ -235,18 +246,20 @@ public class DependenteController implements Serializable {
 	}
 
 	public void indeferir() {
-		if(dependente.getJustificativa() != null && !dependente.getJustificativa().isEmpty()){
-		if (null == dependente.getRgUf().getCodigo()
-				|| Constantes.ZERO.equals(dependente.getRgUf().getCodigo())) {
-			dependente.setRgUf(null);
-		}
-		dependente.getStatusSolicitacao().setCodigo(Constantes.STATUS_SOLICITACAO_DEFERIDO);
-		dependente.setDataFechamento(new Date());
-		DAO.getInstance().update(dependente);
-		dependente = new Dependente();
-		dependente.setRgUf(new Estado());
-		dependente.setGrauParentesco(new GrauParentesco());
-		}else{
+		if (dependente.getJustificativa() != null
+				&& !dependente.getJustificativa().isEmpty()) {
+			if (null == dependente.getRgUf().getCodigo()
+					|| Constantes.ZERO.equals(dependente.getRgUf().getCodigo())) {
+				dependente.setRgUf(null);
+			}
+			dependente.getStatusSolicitacao().setCodigo(
+					Constantes.STATUS_SOLICITACAO_DEFERIDO);
+			dependente.setDataFechamento(new Date());
+			DAO.getInstance().update(dependente);
+			dependente = new Dependente();
+			dependente.setRgUf(new Estado());
+			dependente.setGrauParentesco(new GrauParentesco());
+		} else {
 			FacesMessage message = new FacesMessage(
 					FacesMessage.SEVERITY_ERROR,
 					"O campo Justificativa é obrigatório!",
@@ -296,11 +309,54 @@ public class DependenteController implements Serializable {
 		}
 	}
 
+	public void ativarDesativar() throws Exception {
+		FacesContext context = FacesContext.getCurrentInstance();
+		dependente = (Dependente) context.getExternalContext().getRequestMap()
+				.get("list");
+		if (dependente.getRgUf() == null) {
+			dependente.setRgUf(new Estado());
+		}
+		dependente.setIndAtivo(!dependente.getIndAtivo());
+		dependente.setDataFechamento(null);
+		dependente.setAtendente(null);
+		dependente.setDataAtendimento(null);
+		DAO.getInstance().update(dependente);
+	}
+
 	public void validarEstudante() {
 		if (!dependente.getIndEstudante()) {
 			dependente.setCurso(null);
 			dependente.setFaculdade(null);
 			dependente.setDataFormacao(null);
 		}
+	}
+	
+	public void validar(){
+		FacesContext context = FacesContext.getCurrentInstance();
+		dependente = (Dependente) context.getExternalContext().getRequestMap()
+				.get("list");
+		if (dependente.getRgUf() == null) {
+			dependente.setRgUf(new Estado());
+		}
+		if(Constantes.STATUS_SOLICITACAO_EM_ANALISE.equals(dependente.getStatusSolicitacao().getCodigo())){
+			dependente.getStatusSolicitacao().setCodigo(Constantes.STATUS_SOLICITACAO_EM_ANALISE);
+			dependente.setAtendente(dependente.getServidor().getSiape());
+			dependente.setDataAtendimento(new Date());
+			DAO.getInstance().update(dependente);
+		}
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<SelectItem> listarStatusSolicitacoes() {
+		statusSolicitacoes = new ArrayList<SelectItem>();
+		List<StatusSolicitacao> statusSolicitacoesList = new ArrayList<StatusSolicitacao>();
+		statusSolicitacoesList = DAO.getInstance().list(
+				StatusSolicitacao.class, "descricao");
+		for (StatusSolicitacao statusSolicitacao : statusSolicitacoesList) {
+			statusSolicitacoes.add(new SelectItem(
+					statusSolicitacao.getCodigo(), statusSolicitacao
+							.getDescricao()));
+		}
+		return statusSolicitacoes;
 	}
 }

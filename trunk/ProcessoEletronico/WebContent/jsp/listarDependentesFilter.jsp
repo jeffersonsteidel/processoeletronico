@@ -27,7 +27,7 @@
 				</f:facet>
 			</rich:messages>
 			
-			<h:panelGrid columns="13">
+			<h:panelGrid columns="15">
 
 				<h:outputText value="Siape: ">
 				</h:outputText>
@@ -39,13 +39,13 @@
 				<h:outputText value="Servidor: ">
 				</h:outputText>
 				<h:inputText
-					value="#{dependenteController.dependente.servidor.nome}" size="40">
+					value="#{dependenteController.dependente.servidor.nome}" size="25">
 				</h:inputText>
 
 				<h:outputText value="Dependente: ">
 				</h:outputText>
 				<h:inputText value="#{dependenteController.dependente.nome}"
-					size="40">
+					size="25">
 				</h:inputText>
 
 				<h:outputText value="Parentesco: " />
@@ -55,14 +55,21 @@
 					<f:selectItems value="#{dependenteController.grausParentescos}" />
 				</h:selectOneMenu>
 				
-				<h:outputText value="Situação do Dependente: " />
+				<h:outputText value="Status: " />
+				<h:selectOneMenu
+					value="#{dependenteController.dependente.statusSolicitacao.codigo}">
+					<f:selectItem itemLabel="SELECIONE" itemValue="" />
+					<f:selectItems value="#{dependenteController.statusSolicitacoes}" />
+				</h:selectOneMenu>
+				
+				<h:outputText value="Sit. Dependente: " />
 				<h:selectOneMenu value="#{dependenteController.ativo}">
 					<f:selectItem itemLabel="TODOS" itemValue="0" />
 					<f:selectItem itemLabel="ATIVOS" itemValue="1" />
 					<f:selectItem itemLabel="INATIVOS" itemValue="2" />
 				</h:selectOneMenu>
 
-				<h:outputText value="Situação do Servidor: " />
+				<h:outputText value="Sit. Servidor: " />
 				<h:selectOneMenu value="#{dependenteController.situacao}">
 					<f:selectItem itemLabel="TODOS" itemValue="0" />
 					<f:selectItem itemLabel="ATIVOS" itemValue="1" />
@@ -105,27 +112,44 @@
 					<h:outputText value="#{list.grauParentesco.descricao}" />
 				</rich:column>
 
-				<rich:column width="100px">
-					<f:facet name="header">
-						<h:outputText value="Validado" />
-					</f:facet>
-					<h:outputText value="SIM" rendered="#{list.indValidado}" />
-					<h:outputText value="NÃO" rendered="#{!list.indValidado}" />
-				</rich:column>
-
-				<rich:column>
+				<rich:column width="30px">
 					<f:facet name="header">
 						<h:outputText value="Visualizar" />
 					</f:facet>
-					<a4j:commandLink action="#{dependenteController.carregar}"
-						reRender="editPanel" ajaxSingle="true"
-						oncomplete="#{rich:component('editPanel')}.show()">
-						<h:graphicImage value="../images/edit.gif" style="border:0"
-							width="20" height="18" id="editar" />
+					<a4j:commandLink rendered="#{list.statusSolicitacao.codigo == 1}"
+						action="#{dependenteController.validar}" oncomplete="#{rich:component('painel')}.show()"
+						reRender="listaDependentes, painel" ajaxSingle="true">
+						<h:graphicImage value="../images/encaminhado.png" style="border:0"
+							width="20" height="18" id="encaminhado" />
 						<f:setPropertyActionListener value="#{list.codigo}"
 							target="#{dependenteController.dependente.codigo}" />
 					</a4j:commandLink>
-					<rich:toolTip for="editar" value="Editar" />
+					<a4j:commandLink rendered="#{list.statusSolicitacao.codigo == 2}"
+						action="#"
+						reRender="listaDependentes" ajaxSingle="true">
+						<h:graphicImage value="../images/analize.gif" style="border:0"
+							width="20" height="18" id="emAnalise" />
+					</a4j:commandLink>
+					<a4j:commandLink rendered="#{list.statusSolicitacao.codigo == 3}"
+						action="#{dependenteController.validar}" oncomplete="#{rich:component('painel')}.show()"
+						reRender="listaDependentes, painel" ajaxSingle="true">
+						<h:graphicImage value="../images/deferido.gif" style="border:0"
+							width="20" height="18" id="deferido" />
+						<f:setPropertyActionListener value="#{list.codigo}"
+							target="#{dependenteController.dependente.codigo}" />
+					</a4j:commandLink>
+					<a4j:commandLink rendered="#{list.statusSolicitacao.codigo == 4}"
+						action="#{dependenteController.validar}" oncomplete="#{rich:component('painel')}.show()"
+						reRender="listaDependentes, painel" ajaxSingle="true">
+						<h:graphicImage value="../images/indeferido.gif" style="border:0"
+							width="20" height="18" id="indeferido" />
+						<f:setPropertyActionListener value="#{list.codigo}"
+							target="#{dependenteController.dependente.codigo}" />
+					</a4j:commandLink>
+					<rich:toolTip for="encaminhado" value="Encaminhado" />
+					<rich:toolTip for="emAnalise" value="Você não pode abrir uma solicitação que está em Análise!" />
+					<rich:toolTip for="deferido" value="Deferido" />
+					<rich:toolTip for="indeferido" value="Indeferido" />
 				</rich:column>
 
 				<f:facet name="footer">
@@ -135,10 +159,19 @@
 		</rich:panel>
 	</a4j:form></center>
 
-	<center><rich:modalPanel id="editPanel" autosized="true"
-		width="700">
-		<h:form>
-			<center><font size="2"><b>DETALHES DO DEPENDENTE</b></font>
+	<center><rich:modalPanel id="painel" autosized="true" 
+		width="600">
+		<f:facet name="header">
+			<h:panelGroup>
+				<h:outputText style="text-align: center;" value="Detalhes do Dependente"></h:outputText>
+			</h:panelGroup>
+		</f:facet>
+		<f:facet name="controls">
+			<h:panelGroup>
+				<h:graphicImage value="../images/close.gif"
+					onclick="#{rich:component('painel')}.hide();" />
+			</h:panelGroup>
+		</f:facet>
 			<h:panelGrid columns="2">
 				<h:outputText value="Servidor: " />
 				<h:outputText
@@ -216,14 +249,20 @@
 					value="#{dependenteController.dependente.dataFormacao}">
 					<f:convertDateTime pattern="dd/MM/yyyy" />
 				</h:outputText>
+				<h:outputText value="Ativo: "/>
+				<h:outputText
+					rendered="#{dependenteController.dependente.indAtivo}"
+					value="SIM">
+				</h:outputText>
+				<h:outputText
+					rendered="#{!dependenteController.dependente.indAtivo}"
+					value="NÃO">
+				</h:outputText>
 			</h:panelGrid> <h:panelGrid columns="2">
 				<a4j:commandButton value="Validar"
 					action="#{dependenteController.validar}"
 					reRender="form, listaDependentes" />
-				<a4j:commandButton value="Fechar"
-					onclick="#{rich:component('editPanel')}.hide();return false;" />
-			</h:panelGrid></center>
-		</h:form>
+			</h:panelGrid>
 	</rich:modalPanel></center>
 </f:view>
 </body>
