@@ -117,11 +117,9 @@
 			<h:panelGrid columns="1" id="documentos">
 				<a4j:commandButton value="Ver Documentos" action="#" />
 			</h:panelGrid>
-			<h:panelGrid columns="2" style="text-align: center;"
-				id="justificativa">
+			<h:panelGrid columns="2" style="text-align: center;">
 				<h:outputText value="Justificativa: " />
-				<h:inputTextarea
-					disabled="#{dependenteController.dependente.statusSolicitacao.codigo > 2}"
+				<h:inputTextarea  id="justificativa" disabled="#{dependenteController.dependente.statusSolicitacao.codigo != 2}"
 					value="#{dependenteController.dependente.justificativa}" cols="50"
 					rows="5"></h:inputTextarea>
 			</h:panelGrid>
@@ -133,8 +131,8 @@
 					disabled="#{dependenteController.dependente.statusSolicitacao.codigo != 2}"
 					oncomplete="#{rich:component('confirmPanel02')}.show()" />
 			</h:panelGrid>
-			<h:panelGrid columns="2" id="voltar" rendered="#{dependenteController.dependente.statusSolicitacao.codigo > 2}">
-				<a4j:commandButton value="Voltar"
+			<h:panelGrid columns="2">
+				<a4j:commandButton value="Voltar" id="voltar" rendered="#{dependenteController.dependente.statusSolicitacao.codigo > 2}"
 					action="#{dependenteController.retornarUltimaPesquisa}" />
 			</h:panelGrid>
 		</rich:panel></center>
@@ -152,7 +150,7 @@
 								value="Sim" ajaxSingle="true"
 								action="#{dependenteController.deferir}"
 								oncomplete="#{rich:component('confirmPanel')}.hide();"
-								reRender="justificativa, messages, botoes, voltar" /></td>
+								reRender="form, justificativa, messages, botoes, voltar" /></td>
 							<td align="center" width="50%"><a4j:commandButton
 								value="Não"
 								onclick="#{rich:component('confirmPanel')}.hide();return false;" />
@@ -175,7 +173,7 @@
 								value="Sim" ajaxSingle="true"
 								action="#{dependenteController.indeferir}"
 								oncomplete="#{rich:component('confirmPanel02')}.hide();"
-								reRender="justificativa, messages, botoes, voltar" /></td>
+								reRender="form, justificativa, messages, botoes, voltar" /></td>
 							<td align="center" width="50%"><a4j:commandButton
 								value="Não"
 								onclick="#{rich:component('confirmPanel02')}.hide();return false;" />
