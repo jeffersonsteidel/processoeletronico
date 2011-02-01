@@ -36,17 +36,17 @@
 			<h:panelGrid columns="4">
 				<h:outputText value="Titular do Documento: ">
 				</h:outputText>
-			<h:selectOneRadio id="radios"
-				value="#{documentoImagemController.titularDocumento}"
-				required="true"
-				requiredMessage="Campo Titular do Documento é obrigatório!">
-				<f:selectItem itemValue="1" itemLabel="Servidor" />
-				<f:selectItem itemValue="2" itemLabel="Cônjuge" />
-				<f:selectItem itemValue="3" itemLabel="Dependente" />
-				<a4j:support event="onchange"
-					action="#{documentoImagemController.carregarComboTitular}"
-					ajaxSingle="true" reRender="titular, info, upload"></a4j:support>
-			</h:selectOneRadio>
+				<h:selectOneRadio id="radios"
+					value="#{documentoImagemController.titularDocumento}"
+					required="true"
+					requiredMessage="Campo Titular do Documento é obrigatório!">
+					<f:selectItem itemValue="1" itemLabel="Servidor" />
+					<f:selectItem itemValue="2" itemLabel="Cônjuge" />
+					<f:selectItem itemValue="3" itemLabel="Dependente" />
+					<a4j:support event="onchange"
+						action="#{documentoImagemController.carregarComboTitular}"
+						ajaxSingle="true" reRender="titular, info, upload"></a4j:support>
+				</h:selectOneRadio>
 			</h:panelGrid>
 
 			<h:panelGrid columns="3" id="titular">
@@ -74,13 +74,15 @@
 
 
 			<h:outputText value="Tipo de Documento: " />
-			<h:selectOneMenu value="#{documentoImagemController.documentoImagem.tipoDocumento.codigo}" required="true"
+			<h:selectOneMenu
+				value="#{documentoImagemController.documentoImagem.tipoDocumento.codigo}"
+				required="true"
 				requiredMessage="Campo Tipo de Documento é obrigatório!">
 				<f:selectItem itemLabel="SELECIONE" itemValue="" />
 				<f:selectItems value="#{documentoImagemController.tiposDocumentos}" />
 			</h:selectOneMenu>
 
-			<rich:fileUpload 
+			<rich:fileUpload
 				rendered="#{documentoImagemController.documentoImagem.codigo == null}"
 				fileUploadListener="#{documentoImagemController.listener}"
 				maxFilesQuantity="3" clearAllControlLabel="Limpar Todos"
@@ -95,7 +97,9 @@
 			</rich:fileUpload>
 
 			<a4j:commandButton value="Salvar"
-				action="#{documentoImagemController.salvar}" reRender="form, info,painelPai, titular" />
+				action="#{documentoImagemController.salvar}"
+				reRender="form, info,painelPai, titular" />
+			<a4j:commandButton value="Voltar" onclick="history.go(-1)" />
 
 			<h:panelGroup id="info">
 				<rich:panel bodyClass="info">

@@ -233,7 +233,12 @@ public class DependenteController implements Serializable {
 		dependente.setAtendente(null);
 		dependente.setDataAtendimento(null);
 		dependente.setDataFechamento(null);
-	    dependente.setJustificativa(null);
+		dependente.setJustificativa(null);
+		if(dependente.getCodigo() == null || Constantes.ZERO.equals(dependente.getCodigo()) ){
+			dependente.setIndNovo(true);
+		}else{
+			dependente.setIndNovo(false);
+		}
 		if (validarCPF()) {
 			DAO.getInstance().saveOrUpdate(dependente);
 		}
@@ -282,7 +287,8 @@ public class DependenteController implements Serializable {
 		setListaDependentesFiltro(DependenteDAO.getInstance().listByFilter(
 				dependenteFilter, situacao, ativo));
 		if (getListaDependentesFiltro().size() == 0) {
-			FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR,
+			FacesMessage message = new FacesMessage(
+					FacesMessage.SEVERITY_ERROR,
 					"Nenhum registro para o filtro informado!",
 					"Nenhum registro para o filtro informado!");
 			FacesContext.getCurrentInstance().addMessage("", message);
@@ -290,13 +296,13 @@ public class DependenteController implements Serializable {
 		}
 		return listaDependentesFiltro;
 	}
-	
-	public void retornarUltimaPesquisa() throws IOException{
-		setListaDependentesFiltro(DependenteDAO.getInstance().listByFilter(	dependenteFilter, situacao, ativo));
+
+	public void retornarUltimaPesquisa() throws IOException {
+		setListaDependentesFiltro(DependenteDAO.getInstance().listByFilter(
+				dependenteFilter, situacao, ativo));
 		FacesContext.getCurrentInstance().getExternalContext()
-		.redirect("listarDependentesFilter.jsp");
+				.redirect("listarDependentesFilter.jsp");
 	}
-		
 
 	public void remover() throws Exception {
 		dependente = (Dependente) DAO.getInstance().refresh(dependente);
@@ -338,11 +344,9 @@ public class DependenteController implements Serializable {
 			dependente.setDataFormacao(null);
 		}
 	}
-
+	
 	public void validar() throws IOException {
-		FacesContext context = FacesContext.getCurrentInstance();
-		dependente = (Dependente) context.getExternalContext().getRequestMap()
-				.get("list");
+		dependente = (Dependente) DAO.getInstance().refresh(dependente);
 		if (Constantes.STATUS_SOLICITACAO_ENCAMINHADO.equals(dependente
 				.getStatusSolicitacao().getCodigo())) {
 			dependente.getStatusSolicitacao().setCodigo(
@@ -356,6 +360,8 @@ public class DependenteController implements Serializable {
 			atendente = ServidorDAO.getInstance().refreshBySiape(atendente);
 			dependente.setAtendente(atendente.getSiape());
 			DependenteDAO.getInstance().updateDependente(dependente);
+			FacesContext.getCurrentInstance().getExternalContext()
+					.redirect("dependenteAprovar.jsp");
 		} else if (Constantes.STATUS_SOLICITACAO_EM_ANALISE.equals(dependente
 				.getStatusSolicitacao().getCodigo())) {
 			FacesMessage message = new FacesMessage(
@@ -363,9 +369,10 @@ public class DependenteController implements Serializable {
 					"Este Dependente já está sendo analizado por outro servidor!",
 					"Este Dependente já está sendo analizado por outro servidor!");
 			FacesContext.getCurrentInstance().addMessage("", message);
+		} else {
+			FacesContext.getCurrentInstance().getExternalContext()
+					.redirect("dependenteAprovar.jsp");
 		}
-		FacesContext.getCurrentInstance().getExternalContext()
-		.redirect("dependenteAprovar.jsp");
 	}
 
 	@SuppressWarnings("unchecked")

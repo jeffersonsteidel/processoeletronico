@@ -113,6 +113,13 @@
 				<h:outputText
 					rendered="#{!dependenteController.dependente.indAtivo}" value="NÃO">
 				</h:outputText>
+				<h:outputText value="Nova Inclusão: " />
+				<h:outputText rendered="#{dependenteController.dependente.indNovo}"
+					value="SIM">
+				</h:outputText>
+				<h:outputText
+					rendered="#{!dependenteController.dependente.indNovo}" value="NÃO">
+				</h:outputText>
 			</h:panelGrid>
 			<h:panelGrid columns="1" id="documentos">
 				<a4j:commandButton value="Ver Documentos"
