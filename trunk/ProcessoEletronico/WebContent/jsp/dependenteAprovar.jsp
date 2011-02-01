@@ -16,8 +16,9 @@
 	<a4j:loadScript src="../js/script.js" />
 	<a4j:form id="form">
 		<center><rich:panel>
-			<rich:messages  id="messages" layout="list" errorLabelClass="errorLabel"
-				style="top:auto;" infoLabelClass="infoLabel">
+			<rich:messages id="messages" layout="list"
+				errorLabelClass="errorLabel" style="top:auto;"
+				infoLabelClass="infoLabel">
 				<f:facet name="infoMarker">
 					<h:graphicImage value="../images/passed.gif" />
 				</f:facet>
@@ -114,10 +115,10 @@
 				</h:outputText>
 			</h:panelGrid>
 			<h:panelGrid columns="1" id="documentos">
-				<a4j:commandButton value="Ver Documentos"
-					action="#" />
+				<a4j:commandButton value="Ver Documentos" action="#" />
 			</h:panelGrid>
-			<h:panelGrid columns="2" style="text-align: center;" id="justificativa">
+			<h:panelGrid columns="2" style="text-align: center;"
+				id="justificativa">
 				<h:outputText value="Justificativa: " />
 				<h:inputTextarea
 					disabled="#{dependenteController.dependente.statusSolicitacao.codigo > 2}"
@@ -125,14 +126,16 @@
 					rows="5"></h:inputTextarea>
 			</h:panelGrid>
 			<h:panelGrid columns="2" id="botoes">
-				<a4j:commandButton value="Deferir" reRender="confirmPanel" disabled="#{dependenteController.desabilitarBotoes}"
+				<a4j:commandButton value="Deferir" reRender="confirmPanel"
+					disabled="#{dependenteController.dependente.statusSolicitacao.codigo != 2}"
 					oncomplete="#{rich:component('confirmPanel')}.show()" />
-				<a4j:commandButton value="Indeferir" reRender="confirmPanel02" disabled="#{dependenteController.desabilitarBotoes}"
+				<a4j:commandButton value="Indeferir" reRender="confirmPanel02"
+					disabled="#{dependenteController.dependente.statusSolicitacao.codigo != 2}"
 					oncomplete="#{rich:component('confirmPanel02')}.show()" />
 			</h:panelGrid>
 			<h:panelGrid columns="2" id="voltar">
 				<a4j:commandButton value="Voltar"
-					action="#{dependenteController.pesquisarDependentesFiltro}" />
+					action="#{dependenteController.retornarUltimaPesquisa}" />
 			</h:panelGrid>
 		</rich:panel></center>
 
@@ -169,7 +172,7 @@
 					<tbody>
 						<tr>
 							<td align="center" width="50%"><a4j:commandButton
-								value="Sim" ajaxSingle="true" 
+								value="Sim" ajaxSingle="true"
 								action="#{dependenteController.indeferir}"
 								oncomplete="#{rich:component('confirmPanel02')}.hide();"
 								reRender="justificativa, messages, botoes, voltar" /></td>
