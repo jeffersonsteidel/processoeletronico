@@ -9,7 +9,7 @@
 			<generator class="increment"></generator>
 		</id>
 		<property name="pagina" column="RES_SAU_CONT_PAGINA" />
-		<property name="dataAdesao" column="RES_SAU_CONT_DT_ADESAO" />
+		<property name="dataAbertura" column="RES_SAU_CONT_DT_ABERTURA" />
 		<many-to-one name="servidor"
 			class="br.com.progepe.entity.Servidor" column="SERV_COD"
 			lazy="false" />

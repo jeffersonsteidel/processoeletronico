@@ -160,6 +160,10 @@
 		</f:facet>
 		<h:form>
 			<center><h:panelGrid columns="2">
+					<h:outputText
+					value="Atual: " />
+				<h:outputText value="SIM" rendered="#{ressarcimentoSaudeController.ressarcimentoSaude.indAtual}" />
+				<h:outputText value="NÃO" rendered="#{!ressarcimentoSaudeController.ressarcimentoSaude.indAtual}" />
 				<h:outputText
 					value="Servidor: " />
 				<h:outputText value="#{ressarcimentoSaudeController.ressarcimentoSaude.servidor.siape} - #{ressarcimentoSaudeController.ressarcimentoSaude.servidor.nome}" />
@@ -176,7 +180,7 @@
 				rendered="#{ressarcimentoSaudeController.ressarcimentoSaude.numeroContrato != null}"/>
 				<h:outputText value="Data Adesão:" />
 				<h:outputText
-					value="#{ressarcimentoSaudeController.ressarcimentoSaude.dataAdesao}">
+					value="#{ressarcimentoSaudeController.ressarcimentoSaude.dataAdesao.date}">
 					<f:convertDateTime pattern="dd/MM/yyyy" />
 				</h:outputText>
 			</h:panelGrid> <h:outputText value="Cônjuge"
@@ -278,7 +282,7 @@
 					action="#{ressarcimentoSaudeController.indeferir}" id="indeferir"
 					reRender="listaRessarcimento, deferir, indeferir, justificativa" />
 				<a4j:commandButton value="Fechar"
-					onclick="#{rich:component('editPanel')}.hide();return false;" />
+					oncomplete="#{rich:component('editPanel')}.hide();return false;" />
 			</h:panelGrid></center>
 		</h:form>
 	</rich:modalPanel></center>

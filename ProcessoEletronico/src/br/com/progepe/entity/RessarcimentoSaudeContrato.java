@@ -12,7 +12,7 @@ public class RessarcimentoSaudeContrato implements Serializable {
 	private Long codigo;
 	private Servidor servidor;
 	private byte[] pagina;
-	private Date dataAdesao;
+	private Date dataAbertura;
 
 	public Long getCodigo() {
 		return codigo;
@@ -38,12 +38,12 @@ public class RessarcimentoSaudeContrato implements Serializable {
 		this.pagina = pagina;
 	}
 
-	public Date getDataAdesao() {
-		return dataAdesao;
+	public Date getDataAbertura() {
+		return dataAbertura;
 	}
 
-	public void setDataAdesao(Date dataAdesao) {
-		this.dataAdesao = dataAdesao;
+	public void setDataAbertura(Date dataAbertura) {
+		this.dataAbertura = dataAbertura;
 	}
-	
+
 }
