@@ -113,10 +113,14 @@
 					rendered="#{!dependenteController.dependente.indAtivo}" value="NÃO">
 				</h:outputText>
 			</h:panelGrid>
+			<h:panelGrid columns="1" id="documentos">
+				<a4j:commandButton value="Ver Documentos"
+					action="#" />
+			</h:panelGrid>
 			<h:panelGrid columns="2" style="text-align: center;" id="justificativa">
 				<h:outputText value="Justificativa: " />
-				<h:inputTextarea 
-					disabled="#{dependenteController.desabilitarBotoes}"
+				<h:inputTextarea
+					disabled="#{dependenteController.dependente.statusSolicitacao.codigo > 2}"
 					value="#{dependenteController.dependente.justificativa}" cols="50"
 					rows="5"></h:inputTextarea>
 			</h:panelGrid>
@@ -126,9 +130,9 @@
 				<a4j:commandButton value="Indeferir" reRender="confirmPanel02" disabled="#{dependenteController.desabilitarBotoes}"
 					oncomplete="#{rich:component('confirmPanel02')}.show()" />
 			</h:panelGrid>
-			<h:panelGrid columns="1" id="voltar">
-				<a4j:commandButton value="Voltar" disabled="#{!dependenteController.desabilitarBotoes}"
-				action="#{dependenteController.voltarPesquisarDependentes}" />
+			<h:panelGrid columns="2" id="voltar">
+				<a4j:commandButton value="Voltar"
+					action="#{dependenteController.pesquisarDependentesFiltro}" />
 			</h:panelGrid>
 		</rich:panel></center>
 
