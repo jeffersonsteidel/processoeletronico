@@ -361,11 +361,6 @@ public class DependenteController implements Serializable {
 			atendente = ServidorDAO.getInstance().refreshBySiape(atendente);
 			dependente.setAtendente(atendente.getSiape());
 			DependenteDAO.getInstance().updateDependente(dependente);
-			if (dependente.getStatusSolicitacao().getCodigo() < Constantes.STATUS_SOLICITACAO_DEFERIDO) {
-				desabilitarBotoes = false;
-			}
-			FacesContext.getCurrentInstance().getExternalContext()
-					.redirect("dependenteAprovar.jsp");
 		} else if (Constantes.STATUS_SOLICITACAO_EM_ANALISE.equals(dependente
 				.getStatusSolicitacao().getCodigo())) {
 			FacesMessage message = new FacesMessage(
@@ -374,6 +369,8 @@ public class DependenteController implements Serializable {
 					"Este Dependente já está sendo analizado por outro servidor!");
 			FacesContext.getCurrentInstance().addMessage("", message);
 		}
+		FacesContext.getCurrentInstance().getExternalContext()
+				.redirect("dependenteAprovar.jsp");
 	}
 
 	@SuppressWarnings("unchecked")
@@ -397,5 +394,13 @@ public class DependenteController implements Serializable {
 			atendente.setSiape(dependente.getAtendente());
 			atendente = ServidorDAO.getInstance().refreshBySiape(atendente);
 		}
+	}
+	
+	public void voltarPesquisarDependentes() throws IOException{
+		listarGrauParentesco();
+		listarStatusSolicitacoes();
+		pesquisarDependentesFiltro();
+		FacesContext.getCurrentInstance().getExternalContext()
+				.redirect("listarDependentesFilter.jsp");
 	}
 }

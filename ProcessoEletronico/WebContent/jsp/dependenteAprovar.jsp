@@ -115,8 +115,8 @@
 			</h:panelGrid>
 			<h:panelGrid columns="2" style="text-align: center;" id="justificativa">
 				<h:outputText value="Justificativa: " />
-				<h:inputTextarea
-					disabled="#{dependenteController.dependente.statusSolicitacao.codigo > 2}"
+				<h:inputTextarea 
+					disabled="#{dependenteController.desabilitarBotoes}"
 					value="#{dependenteController.dependente.justificativa}" cols="50"
 					rows="5"></h:inputTextarea>
 			</h:panelGrid>
@@ -125,6 +125,10 @@
 					oncomplete="#{rich:component('confirmPanel')}.show()" />
 				<a4j:commandButton value="Indeferir" reRender="confirmPanel02" disabled="#{dependenteController.desabilitarBotoes}"
 					oncomplete="#{rich:component('confirmPanel02')}.show()" />
+			</h:panelGrid>
+			<h:panelGrid columns="1" id="voltar">
+				<a4j:commandButton value="Voltar" disabled="#{!dependenteController.desabilitarBotoes}"
+				action="#{dependenteController.voltarPesquisarDependentes}" />
 			</h:panelGrid>
 		</rich:panel></center>
 
@@ -141,7 +145,7 @@
 								value="Sim" ajaxSingle="true"
 								action="#{dependenteController.deferir}"
 								oncomplete="#{rich:component('confirmPanel')}.hide();"
-								reRender="justificativa, messages, botoes" /></td>
+								reRender="justificativa, messages, botoes, voltar" /></td>
 							<td align="center" width="50%"><a4j:commandButton
 								value="Não"
 								onclick="#{rich:component('confirmPanel')}.hide();return false;" />
@@ -164,7 +168,7 @@
 								value="Sim" ajaxSingle="true" 
 								action="#{dependenteController.indeferir}"
 								oncomplete="#{rich:component('confirmPanel02')}.hide();"
-								reRender="justificativa, messages, botoes" /></td>
+								reRender="justificativa, messages, botoes, voltar" /></td>
 							<td align="center" width="50%"><a4j:commandButton
 								value="Não"
 								onclick="#{rich:component('confirmPanel02')}.hide();return false;" />
