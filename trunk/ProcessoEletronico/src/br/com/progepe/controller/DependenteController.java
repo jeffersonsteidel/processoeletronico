@@ -230,6 +230,10 @@ public class DependenteController implements Serializable {
 		dependente.getStatusSolicitacao().setCodigo(
 				Constantes.STATUS_SOLICITACAO_ENCAMINHADO);
 		dependente.setDataAbertura(new Date());
+		dependente.setAtendente(null);
+		dependente.setDataAtendimento(null);
+		dependente.setDataFechamento(null);
+	    dependente.setJustificativa(null);
 		if (validarCPF()) {
 			DAO.getInstance().saveOrUpdate(dependente);
 		}
@@ -246,11 +250,6 @@ public class DependenteController implements Serializable {
 				Constantes.STATUS_SOLICITACAO_DEFERIDO);
 		dependente.setDataFechamento(new Date());
 		DAO.getInstance().update(dependente);
-		dependente = new Dependente();
-		dependente.setRgUf(new Estado());
-		dependente.setGrauParentesco(new GrauParentesco());
-		dependente.setStatusSolicitacao(new StatusSolicitacao());
-		pesquisarDependentesFiltro();
 	}
 
 	public void indeferir() {
