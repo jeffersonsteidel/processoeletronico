@@ -115,11 +115,13 @@
 				</h:outputText>
 			</h:panelGrid>
 			<h:panelGrid columns="1" id="documentos">
-				<a4j:commandButton value="Ver Documentos" action="#" />
+				<a4j:commandButton value="Ver Documentos"
+					action="#{documentoImagemController.abrirPesquisarDocumentos}" />
 			</h:panelGrid>
 			<h:panelGrid columns="2" style="text-align: center;">
 				<h:outputText value="Justificativa: " />
-				<h:inputTextarea  id="justificativa" disabled="#{dependenteController.dependente.statusSolicitacao.codigo != 2}"
+				<h:inputTextarea id="justificativa"
+					disabled="#{dependenteController.dependente.statusSolicitacao.codigo != 2}"
 					value="#{dependenteController.dependente.justificativa}" cols="50"
 					rows="5"></h:inputTextarea>
 			</h:panelGrid>
@@ -132,7 +134,8 @@
 					oncomplete="#{rich:component('confirmPanel02')}.show()" />
 			</h:panelGrid>
 			<h:panelGrid columns="2">
-				<a4j:commandButton value="Voltar" id="voltar" rendered="#{dependenteController.dependente.statusSolicitacao.codigo > 2}"
+				<a4j:commandButton value="Voltar" id="voltar"
+					rendered="#{dependenteController.dependente.statusSolicitacao.codigo > 2}"
 					action="#{dependenteController.retornarUltimaPesquisa}" />
 			</h:panelGrid>
 		</rich:panel></center>
