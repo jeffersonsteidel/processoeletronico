@@ -282,7 +282,7 @@ public class DependenteController implements Serializable {
 		setListaDependentesFiltro(DependenteDAO.getInstance().listByFilter(
 				dependenteFilter, situacao, ativo));
 		if (getListaDependentesFiltro().size() == 0) {
-			FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_WARN,
+			FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR,
 					"Nenhum registro para o filtro informado!",
 					"Nenhum registro para o filtro informado!");
 			FacesContext.getCurrentInstance().addMessage("", message);
@@ -329,7 +329,6 @@ public class DependenteController implements Serializable {
 				Constantes.STATUS_SOLICITACAO_ENCAMINHADO);
 		dependente.setJustificativa(null);
 		DAO.getInstance().update(dependente);
-		pesquisarDependentesFiltro();
 	}
 
 	public void validarEstudante() {

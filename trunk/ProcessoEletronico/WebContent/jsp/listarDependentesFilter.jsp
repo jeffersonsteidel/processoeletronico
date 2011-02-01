@@ -16,8 +16,9 @@
 	<a4j:loadScript src="../js/script.js" />
 	<center><a4j:form id="form">
 		<rich:panel>
-			<rich:messages layout="list" errorLabelClass="errorLabel"
-				style="top:auto;" infoLabelClass="infoLabel">
+			<rich:messages id="messages" layout="list"
+				errorLabelClass="errorLabel" style="top:auto;"
+				infoLabelClass="infoLabel">
 				<f:facet name="infoMarker">
 					<h:graphicImage value="../images/passed.gif" />
 				</f:facet>
