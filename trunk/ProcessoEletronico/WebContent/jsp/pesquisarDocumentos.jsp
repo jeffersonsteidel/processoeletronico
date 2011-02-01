@@ -61,6 +61,10 @@
 					action="#{documentoImagemController.pesquisarDocumentos}"
 					reRender="listaDocumento" type="submit" />
 			</h:panelGrid>
+			
+			<a4j:commandButton value="Voltar" onclick="history.go(-1)"
+				rendered="#{autenticacaoController.siapeAutenticado.indAdministrador}">
+			</a4j:commandButton>
 
 			<rich:dataTable id="listaDocumento"
 				value="#{documentoImagemController.documentoList}" var="list"

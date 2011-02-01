@@ -27,6 +27,7 @@
 		<property name="justificativa" column="DEP_JUSTIFICATIVA" />
 		<property name="indNecessidadesEspeciais" column="DEP_IND_NEC_ESP"
 			type="boolean" />
+		<property name="indNovo" column="DEP_IND_NOVO"	type="boolean" />
 			<property name="indRessarcimentoSaude" column="DEP_IND_SAUDE" type="boolean" />	
 		<many-to-one name="grauParentesco" class="br.com.progepe.entity.GrauParentesco"
 			column="GRAU_PAR_COD_DEP" lazy="false" />
