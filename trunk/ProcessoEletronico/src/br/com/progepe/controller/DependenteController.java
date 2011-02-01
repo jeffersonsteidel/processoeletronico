@@ -36,7 +36,7 @@ public class DependenteController implements Serializable {
 	private Integer situacao = 0;
 	private Integer ativo = 0;
 	private Servidor atendente;
-	private Boolean desabilitarBotoes = false; 
+	private Boolean desabilitarBotoes = false;
 
 	public List<Dependente> getListaDependentes() {
 		return listaDependentes;
@@ -126,7 +126,7 @@ public class DependenteController implements Serializable {
 	public void setDependenteFilter(Dependente dependenteFilter) {
 		this.dependenteFilter = dependenteFilter;
 	}
-	
+
 	public Boolean getDesabilitarBotoes() {
 		return desabilitarBotoes;
 	}
@@ -276,10 +276,6 @@ public class DependenteController implements Serializable {
 					Constantes.STATUS_SOLICITACAO_INDEFERIDO);
 			dependente.setDataFechamento(new Date());
 			DAO.getInstance().update(dependente);
-			dependente = new Dependente();
-			dependente.setRgUf(new Estado());
-			dependente.setGrauParentesco(new GrauParentesco());
-			pesquisarDependentesFiltro();
 			desabilitarBotoes = true;
 		}
 	}
@@ -334,7 +330,8 @@ public class DependenteController implements Serializable {
 		dependente.setDataFechamento(null);
 		dependente.setAtendente(null);
 		dependente.setDataAtendimento(null);
-		dependente.getStatusSolicitacao().setCodigo(Constantes.STATUS_SOLICITACAO_ENCAMINHADO);
+		dependente.getStatusSolicitacao().setCodigo(
+				Constantes.STATUS_SOLICITACAO_ENCAMINHADO);
 		DAO.getInstance().update(dependente);
 		pesquisarDependentesFiltro();
 	}
@@ -347,7 +344,7 @@ public class DependenteController implements Serializable {
 		}
 	}
 
-	public void validar() {
+	public void validar() throws IOException {
 		FacesContext context = FacesContext.getCurrentInstance();
 		dependente = (Dependente) context.getExternalContext().getRequestMap()
 				.get("list");
@@ -364,11 +361,11 @@ public class DependenteController implements Serializable {
 			atendente = ServidorDAO.getInstance().refreshBySiape(atendente);
 			dependente.setAtendente(atendente.getSiape());
 			DependenteDAO.getInstance().updateDependente(dependente);
-			pesquisarDependentesFiltro();
-			if(dependente
-					.getStatusSolicitacao().getCodigo()< Constantes.STATUS_SOLICITACAO_DEFERIDO){
+			if (dependente.getStatusSolicitacao().getCodigo() < Constantes.STATUS_SOLICITACAO_DEFERIDO) {
 				desabilitarBotoes = false;
 			}
+			FacesContext.getCurrentInstance().getExternalContext()
+					.redirect("dependenteAprovar.jsp");
 		} else if (Constantes.STATUS_SOLICITACAO_EM_ANALISE.equals(dependente
 				.getStatusSolicitacao().getCodigo())) {
 			FacesMessage message = new FacesMessage(
