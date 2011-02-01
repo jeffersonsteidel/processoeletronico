@@ -461,7 +461,6 @@ public class RessarcimentoSaudeController implements Serializable {
 			atendente.setSiape(ressarcimentoSaude.getAtendente());
 			atendente = ServidorDAO.getInstance().refreshByFilter(atendente);
 		}
-		validarTipoPlano();
 		conjuges.clear();
 		dependentes.clear();
 		conjuges = RessarcimentoSaudeDAO.getInstance()

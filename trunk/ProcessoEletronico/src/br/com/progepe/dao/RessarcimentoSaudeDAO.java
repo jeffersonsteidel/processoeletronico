@@ -73,7 +73,7 @@ public class RessarcimentoSaudeDAO extends DAO {
 			}
 			for (RessarcimentoSaudeContrato contrato : ressarcimentoSaude
 					.getFiles()) {
-				contrato.setDataAdesao(ressarcimentoSaude.getDataAdesao());
+				contrato.setDataAbertura(ressarcimentoSaude.getDataAbertura());
 				contrato.setServidor(ressarcimentoSaude.getServidor());
 				HibernateUtility.getSession().saveOrUpdate(contrato);
 			}
@@ -175,7 +175,7 @@ public class RessarcimentoSaudeDAO extends DAO {
 		String sql;
 		sql = "from RessarcimentoSaudeContrato c where c.servidor.siape = "
 				+ ressarcimentoSaude.getServidor().getSiape();
-		sql += " and c.dataAdesao = '" + ressarcimentoSaude.getDataAdesao()
+		sql += " and c.dataAbertura = '" + ressarcimentoSaude.getDataAbertura()
 				+ "'";
 		Query query = HibernateUtility.getSession().createQuery(sql);
 		HibernateUtility.commitTransaction();
