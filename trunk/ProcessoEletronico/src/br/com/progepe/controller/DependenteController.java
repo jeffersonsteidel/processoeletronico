@@ -36,7 +36,6 @@ public class DependenteController implements Serializable {
 	private Integer situacao = 0;
 	private Integer ativo = 0;
 	private Servidor atendente;
-	private Boolean desabilitarBotoes = false;
 
 	public List<Dependente> getListaDependentes() {
 		return listaDependentes;
@@ -127,14 +126,6 @@ public class DependenteController implements Serializable {
 		this.dependenteFilter = dependenteFilter;
 	}
 
-	public Boolean getDesabilitarBotoes() {
-		return desabilitarBotoes;
-	}
-
-	public void setDesabilitarBotoes(Boolean desabilitarBotoes) {
-		this.desabilitarBotoes = desabilitarBotoes;
-	}
-
 	public void abrirAdicionarDependentes() throws Exception {
 		try {
 			dependente = new Dependente();
@@ -163,7 +154,6 @@ public class DependenteController implements Serializable {
 			dependenteFilter.setRgUf(new Estado());
 			dependenteFilter.setGrauParentesco(new GrauParentesco());
 			dependenteFilter.setStatusSolicitacao(new StatusSolicitacao());
-			desabilitarBotoes = false;
 			listarGrauParentesco();
 			listarStatusSolicitacoes();
 			FacesContext.getCurrentInstance().getExternalContext()
@@ -261,7 +251,6 @@ public class DependenteController implements Serializable {
 		dependente.setGrauParentesco(new GrauParentesco());
 		dependente.setStatusSolicitacao(new StatusSolicitacao());
 		pesquisarDependentesFiltro();
-		desabilitarBotoes = true;
 	}
 
 	public void indeferir() {
@@ -277,7 +266,6 @@ public class DependenteController implements Serializable {
 					Constantes.STATUS_SOLICITACAO_INDEFERIDO);
 			dependente.setDataFechamento(new Date());
 			DAO.getInstance().update(dependente);
-			desabilitarBotoes = true;
 		}
 	}
 
@@ -369,9 +357,6 @@ public class DependenteController implements Serializable {
 			atendente = ServidorDAO.getInstance().refreshBySiape(atendente);
 			dependente.setAtendente(atendente.getSiape());
 			DependenteDAO.getInstance().updateDependente(dependente);
-			if (dependente.getStatusSolicitacao().getCodigo() < Constantes.STATUS_SOLICITACAO_DEFERIDO) {
-				desabilitarBotoes = false;
-			}
 		} else if (Constantes.STATUS_SOLICITACAO_EM_ANALISE.equals(dependente
 				.getStatusSolicitacao().getCodigo())) {
 			FacesMessage message = new FacesMessage(

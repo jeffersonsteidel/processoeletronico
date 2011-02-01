@@ -133,7 +133,7 @@
 					disabled="#{dependenteController.dependente.statusSolicitacao.codigo != 2}"
 					oncomplete="#{rich:component('confirmPanel02')}.show()" />
 			</h:panelGrid>
-			<h:panelGrid columns="2" id="voltar">
+			<h:panelGrid columns="2" id="voltar" rendered="#{dependenteController.dependente.statusSolicitacao.codigo > 2}">
 				<a4j:commandButton value="Voltar"
 					action="#{dependenteController.retornarUltimaPesquisa}" />
 			</h:panelGrid>
