@@ -186,7 +186,7 @@
 							value="Você somente poderá editar dependentes deferidos ou indeferidos!" />
 					</rich:column>
 
-					<rich:column width="30px">
+					<rich:column width="60px">
 						<f:facet name="header">
 							<h:outputText value="Ativar/Desativar" />
 						</f:facet>
@@ -228,7 +228,20 @@
 							value="Você somente pode Desativar dependente deferidos ou indeferidos" />
 					</rich:column>
 
-					<rich:column width="30px">
+					<rich:column width="60px">
+						<f:facet name="header">
+							<h:outputText value="Adicionar Documentos" />
+						</f:facet>
+						<a4j:commandLink id="documentos"
+							action="#{documentoImagemController.abrirAdicionarDocumentos}"
+							reRender="listaDependentes" ajaxSingle="true">
+							<h:graphicImage value="../images/add_documentos.png"
+								style="border:0" width="20" height="18" />
+						</a4j:commandLink>
+						<rich:toolTip for="documentos" value="Clique aqui para adicionar os Documentos do Dependente!" />
+					</rich:column>
+					
+					<rich:column width="60px">
 						<f:facet name="header">
 							<h:outputText value="Status" />
 						</f:facet>
