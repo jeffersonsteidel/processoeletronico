@@ -163,6 +163,7 @@ public class DependenteController implements Serializable {
 			dependenteFilter.setRgUf(new Estado());
 			dependenteFilter.setGrauParentesco(new GrauParentesco());
 			dependenteFilter.setStatusSolicitacao(new StatusSolicitacao());
+			desabilitarBotoes = false;
 			listarGrauParentesco();
 			listarStatusSolicitacoes();
 			FacesContext.getCurrentInstance().getExternalContext()
@@ -302,6 +303,13 @@ public class DependenteController implements Serializable {
 		}
 		return listaDependentesFiltro;
 	}
+	
+	public void retornarUltimaPesquisa() throws IOException{
+		setListaDependentesFiltro(DependenteDAO.getInstance().listByFilter(	dependenteFilter, situacao, ativo));
+		FacesContext.getCurrentInstance().getExternalContext()
+		.redirect("listarDependentesFilter.jsp");
+	}
+		
 
 	public void remover() throws Exception {
 		dependente = (Dependente) DAO.getInstance().refresh(dependente);
