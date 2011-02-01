@@ -190,8 +190,8 @@
 						<f:facet name="header">
 							<h:outputText value="Ativar/Desativar" />
 						</f:facet>
-						<a4j:commandLink action="#"
-							reRender="listaDependentes" oncomplete="#{rich:component('confirmPanel')}.show()"
+						<a4j:commandLink action="#{dependenteController.ativarDesativar}"
+							reRender="listaDependentes"
 							rendered="#{list.statusSolicitacao.codigo > 2}" ajaxSingle="true">
 							<h:graphicImage id="ativo" value="../images/ativar.gif"
 								style="border:0" width="20" height="18"
@@ -199,8 +199,8 @@
 							<f:setPropertyActionListener value="#{list.codigo}"
 								target="#{dependenteController.dependente.codigo}" />
 						</a4j:commandLink>
-						<a4j:commandLink action="#"
-							reRender="listaDependentes" oncomplete="#{rich:component('confirmPanel')}.show()"
+						<a4j:commandLink action="#{dependenteController.ativarDesativar}"
+							reRender="listaDependentes"
 							rendered="#{list.statusSolicitacao.codigo > 2}" ajaxSingle="true">
 							<h:graphicImage id="inativo" value="../images/desativar.gif"
 								style="border:0" width="20" height="18"
@@ -220,8 +220,8 @@
 								value="../images/desativar.gif" style="border:0" width="20"
 								height="18" rendered="#{list.indAtivo}" />
 						</a4j:commandLink>
-						<rich:toolTip for="ativo" value="Ativar" />
-						<rich:toolTip for="inativo" value="Desativar" />
+						<rich:toolTip for="ativo" value="Clique aqui para Desativar o Dependente!" />
+						<rich:toolTip for="inativo" value="Clique aqui para Ativar o Dependente" />
 						<rich:toolTip for="ativoNPermitido"
 							value="Você somente pode Ativar dependente deferidos ou indeferidos" />
 						<rich:toolTip for="inativoNPermitido"
@@ -328,40 +328,14 @@
 						<f:convertDateTime pattern="dd/MM/yyyy" />
 					</h:outputText>
 					<h:outputText
-						rendered="#{dependenteController.dependente.justificativa != null}"
+						rendered="#{dependenteController.dependente.justificativa != null && dependenteController.dependente.justificativa != ''}"
 						value="Justificativa: " />
 					<h:outputText
-						rendered="#{dependenteController.dependente.justificativa != null}"
+						rendered="#{dependenteController.dependente.justificativa != null && dependenteController.dependente.justificativa != ''}"
 						value="#{dependenteController.dependente.justificativa}">
 					</h:outputText>
 				</h:panelGrid>
-			</rich:modalPanel>
-			
-			
-			<rich:modalPanel id="confirmPanel" autosized="true" width="200">
-			<f:facet name="header">
-				<h:outputText value="Confirma está operação?"
-					style="padding-right:15px;" />
-			</f:facet>
-			<h:form>
-				<table width="100%">
-					<tbody>
-						<tr>
-							<td align="center" width="50%"><a4j:commandButton
-								value="Sim" ajaxSingle="true"
-								action="#{dependenteController.ativarDesativar}"
-								oncomplete="#{rich:component('confirmPanel')}.hide();"
-								reRender="listaDependentes" /></td>
-							<td align="center" width="50%"><a4j:commandButton
-								value="Não"
-								onclick="#{rich:component('confirmPanel')}.hide();return false;" />
-							</td>
-						</tr>
-					</tbody>
-				</table>
-			</h:form>
-		</rich:modalPanel>
-			</center>
+			</rich:modalPanel></center>
 		</rich:panel></center>
 	</a4j:form>
 </f:view>
