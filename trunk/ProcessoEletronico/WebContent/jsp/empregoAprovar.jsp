@@ -49,31 +49,78 @@
 				<h:inputTextarea value="#{empregoController.emprego.atividades}"
 					rows="10" cols="50" disabled="true">
 				</h:inputTextarea>
-
+			</h:panelGrid> <h:panelGrid columns="1" id="documentos">
+				<a4j:commandButton value="Ver Documentos"
+					action="#{documentoImagemController.abrirPesquisarDocumentos}" />
+			</h:panelGrid> <h:panelGrid columns="2">
 				<h:outputText value="Justificativa: " />
 				<h:inputTextarea value="#{empregoController.emprego.justificativa}"
 					rows="10" cols="50" disabled="#{empregoController.desabilitaBotao}">
 				</h:inputTextarea>
+			</h:panelGrid> 
+			<h:panelGrid columns="2" id="botoes">
+				<a4j:commandButton value="Deferir" reRender="confirmPanel"
+					disabled="#{empregoController.emprego.statusSolicitacao.codigo != 2}"
+					oncomplete="#{rich:component('confirmPanel')}.show()" />
+				<a4j:commandButton value="Indeferir" reRender="confirmPanel02"
+					disabled="#{empregoController.emprego.statusSolicitacao.codigo != 2}"
+					oncomplete="#{rich:component('confirmPanel02')}.show()" />
 			</h:panelGrid>
-			 <h:panelGrid columns="2">
-				<a4j:commandButton value="Deferir" reRender="form"
-					disabled="#{empregoController.desabilitaBotao}"
-					action="#{empregoController.deferir}" />
-				<a4j:commandButton value="Indeferir" reRender="form"
-					disabled="#{empregoController.desabilitaBotao}"
-					action="#{empregoController.indeferir}" />
-			</h:panelGrid>		
-			<h:panelGrid columns="1">
-				<a4j:commandButton value="Voltar" disabled="#{!empregoController.desabilitaBotao}"
+			<h:panelGrid columns="2">
+				<a4j:commandButton value="Voltar" id="voltar"
+					rendered="#{empregoController.emprego.statusSolicitacao.codigo > 2}"
 					action="#{empregoController.voltarListarEmprego}" />
-			</h:panelGrid></center>
+			</h:panelGrid>		
+			</center>
 		</rich:panel>
-
-
-
+		
+		<rich:modalPanel id="confirmPanel" autosized="true" width="200">
+			<f:facet name="header">
+				<h:outputText value="Confirma este deferimento?"
+					style="padding-right:15px;" />
+			</f:facet>
+			<h:form>
+				<table width="100%">
+					<tbody>
+						<tr>
+							<td align="center" width="50%"><a4j:commandButton
+								value="Sim" ajaxSingle="true"
+								action="#{empregoController.deferir}"
+								oncomplete="#{rich:component('confirmPanel')}.hide();"
+								reRender="form, justificativa, messages, botoes, voltar" /></td>
+							<td align="center" width="50%"><a4j:commandButton
+								value="Não"
+								onclick="#{rich:component('confirmPanel')}.hide();return false;" />
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</h:form>
+		</rich:modalPanel>
+		<rich:modalPanel id="confirmPanel02" autosized="true" width="200">
+			<f:facet name="header">
+				<h:outputText value="Confirma este indeferimento?"
+					style="padding-right:15px;" />
+			</f:facet>
+			<h:form>
+				<table width="100%">
+					<tbody>
+						<tr>
+							<td align="center" width="50%"><a4j:commandButton
+								value="Sim" ajaxSingle="true"
+								action="#{empregoController.indeferir}"
+								oncomplete="#{rich:component('confirmPanel02')}.hide();"
+								reRender="form, justificativa, messages, botoes, voltar" /></td>
+							<td align="center" width="50%"><a4j:commandButton
+								value="Não"
+								onclick="#{rich:component('confirmPanel02')}.hide();return false;" />
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</h:form>
+		</rich:modalPanel>
 	</a4j:form>
-
-
 </f:view>
 </body>
 </html>

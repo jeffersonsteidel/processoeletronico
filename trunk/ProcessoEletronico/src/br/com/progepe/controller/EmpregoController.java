@@ -28,7 +28,6 @@ public class EmpregoController implements Serializable {
 	private Emprego emprego;
 	private Integer situacao = 0;
 	private Servidor atendente;
-	private Boolean desabilitaBotao = false;
 	private Emprego empregoFiltro;
 
 	public List<Emprego> getListaEmpregos() {
@@ -78,14 +77,6 @@ public class EmpregoController implements Serializable {
 
 	public void setAtendente(Servidor atendente) {
 		this.atendente = atendente;
-	}
-
-	public Boolean getDesabilitaBotao() {
-		return desabilitaBotao;
-	}
-
-	public void setDesabilitaBotao(Boolean desabilitaBotao) {
-		this.desabilitaBotao = desabilitaBotao;
 	}
 
 	public Emprego getEmpregoFiltro() {
@@ -182,7 +173,6 @@ public class EmpregoController implements Serializable {
 		}
 		emprego.setDataFechamento(new Date());
 		DAO.getInstance().update(emprego);
-		desabilitaBotao = true;
 	}
 
 	public void indeferir() {
@@ -192,7 +182,6 @@ public class EmpregoController implements Serializable {
 					Constantes.STATUS_SOLICITACAO_INDEFERIDO);
 			emprego.setDataFechamento(new Date());
 			DAO.getInstance().update(emprego);
-			desabilitaBotao = true;
 		} else {
 			FacesMessage message = new FacesMessage(
 					FacesMessage.SEVERITY_ERROR,
@@ -231,10 +220,8 @@ public class EmpregoController implements Serializable {
 		FacesContext context = FacesContext.getCurrentInstance();
 		emprego = (Emprego) context.getExternalContext().getRequestMap()
 				.get("list");
-		desabilitaBotao = true;
 		if (Constantes.STATUS_SOLICITACAO_ENCAMINHADO.equals(emprego
 				.getStatusSolicitacao().getCodigo())) {
-			desabilitaBotao = false;
 			emprego.setStatusSolicitacao(new StatusSolicitacao());
 			emprego.getStatusSolicitacao().setCodigo(
 					Constantes.STATUS_SOLICITACAO_EM_ANALISE);
