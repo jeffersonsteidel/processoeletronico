@@ -35,13 +35,13 @@
 				<h:outputText id="cargo" value="#{empregoController.emprego.cargo}"></h:outputText>
 				<h:outputText value="Data de Admissão: " />
 				<h:outputText value="#{empregoController.emprego.dataAdmissao}">
-					<f:convertDateTime pattern="dd/MM/yyyy" />
+					<f:convertDateTime pattern="dd/MM/yyyy - HH:MM:ss" />
 				</h:outputText>
 				<h:outputText value="Empresa: " />
 				<h:outputText value="#{empregoController.emprego.empresa}"></h:outputText>
 				<h:outputText value="Data de Saida: " />
 				<h:outputText value="#{empregoController.emprego.dataSaida}">
-					<f:convertDateTime pattern="dd/MM/yyyy" />
+					<f:convertDateTime pattern="dd/MM/yyyy - HH:MM:ss" />
 				</h:outputText>
 			</h:panelGrid> <h:panelGrid columns="2">
 				<h:outputText value="Atividades: " />
