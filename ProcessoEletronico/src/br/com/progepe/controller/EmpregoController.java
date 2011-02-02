@@ -16,9 +16,7 @@ import br.com.progepe.dao.DAO;
 import br.com.progepe.dao.EmpregoDAO;
 import br.com.progepe.dao.ServidorDAO;
 import br.com.progepe.entity.Autenticacao;
-import br.com.progepe.entity.Dependente;
 import br.com.progepe.entity.Emprego;
-import br.com.progepe.entity.Estado;
 import br.com.progepe.entity.Servidor;
 import br.com.progepe.entity.StatusSolicitacao;
 
@@ -30,6 +28,8 @@ public class EmpregoController implements Serializable {
 	private Emprego emprego;
 	private Integer situacao = 0;
 	private Servidor atendente;
+	private Boolean desabilitaBotao = false;
+	private Emprego empregoFiltro;
 
 	public List<Emprego> getListaEmpregos() {
 		return listaEmpregos;
@@ -41,7 +41,7 @@ public class EmpregoController implements Serializable {
 
 	public Emprego getEmprego() {
 		return emprego;
-		
+
 	}
 
 	public void setEmprego(Emprego emprego) {
@@ -79,7 +79,23 @@ public class EmpregoController implements Serializable {
 	public void setAtendente(Servidor atendente) {
 		this.atendente = atendente;
 	}
-	
+
+	public Boolean getDesabilitaBotao() {
+		return desabilitaBotao;
+	}
+
+	public void setDesabilitaBotao(Boolean desabilitaBotao) {
+		this.desabilitaBotao = desabilitaBotao;
+	}
+
+	public Emprego getEmpregoFiltro() {
+		return empregoFiltro;
+	}
+
+	public void setEmpregoFiltro(Emprego empregoFiltro) {
+		this.empregoFiltro = empregoFiltro;
+	}
+
 	public void abrirEmprego() throws Exception {
 		try {
 			listaEmpregos.clear();
@@ -100,20 +116,25 @@ public class EmpregoController implements Serializable {
 			emprego = new Emprego();
 			emprego.setStatusSolicitacao(new StatusSolicitacao());
 			emprego.setServidor(new Servidor());
+			empregoFiltro = new Emprego();
+			empregoFiltro.setStatusSolicitacao(new StatusSolicitacao());
+			empregoFiltro.setServidor(new Servidor());
 			FacesContext.getCurrentInstance().getExternalContext()
 					.redirect("listarEmprego.jsp");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	public List<SelectItem> listarStatusSolicitacoes() {
 		statusSolicitacoes = new ArrayList<SelectItem>();
 		List<StatusSolicitacao> statusSolicitacao = new ArrayList<StatusSolicitacao>();
-		statusSolicitacao = DAO.getInstance().list(StatusSolicitacao.class, "descricao");
+		statusSolicitacao = DAO.getInstance().list(StatusSolicitacao.class,
+				"descricao");
 		for (StatusSolicitacao status : statusSolicitacao) {
-			statusSolicitacoes.add(new SelectItem(status.getCodigo(), status.getDescricao()));
+			statusSolicitacoes.add(new SelectItem(status.getCodigo(), status
+					.getDescricao()));
 		}
 		return statusSolicitacoes;
 	}
@@ -127,8 +148,6 @@ public class EmpregoController implements Serializable {
 		emprego.setServidor(ServidorDAO.getInstance().refreshBySiape(
 				emprego.getServidor()));
 	}
-	
-	
 
 	public void salvarEmprego() throws Exception {
 		if (emprego.getDataAdmissao().after(emprego.getDataSaida())
@@ -139,29 +158,40 @@ public class EmpregoController implements Serializable {
 					"A Data de Saída Final deve ser maior que Data de Admissão!");
 			FacesContext.getCurrentInstance().addMessage("", message);
 		} else {
-			emprego.getStatusSolicitacao().setCodigo(Constantes.STATUS_SOLICITACAO_ENCAMINHADO);
+			emprego.getStatusSolicitacao().setCodigo(
+					Constantes.STATUS_SOLICITACAO_ENCAMINHADO);
 			emprego.setDataAbertura(new Date());
+			emprego.setAtendente(null);
+			emprego.setDataAtendimento(null);
+			emprego.setDataFechamento(null);
 			DAO.getInstance().saveOrUpdate(emprego);
 			listarEmpregoServidorLogado();
 			emprego = new Emprego();
+			emprego.setStatusSolicitacao(new StatusSolicitacao());
+			emprego.setServidor(new Servidor());
 			buscarServidorLogado();
 		}
 	}
 
 	public void deferir() {
-		emprego.getStatusSolicitacao().setCodigo(Constantes.STATUS_SOLICITACAO_DEFERIDO);
+		emprego.getStatusSolicitacao().setCodigo(
+				Constantes.STATUS_SOLICITACAO_DEFERIDO);
+		emprego.setDataFechamento(new Date());
 		DAO.getInstance().update(emprego);
-		emprego = new Emprego();
-		emprego.setServidor(new Servidor());
+		desabilitaBotao = true;
 	}
-	
+
 	public void indeferir() {
-		if(emprego.getJustificativa() != null || !emprego.getJustificativa().isEmpty() ){
-		emprego.getStatusSolicitacao().setCodigo(Constantes.STATUS_SOLICITACAO_INDEFERIDO);
-		DAO.getInstance().update(emprego);
-		emprego = new Emprego();
-		emprego.setServidor(new Servidor());
-		}else{
+		if (emprego.getJustificativa() != null
+				&& !emprego.getJustificativa().equals("")) {
+			emprego.getStatusSolicitacao().setCodigo(
+					Constantes.STATUS_SOLICITACAO_INDEFERIDO);
+			emprego.setDataFechamento(new Date());
+			DAO.getInstance().update(emprego);
+			emprego = new Emprego();
+			emprego.setServidor(new Servidor());
+			desabilitaBotao = true;
+		} else {
 			FacesMessage message = new FacesMessage(
 					FacesMessage.SEVERITY_ERROR,
 					"Campo Justificativa é obrigatório!",
@@ -185,36 +215,70 @@ public class EmpregoController implements Serializable {
 		FacesContext context = FacesContext.getCurrentInstance();
 		emprego = (Emprego) context.getExternalContext().getRequestMap()
 				.get("list");
-		emprego = (Emprego) DAO.getInstance().refresh(emprego);
-		if(emprego.getStatusSolicitacao().getCodigo() != Constantes.STATUS_SOLICITACAO_EM_ANALISE){
-		emprego.setStatusSolicitacao(new StatusSolicitacao());
-		emprego.getStatusSolicitacao().setCodigo(Constantes.STATUS_SOLICITACAO_EM_ANALISE);
-		Autenticacao siapeAutenticado = (Autenticacao) FacesContext
-		.getCurrentInstance().getExternalContext().getSessionMap()
-		.get("usuarioLogado");
-		emprego.setAtendente(siapeAutenticado.getSiape());
-		emprego.setDataAtendimento(new Date());
-		DAO.getInstance().update(emprego);
+		if (emprego.getAtendente() != null) {
+			atendente = new Servidor();
+			atendente.setSiape(emprego.getAtendente());
+			atendente = ServidorDAO.getInstance().refreshBySiape(atendente);
 		}
-		
+
 	}
-	
+
+	public void validar() throws Exception {
+		FacesContext context = FacesContext.getCurrentInstance();
+		emprego = (Emprego) context.getExternalContext().getRequestMap()
+				.get("list");
+		desabilitaBotao = true;
+		if(Constantes.STATUS_SOLICITACAO_ENCAMINHADO.equals(emprego.getStatusSolicitacao().getCodigo())){
+			desabilitaBotao = false;
+			emprego.setStatusSolicitacao(new StatusSolicitacao());
+			emprego.getStatusSolicitacao().setCodigo(
+					Constantes.STATUS_SOLICITACAO_EM_ANALISE);
+			Autenticacao siapeAutenticado = (Autenticacao) FacesContext
+					.getCurrentInstance().getExternalContext().getSessionMap()
+					.get("usuarioLogado");
+			emprego.setAtendente(siapeAutenticado.getSiape());
+			emprego.setDataAtendimento(new Date());
+			DAO.getInstance().update(emprego);
+		}
+		FacesContext.getCurrentInstance().getExternalContext()
+				.redirect("empregoAprovar.jsp");
+	}
+
 	public void verificarStatus() throws Exception {
 		FacesContext context = FacesContext.getCurrentInstance();
 		emprego = (Emprego) context.getExternalContext().getRequestMap()
 				.get("list");
-		if(!Constantes.STATUS_SOLICITACAO_ENCAMINHADO.equals(emprego.getStatusSolicitacao().getCodigo())){
+		if (!Constantes.STATUS_SOLICITACAO_ENCAMINHADO.equals(emprego
+				.getStatusSolicitacao().getCodigo())) {
 			atendente = new Servidor();
 			atendente.setSiape(emprego.getAtendente());
 			atendente = ServidorDAO.getInstance().refreshBySiape(atendente);
-		
+
 		}
 	}
 
 	public List<Emprego> buscarEmpregos() {
 		listaEmpregosByFilter = (List<Emprego>) EmpregoDAO.getInstance()
-				.listByFilter(emprego, situacao);
+				.listByFilter(empregoFiltro, situacao);
 		return listaEmpregosByFilter;
 	}
-
+	
+	public void voltarListarEmprego() throws Exception {
+		try {
+			listarStatusSolicitacoes();
+			listaEmpregosByFilter.clear();
+			emprego = new Emprego();
+			emprego.setStatusSolicitacao(new StatusSolicitacao());
+			emprego.setServidor(new Servidor());
+			if(empregoFiltro.getServidor().getSiape().equals(0)){
+				empregoFiltro.setServidor(new Servidor());
+				empregoFiltro.getServidor().setSiape(null);
+			}
+			buscarEmpregos();
+			FacesContext.getCurrentInstance().getExternalContext()
+					.redirect("listarEmprego.jsp");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 }
