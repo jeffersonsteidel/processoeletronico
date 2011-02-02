@@ -220,6 +220,7 @@ public class EmpregoController implements Serializable {
 		FacesContext context = FacesContext.getCurrentInstance();
 		emprego = (Emprego) context.getExternalContext().getRequestMap()
 				.get("list");
+		emprego = (Emprego)DAO.getInstance().refresh(emprego);
 		if (Constantes.STATUS_SOLICITACAO_ENCAMINHADO.equals(emprego
 				.getStatusSolicitacao().getCodigo())) {
 			emprego.setStatusSolicitacao(new StatusSolicitacao());
@@ -231,9 +232,20 @@ public class EmpregoController implements Serializable {
 			emprego.setAtendente(siapeAutenticado.getSiape());
 			emprego.setDataAtendimento(new Date());
 			DAO.getInstance().update(emprego);
+			FacesContext.getCurrentInstance().getExternalContext()
+			.redirect("empregoAprovar.jsp");
+		} else if (Constantes.STATUS_SOLICITACAO_EM_ANALISE.equals(emprego
+				.getStatusSolicitacao().getCodigo())) {
+			FacesMessage message = new FacesMessage(
+					FacesMessage.SEVERITY_ERROR,
+					"Este Emprego já está sendo analizado por outro servidor!",
+					"Este Emprego já está sendo analizado por outro servidor!");
+			FacesContext.getCurrentInstance().addMessage("", message);
+		} else {
+			FacesContext.getCurrentInstance().getExternalContext()
+					.redirect("empregoAprovar.jsp");
 		}
-		FacesContext.getCurrentInstance().getExternalContext()
-				.redirect("empregoAprovar.jsp");
+
 	}
 
 	public void verificarStatus() throws Exception {
