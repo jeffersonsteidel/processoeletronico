@@ -315,7 +315,7 @@
 					<h:outputText
 						rendered="#{dependenteController.dependente.dataAbertura != null}"
 						value="#{dependenteController.dependente.dataAbertura}">
-						<f:convertDateTime pattern="dd/MM/yyyy - HH:MM:ss" />
+						<f:convertDateTime pattern="dd/MM/yyyy - HH:mm:ss" />
 					</h:outputText>
 					<h:outputText
 						rendered="#{dependenteController.dependente.dataAtendimento != null}"
@@ -323,7 +323,7 @@
 					<h:outputText
 						rendered="#{dependenteController.dependente.dataAtendimento != null}"
 						value="#{dependenteController.dependente.dataAtendimento}">
-						<f:convertDateTime pattern="dd/MM/yyyy - HH:MM:ss" />
+						<f:convertDateTime pattern="dd/MM/yyyy - HH:mm:ss" />
 					</h:outputText>
 					<h:outputText
 						rendered="#{dependenteController.dependente.atendente != null}"
@@ -338,7 +338,7 @@
 					<h:outputText
 						rendered="#{dependenteController.dependente.dataFechamento.date != null}"
 						value="#{dependenteController.dependente.dataFechamento}">
-						<f:convertDateTime pattern="dd/MM/yyyy - HH:MM:ss" />
+						<f:convertDateTime pattern="dd/MM/yyyy - HH:mm:ss" />
 					</h:outputText>
 					<h:outputText
 						rendered="#{dependenteController.dependente.justificativa != null && dependenteController.dependente.justificativa != ''}"

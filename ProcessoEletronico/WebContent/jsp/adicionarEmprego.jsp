@@ -64,7 +64,7 @@
 						inputSize="12" />
 
 				</h:panelGrid>
-				
+
 				<h:panelGrid columns="4">
 					<center><h:outputText value="Atividades: " /> <h:inputTextarea
 						value="#{empregoController.emprego.atividades}" rows="10"
@@ -119,10 +119,11 @@
 						<f:facet name="header">
 							<h:outputText value="Editar" />
 						</f:facet>
-						<a4j:commandLink action="#{empregoController.carregar}" rendered="#{list.statusSolicitacao.codigo > 2 }"
-							reRender="listaEmpregos, form" ajaxSingle="true" >
+						<a4j:commandLink action="#{empregoController.carregar}"
+							rendered="#{list.statusSolicitacao.codigo > 2 }"
+							reRender="listaEmpregos, form" ajaxSingle="true">
 							<h:graphicImage value="../images/edit.gif" style="border:0"
-								width="20" height="18" id="editar"/>
+								width="20" height="18" id="editar" />
 							<f:setPropertyActionListener value="#{list.codigo}"
 								target="#{empregoController.emprego.codigo}" />
 						</a4j:commandLink>
@@ -132,7 +133,21 @@
 								width="20" height="18" id="editarNPermitido" />
 						</a4j:commandLink>
 						<rich:toolTip for="editar" value="Editar" />
-						<rich:toolTip for="editarNPermitido" value="Você somente poderá editar dependentes deferidos ou indeferidos!" />
+						<rich:toolTip for="editarNPermitido"
+							value="Você somente poderá editar dependentes deferidos ou indeferidos!" />
+					</rich:column>
+					
+					<rich:column width="60px">
+						<f:facet name="header">
+							<h:outputText value="Adicionar Documentos" />
+						</f:facet>
+						<a4j:commandLink id="documentos"
+							action="#{documentoImagemController.abrirAdicionarDocumentos}"
+							reRender="listaDependentes" ajaxSingle="true">
+							<h:graphicImage value="../images/add_documentos.png"
+								style="border:0" width="20" height="18" />
+						</a4j:commandLink>
+						<rich:toolTip for="documentos" value="Clique aqui para adicionar a Cópia do Registro em Carteira!" />
 					</rich:column>
 
 					<rich:column width="30px">
@@ -151,13 +166,14 @@
 
 						<a4j:commandLink rendered="#{list.statusSolicitacao.codigo == 2}"
 							action="#{empregoController.carregar}" reRender="painel"
-							 ajaxSingle="true" oncomplete="#{rich:component('painel')}.show()">
+							ajaxSingle="true" oncomplete="#{rich:component('painel')}.show()">
 							<h:graphicImage value="../images/analize.gif" style="border:0"
 								width="20" height="18" id="emAnalise" />
 						</a4j:commandLink>
 
 						<a4j:commandLink rendered="#{list.statusSolicitacao.codigo == 3}"
-							action="#{empregoController.carregar}" reRender="painel" ajaxSingle="true" oncomplete="#{rich:component('painel')}.show()">
+							action="#{empregoController.carregar}" reRender="painel"
+							ajaxSingle="true" oncomplete="#{rich:component('painel')}.show()">
 							<h:graphicImage value="../images/deferido.gif" style="border:0"
 								width="20" height="18" id="deferido" />
 							<f:setPropertyActionListener value="#{list.codigo}"
@@ -165,7 +181,7 @@
 						</a4j:commandLink>
 
 						<a4j:commandLink rendered="#{list.statusSolicitacao.codigo == 4}"
-							action="#{empregoController.carregar}" reRender="painel" 
+							action="#{empregoController.carregar}" reRender="painel"
 							ajaxSingle="true" oncomplete="#{rich:component('painel')}.show()">
 							<h:graphicImage value="../images/indeferido.gif" style="border:0"
 								width="20" height="18" id="indeferido" />
@@ -188,7 +204,7 @@
 	</a4j:form>
 
 	<center><rich:modalPanel id="painel" autosized="true"
-		width="250" style="text-align:center;">
+		width="350">
 		<f:facet name="header">
 			<h:panelGroup>
 				<h:outputText value="Detalhes do Status"></h:outputText>
@@ -206,19 +222,11 @@
 				rendered="#{empregoController.emprego.statusSolicitacao.descricao != null}"
 				value="#{empregoController.emprego.statusSolicitacao.descricao}">
 			</h:outputText>
-			<h:outputText
-				rendered="#{empregoController.emprego.atendente != null}"
-				value="Atendente: " />
-			<h:outputText
-				rendered="#{empregoController.emprego.atendente!= null}"
-				value="#{empregoController.atendente.nome}">
-			</h:outputText>
-
 			<h:outputText value="Data Ultima Auteração: " />
 			<h:outputText
 				rendered="#{empregoController.emprego.dataAbertura != null}"
 				value="#{empregoController.emprego.dataAbertura}">
-				<f:convertDateTime pattern="dd/MM/yyyy - HH:MM:ss" />
+				<f:convertDateTime pattern="dd/MM/yyyy - HH:mm:ss" />
 			</h:outputText>
 			<h:outputText
 				rendered="#{empregoController.emprego.dataAtendimento != null}"
@@ -226,7 +234,14 @@
 			<h:outputText
 				rendered="#{empregoController.emprego.dataAtendimento != null}"
 				value="#{empregoController.emprego.dataAtendimento}">
-				<f:convertDateTime pattern="dd/MM/yyyy - HH:MM:ss" />
+				<f:convertDateTime pattern="dd/MM/yyyy - HH:mm:ss" />
+			</h:outputText>
+			<h:outputText
+				rendered="#{empregoController.emprego.atendente != null}"
+				value="Atendente: " />
+			<h:outputText
+				rendered="#{empregoController.emprego.atendente!= null}"
+				value="#{empregoController.atendente.nome}">
 			</h:outputText>
 			<h:outputText
 				rendered="#{empregoController.emprego.dataFechamento != null}"
@@ -234,7 +249,7 @@
 			<h:outputText
 				rendered="#{empregoController.emprego.dataFechamento.date != null}"
 				value="#{empregoController.emprego.dataFechamento}">
-				<f:convertDateTime pattern="dd/MM/yyyy - HH:MM:ss" />
+				<f:convertDateTime pattern="dd/MM/yyyy - HH:mm:ss" />
 			</h:outputText>
 			<h:outputText
 				rendered="#{empregoController.emprego.justificativa != null}"
