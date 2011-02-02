@@ -143,8 +143,4 @@ Config 1.1//EN"
 		<managed-bean-class>br.com.progepe.controller.SolicitacaoRessarcimentoSaudeController</managed-bean-class>
 		<managed-bean-scope>session</managed-bean-scope>
 	</managed-bean>
-	<lifecycle>
-		<phase-listener id="nostore">br.com.progepe.jsfUtil.CacheControlPhaseListener</phase-listener>
-	</lifecycle>
-
 </faces-config>
