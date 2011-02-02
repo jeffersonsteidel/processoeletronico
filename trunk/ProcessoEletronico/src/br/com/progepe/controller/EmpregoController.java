@@ -217,9 +217,6 @@ public class EmpregoController implements Serializable {
 	}
 
 	public void validar() throws Exception {
-		FacesContext context = FacesContext.getCurrentInstance();
-		emprego = (Emprego) context.getExternalContext().getRequestMap()
-				.get("list");
 		emprego = (Emprego)DAO.getInstance().refresh(emprego);
 		if (Constantes.STATUS_SOLICITACAO_ENCAMINHADO.equals(emprego
 				.getStatusSolicitacao().getCodigo())) {
