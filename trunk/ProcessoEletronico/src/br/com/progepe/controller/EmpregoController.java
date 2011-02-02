@@ -206,18 +206,15 @@ public class EmpregoController implements Serializable {
 		FacesContext context = FacesContext.getCurrentInstance();
 		emprego = (Emprego) context.getExternalContext().getRequestMap()
 				.get("list");
-
 		if (emprego.getAtendente() != null) {
-
 			atendente = new Servidor();
 			atendente.setSiape(emprego.getAtendente());
 			atendente = ServidorDAO.getInstance().refreshBySiape(atendente);
 		}
-
 	}
 
 	public void validar() throws Exception {
-		emprego = (Emprego)DAO.getInstance().refresh(emprego);
+		emprego = (Emprego) DAO.getInstance().refresh(emprego);
 		if (Constantes.STATUS_SOLICITACAO_ENCAMINHADO.equals(emprego
 				.getStatusSolicitacao().getCodigo())) {
 			emprego.setStatusSolicitacao(new StatusSolicitacao());
@@ -230,7 +227,7 @@ public class EmpregoController implements Serializable {
 			emprego.setDataAtendimento(new Date());
 			DAO.getInstance().update(emprego);
 			FacesContext.getCurrentInstance().getExternalContext()
-			.redirect("empregoAprovar.jsp");
+					.redirect("empregoAprovar.jsp");
 		} else if (Constantes.STATUS_SOLICITACAO_EM_ANALISE.equals(emprego
 				.getStatusSolicitacao().getCodigo())) {
 			FacesMessage message = new FacesMessage(

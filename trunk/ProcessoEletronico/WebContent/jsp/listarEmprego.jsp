@@ -28,11 +28,13 @@
 			</rich:messages>
 			<h:panelGrid columns="9">
 				<h:outputText value="Siape do Servidor:" />
-				<h:inputText value="#{empregoController.empregoFiltro.servidor.siape}"
-					size="7" maxlength="7" onkeyup="mascara(this, soNumeros);"></h:inputText>
+				<h:inputText
+					value="#{empregoController.empregoFiltro.servidor.siape}" size="7"
+					maxlength="7" onkeyup="mascara(this, soNumeros);"></h:inputText>
 				<h:outputText value="Nome do Servidor:" />
-				<h:inputText value="#{empregoController.empregoFiltro.servidor.nome}"
-					size="60" maxlength="120"></h:inputText>
+				<h:inputText
+					value="#{empregoController.empregoFiltro.servidor.nome}" size="60"
+					maxlength="120"></h:inputText>
 				<h:outputText value="Status: " />
 				<h:selectOneMenu
 					value="#{empregoController.empregoFiltro.statusSolicitacao.codigo}">
@@ -98,50 +100,52 @@
 							<f:convertDateTime pattern="dd/MM/yyyy" />
 						</h:outputText>
 					</rich:column>
-	
 
-						
+
+
 					<rich:column width="30px">
-					<f:facet name="header">		
-						<h:outputText value="Visualizar" />
-					</f:facet>
+						<f:facet name="header">
+							<h:outputText value="Visualizar" />
+						</f:facet>
 
-					<a4j:commandLink rendered="#{list.statusSolicitacao.codigo == 1}"
-						action="#{empregoController.validar}"
-						reRender="panel, listaEmpregos" ajaxSingle="true"> 
-						<h:graphicImage value="../images/encaminhado.png" style="border:0"
-							width="20" height="18" id="encaminhado" />
-						<f:setPropertyActionListener value="#{list.codigo}"
-							target="#{empregoController.emprego.codigo}" />
-					</a4j:commandLink>
-					
-					<a4j:commandLink rendered="#{list.statusSolicitacao.codigo == 2}"
-						action="#"
-						reRender="panel" ajaxSingle="true">
-						<h:graphicImage value="../images/analize.gif" style="border:0"
-							width="20" height="18" id="emAnalise" />
-					</a4j:commandLink>
-					
-					<a4j:commandLink rendered="#{list.statusSolicitacao.codigo == 3}"
-						action="#{empregoController.validar}"
-						reRender="panel" ajaxSingle="true">
-						<h:graphicImage value="../images/deferido.gif" style="border:0"
-							width="20" height="18" id="deferido" />
-					</a4j:commandLink>
-					
-					<a4j:commandLink rendered="#{list.statusSolicitacao.codigo == 4}"
-						action="#{empregoController.validar}"
-						reRender="panel" ajaxSingle="true">
-						<h:graphicImage value="../images/indeferido.gif" style="border:0"
-							width="20" height="18" id="indeferido" />
-							
-					</a4j:commandLink>
-					<rich:toolTip for="encaminhado" value="Encaminhado" />
-					<rich:toolTip for="emAnalise" value="Analise" />
-					<rich:toolTip for="deferido" value="Deferido" />
-					<rich:toolTip for="indeferido" value="Indeferido" />
-				</rich:column>
-				
+						<a4j:commandLink rendered="#{list.statusSolicitacao.codigo == 1}"
+							action="#{empregoController.validar}"
+							reRender="panel, listaEmpregos" ajaxSingle="true">
+							<h:graphicImage value="../images/encaminhado.png"
+								style="border:0" width="20" height="18" id="encaminhado" />
+							<f:setPropertyActionListener value="#{list.codigo}"
+								target="#{empregoController.emprego.codigo}" />
+						</a4j:commandLink>
+
+						<a4j:commandLink rendered="#{list.statusSolicitacao.codigo == 2}"
+							action="#" reRender="panel" ajaxSingle="true">
+							<h:graphicImage value="../images/analize.gif" style="border:0"
+								width="20" height="18" id="emAnalise" />
+						</a4j:commandLink>
+
+						<a4j:commandLink rendered="#{list.statusSolicitacao.codigo == 3}"
+							action="#{empregoController.validar}" reRender="panel"
+							ajaxSingle="true">
+							<h:graphicImage value="../images/deferido.gif" style="border:0"
+								width="20" height="18" id="deferido" />
+							<f:setPropertyActionListener value="#{list.codigo}"
+								target="#{empregoController.emprego.codigo}" />
+						</a4j:commandLink>
+
+						<a4j:commandLink rendered="#{list.statusSolicitacao.codigo == 4}"
+							action="#{empregoController.validar}" reRender="panel"
+							ajaxSingle="true">
+							<h:graphicImage value="../images/indeferido.gif" style="border:0"
+								width="20" height="18" id="indeferido" />
+							<f:setPropertyActionListener value="#{list.codigo}"
+								target="#{empregoController.emprego.codigo}" />
+						</a4j:commandLink>
+						<rich:toolTip for="encaminhado" value="Encaminhado" />
+						<rich:toolTip for="emAnalise" value="Analise" />
+						<rich:toolTip for="deferido" value="Deferido" />
+						<rich:toolTip for="indeferido" value="Indeferido" />
+					</rich:column>
+
 					<f:facet name="footer">
 						<rich:datascroller id="ds"></rich:datascroller>
 					</f:facet>
