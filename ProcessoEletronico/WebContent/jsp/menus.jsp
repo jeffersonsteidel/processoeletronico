@@ -151,7 +151,7 @@
 					icon="../images/auxiliopaternidade.gif" />
 				<rich:menuItem submitMode="ajax" value="Ressarcimento Saúde"
 					action="#{solicitacaoRessarcimentoSaudeController.abrirSolicitacaoRessarcimentoSaude}"
-					icon="../images/auxiliopaternidade.gif" />
+					icon="../images/saude2.gif" />
 				<rich:menuItem submitMode="ajax"
 					value="Listar Adicional Noturno - Docentes"
 					rendered="#{autenticacaoController.siapeAutenticado.indDiretor}"
@@ -183,7 +183,7 @@
 				<rich:menuItem submitMode="ajax"
 					value="Pesquisar Ressarcimento Saúde"
 					action="#{ressarcimentoSaudeController.abrirListar}"
-					icon="../images/ressarcimentoSaude.jpg" />
+					icon="../images/saude.png" />
 
 			</rich:dropDownMenu>
 			<rich:dropDownMenu>
