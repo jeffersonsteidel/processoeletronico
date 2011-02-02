@@ -218,7 +218,7 @@
 			<h:outputText
 				rendered="#{empregoController.emprego.dataAbertura != null}"
 				value="#{empregoController.emprego.dataAbertura}">
-				<f:convertDateTime pattern="dd/MM/yyyy" />
+				<f:convertDateTime pattern="dd/MM/yyyy - HH:MM:ss" />
 			</h:outputText>
 			<h:outputText
 				rendered="#{empregoController.emprego.dataAtendimento != null}"
@@ -226,7 +226,7 @@
 			<h:outputText
 				rendered="#{empregoController.emprego.dataAtendimento != null}"
 				value="#{empregoController.emprego.dataAtendimento}">
-				<f:convertDateTime pattern="dd/MM/yyyy" />
+				<f:convertDateTime pattern="dd/MM/yyyy - HH:MM:ss" />
 			</h:outputText>
 			<h:outputText
 				rendered="#{empregoController.emprego.dataFechamento != null}"
@@ -234,7 +234,7 @@
 			<h:outputText
 				rendered="#{empregoController.emprego.dataFechamento.date != null}"
 				value="#{empregoController.emprego.dataFechamento}">
-				<f:convertDateTime pattern="dd/MM/yyyy" />
+				<f:convertDateTime pattern="dd/MM/yyyy - HH:MM:ss" />
 			</h:outputText>
 			<h:outputText
 				rendered="#{empregoController.emprego.justificativa != null}"
