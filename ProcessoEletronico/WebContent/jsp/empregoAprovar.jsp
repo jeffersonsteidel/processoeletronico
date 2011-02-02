@@ -46,9 +46,8 @@
 				</h:outputText>
 			</h:panelGrid> <h:panelGrid columns="2">
 				<h:outputText value="Atividades: " />
-				<h:inputTextarea value="#{empregoController.emprego.atividades}"
-					rows="10" cols="50" disabled="true">
-				</h:inputTextarea>
+				<h:outputText value="#{empregoController.emprego.atividades}">
+				</h:outputText>
 			</h:panelGrid> <h:panelGrid columns="1" id="documentos">
 				<a4j:commandButton value="Ver Documentos"
 					action="#{documentoImagemController.abrirPesquisarDocumentos}" />
@@ -56,7 +55,7 @@
 			 <h:panelGrid columns="2">
 				<h:outputText value="Justificativa: " />
 				<h:inputTextarea value="#{empregoController.emprego.justificativa}"
-					rows="10" cols="50" >
+					rows="5" cols="50" disabled="#{empregoController.emprego.statusSolicitacao.codigo > 2}">
 				</h:inputTextarea>
 			</h:panelGrid>
 			<h:panelGrid columns="2" id="botoes">
