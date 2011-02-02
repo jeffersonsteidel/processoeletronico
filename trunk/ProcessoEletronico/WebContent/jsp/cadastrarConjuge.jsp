@@ -298,7 +298,7 @@
 					<h:outputText
 						rendered="#{conjugeController.conjuge.dataAbertura != null}"
 						value="#{conjugeController.conjuge.dataAbertura}">
-						<f:convertDateTime pattern="dd/MM/yyyy" />
+						<f:convertDateTime pattern="dd/MM/yyyy - HH:MM:ss" />
 					</h:outputText>
 					<h:outputText
 						rendered="#{conjugeController.conjuge.dataAtendimento != null}"
@@ -306,7 +306,7 @@
 					<h:outputText
 						rendered="#{conjugeController.conjuge.dataAtendimento != null}"
 						value="#{conjugeController.conjuge.dataAtendimento}">
-						<f:convertDateTime pattern="dd/MM/yyyy" />
+						<f:convertDateTime pattern="dd/MM/yyyy - HH:MM:ss" />
 					</h:outputText>
 					<h:outputText
 						rendered="#{conjugeController.conjuge.atendente != null}"
@@ -321,7 +321,7 @@
 					<h:outputText
 						rendered="#{conjugeController.conjuge.dataFechamento.date != null}"
 						value="#{conjugeController.conjuge.dataFechamento}">
-						<f:convertDateTime pattern="dd/MM/yyyy" />
+						<f:convertDateTime pattern="dd/MM/yyyy - HH:MM:ss" />
 					</h:outputText>
 					<h:outputText
 						rendered="#{conjugeController.conjuge.justificativa != null && conjugeController.conjuge.justificativa != ''}"
