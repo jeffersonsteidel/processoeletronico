@@ -54,17 +54,17 @@
 				<h:inputTextarea value="#{empregoController.emprego.justificativa}"
 					rows="10" cols="50" disabled="#{empregoController.desabilitaBotao}">
 				</h:inputTextarea>
-			</h:panelGrid> <h:panelGrid columns="3">
-
-
-
+			</h:panelGrid>
+			 <h:panelGrid columns="2">
 				<a4j:commandButton value="Deferir" reRender="form"
 					disabled="#{empregoController.desabilitaBotao}"
 					action="#{empregoController.deferir}" />
 				<a4j:commandButton value="Indeferir" reRender="form"
 					disabled="#{empregoController.desabilitaBotao}"
 					action="#{empregoController.indeferir}" />
-				<a4j:commandButton value="Voltar"
+			</h:panelGrid>		
+			<h:panelGrid columns="1">
+				<a4j:commandButton value="Voltar" disabled="#{!empregoController.desabilitaBotao}"
 					action="#{empregoController.voltarListarEmprego}" />
 			</h:panelGrid></center>
 		</rich:panel>
