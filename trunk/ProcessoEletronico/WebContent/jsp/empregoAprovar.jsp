@@ -16,8 +16,9 @@
 	<a4j:loadScript src="../js/script.js" />
 	<a4j:form id="form">
 		<rich:panel>
-			<center><rich:messages layout="list" errorLabelClass="errorLabel"
-				style="top:auto;" infoLabelClass="infoLabel">
+			<center><rich:messages layout="list"
+				errorLabelClass="errorLabel" style="top:auto;"
+				infoLabelClass="infoLabel">
 				<f:facet name="infoMarker">
 					<h:graphicImage value="../images/passed.gif" />
 				</f:facet>
@@ -35,13 +36,13 @@
 				<h:outputText id="cargo" value="#{empregoController.emprego.cargo}"></h:outputText>
 				<h:outputText value="Data de Admissão: " />
 				<h:outputText value="#{empregoController.emprego.dataAdmissao}">
-					<f:convertDateTime pattern="dd/MM/yyyy - HH:MM:ss" />
+					<f:convertDateTime pattern="dd/MM/yyyy" />
 				</h:outputText>
 				<h:outputText value="Empresa: " />
 				<h:outputText value="#{empregoController.emprego.empresa}"></h:outputText>
 				<h:outputText value="Data de Saida: " />
 				<h:outputText value="#{empregoController.emprego.dataSaida}">
-					<f:convertDateTime pattern="dd/MM/yyyy - HH:MM:ss" />
+					<f:convertDateTime pattern="dd/MM/yyyy" />
 				</h:outputText>
 			</h:panelGrid> <h:panelGrid columns="2">
 				<h:outputText value="Atividades: " />
@@ -57,11 +58,14 @@
 
 
 
-				<a4j:commandButton value="Deferir" reRender="form" disabled="#{empregoController.desabilitaBotao}"
+				<a4j:commandButton value="Deferir" reRender="form"
+					disabled="#{empregoController.desabilitaBotao}"
 					action="#{empregoController.deferir}" />
-				<a4j:commandButton value="Indeferir" reRender="form" disabled="#{empregoController.desabilitaBotao}"
+				<a4j:commandButton value="Indeferir" reRender="form"
+					disabled="#{empregoController.desabilitaBotao}"
 					action="#{empregoController.indeferir}" />
-				<a4j:commandButton value="Voltar" action="#{empregoController.voltarListarEmprego}" />
+				<a4j:commandButton value="Voltar"
+					action="#{empregoController.voltarListarEmprego}" />
 			</h:panelGrid></center>
 		</rich:panel>
 
