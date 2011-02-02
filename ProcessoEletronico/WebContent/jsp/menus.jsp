@@ -26,7 +26,7 @@
 
 <div id="non-printable"><f:subview id="Menu">
 	<center><a4j:form>
-		<a4j:jsFunction action="#{autenticacaoController.isAutenticado}"
+		<a4j:jsFunction immediate="true" ajaxSingle="true" action="#{autenticacaoController.isAutenticado}"
 			name="verificarAutenticacao" />
 		<h:graphicImage value="../images/banner_topo.gif" />
 		<BR />
