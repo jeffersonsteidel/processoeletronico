@@ -165,7 +165,8 @@
 						</a4j:commandLink>
 
 						<a4j:commandLink rendered="#{list.statusSolicitacao.codigo == 4}"
-							action="#{empregoController.carregar}" reRender="painel" ajaxSingle="true">
+							action="#{empregoController.carregar}" reRender="painel" 
+							ajaxSingle="true" oncomplete="#{rich:component('painel')}.show()">
 							<h:graphicImage value="../images/indeferido.gif" style="border:0"
 								width="20" height="18" id="indeferido" />
 							<f:setPropertyActionListener value="#{list.codigo}"
