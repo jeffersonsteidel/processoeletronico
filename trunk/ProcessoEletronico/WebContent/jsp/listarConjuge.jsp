@@ -29,10 +29,10 @@
 			</rich:messages>
 			<h:panelGrid columns="11">
 				<h:outputText value="Siape do Servidor:" />
-				<h:inputText value="#{conjugeController.conjuge.servidor.siape}"
+				<h:inputText value="#{conjugeController.conjugeFilter.servidor.siape}"
 					size="7" maxlength="7" onkeyup="mascara(this, soNumeros);"></h:inputText>
 				<h:outputText value="Nome do Servidor:" />
-				<h:inputText value="#{conjugeController.conjuge.servidor.nome}"
+				<h:inputText value="#{conjugeController.conjugeFilter.servidor.nome}"
 					size="60" maxlength="120"></h:inputText>
 				<h:outputText value="Atuais: " />
 				<h:selectOneMenu value="#{conjugeController.atuais}">
@@ -40,13 +40,13 @@
 					<f:selectItem itemLabel="SIM" itemValue="1" />
 					<f:selectItem itemLabel="NÃO" itemValue="2" />
 				</h:selectOneMenu>		
-				<h:outputText value="Validados: " />
-				<h:selectOneMenu value="#{conjugeController.validado}">
-					<f:selectItem itemLabel="TODOS" itemValue="0" />
-					<f:selectItem itemLabel="SIM" itemValue="1" />
-					<f:selectItem itemLabel="NÃO" itemValue="2" />
-				</h:selectOneMenu>	
-				<h:outputText value="Situação: " />
+				<h:outputText value="Status: " />
+				<h:selectOneMenu
+					value="#{conjugeController.conjugeFilter.statusSolicitacao.codigo}">
+					<f:selectItem itemLabel="SELECIONE" itemValue="" />
+					<f:selectItems value="#{conjugeController.statusSolicitacoes}" />
+				</h:selectOneMenu>
+				<h:outputText value="Situação do Servidor: " />
 				<h:selectOneMenu value="#{conjugeController.situacao}">
 					<f:selectItem itemLabel="TODOS" itemValue="0" />
 					<f:selectItem itemLabel="ATIVOS" itemValue="1" />
@@ -86,27 +86,36 @@
 						<h:outputText value="Atual" rendered="#{list.atual}" />
 						<h:outputText value="Ex" rendered="#{!list.atual}" />
 					</rich:column>
-					<rich:column width="100px" sortBy="#{list.indValidado}">
-						<f:facet name="header">
-							<h:outputText value="Validado" />
-						</f:facet>
-						<h:outputText value="SIM" rendered="#{list.indValidado}" />
-						<h:outputText value="NÃO" rendered="#{!list.indValidado}" />
-					</rich:column>
-					<rich:column>
-						<f:facet name="header">
-							<h:outputText value="Visualizar" />
-						</f:facet>
-						<a4j:commandLink action="#{conjugeController.carregar}"
-							reRender="editPanel" ajaxSingle="true"
-							oncomplete="#{rich:component('editPanel')}.show()">
-							<h:graphicImage value="../images/edit.gif" style="border:0"
-								width="20" height="18" id="editar" />
-							<f:setPropertyActionListener value="#{list.codigo}"
-								target="#{conjugeController.conjuge.codigo}" />
-						</a4j:commandLink>
-						<rich:toolTip for="editar" value="Editar" />
-					</rich:column>
+					<rich:column width="30px">
+					<f:facet name="header">
+						<h:outputText value="Visualizar" />
+					</f:facet>
+					<a4j:commandLink action="#{conjugeController.validar}"
+						reRender="listaConjuges, painel"
+						oncomplete="Richfaces.showModalPanel('painel')" ajaxSingle="true">
+						<h:graphicImage value="../images/encaminhado.png" style="border:0"
+							width="20" height="18" id="encaminhado"
+							rendered="#{list.statusSolicitacao.codigo == 1}" />
+						<h:graphicImage value="../images/indeferido.gif" style="border:0"
+							width="20" height="18" id="indeferido"
+							rendered="#{list.statusSolicitacao.codigo == 4}" />
+						<h:graphicImage value="../images/deferido.gif" style="border:0"
+							width="20" height="18" id="deferido"
+							rendered="#{list.statusSolicitacao.codigo == 3}" />
+						<f:setPropertyActionListener value="#{list}"
+							target="#{conjugeController.conjuge}" />
+					</a4j:commandLink>
+					<a4j:commandLink rendered="#{list.statusSolicitacao.codigo == 2}"
+						action="#" reRender="listaConjuges" ajaxSingle="true">
+						<h:graphicImage value="../images/analize.gif" style="border:0"
+							width="20" height="18" id="emAnalise" />
+					</a4j:commandLink>
+					<rich:toolTip for="encaminhado" value="Encaminhado" />
+					<rich:toolTip for="emAnalise"
+						value="Você não pode abrir uma solicitação que está em Análise!" />
+					<rich:toolTip for="deferido" value="Deferido" />
+					<rich:toolTip for="indeferido" value="Indeferido" />
+				</rich:column>
 					<f:facet name="footer">
 						<rich:datascroller id="ds"></rich:datascroller>
 					</f:facet>
@@ -114,80 +123,6 @@
 			</a4j:region>
 		</rich:panel></center>
 	</a4j:form>
-	<center><rich:modalPanel id="editPanel" autosized="true"
-		width="600">
-		<h:form>
-			<center><font size="2"><b>DETALHES DO CÔNJUGE</b></font> <h:panelGrid
-				columns="2">
-				<h:outputText value="Servidor: " />
-				<h:outputText
-					value="#{conjugeController.conjuge.servidor.siape} - #{conjugeController.conjuge.servidor.nome}" />
-			</h:panelGrid> <h:panelGrid columns="4">
-				<h:outputText value="Nome do Cônjuge ">
-				</h:outputText>
-				<h:outputText value="#{conjugeController.conjuge.nome}"></h:outputText>
-				<h:outputText value="Sexo do Cônjuge: " />
-				<h:outputText value="FEMININO"
-					rendered="#{conjugeController.conjuge.sexo == 'F'}"></h:outputText>
-				<h:outputText value="MASCULINO"
-					rendered="#{conjugeController.conjuge.sexo == 'M'}"></h:outputText>
-				<h:outputText value="Data de Nascimento do Cônjuge: " />
-				<h:outputText value="#{conjugeController.conjuge.dataNascimento}">
-					<f:convertDateTime pattern="dd/MM/yyyy" />
-				</h:outputText>
-				<h:outputText value="CPF do Cônjuge: " />
-				<h:outputText value="#{conjugeController.conjuge.cpf}"></h:outputText>
-				<h:outputText value="RG do Cônjuge: " />
-				<h:outputText value="#{conjugeController.conjuge.rg}"></h:outputText>
-				<h:outputText value="UF do RG do Cônjuge: " />
-				<h:outputText value="#{conjugeController.conjuge.rgUf.uf}"></h:outputText>
-				<h:outputText value="Orgão Emissor do RG do Cônjuge: " />
-				<h:outputText value="#{conjugeController.conjuge.rgOrgao}" />
-				<h:outputText value="Data de Expedição do RG do Cônjuge: " />
-				<h:outputText value="#{conjugeController.conjuge.rgDataExpedicao}">
-					<f:convertDateTime pattern="dd/MM/yyyy" />
-				</h:outputText>
-				<h:outputText value="Estado de Nascimento do Cônjuge: "
-					rendered="#{!conjugeController.conjuge.indEstrangeiro}" />
-				<h:outputText id="estadoNascimentoConjuge"
-					rendered="#{!conjugeController.conjuge.indEstrangeiro}"
-					value="#{conjugeController.conjuge.cidadeNascimento.estado.descricao}" />
-				<h:outputText value="Cidade de Nascimento do Cônjuge: "
-					rendered="#{!conjugeController.conjuge.indEstrangeiro}" />
-				<h:outputText id="cidadeNascimentoConjuge"
-					rendered="#{!conjugeController.conjuge.indEstrangeiro}"
-					value="#{conjugeController.conjuge.cidadeNascimento.descricao}" />
-				<h:outputText value="Estrangeiro: " />
-				<h:outputText value="SIM"
-					rendered="#{conjugeController.conjuge.indEstrangeiro}" />
-				<h:outputText value="NÃO"
-					rendered="#{!conjugeController.conjuge.indEstrangeiro}" />
-				<h:outputText value="País de Nascimento do Cônjuge: "
-					rendered="#{conjugeController.conjuge.indEstrangeiro}" />
-				<h:outputText value="#{conjugeController.conjuge.pais.descricao}"
-					rendered="#{conjugeController.conjuge.indEstrangeiro}" />
-				<h:outputText value="É Servidor? " />
-				<h:outputText value="SIM"
-					rendered="#{conjugeController.conjuge.indServidor}"></h:outputText>
-				<h:outputText value="NÃO"
-					rendered="#{!conjugeController.conjuge.indServidor}"></h:outputText>
-				<h:outputText value="Órgão de atuação: "
-					rendered="#{conjugeController.conjuge.indServidor}" />
-				<h:outputText value="#{conjugeController.conjuge.local}"
-					rendered="#{conjugeController.conjuge.indServidor}"></h:outputText>
-				<h:outputText value="Cônjuge Atual? " />
-				<h:outputText value="SIM"
-					rendered="#{conjugeController.conjuge.atual}" />
-				<h:outputText value="NÃO"
-					rendered="#{!conjugeController.conjuge.atual}" />
-			</h:panelGrid> <h:panelGrid columns="2">
-				<a4j:commandButton value="Aprovar" reRender="form, listaTitulacoes"
-					action="#{conjugeController.validar}" />
-				<a4j:commandButton value="Fechar"
-					onclick="#{rich:component('editPanel')}.hide();return false;" />
-			</h:panelGrid></center>
-		</h:form>
-	</rich:modalPanel></center>
 </f:view>
 </body>
 </html>

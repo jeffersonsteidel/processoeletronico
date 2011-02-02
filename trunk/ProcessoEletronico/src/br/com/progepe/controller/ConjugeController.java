@@ -29,15 +29,17 @@ public class ConjugeController implements Serializable {
 	private static final long serialVersionUID = -333995781063775201L;
 
 	private Conjuge conjuge;
+	private Conjuge conjugeFilter;
 	private List<Conjuge> conjugeList = new ArrayList<Conjuge>();
 	private List<SelectItem> paises = new ArrayList<SelectItem>();
 	private List<SelectItem> ufs = new ArrayList<SelectItem>();
 	private List<SelectItem> estados = new ArrayList<SelectItem>();
 	private List<SelectItem> cidadesNascimento = new ArrayList<SelectItem>();
 	private List<Conjuge> listaConjugesByFilter = new ArrayList<Conjuge>();
+	private List<SelectItem> statusSolicitacoes = new ArrayList<SelectItem>();
 	private Integer situacao = 0;
-	private Integer validado = Constantes.TODOS;
 	private Integer atuais = Constantes.TODOS;
+	private Servidor atendente;
 
 	private Estado estadoNascimento;
 
@@ -132,20 +134,36 @@ public class ConjugeController implements Serializable {
 		this.situacao = situacao;
 	}
 
-	public Integer getValidado() {
-		return validado;
-	}
-
-	public void setValidado(Integer validado) {
-		this.validado = validado;
-	}
-
 	public Integer getAtuais() {
 		return atuais;
 	}
 
 	public void setAtuais(Integer atuais) {
 		this.atuais = atuais;
+	}
+
+	public Servidor getAtendente() {
+		return atendente;
+	}
+
+	public void setAtendente(Servidor atendente) {
+		this.atendente = atendente;
+	}
+	
+	public Conjuge getConjugeFilter() {
+		return conjugeFilter;
+	}
+
+	public void setConjugeFilter(Conjuge conjugeFilter) {
+		this.conjugeFilter = conjugeFilter;
+	}
+
+	public List<SelectItem> getStatusSolicitacoes() {
+		return statusSolicitacoes;
+	}
+
+	public void setStatusSolicitacoes(List<SelectItem> statusSolicitacoes) {
+		this.statusSolicitacoes = statusSolicitacoes;
 	}
 
 	public void abrirCadastrarConjuge() throws ParseException {
@@ -195,10 +213,19 @@ public class ConjugeController implements Serializable {
 				existeAtual = existeAtual + 1;
 			}
 		}
+		if(conjuge.getCodigo() == null || Constantes.ZERO.equals(conjuge.getCodigo()) ){
+			conjuge.setIndNovo(true);
+		}else{
+			conjuge.setIndNovo(false);
+		}
 		if (existeAtual <= 1) {
 			conjuge.getStatusSolicitacao().setCodigo(
 					Constantes.STATUS_SOLICITACAO_ENCAMINHADO);
 			conjuge.setDataAbertura(new Date());
+			conjuge.setAtendente(null);
+			conjuge.setDataAtendimento(null);
+			conjuge.setDataFechamento(null);
+			conjuge.setJustificativa(null);
 			DAO.getInstance().saveOrUpdate(conjuge);
 			conjuge = new Conjuge();
 			conjuge.setCidadeNascimento(new Cidade());
@@ -220,39 +247,57 @@ public class ConjugeController implements Serializable {
 			conjugeList.remove(conjuge);
 		}
 	}
-
+	
+	public void validar() throws IOException {
+		conjuge = (Conjuge) DAO.getInstance().refresh(conjuge);
+		if (Constantes.STATUS_SOLICITACAO_ENCAMINHADO.equals(conjuge
+				.getStatusSolicitacao().getCodigo())) {
+			conjuge.getStatusSolicitacao().setCodigo(
+					Constantes.STATUS_SOLICITACAO_EM_ANALISE);
+			atendente = new Servidor();
+			conjuge.setDataAtendimento(new Date());
+			Autenticacao siapeAutenticado = (Autenticacao) FacesContext
+					.getCurrentInstance().getExternalContext().getSessionMap()
+					.get("usuarioLogado");
+			atendente.setSiape(siapeAutenticado.getSiape());
+			atendente = ServidorDAO.getInstance().refreshBySiape(atendente);
+			conjuge.setAtendente(atendente.getSiape());
+			ConjugeDAO.getInstance().updateConjuge(conjuge);
+			FacesContext.getCurrentInstance().getExternalContext()
+					.redirect("conjugeAprovar.jsp");
+		} else if (Constantes.STATUS_SOLICITACAO_EM_ANALISE.equals(conjuge
+				.getStatusSolicitacao().getCodigo())) {
+			FacesMessage message = new FacesMessage(
+					FacesMessage.SEVERITY_ERROR,
+					"Este Cônjuge já está sendo analizado por outro servidor!",
+					"Este Cônjuge já está sendo analizado por outro servidor!");
+			FacesContext.getCurrentInstance().addMessage("", message);
+		} else {
+			FacesContext.getCurrentInstance().getExternalContext()
+					.redirect("conjugeAprovar.jsp");
+		}
+	}
+	
 	public void deferir() {
 		conjuge.getStatusSolicitacao().setCodigo(
 				Constantes.STATUS_SOLICITACAO_DEFERIDO);
 		conjuge.setDataFechamento(new Date());
 		DAO.getInstance().update(conjuge);
-		conjuge = new Conjuge();
-		conjuge.setCidadeNascimento(new Cidade());
-		conjuge.setRgUf(new Estado());
-		conjuge.getCidadeNascimento().setEstado(new Estado());
-		conjuge.setPais(new Pais());
-		conjuge.setServidor(new Servidor());
 	}
 
 	public void indeferir() {
-		if (conjuge.getJustificativa() != null
-				&& !conjuge.getJustificativa().isEmpty()) {
-			conjuge.getStatusSolicitacao().setCodigo(
-					Constantes.STATUS_SOLICITACAO_INDEFERIDO);
-			conjuge.setDataFechamento(new Date());
-			DAO.getInstance().update(conjuge);
-			conjuge = new Conjuge();
-			conjuge.setCidadeNascimento(new Cidade());
-			conjuge.setRgUf(new Estado());
-			conjuge.getCidadeNascimento().setEstado(new Estado());
-			conjuge.setPais(new Pais());
-			conjuge.setServidor(new Servidor());
-		} else {
+		if (conjuge.getJustificativa() == null
+				|| conjuge.getJustificativa() == "") {
 			FacesMessage message = new FacesMessage(
 					FacesMessage.SEVERITY_ERROR,
 					"O campo Justificativa é obrigatório!",
 					"O campo Justificativa é obrigatório!");
 			FacesContext.getCurrentInstance().addMessage("", message);
+		} else {
+			conjuge.getStatusSolicitacao().setCodigo(
+					Constantes.STATUS_SOLICITACAO_INDEFERIDO);
+			conjuge.setDataFechamento(new Date());
+			DAO.getInstance().update(conjuge);
 		}
 	}
 
@@ -364,16 +409,40 @@ public class ConjugeController implements Serializable {
 			conjuge.getCidadeNascimento().setEstado(new Estado());
 			conjuge.setPais(new Pais());
 			conjuge.setRgUf(new Estado());
+			conjuge.setStatusSolicitacao(new StatusSolicitacao());
+			conjugeFilter = new Conjuge();
+			conjugeFilter.setServidor(new Servidor());
+			conjugeFilter.setCidadeNascimento(new Cidade());
+			conjugeFilter.getCidadeNascimento().setEstado(new Estado());
+			conjugeFilter.setPais(new Pais());
+			conjugeFilter.setRgUf(new Estado());	
+			conjugeFilter.setStatusSolicitacao(new StatusSolicitacao());
+			listarStatusSolicitacoes();
 			FacesContext.getCurrentInstance().getExternalContext()
 					.redirect("listarConjuge.jsp");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
+	
+	@SuppressWarnings("unchecked")
+	public List<SelectItem> listarStatusSolicitacoes() {
+		statusSolicitacoes = new ArrayList<SelectItem>();
+		List<StatusSolicitacao> statusSolicitacoesList = new ArrayList<StatusSolicitacao>();
+		statusSolicitacoesList = DAO.getInstance().list(
+				StatusSolicitacao.class, "descricao");
+		for (StatusSolicitacao statusSolicitacao : statusSolicitacoesList) {
+			statusSolicitacoes.add(new SelectItem(
+					statusSolicitacao.getCodigo(), statusSolicitacao
+							.getDescricao()));
+		}
+		return statusSolicitacoes;
+	}
+
 
 	public List<Conjuge> buscarConjuges() {
 		listaConjugesByFilter = (List<Conjuge>) ConjugeDAO.getInstance()
-				.listByFilter(conjuge, situacao, validado, atuais);
+				.listByFilter(conjugeFilter, situacao, atuais);
 		return listaConjugesByFilter;
 	}
 }

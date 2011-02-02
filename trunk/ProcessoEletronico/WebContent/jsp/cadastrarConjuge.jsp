@@ -162,8 +162,8 @@
 			<a4j:commandButton value="Voltar" onclick="history.go(-1)"
 				rendered="#{autenticacaoController.siapeAutenticado.indAdministrador}">
 			</a4j:commandButton>
-			
-			
+
+
 			<rich:dataTable id="listarConjugesSolicitante"
 				rendered="#{not empty conjugeController.conjugeList}"
 				value="#{conjugeController.conjugeList}" var="list" width="1160px"
@@ -189,45 +189,76 @@
 					<h:outputText value="Atual" rendered="#{list.atual}" />
 					<h:outputText value="Ex" rendered="#{!list.atual}" />
 				</rich:column>
-				<rich:column>
+				
+				<rich:column width="30px">
 					<f:facet name="header">
 						<h:outputText value="Editar" />
 					</f:facet>
 					<a4j:commandLink action="#{conjugeController.carregar}"
-						reRender="form" ajaxSingle="true">
+						rendered="#{list.statusSolicitacao.codigo > 2}"
+						reRender="listarConjugesSolicitante, form" ajaxSingle="true">
 						<h:graphicImage value="../images/edit.gif" style="border:0"
 							width="20" height="18" id="editar" />
 						<f:setPropertyActionListener value="#{list.codigo}"
 							target="#{conjugeController.conjuge.codigo}" />
 					</a4j:commandLink>
+					<a4j:commandLink rendered="#{list.statusSolicitacao.codigo <= 2}"
+						reRender="listarConjugesSolicitante" ajaxSingle="true">
+						<h:graphicImage value="../images/edit.gif" style="border:0"
+							width="20" height="18" id="editarNPermitido" />
+					</a4j:commandLink>
 					<rich:toolTip for="editar" value="Editar" />
+					<rich:toolTip for="editarNPermitido"
+						value="Você somente poderá editar cônjuges deferidos ou indeferidos!" />
 				</rich:column>
-				<rich:column width="30px">
+
+				<rich:column width="60px">
+					<f:facet name="header">
+						<h:outputText value="Adicionar Documentos" />
+					</f:facet>
+					<a4j:commandLink id="documentos"
+						action="#{documentoImagemController.abrirAdicionarDocumentos}"
+						reRender="listarConjugesSolicitante" ajaxSingle="true">
+						<h:graphicImage value="../images/add_documentos.png"
+							style="border:0" width="20" height="18" />
+					</a4j:commandLink>
+					<rich:toolTip for="documentos"
+						value="Clique aqui para adicionar os Documentos do Cônjuge!" />
+				</rich:column>
+
+				<rich:column width="60px">
 					<f:facet name="header">
 						<h:outputText value="Status" />
 					</f:facet>
 					<a4j:commandLink rendered="#{list.statusSolicitacao.codigo == 1}"
-						action="#" reRender="listarConjugesSolicitante" ajaxSingle="true">
+						oncomplete="#{rich:component('painel')}.show()"
+						action="#{conjugeController.carregar}"
+						reRender="listarConjugesSolicitante, painel" ajaxSingle="true">
 						<h:graphicImage value="../images/encaminhado.png" style="border:0"
 							width="20" height="18" id="encaminhado" />
 						<f:setPropertyActionListener value="#{list.codigo}"
 							target="#{conjugeController.conjuge.codigo}" />
 					</a4j:commandLink>
 					<a4j:commandLink rendered="#{list.statusSolicitacao.codigo == 2}"
-						action="#" reRender="listarConjugesSolicitante" ajaxSingle="true">
+						oncomplete="#{rich:component('painel')}.show()"
+						action="#{conjugeController.carregar}"
+						reRender="listarConjugesSolicitante, painel" ajaxSingle="true">
 						<h:graphicImage value="../images/analize.gif" style="border:0"
 							width="20" height="18" id="emAnalise" />
 					</a4j:commandLink>
 					<a4j:commandLink rendered="#{list.statusSolicitacao.codigo == 3}"
-						action="#" reRender="listarConjugesSolicitante" ajaxSingle="true">
+						action="#{conjugeController.carregar}"
+						reRender="listarConjugesSolicitante, painel" ajaxSingle="true"
+						oncomplete="#{rich:component('painel')}.show()">
 						<h:graphicImage value="../images/deferido.gif" style="border:0"
 							width="20" height="18" id="deferido" />
 						<f:setPropertyActionListener value="#{list.codigo}"
 							target="#{conjugeController.conjuge.codigo}" />
 					</a4j:commandLink>
 					<a4j:commandLink rendered="#{list.statusSolicitacao.codigo == 4}"
-						action="#"
-						reRender="listarConjugesSolicitante" ajaxSingle="true">
+						action="#{conjugeController.carregar}"
+						oncomplete="#{rich:component('painel')}.show()"
+						reRender="listarConjugesSolicitante, painel" ajaxSingle="true">
 						<h:graphicImage value="../images/indeferido.gif" style="border:0"
 							width="20" height="18" id="indeferido" />
 						<f:setPropertyActionListener value="#{list.codigo}"
@@ -239,10 +270,68 @@
 					<rich:toolTip for="deferido" value="Deferido" />
 					<rich:toolTip for="indeferido" value="Indeferido" />
 				</rich:column>
+
 				<f:facet name="footer">
 					<rich:datascroller id="ds"></rich:datascroller>
 				</f:facet>
 			</rich:dataTable>
+			<rich:modalPanel id="painel" autosized="true"
+				width="350">
+				<f:facet name="header">
+					<h:panelGroup>
+						<h:outputText value="Detalhes do Status"></h:outputText>
+					</h:panelGroup>
+				</f:facet>
+				<f:facet name="controls">
+					<h:panelGroup>
+						<h:graphicImage value="../images/close.gif"
+							onclick="#{rich:component('painel')}.hide();" />
+					</h:panelGroup>
+				</f:facet>
+				<h:panelGrid columns="2">
+					<h:outputText value="Status: " />
+					<h:outputText
+						rendered="#{conjugeController.conjuge.statusSolicitacao.descricao != null}"
+						value="#{conjugeController.conjuge.statusSolicitacao.descricao}">
+					</h:outputText>
+					<h:outputText value="Data da Última Alteração: " />
+					<h:outputText
+						rendered="#{conjugeController.conjuge.dataAbertura != null}"
+						value="#{conjugeController.conjuge.dataAbertura}">
+						<f:convertDateTime pattern="dd/MM/yyyy" />
+					</h:outputText>
+					<h:outputText
+						rendered="#{conjugeController.conjuge.dataAtendimento != null}"
+						value="Data Atendimento: " />
+					<h:outputText
+						rendered="#{conjugeController.conjuge.dataAtendimento != null}"
+						value="#{conjugeController.conjuge.dataAtendimento}">
+						<f:convertDateTime pattern="dd/MM/yyyy" />
+					</h:outputText>
+					<h:outputText
+						rendered="#{conjugeController.conjuge.atendente != null}"
+						value="Atendente: " />
+					<h:outputText
+						rendered="#{conjugeController.conjuge != null}"
+						value="#{conjugeController.atendente.nome}">
+					</h:outputText>
+					<h:outputText
+						rendered="#{conjugeController.conjuge.dataFechamento != null}"
+						value="Data Fechamento: " />
+					<h:outputText
+						rendered="#{conjugeController.conjuge.dataFechamento.date != null}"
+						value="#{conjugeController.conjuge.dataFechamento}">
+						<f:convertDateTime pattern="dd/MM/yyyy" />
+					</h:outputText>
+					<h:outputText
+						rendered="#{conjugeController.conjuge.justificativa != null && conjugeController.conjuge.justificativa != ''}"
+						value="Justificativa: " />
+					<h:outputText
+						rendered="#{conjugeController.conjuge.justificativa != null && conjugeController.conjuge.justificativa != ''}"
+						value="#{conjugeController.conjuge.justificativa}">
+					</h:outputText>
+				</h:panelGrid>
+			</rich:modalPanel>
 		</rich:panel></center>
 	</a4j:form>
 </f:view>

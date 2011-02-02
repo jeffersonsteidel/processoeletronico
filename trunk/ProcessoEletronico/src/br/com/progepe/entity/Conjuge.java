@@ -32,6 +32,7 @@ public class Conjuge implements Serializable {
 	private Date dataFechamento;
 	private String justificativa;
 	private StatusSolicitacao statusSolicitacao;
+	private Boolean indNovo;
 	
 	public Long getCodigo() {
 		return codigo;
@@ -215,5 +216,13 @@ public class Conjuge implements Serializable {
 
 	public void setStatusSolicitacao(StatusSolicitacao statusSolicitacao) {
 		this.statusSolicitacao = statusSolicitacao;
+	}
+
+	public Boolean getIndNovo() {
+		return indNovo;
+	}
+
+	public void setIndNovo(Boolean indNovo) {
+		this.indNovo = indNovo;
 	}
 }
