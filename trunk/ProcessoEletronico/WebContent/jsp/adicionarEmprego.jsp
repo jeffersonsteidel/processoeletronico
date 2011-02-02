@@ -126,8 +126,8 @@
 							<f:setPropertyActionListener value="#{list.codigo}"
 								target="#{empregoController.emprego.codigo}" />
 						</a4j:commandLink>
-						<a4j:commandLink action="#" rendered="#{list.statusSolicitacao.codigo <= 2}"
-							reRender="listaEmpregos, form" ajaxSingle="true">
+						<a4j:commandLink rendered="#{list.statusSolicitacao.codigo <= 2}"
+							reRender="#" ajaxSingle="true">
 							<h:graphicImage value="../images/edit.gif" style="border:0"
 								width="20" height="18" id="editarNPermitido" />
 						</a4j:commandLink>
@@ -150,13 +150,14 @@
 						</a4j:commandLink>
 
 						<a4j:commandLink rendered="#{list.statusSolicitacao.codigo == 2}"
-							action="#" reRender="listaEmpregos" ajaxSingle="true">
+							action="#{empregoController.carregar}" reRender="painel"
+							 ajaxSingle="true" oncomplete="#{rich:component('painel')}.show()">
 							<h:graphicImage value="../images/analize.gif" style="border:0"
 								width="20" height="18" id="emAnalise" />
 						</a4j:commandLink>
 
 						<a4j:commandLink rendered="#{list.statusSolicitacao.codigo == 3}"
-							action="#" reRender="listaEmpregos" ajaxSingle="true">
+							action="#{empregoController.carregar}" reRender="painel" ajaxSingle="true" oncomplete="#{rich:component('painel')}.show()">
 							<h:graphicImage value="../images/deferido.gif" style="border:0"
 								width="20" height="18" id="deferido" />
 							<f:setPropertyActionListener value="#{list.codigo}"
@@ -164,7 +165,7 @@
 						</a4j:commandLink>
 
 						<a4j:commandLink rendered="#{list.statusSolicitacao.codigo == 4}"
-							action="#" reRender="painel" ajaxSingle="true">
+							action="#{empregoController.carregar}" reRender="painel" ajaxSingle="true">
 							<h:graphicImage value="../images/indeferido.gif" style="border:0"
 								width="20" height="18" id="indeferido" />
 							<f:setPropertyActionListener value="#{list.codigo}"
