@@ -164,6 +164,7 @@ public class EmpregoController implements Serializable {
 			emprego.setAtendente(null);
 			emprego.setDataAtendimento(null);
 			emprego.setDataFechamento(null);
+			emprego.setJustificativa(null);
 			DAO.getInstance().saveOrUpdate(emprego);
 			listarEmpregoServidorLogado();
 			emprego = new Emprego();
@@ -176,6 +177,9 @@ public class EmpregoController implements Serializable {
 	public void deferir() {
 		emprego.getStatusSolicitacao().setCodigo(
 				Constantes.STATUS_SOLICITACAO_DEFERIDO);
+		if (emprego.getJustificativa() == "") {
+			emprego.setJustificativa(null);
+		}
 		emprego.setDataFechamento(new Date());
 		DAO.getInstance().update(emprego);
 		desabilitaBotao = true;
@@ -188,8 +192,6 @@ public class EmpregoController implements Serializable {
 					Constantes.STATUS_SOLICITACAO_INDEFERIDO);
 			emprego.setDataFechamento(new Date());
 			DAO.getInstance().update(emprego);
-			emprego = new Emprego();
-			emprego.setServidor(new Servidor());
 			desabilitaBotao = true;
 		} else {
 			FacesMessage message = new FacesMessage(
@@ -215,7 +217,9 @@ public class EmpregoController implements Serializable {
 		FacesContext context = FacesContext.getCurrentInstance();
 		emprego = (Emprego) context.getExternalContext().getRequestMap()
 				.get("list");
+
 		if (emprego.getAtendente() != null) {
+
 			atendente = new Servidor();
 			atendente.setSiape(emprego.getAtendente());
 			atendente = ServidorDAO.getInstance().refreshBySiape(atendente);
@@ -228,7 +232,8 @@ public class EmpregoController implements Serializable {
 		emprego = (Emprego) context.getExternalContext().getRequestMap()
 				.get("list");
 		desabilitaBotao = true;
-		if(Constantes.STATUS_SOLICITACAO_ENCAMINHADO.equals(emprego.getStatusSolicitacao().getCodigo())){
+		if (Constantes.STATUS_SOLICITACAO_ENCAMINHADO.equals(emprego
+				.getStatusSolicitacao().getCodigo())) {
 			desabilitaBotao = false;
 			emprego.setStatusSolicitacao(new StatusSolicitacao());
 			emprego.getStatusSolicitacao().setCodigo(
@@ -262,18 +267,19 @@ public class EmpregoController implements Serializable {
 				.listByFilter(empregoFiltro, situacao);
 		return listaEmpregosByFilter;
 	}
-	
+
 	public void voltarListarEmprego() throws Exception {
 		try {
 			listarStatusSolicitacoes();
 			listaEmpregosByFilter.clear();
 			emprego = new Emprego();
+			emprego.setJustificativa(null);
 			emprego.setStatusSolicitacao(new StatusSolicitacao());
 			emprego.setServidor(new Servidor());
-			if(empregoFiltro.getServidor().getSiape().equals(0)){
-				empregoFiltro.setServidor(new Servidor());
-				empregoFiltro.getServidor().setSiape(null);
-			}
+
+			empregoFiltro.setServidor(new Servidor());
+			empregoFiltro.getServidor().setSiape(null);
+
 			buscarEmpregos();
 			FacesContext.getCurrentInstance().getExternalContext()
 					.redirect("listarEmprego.jsp");
