@@ -44,6 +44,7 @@ WHERE  servidor.`lot_cod` = $P!{CODIGOLOTACAO}]]></queryString>
 			<band height="50"  isSplitAllowed="true" >
 				<staticText>
 					<reportElement
+						mode="Opaque"
 						x="61"
 						y="5"
 						width="412"
