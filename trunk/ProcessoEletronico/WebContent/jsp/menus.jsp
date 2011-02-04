@@ -250,6 +250,18 @@
 					action="#{funcaoController.abrirListarFuncoes}"
 					icon="../images/pesquisarfuncoes.gif" />
 			</rich:dropDownMenu>
+			
+			<rich:dropDownMenu
+				rendered="#{autenticacaoController.siapeAutenticado.indGerente}">
+				<f:facet name="label">
+					<h:panelGroup>
+						<h:outputText value="RELATÓRIOS" />
+					</h:panelGroup>
+				</f:facet>
+				<rich:menuItem submitMode="ajax" value="Relatório Teste"
+					action="#{relatorioController.abrirRelatorioTeste}"
+					icon="../images/cadastrarCargo.gif" />
+			</rich:dropDownMenu>
 
 
 			<rich:toolBarGroup location="right">
