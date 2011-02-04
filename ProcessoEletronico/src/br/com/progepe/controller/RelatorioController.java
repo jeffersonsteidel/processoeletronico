@@ -17,9 +17,10 @@ public class RelatorioController implements Serializable {
 		.redirect("relatorioTeste.jsp");
 	}
 	
-	public void gerarRelatorioTeste() throws ClassNotFoundException, SQLException, JRException{
+	public String gerarRelatorioTeste() throws ClassNotFoundException, SQLException, JRException{
 		JasperMB jasperMB = new JasperMB();
 		jasperMB.criaConexao();
-		jasperMB.geraRelatorioPassandoResultSet();	
+		jasperMB.geraRelatorioPassandoResultSet();
+		return "";
 	}
 }
