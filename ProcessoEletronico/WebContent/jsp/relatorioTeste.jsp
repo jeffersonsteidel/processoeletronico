@@ -17,6 +17,9 @@
 	<h:form>
 		<h:commandButton value="GERAR RELATÓRIO TESTE"
 			action="#{relatorioController.gerarRelatorioTeste}" />
+			
+		<h:commandButton value="GERAR RELATÓRIO TESTE PARAM"
+			action="#{relatorioController.gerarRelatorioTeste2}" />
 	</h:form>
 </f:view>
 </body>
