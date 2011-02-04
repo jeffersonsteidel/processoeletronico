@@ -25,5 +25,6 @@
 	<classpathentry kind="lib" path="C:/Documents and Settings/Jefferson/Meus documentos/PROJETO/ProcessoEletronico/WebContent/WEB-INF/lib/imap.jar"/>
 	<classpathentry kind="lib" path="C:/Documents and Settings/Jefferson/Meus documentos/PROJETO/ProcessoEletronico/WebContent/WEB-INF/lib/mail.jar"/>
 	<classpathentry kind="lib" path="C:/Documents and Settings/Jefferson/Meus documentos/PROJETO/ProcessoEletronico/WebContent/WEB-INF/lib/mailapi.jar"/>
+	<classpathentry kind="lib" path="C:/Documents and Settings/Jefferson/Meus documentos/PROJETO/ProcessoEletronico/WebContent/WEB-INF/jasper/jasperreports-3.0.0.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
