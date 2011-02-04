@@ -23,7 +23,7 @@ public class RelatorioController implements Serializable {
 		JasperMB jasperMB = new JasperMB();
 		jasperMB.criaConexao();
 		HashMap parametros = new HashMap();
-		String nomeDoJasper = "/WEB-INF/jasper/ralatorio1.jasper";
+		String nomeDoJasper = "/WEB-INF/jasper/relatorio1.jasper";
 		jasperMB.geraRelatorioPassandoResultSet(parametros,nomeDoJasper);
 		return "";
 	}
@@ -34,7 +34,7 @@ public class RelatorioController implements Serializable {
 		JasperMB jasperMB = new JasperMB();
 		jasperMB.criaConexao();
 		HashMap parametros = new HashMap();
-		parametros.put("CODIGOLOTACAO", Integer.parseInt("8"));
+		parametros.put("CODIGOLOTACAO", 8);
 		String nomeDoJasper = "/WEB-INF/jasper/relatorio2.jasper";
 		jasperMB.geraRelatorioPassandoResultSet(parametros,nomeDoJasper);
 		return "";
