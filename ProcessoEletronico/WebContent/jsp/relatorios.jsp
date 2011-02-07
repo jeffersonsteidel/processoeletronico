@@ -20,21 +20,6 @@
 
 		<h:commandButton value="GERAR RELATÓRIO SERVIDOR CONTA BANCÁRIA"
 			action="#{relatorioController.gerarRelatorioServidorContaBancaria}" />
-
-
-		<rich:panelMenu style="width:200px" 
-			iconExpandedGroup="disc" iconCollapsedGroup="disc" 
-			iconExpandedTopGroup="chevronUp" iconGroupTopPosition="right"
-			iconCollapsedTopGroup="chevronDown">
-			<rich:panelMenuGroup label="Gerais">
-				<rich:panelMenuItem label="Conta Bancária" ajaxSingle="false"
-					action="#{relatorioController.gerarRelatorioServidorContaBancaria}">
-				</rich:panelMenuItem>
-				<rich:panelMenuItem label="Cargo e Lotação" ajaxSingle="false"
-					action="#{relatorioController.gerarRelatorioServidorCargoLotacao}">
-				</rich:panelMenuItem>
-			</rich:panelMenuGroup>
-		</rich:panelMenu>
 	</h:form>
 </f:view>
 </body>
