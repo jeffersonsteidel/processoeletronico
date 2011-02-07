@@ -189,11 +189,13 @@ public class ServidorTitulacaoController implements Serializable {
 					new Estado());
 			servidorTitulacao.setTitulacao(new Titulacao());
 			servidorTitulacaoFiltro = new ServidorTitulacao();
-			servidorTitulacaoFiltro.setStatusSolicitacao(new StatusSolicitacao());
+			servidorTitulacaoFiltro
+					.setStatusSolicitacao(new StatusSolicitacao());
 			servidorTitulacaoFiltro.setEstadoOrgaoEmissor(new Estado());
 			servidorTitulacaoFiltro.setPais(new Pais());
 			servidorTitulacaoFiltro.setAreaConhecimento(new AreaConhecimento());
-			servidorTitulacaoFiltro.setCidadeEstabelecimentoEnsino(new Cidade());
+			servidorTitulacaoFiltro
+					.setCidadeEstabelecimentoEnsino(new Cidade());
 			servidorTitulacaoFiltro.getCidadeEstabelecimentoEnsino().setEstado(
 					new Estado());
 			servidorTitulacao.setTitulacao(new Titulacao());
@@ -223,7 +225,8 @@ public class ServidorTitulacaoController implements Serializable {
 			servidorTitulacaoFiltro.setServidor(new Servidor());
 			servidorTitulacaoFiltro.setAreaConhecimento(new AreaConhecimento());
 			servidorTitulacaoFiltro.setTitulacao(new Titulacao());
-			servidorTitulacaoFiltro.setStatusSolicitacao(new StatusSolicitacao());
+			servidorTitulacaoFiltro
+					.setStatusSolicitacao(new StatusSolicitacao());
 			listarAreaConhecimento();
 			listarTitulacoes();
 			listarStatus();
@@ -416,8 +419,8 @@ public class ServidorTitulacaoController implements Serializable {
 	}
 
 	public void carregarStatus() throws Exception {
-		servidorTitulacaoFiltro = (ServidorTitulacao) DAO.getInstance().refresh(
-				servidorTitulacaoFiltro);
+		servidorTitulacaoFiltro = (ServidorTitulacao) DAO.getInstance()
+				.refresh(servidorTitulacaoFiltro);
 		if (servidorTitulacaoFiltro.getAtendente() != null) {
 			atendente = new Servidor();
 			atendente.setSiape(servidorTitulacaoFiltro.getAtendente());
@@ -429,6 +432,7 @@ public class ServidorTitulacaoController implements Serializable {
 		FacesContext context = FacesContext.getCurrentInstance();
 		servidorTitulacao = (ServidorTitulacao) context.getExternalContext()
 				.getRequestMap().get("list");
+		listarCidadesEstabelecimento();
 	}
 
 	public List<ServidorTitulacao> listarTitulacoesFiltro() {
