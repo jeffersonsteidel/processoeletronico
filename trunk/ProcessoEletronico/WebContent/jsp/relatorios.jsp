@@ -15,17 +15,26 @@
 	<jsp:directive.include file="menus.jsp" />
 	<a4j:loadScript src="../js/script.js" />
 	<h:form>
-		<h:commandButton value="GERAR RELATÓRIO TESTE"
-			action="#{relatorioController.gerarRelatorioTeste}" />
-
-		<h:commandButton value="GERAR RELATÓRIO TESTE PARAM"
-			action="#{relatorioController.gerarRelatorioTeste2}" />
-
 		<h:commandButton value="GERAR RELATÓRIO SERVIDOR CARGO LOTAÇÃO"
 			action="#{relatorioController.gerarRelatorioServidorCargoLotacao}" />
-			
-					<h:commandButton value="GERAR RELATÓRIO SERVIDOR CONTA BANCÁRIA"
+
+		<h:commandButton value="GERAR RELATÓRIO SERVIDOR CONTA BANCÁRIA"
 			action="#{relatorioController.gerarRelatorioServidorContaBancaria}" />
+
+
+		<rich:panelMenu style="width:200px" 
+			iconExpandedGroup="disc" iconCollapsedGroup="disc" 
+			iconExpandedTopGroup="chevronUp" iconGroupTopPosition="right"
+			iconCollapsedTopGroup="chevronDown">
+			<rich:panelMenuGroup label="Gerais">
+				<rich:panelMenuItem label="Conta Bancária" ajaxSingle="false"
+					action="#{relatorioController.gerarRelatorioServidorContaBancaria}">
+				</rich:panelMenuItem>
+				<rich:panelMenuItem label="Cargo e Lotação" ajaxSingle="false"
+					action="#{relatorioController.gerarRelatorioServidorCargoLotacao}">
+				</rich:panelMenuItem>
+			</rich:panelMenuGroup>
+		</rich:panelMenu>
 	</h:form>
 </f:view>
 </body>
