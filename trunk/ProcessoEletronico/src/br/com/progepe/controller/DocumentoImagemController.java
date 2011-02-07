@@ -23,6 +23,7 @@ import br.com.progepe.entity.Conjuge;
 import br.com.progepe.entity.Dependente;
 import br.com.progepe.entity.DocumentoImagem;
 import br.com.progepe.entity.Servidor;
+import br.com.progepe.entity.ServidorTitulacao;
 import br.com.progepe.entity.TipoDocumento;
 
 public class DocumentoImagemController implements Serializable {
@@ -39,6 +40,8 @@ public class DocumentoImagemController implements Serializable {
 	private List<SelectItem> tiposDocumentos = new ArrayList<SelectItem>();
 	private Integer titularDocumento = 1;
 	private Integer validado = 0;
+
+	private List<SelectItem> titulacoes = new ArrayList<SelectItem>();
 
 	public DocumentoImagem getDocumentoImagem() {
 		return documentoImagem;
@@ -119,6 +122,14 @@ public class DocumentoImagemController implements Serializable {
 	public void setValidado(Integer validado) {
 		this.validado = validado;
 	}
+	
+	public List<SelectItem> getTitulacoes() {
+		return titulacoes;
+	}
+
+	public void setTitulacoes(List<SelectItem> titulacoes) {
+		this.titulacoes = titulacoes;
+	}
 
 	public void abrirAdicionarDocumentos() {
 		try {
@@ -172,6 +183,18 @@ public class DocumentoImagemController implements Serializable {
 		}
 		return dependentes;
 	}
+	public List<SelectItem> listarTitulacoes() throws Exception {
+		titulacoes = new ArrayList<SelectItem>();
+		List<ServidorTitulacao> titulacaoList = new ArrayList<ServidorTitulacao>();
+		buscarServidorLogado();
+		titulacaoList = DocumentoImagemDAO.getInstance()
+		.listTitulacaoByServidor(documentoImagem.getServidor());
+		for (ServidorTitulacao titulacao : titulacaoList) {
+			titulacoes.add(new SelectItem(titulacao.getCodigo(), titulacao
+					.getCurso()));
+		}
+		return titulacoes;
+	}
 
 	public void abrirPesquisarDocumentos() {
 		try {
@@ -207,10 +230,14 @@ public class DocumentoImagemController implements Serializable {
 		} else if (titularDocumento == 3) {
 			documentoImagem.setDependente(new Dependente());
 			listarDependentes();
+		} else if (titularDocumento == 4) {
+			documentoImagem.setServidorTitulacao(new ServidorTitulacao());
+			listarTitulacoes();
 		} else {
 			documentoImagem.setServidor(new Servidor());
 			conjuges = new ArrayList<SelectItem>();
 			dependentes = new ArrayList<SelectItem>();
+			titulacoes = new ArrayList<SelectItem>();
 		}
 		quantidadeArquivos = 0;
 		documentoImagem.setImagem1(null);

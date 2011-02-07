@@ -18,6 +18,7 @@ public class DocumentoImagem implements Serializable {
 	private byte[] imagem3;
 	private Boolean indValidado;
 	private String motivo;
+	private ServidorTitulacao servidorTitulacao;
 
 	public Long getCodigo() {
 		return codigo;
@@ -97,6 +98,14 @@ public class DocumentoImagem implements Serializable {
 
 	public void setMotivo(String motivo) {
 		this.motivo = motivo;
+	}
+
+	public ServidorTitulacao getServidorTitulacao() {
+		return servidorTitulacao;
+	}
+
+	public void setServidorTitulacao(ServidorTitulacao servidorTitulacao) {
+		this.servidorTitulacao = servidorTitulacao;
 	}
 
 }

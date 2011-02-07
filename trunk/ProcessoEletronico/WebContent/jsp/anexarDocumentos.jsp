@@ -43,6 +43,7 @@
 					<f:selectItem itemValue="1" itemLabel="Servidor" />
 					<f:selectItem itemValue="2" itemLabel="Cônjuge" />
 					<f:selectItem itemValue="3" itemLabel="Dependente" />
+					<f:selectItem itemValue="4" itemLabel="Titulação" />
 					<a4j:support event="onchange"
 						action="#{documentoImagemController.carregarComboTitular}"
 						ajaxSingle="true" reRender="titular, info, upload"></a4j:support>
@@ -52,7 +53,10 @@
 			<h:panelGrid columns="3" id="titular">
 				<h:outputText value="Nome do Titular do Documento: "
 					id="nomeTitular"
-					rendered="#{documentoImagemController.titularDocumento != 1}" />
+					rendered="#{documentoImagemController.titularDocumento != 1 && documentoImagemController.titularDocumento != 4}" />
+				<h:outputText value="Titulação do Documento: "
+					id="cursoTitulacao"
+					rendered="#{documentoImagemController.titularDocumento == 4}" />
 
 				<h:selectOneMenu id="conjuge"
 					rendered="#{documentoImagemController.titularDocumento == 2}"
@@ -69,6 +73,14 @@
 					requiredMessage="Campo Nome do Titular do Documento é obrigatório!">
 					<f:selectItem itemLabel="SELECIONE" itemValue="" />
 					<f:selectItems value="#{documentoImagemController.dependentes}" />
+				</h:selectOneMenu>
+				<h:selectOneMenu id="titulacao"
+					rendered="#{documentoImagemController.titularDocumento == 4}"
+					value="#{documentoImagemController.documentoImagem.servidorTitulacao.codigo}"
+					required="true"
+					requiredMessage="Campo Titulacao do Documento é obrigatório!">
+					<f:selectItem itemLabel="SELECIONE" itemValue="" />
+					<f:selectItems value="#{documentoImagemController.titulacoes}" />
 				</h:selectOneMenu>
 			</h:panelGrid>
 

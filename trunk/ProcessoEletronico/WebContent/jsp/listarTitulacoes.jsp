@@ -17,7 +17,7 @@
 	<center><a4j:form id="form">
 		<rich:panel>
 			<font size="2"><b>PESQUISAR TITULAÇÕES</b></font>
-				<rich:messages layout="list" errorLabelClass="errorLabel"
+			<rich:messages layout="list" errorLabelClass="errorLabel"
 				style="top:auto;" infoLabelClass="infoLabel">
 				<f:facet name="infoMarker">
 					<h:graphicImage value="../images/passed.gif" />
@@ -54,9 +54,12 @@
 						value="#{servidorTitulacaoController.areasConhecimento}" />
 				</h:selectOneMenu>
 				<h:outputText value="Status: " />
-				<h:selectOneMenu value="#{servidorTitulacaoController.servidorTitulacaoFiltro.statusSolicitacao.codigo}">
-					<f:selectItems value="#{servidorTitulacaoController.statusSolicitacoes}" />
-					
+				<h:selectOneMenu
+					value="#{servidorTitulacaoController.servidorTitulacaoFiltro.statusSolicitacao.codigo}">
+					<f:selectItem itemLabel="SELECIONE" itemValue="" />
+					<f:selectItems
+						value="#{servidorTitulacaoController.statusSolicitacoes}" />
+
 				</h:selectOneMenu>
 				<a4j:commandButton value="Pesquisar"
 					action="#{servidorTitulacaoController.listarTitulacoesFiltro}"
@@ -95,12 +98,13 @@
 					<h:outputText value="#{list.areaConhecimento.descricao}" />
 				</rich:column>
 
-				
+
 				<rich:column width="30px">
 					<f:facet name="header">
 						<h:outputText value="Visualizar" />
 					</f:facet>
-					<a4j:commandLink action="#{servidorTitulacaoController.validar}" ajaxSingle="true" reRender="listaTitulacoes">
+					<a4j:commandLink action="#{servidorTitulacaoController.validar}"
+						ajaxSingle="true" reRender="listaTitulacoes">
 						<h:graphicImage value="../images/encaminhado.png" style="border:0"
 							width="20" height="18" id="encaminhado"
 							rendered="#{list.statusSolicitacao.codigo == 1}" />
@@ -130,7 +134,7 @@
 			</rich:dataTable>
 		</rich:panel>
 	</a4j:form></center>
-	
+
 </f:view>
 </body>
 </html>

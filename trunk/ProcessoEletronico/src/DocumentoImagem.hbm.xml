@@ -21,5 +21,7 @@
 			column="CONJ_COD" lazy="false" />
 		<many-to-one name="dependente" class="br.com.progepe.entity.Dependente"
 			column="DEP_COD" lazy="false" />
+		<many-to-one name="servidorTitulacao" class="br.com.progepe.entity.ServidorTitulacao"
+			column="SERV_TIT_COD" lazy="false" />
 	</class>
 </hibernate-mapping>

@@ -64,6 +64,11 @@ public class ServidorTitulacaoDAO extends DAO {
 			sql += " and st.areaConhecimento.codigo =  "
 					+ servidorTitulacao.getAreaConhecimento().getCodigo();
 		}
+		if (servidorTitulacao.getStatusSolicitacao().getCodigo() != null
+				&& servidorTitulacao.getStatusSolicitacao().getCodigo() != 0) {
+			sql += " and st.statusSolicitacao.codigo =  "
+				+ servidorTitulacao.getStatusSolicitacao().getCodigo();
+		}
 		if (situacao != null && Constantes.ATIVO.equals(situacao) ) {
 			sql += " and s.dataSaida is null";
 		}
