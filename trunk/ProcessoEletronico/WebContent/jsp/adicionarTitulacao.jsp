@@ -44,7 +44,8 @@
 						<f:selectItems value="#{servidorTitulacaoController.titulacoes}" />
 						<a4j:support event="onchange"
 							action="#{servidorTitulacaoController.validarTitulacao}"
-							ajaxSingle="true" reRender="curso,areaConhecimento,cargaHoraria,registroConselho,orgaoEmissor,estadoEmissor"></a4j:support>
+							ajaxSingle="true"
+							reRender="curso,areaConhecimento,cargaHoraria,registroConselho,orgaoEmissor,estadoEmissor"></a4j:support>
 					</h:selectOneMenu>
 
 					<h:outputText value="Estabelecimento de Ensino: " />
@@ -58,7 +59,7 @@
 					<h:outputText value="Curso: " />
 
 					<h:inputText id="curso" required="true"
-						requiredMessage="Campo Curso é obrigatório!" 
+						requiredMessage="Campo Curso é obrigatório!"
 						disabled="#{!servidorTitulacaoController.indSuperior}"
 						value="#{servidorTitulacaoController.servidorTitulacao.curso}"
 						size="40" maxlength="100"></h:inputText>
@@ -67,7 +68,8 @@
 
 					<h:selectOneMenu id="areaConhecimento"
 						value="#{servidorTitulacaoController.servidorTitulacao.areaConhecimento.codigo}"
-						required="true" disabled="#{!servidorTitulacaoController.indSuperior}"
+						required="true"
+						disabled="#{!servidorTitulacaoController.indSuperior}"
 						requiredMessage="Campo Area de Conhecimento é obrigatório!">
 						<f:selectItem itemLabel="SELECIONE" itemValue="" />
 						<f:selectItems
@@ -100,7 +102,8 @@
 					<h:outputText value="Carga Horária: " />
 
 					<h:inputText id="cargaHoraria" required="true"
-						requiredMessage="Campo Carga Horária é obrigatório!" disabled="#{!servidorTitulacaoController.indSuperior}"
+						requiredMessage="Campo Carga Horária é obrigatório!"
+						disabled="#{!servidorTitulacaoController.indSuperior}"
 						value="#{servidorTitulacaoController.servidorTitulacao.cargaHoraria}"
 						size="9" maxlength="4" onkeypress="mascara(this,soNumeros);"></h:inputText>
 
@@ -116,18 +119,21 @@
 
 					<h:outputText value="Registro no Conselho: " />
 
-					<h:inputText id="registroConselho" disabled="#{!servidorTitulacaoController.indSuperior}"
+					<h:inputText id="registroConselho"
+						disabled="#{!servidorTitulacaoController.indSuperior}"
 						value="#{servidorTitulacaoController.servidorTitulacao.registroConselho}"
 						size="9" maxlength="10"></h:inputText>
 
 					<h:outputText value="Orgão Emissor do Registro: " />
 
-					<h:inputText id="orgaoEmissor" disabled="#{!servidorTitulacaoController.indSuperior}"
+					<h:inputText id="orgaoEmissor"
+						disabled="#{!servidorTitulacaoController.indSuperior}"
 						value="#{servidorTitulacaoController.servidorTitulacao.orgaoEmissor}"
 						size="9" maxlength="8"></h:inputText>
 
 					<h:outputText value="Estado do Orgão Emissor: " />
-					<h:selectOneMenu id="estadoEmissor" disabled="#{!servidorTitulacaoController.indSuperior}"
+					<h:selectOneMenu id="estadoEmissor"
+						disabled="#{!servidorTitulacaoController.indSuperior}"
 						value="#{servidorTitulacaoController.servidorTitulacao.estadoOrgaoEmissor.codigo}">
 						<f:selectItem itemLabel="SELECIONE" itemValue="" />
 						<f:selectItems value="#{servidorTitulacaoController.ufs}" />
@@ -192,7 +198,7 @@
 						<f:facet name="header">
 							<h:outputText value="Editar" />
 						</f:facet>
-						<a4j:commandLink action="#{servidorTitulacaoController.carregar}"
+						<a4j:commandLink action="#{servidorTitulacaoController.carregarTitulacao}" disabled="#{list.statusSolicitacao.codigo < 3}"
 							reRender="listaTitulacoes, form" ajaxSingle="true">
 							<h:graphicImage value="../images/edit.gif" style="border:0"
 								width="20" height="18" id="editar" />
@@ -202,56 +208,53 @@
 						<rich:toolTip for="editar" value="Editar" />
 					</rich:column>
 					<rich:column width="30px">
-					<f:facet name="header">
-						<h:outputText value="Status" />
-					</f:facet>
-					<a4j:commandLink rendered="#{list.statusSolicitacao.codigo == 1}"
-						action="#" reRender="listaTitulacoes" ajaxSingle="true">
-						<h:graphicImage value="../images/encaminhado.png" style="border:0"
-							width="20" height="18" id="encaminhado" />
-						<f:setPropertyActionListener value="#{list.codigo}"
-							target="#{servidorTitulacaoController.servidorTitulacao.codigo}" />
-					</a4j:commandLink>
-					<a4j:commandLink rendered="#{list.statusSolicitacao.codigo == 2}"
-						action="#" reRender="listaTitulacoes" ajaxSingle="true">
-						<h:graphicImage value="../images/analize.gif" style="border:0"
-							width="20" height="18" id="emAnalise" />
-					</a4j:commandLink>
-					<a4j:commandLink rendered="#{list.statusSolicitacao.codigo == 3}"
-						action="#" reRender="listaTitulacoes" ajaxSingle="true">
-						<h:graphicImage value="../images/deferido.gif" style="border:0"
-							width="20" height="18" id="deferido" />
-						<f:setPropertyActionListener value="#{list.codigo}"
-							target="#{servidorTitulacaoController.servidorTitulacao.codigo}" />
-					</a4j:commandLink>
-					<a4j:commandLink rendered="#{list.statusSolicitacao.codigo == 4}"
-						action="#"
-						reRender="listaTitulacoes" ajaxSingle="true">
-						<h:graphicImage value="../images/indeferido.gif" style="border:0"
-							width="20" height="18" id="indeferido" />
-						<f:setPropertyActionListener value="#{list.codigo}"
-							target="#{servidorTitulacaoController.servidorTitulacao.codigo}" />
-					</a4j:commandLink>
-					<rich:toolTip for="encaminhado" value="Encaminhado" />
-					<rich:toolTip for="emAnalise"
-						value="Você não pode abrir uma solicitação que está em Análise!" />
-					<rich:toolTip for="deferido" value="Deferido" />
-					<rich:toolTip for="indeferido" value="Indeferido" />
-				</rich:column>
-
-					<rich:column>
 						<f:facet name="header">
-							<h:outputText value="Excluir" />
+							<h:outputText value="Status" />
 						</f:facet>
-						<a4j:commandLink ajaxSingle="true" id="delete" reRender="form"
-							oncomplete="#{rich:component('deletePanel')}.show()">
-							<h:graphicImage id="excluir" value="../images/delete.gif"
-								style="border:0" />
+						<a4j:commandLink rendered="#{list.statusSolicitacao.codigo == 1}"
+							action="#{servidorTitulacaoController.carregarStatus}"
+							reRender="painel" ajaxSingle="true"
+							oncomplete="#{rich:component('painel')}.show()">
+							<h:graphicImage value="../images/encaminhado.png"
+								style="border:0" width="20" height="18" id="encaminhado" />
 							<f:setPropertyActionListener value="#{list.codigo}"
-								target="#{servidorTitulacaoController.servidorTitulacao.codigo}" />
+								target="#{servidorTitulacaoController.servidorTitulacaoFiltro.codigo}" />
 						</a4j:commandLink>
-						<rich:toolTip for="excluir" value="Excluir" />
+						<a4j:commandLink rendered="#{list.statusSolicitacao.codigo == 2}"
+							action="#{servidorTitulacaoController.carregarStatus}"
+							reRender="painel" ajaxSingle="true"
+							oncomplete="#{rich:component('painel')}.show()">
+							<h:graphicImage value="../images/analize.gif" style="border:0"
+								width="20" height="18" id="emAnalise" />
+							<f:setPropertyActionListener value="#{list.codigo}"
+								target="#{servidorTitulacaoController.servidorTitulacaoFiltro.codigo}" />
+						</a4j:commandLink>
+						<a4j:commandLink rendered="#{list.statusSolicitacao.codigo == 3}"
+							action="#{servidorTitulacaoController.carregarStatus}"
+							reRender="painel" ajaxSingle="true"
+							oncomplete="#{rich:component('painel')}.show()">
+							<h:graphicImage value="../images/deferido.gif" style="border:0"
+								width="20" height="18" id="deferido" />
+							<f:setPropertyActionListener value="#{list.codigo}"
+								target="#{servidorTitulacaoController.servidorTitulacaoFiltro.codigo}" />
+						</a4j:commandLink>
+						<a4j:commandLink rendered="#{list.statusSolicitacao.codigo == 4}"
+							action="#{servidorTitulacaoController.carregarStatus}"
+							reRender="painel" ajaxSingle="true"
+							oncomplete="#{rich:component('painel')}.show()">
+							<h:graphicImage value="../images/indeferido.gif" style="border:0"
+								width="20" height="18" id="indeferido" />
+							<f:setPropertyActionListener value="#{list.codigo}"
+								target="#{servidorTitulacaoController.servidorTitulacaoFiltro.codigo}" />
+						</a4j:commandLink>
+						<rich:toolTip for="encaminhado" value="Encaminhado" />
+						<rich:toolTip for="emAnalise"
+							value="Você não pode abrir uma solicitação que está em Análise!" />
+						<rich:toolTip for="deferido" value="Deferido" />
+						<rich:toolTip for="indeferido" value="Indeferido" />
 					</rich:column>
+
+
 					<f:facet name="footer">
 						<rich:datascroller id="ds"></rich:datascroller>
 					</f:facet>
@@ -259,27 +262,62 @@
 			</a4j:region>
 		</rich:panel></center>
 	</a4j:form>
-	<center><rich:modalPanel id="deletePanel" autosized="true"
-		width="200">
+	<center><rich:modalPanel id="painel" autosized="true"
+		width="350">
 		<f:facet name="header">
-			<h:outputText value="Deseja realmente deletar este item?"
-				style="padding-right:15px;" />
+			<h:panelGroup>
+				<h:outputText value="Detalhes do Status"></h:outputText>
+			</h:panelGroup>
 		</f:facet>
-		<h:form>
-			<table width="100%">
-				<tbody>
-					<tr>
-						<td align="center" width="50%"><a4j:commandButton value="Sim"
-							ajaxSingle="true" action="#{servidorTitulacaoController.remover}"
-							oncomplete="#{rich:component('deletePanel')}.hide();"
-							reRender="listaTitulacoes, form" /></td>
-						<td align="center" width="50%"><a4j:commandButton value="Não"
-							onclick="#{rich:component('deletePanel')}.hide();return false;" />
-						</td>
-					</tr>
-				</tbody>
-			</table>
-		</h:form>
+		<f:facet name="controls">
+			<h:panelGroup>
+				<h:graphicImage value="../images/close.gif"
+					onclick="#{rich:component('painel')}.hide();" />
+			</h:panelGroup>
+		</f:facet>
+		<h:panelGrid columns="2">
+			<h:outputText value="Status: " />
+			<h:outputText
+				rendered="#{servidorTitulacaoController.servidorTitulacaoFiltro.statusSolicitacao.descricao != null}"
+				value="#{servidorTitulacaoController.servidorTitulacaoFiltro.statusSolicitacao.descricao}">
+			</h:outputText>
+			<h:outputText value="Data Ultima Alteração: " />
+			<h:outputText
+				rendered="#{servidorTitulacaoController.servidorTitulacaoFiltro.dataAbertura != null}"
+				value="#{servidorTitulacaoController.servidorTitulacaoFiltro.dataAbertura}">
+				<f:convertDateTime pattern="dd/MM/yyyy - HH:mm:ss" />
+			</h:outputText>
+			<h:outputText
+				rendered="#{servidorTitulacaoController.servidorTitulacaoFiltro.dataAtendimento != null}"
+				value="Data Atendimento: " />
+			<h:outputText
+				rendered="#{servidorTitulacaoController.servidorTitulacaoFiltro.dataAtendimento != null}"
+				value="#{servidorTitulacaoController.servidorTitulacaoFiltro.dataAtendimento}">
+				<f:convertDateTime pattern="dd/MM/yyyy - HH:mm:ss" />
+			</h:outputText>
+			<h:outputText
+				rendered="#{servidorTitulacaoController.servidorTitulacaoFiltro.atendente != null}"
+				value="Atendente: " />
+			<h:outputText
+				rendered="#{servidorTitulacaoController.servidorTitulacaoFiltro.atendente!= null}"
+				value="#{servidorTitulacaoController.atendente.nome}">
+			</h:outputText>
+			<h:outputText
+				rendered="#{servidorTitulacaoController.servidorTitulacaoFiltro.dataFechamento != null}"
+				value="Data Fechamento: " />
+			<h:outputText
+				rendered="#{servidorTitulacaoController.servidorTitulacaoFiltro.dataFechamento.date != null}"
+				value="#{servidorTitulacaoController.servidorTitulacaoFiltro.dataFechamento}">
+				<f:convertDateTime pattern="dd/MM/yyyy - HH:mm:ss" />
+			</h:outputText>
+			<h:outputText
+				rendered="#{servidorTitulacaoController.servidorTitulacaoFiltro.justificativa != null}"
+				value="Justificativa: " />
+			<h:outputText
+				rendered="#{servidorTitulacaoController.servidorTitulacaoFiltro.justificativa != null}"
+				value="#{servidorTitulacaoController.servidorTitulacaoFiltro.justificativa}">
+			</h:outputText>
+		</h:panelGrid>
 	</rich:modalPanel></center>
 </f:view>
 </body>

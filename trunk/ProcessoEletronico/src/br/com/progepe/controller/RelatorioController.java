@@ -51,4 +51,15 @@ public class RelatorioController implements Serializable {
 		jasperMB.geraRelatorioPassandoResultSet(parametros,nomeDoJasper);
 		return "";
 	}
+	
+	@SuppressWarnings({"rawtypes"})
+	public String gerarRelatorioServidorContaBancaria() throws ClassNotFoundException,
+			SQLException, JRException {
+		JasperMB jasperMB = new JasperMB();
+		jasperMB.criaConexao();
+		HashMap parametros = new HashMap();
+		String nomeDoJasper = "/WEB-INF/jasper/relatorioServidorContaBancaria.jasper";
+		jasperMB.geraRelatorioPassandoResultSet(parametros,nomeDoJasper);
+		return "";
+	}
 }

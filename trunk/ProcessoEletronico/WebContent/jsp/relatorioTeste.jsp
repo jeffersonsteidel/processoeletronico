@@ -23,6 +23,9 @@
 
 		<h:commandButton value="GERAR RELATÓRIO SERVIDOR CARGO LOTAÇÃO"
 			action="#{relatorioController.gerarRelatorioServidorCargoLotacao}" />
+			
+					<h:commandButton value="GERAR RELATÓRIO SERVIDOR CONTA BANCÁRIA"
+			action="#{relatorioController.gerarRelatorioServidorContaBancaria}" />
 	</h:form>
 </f:view>
 </body>
