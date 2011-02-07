@@ -233,6 +233,7 @@ public class ConjugeController implements Serializable {
 			conjuge.getCidadeNascimento().setEstado(new Estado());
 			conjuge.setPais(new Pais());
 			cidadesNascimento = new ArrayList<SelectItem>();
+			conjuge.setStatusSolicitacao(new StatusSolicitacao());
 			listarPais();
 			listarUfs();
 			listarEstados();
@@ -318,12 +319,6 @@ public class ConjugeController implements Serializable {
 				conjuge.getServidor()));
 	}
 
-	public void pesquisarConjuges() throws IOException {
-		this.setConjugeList(ConjugeDAO.getInstance().listByServidor(
-				getConjuge()));
-		FacesContext.getCurrentInstance().getExternalContext()
-				.redirect("listarPortarias.jsp");
-	}
 
 	public void carregar() throws IOException, ParseException {
 		FacesContext context = FacesContext.getCurrentInstance();
@@ -398,6 +393,7 @@ public class ConjugeController implements Serializable {
 	public void limparEstado() {
 		conjuge.setCidadeNascimento(new Cidade());
 		conjuge.getCidadeNascimento().setEstado(new Estado());
+		cidadesNascimento = new ArrayList<SelectItem>();
 	}
 
 	public void abrirListarConjuge() throws Exception {
@@ -444,5 +440,12 @@ public class ConjugeController implements Serializable {
 		listaConjugesByFilter = (List<Conjuge>) ConjugeDAO.getInstance()
 				.listByFilter(conjugeFilter, situacao, atuais);
 		return listaConjugesByFilter;
+	}
+	
+	public void retornarUltimaPesquisa() throws IOException {
+		listaConjugesByFilter = (List<Conjuge>) ConjugeDAO.getInstance()
+				.listByFilter(conjugeFilter, situacao, atuais);
+		FacesContext.getCurrentInstance().getExternalContext()
+		.redirect("listarConjuge.jsp");
 	}
 }
