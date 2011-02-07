@@ -115,7 +115,8 @@
 			</h:panelGrid>
 			<h:panelGrid columns="1" id="documentos">
 				<a4j:commandButton value="Ver Documentos"
-					action="#{documentoImagemController.abrirPesquisarDocumentos}" />
+					action="#{documentoImagemController.abrirPesquisarDocumentos}" 
+					/>
 			</h:panelGrid>
 			<h:panelGrid columns="2" style="text-align: center;">
 				<h:outputText value="Justificativa: " />

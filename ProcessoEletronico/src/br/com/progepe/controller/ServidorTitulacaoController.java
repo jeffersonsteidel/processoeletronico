@@ -219,6 +219,11 @@ public class ServidorTitulacaoController implements Serializable {
 			servidorTitulacao.setAreaConhecimento(new AreaConhecimento());
 			servidorTitulacao.setTitulacao(new Titulacao());
 			servidorTitulacao.setStatusSolicitacao(new StatusSolicitacao());
+			servidorTitulacaoFiltro = new ServidorTitulacao();
+			servidorTitulacaoFiltro.setServidor(new Servidor());
+			servidorTitulacaoFiltro.setAreaConhecimento(new AreaConhecimento());
+			servidorTitulacaoFiltro.setTitulacao(new Titulacao());
+			servidorTitulacaoFiltro.setStatusSolicitacao(new StatusSolicitacao());
 			listarAreaConhecimento();
 			listarTitulacoes();
 			listarStatus();
@@ -356,6 +361,10 @@ public class ServidorTitulacaoController implements Serializable {
 		servidorTitulacao.getStatusSolicitacao().setCodigo(
 				Constantes.STATUS_SOLICITACAO_ENCAMINHADO);
 		servidorTitulacao.setDataAbertura(new Date());
+		servidorTitulacao.setAtendente(null);
+		servidorTitulacao.setDataAtendimento(null);
+		servidorTitulacao.setDataFechamento(null);
+		servidorTitulacao.setJustificativa(null);
 		DAO.getInstance().saveOrUpdate(servidorTitulacao);
 		listarTitulacoesServidorLogado();
 		servidorTitulacao = new ServidorTitulacao();

@@ -207,6 +207,20 @@
 						</a4j:commandLink>
 						<rich:toolTip for="editar" value="Editar" />
 					</rich:column>
+					
+					<rich:column width="60px">
+						<f:facet name="header">
+							<h:outputText value="Adicionar Documentos" />
+						</f:facet>
+						<a4j:commandLink id="documentos"
+							action="#{documentoImagemController.abrirAdicionarDocumentos}"
+							ajaxSingle="true">
+							<h:graphicImage value="../images/add_documentos.png"
+								style="border:0" width="20" height="18" />
+						</a4j:commandLink>
+						<rich:toolTip for="documentos" value="Clique aqui para adicionar os Documentos da Titulação!" />
+					</rich:column>
+					
 					<rich:column width="30px">
 						<f:facet name="header">
 							<h:outputText value="Status" />

@@ -11,6 +11,7 @@ import br.com.progepe.entity.Conjuge;
 import br.com.progepe.entity.Dependente;
 import br.com.progepe.entity.DocumentoImagem;
 import br.com.progepe.entity.Servidor;
+import br.com.progepe.entity.ServidorTitulacao;
 
 public class DocumentoImagemDAO extends DAO {
 
@@ -52,6 +53,19 @@ public class DocumentoImagemDAO extends DAO {
 		return c.list();
 	}
 
+	@SuppressWarnings("unchecked")
+	public List<ServidorTitulacao> listTitulacaoByServidor(Servidor servidor) {
+		HibernateUtility.getSession().clear();
+		HibernateUtility.beginTransaction();
+		Criteria c = HibernateUtility.getSession().createCriteria(
+				ServidorTitulacao.class);
+		if (servidor != null) {
+			c.add(Restrictions.like("servidor", servidor));
+		}
+		HibernateUtility.commitTransaction();
+		return c.list();
+	}
+	
 	@SuppressWarnings("unchecked")
 	public List<DocumentoImagem> listByFilter(DocumentoImagem documentoImagem,
 			Integer titularDocumento, Integer validado) {
