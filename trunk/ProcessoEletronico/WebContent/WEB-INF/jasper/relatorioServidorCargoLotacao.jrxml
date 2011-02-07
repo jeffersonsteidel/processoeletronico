@@ -23,6 +23,7 @@
 	<import value="net.sf.jasperreports.engine.*" />
 	<import value="net.sf.jasperreports.engine.data.*" />
 
+	<parameter name="BANNER" isForPrompting="false" class="java.lang.String"/>
 	<queryString><![CDATA[SELECT
      servidor.`serv_siape` AS servidor_serv_siape,
      servidor.`serv_nome` AS servidor_serv_nome,
@@ -95,7 +96,7 @@ FROM
 						key="image-1"/>
 					<box></box>
 					<graphicElement stretchType="NoStretch"/>
-					<imageExpression class="java.lang.String"><![CDATA["C:\\PROJETOS\\WebContent\\images\\banner_topo.gif"]]></imageExpression>
+					<imageExpression class="java.lang.String"><![CDATA[$P{BANNER}]]></imageExpression>
 				</image>
 				<elementGroup><!--  Start: 1 !-->
 				<line direction="BottomUp">

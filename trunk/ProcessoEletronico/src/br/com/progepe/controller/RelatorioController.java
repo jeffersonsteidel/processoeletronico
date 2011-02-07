@@ -14,50 +14,29 @@ public class RelatorioController implements Serializable {
 
 	public void abrirRelatorioTeste() throws IOException {
 		FacesContext.getCurrentInstance().getExternalContext()
-				.redirect("relatorioTeste.jsp");
-	}
-
-	@SuppressWarnings("rawtypes")
-	public String gerarRelatorioTeste() throws ClassNotFoundException,
-			SQLException, JRException {
-		JasperMB jasperMB = new JasperMB();
-		jasperMB.criaConexao();
-		HashMap parametros = new HashMap();
-		String nomeDoJasper = "/WEB-INF/jasper/relatorio1.jasper";
-		jasperMB.geraRelatorioPassandoResultSet(parametros,nomeDoJasper);
-		return "";
-	}
-
-	@SuppressWarnings({ "rawtypes", "unchecked" })
-	public String gerarRelatorioTeste2() throws ClassNotFoundException,
-			SQLException, JRException {
-		JasperMB jasperMB = new JasperMB();
-		jasperMB.criaConexao();
-		HashMap parametros = new HashMap();
-		parametros.put("CODIGOLOTACAO", 8);
-		String nomeDoJasper = "/WEB-INF/jasper/relatorio2.jasper";
-		jasperMB.geraRelatorioPassandoResultSet(parametros,nomeDoJasper);
-		return "";
+				.redirect("relatorios.jsp");
 	}
 	
 
-	@SuppressWarnings({"rawtypes"})
+	@SuppressWarnings({"rawtypes", "unchecked"})
 	public String gerarRelatorioServidorCargoLotacao() throws ClassNotFoundException,
 			SQLException, JRException {
 		JasperMB jasperMB = new JasperMB();
 		jasperMB.criaConexao();
 		HashMap parametros = new HashMap();
+		parametros.put("BANNER", jasperMB.getDiretorioReal("/images/banner_topo.gif"));
 		String nomeDoJasper = "/WEB-INF/jasper/relatorioServidorCargoLotacao.jasper";
 		jasperMB.geraRelatorioPassandoResultSet(parametros,nomeDoJasper);
 		return "";
 	}
 	
-	@SuppressWarnings({"rawtypes"})
+	@SuppressWarnings({"rawtypes", "unchecked"})
 	public String gerarRelatorioServidorContaBancaria() throws ClassNotFoundException,
 			SQLException, JRException {
 		JasperMB jasperMB = new JasperMB();
 		jasperMB.criaConexao();
 		HashMap parametros = new HashMap();
+		parametros.put("BANNER", jasperMB.getDiretorioReal("/images/banner_topo.gif"));
 		String nomeDoJasper = "/WEB-INF/jasper/relatorioServidorContaBancaria.jasper";
 		jasperMB.geraRelatorioPassandoResultSet(parametros,nomeDoJasper);
 		return "";

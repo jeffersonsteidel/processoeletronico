@@ -46,7 +46,7 @@ public class JasperMB {
 		return conexao;
 	}
 
-	private String getDiretorioReal(String diretorio) {
+	protected String getDiretorioReal(String diretorio) {
 		HttpSession session = (HttpSession) FacesContext.getCurrentInstance()
 				.getExternalContext().getSession(false);
 		return session.getServletContext().getRealPath(diretorio);
