@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
 
@@ -29,17 +30,20 @@ public class ServidorTitulacaoController implements Serializable {
 	private static final long serialVersionUID = -333995781063775201L;
 	private List<ServidorTitulacao> listaServidorTitulacoes = new ArrayList<ServidorTitulacao>();
 	private ServidorTitulacao servidorTitulacao;
+	private ServidorTitulacao servidorTitulacaoFiltro;
 	private List<SelectItem> areasConhecimento = new ArrayList<SelectItem>();
 	private List<SelectItem> paises = new ArrayList<SelectItem>();
 	private List<SelectItem> cidadesEstabelecimento = new ArrayList<SelectItem>();
 	private List<SelectItem> estados = new ArrayList<SelectItem>();
 	private List<SelectItem> titulacoes = new ArrayList<SelectItem>();
 	private List<SelectItem> ufs = new ArrayList<SelectItem>();
+	private List<SelectItem> statusSolicitacoes = new ArrayList<SelectItem>();
 	private Boolean indTitulacaoEstrangeira = false;
 	private Boolean indSuperior = false;
 	private List<ServidorTitulacao> listaTitulacoes = new ArrayList<ServidorTitulacao>();
 	private Integer situacao = 0;
 	private Integer validado = 0;
+	private Servidor atendente;
 
 	public List<ServidorTitulacao> getListaServidorTitulacoes() {
 		return listaServidorTitulacoes;
@@ -138,13 +142,38 @@ public class ServidorTitulacaoController implements Serializable {
 	public void setSituacao(Integer situacao) {
 		this.situacao = situacao;
 	}
-	
+
 	public Integer getValidado() {
 		return validado;
 	}
 
 	public void setValidado(Integer validado) {
 		this.validado = validado;
+	}
+
+	public ServidorTitulacao getServidorTitulacaoFiltro() {
+		return servidorTitulacaoFiltro;
+	}
+
+	public void setServidorTitulacaoFiltro(
+			ServidorTitulacao servidorTitulacaoFiltro) {
+		this.servidorTitulacaoFiltro = servidorTitulacaoFiltro;
+	}
+
+	public List<SelectItem> getStatusSolicitacoes() {
+		return statusSolicitacoes;
+	}
+
+	public void setStatusSolicitacoes(List<SelectItem> statusSolicitacoes) {
+		this.statusSolicitacoes = statusSolicitacoes;
+	}
+
+	public Servidor getAtendente() {
+		return atendente;
+	}
+
+	public void setAtendente(Servidor atendente) {
+		this.atendente = atendente;
 	}
 
 	public void abrirAdicionarServidorTitulacao() throws Exception {
@@ -157,6 +186,15 @@ public class ServidorTitulacaoController implements Serializable {
 			servidorTitulacao.setAreaConhecimento(new AreaConhecimento());
 			servidorTitulacao.setCidadeEstabelecimentoEnsino(new Cidade());
 			servidorTitulacao.getCidadeEstabelecimentoEnsino().setEstado(
+					new Estado());
+			servidorTitulacao.setTitulacao(new Titulacao());
+			servidorTitulacaoFiltro = new ServidorTitulacao();
+			servidorTitulacaoFiltro.setStatusSolicitacao(new StatusSolicitacao());
+			servidorTitulacaoFiltro.setEstadoOrgaoEmissor(new Estado());
+			servidorTitulacaoFiltro.setPais(new Pais());
+			servidorTitulacaoFiltro.setAreaConhecimento(new AreaConhecimento());
+			servidorTitulacaoFiltro.setCidadeEstabelecimentoEnsino(new Cidade());
+			servidorTitulacaoFiltro.getCidadeEstabelecimentoEnsino().setEstado(
 					new Estado());
 			servidorTitulacao.setTitulacao(new Titulacao());
 			buscarServidorLogado();
@@ -180,8 +218,10 @@ public class ServidorTitulacaoController implements Serializable {
 			servidorTitulacao.setServidor(new Servidor());
 			servidorTitulacao.setAreaConhecimento(new AreaConhecimento());
 			servidorTitulacao.setTitulacao(new Titulacao());
+			servidorTitulacao.setStatusSolicitacao(new StatusSolicitacao());
 			listarAreaConhecimento();
 			listarTitulacoes();
+			listarStatus();
 			FacesContext.getCurrentInstance().getExternalContext()
 					.redirect("listarTitulacoes.jsp");
 		} catch (IOException e) {
@@ -222,6 +262,19 @@ public class ServidorTitulacaoController implements Serializable {
 			paises.add(new SelectItem(pais.getCodigo(), pais.getDescricao()));
 		}
 		return paises;
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<SelectItem> listarStatus() {
+		statusSolicitacoes = new ArrayList<SelectItem>();
+		List<StatusSolicitacao> list = new ArrayList<StatusSolicitacao>();
+		list = DAO.getInstance().list(StatusSolicitacao.class, "descricao");
+		for (StatusSolicitacao statusSolicitacao : list) {
+			statusSolicitacoes.add(new SelectItem(
+					statusSolicitacao.getCodigo(), statusSolicitacao
+							.getDescricao()));
+		}
+		return statusSolicitacoes;
 	}
 
 	@SuppressWarnings("unchecked")
@@ -289,20 +342,19 @@ public class ServidorTitulacaoController implements Serializable {
 			if (Constantes.ZERO.equals(servidorTitulacao
 					.getEstadoOrgaoEmissor().getCodigo())) {
 				servidorTitulacao.setEstadoOrgaoEmissor(null);
-			}
-			else if(servidorTitulacao.getEstadoOrgaoEmissor().getCodigo() == null){
+			} else if (servidorTitulacao.getEstadoOrgaoEmissor().getCodigo() == null) {
 				servidorTitulacao.setEstadoOrgaoEmissor(null);
 			}
 		}
 		if (servidorTitulacao.getPais() != null) {
 			if (Constantes.ZERO.equals(servidorTitulacao.getPais().getCodigo())) {
 				servidorTitulacao.setPais(null);
-			}
-			else if(servidorTitulacao.getPais().getCodigo() == null){
+			} else if (servidorTitulacao.getPais().getCodigo() == null) {
 				servidorTitulacao.setPais(null);
 			}
 		}
-		servidorTitulacao.getStatusSolicitacao().setCodigo(Constantes.STATUS_SOLICITACAO_ENCAMINHADO);
+		servidorTitulacao.getStatusSolicitacao().setCodigo(
+				Constantes.STATUS_SOLICITACAO_ENCAMINHADO);
 		servidorTitulacao.setDataAbertura(new Date());
 		DAO.getInstance().saveOrUpdate(servidorTitulacao);
 		listarTitulacoesServidorLogado();
@@ -324,33 +376,28 @@ public class ServidorTitulacaoController implements Serializable {
 		listarUf();
 		listarPais();
 	}
-	
-	public void deferir(){
-		servidorTitulacao.getStatusSolicitacao().setCodigo(Constantes.STATUS_SOLICITACAO_DEFERIDO);
+
+	public void deferir() {
+		servidorTitulacao.getStatusSolicitacao().setCodigo(
+				Constantes.STATUS_SOLICITACAO_DEFERIDO);
 		servidorTitulacao.setDataFechamento(new Date());
 		DAO.getInstance().update(servidorTitulacao);
-		servidorTitulacao = new ServidorTitulacao();
-		servidorTitulacao.setEstadoOrgaoEmissor(new Estado());
-		servidorTitulacao.setAreaConhecimento(new AreaConhecimento());
-		servidorTitulacao.setCidadeEstabelecimentoEnsino(new Cidade());
-		servidorTitulacao.getCidadeEstabelecimentoEnsino().setEstado(
-				new Estado());
-		servidorTitulacao.setTitulacao(new Titulacao());
-		servidorTitulacao.setPais(new Pais());
 	}
-	
-	public void indeferir(){
-		servidorTitulacao.getStatusSolicitacao().setCodigo(Constantes.STATUS_SOLICITACAO_INDEFERIDO);
-		servidorTitulacao.setDataFechamento(new Date());
-		DAO.getInstance().update(servidorTitulacao);
-		servidorTitulacao = new ServidorTitulacao();
-		servidorTitulacao.setEstadoOrgaoEmissor(new Estado());
-		servidorTitulacao.setAreaConhecimento(new AreaConhecimento());
-		servidorTitulacao.setCidadeEstabelecimentoEnsino(new Cidade());
-		servidorTitulacao.getCidadeEstabelecimentoEnsino().setEstado(
-				new Estado());
-		servidorTitulacao.setTitulacao(new Titulacao());
-		servidorTitulacao.setPais(new Pais());
+
+	public void indeferir() {
+		if (servidorTitulacao.getJustificativa() != null
+				&& !servidorTitulacao.getJustificativa().equals("")) {
+			servidorTitulacao.getStatusSolicitacao().setCodigo(
+					Constantes.STATUS_SOLICITACAO_INDEFERIDO);
+			servidorTitulacao.setDataFechamento(new Date());
+			DAO.getInstance().update(servidorTitulacao);
+		} else {
+			FacesMessage message = new FacesMessage(
+					FacesMessage.SEVERITY_ERROR,
+					"O campo Justificativa é obrigatório!",
+					"O campo Justificativa é obrigatório!");
+			FacesContext.getCurrentInstance().addMessage("", message);
+		}
 	}
 
 	public void listarTitulacoesServidorLogado() throws Exception {
@@ -359,37 +406,13 @@ public class ServidorTitulacaoController implements Serializable {
 				.listByServidor(servidorTitulacao);
 	}
 
-	public void remover() throws Exception {
-		servidorTitulacao = (ServidorTitulacao) DAO.getInstance().refresh(
-				servidorTitulacao);
-		DAO.getInstance().delete(servidorTitulacao);
-		abrirAdicionarServidorTitulacao();
-	}
-
-	public void carregar() throws Exception {
-		FacesContext context = FacesContext.getCurrentInstance();
-		servidorTitulacao = (ServidorTitulacao) context.getExternalContext()
-				.getRequestMap().get("list");
-		if (servidorTitulacao.getEstadoOrgaoEmissor() == null) {
-			servidorTitulacao.setEstadoOrgaoEmissor(new Estado());
-		}
-		if (servidorTitulacao.getPais() == null) {
-			setIndTitulacaoEstrangeira(false);
-			servidorTitulacao.setPais(new Pais());
-		} else {
-			setIndTitulacaoEstrangeira(true);
-			listarPais();
-		}
-		if (Constantes.ENSINO_FUNDAMENTAL.equals(servidorTitulacao
-				.getTitulacao().getCodigo())
-				|| Constantes.ENSINO_MEDIO.equals(servidorTitulacao
-						.getTitulacao().getCodigo())) {
-			setIndSuperior(false);
-		} else {
-			setIndSuperior(true);
-		}
-		if (servidorTitulacao.getCidadeEstabelecimentoEnsino() != null) {
-			listarCidadesEstabelecimento();
+	public void carregarStatus() throws Exception {
+		servidorTitulacaoFiltro = (ServidorTitulacao) DAO.getInstance().refresh(
+				servidorTitulacaoFiltro);
+		if (servidorTitulacaoFiltro.getAtendente() != null) {
+			atendente = new Servidor();
+			atendente.setSiape(servidorTitulacaoFiltro.getAtendente());
+			atendente = ServidorDAO.getInstance().refreshBySiape(atendente);
 		}
 	}
 
@@ -401,8 +424,15 @@ public class ServidorTitulacaoController implements Serializable {
 
 	public List<ServidorTitulacao> listarTitulacoesFiltro() {
 		listaTitulacoes = (List<ServidorTitulacao>) ServidorTitulacaoDAO
-				.getInstance().listByFilter(servidorTitulacao, situacao, validado);
+				.getInstance().listByFilter(servidorTitulacaoFiltro, situacao,
+						validado);
 		return listaTitulacoes;
+	}
+
+	public void retornarUltimaPesquisa() throws IOException {
+		listarTitulacoesFiltro();
+		FacesContext.getCurrentInstance().getExternalContext()
+				.redirect("listarTitulacoes.jsp");
 	}
 
 	public void validarTitulacao() {
@@ -419,6 +449,52 @@ public class ServidorTitulacaoController implements Serializable {
 			setIndSuperior(true);
 			servidorTitulacao.setAreaConhecimento(new AreaConhecimento());
 			servidorTitulacao.setEstadoOrgaoEmissor(new Estado());
+		}
+	}
+
+	public void validar() throws Exception {
+		servidorTitulacao = (ServidorTitulacao) DAO.getInstance().refresh(
+				servidorTitulacao);
+		if (Constantes.ENSINO_FUNDAMENTAL.equals(servidorTitulacao
+				.getTitulacao().getCodigo())
+				|| Constantes.ENSINO_MEDIO.equals(servidorTitulacao
+						.getTitulacao().getCodigo())) {
+			setIndSuperior(false);
+		} else {
+			setIndSuperior(true);
+		}
+		if (servidorTitulacao.getPais() != null
+				&& !Constantes.ZERO.equals(servidorTitulacao.getPais()
+						.getCodigo())) {
+			indTitulacaoEstrangeira = true;
+		} else {
+			indTitulacaoEstrangeira = false;
+		}
+		if (Constantes.STATUS_SOLICITACAO_ENCAMINHADO.equals(servidorTitulacao
+				.getStatusSolicitacao().getCodigo())) {
+			servidorTitulacao.getStatusSolicitacao().setCodigo(
+					Constantes.STATUS_SOLICITACAO_EM_ANALISE);
+			atendente = new Servidor();
+			Autenticacao siapeAutenticado = (Autenticacao) FacesContext
+					.getCurrentInstance().getExternalContext().getSessionMap()
+					.get("usuarioLogado");
+			atendente.setSiape(siapeAutenticado.getSiape());
+			atendente = ServidorDAO.getInstance().refreshBySiape(atendente);
+			servidorTitulacao.setAtendente(atendente.getSiape());
+			servidorTitulacao.setDataAtendimento(new Date());
+			ServidorTitulacaoDAO.getInstance().update(servidorTitulacao);
+			FacesContext.getCurrentInstance().getExternalContext()
+					.redirect("titulacaoAprovar.jsp");
+		} else if (Constantes.STATUS_SOLICITACAO_EM_ANALISE
+				.equals(servidorTitulacao.getStatusSolicitacao().getCodigo())) {
+			FacesMessage message = new FacesMessage(
+					FacesMessage.SEVERITY_ERROR,
+					"Esta Titulação já está sendo analizada por outro servidor!",
+					"Esta Titulação já está sendo analizada por outro servidor!");
+			FacesContext.getCurrentInstance().addMessage("", message);
+		} else {
+			FacesContext.getCurrentInstance().getExternalContext()
+					.redirect("titulacaoAprovar.jsp");
 		}
 	}
 }
