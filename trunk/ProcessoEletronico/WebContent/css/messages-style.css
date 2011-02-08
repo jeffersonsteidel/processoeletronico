@@ -33,3 +33,7 @@ rich-message-label{
 .infoLabel{
  color: green;
 }
+
+input{
+	TEXT-TRANSFORM: uppercase;
+}
