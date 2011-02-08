@@ -34,6 +34,9 @@ rich-message-label{
  color: green;
 }
 
-input{
-	TEXT-TRANSFORM: uppercase;
+input[type="text"] {
+	text-transform: uppercase;
 }
+
+
+
