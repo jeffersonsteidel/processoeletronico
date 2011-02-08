@@ -24,7 +24,7 @@
 					<h:graphicImage value="../images/error.gif" />
 				</f:facet>
 			</rich:messages>
-			<font size="2"><b>LISTAR DOCUMENTOS</b></font>
+			<font size="2"><b>PESQUISAR DOCUMENTOS</b></font>
 			<h:panelGrid columns="13">
 				<h:outputText value="Siape do Servidor: ">
 				</h:outputText>
@@ -44,6 +44,7 @@
 				</h:outputText>
 				<h:selectOneMenu
 					value="#{documentoImagemController.titularDocumento}">
+					<f:selectItem itemLabel="SELECIONE" itemValue="" />
 					<f:selectItem itemLabel="SERVIDOR" itemValue="1" />
 					<f:selectItem itemLabel="CÔNJUGE" itemValue="2" />
 					<f:selectItem itemLabel="DEPENDENTE" itemValue="3" />
