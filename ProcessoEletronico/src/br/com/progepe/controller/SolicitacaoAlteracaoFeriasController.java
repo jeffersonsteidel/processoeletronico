@@ -15,6 +15,7 @@ import br.com.progepe.entity.Servidor;
 import br.com.progepe.entity.SolicitacaoAlteracaoFerias;
 import br.com.progepe.entity.StatusSolicitacao;
 import br.com.progepe.entity.TipoSolicitacao;
+import br.com.progepe.jsfUtil.EnviarEmail;
 
 public class SolicitacaoAlteracaoFeriasController implements Serializable {
 	private static final long serialVersionUID = -333995781063775201L;
@@ -65,6 +66,8 @@ public class SolicitacaoAlteracaoFeriasController implements Serializable {
 		solicitacaoAlteracaoFerias.getStatusSolicitacao().setCodigo(
 				Constantes.STATUS_SOLICITACAO_ENCAMINHADO);
 		DAO.getInstance().saveOrUpdate(solicitacaoAlteracaoFerias);
+		EnviarEmail enviarEmail = new EnviarEmail();
+		enviarEmail.enviarEmailSolicitacao(solicitacaoAlteracaoFerias);
 		solicitacaoAlteracaoFerias = new SolicitacaoAlteracaoFerias();
 		buscarServidorLogado();
 	}

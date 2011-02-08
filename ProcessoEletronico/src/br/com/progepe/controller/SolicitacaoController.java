@@ -878,6 +878,8 @@ public class SolicitacaoController implements Serializable {
 			solicitacaoLicencaPaternidade.setDataFechamento(new Date());
 			DAO.getInstance().update(solicitacaoLicencaPaternidade);
 			this.setDesabilitaBotao(true);
+			EnviarEmail enviarEmail = new EnviarEmail();
+			enviarEmail.enviarEmailSolicitacao(solicitacaoLicencaPaternidade);
 		} else if (Constantes.TIPO_SOLICITACAO_HORARIO_ESPECIAL_ESTUDANTE
 				.equals(tipoSolicitacao)) {
 			solicitacaoHorarioEspecialEstudante.getStatusSolicitacao()
@@ -891,6 +893,8 @@ public class SolicitacaoController implements Serializable {
 			solicitacaoObito.setDataFechamento(new Date());
 			DAO.getInstance().update(solicitacaoObito);
 			this.setDesabilitaBotao(true);
+			EnviarEmail enviarEmail = new EnviarEmail();
+			enviarEmail.enviarEmailSolicitacao(solicitacaoObito);
 		} else if (Constantes.TIPO_SOLICITACAO_LICENCA_CASAMENTO
 				.equals(tipoSolicitacao)) {
 			solicitacaoCasamento.getStatusSolicitacao().setCodigo(
@@ -902,6 +906,8 @@ public class SolicitacaoController implements Serializable {
 					.setCodigo(Constantes.ESTADO_CIVIL_CASADO);
 			DAO.getInstance().update(solicitacaoCasamento.getSolicitante());
 			this.setDesabilitaBotao(true);
+			EnviarEmail enviarEmail = new EnviarEmail();
+			enviarEmail.enviarEmailSolicitacao(solicitacaoCasamento);
 		} else if (Constantes.TIPO_SOLICITACAO_AUXILIO_ALIMENTACAO
 				.equals(tipoSolicitacao)) {
 			solicitacaoAlimentacao.getStatusSolicitacao().setCodigo(
@@ -909,6 +915,8 @@ public class SolicitacaoController implements Serializable {
 			solicitacaoAlimentacao.setDataFechamento(new Date());
 			DAO.getInstance().update(solicitacaoAlimentacao);
 			this.setDesabilitaBotao(true);
+			EnviarEmail enviarEmail = new EnviarEmail();
+			enviarEmail.enviarEmailSolicitacao(solicitacaoAlimentacao);
 		} else if (Constantes.TIPO_SOLICITACAO_AFASTAMENTO_CONJUGE
 				.equals(tipoSolicitacao)) {
 			solicitacaoAfastamentoConjuge.getStatusSolicitacao().setCodigo(
@@ -916,6 +924,8 @@ public class SolicitacaoController implements Serializable {
 			solicitacaoAfastamentoConjuge.setDataFechamento(new Date());
 			DAO.getInstance().update(solicitacaoAfastamentoConjuge);
 			this.setDesabilitaBotao(true);
+			EnviarEmail enviarEmail = new EnviarEmail();
+			enviarEmail.enviarEmailSolicitacao(solicitacaoAfastamentoConjuge);
 		} else if (Constantes.TIPO_SOLICITACAO_ADICIONAL_NOTURNO_TECNICOS
 				.equals(tipoSolicitacao)) {
 			solicitacaoAdicionalNoturnoTecnico.getStatusSolicitacao()
@@ -924,6 +934,8 @@ public class SolicitacaoController implements Serializable {
 			AdicionalNoturnoDAO.getInstance().saveOrUpdateAdicional(
 					solicitacaoAdicionalNoturnoTecnico);
 			this.setDesabilitaBotao(true);
+			EnviarEmail enviarEmail = new EnviarEmail();
+			enviarEmail.enviarEmailSolicitacao(solicitacaoAdicionalNoturnoTecnico);
 		} else if (Constantes.TIPO_SOLICITACAO_ADICIONAL_NOTURNO_DOCENTES
 				.equals(tipoSolicitacao)) {
 			solicitacaoAdicionalNoturnoDocente.getStatusSolicitacao()
@@ -932,6 +944,8 @@ public class SolicitacaoController implements Serializable {
 			AdicionalNoturnoDAO.getInstance().saveOrUpdateAdicional(
 					solicitacaoAdicionalNoturnoDocente);
 			this.setDesabilitaBotao(true);
+			EnviarEmail enviarEmail = new EnviarEmail();
+			enviarEmail.enviarEmailSolicitacao(solicitacaoAdicionalNoturnoDocente);
 		} else if (Constantes.TIPO_SOLICITACAO_ALTERACAO_ENDERECO
 				.equals(tipoSolicitacao)) {
 			solicitacaoAlteracaoEndereco.getStatusSolicitacao().setCodigo(
@@ -970,6 +984,8 @@ public class SolicitacaoController implements Serializable {
 			solicitacaoRessarcimentoSaude.setDataFechamento(new Date());
 			DAO.getInstance().update(solicitacaoRessarcimentoSaude);
 			this.setDesabilitaBotao(true);
+			EnviarEmail enviarEmail = new EnviarEmail();
+			enviarEmail.enviarEmailSolicitacao(solicitacaoAlteracaoEndereco);
 		}
 	}
 
@@ -1003,6 +1019,8 @@ public class SolicitacaoController implements Serializable {
 				SolicitacaoDAO.getInstance().saveOrUpdate(
 						solicitacaoLicencaPaternidade);
 				this.setDesabilitaBotao(true);
+				EnviarEmail enviarEmail = new EnviarEmail();
+				enviarEmail.enviarEmailSolicitacao(solicitacaoLicencaPaternidade);
 			} else {
 				FacesMessage message = new FacesMessage(
 						FacesMessage.SEVERITY_ERROR,
@@ -1020,6 +1038,8 @@ public class SolicitacaoController implements Serializable {
 				SolicitacaoDAO.getInstance().saveOrUpdate(
 						solicitacaoHorarioEspecialEstudante);
 				this.setDesabilitaBotao(true);
+				EnviarEmail enviarEmail = new EnviarEmail();
+				enviarEmail.enviarEmailSolicitacao(solicitacaoHorarioEspecialEstudante);
 			} else {
 				FacesMessage message = new FacesMessage(
 						FacesMessage.SEVERITY_ERROR,
@@ -1035,6 +1055,8 @@ public class SolicitacaoController implements Serializable {
 					&& solicitacaoObito.getJustificativa() != "") {
 				SolicitacaoDAO.getInstance().saveOrUpdate(solicitacaoObito);
 				this.setDesabilitaBotao(true);
+				EnviarEmail enviarEmail = new EnviarEmail();
+				enviarEmail.enviarEmailSolicitacao(solicitacaoObito);
 			} else {
 				FacesMessage message = new FacesMessage(
 						FacesMessage.SEVERITY_ERROR,
@@ -1051,6 +1073,8 @@ public class SolicitacaoController implements Serializable {
 					&& solicitacaoCasamento.getJustificativa() != "") {
 				SolicitacaoDAO.getInstance().saveOrUpdate(solicitacaoCasamento);
 				this.setDesabilitaBotao(true);
+				EnviarEmail enviarEmail = new EnviarEmail();
+				enviarEmail.enviarEmailSolicitacao(solicitacaoCasamento);
 			} else {
 				FacesMessage message = new FacesMessage(
 						FacesMessage.SEVERITY_ERROR,
@@ -1068,6 +1092,8 @@ public class SolicitacaoController implements Serializable {
 				SolicitacaoDAO.getInstance().saveOrUpdate(
 						solicitacaoAlimentacao);
 				this.setDesabilitaBotao(true);
+				EnviarEmail enviarEmail = new EnviarEmail();
+				enviarEmail.enviarEmailSolicitacao(solicitacaoAlimentacao);
 			} else {
 				FacesMessage message = new FacesMessage(
 						FacesMessage.SEVERITY_ERROR,
@@ -1085,6 +1111,8 @@ public class SolicitacaoController implements Serializable {
 				SolicitacaoDAO.getInstance().saveOrUpdate(
 						solicitacaoAfastamentoConjuge);
 				this.setDesabilitaBotao(true);
+				EnviarEmail enviarEmail = new EnviarEmail();
+				enviarEmail.enviarEmailSolicitacao(solicitacaoAfastamentoConjuge);
 			} else {
 				FacesMessage message = new FacesMessage(
 						FacesMessage.SEVERITY_ERROR,
@@ -1102,6 +1130,8 @@ public class SolicitacaoController implements Serializable {
 				AdicionalNoturnoDAO.getInstance().saveOrUpdateAdicional(
 						solicitacaoAdicionalNoturnoTecnico);
 				this.setDesabilitaBotao(true);
+				EnviarEmail enviarEmail = new EnviarEmail();
+				enviarEmail.enviarEmailSolicitacao(solicitacaoAdicionalNoturnoTecnico);
 			} else {
 				FacesMessage message = new FacesMessage(
 						FacesMessage.SEVERITY_ERROR,
@@ -1119,6 +1149,8 @@ public class SolicitacaoController implements Serializable {
 				AdicionalNoturnoDAO.getInstance().saveOrUpdateAdicional(
 						solicitacaoAdicionalNoturnoDocente);
 				this.setDesabilitaBotao(true);
+				EnviarEmail enviarEmail = new EnviarEmail();
+				enviarEmail.enviarEmailSolicitacao(solicitacaoAdicionalNoturnoDocente);
 			} else {
 				FacesMessage message = new FacesMessage(
 						FacesMessage.SEVERITY_ERROR,
@@ -1136,6 +1168,8 @@ public class SolicitacaoController implements Serializable {
 				AdicionalNoturnoDAO.getInstance().saveOrUpdateAdicional(
 						solicitacaoAlteracaoEndereco);
 				this.setDesabilitaBotao(true);
+				EnviarEmail enviarEmail = new EnviarEmail();
+				enviarEmail.enviarEmailSolicitacao(solicitacaoAlteracaoEndereco);
 			} else {
 				FacesMessage message = new FacesMessage(
 						FacesMessage.SEVERITY_ERROR,
@@ -1152,6 +1186,8 @@ public class SolicitacaoController implements Serializable {
 					&& solicitacaoRessarcimentoSaude.getJustificativa() != "") {
 				DAO.getInstance().update(solicitacaoRessarcimentoSaude);
 				this.setDesabilitaBotao(true);
+				EnviarEmail enviarEmail = new EnviarEmail();
+				enviarEmail.enviarEmailSolicitacao(solicitacaoRessarcimentoSaude);
 			} else {
 				FacesMessage message = new FacesMessage(
 						FacesMessage.SEVERITY_ERROR,

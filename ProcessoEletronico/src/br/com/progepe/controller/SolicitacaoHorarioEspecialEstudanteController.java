@@ -21,6 +21,7 @@ import br.com.progepe.entity.Servidor;
 import br.com.progepe.entity.SolicitacaoHorarioEspecialEstudante;
 import br.com.progepe.entity.StatusSolicitacao;
 import br.com.progepe.entity.TipoSolicitacao;
+import br.com.progepe.jsfUtil.EnviarEmail;
 
 public class SolicitacaoHorarioEspecialEstudanteController implements
 		Serializable {
@@ -110,6 +111,8 @@ public class SolicitacaoHorarioEspecialEstudanteController implements
 			solicitacaoHorarioEspecialEstudante.getStatusSolicitacao()
 					.setCodigo(Constantes.STATUS_SOLICITACAO_ENCAMINHADO);
 			DAO.getInstance().saveOrUpdate(solicitacaoHorarioEspecialEstudante);
+			EnviarEmail enviarEmail = new EnviarEmail();
+			enviarEmail.enviarEmailSolicitacao(solicitacaoHorarioEspecialEstudante);
 			solicitacaoHorarioEspecialEstudante = new SolicitacaoHorarioEspecialEstudante();
 			solicitacaoHorarioEspecialEstudante
 					.setFiles(new ArrayList<SolicitacaoHorarioEspecialEstudante>());
