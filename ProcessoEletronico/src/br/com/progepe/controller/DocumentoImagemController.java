@@ -134,18 +134,22 @@ public class DocumentoImagemController implements Serializable {
 	public void abrirAdicionarDocumentos() {
 		try {
 			files = new ArrayList<DocumentoImagem>();
-			titularDocumento = 1;
+			titularDocumento = Constantes.TITULAR_DOCUMENTO_IMAGEM_SERVIDOR;
 			documentoImagem = new DocumentoImagem();
 			documentoImagem.setTipoDocumento(new TipoDocumento());
 			buscarServidorLogado();
 			listarTiposDocumentos();
+			quantidadeArquivos = 0;
+			documentoImagem.setImagem1(null);
+			documentoImagem.setImagem2(null);
+			documentoImagem.setImagem3(null);
 			FacesContext.getCurrentInstance().getExternalContext()
 					.redirect("anexarDocumentos.jsp");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-
+	
 	public void abrirAdicionarDocumentosTitulacao() {
 		try {
 			files = new ArrayList<DocumentoImagem>();
@@ -162,6 +166,47 @@ public class DocumentoImagemController implements Serializable {
 			listarTitulacoes();
 			FacesContext.getCurrentInstance().getExternalContext()
 					.redirect("anexarDocumentosTitulacao.jsp");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void abrirAdicionarDocumentosDependente() {
+		try {
+			files = new ArrayList<DocumentoImagem>();
+			documentoImagem = new DocumentoImagem();
+			documentoImagem.setTipoDocumento(new TipoDocumento());
+			documentoImagem.setDependente(new Dependente());
+			quantidadeArquivos = 0;
+			documentoImagem.setImagem1(null);
+			documentoImagem.setImagem2(null);
+			documentoImagem.setImagem3(null);
+			titularDocumento = Constantes.TITULAR_DOCUMENTO_IMAGEM_DEPENDENTE;
+			buscarServidorLogado();
+			listarTiposDocumentos();
+			listarDependentes();
+			FacesContext.getCurrentInstance().getExternalContext()
+					.redirect("anexarDocumentosDependente.jsp");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	public void abrirAdicionarDocumentosConjuge() {
+		try {
+			files = new ArrayList<DocumentoImagem>();
+			documentoImagem = new DocumentoImagem();
+			documentoImagem.setTipoDocumento(new TipoDocumento());
+			documentoImagem.setConjuge(new Conjuge());
+			quantidadeArquivos = 0;
+			documentoImagem.setImagem1(null);
+			documentoImagem.setImagem2(null);
+			documentoImagem.setImagem3(null);
+			titularDocumento = Constantes.TITULAR_DOCUMENTO_IMAGEM_CONJUGE;
+			buscarServidorLogado();
+			listarTiposDocumentos();
+			listarConjuges();
+			FacesContext.getCurrentInstance().getExternalContext()
+			.redirect("anexarDocumentosConjuge.jsp");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

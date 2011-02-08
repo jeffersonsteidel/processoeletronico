@@ -33,13 +33,18 @@
 				</h:outputText>
 			</h:panelGrid>
 
-			<h:panelGrid columns="4">
-				<h:outputText value="Titular do Documento: ">
-				</h:outputText>
-				<h:outputText value="#{documentoImagemController.documentoImagem.servidor.nome}">
-				</h:outputText>
-			</h:panelGrid>
+			<h:panelGrid columns="3" id="titular">
+				<h:outputText value="Titular do Documento: "
+					/>
 
+				<h:selectOneMenu 
+					value="#{documentoImagemController.documentoImagem.dependente.codigo}"
+					required="true"
+					requiredMessage="Campo Titular do Documento é obrigatório!">
+					<f:selectItem itemLabel="SELECIONE" itemValue="" />
+					<f:selectItems value="#{documentoImagemController.dependentes}" />
+				</h:selectOneMenu>
+			</h:panelGrid>
 
 
 			<h:outputText value="Tipo de Documento: " />
@@ -47,7 +52,6 @@
 				value="#{documentoImagemController.documentoImagem.tipoDocumento.codigo}"
 				required="true"
 				requiredMessage="Campo Tipo de Documento é obrigatório!">
-				<f:selectItem itemLabel="SELECIONE" itemValue="" />
 				<f:selectItems value="#{documentoImagemController.tiposDocumentos}" />
 			</h:selectOneMenu>
 
