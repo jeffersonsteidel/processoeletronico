@@ -172,7 +172,7 @@ FROM
 				</staticText>
 				<staticText>
 					<reportElement
-						x="412"
+						x="406"
 						y="108"
 						width="51"
 						height="17"
@@ -308,7 +308,7 @@ FROM
 				</textField>
 				<textField isStretchWithOverflow="true" pattern="" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
-						x="412"
+						x="406"
 						y="4"
 						width="51"
 						height="17"
@@ -324,25 +324,6 @@ FROM
 						<font fontName="Times New Roman" size="9"/>
 					</textElement>
 				<textFieldExpression   class="java.lang.String"><![CDATA[$F{contabancaria_cont_ban_agencia}]]></textFieldExpression>
-				</textField>
-				<textField isStretchWithOverflow="true" pattern="" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
-					<reportElement
-						x="468"
-						y="4"
-						width="66"
-						height="17"
-						forecolor="#000000"
-						backcolor="#FFFFFF"
-						key="textField"/>
-					<box>					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-					<bottomPen lineWidth="0.0" lineColor="#000000"/>
-					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-</box>
-					<textElement>
-						<font fontName="Times New Roman" size="9"/>
-					</textElement>
-				<textFieldExpression   class="java.lang.String"><![CDATA[$F{contabancaria_cont_ban_ind_poupanca}]]></textFieldExpression>
 				</textField>
 				<textField isStretchWithOverflow="true" pattern="" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
@@ -362,6 +343,19 @@ FROM
 						<font fontName="Times New Roman" size="9"/>
 					</textElement>
 				<textFieldExpression   class="java.lang.String"><![CDATA[$F{banco_ban_desc}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="468"
+						y="3"
+						width="64"
+						height="17"
+						key="textField"/>
+					<box></box>
+					<textElement>
+						<font/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[($F{contabancaria_cont_ban_ind_poupanca}.equals("0") ? "NÃO" : "SIM")]]></textFieldExpression>
 				</textField>
 			</band>
 		</detail>

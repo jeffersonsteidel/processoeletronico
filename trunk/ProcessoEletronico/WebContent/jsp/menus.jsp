@@ -260,7 +260,7 @@
 				</f:facet>
 				<rich:menuItem submitMode="ajax" value="Relatório Teste"
 					action="#{relatorioController.abrirRelatorioTeste}"
-					icon="../images/cadastrarCargo.gif" />
+					icon="../images/icopdf.gif" />
 			</rich:dropDownMenu>
 
 
