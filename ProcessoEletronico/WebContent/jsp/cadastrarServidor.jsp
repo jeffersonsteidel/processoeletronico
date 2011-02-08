@@ -484,7 +484,7 @@
 							<h:outputText
 								value="Data da última atualização realizada pelo servidor:"></h:outputText>
 							<h:outputText value="#{servidorController.dataUltimaAlteracao}"></h:outputText>
-							<h:outputText value="Data da última aprovação:"></h:outputText>
+							<h:outputText value="Data da última aprovação:" rendered="#{servidorController.dataUltimaAprovacao != null}"></h:outputText>
 							<h:outputText value="#{servidorController.dataUltimaAprovacao}"></h:outputText>
 						</h:panelGrid>
 					</h:panelGrid>
