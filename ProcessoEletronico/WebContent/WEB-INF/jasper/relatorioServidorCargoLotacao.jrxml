@@ -306,7 +306,7 @@ FROM
 					<textElement>
 						<font fontName="Times New Roman" size="8"/>
 					</textElement>
-				<textFieldExpression   class="java.util.Date"><![CDATA[$F{servidor_serv_data_saida}]]></textFieldExpression>
+				<textFieldExpression   class="java.util.Date"><![CDATA[($F{servidor_serv_data_saida} == null ? null:  $F{servidor_serv_data_saida})]]></textFieldExpression>
 				</textField>
 			</band>
 		</detail>
