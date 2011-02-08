@@ -60,6 +60,7 @@ public class Constantes {
 	public static final Integer TITULAR_DOCUMENTO_IMAGEM_CONJUGE  = 2;
 	public static final Integer TITULAR_DOCUMENTO_IMAGEM_DEPENDENTE  = 3;
 	public static final Integer TITULAR_DOCUMENTO_IMAGEM_TITULACAO  = 4;
+	public static final Integer TITULAR_DOCUMENTO_IMAGEM_EMPREGO  = 5;
 	
 	
 }
