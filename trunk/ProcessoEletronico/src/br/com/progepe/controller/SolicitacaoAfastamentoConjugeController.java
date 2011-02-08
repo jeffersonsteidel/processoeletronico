@@ -15,6 +15,7 @@ import br.com.progepe.entity.Servidor;
 import br.com.progepe.entity.SolicitacaoAfastamentoConjuge;
 import br.com.progepe.entity.StatusSolicitacao;
 import br.com.progepe.entity.TipoSolicitacao;
+import br.com.progepe.jsfUtil.EnviarEmail;
 
 public class SolicitacaoAfastamentoConjugeController implements Serializable {
 	private static final long serialVersionUID = -333995781063775201L;
@@ -62,6 +63,8 @@ public class SolicitacaoAfastamentoConjugeController implements Serializable {
 		solicitacaoAfastamentoConjuge.getStatusSolicitacao().setCodigo(
 				Constantes.STATUS_SOLICITACAO_ENCAMINHADO);
 		DAO.getInstance().saveOrUpdate(solicitacaoAfastamentoConjuge);
+		EnviarEmail enviarEmail = new EnviarEmail();
+		enviarEmail.enviarEmailSolicitacao(solicitacaoAfastamentoConjuge);
 		solicitacaoAfastamentoConjuge = new SolicitacaoAfastamentoConjuge();
 		buscarServidorLogado();
 	}

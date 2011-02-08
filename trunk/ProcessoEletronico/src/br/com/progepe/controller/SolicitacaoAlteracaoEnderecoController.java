@@ -22,6 +22,7 @@ import br.com.progepe.entity.Servidor;
 import br.com.progepe.entity.SolicitacaoAlteracaoEndereco;
 import br.com.progepe.entity.StatusSolicitacao;
 import br.com.progepe.entity.TipoSolicitacao;
+import br.com.progepe.jsfUtil.EnviarEmail;
 
 public class SolicitacaoAlteracaoEnderecoController implements Serializable {
 	private static final long serialVersionUID = -333995781063775201L;
@@ -93,6 +94,8 @@ public class SolicitacaoAlteracaoEnderecoController implements Serializable {
 		solicitacaoAlteracaoEndereco.getStatusSolicitacao().setCodigo(
 				Constantes.STATUS_SOLICITACAO_ENCAMINHADO);
 		DAO.getInstance().saveOrUpdate(solicitacaoAlteracaoEndereco);
+		EnviarEmail enviarEmail = new EnviarEmail();
+		enviarEmail.enviarEmailSolicitacao(solicitacaoAlteracaoEndereco);
 		solicitacaoAlteracaoEndereco = new SolicitacaoAlteracaoEndereco();
 		solicitacaoAlteracaoEndereco.setNovaCidade(new Cidade());
 		solicitacaoAlteracaoEndereco.getNovaCidade().setEstado(new Estado());

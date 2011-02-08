@@ -16,6 +16,7 @@ import br.com.progepe.entity.Servidor;
 import br.com.progepe.entity.SolicitacaoAlimentacao;
 import br.com.progepe.entity.StatusSolicitacao;
 import br.com.progepe.entity.TipoSolicitacao;
+import br.com.progepe.jsfUtil.EnviarEmail;
 
 public class SolicitacaoAlimentacaoController implements Serializable {
 	private static final long serialVersionUID = -333995781063775201L;
@@ -94,6 +95,8 @@ public class SolicitacaoAlimentacaoController implements Serializable {
 		solicitacaoAlimentacao.getStatusSolicitacao().setCodigo(
 				Constantes.STATUS_SOLICITACAO_ENCAMINHADO);
 		DAO.getInstance().saveOrUpdate(solicitacaoAlimentacao);
+		EnviarEmail enviarEmail = new EnviarEmail();
+		enviarEmail.enviarEmailSolicitacao(solicitacaoAlimentacao);
 		solicitacaoAlimentacao = new SolicitacaoAlimentacao();
 		buscarServidorLogado();
 	}

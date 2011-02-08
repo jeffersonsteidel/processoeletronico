@@ -22,6 +22,7 @@ import br.com.progepe.entity.Servidor;
 import br.com.progepe.entity.SolicitacaoAdicionalNoturno;
 import br.com.progepe.entity.StatusSolicitacao;
 import br.com.progepe.entity.TipoSolicitacao;
+import br.com.progepe.jsfUtil.EnviarEmail;
 
 public class SolicitacaoAdicionalNoturnoController implements Serializable {
 	private static final long serialVersionUID = -333995781063775201L;
@@ -633,6 +634,8 @@ public class SolicitacaoAdicionalNoturnoController implements Serializable {
 		buscarDiretor();
 		AdicionalNoturnoDAO.getInstance().saveOrUpdateAdicional(
 				solicitacaoAdicionalNoturno);
+		EnviarEmail enviarEmail = new EnviarEmail();
+		enviarEmail.enviarEmailSolicitacao(solicitacaoAdicionalNoturno);
 		indEncaminharDocente = false;
 	}
 
@@ -647,6 +650,8 @@ public class SolicitacaoAdicionalNoturnoController implements Serializable {
 		buscarDiretor();
 		AdicionalNoturnoDAO.getInstance().saveOrUpdateAdicional(
 				solicitacaoAdicionalNoturno);
+		EnviarEmail enviarEmail = new EnviarEmail();
+		enviarEmail.enviarEmailSolicitacao(solicitacaoAdicionalNoturno);
 		indEncaminharTecnico = false;
 	}
 

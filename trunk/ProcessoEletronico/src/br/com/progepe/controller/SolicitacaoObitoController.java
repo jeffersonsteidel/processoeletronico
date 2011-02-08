@@ -26,6 +26,7 @@ import br.com.progepe.entity.Servidor;
 import br.com.progepe.entity.SolicitacaoObito;
 import br.com.progepe.entity.StatusSolicitacao;
 import br.com.progepe.entity.TipoSolicitacao;
+import br.com.progepe.jsfUtil.EnviarEmail;
 
 public class SolicitacaoObitoController implements Serializable {
 	private static final long serialVersionUID = -333995781063775201L;
@@ -89,6 +90,8 @@ public class SolicitacaoObitoController implements Serializable {
 			solicitacaoObito.getStatusSolicitacao().setCodigo(
 					Constantes.STATUS_SOLICITACAO_ENCAMINHADO);
 			DAO.getInstance().saveOrUpdate(solicitacaoObito);
+			EnviarEmail enviarEmail = new EnviarEmail();
+			enviarEmail.enviarEmailSolicitacao(solicitacaoObito);
 			solicitacaoObito = new SolicitacaoObito();
 			solicitacaoObito.setFiles(new ArrayList<SolicitacaoObito>());
 			buscarServidorLogado();

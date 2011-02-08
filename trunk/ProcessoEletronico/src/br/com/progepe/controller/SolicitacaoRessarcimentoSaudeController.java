@@ -20,6 +20,7 @@ import br.com.progepe.entity.Servidor;
 import br.com.progepe.entity.SolicitacaoRessarcimentoSaude;
 import br.com.progepe.entity.StatusSolicitacao;
 import br.com.progepe.entity.TipoSolicitacao;
+import br.com.progepe.jsfUtil.EnviarEmail;
 
 public class SolicitacaoRessarcimentoSaudeController implements Serializable {
 	private static final long serialVersionUID = -333995781063775201L;
@@ -71,6 +72,8 @@ public class SolicitacaoRessarcimentoSaudeController implements Serializable {
 		solicitacaoRessarcimentoSaude.getStatusSolicitacao().setCodigo(
 				Constantes.STATUS_SOLICITACAO_ENCAMINHADO);
 		DAO.getInstance().save(solicitacaoRessarcimentoSaude);
+		EnviarEmail enviarEmail = new EnviarEmail();
+		enviarEmail.enviarEmailSolicitacao(solicitacaoRessarcimentoSaude);
 		solicitacaoRessarcimentoSaude = new SolicitacaoRessarcimentoSaude();
 		solicitacaoRessarcimentoSaude
 				.setRessarcimentoSaude(new RessarcimentoSaude());

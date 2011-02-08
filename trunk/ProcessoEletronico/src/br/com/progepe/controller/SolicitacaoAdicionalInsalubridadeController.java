@@ -15,6 +15,7 @@ import br.com.progepe.entity.Servidor;
 import br.com.progepe.entity.SolicitacaoAdicionalInsalubridade;
 import br.com.progepe.entity.StatusSolicitacao;
 import br.com.progepe.entity.TipoSolicitacao;
+import br.com.progepe.jsfUtil.EnviarEmail;
 
 public class SolicitacaoAdicionalInsalubridadeController implements
 		Serializable {
@@ -75,6 +76,8 @@ public class SolicitacaoAdicionalInsalubridadeController implements
 		solicitacaoAdicionalInsalubridade.getStatusSolicitacao().setCodigo(
 				Constantes.STATUS_SOLICITACAO_ENCAMINHADO);
 		DAO.getInstance().saveOrUpdate(solicitacaoAdicionalInsalubridade);
+		EnviarEmail enviarEmail = new EnviarEmail();
+		enviarEmail.enviarEmailSolicitacao(solicitacaoAdicionalInsalubridade);
 		solicitacaoAdicionalInsalubridade = new SolicitacaoAdicionalInsalubridade();
 		buscarServidorLogado();
 	}

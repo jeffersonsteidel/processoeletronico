@@ -22,6 +22,7 @@ import br.com.progepe.entity.Servidor;
 import br.com.progepe.entity.SolicitacaoLicencaPaternidade;
 import br.com.progepe.entity.StatusSolicitacao;
 import br.com.progepe.entity.TipoSolicitacao;
+import br.com.progepe.jsfUtil.EnviarEmail;
 
 public class SolicitacaoLicencaPaternidadeController implements Serializable {
 	private static final long serialVersionUID = -333995781063775201L;
@@ -102,6 +103,8 @@ public class SolicitacaoLicencaPaternidadeController implements Serializable {
 			solicitacaoLicencaPaternidade.getStatusSolicitacao().setCodigo(
 					Constantes.STATUS_SOLICITACAO_ENCAMINHADO);
 			DAO.getInstance().saveOrUpdate(solicitacaoLicencaPaternidade);
+			EnviarEmail enviarEmail = new EnviarEmail();
+			enviarEmail.enviarEmailSolicitacao(solicitacaoLicencaPaternidade);
 			solicitacaoLicencaPaternidade = new SolicitacaoLicencaPaternidade();
 			solicitacaoLicencaPaternidade
 					.setFiles(new ArrayList<SolicitacaoLicencaPaternidade>());
