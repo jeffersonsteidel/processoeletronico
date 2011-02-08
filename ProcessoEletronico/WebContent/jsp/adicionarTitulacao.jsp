@@ -213,7 +213,7 @@
 							<h:outputText value="Adicionar Documentos" />
 						</f:facet>
 						<a4j:commandLink id="documentos"
-							action="#{documentoImagemController.abrirAdicionarDocumentos}"
+							action="#{documentoImagemController.abrirAdicionarDocumentosTitulacao}"
 							ajaxSingle="true">
 							<h:graphicImage value="../images/add_documentos.png"
 								style="border:0" width="20" height="18" />

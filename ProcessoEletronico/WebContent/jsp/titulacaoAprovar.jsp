@@ -74,29 +74,29 @@
 					value="#{servidorTitulacaoController.servidorTitulacao.cargaHoraria}"></h:outputText>
 
 				<h:outputText value="Ano de Conclusão: "
-					rendered="#{servidorTitulacaoController.servidorTitulacao.anoConclusao != 0}" />
+					rendered="#{servidorTitulacaoController.servidorTitulacao.anoConclusao != null}" />
 
 				<h:outputText
-					rendered="#{servidorTitulacaoController.servidorTitulacao.anoConclusao != 0}"
+					rendered="#{servidorTitulacaoController.servidorTitulacao.anoConclusao != null}"
 					value="#{servidorTitulacaoController.servidorTitulacao.anoConclusao}">
 				</h:outputText>
 
-				<h:outputText value="Registro no Conselho: " rendered="#{servidorTitulacaoController.indSuperior}"/>
+				<h:outputText value="Registro no Conselho: " rendered="#{servidorTitulacaoController.servidorTitulacao.registroConselho != ''}"/>
 
 				<h:outputText
-					rendered="#{servidorTitulacaoController.indSuperior}"
+					rendered="#{servidorTitulacaoController.servidorTitulacao.registroConselho != ''}"
 					value="#{servidorTitulacaoController.servidorTitulacao.registroConselho}"></h:outputText>
 
 				<h:outputText value="Orgão Emissor do Registro: "
-					rendered="#{servidorTitulacaoController.indSuperior}" />
+					rendered="#{servidorTitulacaoController.servidorTitulacao.orgaoEmissor != ''}" />
 
 				<h:outputText
-					rendered="#{servidorTitulacaoController.indSuperior}"
+					rendered="#{servidorTitulacaoController.servidorTitulacao.orgaoEmissor != ''}"
 					value="#{servidorTitulacaoController.servidorTitulacao.orgaoEmissor}"></h:outputText>
 
-				<h:outputText value="Estado do Orgão Emissor: " rendered="#{servidorTitulacaoController.indSuperior}"/>
+				<h:outputText value="Estado do Orgão Emissor: " rendered="#{servidorTitulacaoController.servidorTitulacao.estadoOrgaoEmissor != null}"/>
 				<h:outputText
-					rendered="#{servidorTitulacaoController.indSuperior}"
+					rendered="#{servidorTitulacaoController.servidorTitulacao.estadoOrgaoEmissor != null}"
 					value="#{servidorTitulacaoController.servidorTitulacao.estadoOrgaoEmissor.descricao}">
 				</h:outputText>
 

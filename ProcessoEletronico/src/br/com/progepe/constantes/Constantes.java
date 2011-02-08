@@ -53,4 +53,13 @@ public class Constantes {
 	
 	public static final Long TIPO_PROGRESSAO_CAPACITACAO = 1L;
 	
+	public static final Long TIPO_DOCUMENTO_HISTORICO_ESCOLAR = 5L;
+	public static final Long TIPO_DOCUMENTO_DIPLOMA = 12L;
+	
+	public static final Integer TITULAR_DOCUMENTO_IMAGEM_SERVIDOR  = 1;
+	public static final Integer TITULAR_DOCUMENTO_IMAGEM_CONJUGE  = 2;
+	public static final Integer TITULAR_DOCUMENTO_IMAGEM_DEPENDENTE  = 3;
+	public static final Integer TITULAR_DOCUMENTO_IMAGEM_TITULACAO  = 4;
+	
+	
 }
