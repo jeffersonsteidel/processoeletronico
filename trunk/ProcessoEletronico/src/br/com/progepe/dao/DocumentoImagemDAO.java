@@ -10,6 +10,7 @@ import br.com.progepe.constantes.Constantes;
 import br.com.progepe.entity.Conjuge;
 import br.com.progepe.entity.Dependente;
 import br.com.progepe.entity.DocumentoImagem;
+import br.com.progepe.entity.Emprego;
 import br.com.progepe.entity.Servidor;
 import br.com.progepe.entity.ServidorTitulacao;
 
@@ -67,6 +68,19 @@ public class DocumentoImagemDAO extends DAO {
 	}
 	
 	@SuppressWarnings("unchecked")
+	public List<Emprego> listEmpregoByServidor(Servidor servidor) {
+		HibernateUtility.getSession().clear();
+		HibernateUtility.beginTransaction();
+		Criteria c = HibernateUtility.getSession().createCriteria(
+				Emprego.class);
+		if (servidor != null) {
+			c.add(Restrictions.like("servidor", servidor));
+		}
+		HibernateUtility.commitTransaction();
+		return c.list();
+	}
+	
+	@SuppressWarnings("unchecked")
 	public List<DocumentoImagem> listByFilter(DocumentoImagem documentoImagem,
 			Integer titularDocumento, Integer validado) {
 		HibernateUtility.getSession().clear();
@@ -92,6 +106,10 @@ public class DocumentoImagemDAO extends DAO {
 			}
 			if (titularDocumento == 4) {
 				sql += "and di.servidorTitulacao.servidor.siape ="
+						+ documentoImagem.getServidor().getSiape();
+			}
+			if (titularDocumento == 5) {
+				sql += "and di.emprego.servidor.siape ="
 						+ documentoImagem.getServidor().getSiape();
 			}
 		}

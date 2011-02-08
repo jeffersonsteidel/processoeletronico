@@ -23,5 +23,7 @@
 			column="DEP_COD" lazy="false" />
 		<many-to-one name="servidorTitulacao" class="br.com.progepe.entity.ServidorTitulacao"
 			column="SERV_TIT_COD" lazy="false" />
+		<many-to-one name="emprego" class="br.com.progepe.entity.Emprego"
+			column="EMP_COD" lazy="false" />
 	</class>
 </hibernate-mapping>

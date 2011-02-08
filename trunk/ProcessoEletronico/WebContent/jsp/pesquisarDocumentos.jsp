@@ -49,6 +49,7 @@
 					<f:selectItem itemLabel="CÔNJUGE" itemValue="2" />
 					<f:selectItem itemLabel="DEPENDENTE" itemValue="3" />
 					<f:selectItem itemLabel="TITULAÇÃO" itemValue="4" />
+					<f:selectItem itemLabel="EMPREGO" itemValue="5" />
 				</h:selectOneMenu>
 				
 				<h:outputText value="Validado:" />
@@ -83,8 +84,10 @@
 						rendered="#{list.conjuge.codigo != null}" />
 					<h:outputText value="#{list.dependente.nome} - (DEPENDENTE)"
 						rendered="#{list.dependente.codigo != null}" />
-						<h:outputText value="#{list.servidorTitulacao.curso} - #{list.servidorTitulacao.titulacao.descricao} - (TITULACAO)"
+					<h:outputText value="#{list.servidorTitulacao.curso} - #{list.servidorTitulacao.titulacao.descricao} - (TITULACAO)"
 						rendered="#{list.servidorTitulacao.codigo != null}" />
+					<h:outputText value="#{list.emprego.cargo} - (EMPREGO)"
+						rendered="#{list.emprego.codigo != null}" />
 				</rich:column>
 
 				<rich:column width="500px">

@@ -19,6 +19,7 @@ public class DocumentoImagem implements Serializable {
 	private Boolean indValidado;
 	private String motivo;
 	private ServidorTitulacao servidorTitulacao;
+	private Emprego emprego;
 
 	public Long getCodigo() {
 		return codigo;
@@ -106,6 +107,14 @@ public class DocumentoImagem implements Serializable {
 
 	public void setServidorTitulacao(ServidorTitulacao servidorTitulacao) {
 		this.servidorTitulacao = servidorTitulacao;
+	}
+
+	public Emprego getEmprego() {
+		return emprego;
+	}
+
+	public void setEmprego(Emprego emprego) {
+		this.emprego = emprego;
 	}
 
 }
