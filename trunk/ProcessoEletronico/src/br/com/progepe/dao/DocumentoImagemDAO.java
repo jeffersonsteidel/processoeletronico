@@ -90,6 +90,10 @@ public class DocumentoImagemDAO extends DAO {
 				sql += "and di.dependente.servidor.siape ="
 						+ documentoImagem.getServidor().getSiape();
 			}
+			if (titularDocumento == 4) {
+				sql += "and di.servidorTitulacao.servidor.siape ="
+						+ documentoImagem.getServidor().getSiape();
+			}
 		}
 		if (validado == 1) {
 			sql += "and di.indValidado = 1";

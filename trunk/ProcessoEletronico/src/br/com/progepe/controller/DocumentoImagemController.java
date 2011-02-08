@@ -122,7 +122,7 @@ public class DocumentoImagemController implements Serializable {
 	public void setValidado(Integer validado) {
 		this.validado = validado;
 	}
-	
+
 	public List<SelectItem> getTitulacoes() {
 		return titulacoes;
 	}
@@ -141,6 +141,27 @@ public class DocumentoImagemController implements Serializable {
 			listarTiposDocumentos();
 			FacesContext.getCurrentInstance().getExternalContext()
 					.redirect("anexarDocumentos.jsp");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void abrirAdicionarDocumentosTitulacao() {
+		try {
+			files = new ArrayList<DocumentoImagem>();
+			documentoImagem = new DocumentoImagem();
+			documentoImagem.setTipoDocumento(new TipoDocumento());
+			documentoImagem.setServidorTitulacao(new ServidorTitulacao());
+			quantidadeArquivos = 0;
+			documentoImagem.setImagem1(null);
+			documentoImagem.setImagem2(null);
+			documentoImagem.setImagem3(null);
+			titularDocumento = Constantes.TITULAR_DOCUMENTO_IMAGEM_TITULACAO;
+			buscarServidorLogado();
+			listarTiposDocumentos();
+			listarTitulacoes();
+			FacesContext.getCurrentInstance().getExternalContext()
+					.redirect("anexarDocumentosTitulacao.jsp");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -183,12 +204,13 @@ public class DocumentoImagemController implements Serializable {
 		}
 		return dependentes;
 	}
+
 	public List<SelectItem> listarTitulacoes() throws Exception {
 		titulacoes = new ArrayList<SelectItem>();
 		List<ServidorTitulacao> titulacaoList = new ArrayList<ServidorTitulacao>();
 		buscarServidorLogado();
 		titulacaoList = DocumentoImagemDAO.getInstance()
-		.listTitulacaoByServidor(documentoImagem.getServidor());
+				.listTitulacaoByServidor(documentoImagem.getServidor());
 		for (ServidorTitulacao titulacao : titulacaoList) {
 			titulacoes.add(new SelectItem(titulacao.getCodigo(), titulacao
 					.getCurso()));
@@ -281,18 +303,28 @@ public class DocumentoImagemController implements Serializable {
 					.refreshBySiape(documentoImagem.getServidor()));
 			documentoImagem.setConjuge(null);
 			documentoImagem.setDependente(null);
+			documentoImagem.setServidorTitulacao(null);
 		} else if (titularDocumento.equals(2)) {
 			documentoImagem.setServidor(null);
 			Conjuge conjuge = (Conjuge) DAO.getInstance().refresh(
 					documentoImagem.getConjuge());
 			documentoImagem.setConjuge(conjuge);
 			documentoImagem.setDependente(null);
+			documentoImagem.setServidorTitulacao(null);
 		} else if (titularDocumento.equals(3)) {
 			documentoImagem.setServidor(null);
 			documentoImagem.setConjuge(null);
+			documentoImagem.setServidorTitulacao(null);
 			Dependente dependente = (Dependente) DAO.getInstance().refresh(
 					documentoImagem.getDependente());
 			documentoImagem.setDependente(dependente);
+		} else if (titularDocumento.equals(4)) {
+			documentoImagem.setServidor(null);
+			documentoImagem.setConjuge(null);
+			documentoImagem.setDependente(null);
+			ServidorTitulacao titulacao = (ServidorTitulacao) DAO.getInstance()
+					.refresh(documentoImagem.getServidorTitulacao());
+			documentoImagem.setServidorTitulacao(titulacao);
 		}
 
 		if (documentoImagem.getImagem1() == null) {
@@ -310,6 +342,7 @@ public class DocumentoImagemController implements Serializable {
 			documentoImagem.setConjuge(new Conjuge());
 			documentoImagem.setServidor(new Servidor());
 			documentoImagem.setDependente(new Dependente());
+			documentoImagem.setServidorTitulacao(new ServidorTitulacao());
 			documentoImagem.setTipoDocumento(new TipoDocumento());
 			files = new ArrayList<DocumentoImagem>();
 			quantidadeArquivos = 0;
