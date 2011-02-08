@@ -14,13 +14,19 @@
 <f:view>
 	<jsp:directive.include file="menus.jsp" />
 	<a4j:loadScript src="../js/script.js" />
-	<h:form>
-		<h:commandButton value="GERAR RELATÓRIO SERVIDOR CARGO LOTAÇÃO"
-			action="#{relatorioController.gerarRelatorioServidorCargoLotacao}" />
-
-		<h:commandButton value="GERAR RELATÓRIO SERVIDOR CONTA BANCÁRIA"
-			action="#{relatorioController.gerarRelatorioServidorContaBancaria}" />
-	</h:form>
+	<rich:panel>
+		<h:form>
+			<h:panelGrid columns="2">
+				<h:graphicImage value="../images/icopdf.gif" />
+				<h:commandLink value="GERAR RELATÓRIO SERVIDOR CARGO LOTAÇÃO"
+					action="#{relatorioController.gerarRelatorioServidorCargoLotacao}" />
+				
+				<h:graphicImage value="../images/icopdf.gif" />
+				<h:commandLink value="GERAR RELATÓRIO SERVIDOR CONTA BANCÁRIA"
+					action="#{relatorioController.gerarRelatorioServidorContaBancaria}" />
+			</h:panelGrid>
+		</h:form>
+	</rich:panel>
 </f:view>
 </body>
 </html>

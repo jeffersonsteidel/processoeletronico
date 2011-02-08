@@ -264,7 +264,7 @@
 						<h:outputText value="RELATÓRIOS" />
 					</h:panelGroup>
 				</f:facet>
-				<rich:menuItem submitMode="ajax" value="Relatório Teste"
+				<rich:menuItem submitMode="ajax" value="Relatórios"
 					action="#{relatorioController.abrirRelatorioTeste}"
 					icon="../images/icopdf.gif" />
 			</rich:dropDownMenu>
