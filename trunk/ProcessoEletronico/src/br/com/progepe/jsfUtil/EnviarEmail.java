@@ -86,8 +86,10 @@ public class EnviarEmail {
 			conteudoDoEmail += "\n Data de Atendimento: "+DataUtil.formatDateHour(solicitacao.getDataAtendimento());
 			conteudoDoEmail += "\n Atendente: "+atendente.getNome();
 			conteudoDoEmail += "\n Data de Fechamento: "+DataUtil.formatDateHour(solicitacao.getDataFechamento());
-			conteudoDoEmail += "\n Justificativa: "+solicitacao.getJustificativa();
-			conteudoDoEmail += "\n E-mail automático por favor não responder!";
+			if(solicitacao.getJustificativa() != null  && solicitacao.getJustificativa() != ""){
+				conteudoDoEmail += "\n Justificativa: "+solicitacao.getJustificativa();
+			}
+			conteudoDoEmail += "\n \n E-mail automático por favor não responder!";
 		}
 
 	
