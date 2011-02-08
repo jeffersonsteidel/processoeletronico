@@ -1,3 +1,5 @@
+<%@page import="javax.faces.context.FacesContext"%>
+<%@page import="br.com.progepe.controller.AutenticacaoController"%>
 <%@ taglib prefix="f" uri="http://java.sun.com/jsf/core"%>
 <%@ taglib prefix="h" uri="http://java.sun.com/jsf/html"%>
 <%@ taglib uri="http://richfaces.org/a4j" prefix="a4j"%>
@@ -9,7 +11,7 @@
 <head>
 <title>Instituto Federal do Paraná</title>
 </head>
-<body onload="verificarAutenticacao()">
+<body>
 <style type="text/css">
 .pic {
 	margin-bottom: -4px;
@@ -22,12 +24,16 @@
 		window.open("manual/indiceManual.html");
 	}
 </script>
-
-
+<%
+	if (FacesContext
+			.getCurrentInstance().getExternalContext().getSessionMap()
+			.get("usuarioLogado") == null) {
+		FacesContext.getCurrentInstance().getExternalContext()
+				.redirect("login.jsp");
+	}
+%>
 <div id="non-printable"><f:subview id="Menu">
 	<center><a4j:form>
-		<a4j:jsFunction immediate="true" ajaxSingle="true" action="#{autenticacaoController.isAutenticado}"
-			name="verificarAutenticacao" />
 		<h:graphicImage value="../images/banner_topo.gif" />
 		<BR />
 		<rich:toolBar>
@@ -250,7 +256,7 @@
 					action="#{funcaoController.abrirListarFuncoes}"
 					icon="../images/pesquisarfuncoes.gif" />
 			</rich:dropDownMenu>
-			
+
 			<rich:dropDownMenu
 				rendered="#{autenticacaoController.siapeAutenticado.indGerente}">
 				<f:facet name="label">
