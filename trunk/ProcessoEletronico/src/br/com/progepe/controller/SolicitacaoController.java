@@ -36,6 +36,7 @@ import br.com.progepe.entity.SolicitacaoObito;
 import br.com.progepe.entity.SolicitacaoRessarcimentoSaude;
 import br.com.progepe.entity.StatusSolicitacao;
 import br.com.progepe.entity.TipoSolicitacao;
+import br.com.progepe.jsfUtil.EnviarEmail;
 
 public class SolicitacaoController implements Serializable {
 	private static final long serialVersionUID = -333995781063775201L;
@@ -868,6 +869,8 @@ public class SolicitacaoController implements Serializable {
 							solicitacaoContaBancaria.getNovoIndPoupanca());
 			DAO.getInstance().update(solicitacaoContaBancaria.getSolicitante());
 			this.setDesabilitaBotao(true);
+			EnviarEmail enviarEmail = new EnviarEmail();
+			enviarEmail.enviarEmailSolicitacao(solicitacaoContaBancaria);
 		} else if (Constantes.TIPO_SOLICITACAO_LICENCA_PATERNIDADE
 				.equals(tipoSolicitacao)) {
 			solicitacaoLicencaPaternidade.getStatusSolicitacao().setCodigo(
@@ -981,6 +984,8 @@ public class SolicitacaoController implements Serializable {
 				SolicitacaoDAO.getInstance().saveOrUpdate(
 						solicitacaoContaBancaria);
 				this.setDesabilitaBotao(true);
+				EnviarEmail enviarEmail = new EnviarEmail();
+				enviarEmail.enviarEmailSolicitacao(solicitacaoContaBancaria);
 			} else {
 				FacesMessage message = new FacesMessage(
 						FacesMessage.SEVERITY_ERROR,

@@ -1,3 +1,4 @@
+package br.com.progepe.jsfUtil;
 import java.util.List;
 import java.util.Properties;
 
@@ -9,7 +10,11 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
+import br.com.progepe.constantes.Constantes;
+import br.com.progepe.dao.DAO;
+import br.com.progepe.dao.ServidorDAO;
 import br.com.progepe.entity.Servidor;
+import br.com.progepe.entity.Solicitacao;
 
 public class EnviarEmail {
 	private String remetente;
@@ -29,6 +34,9 @@ public class EnviarEmail {
 		}
 	}
 
+	public EnviarEmail(){	
+	}
+	
 	public void aplicarEmail(List<Servidor> servidores) {
 		String remetente = "processo.verde@ifpr.edu.br";
 		String smtpHost = "smtp.gmail.com";
@@ -44,6 +52,49 @@ public class EnviarEmail {
 			EnviarEmail enviar = new EnviarEmail(remetente, item.getEmail(),
 					assunto, smtpHost, porta, usuario, senha, conteudoDoEmail);
 		}
+		}catch (Exception e) {
+			System.err.println(e);
+		}
+	}
+	
+	public  void enviarEmailSolicitacao(Solicitacao solicitacao) {
+		String remetente = "processo.verde@ifpr.edu.br";
+		String smtpHost = "smtp.gmail.com";
+		String porta = "465";
+		String usuario = "processo.verde@ifpr.edu.br";
+		String senha = "ifpr10";
+		
+		Servidor atendente = null;
+		solicitacao = (Solicitacao) DAO.getInstance().refresh(solicitacao);
+		
+		if(Constantes.STATUS_SOLICITACAO_ENCAMINHADO.equals(solicitacao.getStatusSolicitacao().getCodigo())){
+			assunto = "Solicitação: "+solicitacao.getTipoSolicitacao().getDescricao() +" - "+DataUtil.formatDateHour(solicitacao.getDataAbertura());
+			conteudoDoEmail = "\n Solicitação: "+solicitacao.getTipoSolicitacao().getDescricao();
+			conteudoDoEmail += "\n Status: "+solicitacao.getStatusSolicitacao().getDescricao();
+			conteudoDoEmail += "\n Data de Abertura: "+DataUtil.formatDateHour(solicitacao.getDataAbertura());
+			conteudoDoEmail += "\n \n E-mail automático por favor não responder!";
+		}
+		
+		if(solicitacao.getStatusSolicitacao().getCodigo() > Constantes.STATUS_SOLICITACAO_ENCAMINHADO){
+			atendente = new Servidor();
+			atendente.setSiape(solicitacao.getAtendente());
+			atendente = ServidorDAO.getInstance().refreshBySiape(atendente);
+			assunto = "Solicitação: "+solicitacao.getTipoSolicitacao().getDescricao() +" - "+DataUtil.formatDateHour(solicitacao.getDataAbertura());
+			conteudoDoEmail = "\n Solicitação: "+solicitacao.getTipoSolicitacao().getDescricao();
+			conteudoDoEmail += "\n Status: "+solicitacao.getStatusSolicitacao().getDescricao();
+			conteudoDoEmail += "\n Data de Abertura: "+DataUtil.formatDateHour(solicitacao.getDataAbertura());
+			conteudoDoEmail += "\n Data de Atendimento: "+DataUtil.formatDateHour(solicitacao.getDataAtendimento());
+			conteudoDoEmail += "\n Atendente: "+atendente.getNome();
+			conteudoDoEmail += "\n Data de Fechamento: "+DataUtil.formatDateHour(solicitacao.getDataFechamento());
+			conteudoDoEmail += "\n Justificativa: "+solicitacao.getJustificativa();
+			conteudoDoEmail += "\n E-mail automático por favor não responder!";
+		}
+
+	
+		try{	
+			@SuppressWarnings("unused")
+			EnviarEmail enviar = new EnviarEmail(remetente, solicitacao.getSolicitante().getEmail(),
+					assunto, smtpHost, porta, usuario, senha, conteudoDoEmail);
 		}catch (Exception e) {
 			System.err.println(e);
 		}

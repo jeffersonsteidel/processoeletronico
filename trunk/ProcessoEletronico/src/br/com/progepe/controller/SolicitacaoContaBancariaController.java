@@ -20,6 +20,7 @@ import br.com.progepe.entity.Servidor;
 import br.com.progepe.entity.SolicitacaoContaBancaria;
 import br.com.progepe.entity.StatusSolicitacao;
 import br.com.progepe.entity.TipoSolicitacao;
+import br.com.progepe.jsfUtil.EnviarEmail;
 
 public class SolicitacaoContaBancariaController implements Serializable {
 	private static final long serialVersionUID = -333995781063775201L;
@@ -113,6 +114,8 @@ public class SolicitacaoContaBancariaController implements Serializable {
 		solicitacaoContaBancaria.getStatusSolicitacao().setCodigo(
 				Constantes.STATUS_SOLICITACAO_ENCAMINHADO);
 		DAO.getInstance().saveOrUpdate(solicitacaoContaBancaria);
+		EnviarEmail enviarEmail = new EnviarEmail();
+		enviarEmail.enviarEmailSolicitacao(solicitacaoContaBancaria);
 		solicitacaoContaBancaria = new SolicitacaoContaBancaria();
 		solicitacaoContaBancaria.setNovoBanco(new Banco());
 		buscarServidorLogado();
