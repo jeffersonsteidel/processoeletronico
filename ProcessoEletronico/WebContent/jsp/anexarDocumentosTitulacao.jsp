@@ -26,7 +26,7 @@
 				</f:facet>
 			</rich:messages>
 
-			<font size="2"><b>ADICIONAR DOCUMENTOS</b></font>
+			<font size="2"><b>ADICIONAR DOCUMENTOS - TITULAÇÃO</b></font>
 			<h:panelGrid columns="2">
 				<h:outputText
 					value="#{documentoImagemController.documentoImagem.servidor.siape} - #{documentoImagemController.documentoImagem.servidor.nome}">
