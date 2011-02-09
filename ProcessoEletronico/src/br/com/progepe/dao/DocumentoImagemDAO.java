@@ -95,6 +95,19 @@ public class DocumentoImagemDAO extends DAO {
 	}
 	
 	@SuppressWarnings("unchecked")
+	public List<DocumentoImagem> listDocumentosByEmprego(Emprego emprego) {
+		HibernateUtility.getSession().clear();
+		HibernateUtility.beginTransaction();
+		Criteria c = HibernateUtility.getSession().createCriteria(
+				DocumentoImagem.class);
+		if (emprego != null) {
+			c.add(Restrictions.like("emprego", emprego));
+		}
+		HibernateUtility.commitTransaction();
+		return c.list();
+	}
+	
+	@SuppressWarnings("unchecked")
 	public List<DocumentoImagem> listByFilter(DocumentoImagem documentoImagem,
 			Integer titularDocumento, Integer validado) {
 		HibernateUtility.getSession().clear();

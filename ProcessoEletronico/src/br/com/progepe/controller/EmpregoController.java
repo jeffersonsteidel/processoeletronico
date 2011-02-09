@@ -13,9 +13,11 @@ import javax.faces.model.SelectItem;
 
 import br.com.progepe.constantes.Constantes;
 import br.com.progepe.dao.DAO;
+import br.com.progepe.dao.DocumentoImagemDAO;
 import br.com.progepe.dao.EmpregoDAO;
 import br.com.progepe.dao.ServidorDAO;
 import br.com.progepe.entity.Autenticacao;
+import br.com.progepe.entity.DocumentoImagem;
 import br.com.progepe.entity.Emprego;
 import br.com.progepe.entity.Servidor;
 import br.com.progepe.entity.StatusSolicitacao;
@@ -29,6 +31,7 @@ public class EmpregoController implements Serializable {
 	private Integer situacao = 0;
 	private Servidor atendente;
 	private Emprego empregoFiltro;
+	private List<DocumentoImagem> documentos;  
 
 	public List<Emprego> getListaEmpregos() {
 		return listaEmpregos;
@@ -85,6 +88,15 @@ public class EmpregoController implements Serializable {
 
 	public void setEmpregoFiltro(Emprego empregoFiltro) {
 		this.empregoFiltro = empregoFiltro;
+	}
+	
+
+	public List<DocumentoImagem> getDocumentos() {
+		return documentos;
+	}
+
+	public void setDocumentos(List<DocumentoImagem> documentos) {
+		this.documentos = documentos;
 	}
 
 	public void abrirEmprego() throws Exception {
@@ -226,6 +238,8 @@ public class EmpregoController implements Serializable {
 			emprego.setAtendente(siapeAutenticado.getSiape());
 			emprego.setDataAtendimento(new Date());
 			DAO.getInstance().update(emprego);
+			documentos = new ArrayList<DocumentoImagem>();
+			documentos = DocumentoImagemDAO.getInstance().listDocumentosByEmprego(emprego);
 			FacesContext.getCurrentInstance().getExternalContext()
 					.redirect("empregoAprovar.jsp");
 		} else if (Constantes.STATUS_SOLICITACAO_EM_ANALISE.equals(emprego
@@ -236,6 +250,8 @@ public class EmpregoController implements Serializable {
 					"Este Emprego já está sendo analizado por outro servidor!");
 			FacesContext.getCurrentInstance().addMessage("", message);
 		} else {
+			documentos = new ArrayList<DocumentoImagem>();
+			documentos = DocumentoImagemDAO.getInstance().listDocumentosByEmprego(emprego);
 			FacesContext.getCurrentInstance().getExternalContext()
 					.redirect("empregoAprovar.jsp");
 		}

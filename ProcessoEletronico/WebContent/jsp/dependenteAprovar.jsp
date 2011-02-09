@@ -164,10 +164,6 @@
 					</a4j:commandLink>
 					<rich:toolTip for="visualizar" value="Visualizar" />
 				</rich:column>
-
-				<f:facet name="footer">
-					<rich:datascroller id="ds"></rich:datascroller>
-				</f:facet>
 			</rich:dataTable>
 			</h:panelGrid>
 			<h:panelGrid columns="2" style="text-align: center;">
