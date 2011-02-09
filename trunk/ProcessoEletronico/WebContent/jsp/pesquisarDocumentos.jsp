@@ -13,6 +13,7 @@
 <body>
 <f:view>
 	<jsp:directive.include file="menus.jsp" />
+	<a4j:loadScript src="../js/script.js" />
 	<center><a4j:form id="form">
 		<rich:panel>
 			<rich:messages layout="list" errorLabelClass="errorLabel"
@@ -30,7 +31,7 @@
 				</h:outputText>
 				<h:inputText
 					value="#{documentoImagemController.documentoImagem.servidor.siape}"
-					size="10" maxlength="7" onkeypress="mascara(this, soNumeros);">
+					size="10" maxlength="7" onkeyup="mascara(this, soNumeros);">
 				</h:inputText>
 
 				<h:outputText value="Tipo Documento: " />
@@ -128,8 +129,19 @@
 	</a4j:form></center>
 	<center><rich:modalPanel id="editPanel" autosized="false"
 		width="700" height="400" style="overflow: auto;">
+		<f:facet name="header">
+					<h:panelGroup>
+						<h:outputText value="Imagem do Documento"></h:outputText>
+					</h:panelGroup>
+				</f:facet>
+				<f:facet name="controls">
+					<h:panelGroup>
+						<h:graphicImage value="../images/close.gif"
+							onclick="#{rich:component('editPanel')}.hide();" />
+					</h:panelGroup>
+				</f:facet>
 		<h:form>
-			<center><font size="2"><b>IMAGEM DO DOCUMENTO</b></font> <h:panelGroup
+			<center> <h:panelGroup
 				id="info">
 				<rich:panel bodyClass="info">
 					<rich:dataGrid columns="1"

@@ -34,10 +34,9 @@
 			</h:panelGrid>
 
 			<h:panelGrid columns="3" id="titular">
-				<h:outputText value="Titular do Documento: "
-					/>
+				<h:outputText value="Titular do Documento: " />
 
-				<h:selectOneMenu 
+				<h:selectOneMenu
 					value="#{documentoImagemController.documentoImagem.dependente.codigo}"
 					required="true"
 					requiredMessage="Campo Titular do Documento é obrigatório!">
@@ -72,7 +71,11 @@
 			<a4j:commandButton value="Salvar"
 				action="#{documentoImagemController.salvar}"
 				reRender="form, info,painelPai, titular" />
-			<a4j:commandButton value="Voltar" onclick="history.go(-1)" />
+
+			<a4j:region>
+				<a4j:commandButton value="Voltar"
+					action="#{dependenteController.abrirAdicionarDependentes}" />
+			</a4j:region>
 
 			<h:panelGroup id="info">
 				<rich:panel bodyClass="info">
