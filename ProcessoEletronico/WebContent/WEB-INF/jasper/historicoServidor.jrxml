@@ -24,10 +24,14 @@
 	<import value="net.sf.jasperreports.engine.data.*" />
 
 	<parameter name="SUBREPORT_DIR" isForPrompting="false" class="java.lang.String"/>
+	<parameter name="BANNER" isForPrompting="false" class="java.lang.String"/>
+	<parameter name="COD_SERV" isForPrompting="true" class="java.lang.String"/>
+	<parameter name="SUB_PESSOAIS" isForPrompting="false" class="java.lang.String"/>
 	<queryString><![CDATA[SELECT
      servidor.`serv_cod` AS servidor_serv_cod
 FROM
-     `servidor` servidor]]></queryString>
+     `servidor` servidor
+WHERE  servidor.`serv_cod` = $P{COD_SERV}]]></queryString>
 
 	<field name="servidor_serv_cod" class="java.lang.Integer"/>
 
@@ -79,14 +83,14 @@ FROM
 				</line>
 				<image  evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
-						x="0"
-						y="14"
-						width="534"
+						x="-32"
+						y="-2"
+						width="596"
 						height="43"
 						key="image-2"/>
 					<box></box>
 					<graphicElement stretchType="NoStretch"/>
-					<imageExpression class="java.lang.String"><![CDATA["C:\\PROJETOS\\WebContent\\images\\banner_topo.gif"]]></imageExpression>
+					<imageExpression class="java.lang.String"><![CDATA[$P{BANNER}]]></imageExpression>
 				</image>
 				<staticText>
 					<reportElement
@@ -105,14 +109,14 @@ FROM
 					<reportElement
 						x="9"
 						y="143"
-						width="496"
+						width="520"
 						height="150"
 						key="subreport-1"/>
 					<subreportParameter  name="COD_SERV">
-						<subreportParameterExpression><![CDATA[$F{servidor_serv_cod} ]]></subreportParameterExpression>
+						<subreportParameterExpression><![CDATA[$F{servidor_serv_cod}]]></subreportParameterExpression>
 					</subreportParameter>
 					<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
-					<subreportExpression  class="java.lang.String"><![CDATA[".\\historicoServidor_SubPessoais.jasper"]]></subreportExpression>
+					<subreportExpression  class="java.lang.String"><![CDATA[$P{SUB_PESSOAIS}]]></subreportExpression>
 				</subreport>
 			</band>
 		</detail>
