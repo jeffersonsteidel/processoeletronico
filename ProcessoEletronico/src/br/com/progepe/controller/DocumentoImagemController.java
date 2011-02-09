@@ -484,4 +484,12 @@ public class DocumentoImagemController implements Serializable {
 		documentoImagem = (DocumentoImagem) context.getExternalContext()
 				.getRequestMap().get("list");
 	}
+	
+	public void verDocumentos() throws Exception {
+		FacesContext context = FacesContext.getCurrentInstance();
+		documentoImagem = (DocumentoImagem) context.getExternalContext()
+				.getRequestMap().get("list");
+		FacesContext.getCurrentInstance().getExternalContext()
+		.redirect("visualizarDocumentos.jsp");
+	}
 }

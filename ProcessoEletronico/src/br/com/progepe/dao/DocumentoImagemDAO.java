@@ -80,6 +80,20 @@ public class DocumentoImagemDAO extends DAO {
 		return c.list();
 	}
 	
+	
+	@SuppressWarnings("unchecked")
+	public List<DocumentoImagem> listDocumentosByDependente(Dependente dependente) {
+		HibernateUtility.getSession().clear();
+		HibernateUtility.beginTransaction();
+		Criteria c = HibernateUtility.getSession().createCriteria(
+				DocumentoImagem.class);
+		if (dependente != null) {
+			c.add(Restrictions.like("dependente", dependente));
+		}
+		HibernateUtility.commitTransaction();
+		return c.list();
+	}
+	
 	@SuppressWarnings("unchecked")
 	public List<DocumentoImagem> listByFilter(DocumentoImagem documentoImagem,
 			Integer titularDocumento, Integer validado) {
