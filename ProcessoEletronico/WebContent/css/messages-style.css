@@ -38,5 +38,12 @@ input[type="text"] {
 	text-transform: uppercase;
 }
 
+select{
+	text-transform: uppercase;
+}
+
+.rich-table-cell{
+	text-transform: uppercase;
+} 
 
 
