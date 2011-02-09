@@ -41,4 +41,18 @@ public class RelatorioController implements Serializable {
 		jasperMB.geraRelatorioPassandoResultSet(parametros,nomeDoJasper);
 		return "";
 	}
+	
+	@SuppressWarnings({"rawtypes", "unchecked"})
+	public String gerarRelatorioServidorGeral() throws ClassNotFoundException,
+			SQLException, JRException {
+		JasperMB jasperMB = new JasperMB();
+		jasperMB.criaConexao();
+		HashMap parametros = new HashMap();
+		parametros.put("BANNER", jasperMB.getDiretorioReal("/images/banner_topo.gif"));
+		parametros.put("SUB_PESSOAIS", jasperMB.getDiretorioReal("/WEB-INF/jasper/historicoServidor_SubPessoais.jasper"));
+		parametros.put("COD_SERV", "470");
+		String nomeDoJasper = "/WEB-INF/jasper/historicoServidor.jasper";
+		jasperMB.geraRelatorioPassandoResultSet(parametros,nomeDoJasper);
+		return "";
+	}
 }

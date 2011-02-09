@@ -20,10 +20,14 @@
 				<h:graphicImage value="../images/icopdf.gif" />
 				<h:commandLink value="GERAR RELATÓRIO SERVIDOR CARGO LOTAÇÃO"
 					action="#{relatorioController.gerarRelatorioServidorCargoLotacao}" />
-				
+
 				<h:graphicImage value="../images/icopdf.gif" />
 				<h:commandLink value="GERAR RELATÓRIO SERVIDOR CONTA BANCÁRIA"
 					action="#{relatorioController.gerarRelatorioServidorContaBancaria}" />
+
+				<h:graphicImage value="../images/icopdf.gif" />
+				<h:commandLink value="GERAR RELATÓRIO GERAL SERVIDOR"
+					action="#{relatorioController.gerarRelatorioServidorGeral}" />
 			</h:panelGrid>
 		</h:form>
 	</rich:panel>
