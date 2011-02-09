@@ -121,9 +121,54 @@
 					rendered="#{!dependenteController.dependente.indNovo}" value="NÃO">
 				</h:outputText>
 			</h:panelGrid>
+			
 			<h:panelGrid columns="1" id="documentos">
-				<a4j:commandButton value="Ver Documentos"
-					action="#{documentoImagemController.abrirPesquisarDocumentos}" />
+				<h:outputText value="Documentos apresentados:" />
+				<rich:dataTable id="listaDocumento"
+				value="#{dependenteController.documentos}" var="list"
+				width="1150px" columnClasses="center" rows="15" reRender="ds">
+
+				<rich:column width="500px">
+					<f:facet name="header">
+						<h:outputText value="Nome do Titular" />
+					</f:facet>
+					<h:outputText value="#{list.dependente.nome} "
+						rendered="#{list.dependente.codigo != null}" />
+				</rich:column>
+
+				<rich:column width="500px">
+					<f:facet name="header">
+						<h:outputText value="Tipo Documento" />
+					</f:facet>
+					<h:outputText value="#{list.tipoDocumento.descricao}" />
+				</rich:column>
+
+				<rich:column width="100px">
+					<f:facet name="header">
+						<h:outputText value="Validado" />
+					</f:facet>
+					<h:outputText value="SIM" rendered="#{list.indValidado}" />
+					<h:outputText value="NÃO" rendered="#{!list.indValidado}" />
+				</rich:column>
+
+				<rich:column>
+					<f:facet name="header">
+						<h:outputText value="Visualizar" />
+					</f:facet>
+					<a4j:commandLink action="#{documentoImagemController.verDocumentos}"
+						reRender="editPanel" ajaxSingle="true">
+						<h:graphicImage value="../images/edit.gif" style="border:0"
+							width="20" height="18" id="editar" />
+						<f:setPropertyActionListener value="#{list.codigo}"
+							target="#{documentoImagemController.documentoImagem.codigo}" />
+					</a4j:commandLink>
+					<rich:toolTip for="visualizar" value="Visualizar" />
+				</rich:column>
+
+				<f:facet name="footer">
+					<rich:datascroller id="ds"></rich:datascroller>
+				</f:facet>
+			</rich:dataTable>
 			</h:panelGrid>
 			<h:panelGrid columns="2" style="text-align: center;">
 				<h:outputText value="Justificativa: " />

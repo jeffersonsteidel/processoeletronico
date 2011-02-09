@@ -110,9 +110,8 @@
 					<f:facet name="header">
 						<h:outputText value="Visualizar" />
 					</f:facet>
-					<a4j:commandLink action="#{documentoImagemController.carregar}"
-						reRender="editPanel" ajaxSingle="true"
-						oncomplete="#{rich:component('editPanel')}.show()">
+					<a4j:commandLink action="#{documentoImagemController.verDocumentos}"
+						reRender="editPanel" ajaxSingle="true">
 						<h:graphicImage value="../images/edit.gif" style="border:0"
 							width="20" height="18" id="editar" />
 						<f:setPropertyActionListener value="#{list.codigo}"

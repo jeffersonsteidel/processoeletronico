@@ -14,9 +14,11 @@ import javax.faces.model.SelectItem;
 import br.com.progepe.constantes.Constantes;
 import br.com.progepe.dao.DAO;
 import br.com.progepe.dao.DependenteDAO;
+import br.com.progepe.dao.DocumentoImagemDAO;
 import br.com.progepe.dao.ServidorDAO;
 import br.com.progepe.entity.Autenticacao;
 import br.com.progepe.entity.Dependente;
+import br.com.progepe.entity.DocumentoImagem;
 import br.com.progepe.entity.Estado;
 import br.com.progepe.entity.GrauParentesco;
 import br.com.progepe.entity.Servidor;
@@ -36,6 +38,7 @@ public class DependenteController implements Serializable {
 	private Integer situacao = 0;
 	private Integer ativo = 0;
 	private Servidor atendente;
+	private List<DocumentoImagem> documentos;  
 
 	public List<Dependente> getListaDependentes() {
 		return listaDependentes;
@@ -124,6 +127,14 @@ public class DependenteController implements Serializable {
 
 	public void setDependenteFilter(Dependente dependenteFilter) {
 		this.dependenteFilter = dependenteFilter;
+	}
+
+	public List<DocumentoImagem> getDocumentos() {
+		return documentos;
+	}
+
+	public void setDocumentos(List<DocumentoImagem> documentos) {
+		this.documentos = documentos;
 	}
 
 	public void abrirAdicionarDependentes() throws Exception {
@@ -360,6 +371,8 @@ public class DependenteController implements Serializable {
 			atendente = ServidorDAO.getInstance().refreshBySiape(atendente);
 			dependente.setAtendente(atendente.getSiape());
 			DependenteDAO.getInstance().updateDependente(dependente);
+			documentos = new ArrayList<DocumentoImagem>();
+			documentos = DocumentoImagemDAO.getInstance().listDocumentosByDependente(dependente);
 			FacesContext.getCurrentInstance().getExternalContext()
 					.redirect("dependenteAprovar.jsp");
 		} else if (Constantes.STATUS_SOLICITACAO_EM_ANALISE.equals(dependente
@@ -370,6 +383,8 @@ public class DependenteController implements Serializable {
 					"Este Dependente já está sendo analizado por outro servidor!");
 			FacesContext.getCurrentInstance().addMessage("", message);
 		} else {
+			documentos = new ArrayList<DocumentoImagem>();
+			documentos = DocumentoImagemDAO.getInstance().listDocumentosByDependente(dependente);
 			FacesContext.getCurrentInstance().getExternalContext()
 					.redirect("dependenteAprovar.jsp");
 		}
@@ -396,5 +411,9 @@ public class DependenteController implements Serializable {
 			atendente.setSiape(dependente.getAtendente());
 			atendente = ServidorDAO.getInstance().refreshBySiape(atendente);
 		}
+	}
+	
+	public void visualizarDocumentos() {
+		DocumentoImagemDAO.getInstance().listDocumentosByDependente(dependente);
 	}
 }

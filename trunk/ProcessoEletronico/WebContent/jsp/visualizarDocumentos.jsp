@@ -15,118 +15,69 @@
 	<jsp:directive.include file="menus.jsp" />
 	<a4j:loadScript src="../js/script.js" />
 	<a4j:form id="form">
-		<center><rich:panel>
-			<rich:messages id="messages" layout="list"
-				errorLabelClass="errorLabel" style="top:auto;"
-				infoLabelClass="infoLabel">
-				<f:facet name="infoMarker">
-					<h:graphicImage value="../images/passed.gif" />
-				</f:facet>
-				<f:facet name="errorMarker">
-					<h:graphicImage value="../images/error.gif" />
-				</f:facet>
-			</rich:messages>
+			<center><rich:panel>
+				<rich:messages id="messages" layout="list"
+					errorLabelClass="errorLabel" style="top:auto;"
+					infoLabelClass="infoLabel">
+					<f:facet name="infoMarker">
+						<h:graphicImage value="../images/passed.gif" />
+					</f:facet>
+					<f:facet name="errorMarker">
+						<h:graphicImage value="../images/error.gif" />
+					</f:facet>
+				</rich:messages>
 
-			<font size="2"><b>APROVAR DOCUMENTO</b></font>
+				<font size="2"><b>APROVAR DOCUMENTO</b></font>
 				<h:form>
-			<center> <h:panelGroup
-				id="info">
-				<rich:panel bodyClass="info">
-					<rich:dataGrid columns="1"
-						value="#{documentoImagemController.documentoImagem.imagem1}"
-						var="file" rowKeyVar="row">
-						<rich:panel bodyClass="rich-laguna-panel-no-header">
-							<h:panelGrid columns="5">
-								<a4j:mediaOutput element="img"
-									createContent="#{documentoImagemController.paint1}"
-									value="#{row}" style="width:600px; height:800px;"
-									cacheable="false">
-								</a4j:mediaOutput>
-							</h:panelGrid>
+					<center><h:panelGroup id="info">
+						<rich:panel bodyClass="info">
+							<rich:dataGrid columns="1"
+								value="#{documentoImagemController.documentoImagem.imagem1}"
+								var="file" rowKeyVar="row">
+								<rich:panel bodyClass="rich-laguna-panel-no-header">
+									<h:panelGrid columns="5">
+										<a4j:mediaOutput element="img"
+											createContent="#{documentoImagemController.paint1}"
+											value="#{row}" style="width:600px; height:800px;"
+											cacheable="false">
+										</a4j:mediaOutput>
+									</h:panelGrid>
+								</rich:panel>
+							</rich:dataGrid>
+							<rich:dataGrid columns="1"
+								value="#{documentoImagemController.documentoImagem.imagem2}"
+								var="file" rowKeyVar="row">
+								<rich:panel bodyClass="rich-laguna-panel-no-header">
+									<h:panelGrid columns="5">
+										<a4j:mediaOutput element="img"
+											createContent="#{documentoImagemController.paint2}"
+											value="#{row}" style="width:600px; height:800px;"
+											cacheable="false">
+										</a4j:mediaOutput>
+									</h:panelGrid>
+								</rich:panel>
+							</rich:dataGrid>
+							<rich:dataGrid columns="1"
+								value="#{documentoImagemController.documentoImagem.imagem3}"
+								var="file" rowKeyVar="row">
+								<rich:panel bodyClass="rich-laguna-panel-no-header">
+									<h:panelGrid columns="5">
+										<a4j:mediaOutput element="img"
+											createContent="#{documentoImagemController.paint3}"
+											value="#{row}" style="width:600px; height:800px;"
+											cacheable="false">
+										</a4j:mediaOutput>
+									</h:panelGrid>
+								</rich:panel>
+							</rich:dataGrid>
 						</rich:panel>
-					</rich:dataGrid>
-					<rich:dataGrid columns="1"
-						value="#{documentoImagemController.documentoImagem.imagem2}"
-						var="file" rowKeyVar="row">
-						<rich:panel bodyClass="rich-laguna-panel-no-header">
-							<h:panelGrid columns="5">
-								<a4j:mediaOutput element="img"
-									createContent="#{documentoImagemController.paint2}"
-									value="#{row}" style="width:600px; height:800px;"
-									cacheable="false">
-								</a4j:mediaOutput>
-							</h:panelGrid>
-						</rich:panel>
-					</rich:dataGrid>
-					<rich:dataGrid columns="1"
-						value="#{documentoImagemController.documentoImagem.imagem3}"
-						var="file" rowKeyVar="row">
-						<rich:panel bodyClass="rich-laguna-panel-no-header">
-							<h:panelGrid columns="5">
-								<a4j:mediaOutput element="img"
-									createContent="#{documentoImagemController.paint3}"
-									value="#{row}" style="width:600px; height:800px;"
-									cacheable="false">
-								</a4j:mediaOutput>
-							</h:panelGrid>
-						</rich:panel>
-					</rich:dataGrid>
-				</rich:panel>
-			</h:panelGroup> <h:panelGrid columns="2">
-				<a4j:commandButton value="Aprovar" reRender="form, listaDocumento"
-					action="#{documentoImagemController.validar}" />
-				<a4j:commandButton value="Voltar"
-					onclick="history..go(-1)" />
-			</h:panelGrid></center>
-		</h:form>
-		</rich:panel></center>
-
-		<rich:modalPanel id="confirmPanel" autosized="true" width="200">
-			<f:facet name="header">
-				<h:outputText value="Confirma este deferimento?"
-					style="padding-right:15px;" />
-			</f:facet>
-			<h:form>
-				<table width="100%">
-					<tbody>
-						<tr>
-							<td align="center" width="50%"><a4j:commandButton
-								value="Sim" ajaxSingle="true"
-								action="#{servidorTitulacaoController.deferir}"
-								oncomplete="#{rich:component('confirmPanel')}.hide();"
-								reRender="form, justificativa, messages, botoes, voltar" /></td>
-							<td align="center" width="50%"><a4j:commandButton
-								value="Não"
-								onclick="#{rich:component('confirmPanel')}.hide();return false;" />
-							</td>
-						</tr>
-					</tbody>
-				</table>
-			</h:form>
-		</rich:modalPanel>
-		<rich:modalPanel id="confirmPanel02" autosized="true" width="200">
-			<f:facet name="header">
-				<h:outputText value="Confirma este indeferimento?"
-					style="padding-right:15px;" />
-			</f:facet>
-			<h:form>
-				<table width="100%">
-					<tbody>
-						<tr>
-							<td align="center" width="50%"><a4j:commandButton
-								value="Sim" ajaxSingle="true"
-								action="#{servidorTitulacaoController.indeferir}"
-								oncomplete="#{rich:component('confirmPanel02')}.hide();"
-								reRender="form, justificativa, messages, botoes, voltar" /></td>
-							<td align="center" width="50%"><a4j:commandButton
-								value="Não"
-								onclick="#{rich:component('confirmPanel02')}.hide();return false;" />
-							</td>
-						</tr>
-					</tbody>
-				</table>
-			</h:form>
-		</rich:modalPanel>
+					</h:panelGroup> <h:panelGrid columns="2">
+						<a4j:commandButton value="Aprovar" reRender="form, listaDocumento"
+							action="#{documentoImagemController.validar}" />
+						<a4j:commandButton value="Voltar" onclick="history.go(-1)" />
+					</h:panelGrid></center>
+				</h:form>
+			</rich:panel></center>
 	</a4j:form>
 </f:view>
 </body>
