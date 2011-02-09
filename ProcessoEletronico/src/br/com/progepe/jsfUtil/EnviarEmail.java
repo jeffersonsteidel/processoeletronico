@@ -68,7 +68,7 @@ public class EnviarEmail {
 		solicitacao = (Solicitacao) DAO.getInstance().refresh(solicitacao);
 		
 		if(Constantes.STATUS_SOLICITACAO_ENCAMINHADO.equals(solicitacao.getStatusSolicitacao().getCodigo())){
-			assunto = "Solicitação: "+solicitacao.getTipoSolicitacao().getDescricao() +" - "+DataUtil.formatDateHour(solicitacao.getDataAbertura());
+			assunto = "PROCESSO VERDE - Solicitação: "+solicitacao.getTipoSolicitacao().getDescricao() +" - "+DataUtil.formatDateHour(solicitacao.getDataAbertura());
 			conteudoDoEmail = "\n Solicitação: "+solicitacao.getTipoSolicitacao().getDescricao();
 			conteudoDoEmail += "\n Status: "+solicitacao.getStatusSolicitacao().getDescricao();
 			conteudoDoEmail += "\n Data de Abertura: "+DataUtil.formatDateHour(solicitacao.getDataAbertura());
@@ -79,7 +79,7 @@ public class EnviarEmail {
 			atendente = new Servidor();
 			atendente.setSiape(solicitacao.getAtendente());
 			atendente = ServidorDAO.getInstance().refreshBySiape(atendente);
-			assunto = "Solicitação: "+solicitacao.getTipoSolicitacao().getDescricao() +" - "+DataUtil.formatDateHour(solicitacao.getDataAbertura());
+			assunto = "PROCESSO VERDE - Solicitação: "+solicitacao.getTipoSolicitacao().getDescricao() +" - "+DataUtil.formatDateHour(solicitacao.getDataAbertura());
 			conteudoDoEmail = "\n Solicitação: "+solicitacao.getTipoSolicitacao().getDescricao();
 			conteudoDoEmail += "\n Status: "+solicitacao.getStatusSolicitacao().getDescricao();
 			conteudoDoEmail += "\n Data de Abertura: "+DataUtil.formatDateHour(solicitacao.getDataAbertura());
