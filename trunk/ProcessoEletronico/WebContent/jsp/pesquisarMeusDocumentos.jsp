@@ -32,14 +32,6 @@
 					<f:selectItem itemLabel="DEPENDENTE" itemValue="3" />
 				</h:selectOneMenu>
 
-				<h:outputText value="Validado:" />
-				<h:selectOneMenu
-					value="#{documentoImagemController.validado}">
-					<f:selectItem itemLabel="TODOS" itemValue="0" />
-					<f:selectItem itemLabel="SIM" itemValue="1" />
-					<f:selectItem itemLabel="NÃO" itemValue="2" />
-				</h:selectOneMenu>
-
 				<a4j:commandButton value="Pesquisar"
 					action="#{documentoImagemController.pesquisarDocumentos}"
 					reRender="listaDocumentos, form" type="submit" />
@@ -78,14 +70,6 @@
 						<h:outputText value="Tipo Documento" />
 					</f:facet>
 					<h:outputText value="#{list.tipoDocumento.descricao}" />
-				</rich:column>
-
-				<rich:column width="100px">
-					<f:facet name="header">
-						<h:outputText value="Validado" />
-					</f:facet>
-					<h:outputText value="SIM" rendered="#{list.indValidado}" />
-					<h:outputText value="NÃO" rendered="#{!list.indValidado}" />
 				</rich:column>
 
 				<rich:column>

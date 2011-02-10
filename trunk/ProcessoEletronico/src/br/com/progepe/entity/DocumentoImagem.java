@@ -16,7 +16,6 @@ public class DocumentoImagem implements Serializable {
 	private byte[] imagem1;
 	private byte[] imagem2;
 	private byte[] imagem3;
-	private Boolean indValidado;
 	private String motivo;
 	private ServidorTitulacao servidorTitulacao;
 	private Emprego emprego;
@@ -83,14 +82,6 @@ public class DocumentoImagem implements Serializable {
 
 	public void setImagem3(byte[] imagem3) {
 		this.imagem3 = imagem3;
-	}
-
-	public Boolean getIndValidado() {
-		return indValidado;
-	}
-
-	public void setIndValidado(Boolean indValidado) {
-		this.indValidado = indValidado;
 	}
 
 	public String getMotivo() {

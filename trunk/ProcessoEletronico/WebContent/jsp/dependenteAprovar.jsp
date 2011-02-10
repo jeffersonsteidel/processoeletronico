@@ -143,14 +143,6 @@
 					<h:outputText value="#{list.tipoDocumento.descricao}" />
 				</rich:column>
 
-				<rich:column width="100px">
-					<f:facet name="header">
-						<h:outputText value="Validado" />
-					</f:facet>
-					<h:outputText value="SIM" rendered="#{list.indValidado}" />
-					<h:outputText value="NÃO" rendered="#{!list.indValidado}" />
-				</rich:column>
-
 				<rich:column>
 					<f:facet name="header">
 						<h:outputText value="Visualizar" />

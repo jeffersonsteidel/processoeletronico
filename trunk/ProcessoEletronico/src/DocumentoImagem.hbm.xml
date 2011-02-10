@@ -10,7 +10,6 @@
 		<property name="imagem1" column="DOC_IMG_IMAGEM1" />
 		<property name="imagem2" column="DOC_IMG_IMAGEM2" />
 		<property name="imagem3" column="DOC_IMG_IMAGEM3" />
-		<property name="indValidado" column="DOC_IMG_VALIDADO" />
 		<property name="motivo" column="DOC_IMG_MOTIVO" />
 
 		<many-to-one name="tipoDocumento" class="br.com.progepe.entity.TipoDocumento"
@@ -21,8 +20,9 @@
 			column="CONJ_COD" lazy="false" />
 		<many-to-one name="dependente" class="br.com.progepe.entity.Dependente"
 			column="DEP_COD" lazy="false" />
-		<many-to-one name="servidorTitulacao" class="br.com.progepe.entity.ServidorTitulacao"
-			column="SERV_TIT_COD" lazy="false" />
+		<many-to-one name="servidorTitulacao"
+			class="br.com.progepe.entity.ServidorTitulacao" column="SERV_TIT_COD"
+			lazy="false" />
 		<many-to-one name="emprego" class="br.com.progepe.entity.Emprego"
 			column="EMP_COD" lazy="false" />
 	</class>
