@@ -108,43 +108,43 @@ public class DocumentoImagemDAO extends DAO {
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<DocumentoImagem> listByFilter(DocumentoImagem documentoImagem,
-			Integer titularDocumento) {
+	public List<DocumentoImagem> listDocumentosByConjuge(Conjuge conjuge) {
+		HibernateUtility.getSession().clear();
+		HibernateUtility.beginTransaction();
+		Criteria c = HibernateUtility.getSession().createCriteria(
+				DocumentoImagem.class);
+		if (conjuge != null) {
+			c.add(Restrictions.like("conjuge", conjuge));
+		}
+		HibernateUtility.commitTransaction();
+		return c.list();
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<DocumentoImagem> listDocumentosByTitulacao(
+			ServidorTitulacao titulacao) {
+		HibernateUtility.getSession().clear();
+		HibernateUtility.beginTransaction();
+		Criteria c = HibernateUtility.getSession().createCriteria(
+				DocumentoImagem.class);
+		if (titulacao != null) {
+			c.add(Restrictions.like("servidorTitulacao", titulacao));
+		}
+		HibernateUtility.commitTransaction();
+		return c.list();
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<DocumentoImagem> listByFilter(DocumentoImagem documentoImagem) {
 		HibernateUtility.getSession().clear();
 		String sql;
-		sql = "from DocumentoImagem di where 1= 1 ";
-			if (documentoImagem.getTipoDocumento().getCodigo() != null
-					&& documentoImagem.getTipoDocumento().getCodigo() != 0) {
-				sql += " and di.tipoDocumento.codigo ="
-						+ documentoImagem.getTipoDocumento().getCodigo();
-			}
-			if (titularDocumento == 1) {
-				sql += " and di.servidor.siape = "
-						+ documentoImagem.getServidor().getSiape();
-			}
-			if (titularDocumento == 2) {
-				sql += "and di.conjuge.servidor.siape ="
-						+ documentoImagem.getServidor().getSiape();
-			}
-			if (titularDocumento == 3) {
-				sql += "and di.dependente.servidor.siape ="
-						+ documentoImagem.getServidor().getSiape();
-			}
-			if (titularDocumento == 4) {
-				sql += "and di.servidorTitulacao.servidor.siape ="
-						+ documentoImagem.getServidor().getSiape();
-			}
-			if (titularDocumento == 5) {
-				sql += "and di.emprego.servidor.siape ="
-						+ documentoImagem.getServidor().getSiape();
-			}
+		sql = "from DocumentoImagem di where di.tipoDocumento.codigo ="
+					+ documentoImagem.getTipoDocumento().getCodigo()+" and di.servidor.siape = "
+					+ documentoImagem.getServidor().getSiape();
 		Query query = HibernateUtility.getSession().createQuery(sql);
 		HibernateUtility.commitTransaction();
-//		if (validado == 2) {
-			return (List<DocumentoImagem>) query.setMaxResults(
-					Constantes.RETORNO_MAXIMO_DOCUMENTOS_IMAGENS_NAO_VALIDADOS)
-					.list();
-//		}
-//		return (List<DocumentoImagem>) query.list();
+		return (List<DocumentoImagem>) query.setMaxResults(
+				Constantes.RETORNO_MAXIMO_DOCUMENTOS_IMAGENS_NAO_VALIDADOS)
+				.list();
 	}
 }

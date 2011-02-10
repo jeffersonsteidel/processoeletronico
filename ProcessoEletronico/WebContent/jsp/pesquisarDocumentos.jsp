@@ -41,27 +41,12 @@
 					<f:selectItems value="#{documentoImagemController.tiposDocumentos}" />
 				</h:selectOneMenu>
 
-				<h:outputText value="Titular do Documento: ">
-				</h:outputText>
-				<h:selectOneMenu
-					value="#{documentoImagemController.titularDocumento}">
-					<f:selectItem itemLabel="SELECIONE" itemValue="" />
-					<f:selectItem itemLabel="SERVIDOR" itemValue="1" />
-					<f:selectItem itemLabel="CÔNJUGE" itemValue="2" />
-					<f:selectItem itemLabel="DEPENDENTE" itemValue="3" />
-					<f:selectItem itemLabel="TITULAÇÃO" itemValue="4" />
-					<f:selectItem itemLabel="EMPREGO" itemValue="5" />
-				</h:selectOneMenu>
 				
 				<a4j:commandButton value="Pesquisar"
 					action="#{documentoImagemController.pesquisarDocumentos}"
 					reRender="listaDocumento" type="submit" />
 			</h:panelGrid>
 			
-			<a4j:commandButton value="Voltar" onclick="history.go(-1)"
-				rendered="#{autenticacaoController.siapeAutenticado.indAdministrador}">
-			</a4j:commandButton>
-
 			<rich:dataTable id="listaDocumento"
 				value="#{documentoImagemController.documentoList}" var="list"
 				width="1150px" columnClasses="center" rows="15" reRender="ds">
@@ -71,16 +56,8 @@
 					<f:facet name="header">
 						<h:outputText value="Nome do Titular" />
 					</f:facet>
-					<h:outputText value="#{list.servidor.nome} - (SERVIDOR)"
-						rendered="#{list.servidor.codigo != null}" />
-					<h:outputText value="#{list.conjuge.nome} - (CÔNJUGE)"
-						rendered="#{list.conjuge.codigo != null}" />
-					<h:outputText value="#{list.dependente.nome} - (DEPENDENTE)"
-						rendered="#{list.dependente.codigo != null}" />
-					<h:outputText value="#{list.servidorTitulacao.curso} - #{list.servidorTitulacao.titulacao.descricao} - (TITULACAO)"
-						rendered="#{list.servidorTitulacao.codigo != null}" />
-					<h:outputText value="#{list.emprego.cargo} - (EMPREGO)"
-						rendered="#{list.emprego.codigo != null}" />
+					<h:outputText value="#{list.servidor.nome}"
+						 />
 				</rich:column>
 
 				<rich:column width="500px">
