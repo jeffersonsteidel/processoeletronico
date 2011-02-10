@@ -28,6 +28,21 @@
 				</rich:messages>
 
 				<font size="2"><b>APROVAR DOCUMENTO</b></font>
+				
+				<h:panelGrid columns="2">
+				
+				<h:outputText value="Titular: "></h:outputText>
+				<h:outputText value="#{documentoImagemController.documentoImagem.dependente.nome} - DEPENDENTE" rendered="#{documentoImagemController.documentoImagem.dependente != null}"></h:outputText>
+				<h:outputText value="#{documentoImagemController.documentoImagem.conjuge.nome} - CONJUGE" rendered="#{documentoImagemController.documentoImagem.conjuge != null}"></h:outputText>
+				<h:outputText value="#{documentoImagemController.documentoImagem.servidor.nome} - SERVIDOR" rendered="#{documentoImagemController.documentoImagem.servidor != null}"></h:outputText>
+				<h:outputText value="#{documentoImagemController.documentoImagem.emprego.cargo} - EMPREGO" rendered="#{documentoImagemController.documentoImagem.emprego != null}"></h:outputText>
+				<h:outputText value="#{documentoImagemController.documentoImagem.servidorTitulacao.nome} - TITULAÇÃO" rendered="#{documentoImagemController.documentoImagem.servidorTitulacao != null}"></h:outputText>
+				
+				<h:outputText value="Tipo de documento: "></h:outputText>
+				<h:outputText value="#{documentoImagemController.documentoImagem.tipoDocumento.descricao}"></h:outputText>
+				
+				</h:panelGrid>
+				
 				<h:form>
 					<center><h:panelGroup id="info">
 						<rich:panel bodyClass="info">
@@ -72,9 +87,7 @@
 							</rich:dataGrid>
 						</rich:panel>
 					</h:panelGroup> <h:panelGrid columns="2">
-						<a4j:commandButton value="Aprovar" reRender="form, listaDocumento"
-							action="#{documentoImagemController.validar}" />
-						<a4j:commandButton value="Voltar" onclick="history.go(-1)" />
+						<a4j:commandButton value="Voltar" action="#{documentoImagemController.voltar}" />
 					</h:panelGrid></center>
 				</h:form>
 			</rich:panel></center>

@@ -41,7 +41,6 @@ public class DocumentoImagemController implements Serializable {
 	private List<SelectItem> tiposDocumentos = new ArrayList<SelectItem>();
 	private List<SelectItem> empregos = new ArrayList<SelectItem>();
 	private Integer titularDocumento = 1;
-	private Integer validado = 0;
 
 	private List<SelectItem> titulacoes = new ArrayList<SelectItem>();
 
@@ -117,14 +116,6 @@ public class DocumentoImagemController implements Serializable {
 		this.titularDocumento = titularDocumento;
 	}
 
-	public Integer getValidado() {
-		return validado;
-	}
-
-	public void setValidado(Integer validado) {
-		this.validado = validado;
-	}
-
 	public List<SelectItem> getTitulacoes() {
 		return titulacoes;
 	}
@@ -132,7 +123,6 @@ public class DocumentoImagemController implements Serializable {
 	public void setTitulacoes(List<SelectItem> titulacoes) {
 		this.titulacoes = titulacoes;
 	}
-	
 
 	public List<SelectItem> getEmpregos() {
 		return empregos;
@@ -223,6 +213,7 @@ public class DocumentoImagemController implements Serializable {
 			e.printStackTrace();
 		}
 	}
+
 	public void abrirAdicionarDocumentosEmprego() {
 		try {
 			files = new ArrayList<DocumentoImagem>();
@@ -238,7 +229,7 @@ public class DocumentoImagemController implements Serializable {
 			listarTiposDocumentos();
 			listarEmpregos();
 			FacesContext.getCurrentInstance().getExternalContext()
-			.redirect("anexarDocumentosEmprego.jsp");
+					.redirect("anexarDocumentosEmprego.jsp");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -294,15 +285,15 @@ public class DocumentoImagemController implements Serializable {
 		}
 		return titulacoes;
 	}
+
 	public List<SelectItem> listarEmpregos() throws Exception {
 		empregos = new ArrayList<SelectItem>();
 		List<Emprego> list = new ArrayList<Emprego>();
 		buscarServidorLogado();
-		list = DocumentoImagemDAO.getInstance()
-		.listEmpregoByServidor(documentoImagem.getServidor());
+		list = DocumentoImagemDAO.getInstance().listEmpregoByServidor(
+				documentoImagem.getServidor());
 		for (Emprego item : list) {
-			empregos.add(new SelectItem(item.getCodigo(), item
-					.getCargo()));
+			empregos.add(new SelectItem(item.getCodigo(), item.getCargo()));
 		}
 		return empregos;
 	}
@@ -363,7 +354,6 @@ public class DocumentoImagemController implements Serializable {
 	}
 
 	public void salvar() throws Exception {
-		documentoImagem.setIndValidado(false);
 		if (titularDocumento.equals(1)) {
 			documentoImagem.setServidor(ServidorDAO.getInstance()
 					.refreshBySiape(documentoImagem.getServidor()));
@@ -395,13 +385,13 @@ public class DocumentoImagemController implements Serializable {
 			ServidorTitulacao titulacao = (ServidorTitulacao) DAO.getInstance()
 					.refresh(documentoImagem.getServidorTitulacao());
 			documentoImagem.setServidorTitulacao(titulacao);
-		}else if (titularDocumento.equals(5)) {
+		} else if (titularDocumento.equals(5)) {
 			documentoImagem.setServidorTitulacao(null);
 			documentoImagem.setServidor(null);
 			documentoImagem.setConjuge(null);
 			documentoImagem.setDependente(null);
-			Emprego emprego = (Emprego) DAO.getInstance()
-					.refresh(documentoImagem.getEmprego());
+			Emprego emprego = (Emprego) DAO.getInstance().refresh(
+					documentoImagem.getEmprego());
 			documentoImagem.setEmprego(emprego);
 		}
 
@@ -429,12 +419,6 @@ public class DocumentoImagemController implements Serializable {
 		buscarServidorLogado();
 	}
 
-	public void validar() {
-		documentoImagem.setIndValidado(true);
-		DAO.getInstance().update(documentoImagem);
-		documentoImagem.setServidor(new Servidor());
-	}
-
 	public void abrirPesquisarMeusDocumentos() throws Exception {
 		documentoList.clear();
 		titularDocumento = 1;
@@ -449,7 +433,6 @@ public class DocumentoImagemController implements Serializable {
 	}
 
 	public void pesquisarDocumentos() {
-		if (Constantes.SIM.equals(validado) || validado == 0) {
 			Boolean validacao = true;
 			if (documentoImagem.getServidor().getSiape() == null
 					|| documentoImagem.getServidor().getSiape() == 0) {
@@ -471,12 +454,8 @@ public class DocumentoImagemController implements Serializable {
 			}
 			if (validacao) {
 				documentoList = DocumentoImagemDAO.getInstance().listByFilter(
-						documentoImagem, titularDocumento, validado);
+						documentoImagem, titularDocumento);
 			}
-		} else {
-			documentoList = DocumentoImagemDAO.getInstance().listByFilter(
-					documentoImagem, titularDocumento, validado);
-		}
 	}
 
 	public void carregar() throws Exception {
@@ -484,12 +463,31 @@ public class DocumentoImagemController implements Serializable {
 		documentoImagem = (DocumentoImagem) context.getExternalContext()
 				.getRequestMap().get("list");
 	}
-	
+
 	public void verDocumentos() throws Exception {
 		FacesContext context = FacesContext.getCurrentInstance();
 		documentoImagem = (DocumentoImagem) context.getExternalContext()
 				.getRequestMap().get("list");
 		FacesContext.getCurrentInstance().getExternalContext()
-		.redirect("visualizarDocumentos.jsp");
+				.redirect("visualizarDocumentos.jsp");
+	}
+
+	public void voltar() throws Exception {
+		if (documentoImagem.getDependente() != null) {
+			FacesContext.getCurrentInstance().getExternalContext()
+					.redirect("dependenteAprovar.jsp");
+		} else if (documentoImagem.getConjuge() != null) {
+			FacesContext.getCurrentInstance().getExternalContext()
+					.redirect("conjugeAprovar.jsp");
+		} else if (documentoImagem.getServidorTitulacao() != null) {
+			FacesContext.getCurrentInstance().getExternalContext()
+					.redirect("titulacaoAprovar.jsp");
+		} else if (documentoImagem.getEmprego() != null) {
+			FacesContext.getCurrentInstance().getExternalContext()
+					.redirect("empregoAprovar.jsp");
+		} else {
+			FacesContext.getCurrentInstance().getExternalContext()
+					.redirect("pesquisarDocumentos.jsp");
+		}
 	}
 }
