@@ -14,11 +14,13 @@ import javax.faces.model.SelectItem;
 import br.com.progepe.constantes.Constantes;
 import br.com.progepe.dao.CidadeDAO;
 import br.com.progepe.dao.DAO;
+import br.com.progepe.dao.DocumentoImagemDAO;
 import br.com.progepe.dao.ServidorDAO;
 import br.com.progepe.dao.ServidorTitulacaoDAO;
 import br.com.progepe.entity.AreaConhecimento;
 import br.com.progepe.entity.Autenticacao;
 import br.com.progepe.entity.Cidade;
+import br.com.progepe.entity.DocumentoImagem;
 import br.com.progepe.entity.Estado;
 import br.com.progepe.entity.Pais;
 import br.com.progepe.entity.Servidor;
@@ -44,6 +46,7 @@ public class ServidorTitulacaoController implements Serializable {
 	private Integer situacao = 0;
 	private Integer validado = 0;
 	private Servidor atendente;
+	private List<DocumentoImagem> documentos;
 
 	public List<ServidorTitulacao> getListaServidorTitulacoes() {
 		return listaServidorTitulacoes;
@@ -174,6 +177,14 @@ public class ServidorTitulacaoController implements Serializable {
 
 	public void setAtendente(Servidor atendente) {
 		this.atendente = atendente;
+	}
+
+	public List<DocumentoImagem> getDocumentos() {
+		return documentos;
+	}
+
+	public void setDocumentos(List<DocumentoImagem> documentos) {
+		this.documentos = documentos;
 	}
 
 	public void abrirAdicionarServidorTitulacao() throws Exception {
@@ -483,29 +494,31 @@ public class ServidorTitulacaoController implements Serializable {
 		} else {
 			indTitulacaoEstrangeira = false;
 		}
-		if (Constantes.STATUS_SOLICITACAO_ENCAMINHADO.equals(servidorTitulacao
+		if (Constantes.STATUS_SOLICITACAO_EM_ANALISE.equals(servidorTitulacao
 				.getStatusSolicitacao().getCodigo())) {
-			servidorTitulacao.getStatusSolicitacao().setCodigo(
-					Constantes.STATUS_SOLICITACAO_EM_ANALISE);
-			atendente = new Servidor();
-			Autenticacao siapeAutenticado = (Autenticacao) FacesContext
-					.getCurrentInstance().getExternalContext().getSessionMap()
-					.get("usuarioLogado");
-			atendente.setSiape(siapeAutenticado.getSiape());
-			atendente = ServidorDAO.getInstance().refreshBySiape(atendente);
-			servidorTitulacao.setAtendente(atendente.getSiape());
-			servidorTitulacao.setDataAtendimento(new Date());
-			ServidorTitulacaoDAO.getInstance().update(servidorTitulacao);
-			FacesContext.getCurrentInstance().getExternalContext()
-					.redirect("titulacaoAprovar.jsp");
-		} else if (Constantes.STATUS_SOLICITACAO_EM_ANALISE
-				.equals(servidorTitulacao.getStatusSolicitacao().getCodigo())) {
 			FacesMessage message = new FacesMessage(
 					FacesMessage.SEVERITY_ERROR,
 					"Esta Titulação já está sendo analizada por outro servidor!",
 					"Esta Titulação já está sendo analizada por outro servidor!");
 			FacesContext.getCurrentInstance().addMessage("", message);
 		} else {
+			if (Constantes.STATUS_SOLICITACAO_ENCAMINHADO
+					.equals(servidorTitulacao.getStatusSolicitacao()
+							.getCodigo())) {
+				servidorTitulacao.getStatusSolicitacao().setCodigo(
+						Constantes.STATUS_SOLICITACAO_EM_ANALISE);
+				atendente = new Servidor();
+				Autenticacao siapeAutenticado = (Autenticacao) FacesContext
+						.getCurrentInstance().getExternalContext()
+						.getSessionMap().get("usuarioLogado");
+				atendente.setSiape(siapeAutenticado.getSiape());
+				atendente = ServidorDAO.getInstance().refreshBySiape(atendente);
+				servidorTitulacao.setAtendente(atendente.getSiape());
+				servidorTitulacao.setDataAtendimento(new Date());
+				ServidorTitulacaoDAO.getInstance().update(servidorTitulacao);
+			}
+			documentos = DocumentoImagemDAO.getInstance()
+					.listDocumentosByTitulacao(servidorTitulacao);
 			FacesContext.getCurrentInstance().getExternalContext()
 					.redirect("titulacaoAprovar.jsp");
 		}

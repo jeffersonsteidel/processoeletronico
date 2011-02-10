@@ -454,7 +454,7 @@ public class DocumentoImagemController implements Serializable {
 			}
 			if (validacao) {
 				documentoList = DocumentoImagemDAO.getInstance().listByFilter(
-						documentoImagem, titularDocumento);
+						documentoImagem);
 			}
 	}
 

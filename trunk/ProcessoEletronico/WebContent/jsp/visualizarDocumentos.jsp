@@ -15,82 +15,98 @@
 	<jsp:directive.include file="menus.jsp" />
 	<a4j:loadScript src="../js/script.js" />
 	<a4j:form id="form">
-			<center><rich:panel>
-				<rich:messages id="messages" layout="list"
-					errorLabelClass="errorLabel" style="top:auto;"
-					infoLabelClass="infoLabel">
-					<f:facet name="infoMarker">
-						<h:graphicImage value="../images/passed.gif" />
-					</f:facet>
-					<f:facet name="errorMarker">
-						<h:graphicImage value="../images/error.gif" />
-					</f:facet>
-				</rich:messages>
+		<center><rich:panel>
+			<rich:messages id="messages" layout="list"
+				errorLabelClass="errorLabel" style="top:auto;"
+				infoLabelClass="infoLabel">
+				<f:facet name="infoMarker">
+					<h:graphicImage value="../images/passed.gif" />
+				</f:facet>
+				<f:facet name="errorMarker">
+					<h:graphicImage value="../images/error.gif" />
+				</f:facet>
+			</rich:messages>
 
-				<font size="2"><b>APROVAR DOCUMENTO</b></font>
-				
-				<h:panelGrid columns="2">
-				
+			<font size="2"><b>VISUALIZAR DOCUMENTO</b></font>
+			<h:panelGrid columns="2"
+				rendered="#{documentoImagemController.documentoImagem.servidorTitulacao == null}">
 				<h:outputText value="Titular: "></h:outputText>
-				<h:outputText value="#{documentoImagemController.documentoImagem.dependente.nome} - DEPENDENTE" rendered="#{documentoImagemController.documentoImagem.dependente != null}"></h:outputText>
-				<h:outputText value="#{documentoImagemController.documentoImagem.conjuge.nome} - CONJUGE" rendered="#{documentoImagemController.documentoImagem.conjuge != null}"></h:outputText>
-				<h:outputText value="#{documentoImagemController.documentoImagem.servidor.nome} - SERVIDOR" rendered="#{documentoImagemController.documentoImagem.servidor != null}"></h:outputText>
-				<h:outputText value="#{documentoImagemController.documentoImagem.emprego.cargo} - EMPREGO" rendered="#{documentoImagemController.documentoImagem.emprego != null}"></h:outputText>
-				<h:outputText value="#{documentoImagemController.documentoImagem.servidorTitulacao.nome} - TITULAÇÃO" rendered="#{documentoImagemController.documentoImagem.servidorTitulacao != null}"></h:outputText>
-				
+				<h:outputText
+					value="#{documentoImagemController.documentoImagem.dependente.nome} - DEPENDENTE"
+					rendered="#{documentoImagemController.documentoImagem.dependente != null}"></h:outputText>
+				<h:outputText
+					value="#{documentoImagemController.documentoImagem.conjuge.nome} - CONJUGE"
+					rendered="#{documentoImagemController.documentoImagem.conjuge != null}"></h:outputText>
+				<h:outputText
+					value="#{documentoImagemController.documentoImagem.servidor.nome} - SERVIDOR"
+					rendered="#{documentoImagemController.documentoImagem.servidor != null}"></h:outputText>
+				<h:outputText
+					value="#{documentoImagemController.documentoImagem.emprego.cargo} - EMPREGO"
+					rendered="#{documentoImagemController.documentoImagem.emprego != null}"></h:outputText>
+			</h:panelGrid>
+			<center><h:panelGrid columns="1"
+				rendered="#{documentoImagemController.documentoImagem.servidorTitulacao != null}">
+				<h:outputText
+					value="#{documentoImagemController.documentoImagem.servidorTitulacao.areaConhecimento.descricao} - #{documentoImagemController.documentoImagem.servidorTitulacao.titulacao.descricao} - #{documentoImagemController.documentoImagem.servidorTitulacao.curso} - TITULAÇÃO"></h:outputText>
+			</h:panelGrid></center>
+			<h:panelGrid columns="2">
+
+
 				<h:outputText value="Tipo de documento: "></h:outputText>
-				<h:outputText value="#{documentoImagemController.documentoImagem.tipoDocumento.descricao}"></h:outputText>
-				
-				</h:panelGrid>
-				
-				<h:form>
-					<center><h:panelGroup id="info">
-						<rich:panel bodyClass="info">
-							<rich:dataGrid columns="1"
-								value="#{documentoImagemController.documentoImagem.imagem1}"
-								var="file" rowKeyVar="row">
-								<rich:panel bodyClass="rich-laguna-panel-no-header">
-									<h:panelGrid columns="5">
-										<a4j:mediaOutput element="img"
-											createContent="#{documentoImagemController.paint1}"
-											value="#{row}" style="width:600px; height:800px;"
-											cacheable="false">
-										</a4j:mediaOutput>
-									</h:panelGrid>
-								</rich:panel>
-							</rich:dataGrid>
-							<rich:dataGrid columns="1"
-								value="#{documentoImagemController.documentoImagem.imagem2}"
-								var="file" rowKeyVar="row">
-								<rich:panel bodyClass="rich-laguna-panel-no-header">
-									<h:panelGrid columns="5">
-										<a4j:mediaOutput element="img"
-											createContent="#{documentoImagemController.paint2}"
-											value="#{row}" style="width:600px; height:800px;"
-											cacheable="false">
-										</a4j:mediaOutput>
-									</h:panelGrid>
-								</rich:panel>
-							</rich:dataGrid>
-							<rich:dataGrid columns="1"
-								value="#{documentoImagemController.documentoImagem.imagem3}"
-								var="file" rowKeyVar="row">
-								<rich:panel bodyClass="rich-laguna-panel-no-header">
-									<h:panelGrid columns="5">
-										<a4j:mediaOutput element="img"
-											createContent="#{documentoImagemController.paint3}"
-											value="#{row}" style="width:600px; height:800px;"
-											cacheable="false">
-										</a4j:mediaOutput>
-									</h:panelGrid>
-								</rich:panel>
-							</rich:dataGrid>
-						</rich:panel>
-					</h:panelGroup> <h:panelGrid columns="2">
-						<a4j:commandButton value="Voltar" action="#{documentoImagemController.voltar}" />
-					</h:panelGrid></center>
-				</h:form>
-			</rich:panel></center>
+				<h:outputText
+					value="#{documentoImagemController.documentoImagem.tipoDocumento.descricao}"></h:outputText>
+
+			</h:panelGrid>
+
+			<h:form>
+				<center><h:panelGroup id="info">
+					<rich:panel bodyClass="info">
+						<rich:dataGrid columns="1"
+							value="#{documentoImagemController.documentoImagem.imagem1}"
+							var="file" rowKeyVar="row">
+							<rich:panel bodyClass="rich-laguna-panel-no-header">
+								<h:panelGrid columns="5">
+									<a4j:mediaOutput element="img"
+										createContent="#{documentoImagemController.paint1}"
+										value="#{row}" style="width:600px; height:800px;"
+										cacheable="false">
+									</a4j:mediaOutput>
+								</h:panelGrid>
+							</rich:panel>
+						</rich:dataGrid>
+						<rich:dataGrid columns="1"
+							value="#{documentoImagemController.documentoImagem.imagem2}"
+							var="file" rowKeyVar="row">
+							<rich:panel bodyClass="rich-laguna-panel-no-header">
+								<h:panelGrid columns="5">
+									<a4j:mediaOutput element="img"
+										createContent="#{documentoImagemController.paint2}"
+										value="#{row}" style="width:600px; height:800px;"
+										cacheable="false">
+									</a4j:mediaOutput>
+								</h:panelGrid>
+							</rich:panel>
+						</rich:dataGrid>
+						<rich:dataGrid columns="1"
+							value="#{documentoImagemController.documentoImagem.imagem3}"
+							var="file" rowKeyVar="row">
+							<rich:panel bodyClass="rich-laguna-panel-no-header">
+								<h:panelGrid columns="5">
+									<a4j:mediaOutput element="img"
+										createContent="#{documentoImagemController.paint3}"
+										value="#{row}" style="width:600px; height:800px;"
+										cacheable="false">
+									</a4j:mediaOutput>
+								</h:panelGrid>
+							</rich:panel>
+						</rich:dataGrid>
+					</rich:panel>
+				</h:panelGroup> <h:panelGrid columns="2">
+					<a4j:commandButton value="Voltar"
+						action="#{documentoImagemController.voltar}" />
+				</h:panelGrid></center>
+			</h:form>
+		</rich:panel></center>
 	</a4j:form>
 </f:view>
 </body>
