@@ -364,9 +364,9 @@ public class ConjugeController implements Serializable {
 
 	public void carregar() throws IOException, ParseException {
 		FacesContext context = FacesContext.getCurrentInstance();
-		conjuge = (Conjuge) context.getExternalContext().getRequestMap()
+		conjugeFilter = (Conjuge) context.getExternalContext().getRequestMap()
 				.get("list");
-		if (conjuge.getCidadeNascimento() != null) {
+		if (conjugeFilter.getCidadeNascimento() != null) {
 			listarCidadesNascimentoConjuge();
 		}
 	}

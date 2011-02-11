@@ -326,12 +326,17 @@ public class DependenteController implements Serializable {
 
 	public void carregar() throws Exception {
 		FacesContext context = FacesContext.getCurrentInstance();
-		dependente = (Dependente) context.getExternalContext().getRequestMap()
+		dependenteFilter = (Dependente) context.getExternalContext().getRequestMap()
 				.get("list");
-		if (dependente.getRgUf() == null) {
-			dependente.setRgUf(new Estado());
+		if (dependenteFilter.getRgUf() == null) {
+			dependenteFilter.setRgUf(new Estado());
 		}
-		buscarAtendente();
+		if (!(Constantes.STATUS_SOLICITACAO_ENCAMINHADO.equals(dependenteFilter
+				.getStatusSolicitacao().getCodigo()))) {
+			atendente = new Servidor();
+			atendente.setSiape(dependenteFilter.getAtendente());
+			atendente = ServidorDAO.getInstance().refreshBySiape(atendente);
+		}
 	}
 
 	public void ativarDesativar() throws Exception {

@@ -308,44 +308,44 @@
 				<h:panelGrid columns="2">
 					<h:outputText value="Status: " />
 					<h:outputText
-						rendered="#{dependenteController.dependente.statusSolicitacao.descricao != null}"
-						value="#{dependenteController.dependente.statusSolicitacao.descricao}">
+						rendered="#{dependenteController.dependenteFilter.statusSolicitacao.descricao != null}"
+						value="#{dependenteController.dependenteFilter.statusSolicitacao.descricao}">
 					</h:outputText>
 					<h:outputText value="Data da Última Alteração: " />
 					<h:outputText
-						rendered="#{dependenteController.dependente.dataAbertura != null}"
-						value="#{dependenteController.dependente.dataAbertura}">
+						rendered="#{dependenteController.dependenteFilter.dataAbertura != null}"
+						value="#{dependenteController.dependenteFilter.dataAbertura}">
 						<f:convertDateTime pattern="dd/MM/yyyy - HH:mm:ss" />
 					</h:outputText>
 					<h:outputText
-						rendered="#{dependenteController.dependente.dataAtendimento != null}"
+						rendered="#{dependenteController.dependenteFilter.dataAtendimento != null}"
 						value="Data Atendimento: " />
 					<h:outputText
-						rendered="#{dependenteController.dependente.dataAtendimento != null}"
-						value="#{dependenteController.dependente.dataAtendimento}">
+						rendered="#{dependenteController.dependenteFilter.dataAtendimento != null}"
+						value="#{dependenteController.dependenteFilter.dataAtendimento}">
 						<f:convertDateTime pattern="dd/MM/yyyy - HH:mm:ss" />
 					</h:outputText>
 					<h:outputText
-						rendered="#{dependenteController.dependente.atendente != null}"
+						rendered="#{dependenteController.dependenteFilter.atendente != null}"
 						value="Atendente: " />
 					<h:outputText
-						rendered="#{dependenteController.dependente.atendente!= null}"
+						rendered="#{dependenteController.dependenteFilter.atendente!= null}"
 						value="#{dependenteController.atendente.nome}">
 					</h:outputText>
 					<h:outputText
-						rendered="#{dependenteController.dependente.dataFechamento != null}"
+						rendered="#{dependenteController.dependenteFilter.dataFechamento != null}"
 						value="Data Fechamento: " />
 					<h:outputText
-						rendered="#{dependenteController.dependente.dataFechamento.date != null}"
-						value="#{dependenteController.dependente.dataFechamento}">
+						rendered="#{dependenteController.dependenteFilter.dataFechamento.date != null}"
+						value="#{dependenteController.dependenteFilter.dataFechamento}">
 						<f:convertDateTime pattern="dd/MM/yyyy - HH:mm:ss" />
 					</h:outputText>
 					<h:outputText
-						rendered="#{dependenteController.dependente.justificativa != null && dependenteController.dependente.justificativa != ''}"
+						rendered="#{dependenteController.dependenteFilter.justificativa != null && dependenteController.dependenteFilter.justificativa != ''}"
 						value="Justificativa: " />
 					<h:outputText
-						rendered="#{dependenteController.dependente.justificativa != null && dependenteController.dependente.justificativa != ''}"
-						value="#{dependenteController.dependente.justificativa}">
+						rendered="#{dependenteController.dependenteFilter.justificativa != null && dependenteController.dependenteFilter.justificativa != ''}"
+						value="#{dependenteController.dependenteFilter.justificativa}">
 					</h:outputText>
 				</h:panelGrid>
 			</rich:modalPanel></center>
