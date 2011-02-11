@@ -31,22 +31,22 @@
 			<h:panelGrid columns="2"
 				rendered="#{documentoImagemController.documentoImagem.servidorTitulacao == null}">
 				<h:outputText value="Titular: "></h:outputText>
-				<h:outputText
+				<h:outputText styleClass="maiusculo"
 					value="#{documentoImagemController.documentoImagem.dependente.nome} - DEPENDENTE"
 					rendered="#{documentoImagemController.documentoImagem.dependente != null}"></h:outputText>
-				<h:outputText
+				<h:outputText styleClass="maiusculo"
 					value="#{documentoImagemController.documentoImagem.conjuge.nome} - CONJUGE"
 					rendered="#{documentoImagemController.documentoImagem.conjuge != null}"></h:outputText>
-				<h:outputText
+				<h:outputText styleClass="maiusculo"
 					value="#{documentoImagemController.documentoImagem.servidor.nome} - SERVIDOR"
 					rendered="#{documentoImagemController.documentoImagem.servidor != null}"></h:outputText>
-				<h:outputText
+				<h:outputText styleClass="maiusculo"
 					value="#{documentoImagemController.documentoImagem.emprego.cargo} - EMPREGO"
 					rendered="#{documentoImagemController.documentoImagem.emprego != null}"></h:outputText>
 			</h:panelGrid>
 			<center><h:panelGrid columns="1"
 				rendered="#{documentoImagemController.documentoImagem.servidorTitulacao != null}">
-				<h:outputText
+				<h:outputText styleClass="maiusculo"
 					value="#{documentoImagemController.documentoImagem.servidorTitulacao.areaConhecimento.descricao} - #{documentoImagemController.documentoImagem.servidorTitulacao.titulacao.descricao} - #{documentoImagemController.documentoImagem.servidorTitulacao.curso} - TITULAÇÃO"></h:outputText>
 			</h:panelGrid></center>
 			<h:panelGrid columns="2">

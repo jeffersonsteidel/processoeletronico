@@ -44,6 +44,15 @@ select{
 
 .rich-table-cell{
 	text-transform: uppercase;
-} 
+}
+
+.maiusculo{
+	text-transform: uppercase;
+}
+
+.negrito{
+	font-weight:bold;
+}
+	
 
 

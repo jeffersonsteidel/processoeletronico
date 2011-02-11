@@ -33,13 +33,13 @@
 					value="#{empregoController.emprego.servidor.siape} - #{empregoController.emprego.servidor.nome}" />
 			</h:panelGrid> <h:panelGrid columns="4">
 				<h:outputText value="Cargo: " />
-				<h:outputText id="cargo" value="#{empregoController.emprego.cargo}"></h:outputText>
+				<h:outputText id="cargo" styleClass="maiusculo" value="#{empregoController.emprego.cargo}"></h:outputText>
 				<h:outputText value="Data de Admissão: " />
 				<h:outputText value="#{empregoController.emprego.dataAdmissao}">
 					<f:convertDateTime pattern="dd/MM/yyyy" />
 				</h:outputText>
 				<h:outputText value="Empresa: " />
-				<h:outputText value="#{empregoController.emprego.empresa}"></h:outputText>
+				<h:outputText styleClass="maiusculo" value="#{empregoController.emprego.empresa}"></h:outputText>
 				<h:outputText value="Data de Saida: " />
 				<h:outputText value="#{empregoController.emprego.dataSaida}">
 					<f:convertDateTime pattern="dd/MM/yyyy" />
@@ -50,26 +50,26 @@
 				</h:outputText>
 			</h:panelGrid>
 			<center><h:panelGrid columns="1" id="documentos">
-				<h:outputText value="Documentos apresentados:" />
-				<rich:dataTable id="listaDocumento"
-					value="#{empregoController.documentos}" var="list" width="750px"
+				<h:outputText value="Documentos apresentados:" rendered="#{not empty empregoController.documentos}"/>
+				<h:outputText styleClass="negrito" value="Nenhum Documento para este Emprego!" rendered="#{empty empregoController.documentos}"/>
+				<rich:dataTable id="listaDocumento" rendered="#{not empty empregoController.documentos}"
+					value="#{empregoController.documentos}" var="list" width="600px"
 					columnClasses="center" reRender="ds">
-					<rich:column width="500px">
+					<rich:column width="550px">
 						<f:facet name="header">
 							<h:outputText value="Tipo Documento" />
 						</f:facet>
 						<h:outputText value="#{list.tipoDocumento.descricao}" />
 					</rich:column>
-
-					<rich:column>
+					<rich:column width="50px">
 						<f:facet name="header">
 							<h:outputText value="Visualizar" />
 						</f:facet>
 						<a4j:commandLink
 							action="#{documentoImagemController.verDocumentos}"
 							reRender="editPanel" ajaxSingle="true">
-							<h:graphicImage value="../images/edit.gif" style="border:0"
-								width="20" height="18" id="editar" />
+							<h:graphicImage value="../images/visualizar.gif" style="border:0"
+								width="20" height="18" id="visualizar" />
 							<f:setPropertyActionListener value="#{list.codigo}"
 								target="#{documentoImagemController.documentoImagem.codigo}" />
 						</a4j:commandLink>
