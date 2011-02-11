@@ -252,13 +252,13 @@ public class DependenteController implements Serializable {
 		}
 		if (validarCPF()) {
 			DAO.getInstance().saveOrUpdate(dependente);
+			listarDependentesServidorLogado();
+			dependente = new Dependente();
+			dependente.setRgUf(new Estado());
+			dependente.setGrauParentesco(new GrauParentesco());
+			dependente.setStatusSolicitacao(new StatusSolicitacao());
+			buscarServidorLogado();
 		}
-		listarDependentesServidorLogado();
-		dependente = new Dependente();
-		dependente.setRgUf(new Estado());
-		dependente.setGrauParentesco(new GrauParentesco());
-		dependente.setStatusSolicitacao(new StatusSolicitacao());
-		buscarServidorLogado();
 	}
 
 	public void deferir() {
@@ -332,6 +332,7 @@ public class DependenteController implements Serializable {
 			dependente.setRgUf(new Estado());
 		}
 	}
+	
 	public void verificarStatus() throws Exception {
 		FacesContext context = FacesContext.getCurrentInstance();
 		dependenteFilter = (Dependente) context.getExternalContext().getRequestMap()
