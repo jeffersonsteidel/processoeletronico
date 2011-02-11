@@ -50,6 +50,11 @@ public class RelatorioController implements Serializable {
 		HashMap parametros = new HashMap();
 		parametros.put("BANNER", jasperMB.getDiretorioReal("/images/banner_topo.gif"));
 		parametros.put("SUB_PESSOAIS", jasperMB.getDiretorioReal("/WEB-INF/jasper/historicoServidor_SubPessoais.jasper"));
+		parametros.put("SUB_FUNCIONAL", jasperMB.getDiretorioReal("/WEB-INF/jasper/historicoServidor_SubDadosFuncionais.jasper"));
+		parametros.put("SUB_ENDERECO", jasperMB.getDiretorioReal("/WEB-INF/jasper/historicoServidor_SubContatoEndereco.jasper"));
+		parametros.put("SUB_DOCUMENTOS", jasperMB.getDiretorioReal("/WEB-INF/jasper/historicoServidor_SubDocumentos.jasper"));
+		parametros.put("SUB_CONTA_BANCARIA", jasperMB.getDiretorioReal("/WEB-INF/jasper/historicoServidor_SubContaBancaria.jasper"));
+		parametros.put("SUB_TITULACOES", jasperMB.getDiretorioReal("/WEB-INF/jasper/historicoServidor_SubTitulacoes.jasper"));
 		parametros.put("COD_SERV", "470");
 		String nomeDoJasper = "/WEB-INF/jasper/historicoServidor.jasper";
 		jasperMB.geraRelatorioPassandoResultSet(parametros,nomeDoJasper);
