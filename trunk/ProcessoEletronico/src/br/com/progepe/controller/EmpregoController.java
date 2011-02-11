@@ -256,9 +256,9 @@ public class EmpregoController implements Serializable {
 
 	public void verificarStatus() throws Exception {
 		FacesContext context = FacesContext.getCurrentInstance();
-		emprego = (Emprego) context.getExternalContext().getRequestMap()
+		empregoFiltro = (Emprego) context.getExternalContext().getRequestMap()
 				.get("list");
-		if (!Constantes.STATUS_SOLICITACAO_ENCAMINHADO.equals(emprego
+		if (!Constantes.STATUS_SOLICITACAO_ENCAMINHADO.equals(empregoFiltro
 				.getStatusSolicitacao().getCodigo())) {
 			atendente = new Servidor();
 			atendente.setSiape(emprego.getAtendente());

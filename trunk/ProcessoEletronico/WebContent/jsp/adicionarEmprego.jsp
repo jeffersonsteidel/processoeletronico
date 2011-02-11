@@ -139,7 +139,7 @@
 					
 					<rich:column width="60px">
 						<f:facet name="header">
-							<h:outputText value="Adicionar Documentos" />
+							<h:outputText value="Documentos" />
 						</f:facet>
 						<a4j:commandLink id="documentos"
 							action="#{documentoImagemController.abrirAdicionarDocumentosEmprego}"
