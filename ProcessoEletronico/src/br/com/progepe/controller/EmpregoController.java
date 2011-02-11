@@ -261,7 +261,7 @@ public class EmpregoController implements Serializable {
 		if (!Constantes.STATUS_SOLICITACAO_ENCAMINHADO.equals(empregoFiltro
 				.getStatusSolicitacao().getCodigo())) {
 			atendente = new Servidor();
-			atendente.setSiape(emprego.getAtendente());
+			atendente.setSiape(empregoFiltro.getAtendente());
 			atendente = ServidorDAO.getInstance().refreshBySiape(atendente);
 
 		}
