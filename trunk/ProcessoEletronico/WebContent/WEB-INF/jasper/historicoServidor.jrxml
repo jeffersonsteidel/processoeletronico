@@ -27,6 +27,12 @@
 	<parameter name="BANNER" isForPrompting="false" class="java.lang.String"/>
 	<parameter name="COD_SERV" isForPrompting="true" class="java.lang.String"/>
 	<parameter name="SUB_PESSOAIS" isForPrompting="false" class="java.lang.String"/>
+	<parameter name="SUB_FUNCIONAL" isForPrompting="false" class="java.lang.String"/>
+	<parameter name="SUB_ENDERECO" isForPrompting="false" class="java.lang.String"/>
+	<parameter name="SUB_DOCUMENTOS" isForPrompting="false" class="java.lang.String"/>
+	<parameter name="SUB_CONTA_BANCARIA" isForPrompting="false" class="java.lang.String"/>
+	<parameter name="SUB_TITULACOES" isForPrompting="false" class="java.lang.String"/>
+	<parameter name="SUB_DEPENDENTE" isForPrompting="false" class="java.lang.String"/>
 	<queryString><![CDATA[SELECT
      servidor.`serv_cod` AS servidor_serv_cod
 FROM
@@ -52,7 +58,7 @@ WHERE  servidor.`serv_cod` = $P{COD_SERV}]]></queryString>
 			</band>
 		</columnHeader>
 		<detail>
-			<band height="500"  isSplitAllowed="true" >
+			<band height="762"  isSplitAllowed="true" >
 				<staticText>
 					<reportElement
 						x="0"
@@ -78,14 +84,15 @@ WHERE  servidor.`serv_cod` = $P{COD_SERV}]]></queryString>
 						y="131"
 						width="535"
 						height="0"
-						key="line"/>
+						key="line"
+						positionType="Float"/>
 					<graphicElement stretchType="NoStretch"/>
 				</line>
 				<image  evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
-						x="-32"
+						x="0"
 						y="-2"
-						width="596"
+						width="534"
 						height="43"
 						key="image-2"/>
 					<box></box>
@@ -98,7 +105,8 @@ WHERE  servidor.`serv_cod` = $P{COD_SERV}]]></queryString>
 						y="114"
 						width="106"
 						height="17"
-						key="staticText-1"/>
+						key="staticText-1"
+						positionType="Float"/>
 					<box></box>
 					<textElement>
 						<font pdfFontName="Helvetica-Bold" size="12" isBold="true"/>
@@ -107,17 +115,249 @@ WHERE  servidor.`serv_cod` = $P{COD_SERV}]]></queryString>
 				</staticText>
 				<subreport  isUsingCache="true">
 					<reportElement
-						x="9"
-						y="143"
-						width="520"
-						height="150"
-						key="subreport-1"/>
+						x="0"
+						y="131"
+						width="534"
+						height="34"
+						key="subreport-1"
+						positionType="Float"/>
 					<subreportParameter  name="COD_SERV">
 						<subreportParameterExpression><![CDATA[$F{servidor_serv_cod}]]></subreportParameterExpression>
 					</subreportParameter>
 					<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
 					<subreportExpression  class="java.lang.String"><![CDATA[$P{SUB_PESSOAIS}]]></subreportExpression>
 				</subreport>
+				<subreport  isUsingCache="true">
+					<reportElement
+						mode="Opaque"
+						x="0"
+						y="195"
+						width="534"
+						height="35"
+						key="subreport-2"
+						positionType="Float"/>
+					<subreportParameter  name="COD_SERV">
+						<subreportParameterExpression><![CDATA[$F{servidor_serv_cod}]]></subreportParameterExpression>
+					</subreportParameter>
+					<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					<subreportExpression  class="java.lang.String"><![CDATA[$P{SUB_FUNCIONAL}]]></subreportExpression>
+				</subreport>
+				<line direction="BottomUp">
+					<reportElement
+						x="0"
+						y="194"
+						width="535"
+						height="0"
+						key="line-1"
+						positionType="Float"/>
+					<graphicElement stretchType="NoStretch"/>
+				</line>
+				<staticText>
+					<reportElement
+						mode="Opaque"
+						x="9"
+						y="175"
+						width="106"
+						height="17"
+						key="staticText-2"
+						positionType="Float"/>
+					<box></box>
+					<textElement>
+						<font pdfFontName="Helvetica-Bold" size="12" isBold="true"/>
+					</textElement>
+				<text><![CDATA[Dados Funcionais]]></text>
+				</staticText>
+				<subreport  isUsingCache="true">
+					<reportElement
+						x="0"
+						y="265"
+						width="534"
+						height="34"
+						key="subreport-3"
+						positionType="Float"/>
+					<subreportParameter  name="COD_SERV">
+						<subreportParameterExpression><![CDATA[$F{servidor_serv_cod}]]></subreportParameterExpression>
+					</subreportParameter>
+					<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					<subreportExpression  class="java.lang.String"><![CDATA[$P{SUB_ENDERECO}]]></subreportExpression>
+				</subreport>
+				<staticText>
+					<reportElement
+						mode="Opaque"
+						x="9"
+						y="244"
+						width="112"
+						height="17"
+						key="staticText-3"
+						positionType="Float"/>
+					<box></box>
+					<textElement>
+						<font pdfFontName="Helvetica-Bold" size="12" isBold="true"/>
+					</textElement>
+				<text><![CDATA[Contado/Endereço]]></text>
+				</staticText>
+				<line direction="BottomUp">
+					<reportElement
+						x="0"
+						y="264"
+						width="535"
+						height="0"
+						key="line-2"
+						positionType="Float"/>
+					<graphicElement stretchType="NoStretch"/>
+				</line>
+				<subreport  isUsingCache="true">
+					<reportElement
+						x="0"
+						y="560"
+						width="534"
+						height="31"
+						key="subreport-4"
+						positionType="Float"/>
+					<subreportParameter  name="COD_SERV">
+						<subreportParameterExpression><![CDATA[$F{servidor_serv_cod}]]></subreportParameterExpression>
+					</subreportParameter>
+					<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					<subreportExpression  class="java.lang.String"><![CDATA[$P{SUB_DOCUMENTOS}]]></subreportExpression>
+				</subreport>
+				<staticText>
+					<reportElement
+						x="9"
+						y="541"
+						width="84"
+						height="17"
+						key="staticText-4"
+						positionType="Float"/>
+					<box></box>
+					<textElement>
+						<font pdfFontName="Helvetica-Bold" size="12" isBold="true"/>
+					</textElement>
+				<text><![CDATA[Documentos]]></text>
+				</staticText>
+				<line direction="BottomUp">
+					<reportElement
+						x="0"
+						y="559"
+						width="535"
+						height="0"
+						key="line-3"
+						positionType="Float"/>
+					<graphicElement stretchType="NoStretch"/>
+				</line>
+				<subreport  isUsingCache="true">
+					<reportElement
+						x="0"
+						y="615"
+						width="534"
+						height="31"
+						key="subreport-5"
+						positionType="Float"/>
+					<subreportParameter  name="COD_SERV">
+						<subreportParameterExpression><![CDATA[$F{servidor_serv_cod}]]></subreportParameterExpression>
+					</subreportParameter>
+					<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					<subreportExpression  class="java.lang.String"><![CDATA[$P{SUB_CONTA_BANCARIA}]]></subreportExpression>
+				</subreport>
+				<staticText>
+					<reportElement
+						x="9"
+						y="596"
+						width="92"
+						height="17"
+						key="staticText-5"
+						positionType="Float"/>
+					<box></box>
+					<textElement>
+						<font pdfFontName="Helvetica-Bold" size="12" isBold="true"/>
+					</textElement>
+				<text><![CDATA[Conta Bancaria]]></text>
+				</staticText>
+				<line direction="BottomUp">
+					<reportElement
+						x="0"
+						y="614"
+						width="535"
+						height="0"
+						key="line-4"
+						positionType="Float"/>
+					<graphicElement stretchType="NoStretch"/>
+				</line>
+				<subreport  isUsingCache="true">
+					<reportElement
+						x="0"
+						y="669"
+						width="534"
+						height="32"
+						key="subreport-6"
+						positionType="Float"/>
+					<subreportParameter  name="COD_SERV">
+						<subreportParameterExpression><![CDATA[$F{servidor_serv_cod}]]></subreportParameterExpression>
+					</subreportParameter>
+					<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					<subreportExpression  class="java.lang.String"><![CDATA[$P{SUB_TITULACOES}]]></subreportExpression>
+				</subreport>
+				<staticText>
+					<reportElement
+						x="9"
+						y="650"
+						width="68"
+						height="17"
+						key="staticText-6"
+						positionType="Float"/>
+					<box></box>
+					<textElement>
+						<font pdfFontName="Helvetica-Bold" size="12" isBold="true"/>
+					</textElement>
+				<text><![CDATA[Titulações]]></text>
+				</staticText>
+				<line direction="BottomUp">
+					<reportElement
+						x="0"
+						y="668"
+						width="535"
+						height="0"
+						key="line-5"
+						positionType="Float"/>
+					<graphicElement stretchType="NoStretch"/>
+				</line>
+				<subreport  isUsingCache="true">
+					<reportElement
+						x="0"
+						y="725"
+						width="534"
+						height="32"
+						key="subreport-7"
+						positionType="Float"/>
+					<subreportParameter  name="COD_SERV">
+						<subreportParameterExpression><![CDATA[$F{servidor_serv_cod}]]></subreportParameterExpression>
+					</subreportParameter>
+					<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					<subreportExpression  class="java.lang.String"><![CDATA[$P{SUB_DEPENDENTE}]]></subreportExpression>
+				</subreport>
+				<staticText>
+					<reportElement
+						x="9"
+						y="706"
+						width="84"
+						height="17"
+						key="staticText-7"
+						positionType="Float"/>
+					<box></box>
+					<textElement>
+						<font pdfFontName="Helvetica-Bold" size="12" isBold="true"/>
+					</textElement>
+				<text><![CDATA[Dependente]]></text>
+				</staticText>
+				<line direction="BottomUp">
+					<reportElement
+						x="2"
+						y="724"
+						width="535"
+						height="0"
+						key="line-6"
+						positionType="Float"/>
+					<graphicElement stretchType="NoStretch"/>
+				</line>
 			</band>
 		</detail>
 		<columnFooter>
@@ -125,7 +365,7 @@ WHERE  servidor.`serv_cod` = $P{COD_SERV}]]></queryString>
 			</band>
 		</columnFooter>
 		<pageFooter>
-			<band height="25"  isSplitAllowed="true" >
+			<band height="27"  isSplitAllowed="true" >
 				<textField isStretchWithOverflow="false" pattern="" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
 						x="325"
