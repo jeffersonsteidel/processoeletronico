@@ -56,7 +56,7 @@ WHERE servidor.`serv_cod` = $P{COD_SERV}]]></queryString>
 			</band>
 		</columnHeader>
 		<detail>
-			<band height="49"  isSplitAllowed="true" >
+			<band height="58"  isSplitAllowed="true" >
 				<textField isStretchWithOverflow="false" pattern="" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
 						x="58"
@@ -176,7 +176,7 @@ WHERE servidor.`serv_cod` = $P{COD_SERV}]]></queryString>
 				</staticText>
 				<textField isStretchWithOverflow="false" pattern="" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
-						x="187"
+						x="282"
 						y="28"
 						width="27"
 						height="17"
@@ -191,11 +191,11 @@ WHERE servidor.`serv_cod` = $P{COD_SERV}]]></queryString>
 					<textElement>
 						<font size="10"/>
 					</textElement>
-				<textFieldExpression   class="java.lang.String"><![CDATA[$F{contabancaria_cont_ban_ind_poupanca}]]></textFieldExpression>
+				<textFieldExpression   class="java.lang.String"><![CDATA[($F{contabancaria_cont_ban_ind_poupanca}.equals("0") ? "NÃO" : "SIM")]]></textFieldExpression>
 				</textField>
 				<staticText>
 					<reportElement
-						x="131"
+						x="226"
 						y="28"
 						width="56"
 						height="17"

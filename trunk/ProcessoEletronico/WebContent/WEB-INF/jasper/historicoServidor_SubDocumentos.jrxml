@@ -167,7 +167,7 @@ WHERE servidor.`serv_cod` = $P{COD_SERV}]]></queryString>
 					</textElement>
 				<text><![CDATA[UF do RG: ]]></text>
 				</staticText>
-				<textField isStretchWithOverflow="false" pattern="" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+				<textField isStretchWithOverflow="false" pattern="dd/MM/yyyy" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
 						x="147"
 						y="45"
@@ -596,7 +596,7 @@ WHERE servidor.`serv_cod` = $P{COD_SERV}]]></queryString>
 					</textElement>
 				<text><![CDATA[Título de Eleitor Sessão: ]]></text>
 				</staticText>
-				<textField isStretchWithOverflow="false" pattern="" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+				<textField isStretchWithOverflow="false" pattern="dd/MM/yyyy" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
 						x="424"
 						y="79"
@@ -752,7 +752,7 @@ WHERE servidor.`serv_cod` = $P{COD_SERV}]]></queryString>
 					</textElement>
 				<text><![CDATA[UF da Carteira de Trabalho: ]]></text>
 				</staticText>
-				<textField isStretchWithOverflow="false" pattern="" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+				<textField isStretchWithOverflow="false" pattern="dd/MM/yyyy" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
 						x="343"
 						y="147"
