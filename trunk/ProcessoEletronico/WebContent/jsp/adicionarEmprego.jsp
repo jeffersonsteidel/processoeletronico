@@ -68,8 +68,9 @@
 				<h:panelGrid columns="4">
 					<center><h:outputText value="Atividades: " /> <h:inputTextarea
 						value="#{empregoController.emprego.atividades}" rows="10"
-						cols="50" required="true"
+						cols="50" required="true" validatorMessage="A Atividade deve ter no máximo 500 caracteres!"
 						requiredMessage="Campo Atividades é obrigatório!">
+						<f:validateLength maximum="500"></f:validateLength>
 					</h:inputTextarea></center>
 
 				</h:panelGrid>
@@ -254,7 +255,7 @@
 			<h:outputText
 				rendered="#{empregoController.empregoFiltro.justificativa != null}"
 				value="Justificativa: " />
-			<h:outputText
+			<h:outputText 
 				rendered="#{empregoController.empregoFiltro.justificativa != null}"
 				value="#{empregoController.empregoFiltro.justificativa}">
 			</h:outputText>
