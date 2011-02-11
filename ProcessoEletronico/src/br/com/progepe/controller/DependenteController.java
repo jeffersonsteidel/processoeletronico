@@ -326,8 +326,16 @@ public class DependenteController implements Serializable {
 
 	public void carregar() throws Exception {
 		FacesContext context = FacesContext.getCurrentInstance();
-		dependenteFilter = (Dependente) context.getExternalContext().getRequestMap()
+		dependente = (Dependente) context.getExternalContext().getRequestMap()
 				.get("list");
+		if (dependente.getRgUf() == null) {
+			dependente.setRgUf(new Estado());
+		}
+	}
+	public void verificarStatus() throws Exception {
+		FacesContext context = FacesContext.getCurrentInstance();
+		dependenteFilter = (Dependente) context.getExternalContext().getRequestMap()
+		.get("list");
 		if (dependenteFilter.getRgUf() == null) {
 			dependenteFilter.setRgUf(new Estado());
 		}

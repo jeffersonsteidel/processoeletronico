@@ -364,10 +364,23 @@ public class ConjugeController implements Serializable {
 
 	public void carregar() throws IOException, ParseException {
 		FacesContext context = FacesContext.getCurrentInstance();
-		conjugeFilter = (Conjuge) context.getExternalContext().getRequestMap()
+		conjuge = (Conjuge) context.getExternalContext().getRequestMap()
 				.get("list");
+		if (conjuge.getCidadeNascimento() != null) {
+			listarCidadesNascimentoConjuge();
+		}
+	}
+	public void verificarStatus() throws IOException, ParseException {
+		FacesContext context = FacesContext.getCurrentInstance();
+		conjugeFilter = (Conjuge) context.getExternalContext().getRequestMap()
+		.get("list");
 		if (conjugeFilter.getCidadeNascimento() != null) {
 			listarCidadesNascimentoConjuge();
+		}if (!(Constantes.STATUS_SOLICITACAO_ENCAMINHADO.equals(conjugeFilter
+				.getStatusSolicitacao().getCodigo()))) {
+			atendente = new Servidor();
+			atendente.setSiape(conjugeFilter.getAtendente());
+			atendente = ServidorDAO.getInstance().refreshBySiape(atendente);
 		}
 	}
 
