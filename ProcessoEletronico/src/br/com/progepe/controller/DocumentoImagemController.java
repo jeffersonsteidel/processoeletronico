@@ -490,4 +490,12 @@ public class DocumentoImagemController implements Serializable {
 					.redirect("pesquisarDocumentos.jsp");
 		}
 	}
+	public void listarDocumentosEmprego() {
+		documentoList = new ArrayList<DocumentoImagem>();
+		if (documentoImagem.getEmprego() != null && documentoImagem.getEmprego().getCodigo() != null) {
+			documentoImagem.setEmprego((Emprego) DAO.getInstance().refresh(documentoImagem.getEmprego()));
+			documentoList = DocumentoImagemDAO.getInstance()
+					.listDocumentosByEmprego(documentoImagem.getEmprego());
+		}
+	}
 }

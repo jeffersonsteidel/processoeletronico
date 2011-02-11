@@ -103,7 +103,7 @@
 					</rich:panel>
 				</h:panelGroup> <h:panelGrid columns="2">
 					<a4j:commandButton value="Voltar"
-						action="#{documentoImagemController.voltar}" />
+						onclick="history.go(-1)" />
 				</h:panelGrid></center>
 			</h:form>
 		</rich:panel></center>
