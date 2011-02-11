@@ -170,7 +170,7 @@ WHERE  servidor.`serv_cod` = $P{COD_SERV}]]></queryString>
 				<subreport  isUsingCache="true">
 					<reportElement
 						x="0"
-						y="265"
+						y="261"
 						width="534"
 						height="34"
 						key="subreport-3"
@@ -194,7 +194,7 @@ WHERE  servidor.`serv_cod` = $P{COD_SERV}]]></queryString>
 					<textElement>
 						<font pdfFontName="Helvetica-Bold" size="12" isBold="true"/>
 					</textElement>
-				<text><![CDATA[Contado/Endereço]]></text>
+				<text><![CDATA[Contato/Endereço]]></text>
 				</staticText>
 				<line direction="BottomUp">
 					<reportElement
@@ -209,7 +209,7 @@ WHERE  servidor.`serv_cod` = $P{COD_SERV}]]></queryString>
 				<subreport  isUsingCache="true">
 					<reportElement
 						x="0"
-						y="560"
+						y="532"
 						width="534"
 						height="31"
 						key="subreport-4"
@@ -223,7 +223,7 @@ WHERE  servidor.`serv_cod` = $P{COD_SERV}]]></queryString>
 				<staticText>
 					<reportElement
 						x="9"
-						y="541"
+						y="515"
 						width="84"
 						height="17"
 						key="staticText-4"
@@ -237,7 +237,7 @@ WHERE  servidor.`serv_cod` = $P{COD_SERV}]]></queryString>
 				<line direction="BottomUp">
 					<reportElement
 						x="0"
-						y="559"
+						y="531"
 						width="535"
 						height="0"
 						key="line-3"
@@ -247,7 +247,7 @@ WHERE  servidor.`serv_cod` = $P{COD_SERV}]]></queryString>
 				<subreport  isUsingCache="true">
 					<reportElement
 						x="0"
-						y="615"
+						y="586"
 						width="534"
 						height="31"
 						key="subreport-5"
@@ -261,7 +261,7 @@ WHERE  servidor.`serv_cod` = $P{COD_SERV}]]></queryString>
 				<staticText>
 					<reportElement
 						x="9"
-						y="596"
+						y="569"
 						width="92"
 						height="17"
 						key="staticText-5"
@@ -275,7 +275,7 @@ WHERE  servidor.`serv_cod` = $P{COD_SERV}]]></queryString>
 				<line direction="BottomUp">
 					<reportElement
 						x="0"
-						y="614"
+						y="585"
 						width="535"
 						height="0"
 						key="line-4"
@@ -285,7 +285,7 @@ WHERE  servidor.`serv_cod` = $P{COD_SERV}]]></queryString>
 				<subreport  isUsingCache="true">
 					<reportElement
 						x="0"
-						y="669"
+						y="641"
 						width="534"
 						height="32"
 						key="subreport-6"
@@ -299,7 +299,7 @@ WHERE  servidor.`serv_cod` = $P{COD_SERV}]]></queryString>
 				<staticText>
 					<reportElement
 						x="9"
-						y="650"
+						y="624"
 						width="68"
 						height="17"
 						key="staticText-6"
@@ -313,7 +313,7 @@ WHERE  servidor.`serv_cod` = $P{COD_SERV}]]></queryString>
 				<line direction="BottomUp">
 					<reportElement
 						x="0"
-						y="668"
+						y="640"
 						width="535"
 						height="0"
 						key="line-5"
@@ -323,7 +323,7 @@ WHERE  servidor.`serv_cod` = $P{COD_SERV}]]></queryString>
 				<subreport  isUsingCache="true">
 					<reportElement
 						x="0"
-						y="725"
+						y="697"
 						width="534"
 						height="32"
 						key="subreport-7"
@@ -337,7 +337,7 @@ WHERE  servidor.`serv_cod` = $P{COD_SERV}]]></queryString>
 				<staticText>
 					<reportElement
 						x="9"
-						y="706"
+						y="680"
 						width="84"
 						height="17"
 						key="staticText-7"
@@ -351,7 +351,7 @@ WHERE  servidor.`serv_cod` = $P{COD_SERV}]]></queryString>
 				<line direction="BottomUp">
 					<reportElement
 						x="2"
-						y="724"
+						y="696"
 						width="535"
 						height="0"
 						key="line-6"
