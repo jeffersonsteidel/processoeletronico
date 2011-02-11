@@ -291,44 +291,44 @@
 				<h:panelGrid columns="2">
 					<h:outputText value="Status: " />
 					<h:outputText
-						rendered="#{conjugeController.conjuge.statusSolicitacao.descricao != null}"
-						value="#{conjugeController.conjuge.statusSolicitacao.descricao}">
+						rendered="#{conjugeController.conjugeFilter.statusSolicitacao.descricao != null}"
+						value="#{conjugeController.conjugeFilter.statusSolicitacao.descricao}">
 					</h:outputText>
 					<h:outputText value="Data da Última Alteração: " />
 					<h:outputText
-						rendered="#{conjugeController.conjuge.dataAbertura != null}"
-						value="#{conjugeController.conjuge.dataAbertura}">
+						rendered="#{conjugeController.conjugeFilter.dataAbertura != null}"
+						value="#{conjugeController.conjugeFilter.dataAbertura}">
 						<f:convertDateTime pattern="dd/MM/yyyy - HH:mm:ss" />
 					</h:outputText>
 					<h:outputText
-						rendered="#{conjugeController.conjuge.dataAtendimento != null}"
+						rendered="#{conjugeController.conjugeFilter.dataAtendimento != null}"
 						value="Data Atendimento: " />
 					<h:outputText
-						rendered="#{conjugeController.conjuge.dataAtendimento != null}"
-						value="#{conjugeController.conjuge.dataAtendimento}">
+						rendered="#{conjugeController.conjugeFilter.dataAtendimento != null}"
+						value="#{conjugeController.conjugeFilter.dataAtendimento}">
 						<f:convertDateTime pattern="dd/MM/yyyy - HH:mm:ss" />
 					</h:outputText>
 					<h:outputText
-						rendered="#{conjugeController.conjuge.atendente != null}"
+						rendered="#{conjugeController.conjugeFilter.atendente != null}"
 						value="Atendente: " />
 					<h:outputText
-						rendered="#{conjugeController.conjuge != null}"
+						rendered="#{conjugeController.conjugeFilter.atendente != null}"
 						value="#{conjugeController.atendente.nome}">
 					</h:outputText>
 					<h:outputText
-						rendered="#{conjugeController.conjuge.dataFechamento != null}"
+						rendered="#{conjugeController.conjugeFilter.dataFechamento != null}"
 						value="Data Fechamento: " />
 					<h:outputText
-						rendered="#{conjugeController.conjuge.dataFechamento.date != null}"
-						value="#{conjugeController.conjuge.dataFechamento}">
+						rendered="#{conjugeController.conjugeFilter.dataFechamento.date != null}"
+						value="#{conjugeController.conjugeFilter.dataFechamento}">
 						<f:convertDateTime pattern="dd/MM/yyyy - HH:mm:ss" />
 					</h:outputText>
 					<h:outputText
-						rendered="#{conjugeController.conjuge.justificativa != null && conjugeController.conjuge.justificativa != ''}"
+						rendered="#{conjugeController.conjugeFilter.justificativa != null && conjugeController.conjugeFilter.justificativa != ''}"
 						value="Justificativa: " />
 					<h:outputText
-						rendered="#{conjugeController.conjuge.justificativa != null && conjugeController.conjuge.justificativa != ''}"
-						value="#{conjugeController.conjuge.justificativa}">
+						rendered="#{conjugeController.conjugeFilter.justificativa != null && conjugeController.conjugeFilter.justificativa != ''}"
+						value="#{conjugeController.conjugeFilter.justificativa}">
 					</h:outputText>
 				</h:panelGrid>
 			</rich:modalPanel>

@@ -216,11 +216,11 @@ public class EmpregoController implements Serializable {
 
 	public void carregar() throws Exception {
 		FacesContext context = FacesContext.getCurrentInstance();
-		emprego = (Emprego) context.getExternalContext().getRequestMap()
+		empregoFiltro = (Emprego) context.getExternalContext().getRequestMap()
 				.get("list");
-		if (emprego.getAtendente() != null) {
+		if (empregoFiltro.getAtendente() != null) {
 			atendente = new Servidor();
-			atendente.setSiape(emprego.getAtendente());
+			atendente.setSiape(empregoFiltro.getAtendente());
 			atendente = ServidorDAO.getInstance().refreshBySiape(atendente);
 		}
 	}

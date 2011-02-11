@@ -219,44 +219,44 @@
 		<h:panelGrid columns="2">
 			<h:outputText value="Status: " />
 			<h:outputText
-				rendered="#{empregoController.emprego.statusSolicitacao.descricao != null}"
-				value="#{empregoController.emprego.statusSolicitacao.descricao}">
+				rendered="#{empregoController.empregoFiltro.statusSolicitacao.descricao != null}"
+				value="#{empregoController.empregoFiltro.statusSolicitacao.descricao}">
 			</h:outputText>
 			<h:outputText value="Data Ultima Auteração: " />
 			<h:outputText
-				rendered="#{empregoController.emprego.dataAbertura != null}"
-				value="#{empregoController.emprego.dataAbertura}">
+				rendered="#{empregoController.empregoFiltro.dataAbertura != null}"
+				value="#{empregoController.empregoFiltro.dataAbertura}">
 				<f:convertDateTime pattern="dd/MM/yyyy - HH:mm:ss" />
 			</h:outputText>
 			<h:outputText
-				rendered="#{empregoController.emprego.dataAtendimento != null}"
+				rendered="#{empregoController.empregoFiltro.dataAtendimento != null}"
 				value="Data Atendimento: " />
 			<h:outputText
-				rendered="#{empregoController.emprego.dataAtendimento != null}"
-				value="#{empregoController.emprego.dataAtendimento}">
+				rendered="#{empregoController.empregoFiltro.dataAtendimento != null}"
+				value="#{empregoController.empregoFiltro.dataAtendimento}">
 				<f:convertDateTime pattern="dd/MM/yyyy - HH:mm:ss" />
 			</h:outputText>
 			<h:outputText
-				rendered="#{empregoController.emprego.atendente != null}"
+				rendered="#{empregoController.empregoFiltro.atendente != null}"
 				value="Atendente: " />
 			<h:outputText
-				rendered="#{empregoController.emprego.atendente!= null}"
+				rendered="#{empregoController.empregoFiltro.atendente!= null}"
 				value="#{empregoController.atendente.nome}">
 			</h:outputText>
 			<h:outputText
-				rendered="#{empregoController.emprego.dataFechamento != null}"
+				rendered="#{empregoController.empregoFiltro.dataFechamento != null}"
 				value="Data Fechamento: " />
 			<h:outputText
-				rendered="#{empregoController.emprego.dataFechamento.date != null}"
-				value="#{empregoController.emprego.dataFechamento}">
+				rendered="#{empregoController.empregoFiltro.dataFechamento.date != null}"
+				value="#{empregoController.empregoFiltro.dataFechamento}">
 				<f:convertDateTime pattern="dd/MM/yyyy - HH:mm:ss" />
 			</h:outputText>
 			<h:outputText
-				rendered="#{empregoController.emprego.justificativa != null}"
+				rendered="#{empregoController.empregoFiltro.justificativa != null}"
 				value="Justificativa: " />
 			<h:outputText
-				rendered="#{empregoController.emprego.justificativa != null}"
-				value="#{empregoController.emprego.justificativa}">
+				rendered="#{empregoController.empregoFiltro.justificativa != null}"
+				value="#{empregoController.empregoFiltro.justificativa}">
 			</h:outputText>
 		</h:panelGrid>
 	</rich:modalPanel></center>
