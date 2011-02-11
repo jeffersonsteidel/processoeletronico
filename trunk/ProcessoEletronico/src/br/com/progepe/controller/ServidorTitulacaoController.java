@@ -388,6 +388,7 @@ public class ServidorTitulacaoController implements Serializable {
 		servidorTitulacao.getCidadeEstabelecimentoEnsino().setEstado(
 				new Estado());
 		servidorTitulacao.setTitulacao(new Titulacao());
+		servidorTitulacao.setStatusSolicitacao(new StatusSolicitacao());
 		servidorTitulacao.setPais(new Pais());
 		this.setIndTitulacaoEstrangeira(false);
 		estados = new ArrayList<SelectItem>();
