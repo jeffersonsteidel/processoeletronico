@@ -36,7 +36,7 @@
 			<h:panelGrid columns="4">
 				<h:outputText value="Nome do Dependente: ">
 				</h:outputText>
-				<h:outputText value="#{dependenteController.dependente.nome}"></h:outputText>
+				<h:outputText styleClass="maiusculo" value="#{dependenteController.dependente.nome}"></h:outputText>
 				<h:outputText value="Sexo do Dependente: " />
 				<h:outputText value="FEMININO"
 					rendered="#{dependenteController.dependente.sexo == 'F'}"></h:outputText>
@@ -61,7 +61,7 @@
 					rendered="#{dependenteController.dependente.rgUf.uf != null}"></h:outputText>
 				<h:outputText value="Orgão Emissor do RG do Dependente: "
 					rendered="#{dependenteController.dependente.rgOrgao != ''}" />
-				<h:outputText value="#{dependenteController.dependente.rgOrgao}"
+				<h:outputText styleClass="maiusculo" value="#{dependenteController.dependente.rgOrgao}"
 					rendered="#{dependenteController.dependente.rgOrgao != ''}" />
 				<h:outputText value="Data de Expedição do RG do Dependente: "
 					rendered="#{dependenteController.dependente.rgDataExpedicao.date!=null}" />
@@ -91,12 +91,12 @@
 				<h:outputText value="Estabelecimento de Ensino: "
 					rendered="#{dependenteController.dependente.indEstudante}">
 				</h:outputText>
-				<h:outputText value="#{dependenteController.dependente.faculdade}"
+				<h:outputText styleClass="maiusculo" value="#{dependenteController.dependente.faculdade}"
 					rendered="#{dependenteController.dependente.indEstudante}"></h:outputText>
 				<h:outputText value="Curso: "
 					rendered="#{dependenteController.dependente.indEstudante}">
 				</h:outputText>
-				<h:outputText id="curso"
+				<h:outputText id="curso" styleClass="maiusculo"
 					rendered="#{dependenteController.dependente.indEstudante}"
 					value="#{dependenteController.dependente.curso}"></h:outputText>
 				<h:outputText value="Previsão de Formação: "
@@ -123,18 +123,11 @@
 			</h:panelGrid>
 			
 			<h:panelGrid columns="1" id="documentos">
-				<h:outputText value="Documentos apresentados:" />
-				<rich:dataTable id="listaDocumento"
+		     	<h:outputText styleClass="negrito" value="Nenhum Documento apresentado!"  rendered="#{empty dependenteController.documentos}"/>
+				<h:outputText value="Documentos apresentados:"  rendered="#{not empty dependenteController.documentos}"/>
+				<rich:dataTable id="listaDocumento"  rendered="#{not empty dependenteController.documentos}"
 				value="#{dependenteController.documentos}" var="list"
-				width="1150px" columnClasses="center" rows="15" reRender="ds">
-
-				<rich:column width="500px">
-					<f:facet name="header">
-						<h:outputText value="Nome do Titular" />
-					</f:facet>
-					<h:outputText value="#{list.dependente.nome} "
-						rendered="#{list.dependente.codigo != null}" />
-				</rich:column>
+				width="600px" columnClasses="center" rows="15" reRender="ds">
 
 				<rich:column width="500px">
 					<f:facet name="header">
@@ -143,13 +136,13 @@
 					<h:outputText value="#{list.tipoDocumento.descricao}" />
 				</rich:column>
 
-				<rich:column>
+				<rich:column width="50px">
 					<f:facet name="header">
 						<h:outputText value="Visualizar" />
 					</f:facet>
 					<a4j:commandLink action="#{documentoImagemController.verDocumentos}"
 						reRender="editPanel" ajaxSingle="true">
-						<h:graphicImage value="../images/edit.gif" style="border:0"
+						<h:graphicImage value="../images/visualizar.gif" style="border:0"
 							width="20" height="18" id="editar" />
 						<f:setPropertyActionListener value="#{list.codigo}"
 							target="#{documentoImagemController.documentoImagem.codigo}" />
@@ -163,7 +156,10 @@
 				<h:inputTextarea id="justificativa"
 					disabled="#{dependenteController.dependente.statusSolicitacao.codigo != 2}"
 					value="#{dependenteController.dependente.justificativa}" cols="50"
-					rows="5"></h:inputTextarea>
+					 validatorMessage="A Justificativa deve ter no máximo 250 caracteres!"
+					rows="5">
+					<f:validateLength maximum="250"></f:validateLength>
+				</h:inputTextarea>
 			</h:panelGrid>
 			<h:panelGrid columns="2" id="botoes">
 				<a4j:commandButton value="Deferir" reRender="confirmPanel"
