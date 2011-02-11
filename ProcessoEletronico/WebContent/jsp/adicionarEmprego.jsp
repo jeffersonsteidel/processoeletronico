@@ -156,7 +156,7 @@
 						</f:facet>
 
 						<a4j:commandLink rendered="#{list.statusSolicitacao.codigo == 1}"
-							action="#{empregoController.carregar}" reRender="painel"
+							action="#{empregoController.verificarStatus}" reRender="painel"
 							ajaxSingle="true" oncomplete="#{rich:component('painel')}.show()">
 							<h:graphicImage value="../images/encaminhado.png"
 								style="border:0" width="20" height="18" id="encaminhado" />
@@ -165,14 +165,14 @@
 						</a4j:commandLink>
 
 						<a4j:commandLink rendered="#{list.statusSolicitacao.codigo == 2}"
-							action="#{empregoController.carregar}" reRender="painel"
+							action="#{empregoController.verificarStatus}" reRender="painel"
 							ajaxSingle="true" oncomplete="#{rich:component('painel')}.show()">
 							<h:graphicImage value="../images/analize.gif" style="border:0"
 								width="20" height="18" id="emAnalise" />
 						</a4j:commandLink>
 
 						<a4j:commandLink rendered="#{list.statusSolicitacao.codigo == 3}"
-							action="#{empregoController.carregar}" reRender="painel"
+							action="#{empregoController.verificarStatus}" reRender="painel"
 							ajaxSingle="true" oncomplete="#{rich:component('painel')}.show()">
 							<h:graphicImage value="../images/deferido.gif" style="border:0"
 								width="20" height="18" id="deferido" />
@@ -181,7 +181,7 @@
 						</a4j:commandLink>
 
 						<a4j:commandLink rendered="#{list.statusSolicitacao.codigo == 4}"
-							action="#{empregoController.carregar}" reRender="painel"
+							action="#{empregoController.verificarStatus}" reRender="painel"
 							ajaxSingle="true" oncomplete="#{rich:component('painel')}.show()">
 							<h:graphicImage value="../images/indeferido.gif" style="border:0"
 								width="20" height="18" id="indeferido" />
