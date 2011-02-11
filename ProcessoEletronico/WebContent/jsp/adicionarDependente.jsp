@@ -177,7 +177,7 @@
 								target="#{dependenteController.dependente.codigo}" />
 						</a4j:commandLink>
 						<a4j:commandLink rendered="#{list.statusSolicitacao.codigo <= 2}"
-							reRender="listaDependentes" ajaxSingle="true">
+							ajaxSingle="true" reRender="#">
 							<h:graphicImage value="../images/edit.gif" style="border:0"
 								width="20" height="18" id="editarNPermitido" />
 						</a4j:commandLink>
@@ -230,7 +230,7 @@
 
 					<rich:column width="60px">
 						<f:facet name="header">
-							<h:outputText value="Adicionar Documentos" />
+							<h:outputText value="Documentos" />
 						</f:facet>
 						<a4j:commandLink id="documentos"
 							action="#{documentoImagemController.abrirAdicionarDocumentosDependente}"
