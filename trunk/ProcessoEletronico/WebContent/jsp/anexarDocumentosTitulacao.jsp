@@ -15,9 +15,9 @@
 	<jsp:directive.include file="menus.jsp" />
 	<a4j:loadScript src="../js/script.js" />
 	<a4j:form id="form">
-	<a4j:jsFunction immediate="true" ajaxSingle="true"
+		<a4j:jsFunction immediate="true" ajaxSingle="true"
 			action="#{documentoImagemController.listarDocumentosTitulacao}"
-			name="carregar" reRender="documentos"/>
+			name="carregar" reRender="documentos" />
 		<center><rich:panel id="painelPai">
 			<rich:messages layout="list" errorLabelClass="errorLabel"
 				style="top:auto;" infoLabelClass="infoLabel">
@@ -37,8 +37,7 @@
 			</h:panelGrid>
 
 			<h:panelGrid columns="3" id="titular">
-				<h:outputText value="Titulação do Documento: "
-					id="cursoTitulacao"/>
+				<h:outputText value="Titulação do Documento: " id="cursoTitulacao" />
 
 				<h:selectOneMenu id="titulacao"
 					value="#{documentoImagemController.documentoImagem.servidorTitulacao.codigo}"
@@ -77,7 +76,10 @@
 			<a4j:commandButton value="Salvar"
 				action="#{documentoImagemController.salvar}"
 				reRender="form, info,painelPai, titular" />
-			<a4j:commandButton value="Voltar" onclick="history.go(-1)" />
+			<a4j:region>
+				<a4j:commandButton value="Voltar"
+					action="#{servidorTitulacaoController.abrirAdicionarServidorTitulacao}" />
+			</a4j:region>
 
 			<h:panelGroup id="info">
 				<rich:panel bodyClass="info">
