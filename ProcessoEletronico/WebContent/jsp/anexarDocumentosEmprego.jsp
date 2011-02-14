@@ -132,12 +132,12 @@
 					</rich:dataGrid>
 					<rich:dataGrid columns="1"
 						value="#{documentoImagemController.documentoImagem.imagem2}"
-						var="file" rowKeyVar="row">
+						var="file2" rowKeyVar="row2">
 						<rich:panel bodyClass="rich-laguna-panel-no-header">
 							<h:panelGrid columns="5">
 								<a4j:mediaOutput element="img"
 									createContent="#{documentoImagemController.paint2}"
-									value="#{row}" style="width:600px; height:800px;"
+									value="#{row2}" style="width:600px; height:800px;"
 									cacheable="false">
 								</a4j:mediaOutput>
 							</h:panelGrid>
@@ -145,12 +145,12 @@
 					</rich:dataGrid>
 					<rich:dataGrid columns="1"
 						value="#{documentoImagemController.documentoImagem.imagem3}"
-						var="file" rowKeyVar="row">
+						var="file3" rowKeyVar="row3">
 						<rich:panel bodyClass="rich-laguna-panel-no-header">
 							<h:panelGrid columns="5">
 								<a4j:mediaOutput element="img"
 									createContent="#{documentoImagemController.paint3}"
-									value="#{row}" style="width:600px; height:800px;"
+									value="#{row3}" style="width:600px; height:800px;"
 									cacheable="false">
 								</a4j:mediaOutput>
 							</h:panelGrid>

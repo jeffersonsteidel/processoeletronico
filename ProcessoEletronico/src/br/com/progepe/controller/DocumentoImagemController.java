@@ -479,6 +479,7 @@ public class DocumentoImagemController implements Serializable {
 	}
 
 	public void listarDocumentosEmprego() {
+		files.clear();
 		documentoList = new ArrayList<DocumentoImagem>();
 		if (documentoImagem.getEmprego() != null
 				&& documentoImagem.getEmprego().getCodigo() != null) {
@@ -490,6 +491,7 @@ public class DocumentoImagemController implements Serializable {
 	}
 
 	public void listarDocumentosDependente() {
+		files.clear();
 		documentoList = new ArrayList<DocumentoImagem>();
 		if (documentoImagem.getDependente() != null
 				&& documentoImagem.getDependente().getCodigo() != null) {
@@ -502,6 +504,7 @@ public class DocumentoImagemController implements Serializable {
 	}
 	
 	public void listarDocumentosTitulacao() {
+		files.clear();
 		documentoList = new ArrayList<DocumentoImagem>();
 		if (documentoImagem.getServidorTitulacao() != null
 				&& documentoImagem.getServidorTitulacao().getCodigo() != null) {
