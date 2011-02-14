@@ -280,8 +280,14 @@ public class DocumentoImagemController implements Serializable {
 		titulacaoList = DocumentoImagemDAO.getInstance()
 				.listTitulacaoByServidor(documentoImagem.getServidor());
 		for (ServidorTitulacao titulacao : titulacaoList) {
+			String curso = null;
+			if (titulacao.getCurso() != null) {
+				curso = "-" + titulacao.getCurso();
+			} else {
+				curso = Constantes.STRING_VAZIA;
+			}
 			titulacoes.add(new SelectItem(titulacao.getCodigo(), titulacao
-					.getCurso()));
+					.getTitulacao().getDescricao() + curso));
 		}
 		return titulacoes;
 	}
@@ -433,29 +439,29 @@ public class DocumentoImagemController implements Serializable {
 	}
 
 	public void pesquisarDocumentos() {
-			Boolean validacao = true;
-			if (documentoImagem.getServidor().getSiape() == null
-					|| documentoImagem.getServidor().getSiape() == 0) {
-				validacao = false;
-				FacesMessage message = new FacesMessage(
-						FacesMessage.SEVERITY_ERROR,
-						"O campo Siape do Servidor é obrigatório!",
-						"O campo Siape do Servidor é obrigatório!");
-				FacesContext.getCurrentInstance().addMessage("", message);
-			}
-			if (documentoImagem.getTipoDocumento().getCodigo() == null
-					|| documentoImagem.getTipoDocumento().getCodigo() == 0) {
-				validacao = false;
-				FacesMessage message = new FacesMessage(
-						FacesMessage.SEVERITY_ERROR,
-						"O campo Tipo do Documento é obrigatório!",
-						"O campo Tipo do Documento é obrigatório!");
-				FacesContext.getCurrentInstance().addMessage("", message);
-			}
-			if (validacao) {
-				documentoList = DocumentoImagemDAO.getInstance().listByFilter(
-						documentoImagem);
-			}
+		Boolean validacao = true;
+		if (documentoImagem.getServidor().getSiape() == null
+				|| documentoImagem.getServidor().getSiape() == 0) {
+			validacao = false;
+			FacesMessage message = new FacesMessage(
+					FacesMessage.SEVERITY_ERROR,
+					"O campo Siape do Servidor é obrigatório!",
+					"O campo Siape do Servidor é obrigatório!");
+			FacesContext.getCurrentInstance().addMessage("", message);
+		}
+		if (documentoImagem.getTipoDocumento().getCodigo() == null
+				|| documentoImagem.getTipoDocumento().getCodigo() == 0) {
+			validacao = false;
+			FacesMessage message = new FacesMessage(
+					FacesMessage.SEVERITY_ERROR,
+					"O campo Tipo do Documento é obrigatório!",
+					"O campo Tipo do Documento é obrigatório!");
+			FacesContext.getCurrentInstance().addMessage("", message);
+		}
+		if (validacao) {
+			documentoList = DocumentoImagemDAO.getInstance().listByFilter(
+					documentoImagem);
+		}
 	}
 
 	public void carregar() throws Exception {
@@ -474,18 +480,24 @@ public class DocumentoImagemController implements Serializable {
 
 	public void listarDocumentosEmprego() {
 		documentoList = new ArrayList<DocumentoImagem>();
-		if (documentoImagem.getEmprego() != null && documentoImagem.getEmprego().getCodigo() != null) {
-			documentoImagem.setEmprego((Emprego) DAO.getInstance().refresh(documentoImagem.getEmprego()));
+		if (documentoImagem.getEmprego() != null
+				&& documentoImagem.getEmprego().getCodigo() != null) {
+			documentoImagem.setEmprego((Emprego) DAO.getInstance().refresh(
+					documentoImagem.getEmprego()));
 			documentoList = DocumentoImagemDAO.getInstance()
 					.listDocumentosByEmprego(documentoImagem.getEmprego());
 		}
 	}
+
 	public void listarDocumentosDependente() {
 		documentoList = new ArrayList<DocumentoImagem>();
-		if (documentoImagem.getDependente() != null && documentoImagem.getDependente().getCodigo() != null) {
-			documentoImagem.setDependente((Dependente) DAO.getInstance().refresh(documentoImagem.getDependente()));
-			documentoList = DocumentoImagemDAO.getInstance()
-			.listDocumentosByDependente(documentoImagem.getDependente());
+		if (documentoImagem.getDependente() != null
+				&& documentoImagem.getDependente().getCodigo() != null) {
+			documentoImagem.setDependente((Dependente) DAO.getInstance()
+					.refresh(documentoImagem.getDependente()));
+			documentoList = DocumentoImagemDAO
+					.getInstance()
+					.listDocumentosByDependente(documentoImagem.getDependente());
 		}
 	}
 }

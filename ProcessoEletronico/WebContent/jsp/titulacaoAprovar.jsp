@@ -38,12 +38,12 @@
 				<h:outputText
 					value="#{servidorTitulacaoController.servidorTitulacao.titulacao.descricao}" />
 				<h:outputText value="Estabelecimento de Ensino: " />
-				<h:outputText
+				<h:outputText styleClass="maiusculo"
 					value="#{servidorTitulacaoController.servidorTitulacao.estabelecimentoEnsino}" />
 
-				<h:outputText value="Curso: "
+				<h:outputText value="Curso: " 
 					rendered="#{servidorTitulacaoController.indSuperior}" />
-				<h:outputText
+				<h:outputText styleClass="maiusculo"
 					value="#{servidorTitulacaoController.servidorTitulacao.curso}"
 					rendered="#{servidorTitulacaoController.indSuperior}" />
 
@@ -53,7 +53,7 @@
 					value="#{servidorTitulacaoController.servidorTitulacao.areaConhecimento.descricao}: "
 					rendered="#{servidorTitulacaoController.indSuperior}" />
 
-				<h:outputText value="Estado do Estabelecimento de Ensino: "
+				<h:outputText value="Estado do Estabelecimento de Ensino: " 
 					rendered="#{servidorTitulacaoController.servidorTitulacao.cidadeEstabelecimentoEnsino.estado.codigo != 0}" />
 				<h:outputText
 					rendered="#{servidorTitulacaoController.servidorTitulacao.cidadeEstabelecimentoEnsino.estado.codigo != 0}"
@@ -81,22 +81,22 @@
 					value="#{servidorTitulacaoController.servidorTitulacao.anoConclusao}">
 				</h:outputText>
 
-				<h:outputText value="Registro no Conselho: " rendered="#{servidorTitulacaoController.servidorTitulacao.registroConselho != ''}"/>
+				<h:outputText value="Registro no Conselho: " rendered="#{servidorTitulacaoController.servidorTitulacao.registroConselho != '' && servidorTitulacaoController.servidorTitulacao.registroConselho != null}"/>
 
 				<h:outputText
-					rendered="#{servidorTitulacaoController.servidorTitulacao.registroConselho != ''}"
+					rendered="#{servidorTitulacaoController.servidorTitulacao.registroConselho != '' && servidorTitulacaoController.servidorTitulacao.registroConselho != null}"
 					value="#{servidorTitulacaoController.servidorTitulacao.registroConselho}"></h:outputText>
 
-				<h:outputText value="Orgão Emissor do Registro: "
-					rendered="#{servidorTitulacaoController.servidorTitulacao.orgaoEmissor != ''}" />
+				<h:outputText value="Orgão Emissor do Registro: " 
+					rendered="#{servidorTitulacaoController.servidorTitulacao.orgaoEmissor != '' && servidorTitulacaoController.servidorTitulacao.orgaoEmissor != null}" />
 
-				<h:outputText
-					rendered="#{servidorTitulacaoController.servidorTitulacao.orgaoEmissor != ''}"
+				<h:outputText  styleClass="maiusculo"
+					rendered="#{servidorTitulacaoController.servidorTitulacao.orgaoEmissor != '' && servidorTitulacaoController.servidorTitulacao.orgaoEmissor != null}"
 					value="#{servidorTitulacaoController.servidorTitulacao.orgaoEmissor}"></h:outputText>
 
-				<h:outputText value="Estado do Orgão Emissor: " rendered="#{servidorTitulacaoController.servidorTitulacao.estadoOrgaoEmissor != null}"/>
+				<h:outputText value="Estado do Orgão Emissor: " rendered="#{servidorTitulacaoController.servidorTitulacao.estadoOrgaoEmissor != null && servidorTitulacaoController.servidorTitulacao.estadoOrgaoEmissor != ''}"/>
 				<h:outputText
-					rendered="#{servidorTitulacaoController.servidorTitulacao.estadoOrgaoEmissor != null}"
+					rendered="#{servidorTitulacaoController.servidorTitulacao.estadoOrgaoEmissor != null && servidorTitulacaoController.servidorTitulacao.estadoOrgaoEmissor != ''}"
 					value="#{servidorTitulacaoController.servidorTitulacao.estadoOrgaoEmissor.descricao}">
 				</h:outputText>
 
@@ -114,34 +114,27 @@
 
 			</h:panelGrid>
 			<h:panelGrid columns="1" id="documentos">
-				<h:outputText value="Documentos apresentados:" />
-				<rich:dataTable id="listaDocumento"
+				<h:outputText styleClass="negrito" value="Nenhum Documento apresentado!"  rendered="#{empty servidorTitulacaoController.documentos}"/>
+				<h:outputText value="Documentos apresentados:" rendered="#{not empty servidorTitulacaoController.documentos}"/>
+				<rich:dataTable id="listaDocumento" rendered="#{not empty servidorTitulacaoController.documentos}"
 				value="#{servidorTitulacaoController.documentos}" var="list"
-				width="1150px" columnClasses="center" rows="15" reRender="ds">
+				width="600px" columnClasses="center" rows="15" reRender="ds">
 
-				<rich:column width="500px">
-					<f:facet name="header">
-						<h:outputText value="Nome do Titular" />
-					</f:facet>
-					<h:outputText value="#{list.servidorTitulacao.curso} "
-						rendered="#{list.servidorTitulacao.codigo != null}" />
-				</rich:column>
-
-				<rich:column width="500px">
+				<rich:column width="550px">
 					<f:facet name="header">
 						<h:outputText value="Tipo Documento" />
 					</f:facet>
 					<h:outputText value="#{list.tipoDocumento.descricao}" />
 				</rich:column>
 
-				<rich:column>
+				<rich:column width="50px">
 					<f:facet name="header">
 						<h:outputText value="Visualizar" />
 					</f:facet>
 					<a4j:commandLink action="#{documentoImagemController.verDocumentos}"
 						reRender="editPanel" ajaxSingle="true">
-						<h:graphicImage value="../images/edit.gif" style="border:0"
-							width="20" height="18" id="editar" />
+						<h:graphicImage value="../images/visualizar.gif" style="border:0"
+							width="20" height="18" id="visualizar" />
 						<f:setPropertyActionListener value="#{list.codigo}"
 							target="#{documentoImagemController.documentoImagem.codigo}" />
 					</a4j:commandLink>

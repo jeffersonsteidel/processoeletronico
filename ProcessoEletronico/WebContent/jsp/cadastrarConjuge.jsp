@@ -167,7 +167,7 @@
 			<rich:dataTable id="listarConjugesSolicitante"
 				rendered="#{not empty conjugeController.conjugeList}"
 				value="#{conjugeController.conjugeList}" var="list" width="1160px"
-				columnClasses="center" rows="15" reRender="ds">
+				columnClasses="center" reRender="ds">
 				<rich:column width="435px" sortBy="#{list.nome}">
 					<f:facet name="header">
 						<h:outputText value="Nome" />
@@ -270,10 +270,6 @@
 					<rich:toolTip for="deferido" value="Deferido" />
 					<rich:toolTip for="indeferido" value="Indeferido" />
 				</rich:column>
-
-				<f:facet name="footer">
-					<rich:datascroller id="ds"></rich:datascroller>
-				</f:facet>
 			</rich:dataTable>
 			<rich:modalPanel id="painel" autosized="true"
 				width="350">

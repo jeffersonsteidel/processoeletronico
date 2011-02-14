@@ -1,6 +1,8 @@
 package br.com.progepe.constantes;
 
 public class Constantes {
+	public static final String STRING_VAZIA = "";
+	
 	public static final Long ZERO = 0L;
 	public static final Integer TODOS = 0;
 	public static final Integer ATIVO = 1;

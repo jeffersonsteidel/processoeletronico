@@ -82,7 +82,7 @@
 
 				<rich:dataTable id="listaEmpregos"
 					value="#{empregoController.listaEmpregos}" var="list"
-					width="1150px" columnClasses="center" rows="15">
+					width="1150px" columnClasses="center" >
 
 					<rich:column width="700px" sortBy="#{list.empresa}">
 						<f:facet name="header">
@@ -195,10 +195,6 @@
 						<rich:toolTip for="deferido" value="Deferido" />
 						<rich:toolTip for="indeferido" value="Indeferido" />
 					</rich:column>
-
-					<f:facet name="footer">
-						<rich:datascroller id="ds"></rich:datascroller>
-					</f:facet>
 				</rich:dataTable>
 			</a4j:region>
 		</rich:panel></center>
