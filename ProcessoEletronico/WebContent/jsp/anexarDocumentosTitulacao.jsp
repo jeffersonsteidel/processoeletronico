@@ -10,11 +10,14 @@
 <link rel="StyleSheet" type="text/css" href="../css/messages-style.css"
 	media="screen" />
 </head>
-<body>
+<body onload="carregar()">
 <f:view>
 	<jsp:directive.include file="menus.jsp" />
 	<a4j:loadScript src="../js/script.js" />
 	<a4j:form id="form">
+	<a4j:jsFunction immediate="true" ajaxSingle="true"
+			action="#{documentoImagemController.listarDocumentosTitulacao}"
+			name="carregar" reRender="documentos"/>
 		<center><rich:panel id="painelPai">
 			<rich:messages layout="list" errorLabelClass="errorLabel"
 				style="top:auto;" infoLabelClass="infoLabel">

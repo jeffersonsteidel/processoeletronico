@@ -500,4 +500,16 @@ public class DocumentoImagemController implements Serializable {
 					.listDocumentosByDependente(documentoImagem.getDependente());
 		}
 	}
+	
+	public void listarDocumentosTitulacao() {
+		documentoList = new ArrayList<DocumentoImagem>();
+		if (documentoImagem.getServidorTitulacao() != null
+				&& documentoImagem.getServidorTitulacao().getCodigo() != null) {
+			documentoImagem.setServidorTitulacao((ServidorTitulacao) DAO.getInstance()
+					.refresh(documentoImagem.getServidorTitulacao()));
+			documentoList = DocumentoImagemDAO
+					.getInstance()
+					.listDocumentosByTitulacao(documentoImagem.getServidorTitulacao());
+		}
+	}
 }
