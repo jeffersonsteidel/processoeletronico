@@ -253,6 +253,7 @@ public class DependenteController implements Serializable {
 		if (validarCPF()) {
 			DAO.getInstance().saveOrUpdate(dependente);
 			listarDependentesServidorLogado();
+			dependente = null;
 			dependente = new Dependente();
 			dependente.setRgUf(new Estado());
 			dependente.setGrauParentesco(new GrauParentesco());

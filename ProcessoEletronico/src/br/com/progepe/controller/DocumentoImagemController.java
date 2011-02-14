@@ -472,30 +472,20 @@ public class DocumentoImagemController implements Serializable {
 				.redirect("visualizarDocumentos.jsp");
 	}
 
-	public void voltar() throws Exception {
-		if (documentoImagem.getDependente() != null) {
-			FacesContext.getCurrentInstance().getExternalContext()
-					.redirect("dependenteAprovar.jsp");
-		} else if (documentoImagem.getConjuge() != null) {
-			FacesContext.getCurrentInstance().getExternalContext()
-					.redirect("conjugeAprovar.jsp");
-		} else if (documentoImagem.getServidorTitulacao() != null) {
-			FacesContext.getCurrentInstance().getExternalContext()
-					.redirect("titulacaoAprovar.jsp");
-		} else if (documentoImagem.getEmprego() != null) {
-			FacesContext.getCurrentInstance().getExternalContext()
-					.redirect("empregoAprovar.jsp");
-		} else {
-			FacesContext.getCurrentInstance().getExternalContext()
-					.redirect("pesquisarDocumentos.jsp");
-		}
-	}
 	public void listarDocumentosEmprego() {
 		documentoList = new ArrayList<DocumentoImagem>();
 		if (documentoImagem.getEmprego() != null && documentoImagem.getEmprego().getCodigo() != null) {
 			documentoImagem.setEmprego((Emprego) DAO.getInstance().refresh(documentoImagem.getEmprego()));
 			documentoList = DocumentoImagemDAO.getInstance()
 					.listDocumentosByEmprego(documentoImagem.getEmprego());
+		}
+	}
+	public void listarDocumentosDependente() {
+		documentoList = new ArrayList<DocumentoImagem>();
+		if (documentoImagem.getDependente() != null && documentoImagem.getDependente().getCodigo() != null) {
+			documentoImagem.setDependente((Dependente) DAO.getInstance().refresh(documentoImagem.getDependente()));
+			documentoList = DocumentoImagemDAO.getInstance()
+			.listDocumentosByDependente(documentoImagem.getDependente());
 		}
 	}
 }
