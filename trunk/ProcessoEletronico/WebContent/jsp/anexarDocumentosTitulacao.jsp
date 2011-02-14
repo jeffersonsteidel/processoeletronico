@@ -106,7 +106,7 @@
 				acceptedTypes="jpg, gif, png, bmp" allowFlash="true"
 				sizeErrorLabel="Foto muito grande" uploadControlLabel="Carregar"
 				listHeight="70px">
-				<a4j:support event="onuploadcomplete" reRender="info" />
+				<a4j:support event="onuploadcomplete" reRender="form" />
 			</rich:fileUpload>
 
 			<a4j:commandButton value="Salvar"
