@@ -31,7 +31,7 @@ public class EmpregoController implements Serializable {
 	private Integer situacao = 0;
 	private Servidor atendente;
 	private Emprego empregoFiltro;
-	private List<DocumentoImagem> documentos;  
+	private List<DocumentoImagem> documentos;
 
 	public List<Emprego> getListaEmpregos() {
 		return listaEmpregos;
@@ -89,7 +89,6 @@ public class EmpregoController implements Serializable {
 	public void setEmpregoFiltro(Emprego empregoFiltro) {
 		this.empregoFiltro = empregoFiltro;
 	}
-	
 
 	public List<DocumentoImagem> getDocumentos() {
 		return documentos;
@@ -219,7 +218,6 @@ public class EmpregoController implements Serializable {
 		emprego = (Emprego) context.getExternalContext().getRequestMap()
 				.get("list");
 	}
-	
 
 	public void validar() throws Exception {
 		emprego = (Emprego) DAO.getInstance().refresh(emprego);
@@ -235,7 +233,8 @@ public class EmpregoController implements Serializable {
 			emprego.setDataAtendimento(new Date());
 			DAO.getInstance().update(emprego);
 			documentos = new ArrayList<DocumentoImagem>();
-			documentos = DocumentoImagemDAO.getInstance().listDocumentosByEmprego(emprego);
+			documentos = DocumentoImagemDAO.getInstance()
+					.listDocumentosByEmprego(emprego);
 			FacesContext.getCurrentInstance().getExternalContext()
 					.redirect("empregoAprovar.jsp");
 		} else if (Constantes.STATUS_SOLICITACAO_EM_ANALISE.equals(emprego
@@ -247,12 +246,13 @@ public class EmpregoController implements Serializable {
 			FacesContext.getCurrentInstance().addMessage("", message);
 		} else {
 			documentos = new ArrayList<DocumentoImagem>();
-			documentos = DocumentoImagemDAO.getInstance().listDocumentosByEmprego(emprego);
+			documentos = DocumentoImagemDAO.getInstance()
+					.listDocumentosByEmprego(emprego);
 			FacesContext.getCurrentInstance().getExternalContext()
 					.redirect("empregoAprovar.jsp");
 		}
-
 	}
+
 
 	public void verificarStatus() throws Exception {
 		FacesContext context = FacesContext.getCurrentInstance();

@@ -10,11 +10,14 @@
 <link rel="StyleSheet" type="text/css" href="../css/messages-style.css"
 	media="screen" />
 </head>
-<body>
+<body onload="carregar()">
 <f:view>
 	<jsp:directive.include file="menus.jsp" />
 	<a4j:loadScript src="../js/script.js" />
 	<a4j:form id="form">
+			<a4j:jsFunction immediate="true" ajaxSingle="true"
+			action="#{documentoImagemController.listarDocumentosDependente}"
+			name="carregar" reRender="documentos"/>
 		<center><rich:panel id="painelPai">
 			<rich:messages layout="list" errorLabelClass="errorLabel"
 				style="top:auto;" infoLabelClass="infoLabel">
@@ -42,9 +45,39 @@
 					requiredMessage="Campo Titular do Documento é obrigatório!">
 					<f:selectItem itemLabel="SELECIONE" itemValue="" />
 					<f:selectItems value="#{documentoImagemController.dependentes}" />
+					<a4j:support event="onchange"
+						action="#{documentoImagemController.listarDocumentosDependente}"
+						ajaxSingle="true" reRender="documentos"></a4j:support>
 				</h:selectOneMenu>
 			</h:panelGrid>
-
+<center><h:panelGrid columns="1" id="documentos">
+				<h:outputText value="Documentos já anexados:" rendered="#{not empty documentoImagemController.documentoList && documentoImagemController.documentoImagem.dependente.codigo != null}"/>
+				<h:outputText styleClass="negrito" value="Nenhum Documento para este Emprego!" rendered="#{empty documentoImagemController.documentoList  && documentoImagemController.documentoImagem.dependente.codigo != null}"/>
+				<rich:dataTable id="listaDocumento" rendered="#{not empty documentoImagemController.documentoList  && documentoImagemController.documentoImagem.dependente.codigo != null}"
+					value="#{documentoImagemController.documentoList}" var="list" width="600px"
+					columnClasses="center" reRender="ds">
+					<rich:column width="550px">
+						<f:facet name="header">
+							<h:outputText value="Tipo Documento" />
+						</f:facet>
+						<h:outputText value="#{list.tipoDocumento.descricao}" />
+					</rich:column>
+					<rich:column width="50px">
+						<f:facet name="header">
+							<h:outputText value="Visualizar" />
+						</f:facet>
+						<a4j:commandLink
+							action="#{documentoImagemController.verDocumentos}"
+							reRender="editPanel" ajaxSingle="true">
+							<h:graphicImage value="../images/visualizar.gif" style="border:0"
+								width="20" height="18" id="visualizar" />
+							<f:setPropertyActionListener value="#{list.codigo}"
+								target="#{documentoImagemController.documentoImagem.codigo}" />
+						</a4j:commandLink>
+						<rich:toolTip for="visualizar" value="Visualizar" />
+					</rich:column>
+				</rich:dataTable>
+			</h:panelGrid></center>
 
 			<h:outputText value="Tipo de Documento: " />
 			<h:selectOneMenu
