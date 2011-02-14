@@ -25,43 +25,45 @@
 
 	<parameter name="COD_SERV" isForPrompting="true" class="java.lang.Integer"/>
 	<queryString><![CDATA[SELECT
-     dependente.dep_nome AS dependente_dep_nome,
-     dependente.dep_data_nasc AS dependente_dep_data_nasc,
-     dependente.dep_rg AS dependente_dep_rg,
-     dependente.dep_rg_org_emi AS dependente_dep_rg_org_emi,
-     dependente.dep_sexo AS dependente_dep_sexo,
-     dependente.dep_curso AS dependente_dep_curso,
-     dependente.dep_rg_data_exp AS dependente_dep_rg_data_exp,
-     dependente.dep_cpf AS dependente_dep_cpf,
-     dependente.dep_faculdade AS dependente_dep_faculdade,
-     dependente.dep_data_fechamento AS dependente_dep_data_fechamento,
-     dependente.dep_ind_nec_esp AS dependente_dep_ind_nec_esp,
-     dependente.dep_ind_ir AS dependente_dep_ind_ir,
-     dependente.dep_ind_est AS dependente_dep_ind_est,
-     grauparentesco.`grau_par_desc` AS grauparentesco_grau_par_desc,
-     estado.est_uf AS estado_est_uf
+     conjuge.conj_nome AS conjuge_conj_nome,
+     conjuge.conj_data_nasc AS conjuge_conj_data_nasc,
+     conjuge.conj_rg AS conjuge_conj_rg,
+     conjuge.conj_sexo AS conjuge_conj_sexo,
+     conjuge.conj_cpf AS conjuge_conj_cpf,
+     conjuge.conj_rg_org_emi AS conjuge_conj_rg_org_emi,
+     conjuge.conj_rg_data_exp AS conjuge_conj_rg_data_exp,
+     conjuge.conj_serv_local_trab AS conjuge_conj_serv_local_trab,
+     conjuge.conj_ind_estran AS conjuge_conj_ind_estran,
+     conjuge.conj_ind_serv AS conjuge_conj_ind_serv,
+     conjuge.conj_ind_atual AS conjuge_conj_ind_atual,
+     cidade.cid_desc AS cidade_desc_nasc,
+     estadorg.est_uf AS estado_est_uf_rg,
+     estadonasc.est_desc AS estado_desc_nasc,
+     pais.pais_desc AS pais_pais_desc
 FROM
-    dependente INNER JOIN servidor ON servidor.serv_cod = dependente.serv_cod
-    INNER JOIN grauparentesco ON grauparentesco.grau_par_cod = dependente.dep_cod
-    LEFT JOIN estado ON estado.est_cod = dependente.dep_rg_uf
+     conjuge INNER JOIN servidor ON servidor.serv_cod = conjuge.serv_cod
+     INNER JOIN cidade ON conjuge.cid_cod_cid_nasc = cidade.cid_cod
+     LEFT JOIN estado AS estadorg ON conjuge.conj_rg_uf = estadorg.est_cod
+     LEFT JOIN estado AS estadonasc ON conjuge.conj_rg_uf = estadonasc.est_cod 
+     LEFT JOIN pais ON conjuge.pais_cod = pais.pais_cod
 WHERE
-     servidor.`serv_cod` = $P{COD_SERV}]]></queryString>
+  servidor.serv_cod = $P{COD_SERV};]]></queryString>
 
-	<field name="dependente_dep_nome" class="java.lang.String"/>
-	<field name="dependente_dep_data_nasc" class="java.sql.Date"/>
-	<field name="dependente_dep_rg" class="java.lang.String"/>
-	<field name="dependente_dep_rg_org_emi" class="java.lang.String"/>
-	<field name="dependente_dep_sexo" class="java.lang.String"/>
-	<field name="dependente_dep_curso" class="java.lang.String"/>
-	<field name="dependente_dep_rg_data_exp" class="java.sql.Date"/>
-	<field name="dependente_dep_cpf" class="java.lang.String"/>
-	<field name="dependente_dep_faculdade" class="java.lang.String"/>
-	<field name="dependente_dep_data_fechamento" class="java.sql.Timestamp"/>
-	<field name="dependente_dep_ind_nec_esp" class="java.lang.String"/>
-	<field name="dependente_dep_ind_ir" class="java.lang.String"/>
-	<field name="dependente_dep_ind_est" class="java.lang.String"/>
-	<field name="grauparentesco_grau_par_desc" class="java.lang.String"/>
-	<field name="estado_est_uf" class="java.lang.String"/>
+	<field name="conjuge_conj_nome" class="java.lang.String"/>
+	<field name="conjuge_conj_data_nasc" class="java.sql.Date"/>
+	<field name="conjuge_conj_rg" class="java.lang.String"/>
+	<field name="conjuge_conj_sexo" class="java.lang.String"/>
+	<field name="conjuge_conj_cpf" class="java.lang.String"/>
+	<field name="conjuge_conj_rg_org_emi" class="java.lang.String"/>
+	<field name="conjuge_conj_rg_data_exp" class="java.sql.Date"/>
+	<field name="conjuge_conj_serv_local_trab" class="java.lang.String"/>
+	<field name="conjuge_conj_ind_estran" class="java.lang.String"/>
+	<field name="conjuge_conj_ind_serv" class="java.lang.String"/>
+	<field name="conjuge_conj_ind_atual" class="java.lang.String"/>
+	<field name="cidade_desc_nasc" class="java.lang.String"/>
+	<field name="estado_est_uf_rg" class="java.lang.String"/>
+	<field name="estado_desc_nasc" class="java.lang.String"/>
+	<field name="pais_pais_desc" class="java.lang.String"/>
 
 		<background>
 			<band height="0"  isSplitAllowed="true" >
@@ -80,12 +82,12 @@ WHERE
 			</band>
 		</columnHeader>
 		<detail>
-			<band height="159"  isSplitAllowed="true" >
+			<band height="164"  isSplitAllowed="true" >
 				<textField isStretchWithOverflow="false" pattern="" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
-						x="128"
-						y="15"
-						width="121"
+						x="108"
+						y="14"
+						width="162"
 						height="17"
 						forecolor="#000000"
 						backcolor="#FFFFFF"
@@ -96,15 +98,15 @@ WHERE
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 </box>
 					<textElement>
-						<font size="12"/>
+						<font size="10"/>
 					</textElement>
-				<textFieldExpression   class="java.lang.String"><![CDATA[$F{dependente_dep_nome}]]></textFieldExpression>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{conjuge_conj_nome}]]></textFieldExpression>
 				</textField>
 				<staticText>
 					<reportElement
-						x="18"
-						y="15"
-						width="110"
+						x="14"
+						y="14"
+						width="94"
 						height="17"
 						forecolor="#000000"
 						backcolor="#FFFFFF"
@@ -118,13 +120,13 @@ WHERE
 					<textElement>
 						<font pdfFontName="Helvetica-Bold" size="10" isBold="true"/>
 					</textElement>
-				<text><![CDATA[Nome do Dependente: ]]></text>
+				<text><![CDATA[Nome do Cônjuge:]]></text>
 				</staticText>
-				<textField isStretchWithOverflow="false" pattern="dd/MM/yyyy" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+				<textField isStretchWithOverflow="false" pattern="" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
-						x="198"
-						y="32"
-						width="72"
+						x="177"
+						y="31"
+						width="93"
 						height="17"
 						forecolor="#000000"
 						backcolor="#FFFFFF"
@@ -135,15 +137,54 @@ WHERE
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 </box>
 					<textElement>
-						<font size="12"/>
+						<font size="10"/>
 					</textElement>
-				<textFieldExpression   class="java.util.Date"><![CDATA[$F{dependente_dep_data_nasc}]]></textFieldExpression>
+				<textFieldExpression   class="java.util.Date"><![CDATA[$F{conjuge_conj_data_nasc}]]></textFieldExpression>
 				</textField>
 				<staticText>
 					<reportElement
-						x="18"
-						y="32"
-						width="180"
+						x="14"
+						y="31"
+						width="163"
+						height="19"
+						forecolor="#000000"
+						backcolor="#FFFFFF"
+						key="staticText"
+						positionType="Float"/>
+					<box>					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+</box>
+					<textElement>
+						<font pdfFontName="Helvetica-Bold" size="10" isBold="true"/>
+					</textElement>
+				<text><![CDATA[Data de Nascimento do Cônjuge:]]></text>
+				</staticText>
+				<textField isStretchWithOverflow="false" pattern="" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="94"
+						y="50"
+						width="176"
+						height="15"
+						forecolor="#000000"
+						backcolor="#FFFFFF"
+						key="textField"/>
+					<box>					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+</box>
+					<textElement>
+						<font size="10"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{conjuge_conj_rg}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement
+						x="14"
+						y="48"
+						width="80"
 						height="17"
 						forecolor="#000000"
 						backcolor="#FFFFFF"
@@ -157,13 +198,13 @@ WHERE
 					<textElement>
 						<font pdfFontName="Helvetica-Bold" size="10" isBold="true"/>
 					</textElement>
-				<text><![CDATA[Data de Nascimento do Dependente: ]]></text>
+				<text><![CDATA[RG do Cônjuge:]]></text>
 				</staticText>
 				<textField isStretchWithOverflow="false" pattern="" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
-						x="113"
-						y="49"
-						width="136"
+						x="184"
+						y="65"
+						width="86"
 						height="17"
 						forecolor="#000000"
 						backcolor="#FFFFFF"
@@ -174,14 +215,404 @@ WHERE
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 </box>
 					<textElement>
-						<font size="12"/>
+						<font size="10"/>
 					</textElement>
-				<textFieldExpression   class="java.lang.String"><![CDATA[$F{dependente_dep_rg}]]></textFieldExpression>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{conjuge_conj_rg_org_emi}]]></textFieldExpression>
 				</textField>
 				<staticText>
 					<reportElement
-						x="18"
-						y="49"
+						x="14"
+						y="65"
+						width="170"
+						height="17"
+						forecolor="#000000"
+						backcolor="#FFFFFF"
+						key="staticText"
+						positionType="Float"/>
+					<box>					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+</box>
+					<textElement>
+						<font pdfFontName="Helvetica-Bold" size="10" isBold="true"/>
+					</textElement>
+				<text><![CDATA[Orgão Emissor do RG do Cônjuge:]]></text>
+				</staticText>
+				<textField isStretchWithOverflow="false" pattern="" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="190"
+						y="82"
+						width="80"
+						height="17"
+						forecolor="#000000"
+						backcolor="#FFFFFF"
+						key="textField"/>
+					<box>					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+</box>
+					<textElement>
+						<font size="10"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{estado_desc_nasc}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement
+						x="14"
+						y="82"
+						width="176"
+						height="17"
+						forecolor="#000000"
+						backcolor="#FFFFFF"
+						key="staticText"
+						positionType="Float"/>
+					<box>					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+</box>
+					<textElement>
+						<font pdfFontName="Helvetica-Bold" size="10" isBold="true"/>
+					</textElement>
+				<text><![CDATA[Estado de Nascimento do Cônjuge:]]></text>
+				</staticText>
+				<textField isStretchWithOverflow="false" pattern="" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="76"
+						y="99"
+						width="194"
+						height="17"
+						forecolor="#000000"
+						backcolor="#FFFFFF"
+						key="textField"/>
+					<box>					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+</box>
+					<textElement>
+						<font size="10"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[($F{conjuge_conj_ind_estran}.equals("0") ? "NÃO" : "SIM")]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement
+						x="14"
+						y="99"
+						width="62"
+						height="17"
+						forecolor="#000000"
+						backcolor="#FFFFFF"
+						key="staticText"
+						positionType="Float"/>
+					<box>					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+</box>
+					<textElement>
+						<font pdfFontName="Helvetica-Bold" size="10" isBold="true"/>
+					</textElement>
+				<text><![CDATA[Estrangeiro: ]]></text>
+				</staticText>
+				<textField isStretchWithOverflow="false" pattern="" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="94"
+						y="116"
+						width="176"
+						height="17"
+						forecolor="#000000"
+						backcolor="#FFFFFF"
+						key="textField"/>
+					<box>					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+</box>
+					<textElement>
+						<font size="10"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[($F{conjuge_conj_ind_atual}.equals("0") ? "NÃO" : "SIM")]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement
+						x="14"
+						y="116"
+						width="80"
+						height="17"
+						forecolor="#000000"
+						backcolor="#FFFFFF"
+						key="staticText"
+						positionType="Float"/>
+					<box>					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+</box>
+					<textElement>
+						<font pdfFontName="Helvetica-Bold" size="10" isBold="true"/>
+					</textElement>
+				<text><![CDATA[Cônjuge Atual?]]></text>
+				</staticText>
+				<textField isStretchWithOverflow="false" pattern="" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="365"
+						y="14"
+						width="162"
+						height="17"
+						forecolor="#000000"
+						backcolor="#FFFFFF"
+						key="textField"/>
+					<box>					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+</box>
+					<textElement>
+						<font size="10"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{conjuge_conj_sexo}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement
+						x="275"
+						y="14"
+						width="90"
+						height="17"
+						forecolor="#000000"
+						backcolor="#FFFFFF"
+						key="staticText"
+						positionType="Float"/>
+					<box>					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+</box>
+					<textElement>
+						<font pdfFontName="Helvetica-Bold" size="10" isBold="true"/>
+					</textElement>
+				<text><![CDATA[Sexo do Cônjuge:]]></text>
+				</staticText>
+				<textField isStretchWithOverflow="false" pattern="" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="358"
+						y="31"
+						width="169"
+						height="17"
+						forecolor="#000000"
+						backcolor="#FFFFFF"
+						key="textField"/>
+					<box>					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+</box>
+					<textElement>
+						<font size="10"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{conjuge_conj_cpf}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement
+						x="275"
+						y="31"
+						width="83"
+						height="17"
+						forecolor="#000000"
+						backcolor="#FFFFFF"
+						key="staticText"
+						positionType="Float"/>
+					<box>					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+</box>
+					<textElement>
+						<font pdfFontName="Helvetica-Bold" size="10" isBold="true"/>
+					</textElement>
+				<text><![CDATA[CPF do Cônjuge:]]></text>
+				</staticText>
+				<textField isStretchWithOverflow="false" pattern="" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="386"
+						y="48"
+						width="141"
+						height="17"
+						forecolor="#000000"
+						backcolor="#FFFFFF"
+						key="textField"/>
+					<box>					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+</box>
+					<textElement>
+						<font size="10"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{estado_est_uf_rg}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement
+						x="275"
+						y="48"
+						width="111"
+						height="17"
+						forecolor="#000000"
+						backcolor="#FFFFFF"
+						key="staticText"
+						positionType="Float"/>
+					<box>					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+</box>
+					<textElement>
+						<font pdfFontName="Helvetica-Bold" size="10" isBold="true"/>
+					</textElement>
+				<text><![CDATA[UF do RG do Cônjuge:]]></text>
+				</staticText>
+				<textField isStretchWithOverflow="false" pattern="" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="463"
+						y="65"
+						width="64"
+						height="17"
+						forecolor="#000000"
+						backcolor="#FFFFFF"
+						key="textField"/>
+					<box>					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+</box>
+					<textElement>
+						<font size="10"/>
+					</textElement>
+				<textFieldExpression   class="java.util.Date"><![CDATA[$F{conjuge_conj_rg_data_exp}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement
+						x="275"
+						y="65"
+						width="188"
+						height="17"
+						forecolor="#000000"
+						backcolor="#FFFFFF"
+						key="staticText"
+						positionType="Float"/>
+					<box>					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+</box>
+					<textElement>
+						<font pdfFontName="Helvetica-Bold" size="10" isBold="true"/>
+					</textElement>
+				<text><![CDATA[Data de Expedição do RG do Cônjuge:]]></text>
+				</staticText>
+				<textField isStretchWithOverflow="false" pattern="" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="450"
+						y="82"
+						width="77"
+						height="17"
+						forecolor="#000000"
+						backcolor="#FFFFFF"
+						key="textField"/>
+					<box>					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+</box>
+					<textElement>
+						<font size="10"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{cidade_desc_nasc}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement
+						x="275"
+						y="82"
+						width="175"
+						height="17"
+						forecolor="#000000"
+						backcolor="#FFFFFF"
+						key="staticText"
+						positionType="Float"/>
+					<box>					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+</box>
+					<textElement>
+						<font pdfFontName="Helvetica-Bold" size="10" isBold="true"/>
+					</textElement>
+				<text><![CDATA[Cidade de Nascimento do Cônjuge:]]></text>
+				</staticText>
+				<textField isStretchWithOverflow="false" pattern="" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="76"
+						y="133"
+						width="194"
+						height="17"
+						forecolor="#000000"
+						backcolor="#FFFFFF"
+						key="textField"/>
+					<box>					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+</box>
+					<textElement>
+						<font size="10"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[($F{conjuge_conj_ind_serv}.equals("0") ? "NÃO" : "SIM")]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement
+						x="14"
+						y="133"
+						width="62"
+						height="17"
+						forecolor="#000000"
+						backcolor="#FFFFFF"
+						key="staticText"
+						positionType="Float"/>
+					<box>					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+</box>
+					<textElement>
+						<font pdfFontName="Helvetica-Bold" size="10" isBold="true"/>
+					</textElement>
+				<text><![CDATA[É Servidor?]]></text>
+				</staticText>
+				<textField isStretchWithOverflow="false" pattern="" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="370"
+						y="116"
+						width="157"
+						height="17"
+						forecolor="#000000"
+						backcolor="#FFFFFF"
+						key="textField"/>
+					<box>					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+</box>
+					<textElement>
+						<font size="10"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{conjuge_conj_serv_local_trab}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement
+						x="275"
+						y="116"
 						width="95"
 						height="17"
 						forecolor="#000000"
@@ -196,91 +627,13 @@ WHERE
 					<textElement>
 						<font pdfFontName="Helvetica-Bold" size="10" isBold="true"/>
 					</textElement>
-				<text><![CDATA[RG do Dependente: ]]></text>
+				<text><![CDATA[Órgão de atuação:]]></text>
 				</staticText>
 				<textField isStretchWithOverflow="false" pattern="" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
-						x="208"
-						y="66"
-						width="41"
-						height="17"
-						forecolor="#000000"
-						backcolor="#FFFFFF"
-						key="textField"/>
-					<box>					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-					<bottomPen lineWidth="0.0" lineColor="#000000"/>
-					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-</box>
-					<textElement>
-						<font size="12"/>
-					</textElement>
-				<textFieldExpression   class="java.lang.String"><![CDATA[$F{dependente_dep_rg_org_emi}]]></textFieldExpression>
-				</textField>
-				<staticText>
-					<reportElement
-						x="18"
-						y="66"
-						width="190"
-						height="17"
-						forecolor="#000000"
-						backcolor="#FFFFFF"
-						key="staticText"
-						positionType="Float"/>
-					<box>					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-					<bottomPen lineWidth="0.0" lineColor="#000000"/>
-					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-</box>
-					<textElement>
-						<font pdfFontName="Helvetica-Bold" size="10" isBold="true"/>
-					</textElement>
-				<text><![CDATA[Orgão Emissor do RG do Dependente:]]></text>
-				</staticText>
-				<textField isStretchWithOverflow="false" pattern="" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
-					<reportElement
-						x="106"
-						y="83"
-						width="143"
-						height="16"
-						forecolor="#000000"
-						backcolor="#FFFFFF"
-						key="textField"/>
-					<box>					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-					<bottomPen lineWidth="0.0" lineColor="#000000"/>
-					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-</box>
-					<textElement>
-						<font size="12"/>
-					</textElement>
-				<textFieldExpression   class="java.lang.String"><![CDATA[$F{grauparentesco_grau_par_desc}]]></textFieldExpression>
-				</textField>
-				<staticText>
-					<reportElement
-						x="18"
-						y="82"
-						width="88"
-						height="17"
-						forecolor="#000000"
-						backcolor="#FFFFFF"
-						key="staticText"
-						positionType="Float"/>
-					<box>					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-					<bottomPen lineWidth="0.0" lineColor="#000000"/>
-					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-</box>
-					<textElement>
-						<font pdfFontName="Helvetica-Bold" size="10" isBold="true"/>
-					</textElement>
-				<text><![CDATA[Grau Parentesco: ]]></text>
-				</staticText>
-				<textField isStretchWithOverflow="false" pattern="" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
-					<reportElement
-						x="158"
+						x="438"
 						y="99"
-						width="204"
+						width="89"
 						height="17"
 						forecolor="#000000"
 						backcolor="#FFFFFF"
@@ -291,15 +644,15 @@ WHERE
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 </box>
 					<textElement>
-						<font size="12"/>
+						<font size="10"/>
 					</textElement>
-				<textFieldExpression   class="java.lang.String"><![CDATA[$F{dependente_dep_faculdade}]]></textFieldExpression>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{pais_pais_desc}]]></textFieldExpression>
 				</textField>
 				<staticText>
 					<reportElement
-						x="18"
+						x="275"
 						y="99"
-						width="140"
+						width="163"
 						height="17"
 						forecolor="#000000"
 						backcolor="#FFFFFF"
@@ -313,359 +666,8 @@ WHERE
 					<textElement>
 						<font pdfFontName="Helvetica-Bold" size="10" isBold="true"/>
 					</textElement>
-				<text><![CDATA[Estabelecimento de Ensino: ]]></text>
+				<text><![CDATA[País de Nascimento do Cônjuge: ]]></text>
 				</staticText>
-				<textField isStretchWithOverflow="false" pattern="" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
-					<reportElement
-						x="135"
-						y="133"
-						width="91"
-						height="17"
-						forecolor="#000000"
-						backcolor="#FFFFFF"
-						key="textField"/>
-					<box>					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-					<bottomPen lineWidth="0.0" lineColor="#000000"/>
-					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-</box>
-					<textElement>
-						<font size="12"/>
-					</textElement>
-				<textFieldExpression   class="java.sql.Timestamp"><![CDATA[$F{dependente_dep_data_fechamento}]]></textFieldExpression>
-				</textField>
-				<staticText>
-					<reportElement
-						x="18"
-						y="133"
-						width="117"
-						height="17"
-						forecolor="#000000"
-						backcolor="#FFFFFF"
-						key="staticText"
-						positionType="Float"/>
-					<box>					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-					<bottomPen lineWidth="0.0" lineColor="#000000"/>
-					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-</box>
-					<textElement>
-						<font pdfFontName="Helvetica-Bold" size="10" isBold="true"/>
-					</textElement>
-				<text><![CDATA[Previsão de Formação: ]]></text>
-				</staticText>
-				<textField isStretchWithOverflow="false" pattern="" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
-					<reportElement
-						x="389"
-						y="15"
-						width="94"
-						height="17"
-						forecolor="#000000"
-						backcolor="#FFFFFF"
-						key="textField"/>
-					<box>					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-					<bottomPen lineWidth="0.0" lineColor="#000000"/>
-					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-</box>
-					<textElement>
-						<font size="12"/>
-					</textElement>
-				<textFieldExpression   class="java.lang.String"><![CDATA[$F{dependente_dep_sexo}]]></textFieldExpression>
-				</textField>
-				<staticText>
-					<reportElement
-						x="282"
-						y="15"
-						width="107"
-						height="17"
-						forecolor="#000000"
-						backcolor="#FFFFFF"
-						key="staticText"
-						positionType="Float"/>
-					<box>					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-					<bottomPen lineWidth="0.0" lineColor="#000000"/>
-					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-</box>
-					<textElement>
-						<font pdfFontName="Helvetica-Bold" size="10" isBold="true"/>
-					</textElement>
-				<text><![CDATA[Sexo do Dependente: ]]></text>
-				</staticText>
-				<textField isStretchWithOverflow="false" pattern="" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
-					<reportElement
-						x="383"
-						y="32"
-						width="100"
-						height="17"
-						forecolor="#000000"
-						backcolor="#FFFFFF"
-						key="textField"/>
-					<box>					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-					<bottomPen lineWidth="0.0" lineColor="#000000"/>
-					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-</box>
-					<textElement>
-						<font size="12"/>
-					</textElement>
-				<textFieldExpression   class="java.lang.String"><![CDATA[$F{dependente_dep_cpf}]]></textFieldExpression>
-				</textField>
-				<staticText>
-					<reportElement
-						x="282"
-						y="32"
-						width="101"
-						height="17"
-						forecolor="#000000"
-						backcolor="#FFFFFF"
-						key="staticText"
-						positionType="Float"/>
-					<box>					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-					<bottomPen lineWidth="0.0" lineColor="#000000"/>
-					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-</box>
-					<textElement>
-						<font pdfFontName="Helvetica-Bold" size="10" isBold="true"/>
-					</textElement>
-				<text><![CDATA[CPF do Dependente: ]]></text>
-				</staticText>
-				<textField isStretchWithOverflow="false" pattern="" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
-					<reportElement
-						x="408"
-						y="49"
-						width="75"
-						height="17"
-						forecolor="#000000"
-						backcolor="#FFFFFF"
-						key="textField"/>
-					<box>					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-					<bottomPen lineWidth="0.0" lineColor="#000000"/>
-					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-</box>
-					<textElement>
-						<font size="12"/>
-					</textElement>
-				<textFieldExpression   class="java.lang.String"><![CDATA[$F{estado_est_uf}]]></textFieldExpression>
-				</textField>
-				<staticText>
-					<reportElement
-						x="282"
-						y="49"
-						width="126"
-						height="17"
-						forecolor="#000000"
-						backcolor="#FFFFFF"
-						key="staticText"
-						positionType="Float"/>
-					<box>					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-					<bottomPen lineWidth="0.0" lineColor="#000000"/>
-					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-</box>
-					<textElement>
-						<font pdfFontName="Helvetica-Bold" size="10" isBold="true"/>
-					</textElement>
-				<text><![CDATA[UF do RG do Dependente: ]]></text>
-				</staticText>
-				<textField isStretchWithOverflow="false" pattern="dd/MM/yyyy" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
-					<reportElement
-						x="411"
-						y="66"
-						width="75"
-						height="17"
-						forecolor="#000000"
-						backcolor="#FFFFFF"
-						key="textField"/>
-					<box>					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-					<bottomPen lineWidth="0.0" lineColor="#000000"/>
-					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-</box>
-					<textElement>
-						<font size="12"/>
-					</textElement>
-				<textFieldExpression   class="java.util.Date"><![CDATA[$F{dependente_dep_rg_data_exp}]]></textFieldExpression>
-				</textField>
-				<staticText>
-					<reportElement
-						x="282"
-						y="66"
-						width="129"
-						height="17"
-						forecolor="#000000"
-						backcolor="#FFFFFF"
-						key="staticText"
-						positionType="Float"/>
-					<box>					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-					<bottomPen lineWidth="0.0" lineColor="#000000"/>
-					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-</box>
-					<textElement>
-						<font pdfFontName="Helvetica-Bold" size="10" isBold="true"/>
-					</textElement>
-				<text><![CDATA[Data de Expedição do RG:]]></text>
-				</staticText>
-				<textField isStretchWithOverflow="false" pattern="" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
-					<reportElement
-						x="53"
-						y="116"
-						width="205"
-						height="17"
-						forecolor="#000000"
-						backcolor="#FFFFFF"
-						key="textField"/>
-					<box>					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-					<bottomPen lineWidth="0.0" lineColor="#000000"/>
-					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-</box>
-					<textElement>
-						<font size="12"/>
-					</textElement>
-				<textFieldExpression   class="java.lang.String"><![CDATA[$F{dependente_dep_curso}]]></textFieldExpression>
-				</textField>
-				<staticText>
-					<reportElement
-						x="18"
-						y="116"
-						width="35"
-						height="17"
-						forecolor="#000000"
-						backcolor="#FFFFFF"
-						key="staticText"
-						positionType="Float"/>
-					<box>					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-					<bottomPen lineWidth="0.0" lineColor="#000000"/>
-					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-</box>
-					<textElement>
-						<font pdfFontName="Helvetica-Bold" size="10" isBold="true"/>
-					</textElement>
-				<text><![CDATA[Curso: ]]></text>
-				</staticText>
-				<textField isStretchWithOverflow="false" pattern="" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
-					<reportElement
-						x="411"
-						y="83"
-						width="27"
-						height="17"
-						forecolor="#000000"
-						backcolor="#FFFFFF"
-						key="textField-1"/>
-					<box>					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-					<bottomPen lineWidth="0.0" lineColor="#000000"/>
-					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-</box>
-					<textElement>
-						<font size="10"/>
-					</textElement>
-				<textFieldExpression   class="java.lang.String"><![CDATA[($F{dependente_dep_ind_nec_esp}.equals("0") ? "NÃO" : "SIM")]]></textFieldExpression>
-				</textField>
-				<staticText>
-					<reportElement
-						x="282"
-						y="83"
-						width="129"
-						height="17"
-						forecolor="#000000"
-						backcolor="#FFFFFF"
-						key="staticText-1"
-						positionType="Float"/>
-					<box>					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-					<bottomPen lineWidth="0.0" lineColor="#000000"/>
-					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-</box>
-					<textElement>
-						<font pdfFontName="Helvetica-Bold" size="10" isBold="true"/>
-					</textElement>
-				<text><![CDATA[Necessidades Especiais: ]]></text>
-				</staticText>
-				<staticText>
-					<reportElement
-						x="282"
-						y="116"
-						width="91"
-						height="17"
-						forecolor="#000000"
-						backcolor="#FFFFFF"
-						key="staticText-2"
-						positionType="Float"/>
-					<box>					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-					<bottomPen lineWidth="0.0" lineColor="#000000"/>
-					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-</box>
-					<textElement>
-						<font pdfFontName="Helvetica-Bold" size="10" isBold="true"/>
-					</textElement>
-				<text><![CDATA[Imposto de Renda: ]]></text>
-				</staticText>
-				<staticText>
-					<reportElement
-						x="282"
-						y="133"
-						width="121"
-						height="17"
-						forecolor="#000000"
-						backcolor="#FFFFFF"
-						key="staticText-3"
-						positionType="Float"/>
-					<box>					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-					<bottomPen lineWidth="0.0" lineColor="#000000"/>
-					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-</box>
-					<textElement>
-						<font pdfFontName="Helvetica-Bold" size="10" isBold="true"/>
-					</textElement>
-				<text><![CDATA[Estudante Universitário: ]]></text>
-				</staticText>
-				<textField isStretchWithOverflow="false" pattern="" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
-					<reportElement
-						x="373"
-						y="116"
-						width="27"
-						height="17"
-						forecolor="#000000"
-						backcolor="#FFFFFF"
-						key="textField-2"/>
-					<box>					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-					<bottomPen lineWidth="0.0" lineColor="#000000"/>
-					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-</box>
-					<textElement>
-						<font size="10"/>
-					</textElement>
-				<textFieldExpression   class="java.lang.String"><![CDATA[($F{dependente_dep_ind_ir}.equals("0") ? "NÃO" : "SIM")]]></textFieldExpression>
-				</textField>
-				<textField isStretchWithOverflow="false" pattern="" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
-					<reportElement
-						x="403"
-						y="133"
-						width="27"
-						height="17"
-						forecolor="#000000"
-						backcolor="#FFFFFF"
-						key="textField-3"/>
-					<box>					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-					<bottomPen lineWidth="0.0" lineColor="#000000"/>
-					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-</box>
-					<textElement>
-						<font size="10"/>
-					</textElement>
-				<textFieldExpression   class="java.lang.String"><![CDATA[($F{dependente_dep_ind_est}.equals("0") ? "NÃO" : "SIM")]]></textFieldExpression>
-				</textField>
 			</band>
 		</detail>
 		<columnFooter>
