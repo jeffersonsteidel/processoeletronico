@@ -144,7 +144,7 @@
 						</f:facet>
 						<a4j:commandLink id="documentos"
 							action="#{documentoImagemController.abrirAdicionarDocumentosEmprego}"
-							reRender="listaDependentes" ajaxSingle="true">
+							reRender="listaEmpregos" ajaxSingle="true">
 							<h:graphicImage value="../images/add_documentos.png"
 								style="border:0" width="20" height="18" />
 						</a4j:commandLink>

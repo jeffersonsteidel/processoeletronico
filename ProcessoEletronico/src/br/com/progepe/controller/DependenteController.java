@@ -349,9 +349,7 @@ public class DependenteController implements Serializable {
 	}
 
 	public void ativarDesativar() throws Exception {
-		FacesContext context = FacesContext.getCurrentInstance();
-		dependente = (Dependente) context.getExternalContext().getRequestMap()
-				.get("list");
+		dependente = (Dependente) DAO.getInstance().refresh(dependente);
 		dependente.setIndAtivo(!dependente.getIndAtivo());
 		dependente.setDataFechamento(null);
 		dependente.setAtendente(null);
