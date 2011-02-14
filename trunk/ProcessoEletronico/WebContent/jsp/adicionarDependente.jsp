@@ -149,7 +149,7 @@
 
 				<rich:dataTable id="listaDependentes"
 					value="#{dependenteController.listaDependentes}" var="list"
-					width="1000px" columnClasses="center" rows="15" reRender="ds">
+					width="1000px" columnClasses="center"  reRender="ds">
 
 					<rich:column width="435px">
 						<f:facet name="header">
@@ -285,10 +285,6 @@
 						<rich:toolTip for="deferido" value="Deferido" />
 						<rich:toolTip for="indeferido" value="Indeferido" />
 					</rich:column>
-
-					<f:facet name="footer">
-						<rich:datascroller id="ds"></rich:datascroller>
-					</f:facet>
 				</rich:dataTable>
 			</a4j:region>
 

@@ -198,16 +198,24 @@
 						<f:facet name="header">
 							<h:outputText value="Editar" />
 						</f:facet>
-						<a4j:commandLink action="#{servidorTitulacaoController.carregarTitulacao}" disabled="#{list.statusSolicitacao.codigo < 3}"
+						<a4j:commandLink action="#{servidorTitulacaoController.carregarTitulacao}"
+							rendered="#{list.statusSolicitacao.codigo > 2}"
 							reRender="listaTitulacoes, form" ajaxSingle="true">
 							<h:graphicImage value="../images/edit.gif" style="border:0"
 								width="20" height="18" id="editar" />
 							<f:setPropertyActionListener value="#{list.codigo}"
 								target="#{servidorTitulacaoController.servidorTitulacao.codigo}" />
 						</a4j:commandLink>
+						<a4j:commandLink rendered="#{list.statusSolicitacao.codigo <= 2}"
+							ajaxSingle="true" reRender="#">
+							<h:graphicImage value="../images/edit.gif" style="border:0"
+								width="20" height="18" id="editarNPermitido" />
+						</a4j:commandLink>
 						<rich:toolTip for="editar" value="Editar" />
+						<rich:toolTip for="editarNPermitido"
+							value="Você somente poderá editar titulações deferidas ou indeferidas!" />
 					</rich:column>
-					
+
 					<rich:column width="60px">
 						<f:facet name="header">
 							<h:outputText value="Adicionar Documentos" />
@@ -218,9 +226,10 @@
 							<h:graphicImage value="../images/add_documentos.png"
 								style="border:0" width="20" height="18" />
 						</a4j:commandLink>
-						<rich:toolTip for="documentos" value="Clique aqui para adicionar os Documentos da Titulação!" />
+						<rich:toolTip for="documentos"
+							value="Clique aqui para adicionar os Documentos da Titulação!" />
 					</rich:column>
-					
+
 					<rich:column width="30px">
 						<f:facet name="header">
 							<h:outputText value="Status" />
