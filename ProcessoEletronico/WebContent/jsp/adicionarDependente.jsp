@@ -149,7 +149,7 @@
 
 				<rich:dataTable id="listaDependentes"
 					value="#{dependenteController.listaDependentes}" var="list"
-					width="1000px" columnClasses="center"  reRender="ds">
+					width="1000px" columnClasses="center" reRender="ds">
 
 					<rich:column width="435px">
 						<f:facet name="header">
@@ -190,38 +190,38 @@
 						<f:facet name="header">
 							<h:outputText value="Ativar/Desativar" />
 						</f:facet>
+
 						<a4j:commandLink action="#{dependenteController.ativarDesativar}"
 							reRender="listaDependentes"
 							rendered="#{list.statusSolicitacao.codigo > 2}" ajaxSingle="true">
 							<h:graphicImage id="ativo" value="../images/desativar.gif"
 								style="border:0" width="20" height="18"
 								rendered="#{!list.indAtivo}" />
-							<f:setPropertyActionListener value="#{list.codigo}"
-								target="#{dependenteController.dependente.codigo}" />
-						</a4j:commandLink>
-						<a4j:commandLink action="#{dependenteController.ativarDesativar}"
-							reRender="listaDependentes"
-							rendered="#{list.statusSolicitacao.codigo > 2}" ajaxSingle="true">
 							<h:graphicImage id="inativo" value="../images/ativar.gif"
 								style="border:0" width="20" height="18"
 								rendered="#{list.indAtivo}" />
-							<f:setPropertyActionListener value="#{list.codigo}"
-								target="#{dependenteController.dependente.codigo}" />
+							<f:setPropertyActionListener value="#{list}"
+								target="#{dependenteController.dependente}" />
 						</a4j:commandLink>
+
 						<a4j:commandLink action="#" ajaxSingle="true"
 							rendered="#{list.statusSolicitacao.codigo <= 2}">
-							<h:graphicImage id="ativoNPermitido" value="../images/desativar.gif"
-								style="border:0" width="20" height="18"
-								rendered="#{!list.indAtivo}" />
+							<h:graphicImage id="ativoNPermitido"
+								value="../images/desativar.gif" style="border:0" width="20"
+								height="18" rendered="#{!list.indAtivo}" />
 						</a4j:commandLink>
+
 						<a4j:commandLink action="#" ajaxSingle="true"
 							rendered="#{list.statusSolicitacao.codigo <= 2}">
 							<h:graphicImage id="inativoNPermitido"
 								value="../images/ativar.gif" style="border:0" width="20"
 								height="18" rendered="#{list.indAtivo}" />
 						</a4j:commandLink>
-						<rich:toolTip for="inativo" value="Clique aqui para Desativar o Dependente!" />
-						<rich:toolTip for="ativo" value="Clique aqui para Ativar o Dependente" />
+
+						<rich:toolTip for="inativo"
+							value="Clique aqui para Desativar o Dependente!" />
+						<rich:toolTip for="ativo"
+							value="Clique aqui para Ativar o Dependente" />
 						<rich:toolTip for="ativoNPermitido"
 							value="Você somente pode Ativar dependente deferidos ou indeferidos" />
 						<rich:toolTip for="inativoNPermitido"
@@ -238,9 +238,10 @@
 							<h:graphicImage value="../images/add_documentos.png"
 								style="border:0" width="20" height="18" />
 						</a4j:commandLink>
-						<rich:toolTip for="documentos" value="Clique aqui para adicionar os Documentos do Dependente!" />
+						<rich:toolTip for="documentos"
+							value="Clique aqui para adicionar os Documentos do Dependente!" />
 					</rich:column>
-					
+
 					<rich:column width="60px">
 						<f:facet name="header">
 							<h:outputText value="Status" />
