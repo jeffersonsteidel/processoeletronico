@@ -46,8 +46,11 @@
 			</h:panelGrid>
 			<center><h:panelGrid columns="1"
 				rendered="#{documentoImagemController.documentoImagem.servidorTitulacao != null}">
-				<h:outputText styleClass="maiusculo"
-					value="#{documentoImagemController.documentoImagem.servidorTitulacao.areaConhecimento.descricao} - #{documentoImagemController.documentoImagem.servidorTitulacao.titulacao.descricao} - #{documentoImagemController.documentoImagem.servidorTitulacao.curso} - TITULAÇÃO"></h:outputText>
+				<h:outputText styleClass="maiusculo"  rendered="#{documentoImagemController.documentoImagem.servidorTitulacao.curso == null}" 
+					value="#{documentoImagemController.documentoImagem.servidorTitulacao.titulacao.descricao} - TITULAÇÃO"></h:outputText>
+				<h:outputText styleClass="maiusculo" rendered="#{documentoImagemController.documentoImagem.servidorTitulacao.curso != null}" 
+					value="#{documentoImagemController.documentoImagem.servidorTitulacao.titulacao.descricao} - 
+					- #{documentoImagemController.documentoImagem.servidorTitulacao.curso} - TITULAÇÃO"></h:outputText>	
 			</h:panelGrid></center>
 			<h:panelGrid columns="2">
 
