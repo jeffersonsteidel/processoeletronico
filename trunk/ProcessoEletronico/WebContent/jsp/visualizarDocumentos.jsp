@@ -29,35 +29,35 @@
 
 			<font size="2"><b>VISUALIZAR DOCUMENTO</b></font>
 			<h:panelGrid columns="2"
-				rendered="#{documentoImagemController.documentoImagem.servidorTitulacao == null}">
+				rendered="#{documentoImagemController.documentoImagemTemp.servidorTitulacao == null}">
 				<h:outputText value="Titular: "></h:outputText>
 				<h:outputText styleClass="maiusculo"
-					value="#{documentoImagemController.documentoImagem.dependente.nome} - DEPENDENTE"
-					rendered="#{documentoImagemController.documentoImagem.dependente != null}"></h:outputText>
+					value="#{documentoImagemController.documentoImagemTemp.dependente.nome} - DEPENDENTE"
+					rendered="#{documentoImagemController.documentoImagemTemp.dependente != null}"></h:outputText>
 				<h:outputText styleClass="maiusculo"
-					value="#{documentoImagemController.documentoImagem.conjuge.nome} - CONJUGE"
-					rendered="#{documentoImagemController.documentoImagem.conjuge != null}"></h:outputText>
+					value="#{documentoImagemController.documentoImagemTemp.conjuge.nome} - CONJUGE"
+					rendered="#{documentoImagemController.documentoImagemTemp.conjuge != null}"></h:outputText>
 				<h:outputText styleClass="maiusculo"
-					value="#{documentoImagemController.documentoImagem.servidor.nome} - SERVIDOR"
-					rendered="#{documentoImagemController.documentoImagem.servidor != null}"></h:outputText>
+					value="#{documentoImagemController.documentoImagemTemp.servidor.nome} - SERVIDOR"
+					rendered="#{documentoImagemController.documentoImagemTemp.servidor != null}"></h:outputText>
 				<h:outputText styleClass="maiusculo"
-					value="#{documentoImagemController.documentoImagem.emprego.cargo} - EMPREGO"
-					rendered="#{documentoImagemController.documentoImagem.emprego != null}"></h:outputText>
+					value="#{documentoImagemController.documentoImagemTemp.emprego.cargo} - EMPREGO"
+					rendered="#{documentoImagemController.documentoImagemTemp.emprego != null}"></h:outputText>
 			</h:panelGrid>
 			<center><h:panelGrid columns="1"
-				rendered="#{documentoImagemController.documentoImagem.servidorTitulacao != null}">
-				<h:outputText styleClass="maiusculo"  rendered="#{documentoImagemController.documentoImagem.servidorTitulacao.curso == null || documentoImagemController.documentoImagem.servidorTitulacao.curso == ''}" 
-					value="#{documentoImagemController.documentoImagem.servidorTitulacao.titulacao.descricao} - TITULA플O"></h:outputText>
-				<h:outputText styleClass="maiusculo" rendered="#{documentoImagemController.documentoImagem.servidorTitulacao.curso != null && documentoImagemController.documentoImagem.servidorTitulacao.curso == ''}" 
-					value="#{documentoImagemController.documentoImagem.servidorTitulacao.titulacao.descricao} - 
-					- #{documentoImagemController.documentoImagem.servidorTitulacao.curso} - TITULA플O"></h:outputText>	
+				rendered="#{documentoImagemController.documentoImagemTemp.servidorTitulacao != null}">
+				<h:outputText styleClass="maiusculo"  rendered="#{documentoImagemController.documentoImagemTemp.servidorTitulacao.curso == null || documentoImagemController.documentoImagemTemp.servidorTitulacao.curso == ''}" 
+					value="#{documentoImagemController.documentoImagemTemp.servidorTitulacao.titulacao.descricao} - TITULA플O"></h:outputText>
+				<h:outputText styleClass="maiusculo" rendered="#{documentoImagemController.documentoImagemTemp.servidorTitulacao.curso != null && documentoImagemController.documentoImagemTemp.servidorTitulacao.curso == ''}" 
+					value="#{documentoImagemController.documentoImagemTemp.servidorTitulacao.titulacao.descricao} - 
+					- #{documentoImagemController.documentoImagemTemp.servidorTitulacao.curso} - TITULA플O"></h:outputText>	
 			</h:panelGrid></center>
 			<h:panelGrid columns="2">
 
 
 				<h:outputText value="Tipo de documento: "></h:outputText>
 				<h:outputText
-					value="#{documentoImagemController.documentoImagem.tipoDocumento.descricao}"></h:outputText>
+					value="#{documentoImagemController.documentoImagemTemp.tipoDocumento.descricao}"></h:outputText>
 
 			</h:panelGrid>
 
@@ -65,12 +65,12 @@
 				<center><h:panelGroup id="info">
 					<rich:panel bodyClass="info">
 						<rich:dataGrid columns="1"
-							value="#{documentoImagemController.documentoImagem.imagem1}"
+							value="#{documentoImagemController.documentoImagemTemp.imagem1}"
 							var="file" rowKeyVar="row">
 							<rich:panel bodyClass="rich-laguna-panel-no-header">
 								<h:panelGrid columns="5">
 									<a4j:mediaOutput element="img"
-										createContent="#{documentoImagemController.paint1}"
+										createContent="#{documentoImagemController.paintTemp1}"
 										value="#{row}" style="width:600px; height:800px;"
 										cacheable="false">
 									</a4j:mediaOutput>
@@ -78,12 +78,12 @@
 							</rich:panel>
 						</rich:dataGrid>
 						<rich:dataGrid columns="1"
-							value="#{documentoImagemController.documentoImagem.imagem2}"
+							value="#{documentoImagemController.documentoImagemTemp.imagem2}"
 							var="file" rowKeyVar="row">
 							<rich:panel bodyClass="rich-laguna-panel-no-header">
 								<h:panelGrid columns="5">
 									<a4j:mediaOutput element="img"
-										createContent="#{documentoImagemController.paint2}"
+										createContent="#{documentoImagemController.paintTemp2}"
 										value="#{row}" style="width:600px; height:800px;"
 										cacheable="false">
 									</a4j:mediaOutput>
@@ -91,12 +91,12 @@
 							</rich:panel>
 						</rich:dataGrid>
 						<rich:dataGrid columns="1"
-							value="#{documentoImagemController.documentoImagem.imagem3}"
+							value="#{documentoImagemController.documentoImagemTemp.imagem3}"
 							var="file" rowKeyVar="row">
 							<rich:panel bodyClass="rich-laguna-panel-no-header">
 								<h:panelGrid columns="5">
 									<a4j:mediaOutput element="img"
-										createContent="#{documentoImagemController.paint3}"
+										createContent="#{documentoImagemController.paintTemp3}"
 										value="#{row}" style="width:600px; height:800px;"
 										cacheable="false">
 									</a4j:mediaOutput>
