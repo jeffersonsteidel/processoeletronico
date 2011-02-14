@@ -499,6 +499,7 @@ public class DocumentoImagemController implements Serializable {
 	}
 
 	public void verDocumentos() throws Exception {
+		files.clear();
 		FacesContext context = FacesContext.getCurrentInstance();
 		documentoImagemTemp =  (DocumentoImagem) context.getExternalContext()
 				.getRequestMap().get("list");
@@ -533,6 +534,18 @@ public class DocumentoImagemController implements Serializable {
 			documentoList = DocumentoImagemDAO
 					.getInstance()
 					.listDocumentosByDependente(documentoImagem.getDependente());
+		}
+	}
+	public void listarDocumentosConjuge() {
+		files.clear();
+		documentoList = new ArrayList<DocumentoImagem>();
+		if (documentoImagem.getConjuge() != null
+				&& documentoImagem.getConjuge().getCodigo() != null) {
+			documentoImagem.setConjuge((Conjuge) DAO.getInstance()
+					.refresh(documentoImagem.getConjuge()));
+			documentoList = DocumentoImagemDAO
+			.getInstance()
+			.listDocumentosByConjuge(documentoImagem.getConjuge());
 		}
 	}
 	
