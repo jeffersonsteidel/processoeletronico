@@ -780,7 +780,10 @@ WHERE servidor.`serv_cod` = $P{COD_SERV}]]></queryString>
 						forecolor="#000000"
 						backcolor="#FFFFFF"
 						key="staticText"
-						positionType="Float"/>
+						positionType="Float"
+						isRemoveLineWhenBlank="true">
+							<printWhenExpression><![CDATA[new Boolean($F{documento_doc_data_pri_emp} != null)]]></printWhenExpression>
+						</reportElement>
 					<box>					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<bottomPen lineWidth="0.0" lineColor="#000000"/>
