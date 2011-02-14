@@ -53,7 +53,7 @@
 					rendered="#{dependenteController.dependente.cpf != ''}" />
 				<h:outputText value="RG do Dependente: "
 					rendered="#{dependenteController.dependente.rg != ''}" />
-				<h:outputText value="#{dependenteController.dependente.rg}"
+				<h:outputText styleClass="maiusculo" value="#{dependenteController.dependente.rg}"
 					rendered="#{dependenteController.dependente.rg != ''}"></h:outputText>
 				<h:outputText value="UF do RG do Dependente: "
 					rendered="#{dependenteController.dependente.rgUf.uf != null}" />
