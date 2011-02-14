@@ -15,9 +15,9 @@
 	<jsp:directive.include file="menus.jsp" />
 	<a4j:loadScript src="../js/script.js" />
 	<a4j:form id="form">
-			<a4j:jsFunction immediate="true" ajaxSingle="true"
+		<a4j:jsFunction immediate="true" ajaxSingle="true"
 			action="#{documentoImagemController.listarDocumentosEmprego}"
-			name="carregar" reRender="documentos"/>
+			name="carregar" reRender="documentos" />
 		<center><rich:panel id="painelPai">
 			<rich:messages layout="list" errorLabelClass="errorLabel"
 				style="top:auto;" infoLabelClass="infoLabel">
@@ -37,12 +37,11 @@
 			</h:panelGrid>
 
 			<h:panelGrid columns="3" id="titular">
-				<h:outputText value="Emprego do Documento: "
-					/>
+				<h:outputText value="Emprego do Documento: " />
 
 				<h:selectOneMenu
 					value="#{documentoImagemController.documentoImagem.emprego.codigo}"
-					required="true" 
+					required="true"
 					requiredMessage="Campo Emprego do Documento é obrigatório!">
 					<f:selectItem itemLabel="SELECIONE" itemValue="" />
 					<f:selectItems value="#{documentoImagemController.empregos}" />
@@ -51,12 +50,16 @@
 						ajaxSingle="true" reRender="documentos"></a4j:support>
 				</h:selectOneMenu>
 			</h:panelGrid>
-<center><h:panelGrid columns="1" id="documentos">
-				<h:outputText value="Documentos já anexados:" rendered="#{not empty documentoImagemController.documentoList && documentoImagemController.documentoImagem.emprego.codigo != null}"/>
-				<h:outputText styleClass="negrito" value="Nenhum Documento para este Emprego!" rendered="#{empty documentoImagemController.documentoList  && documentoImagemController.documentoImagem.emprego.codigo != null}"/>
-				<rich:dataTable id="listaDocumento" rendered="#{not empty documentoImagemController.documentoList  && documentoImagemController.documentoImagem.emprego.codigo != null}"
-					value="#{documentoImagemController.documentoList}" var="list" width="600px"
-					columnClasses="center" reRender="ds">
+			<center><h:panelGrid columns="1" id="documentos">
+				<h:outputText value="Documentos já anexados:"
+					rendered="#{not empty documentoImagemController.documentoList && documentoImagemController.documentoImagem.emprego.codigo != null}" />
+				<h:outputText styleClass="negrito"
+					value="Nenhum Documento para este Emprego!"
+					rendered="#{empty documentoImagemController.documentoList  && documentoImagemController.documentoImagem.emprego.codigo != null}" />
+				<rich:dataTable id="listaDocumento"
+					rendered="#{not empty documentoImagemController.documentoList  && documentoImagemController.documentoImagem.emprego.codigo != null}"
+					value="#{documentoImagemController.documentoList}" var="list"
+					width="600px" columnClasses="center" reRender="ds">
 					<rich:column width="550px">
 						<f:facet name="header">
 							<h:outputText value="Tipo Documento" />
@@ -85,7 +88,8 @@
 				value="#{documentoImagemController.documentoImagem.tipoDocumento.codigo}"
 				required="true"
 				requiredMessage="Campo Tipo de Documento é obrigatório!">
-				<f:selectItem itemLabel="REGISTRO NA CARTEIRA DE TRABALHO" itemValue="15" />
+				<f:selectItem itemLabel="REGISTRO NA CARTEIRA DE TRABALHO"
+					itemValue="15" />
 			</h:selectOneMenu>
 
 			<rich:fileUpload
@@ -105,7 +109,7 @@
 			<a4j:commandButton value="Salvar"
 				action="#{documentoImagemController.salvar}"
 				reRender="form, info,painelPai, titular" />
-				
+
 			<a4j:region>
 				<a4j:commandButton value="Voltar"
 					action="#{empregoController.abrirEmprego}" />

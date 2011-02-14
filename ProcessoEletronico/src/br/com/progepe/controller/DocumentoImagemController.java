@@ -360,14 +360,14 @@ public class DocumentoImagemController implements Serializable {
 	}
 
 	public void salvar() throws Exception {
-		if (titularDocumento.equals(1)) {
+		if (Constantes.TITULAR_DOCUMENTO_IMAGEM_SERVIDOR.equals(titularDocumento)) {
 			documentoImagem.setServidor(ServidorDAO.getInstance()
 					.refreshBySiape(documentoImagem.getServidor()));
 			documentoImagem.setConjuge(null);
 			documentoImagem.setDependente(null);
 			documentoImagem.setServidorTitulacao(null);
 			documentoImagem.setEmprego(null);
-		} else if (titularDocumento.equals(2)) {
+		} else if (Constantes.TITULAR_DOCUMENTO_IMAGEM_CONJUGE.equals(titularDocumento)) {
 			Conjuge conjuge = (Conjuge) DAO.getInstance().refresh(
 					documentoImagem.getConjuge());
 			documentoImagem.setConjuge(conjuge);
@@ -375,7 +375,7 @@ public class DocumentoImagemController implements Serializable {
 			documentoImagem.setServidor(null);
 			documentoImagem.setServidorTitulacao(null);
 			documentoImagem.setEmprego(null);
-		} else if (titularDocumento.equals(3)) {
+		} else if (Constantes.TITULAR_DOCUMENTO_IMAGEM_DEPENDENTE.equals(titularDocumento)) {
 			documentoImagem.setEmprego(null);
 			documentoImagem.setServidor(null);
 			documentoImagem.setConjuge(null);
@@ -383,7 +383,7 @@ public class DocumentoImagemController implements Serializable {
 			Dependente dependente = (Dependente) DAO.getInstance().refresh(
 					documentoImagem.getDependente());
 			documentoImagem.setDependente(dependente);
-		} else if (titularDocumento.equals(4)) {
+		} else if (Constantes.TITULAR_DOCUMENTO_IMAGEM_TITULACAO.equals(titularDocumento)) {
 			documentoImagem.setEmprego(null);
 			documentoImagem.setServidor(null);
 			documentoImagem.setConjuge(null);
@@ -391,7 +391,7 @@ public class DocumentoImagemController implements Serializable {
 			ServidorTitulacao titulacao = (ServidorTitulacao) DAO.getInstance()
 					.refresh(documentoImagem.getServidorTitulacao());
 			documentoImagem.setServidorTitulacao(titulacao);
-		} else if (titularDocumento.equals(5)) {
+		} else if (Constantes.TITULAR_DOCUMENTO_IMAGEM_EMPREGO.equals(titularDocumento)) {
 			documentoImagem.setServidorTitulacao(null);
 			documentoImagem.setServidor(null);
 			documentoImagem.setConjuge(null);
@@ -410,6 +410,7 @@ public class DocumentoImagemController implements Serializable {
 		} else {
 			DAO.getInstance().save(documentoImagem);
 			documentoImagem = new DocumentoImagem();
+			files = new ArrayList<DocumentoImagem>();
 			documentoImagem.setImagem1(null);
 			documentoImagem.setImagem2(null);
 			documentoImagem.setImagem3(null);
@@ -419,7 +420,6 @@ public class DocumentoImagemController implements Serializable {
 			documentoImagem.setServidorTitulacao(new ServidorTitulacao());
 			documentoImagem.setEmprego(new Emprego());
 			documentoImagem.setTipoDocumento(new TipoDocumento());
-			files = new ArrayList<DocumentoImagem>();
 			quantidadeArquivos = 0;
 		}
 		buscarServidorLogado();
