@@ -30,8 +30,8 @@ import br.com.progepe.entity.TipoDocumento;
 public class DocumentoImagemController implements Serializable {
 	private static final long serialVersionUID = -333995781063775201L;
 
-	DocumentoImagem documentoImagem;
-
+	private DocumentoImagem documentoImagem;
+	private DocumentoImagem documentoImagemTemp;
 	private List<DocumentoImagem> files;
 	private List<DocumentoImagem> documentoList = new ArrayList<DocumentoImagem>();
 	private Integer quantidadeArquivos = 0;
@@ -50,6 +50,14 @@ public class DocumentoImagemController implements Serializable {
 
 	public void setDocumentoImagem(DocumentoImagem documentoImagem) {
 		this.documentoImagem = documentoImagem;
+	}
+
+	public DocumentoImagem getDocumentoImagemTemp() {
+		return documentoImagemTemp;
+	}
+
+	public void setDocumentoImagemTemp(DocumentoImagem documentoImagemTemp) {
+		this.documentoImagemTemp = documentoImagemTemp;
 	}
 
 	public List<DocumentoImagem> getFiles() {
@@ -104,6 +112,7 @@ public class DocumentoImagemController implements Serializable {
 		return documentoList;
 	}
 
+	
 	public void setDocumentoList(List<DocumentoImagem> documentoList) {
 		this.documentoList = documentoList;
 	}
@@ -131,6 +140,8 @@ public class DocumentoImagemController implements Serializable {
 	public void setEmpregos(List<SelectItem> empregos) {
 		this.empregos = empregos;
 	}
+	
+	
 
 	public void abrirAdicionarDocumentos() {
 		try {
@@ -154,6 +165,7 @@ public class DocumentoImagemController implements Serializable {
 	public void abrirAdicionarDocumentosTitulacao() {
 		try {
 			files = new ArrayList<DocumentoImagem>();
+			files.clear();
 			documentoImagem = new DocumentoImagem();
 			documentoImagem.setTipoDocumento(new TipoDocumento());
 			documentoImagem.setServidorTitulacao(new ServidorTitulacao());
@@ -359,6 +371,22 @@ public class DocumentoImagemController implements Serializable {
 			stream.write(documentoImagem.getImagem3());
 	}
 
+	public void paintTemp1(OutputStream stream, Object object) throws IOException {
+		if (documentoImagemTemp.getImagem1() != null)
+			stream.write(documentoImagemTemp.getImagem1());
+	}
+
+	public void paintTemp2(OutputStream stream, Object object) throws IOException {
+		if (documentoImagemTemp.getImagem2() != null)
+			stream.write(documentoImagemTemp.getImagem2());
+	}
+
+	public void paintTemp3(OutputStream stream, Object object) throws IOException {
+		if (documentoImagemTemp.getImagem3() != null)
+			stream.write(documentoImagemTemp.getImagem3());
+	}
+
+	
 	public void salvar() throws Exception {
 		if (Constantes.TITULAR_DOCUMENTO_IMAGEM_SERVIDOR.equals(titularDocumento)) {
 			documentoImagem.setServidor(ServidorDAO.getInstance()
@@ -472,8 +500,13 @@ public class DocumentoImagemController implements Serializable {
 
 	public void verDocumentos() throws Exception {
 		FacesContext context = FacesContext.getCurrentInstance();
-		documentoImagem = (DocumentoImagem) context.getExternalContext()
+		documentoImagemTemp =  (DocumentoImagem) context.getExternalContext()
 				.getRequestMap().get("list");
+		quantidadeArquivos = 0;
+		files.clear();
+		documentoImagem.setImagem1(null);
+		documentoImagem.setImagem2(null);
+		documentoImagem.setImagem3(null);
 		FacesContext.getCurrentInstance().getExternalContext()
 				.redirect("visualizarDocumentos.jsp");
 	}
@@ -505,6 +538,9 @@ public class DocumentoImagemController implements Serializable {
 	
 	public void listarDocumentosTitulacao() {
 		files.clear();
+		documentoImagem.setImagem1(null);
+		documentoImagem.setImagem2(null);
+		documentoImagem.setImagem3(null);
 		documentoList = new ArrayList<DocumentoImagem>();
 		if (documentoImagem.getServidorTitulacao() != null
 				&& documentoImagem.getServidorTitulacao().getCodigo() != null) {

@@ -96,7 +96,6 @@
 			</h:selectOneMenu>
 
 			<rich:fileUpload
-				rendered="#{documentoImagemController.documentoImagem.codigo == null}"
 				fileUploadListener="#{documentoImagemController.listener}"
 				maxFilesQuantity="3" clearAllControlLabel="Limpar Todos"
 				addControlLabel="Adicionar Documento" id="upload"
@@ -106,7 +105,7 @@
 				acceptedTypes="jpg, gif, png, bmp" allowFlash="true"
 				sizeErrorLabel="Foto muito grande" uploadControlLabel="Carregar"
 				listHeight="70px">
-				<a4j:support event="onuploadcomplete" reRender="form" />
+				<a4j:support event="onuploadcomplete" reRender="info" />
 			</rich:fileUpload>
 
 			<a4j:commandButton value="Salvar"
