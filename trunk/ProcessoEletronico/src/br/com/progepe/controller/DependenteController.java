@@ -247,8 +247,6 @@ public class DependenteController implements Serializable {
 		dependente.setJustificativa(null);
 		if(dependente.getCodigo() == null || Constantes.ZERO.equals(dependente.getCodigo()) ){
 			dependente.setIndNovo(true);
-		}else{
-			dependente.setIndNovo(false);
 		}
 		if (validarCPF()) {
 			DAO.getInstance().saveOrUpdate(dependente);
@@ -266,6 +264,7 @@ public class DependenteController implements Serializable {
 		dependente.getStatusSolicitacao().setCodigo(
 				Constantes.STATUS_SOLICITACAO_DEFERIDO);
 		dependente.setDataFechamento(new Date());
+		dependente.setIndNovo(false);
 		DAO.getInstance().update(dependente);
 	}
 
