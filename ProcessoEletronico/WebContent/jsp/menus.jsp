@@ -10,6 +10,8 @@
 	media="screen" />
 <head>
 <title>Instituto Federal do Paraná</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<link rel="shortcut icon" href="../images/icone.png" />
 </head>
 <body>
 <style type="text/css">
