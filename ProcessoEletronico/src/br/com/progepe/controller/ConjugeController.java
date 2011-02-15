@@ -310,7 +310,14 @@ public class ConjugeController implements Serializable {
 					"O campo Justificativa é obrigatório!",
 					"O campo Justificativa é obrigatório!");
 			FacesContext.getCurrentInstance().addMessage("", message);
-		} else {
+		} 
+		else if(conjuge.getJustificativa().length() > 250){
+			FacesMessage message = new FacesMessage(
+					FacesMessage.SEVERITY_ERROR,
+					"O campo Justificativa deve ter no máximo 250 caracteres!",
+					"O campo Justificativa deve ter no máximo 250 caracteres!");
+			FacesContext.getCurrentInstance().addMessage("", message);
+		}else {
 			conjuge.getStatusSolicitacao().setCodigo(
 					Constantes.STATUS_SOLICITACAO_INDEFERIDO);
 			conjuge.setDataFechamento(new Date());
@@ -347,9 +354,7 @@ public class ConjugeController implements Serializable {
 		FacesContext context = FacesContext.getCurrentInstance();
 		conjugeFilter = (Conjuge) context.getExternalContext().getRequestMap()
 		.get("list");
-		if (conjugeFilter.getCidadeNascimento() != null) {
-			listarCidadesNascimentoConjuge();
-		}if (!(Constantes.STATUS_SOLICITACAO_ENCAMINHADO.equals(conjugeFilter
+		if (!(Constantes.STATUS_SOLICITACAO_ENCAMINHADO.equals(conjugeFilter
 				.getStatusSolicitacao().getCodigo()))) {
 			atendente = new Servidor();
 			atendente.setSiape(conjugeFilter.getAtendente());

@@ -418,8 +418,8 @@ public class ServidorTitulacaoController implements Serializable {
 		} else if(servidorTitulacao.getJustificativa().length()>250){
 			FacesMessage message = new FacesMessage(
 					FacesMessage.SEVERITY_ERROR,
-					"O campo Justificativa deve ter no maxímo 250 caractéres!",
-					"O campo Justificativa deve ter no maxímo 250 caractéres!");
+					"O campo Justificativa deve ter no maxímo 250 caracteres!",
+					"O campo Justificativa deve ter no maxímo 250 caracteres!");
 			FacesContext.getCurrentInstance().addMessage("", message);
 		}	else {
 			FacesMessage message = new FacesMessage(
