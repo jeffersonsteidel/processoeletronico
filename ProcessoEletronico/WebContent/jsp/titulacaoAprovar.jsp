@@ -50,7 +50,7 @@
 				<h:outputText value="Area de Conhecimento: "
 					rendered="#{servidorTitulacaoController.indSuperior}" />
 				<h:outputText
-					value="#{servidorTitulacaoController.servidorTitulacao.areaConhecimento.descricao}: "
+					value="#{servidorTitulacaoController.servidorTitulacao.areaConhecimento.descricao}"
 					rendered="#{servidorTitulacaoController.indSuperior}" />
 
 				<h:outputText value="Estado do Estabelecimento de Ensino: " 
