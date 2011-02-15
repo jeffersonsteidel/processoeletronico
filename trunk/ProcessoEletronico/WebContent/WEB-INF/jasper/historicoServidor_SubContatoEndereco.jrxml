@@ -412,7 +412,7 @@ WHERE servidor.`serv_cod` = $P{COD_SERV}]]></queryString>
 					<reportElement
 						x="51"
 						y="97"
-						width="173"
+						width="391"
 						height="17"
 						forecolor="#000000"
 						backcolor="#FFFFFF"
