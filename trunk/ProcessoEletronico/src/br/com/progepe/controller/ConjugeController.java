@@ -349,6 +349,9 @@ public class ConjugeController implements Serializable {
 		if (conjuge.getCidadeNascimento() != null) {
 			listarCidadesNascimentoConjuge();
 		}
+		if (conjuge.getPais() == null) {
+			conjuge.setPais(new Pais());
+		}
 	}
 	public void verificarStatus() throws IOException, ParseException {
 		FacesContext context = FacesContext.getCurrentInstance();
