@@ -32,7 +32,6 @@ public class DocumentoImagemController implements Serializable {
 
 	private DocumentoImagem documentoImagem;
 	private DocumentoImagem documentoImagemTemp;
-	private List<DocumentoImagem> files;
 	private List<DocumentoImagem> documentoList = new ArrayList<DocumentoImagem>();
 	private Integer quantidadeArquivos = 0;
 	private List<SelectItem> servidores = new ArrayList<SelectItem>();
@@ -58,14 +57,6 @@ public class DocumentoImagemController implements Serializable {
 
 	public void setDocumentoImagemTemp(DocumentoImagem documentoImagemTemp) {
 		this.documentoImagemTemp = documentoImagemTemp;
-	}
-
-	public List<DocumentoImagem> getFiles() {
-		return files;
-	}
-
-	public void setFiles(List<DocumentoImagem> files) {
-		this.files = files;
 	}
 
 	public Integer getQuantidadeArquivos() {
@@ -145,7 +136,6 @@ public class DocumentoImagemController implements Serializable {
 
 	public void abrirAdicionarDocumentos() {
 		try {
-			files = new ArrayList<DocumentoImagem>();
 			titularDocumento = Constantes.TITULAR_DOCUMENTO_IMAGEM_SERVIDOR;
 			documentoImagem = new DocumentoImagem();
 			documentoImagem.setTipoDocumento(new TipoDocumento());
@@ -164,8 +154,6 @@ public class DocumentoImagemController implements Serializable {
 
 	public void abrirAdicionarDocumentosTitulacao() {
 		try {
-			files = new ArrayList<DocumentoImagem>();
-			files.clear();
 			documentoImagem = new DocumentoImagem();
 			documentoImagem.setTipoDocumento(new TipoDocumento());
 			documentoImagem.setServidorTitulacao(new ServidorTitulacao());
@@ -186,7 +174,6 @@ public class DocumentoImagemController implements Serializable {
 
 	public void abrirAdicionarDocumentosDependente() {
 		try {
-			files = new ArrayList<DocumentoImagem>();
 			documentoImagem = new DocumentoImagem();
 			documentoImagem.setTipoDocumento(new TipoDocumento());
 			documentoImagem.setDependente(new Dependente());
@@ -207,7 +194,6 @@ public class DocumentoImagemController implements Serializable {
 
 	public void abrirAdicionarDocumentosConjuge() {
 		try {
-			files = new ArrayList<DocumentoImagem>();
 			documentoImagem = new DocumentoImagem();
 			documentoImagem.setTipoDocumento(new TipoDocumento());
 			documentoImagem.setConjuge(new Conjuge());
@@ -228,7 +214,6 @@ public class DocumentoImagemController implements Serializable {
 
 	public void abrirAdicionarDocumentosEmprego() {
 		try {
-			files = new ArrayList<DocumentoImagem>();
 			documentoImagem = new DocumentoImagem();
 			documentoImagem.setTipoDocumento(new TipoDocumento());
 			documentoImagem.setEmprego(new Emprego());
@@ -353,7 +338,6 @@ public class DocumentoImagemController implements Serializable {
 		} else if (quantidadeArquivos == 3) {
 			documentoImagem.setImagem3(item.getData());
 		}
-		files.add(documentoImagem);
 	}
 
 	public void paint1(OutputStream stream, Object object) throws IOException {
@@ -438,7 +422,6 @@ public class DocumentoImagemController implements Serializable {
 		} else {
 			DAO.getInstance().save(documentoImagem);
 			documentoImagem = new DocumentoImagem();
-			files = new ArrayList<DocumentoImagem>();
 			documentoImagem.setImagem1(null);
 			documentoImagem.setImagem2(null);
 			documentoImagem.setImagem3(null);
@@ -499,21 +482,14 @@ public class DocumentoImagemController implements Serializable {
 	}
 
 	public void verDocumentos() throws Exception {
-		files.clear();
 		FacesContext context = FacesContext.getCurrentInstance();
 		documentoImagemTemp =  (DocumentoImagem) context.getExternalContext()
 				.getRequestMap().get("list");
-		quantidadeArquivos = 0;
-		files.clear();
-		documentoImagem.setImagem1(null);
-		documentoImagem.setImagem2(null);
-		documentoImagem.setImagem3(null);
 		FacesContext.getCurrentInstance().getExternalContext()
 				.redirect("visualizarDocumentos.jsp");
 	}
 
 	public void listarDocumentosEmprego() {
-		files.clear();
 		documentoList = new ArrayList<DocumentoImagem>();
 		if (documentoImagem.getEmprego() != null
 				&& documentoImagem.getEmprego().getCodigo() != null) {
@@ -525,7 +501,6 @@ public class DocumentoImagemController implements Serializable {
 	}
 
 	public void listarDocumentosDependente() {
-		files.clear();
 		documentoList = new ArrayList<DocumentoImagem>();
 		if (documentoImagem.getDependente() != null
 				&& documentoImagem.getDependente().getCodigo() != null) {
@@ -537,7 +512,6 @@ public class DocumentoImagemController implements Serializable {
 		}
 	}
 	public void listarDocumentosConjuge() {
-		files.clear();
 		documentoList = new ArrayList<DocumentoImagem>();
 		if (documentoImagem.getConjuge() != null
 				&& documentoImagem.getConjuge().getCodigo() != null) {
@@ -550,7 +524,6 @@ public class DocumentoImagemController implements Serializable {
 	}
 	
 	public void listarDocumentosTitulacao() {
-		files.clear();
 		documentoImagem.setImagem1(null);
 		documentoImagem.setImagem2(null);
 		documentoImagem.setImagem3(null);

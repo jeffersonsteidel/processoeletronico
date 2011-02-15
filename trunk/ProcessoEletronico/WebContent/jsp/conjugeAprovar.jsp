@@ -104,20 +104,24 @@
 				</h:outputText>
 			</h:panelGrid>
 			<h:panelGrid columns="1" id="documentos">
-				<h:outputText styleClass="negrito" value="Nenhum Documento apresentado!" rendered="#{empty conjugeController.documentos}"/>
-				<h:outputText value="Documentos apresentados:" rendered="#{not empty conjugeController.documentos}"/>
-				<rich:dataTable id="listaDocumento" rendered="#{not empty conjugeController.documentos}"
-					value="#{conjugeController.documentos}" var="list" width="1150px"
+				<h:outputText styleClass="negrito"
+					value="Nenhum Documento apresentado!"
+					rendered="#{empty conjugeController.documentos}" />
+				<h:outputText value="Documentos apresentados:"
+					rendered="#{not empty conjugeController.documentos}" />
+				<rich:dataTable id="listaDocumento"
+					rendered="#{not empty conjugeController.documentos}"
+					value="#{conjugeController.documentos}" var="list" width="600px"
 					columnClasses="center" reRender="ds">
 
-					<rich:column width="500px">
+					<rich:column width="550px">
 						<f:facet name="header">
 							<h:outputText value="Tipo Documento" />
 						</f:facet>
 						<h:outputText value="#{list.tipoDocumento.descricao}" />
 					</rich:column>
 
-					<rich:column>
+					<rich:column width="50px">
 						<f:facet name="header">
 							<h:outputText value="Visualizar" />
 						</f:facet>
@@ -138,7 +142,8 @@
 				<h:inputTextarea id="justificativa"
 					disabled="#{conjugeController.conjuge.statusSolicitacao.codigo != 2}"
 					value="#{conjugeController.conjuge.justificativa}" cols="50"
-					rows="5"></h:inputTextarea>
+					rows="5">
+				</h:inputTextarea>
 			</h:panelGrid>
 			<h:panelGrid columns="2" id="botoes">
 				<a4j:commandButton value="Deferir" reRender="confirmPanel"

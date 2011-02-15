@@ -279,11 +279,10 @@ public class DependenteController implements Serializable {
 		} else if(dependente.getJustificativa().length()>250){
 			FacesMessage message = new FacesMessage(
 					FacesMessage.SEVERITY_ERROR,
-					"O campo Justificativa deve ter no maxímo 250 caractéres!",
-					"O campo Justificativa deve ter no maxímo 250 caractéres!");
+					"O campo Justificativa deve ter no maxímo 250 caracteres!",
+					"O campo Justificativa deve ter no maxímo 250 caracteres!");
 			FacesContext.getCurrentInstance().addMessage("", message);
 		}	else {
-	
 			dependente.getStatusSolicitacao().setCodigo(
 					Constantes.STATUS_SOLICITACAO_INDEFERIDO);
 			dependente.setDataFechamento(new Date());
