@@ -159,11 +159,7 @@
 
 			<a4j:commandButton value="Salvar"
 				action="#{conjugeController.salvarConjuge}" reRender="form" />
-			<a4j:commandButton value="Voltar" onclick="history.go(-1)"
-				rendered="#{autenticacaoController.siapeAutenticado.indAdministrador}">
-			</a4j:commandButton>
-
-
+		
 			<rich:dataTable id="listarConjugesSolicitante"
 				rendered="#{not empty conjugeController.conjugeList}"
 				value="#{conjugeController.conjugeList}" var="list" width="1160px"

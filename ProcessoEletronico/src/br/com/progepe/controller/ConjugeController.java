@@ -260,11 +260,27 @@ public class ConjugeController implements Serializable {
 			conjugeList.remove(conjuge);
 		}
 	}
-
+	
 	public void validar() throws IOException {
 		conjuge = (Conjuge) DAO.getInstance().refresh(conjuge);
-
-		if (Constantes.STATUS_SOLICITACAO_EM_ANALISE.equals(conjuge
+		if (Constantes.STATUS_SOLICITACAO_ENCAMINHADO.equals(conjuge
+				.getStatusSolicitacao().getCodigo())) {
+			conjuge.getStatusSolicitacao().setCodigo(
+					Constantes.STATUS_SOLICITACAO_EM_ANALISE);
+			atendente = new Servidor();
+			conjuge.setDataAtendimento(new Date());
+			Autenticacao siapeAutenticado = (Autenticacao) FacesContext
+					.getCurrentInstance().getExternalContext().getSessionMap()
+					.get("usuarioLogado");
+			atendente.setSiape(siapeAutenticado.getSiape());
+			atendente = ServidorDAO.getInstance().refreshBySiape(atendente);
+			conjuge.setAtendente(atendente.getSiape());
+			ConjugeDAO.getInstance().updateConjuge(conjuge);
+			documentos = new ArrayList<DocumentoImagem>();
+			documentos = DocumentoImagemDAO.getInstance().listDocumentosByConjuge(conjuge);
+			FacesContext.getCurrentInstance().getExternalContext()
+					.redirect("conjugeAprovar.jsp");
+		} else if (Constantes.STATUS_SOLICITACAO_EM_ANALISE.equals(conjuge
 				.getStatusSolicitacao().getCodigo())) {
 			FacesMessage message = new FacesMessage(
 					FacesMessage.SEVERITY_ERROR,
@@ -272,54 +288,11 @@ public class ConjugeController implements Serializable {
 					"Este Cônjuge já está sendo analizado por outro servidor!");
 			FacesContext.getCurrentInstance().addMessage("", message);
 		} else {
-			if (Constantes.STATUS_SOLICITACAO_ENCAMINHADO.equals(conjuge
-					.getStatusSolicitacao().getCodigo())) {
-				conjuge.getStatusSolicitacao().setCodigo(
-						Constantes.STATUS_SOLICITACAO_EM_ANALISE);
-				atendente = new Servidor();
-				conjuge.setDataAtendimento(new Date());
-				Autenticacao siapeAutenticado = (Autenticacao) FacesContext
-						.getCurrentInstance().getExternalContext()
-						.getSessionMap().get("usuarioLogado");
-				atendente.setSiape(siapeAutenticado.getSiape());
-				atendente = ServidorDAO.getInstance().refreshBySiape(atendente);
-				conjuge.setAtendente(atendente.getSiape());
-				ConjugeDAO.getInstance().updateConjuge(conjuge);
-			}
-			documentos = DocumentoImagemDAO.getInstance()
-					.listDocumentosByConjuge(conjuge);
+			documentos = new ArrayList<DocumentoImagem>();
+			documentos = DocumentoImagemDAO.getInstance().listDocumentosByConjuge(conjuge);
 			FacesContext.getCurrentInstance().getExternalContext()
 					.redirect("conjugeAprovar.jsp");
 		}
-
-		// if (Constantes.STATUS_SOLICITACAO_ENCAMINHADO.equals(conjuge
-		// .getStatusSolicitacao().getCodigo())) {
-		// conjuge.getStatusSolicitacao().setCodigo(
-		// Constantes.STATUS_SOLICITACAO_EM_ANALISE);
-		// atendente = new Servidor();
-		// conjuge.setDataAtendimento(new Date());
-		// Autenticacao siapeAutenticado = (Autenticacao) FacesContext
-		// .getCurrentInstance().getExternalContext().getSessionMap()
-		// .get("usuarioLogado");
-		// atendente.setSiape(siapeAutenticado.getSiape());
-		// atendente = ServidorDAO.getInstance().refreshBySiape(atendente);
-		// conjuge.setAtendente(atendente.getSiape());
-		// ConjugeDAO.getInstance().updateConjuge(conjuge);
-		// FacesContext.getCurrentInstance().getExternalContext()
-		// .redirect("conjugeAprovar.jsp");
-		// } else if (Constantes.STATUS_SOLICITACAO_EM_ANALISE.equals(conjuge
-		// .getStatusSolicitacao().getCodigo())) {
-		// FacesMessage message = new FacesMessage(
-		// FacesMessage.SEVERITY_ERROR,
-		// "Este Cônjuge já está sendo analizado por outro servidor!",
-		// "Este Cônjuge já está sendo analizado por outro servidor!");
-		// FacesContext.getCurrentInstance().addMessage("", message);
-		// } else {
-		// FacesContext.getCurrentInstance().getExternalContext()
-		// .redirect("conjugeAprovar.jsp");
-		// }
-		// documentos =
-		// DocumentoImagemDAO.getInstance().listDocumentosByDependente(dependente);
 	}
 
 	public void deferir() {
