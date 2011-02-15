@@ -193,7 +193,13 @@ public class EmpregoController implements Serializable {
 					Constantes.STATUS_SOLICITACAO_INDEFERIDO);
 			emprego.setDataFechamento(new Date());
 			DAO.getInstance().update(emprego);
-		} else {
+		} else if(emprego.getJustificativa().length()>250){
+			FacesMessage message = new FacesMessage(
+					FacesMessage.SEVERITY_ERROR,
+					"O campo Justificativa deve ter no maxímo 250 caractéres!",
+					"O campo Justificativa deve ter no maxímo 250 caractéres!");
+			FacesContext.getCurrentInstance().addMessage("", message);
+		}	else {
 			FacesMessage message = new FacesMessage(
 					FacesMessage.SEVERITY_ERROR,
 					"Campo Justificativa é obrigatório!",

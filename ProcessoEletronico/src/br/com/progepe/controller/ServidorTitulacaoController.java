@@ -415,7 +415,13 @@ public class ServidorTitulacaoController implements Serializable {
 					Constantes.STATUS_SOLICITACAO_INDEFERIDO);
 			servidorTitulacao.setDataFechamento(new Date());
 			DAO.getInstance().update(servidorTitulacao);
-		} else {
+		} else if(servidorTitulacao.getJustificativa().length()>250){
+			FacesMessage message = new FacesMessage(
+					FacesMessage.SEVERITY_ERROR,
+					"O campo Justificativa deve ter no maxímo 250 caractéres!",
+					"O campo Justificativa deve ter no maxímo 250 caractéres!");
+			FacesContext.getCurrentInstance().addMessage("", message);
+		}	else {
 			FacesMessage message = new FacesMessage(
 					FacesMessage.SEVERITY_ERROR,
 					"O campo Justificativa é obrigatório!",
