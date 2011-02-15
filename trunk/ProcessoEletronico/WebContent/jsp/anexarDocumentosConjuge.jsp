@@ -107,7 +107,7 @@
 			<a4j:commandButton value="Salvar"
 				action="#{documentoImagemController.salvar}"
 				reRender="form, info,painelPai, titular" />
-			<a4j:commandButton value="Voltar" onclick="history.go(-1)" />
+			<a4j:commandButton value="Voltar" action="#{conjugeController.abrirCadastrarConjuge}" />
 
 			<h:panelGroup id="info">
 				<rich:panel bodyClass="info">
