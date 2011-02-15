@@ -107,7 +107,10 @@
 			<a4j:commandButton value="Salvar"
 				action="#{documentoImagemController.salvar}"
 				reRender="form, info,painelPai, titular" />
-			<a4j:commandButton value="Voltar" action="#{conjugeController.abrirCadastrarConjuge}" />
+			<a4j:region>
+				<a4j:commandButton value="Voltar"
+					action="#{conjugeController.abrirCadastrarConjuge}" />
+			</a4j:region>
 
 			<h:panelGroup id="info">
 				<rich:panel bodyClass="info">
