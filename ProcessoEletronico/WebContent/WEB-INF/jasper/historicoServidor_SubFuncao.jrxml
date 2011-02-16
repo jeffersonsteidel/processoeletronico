@@ -59,11 +59,11 @@ WHERE
 			</band>
 		</columnHeader>
 		<detail>
-			<band height="52"  isSplitAllowed="true" >
+			<band height="104"  isSplitAllowed="true" >
 				<textField isStretchWithOverflow="false" pattern="dd/MM/yyyy" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
 						x="340"
-						y="27"
+						y="60"
 						width="131"
 						height="17"
 						forecolor="#000000"
@@ -82,7 +82,7 @@ WHERE
 				<staticText>
 					<reportElement
 						x="271"
-						y="27"
+						y="60"
 						width="69"
 						height="17"
 						forecolor="#000000"
@@ -102,7 +102,7 @@ WHERE
 				<textField isStretchWithOverflow="false" pattern="" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
 						x="314"
-						y="10"
+						y="43"
 						width="157"
 						height="17"
 						forecolor="#000000"
@@ -121,7 +121,7 @@ WHERE
 				<staticText>
 					<reportElement
 						x="271"
-						y="10"
+						y="43"
 						width="43"
 						height="17"
 						forecolor="#000000"
@@ -141,7 +141,7 @@ WHERE
 				<textField isStretchWithOverflow="false" pattern="" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
 						x="100"
-						y="27"
+						y="60"
 						width="171"
 						height="17"
 						forecolor="#000000"
@@ -160,7 +160,7 @@ WHERE
 				<staticText>
 					<reportElement
 						x="18"
-						y="27"
+						y="60"
 						width="82"
 						height="17"
 						forecolor="#000000"
@@ -180,7 +180,7 @@ WHERE
 				<textField isStretchWithOverflow="false" pattern="" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
 						x="83"
-						y="10"
+						y="43"
 						width="70"
 						height="17"
 						forecolor="#000000"
@@ -199,7 +199,7 @@ WHERE
 				<staticText>
 					<reportElement
 						x="18"
-						y="10"
+						y="43"
 						width="65"
 						height="17"
 						forecolor="#000000"
@@ -215,6 +215,30 @@ WHERE
 						<font pdfFontName="Helvetica-Bold" size="10" isBold="true"/>
 					</textElement>
 				<text><![CDATA[Tipo Função:]]></text>
+				</staticText>
+				<line direction="BottomUp">
+					<reportElement
+						x="13"
+						y="28"
+						width="497"
+						height="0"
+						key="line-1"
+						positionType="Float"/>
+					<graphicElement stretchType="NoStretch"/>
+				</line>
+				<staticText>
+					<reportElement
+						x="17"
+						y="11"
+						width="106"
+						height="17"
+						key="staticText-1"
+						positionType="Float"/>
+					<box></box>
+					<textElement>
+						<font pdfFontName="Helvetica-Bold" size="12" isBold="true"/>
+					</textElement>
+				<text><![CDATA[Função]]></text>
 				</staticText>
 			</band>
 		</detail>

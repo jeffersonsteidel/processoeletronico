@@ -56,11 +56,11 @@ WHERE servidor.`serv_cod` = $P{COD_SERV}]]></queryString>
 			</band>
 		</columnHeader>
 		<detail>
-			<band height="56"  isSplitAllowed="true" >
+			<band height="94"  isSplitAllowed="true" >
 				<textField isStretchWithOverflow="false" pattern="" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
 						x="58"
-						y="11"
+						y="46"
 						width="153"
 						height="17"
 						forecolor="#000000"
@@ -79,7 +79,7 @@ WHERE servidor.`serv_cod` = $P{COD_SERV}]]></queryString>
 				<staticText>
 					<reportElement
 						x="17"
-						y="11"
+						y="46"
 						width="41"
 						height="17"
 						forecolor="#000000"
@@ -99,7 +99,7 @@ WHERE servidor.`serv_cod` = $P{COD_SERV}]]></queryString>
 				<textField isStretchWithOverflow="false" pattern="" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
 						x="313"
-						y="11"
+						y="46"
 						width="68"
 						height="17"
 						forecolor="#000000"
@@ -118,7 +118,7 @@ WHERE servidor.`serv_cod` = $P{COD_SERV}]]></queryString>
 				<staticText>
 					<reportElement
 						x="226"
-						y="11"
+						y="46"
 						width="87"
 						height="17"
 						forecolor="#000000"
@@ -138,7 +138,7 @@ WHERE servidor.`serv_cod` = $P{COD_SERV}]]></queryString>
 				<textField isStretchWithOverflow="false" pattern="" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
 						x="63"
-						y="28"
+						y="63"
 						width="68"
 						height="17"
 						forecolor="#000000"
@@ -157,7 +157,7 @@ WHERE servidor.`serv_cod` = $P{COD_SERV}]]></queryString>
 				<staticText>
 					<reportElement
 						x="17"
-						y="28"
+						y="63"
 						width="46"
 						height="17"
 						forecolor="#000000"
@@ -177,7 +177,7 @@ WHERE servidor.`serv_cod` = $P{COD_SERV}]]></queryString>
 				<textField isStretchWithOverflow="false" pattern="" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
 						x="282"
-						y="28"
+						y="63"
 						width="27"
 						height="17"
 						forecolor="#000000"
@@ -196,7 +196,7 @@ WHERE servidor.`serv_cod` = $P{COD_SERV}]]></queryString>
 				<staticText>
 					<reportElement
 						x="226"
-						y="28"
+						y="63"
 						width="56"
 						height="17"
 						forecolor="#000000"
@@ -212,6 +212,30 @@ WHERE servidor.`serv_cod` = $P{COD_SERV}]]></queryString>
 						<font pdfFontName="Helvetica-Bold" size="10" isBold="true"/>
 					</textElement>
 				<text><![CDATA[Poupança:]]></text>
+				</staticText>
+				<line direction="BottomUp">
+					<reportElement
+						x="11"
+						y="32"
+						width="497"
+						height="0"
+						key="line-1"
+						positionType="Float"/>
+					<graphicElement stretchType="NoStretch"/>
+				</line>
+				<staticText>
+					<reportElement
+						x="15"
+						y="15"
+						width="106"
+						height="17"
+						key="staticText-1"
+						positionType="Float"/>
+					<box></box>
+					<textElement>
+						<font pdfFontName="Helvetica-Bold" size="12" isBold="true"/>
+					</textElement>
+				<text><![CDATA[Conta Bancaria]]></text>
 				</staticText>
 			</band>
 		</detail>
