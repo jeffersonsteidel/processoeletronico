@@ -27,7 +27,7 @@
 
 				<h:graphicImage value="../images/icopdf.gif" />
 				<h:commandLink value="RELATÓRIO GERAL SERVIDOR"
-					action="#{relatorioController.abrirRelatorio}" />
+					action="#{relatorioController.abrirRelatorioGeral}" />
 			</h:panelGrid>
 		</h:form>
 	</rich:panel>
