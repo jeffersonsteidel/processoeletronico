@@ -8,16 +8,37 @@ import java.util.HashMap;
 import javax.faces.context.FacesContext;
 
 import net.sf.jasperreports.engine.JRException;
+import br.com.progepe.dao.DAO;
+import br.com.progepe.entity.Servidor;
 
 public class RelatorioController implements Serializable {
 	private static final long serialVersionUID = -333995781063775201L;
+	private Servidor servidor;
+	
+	public Servidor getServidor() {
+		return servidor;
+	}
 
+	public void setServidor(Servidor servidor) {
+		this.servidor = servidor;
+	}
+	
 	public void abrirRelatorioTeste() throws IOException {
 		FacesContext.getCurrentInstance().getExternalContext()
 				.redirect("relatorios.jsp");
 	}
 	
-
+	public void abrirRelatorio() throws Exception {
+		try {
+				
+			setServidor(new Servidor());
+			FacesContext.getCurrentInstance().getExternalContext()
+					.redirect("abrirRelatorio.jsp");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	@SuppressWarnings({"rawtypes", "unchecked"})
 	public String gerarRelatorioServidorCargoLotacao() throws ClassNotFoundException,
 			SQLException, JRException {
@@ -45,6 +66,7 @@ public class RelatorioController implements Serializable {
 	@SuppressWarnings({"rawtypes", "unchecked"})
 	public String gerarRelatorioServidorGeral() throws ClassNotFoundException,
 			SQLException, JRException {
+		servidor = (Servidor) DAO.getInstance().refresh(servidor);
 		JasperMB jasperMB = new JasperMB();
 		jasperMB.criaConexao();
 		HashMap parametros = new HashMap();
@@ -59,7 +81,7 @@ public class RelatorioController implements Serializable {
 		parametros.put("SUB_EMPREGO", jasperMB.getDiretorioReal("/WEB-INF/jasper/historicoServidor_SubEmpregos.jasper"));
 		parametros.put("SUB_CONJUGE", jasperMB.getDiretorioReal("/WEB-INF/jasper/historicoServidor_SubConjuge.jasper"));
 		parametros.put("SUB_FUNCAO", jasperMB.getDiretorioReal("/WEB-INF/jasper/historicoServidor_SubFuncao.jasper"));
-		parametros.put("COD_SERV", "470");
+		parametros.put("COD_SERV", servidor.getCodigo());
 		String nomeDoJasper = "/WEB-INF/jasper/historicoServidor.jasper";
 		jasperMB.geraRelatorioPassandoResultSet(parametros,nomeDoJasper);
 		return "";
