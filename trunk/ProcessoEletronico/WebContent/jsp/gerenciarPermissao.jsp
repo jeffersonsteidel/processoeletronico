@@ -25,9 +25,9 @@
 					<h:graphicImage value="../images/error.gif" />
 				</f:facet>
 			</rich:messages>
-			<font size="2"><b>CADASTRAR PROGRESSÃO - MÉRITO</b></font>
+			<font size="2"><b>GERENCIAR PERMISSÕES</b></font>
 
-			<h:panelGrid columns="4">
+			<h:panelGrid columns="2">
 				<h:outputText value="Siape do Servidor: ">
 				</h:outputText>
 				<h:inputText id="siape"
@@ -36,47 +36,49 @@
 					requiredMessage="Campo Siape do Servidor é obrigatório!">
 					<a4j:support event="onchange"
 						action="#{permissaoController.pesquisarPermissaoServidor}"
-						ajaxSingle="true" reRender="servidor,siape,permissoes"></a4j:support>
+						ajaxSingle="true" reRender="form"></a4j:support>
 				</h:inputText>
 
 				<h:outputText value="Nome do Servidor: ">
 				</h:outputText>
 				<h:outputText id="servidor"
-					value="#{progressaoController.servidor.nome}">
+					value="#{permissaoController.servidor.nome}">
 				</h:outputText>
 			</h:panelGrid>
 
-			<center><h:panelGrid columns="2" id="permissoes"
+			<h:panelGrid columns="1" id="permissoes"
 				rendered="#{!permissaoController.isAutenticacaoNull}">
-				<h:selectBooleanCheckbox id="usuario"
-					title="O servidor tem acesso ao sistema!" disabled="true"
-					value="true">
-				</h:selectBooleanCheckbox>
-				<h:outputText value="Usuário" />
-				<h:selectBooleanCheckbox id="secretaria"
-					title="O servidor tem permissão de secretário!"
-					value="#{permissaoController.autenticacao.indSecretaria}">
-				</h:selectBooleanCheckbox>
-				<h:outputText value="Secretária" />
-				<h:selectBooleanCheckbox id="diretor"
-					title="O servidor tem permissão de diretor!"
-					value="#{permissaoController.autenticacao.indDiretor}">
-				</h:selectBooleanCheckbox>
-				<h:outputText value="Diretor" />
-				<h:selectBooleanCheckbox id="administrador"
-					title="O servidor tem permissão de administrador!"
-					value="#{permissaoController.autenticacao.indAdministrador}">
-				</h:selectBooleanCheckbox>
-				<h:outputText value="Administrador" />
-				<h:selectBooleanCheckbox id="gerente"
-					title="O servidor tem permissão de gerente do sistema!"
-					value="#{permissaoController.autenticacao.indGerente}">
-				</h:selectBooleanCheckbox>
-				<h:outputText value="Gerente" />
-			</h:panelGrid></center>
-		<center><a4j:commandButton value="Salvar"
-				action="#{permissaoController.salvar}"
-				reRender="servidor,siape,permissoes" /></center>	
+				<h:outputText value="Permissões do Servidor:"></h:outputText>
+				<h:panelGrid columns="4">
+					<h:selectBooleanCheckbox id="usuario"
+						title="O servidor tem acesso ao sistema!" disabled="true"
+						value="true">
+					</h:selectBooleanCheckbox>
+					<h:outputText value="Usuário" />
+					<h:selectBooleanCheckbox id="secretaria"
+						title="O servidor tem permissão de secretário!"
+						value="#{permissaoController.autenticacao.indSecretaria}">
+					</h:selectBooleanCheckbox>
+					<h:outputText value="Secretária" />
+					<h:selectBooleanCheckbox id="diretor"
+						title="O servidor tem permissão de diretor!"
+						value="#{permissaoController.autenticacao.indDiretor}">
+					</h:selectBooleanCheckbox>
+					<h:outputText value="Diretor" />
+					<h:selectBooleanCheckbox id="administrador"
+						title="O servidor tem permissão de administrador!"
+						value="#{permissaoController.autenticacao.indAdministrador}">
+					</h:selectBooleanCheckbox>
+					<h:outputText value="Administrador" />
+					<h:selectBooleanCheckbox id="gerente"
+						title="O servidor tem permissão de gerente do sistema!"
+						value="#{permissaoController.autenticacao.indGerente}">
+					</h:selectBooleanCheckbox>
+					<h:outputText value="Gerente" />
+				</h:panelGrid>
+			</h:panelGrid>
+			<a4j:commandButton value="Salvar" rendered="#{!permissaoController.isAutenticacaoNull}"
+				action="#{permissaoController.salvar}" reRender="form" />
 		</rich:panel></center>
 	</a4j:form>
 </f:view>
