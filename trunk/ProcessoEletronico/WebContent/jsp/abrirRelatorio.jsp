@@ -24,8 +24,7 @@
 			</h:panelGrid>
 
 			<h:panelGrid columns="2">
-				<a4j:commandButton value="Gerar Relatório"
-					reRender="form" />
+				<h:commandButton value="Gerar Relatório" action="#{relatorioController.gerarRelatorioServidorGeral}"/>
 			</h:panelGrid>
 
 		</rich:panel>
