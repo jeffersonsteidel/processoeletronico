@@ -250,7 +250,7 @@
 					icon="../images/cadastrarProgressao.gif" />
 				<rich:menuItem submitMode="ajax" value="Gerenciar Permissões"
 					action="#{permissaoController.abrirGerenciarPermissao}"
-					icon="../images/cadastrarProgressao.gif" />
+					icon="../images/permissao.gif" />
 				<rich:menuItem submitMode="ajax" value="Listar Cargos"
 					action="#{cargoController.abrirListarCargos}"
 					icon="../images/listarCargo.gif" />
