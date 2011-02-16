@@ -61,7 +61,7 @@ WHERE  servidor.`serv_cod` = $P{COD_SERV}]]></queryString>
 			</band>
 		</columnHeader>
 		<detail>
-			<band height="739"  isSplitAllowed="true" >
+			<band height="469"  isSplitAllowed="true" >
 				<staticText>
 					<reportElement
 						x="0"
@@ -88,7 +88,8 @@ WHERE  servidor.`serv_cod` = $P{COD_SERV}]]></queryString>
 						width="534"
 						height="31"
 						key="subreport-1"
-						positionType="Float"/>
+						positionType="Float"
+						isRemoveLineWhenBlank="true"/>
 					<subreportParameter  name="COD_SERV">
 						<subreportParameterExpression><![CDATA[$F{servidor_serv_cod}]]></subreportParameterExpression>
 					</subreportParameter>
@@ -99,11 +100,12 @@ WHERE  servidor.`serv_cod` = $P{COD_SERV}]]></queryString>
 					<reportElement
 						mode="Opaque"
 						x="0"
-						y="165"
+						y="161"
 						width="534"
 						height="31"
 						key="subreport-2"
-						positionType="Float"/>
+						positionType="Float"
+						isRemoveLineWhenBlank="true"/>
 					<subreportParameter  name="COD_SERV">
 						<subreportParameterExpression><![CDATA[$F{servidor_serv_cod}]]></subreportParameterExpression>
 					</subreportParameter>
@@ -113,11 +115,12 @@ WHERE  servidor.`serv_cod` = $P{COD_SERV}]]></queryString>
 				<subreport  isUsingCache="true">
 					<reportElement
 						x="0"
-						y="204"
+						y="193"
 						width="534"
 						height="32"
 						key="subreport-3"
-						positionType="Float"/>
+						positionType="Float"
+						isRemoveLineWhenBlank="true"/>
 					<subreportParameter  name="COD_SERV">
 						<subreportParameterExpression><![CDATA[$F{servidor_serv_cod}]]></subreportParameterExpression>
 					</subreportParameter>
@@ -127,25 +130,28 @@ WHERE  servidor.`serv_cod` = $P{COD_SERV}]]></queryString>
 				<subreport  isUsingCache="true">
 					<reportElement
 						x="0"
-						y="242"
+						y="226"
 						width="534"
 						height="33"
 						key="subreport-4"
-						positionType="Float"/>
+						positionType="Float"
+						isRemoveLineWhenBlank="true"/>
 					<subreportParameter  name="COD_SERV">
 						<subreportParameterExpression><![CDATA[$F{servidor_serv_cod}]]></subreportParameterExpression>
 					</subreportParameter>
 					<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
 					<subreportExpression  class="java.lang.String"><![CDATA[$P{SUB_DOCUMENTOS}]]></subreportExpression>
 				</subreport>
+				<elementGroup><!--  Start: 1 !-->
 				<subreport  isUsingCache="true">
 					<reportElement
 						x="0"
-						y="508"
+						y="260"
 						width="534"
 						height="31"
 						key="subreport-5"
-						positionType="Float"/>
+						positionType="Float"
+						isRemoveLineWhenBlank="true"/>
 					<subreportParameter  name="COD_SERV">
 						<subreportParameterExpression><![CDATA[$F{servidor_serv_cod}]]></subreportParameterExpression>
 					</subreportParameter>
@@ -155,11 +161,12 @@ WHERE  servidor.`serv_cod` = $P{COD_SERV}]]></queryString>
 				<subreport  isUsingCache="true">
 					<reportElement
 						x="0"
-						y="543"
+						y="292"
 						width="534"
 						height="32"
 						key="subreport-6"
-						positionType="Float"/>
+						positionType="Float"
+						isRemoveLineWhenBlank="true"/>
 					<subreportParameter  name="COD_SERV">
 						<subreportParameterExpression><![CDATA[$F{servidor_serv_cod}]]></subreportParameterExpression>
 					</subreportParameter>
@@ -169,11 +176,12 @@ WHERE  servidor.`serv_cod` = $P{COD_SERV}]]></queryString>
 				<subreport  isUsingCache="true">
 					<reportElement
 						x="0"
-						y="583"
+						y="325"
 						width="534"
 						height="31"
 						key="subreport-7"
-						positionType="Float"/>
+						positionType="Float"
+						isRemoveLineWhenBlank="true"/>
 					<subreportParameter  name="COD_SERV">
 						<subreportParameterExpression><![CDATA[$F{servidor_serv_cod}]]></subreportParameterExpression>
 					</subreportParameter>
@@ -183,11 +191,12 @@ WHERE  servidor.`serv_cod` = $P{COD_SERV}]]></queryString>
 				<subreport  isUsingCache="true">
 					<reportElement
 						x="0"
-						y="619"
+						y="357"
 						width="534"
 						height="33"
 						key="subreport-8"
-						positionType="Float"/>
+						positionType="Float"
+						isRemoveLineWhenBlank="true"/>
 					<subreportParameter  name="COD_SERV">
 						<subreportParameterExpression><![CDATA[$F{servidor_serv_cod}]]></subreportParameterExpression>
 					</subreportParameter>
@@ -197,11 +206,12 @@ WHERE  servidor.`serv_cod` = $P{COD_SERV}]]></queryString>
 				<subreport  isUsingCache="true">
 					<reportElement
 						x="0"
-						y="661"
+						y="391"
 						width="534"
 						height="32"
 						key="subreport-9"
-						positionType="Float"/>
+						positionType="Float"
+						isRemoveLineWhenBlank="true"/>
 					<subreportParameter  name="COD_SERV">
 						<subreportParameterExpression><![CDATA[$F{servidor_serv_cod}]]></subreportParameterExpression>
 					</subreportParameter>
@@ -211,17 +221,19 @@ WHERE  servidor.`serv_cod` = $P{COD_SERV}]]></queryString>
 				<subreport  isUsingCache="true">
 					<reportElement
 						x="0"
-						y="700"
+						y="424"
 						width="534"
 						height="32"
 						key="subreport-10"
-						positionType="Float"/>
+						positionType="Float"
+						isRemoveLineWhenBlank="true"/>
 					<subreportParameter  name="COD_SERV">
 						<subreportParameterExpression><![CDATA[$F{servidor_serv_cod}]]></subreportParameterExpression>
 					</subreportParameter>
 					<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
 					<subreportExpression  class="java.lang.String"><![CDATA[$P{SUB_FUNCAO}]]></subreportExpression>
 				</subreport>
+				</elementGroup><!-- End 1 !-->
 				<image  evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
 						x="0"

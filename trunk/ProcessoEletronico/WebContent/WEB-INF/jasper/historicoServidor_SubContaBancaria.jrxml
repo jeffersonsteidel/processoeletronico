@@ -100,7 +100,7 @@ WHERE servidor.`serv_cod` = $P{COD_SERV}]]></queryString>
 					<reportElement
 						x="313"
 						y="46"
-						width="68"
+						width="184"
 						height="17"
 						forecolor="#000000"
 						backcolor="#FFFFFF"
@@ -139,7 +139,7 @@ WHERE servidor.`serv_cod` = $P{COD_SERV}]]></queryString>
 					<reportElement
 						x="63"
 						y="63"
-						width="68"
+						width="148"
 						height="17"
 						forecolor="#000000"
 						backcolor="#FFFFFF"
@@ -178,7 +178,7 @@ WHERE servidor.`serv_cod` = $P{COD_SERV}]]></queryString>
 					<reportElement
 						x="282"
 						y="63"
-						width="27"
+						width="215"
 						height="17"
 						forecolor="#000000"
 						backcolor="#FFFFFF"

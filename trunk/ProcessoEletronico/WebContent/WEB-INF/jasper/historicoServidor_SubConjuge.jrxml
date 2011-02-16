@@ -555,7 +555,7 @@ WHERE
 					<reportElement
 						x="76"
 						y="165"
-						width="194"
+						width="451"
 						height="17"
 						forecolor="#000000"
 						backcolor="#FFFFFF"
