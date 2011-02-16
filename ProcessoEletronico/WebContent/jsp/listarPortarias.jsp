@@ -117,7 +117,7 @@
 					<rich:toolTip for="editar" value="Editar" />
 				</rich:column>
 
-				<rich:column>
+				<rich:column rendered="#{autenticacaoController.siapeAutenticado.indAdministrador}">
 					<f:facet name="header">
 						<h:outputText value="Excluir" />
 					</f:facet>
@@ -138,7 +138,7 @@
 					
 					<a4j:commandLink action="#{portariaController.carregarPortaria}"
 						reRender="listaPortarias" ajaxSingle="true">
-						<h:graphicImage value="../images/pdf.gif" style="border:0"
+						<h:graphicImage value="../images/visualizar.gif" style="border:0"
 							width="20" height="18" id="visualizar" />
 						<f:setPropertyActionListener value="#{list.codigo}"
 							target="#{portariaController.portaria.codigo}" />
