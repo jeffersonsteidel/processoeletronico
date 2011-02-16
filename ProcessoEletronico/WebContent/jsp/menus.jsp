@@ -270,7 +270,7 @@
 					</h:panelGroup>
 				</f:facet>
 				<rich:menuItem submitMode="ajax" value="Relatórios"
-					action="#{relatorioController.abrirRelatorioTeste}"
+					action="#{relatorioController.abrirRelatorios}"
 					icon="../images/icopdf.gif" />
 			</rich:dropDownMenu>
 

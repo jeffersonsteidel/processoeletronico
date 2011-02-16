@@ -23,21 +23,20 @@ public class RelatorioController implements Serializable {
 		this.servidor = servidor;
 	}
 	
-	public String abrirRelatorioTeste() throws IOException {
+	public void abrirRelatorios() throws IOException {
 		FacesContext.getCurrentInstance().getExternalContext()
 				.redirect("relatorios.jsp");
-		return "";
 	}
 	
-	public void abrirRelatorioGeral() throws Exception {
+	public String abrirRelatorioGeral() throws Exception {
 		try {
-				
 			servidor = new Servidor();
 			FacesContext.getCurrentInstance().getExternalContext()
-					.redirect("abrirRelatorio.jsp");
+					.redirect("relatorioGeral.jsp");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		return "";
 	}
 	
 	@SuppressWarnings({"rawtypes", "unchecked"})
