@@ -105,7 +105,7 @@ WHERE
 					<reportElement
 						x="70"
 						y="36"
-						width="176"
+						width="440"
 						height="17"
 						forecolor="#000000"
 						backcolor="#FFFFFF"
@@ -147,7 +147,7 @@ WHERE
 					<reportElement
 						x="55"
 						y="53"
-						width="176"
+						width="455"
 						height="17"
 						forecolor="#000000"
 						backcolor="#FFFFFF"
@@ -191,7 +191,7 @@ WHERE
 					<reportElement
 						x="212"
 						y="70"
-						width="176"
+						width="298"
 						height="17"
 						forecolor="#000000"
 						backcolor="#FFFFFF"
@@ -233,7 +233,7 @@ WHERE
 					<reportElement
 						x="93"
 						y="87"
-						width="176"
+						width="417"
 						height="17"
 						forecolor="#000000"
 						backcolor="#FFFFFF"
@@ -275,7 +275,7 @@ WHERE
 					<reportElement
 						x="132"
 						y="104"
-						width="176"
+						width="378"
 						height="17"
 						forecolor="#000000"
 						backcolor="#FFFFFF"
@@ -317,7 +317,7 @@ WHERE
 					<reportElement
 						x="152"
 						y="121"
-						width="176"
+						width="358"
 						height="17"
 						forecolor="#000000"
 						backcolor="#FFFFFF"
@@ -359,7 +359,7 @@ WHERE
 					<reportElement
 						x="50"
 						y="138"
-						width="176"
+						width="460"
 						height="17"
 						forecolor="#000000"
 						backcolor="#FFFFFF"
@@ -374,7 +374,7 @@ WHERE
 					<textElement>
 						<font size="10"/>
 					</textElement>
-				<textFieldExpression   class="java.lang.String"><![CDATA[$F{pais_pais_desc}]]></textFieldExpression>
+				<textFieldExpression   class="java.lang.String"><![CDATA[($F{pais_pais_desc} == null ? "BRASIL" : $F{pais_pais_desc})]]></textFieldExpression>
 				</textField>
 				<staticText>
 					<reportElement
@@ -401,7 +401,7 @@ WHERE
 					<reportElement
 						x="163"
 						y="155"
-						width="176"
+						width="347"
 						height="17"
 						forecolor="#000000"
 						backcolor="#FFFFFF"
@@ -443,7 +443,7 @@ WHERE
 					<reportElement
 						x="137"
 						y="172"
-						width="176"
+						width="373"
 						height="23"
 						forecolor="#000000"
 						backcolor="#FFFFFF"
@@ -485,7 +485,7 @@ WHERE
 					<reportElement
 						x="212"
 						y="195"
-						width="176"
+						width="298"
 						height="17"
 						forecolor="#000000"
 						backcolor="#FFFFFF"
@@ -527,7 +527,7 @@ WHERE
 					<reportElement
 						x="117"
 						y="212"
-						width="176"
+						width="393"
 						height="17"
 						forecolor="#000000"
 						backcolor="#FFFFFF"
@@ -569,7 +569,7 @@ WHERE
 					<reportElement
 						x="158"
 						y="229"
-						width="176"
+						width="352"
 						height="17"
 						forecolor="#000000"
 						backcolor="#FFFFFF"

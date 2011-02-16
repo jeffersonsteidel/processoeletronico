@@ -59,10 +59,10 @@ WHERE
 			</band>
 		</columnHeader>
 		<detail>
-			<band height="104"  isSplitAllowed="true" >
+			<band height="87"  isSplitAllowed="true" >
 				<textField isStretchWithOverflow="false" pattern="dd/MM/yyyy" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
-						x="340"
+						x="346"
 						y="60"
 						width="131"
 						height="17"
@@ -81,7 +81,7 @@ WHERE
 				</textField>
 				<staticText>
 					<reportElement
-						x="271"
+						x="277"
 						y="60"
 						width="69"
 						height="17"
@@ -101,7 +101,7 @@ WHERE
 				</staticText>
 				<textField isStretchWithOverflow="false" pattern="" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
-						x="314"
+						x="320"
 						y="43"
 						width="157"
 						height="17"
@@ -120,7 +120,7 @@ WHERE
 				</textField>
 				<staticText>
 					<reportElement
-						x="271"
+						x="277"
 						y="43"
 						width="43"
 						height="17"
@@ -181,7 +181,7 @@ WHERE
 					<reportElement
 						x="83"
 						y="43"
-						width="70"
+						width="188"
 						height="17"
 						forecolor="#000000"
 						backcolor="#FFFFFF"

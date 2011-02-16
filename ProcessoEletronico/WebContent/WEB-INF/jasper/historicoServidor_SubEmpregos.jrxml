@@ -87,7 +87,7 @@ WHERE
 					<reportElement
 						x="51"
 						y="53"
-						width="145"
+						width="156"
 						height="17"
 						forecolor="#000000"
 						backcolor="#FFFFFF"
@@ -126,7 +126,7 @@ WHERE
 					<reportElement
 						x="110"
 						y="70"
-						width="86"
+						width="97"
 						height="17"
 						forecolor="#000000"
 						backcolor="#FFFFFF"
