@@ -29,7 +29,7 @@
 				</f:facet>
 			</rich:messages>
 
-			<font size="2"><b>ADICIONAR DOCUMENTOS - DEPEDENTE</b></font>
+			<font size="2"><b>ADICIONAR DOCUMENTOS - DEPENDENTE</b></font>
 			<h:panelGrid columns="2">
 				<h:outputText
 					value="#{documentoImagemController.documentoImagem.servidor.siape} - #{documentoImagemController.documentoImagem.servidor.nome}">
@@ -54,7 +54,7 @@
 				<h:outputText value="Documentos já anexados:"
 					rendered="#{not empty documentoImagemController.documentoList && documentoImagemController.documentoImagem.dependente.codigo != null}" />
 				<h:outputText styleClass="negrito"
-					value="Nenhum Documento para este Emprego!"
+					value="Nenhum Documento para este Dependente!"
 					rendered="#{empty documentoImagemController.documentoList  && documentoImagemController.documentoImagem.dependente.codigo != null}" />
 				<rich:dataTable id="listaDocumento"
 					rendered="#{not empty documentoImagemController.documentoList  && documentoImagemController.documentoImagem.dependente.codigo != null}"
