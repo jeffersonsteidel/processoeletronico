@@ -73,8 +73,8 @@
 					</f:facet>
 					<a4j:commandLink action="#{documentoImagemController.verDocumentos}"
 						reRender="editPanel" ajaxSingle="true">
-						<h:graphicImage value="../images/edit.gif" style="border:0"
-							width="20" height="18" id="editar" />
+						<h:graphicImage value="../images/visualizar.gif" style="border:0"
+							width="20" height="18" id="visualizar" />
 						<f:setPropertyActionListener value="#{list.codigo}"
 							target="#{documentoImagemController.documentoImagem.codigo}" />
 					</a4j:commandLink>
