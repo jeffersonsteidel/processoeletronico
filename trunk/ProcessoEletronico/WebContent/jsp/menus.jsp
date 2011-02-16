@@ -248,6 +248,9 @@
 				<rich:menuItem submitMode="ajax" value="Cadastrar Progressão"
 					action="#{progressaoController.abrirCadastrarProgressao}"
 					icon="../images/cadastrarProgressao.gif" />
+				<rich:menuItem submitMode="ajax" value="Gerenciar Permissões"
+					action="#{permissaoController.abrirGerenciarPermissao}"
+					icon="../images/cadastrarProgressao.gif" />
 				<rich:menuItem submitMode="ajax" value="Listar Cargos"
 					action="#{cargoController.abrirListarCargos}"
 					icon="../images/listarCargo.gif" />
