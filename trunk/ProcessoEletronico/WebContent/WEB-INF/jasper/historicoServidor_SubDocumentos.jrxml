@@ -106,7 +106,7 @@ WHERE servidor.`serv_cod` = $P{COD_SERV}]]></queryString>
 					<textElement>
 						<font size="10"/>
 					</textElement>
-				<textFieldExpression   class="java.lang.String"><![CDATA[$F{documento_doc_cpf}]]></textFieldExpression>
+				<textFieldExpression   class="java.lang.String"><![CDATA[($F{documento_doc_cpf}.trim().equals("") ? "Nao informado" : $F{documento_doc_cpf})]]></textFieldExpression>
 				</textField>
 				<staticText>
 					<reportElement
@@ -145,7 +145,7 @@ WHERE servidor.`serv_cod` = $P{COD_SERV}]]></queryString>
 					<textElement>
 						<font size="10"/>
 					</textElement>
-				<textFieldExpression   class="java.lang.String"><![CDATA[$F{estado_est_uf_rg}]]></textFieldExpression>
+				<textFieldExpression   class="java.lang.String"><![CDATA[($F{estado_est_uf_rg}.trim().equals("") ? "Nao informado" : $F{estado_est_uf_rg})]]></textFieldExpression>
 				</textField>
 				<staticText>
 					<reportElement
@@ -234,7 +234,8 @@ WHERE servidor.`serv_cod` = $P{COD_SERV}]]></queryString>
 						forecolor="#000000"
 						backcolor="#FFFFFF"
 						key="staticText"
-						positionType="Float"/>
+						positionType="Float"
+						isRemoveLineWhenBlank="true"/>
 					<box>					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<bottomPen lineWidth="0.0" lineColor="#000000"/>
@@ -273,7 +274,10 @@ WHERE servidor.`serv_cod` = $P{COD_SERV}]]></queryString>
 						forecolor="#000000"
 						backcolor="#FFFFFF"
 						key="staticText"
-						positionType="Float"/>
+						positionType="Float"
+						isRemoveLineWhenBlank="true">
+							<printWhenExpression><![CDATA[new Boolean($F{estado_est_uf_tit} != null)]]></printWhenExpression>
+						</reportElement>
 					<box>					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<bottomPen lineWidth="0.0" lineColor="#000000"/>
@@ -312,7 +316,8 @@ WHERE servidor.`serv_cod` = $P{COD_SERV}]]></queryString>
 						forecolor="#000000"
 						backcolor="#FFFFFF"
 						key="staticText"
-						positionType="Float"/>
+						positionType="Float"
+						isRemoveLineWhenBlank="true"/>
 					<box>					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<bottomPen lineWidth="0.0" lineColor="#000000"/>
@@ -468,7 +473,9 @@ WHERE servidor.`serv_cod` = $P{COD_SERV}]]></queryString>
 						forecolor="#000000"
 						backcolor="#FFFFFF"
 						key="staticText"
-						positionType="Float"/>
+						positionType="Float">
+							<printWhenExpression><![CDATA[new Boolean($F{documento_doc_rg} != null)]]></printWhenExpression>
+						</reportElement>
 					<box>					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<bottomPen lineWidth="0.0" lineColor="#000000"/>
@@ -585,7 +592,8 @@ WHERE servidor.`serv_cod` = $P{COD_SERV}]]></queryString>
 						forecolor="#000000"
 						backcolor="#FFFFFF"
 						key="staticText"
-						positionType="Float"/>
+						positionType="Float"
+						isRemoveLineWhenBlank="true"/>
 					<box>					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<bottomPen lineWidth="0.0" lineColor="#000000"/>
@@ -613,7 +621,8 @@ WHERE servidor.`serv_cod` = $P{COD_SERV}]]></queryString>
 					<textElement>
 						<font size="10"/>
 					</textElement>
-				<textFieldExpression   class="java.util.Date"><![CDATA[$F{documento_doc_tit_data_emi}]]></textFieldExpression>
+				<textFieldExpression   class="java.util.Date"><![CDATA[$F{documento_doc_tit_data_emi}
+]]></textFieldExpression>
 				</textField>
 				<staticText>
 					<reportElement
@@ -666,7 +675,8 @@ WHERE servidor.`serv_cod` = $P{COD_SERV}]]></queryString>
 						forecolor="#000000"
 						backcolor="#FFFFFF"
 						key="staticText"
-						positionType="Float"/>
+						positionType="Float"
+						isRemoveLineWhenBlank="true"/>
 					<box>					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<bottomPen lineWidth="0.0" lineColor="#000000"/>

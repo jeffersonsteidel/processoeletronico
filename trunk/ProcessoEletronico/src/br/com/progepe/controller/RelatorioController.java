@@ -5,6 +5,7 @@ import java.io.Serializable;
 import java.sql.SQLException;
 import java.util.HashMap;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 
 import net.sf.jasperreports.engine.JRException;
@@ -67,6 +68,12 @@ public class RelatorioController implements Serializable {
 	public String gerarRelatorioServidorGeral() throws ClassNotFoundException,
 			SQLException, JRException {
 		servidor = (Servidor) ServidorDAO.getInstance().refreshBySiape(servidor);
+		if(servidor == null){
+			FacesMessage message = new FacesMessage(
+					FacesMessage.SEVERITY_ERROR, "Siape inválido!",
+					"Siape inválido!");
+			FacesContext.getCurrentInstance().addMessage("", message);
+		}else{
 		JasperMB jasperMB = new JasperMB();
 		jasperMB.criaConexao();
 		HashMap parametros = new HashMap();
@@ -85,5 +92,9 @@ public class RelatorioController implements Serializable {
 		String nomeDoJasper = "/WEB-INF/jasper/historicoServidor.jasper";
 		jasperMB.geraRelatorioPassandoResultSet(parametros,nomeDoJasper);
 		return "";
+		}
+		servidor = new Servidor();
+		return null;
 	}
+	
 }
