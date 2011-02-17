@@ -41,6 +41,18 @@ public class RelatorioController implements Serializable {
 	}
 	
 	@SuppressWarnings({"rawtypes", "unchecked"})
+	public String abrirRelatorioPermissaoUsuario() throws ClassNotFoundException,
+			SQLException, JRException {
+		JasperMB jasperMB = new JasperMB();
+		jasperMB.criaConexao();
+		HashMap parametros = new HashMap();
+		parametros.put("BANNER", jasperMB.getDiretorioReal("/images/banner_topo.gif"));
+		String nomeDoJasper = "/WEB-INF/jasper/relatorioPermissoesUsuario.jasper";
+		jasperMB.geraRelatorioPassandoResultSet(parametros,nomeDoJasper);
+		return "";
+	}
+	
+	@SuppressWarnings({"rawtypes", "unchecked"})
 	public String gerarRelatorioServidorCargoLotacao() throws ClassNotFoundException,
 			SQLException, JRException {
 		JasperMB jasperMB = new JasperMB();
