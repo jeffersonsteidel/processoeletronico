@@ -24,7 +24,8 @@
 			</h:panelGrid>
 
 			<h:panelGrid columns="2">
-				<h:commandButton value="Gerar Relatório" action="#{relatorioController.gerarRelatorioServidorGeral}"/>
+				<h:commandButton value="Gerar Relatório"
+				 action="#{relatorioController.gerarRelatorioServidorGeral}"/>
 			</h:panelGrid>
 
 		</rich:panel>

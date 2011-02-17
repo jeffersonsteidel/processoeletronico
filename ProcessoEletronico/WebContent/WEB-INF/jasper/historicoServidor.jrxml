@@ -234,7 +234,7 @@ WHERE  servidor.`serv_cod` = $P{COD_SERV}]]></queryString>
 					<subreportExpression  class="java.lang.String"><![CDATA[$P{SUB_FUNCAO}]]></subreportExpression>
 				</subreport>
 				</elementGroup><!-- End 1 !-->
-				<image  evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+				<image  hAlign="Center" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
 						x="0"
 						y="17"

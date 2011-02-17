@@ -77,8 +77,8 @@ WHERE
 			</band>
 		</columnHeader>
 		<detail>
-			<band height="158"  isSplitAllowed="true" >
-				<textField isStretchWithOverflow="false" pattern="dd/MM/yyyy" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+			<band height="162"  isSplitAllowed="true" >
+				<textField isStretchWithOverflow="false" pattern="dd/MM/yyyy" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
 						x="389"
 						y="45"
@@ -117,7 +117,7 @@ WHERE
 					</textElement>
 				<text><![CDATA[Data Admissão IFPR: ]]></text>
 				</staticText>
-				<textField isStretchWithOverflow="false" pattern="" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+				<textField isStretchWithOverflow="false" pattern="" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
 						x="58"
 						y="78"
@@ -156,7 +156,7 @@ WHERE
 					</textElement>
 				<text><![CDATA[Cargo:]]></text>
 				</staticText>
-				<textField isStretchWithOverflow="false" pattern="dd/MM/yyyy" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+				<textField isStretchWithOverflow="false" pattern="dd/MM/yyyy" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
 						x="185"
 						y="129"
@@ -195,7 +195,7 @@ WHERE
 					</textElement>
 				<text><![CDATA[Data Admissão Servidor Público:]]></text>
 				</staticText>
-				<textField isStretchWithOverflow="false" pattern="" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+				<textField isStretchWithOverflow="false" pattern="" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
 						x="118"
 						y="112"
@@ -234,7 +234,7 @@ WHERE
 					</textElement>
 				<text><![CDATA[Situação Funcional:]]></text>
 				</staticText>
-				<textField isStretchWithOverflow="false" pattern="" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+				<textField isStretchWithOverflow="false" pattern="" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
 						x="58"
 						y="95"
@@ -251,7 +251,8 @@ WHERE
 					<textElement>
 						<font size="10"/>
 					</textElement>
-				<textFieldExpression   class="java.lang.Integer"><![CDATA[$F{padrao_pad_nivel}]]></textFieldExpression>
+				<textFieldExpression   class="java.lang.Integer"><![CDATA[$F{padrao_pad_nivel}
+]]></textFieldExpression>
 				</textField>
 				<staticText>
 					<reportElement
@@ -273,7 +274,7 @@ WHERE
 					</textElement>
 				<text><![CDATA[Padrão:]]></text>
 				</staticText>
-				<textField isStretchWithOverflow="false" pattern="" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+				<textField isStretchWithOverflow="false" pattern="" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
 						x="64"
 						y="61"
@@ -312,10 +313,10 @@ WHERE
 					</textElement>
 				<text><![CDATA[Lotação:]]></text>
 				</staticText>
-				<textField isStretchWithOverflow="false" pattern="" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+				<textField isStretchWithOverflow="false" pattern="" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
-						x="331"
-						y="95"
+						x="326"
+						y="129"
 						width="190"
 						height="17"
 						forecolor="#000000"
@@ -334,15 +335,15 @@ WHERE
 				<staticText>
 					<reportElement
 						x="281"
-						y="95"
-						width="50"
+						y="129"
+						width="45"
 						height="17"
 						forecolor="#000000"
 						backcolor="#FFFFFF"
 						key="staticText"
 						positionType="Float"
 						isRemoveLineWhenBlank="true">
-							<printWhenExpression><![CDATA[new Boolean($F{servidor_serv_id_unica} != null)]]></printWhenExpression>
+							<printWhenExpression><![CDATA[new Boolean(!$F{servidor_serv_id_unica}.trim().equals(""))]]></printWhenExpression>
 						</reportElement>
 					<box>					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -357,7 +358,7 @@ WHERE
 				<textField isStretchWithOverflow="false" pattern="" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
 						x="371"
-						y="129"
+						y="112"
 						width="150"
 						height="17"
 						forecolor="#000000"
@@ -376,7 +377,7 @@ WHERE
 				<staticText>
 					<reportElement
 						x="281"
-						y="129"
+						y="112"
 						width="90"
 						height="17"
 						forecolor="#000000"
@@ -396,10 +397,10 @@ WHERE
 					</textElement>
 				<text><![CDATA[Data Saida Orgão:]]></text>
 				</staticText>
-				<textField isStretchWithOverflow="false" pattern="" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+				<textField isStretchWithOverflow="false" pattern="" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
 						x="384"
-						y="112"
+						y="95"
 						width="137"
 						height="17"
 						forecolor="#000000"
@@ -418,7 +419,7 @@ WHERE
 				<staticText>
 					<reportElement
 						x="281"
-						y="112"
+						y="95"
 						width="103"
 						height="17"
 						forecolor="#000000"
@@ -435,7 +436,7 @@ WHERE
 					</textElement>
 				<text><![CDATA[Regime de Trabalho:]]></text>
 				</staticText>
-				<textField isStretchWithOverflow="false" pattern="" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+				<textField isStretchWithOverflow="false" pattern="" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
 						x="323"
 						y="78"
@@ -494,7 +495,7 @@ WHERE
 					</textElement>
 				<text><![CDATA[Ramal:]]></text>
 				</staticText>
-				<textField isStretchWithOverflow="false" pattern="" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+				<textField isStretchWithOverflow="false" pattern="" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
 						x="318"
 						y="63"
@@ -513,7 +514,7 @@ WHERE
 					</textElement>
 				<textFieldExpression   class="java.lang.Integer"><![CDATA[$F{servidor_serv_ramal}]]></textFieldExpression>
 				</textField>
-				<textField isStretchWithOverflow="false" pattern="" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+				<textField isStretchWithOverflow="false" pattern="" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
 						x="55"
 						y="45"
