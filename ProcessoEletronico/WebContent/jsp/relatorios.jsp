@@ -28,6 +28,10 @@
 				<h:graphicImage value="../images/icopdf.gif" />
 				<h:commandLink value="RELATÓRIO GERAL SERVIDOR"
 					action="#{relatorioController.abrirRelatorioGeral}" />
+
+				<h:graphicImage value="../images/icopdf.gif" />
+				<h:commandLink value="RELATÓRIO PERMISSÃO USUÁRIO"
+					action="#{relatorioController.abrirRelatorioPermissaoUsuario}" />
 			</h:panelGrid>
 		</h:form>
 	</rich:panel>

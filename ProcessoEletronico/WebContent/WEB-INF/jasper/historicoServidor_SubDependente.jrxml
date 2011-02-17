@@ -64,25 +64,23 @@ WHERE
 	<field name="estado_est_uf" class="java.lang.String"/>
 
 		<background>
-			<band height="37"  isSplitAllowed="true" >
+			<band height="31"  isSplitAllowed="true" >
 				<line direction="BottomUp">
 					<reportElement
 						x="14"
-						y="34"
+						y="30"
 						width="497"
 						height="0"
-						key="line-1"
-						positionType="Float"/>
+						key="line-1"/>
 					<graphicElement stretchType="NoStretch"/>
 				</line>
 				<staticText>
 					<reportElement
 						x="18"
-						y="17"
+						y="14"
 						width="106"
 						height="17"
-						key="staticText-4"
-						positionType="Float"/>
+						key="staticText-4"/>
 					<box></box>
 					<textElement>
 						<font pdfFontName="Helvetica-Bold" size="12" isBold="true"/>
@@ -104,16 +102,17 @@ WHERE
 			</band>
 		</columnHeader>
 		<detail>
-			<band height="226"  isSplitAllowed="true" >
+			<band height="305"  isSplitAllowed="true" >
 				<textField isStretchWithOverflow="false" pattern="" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
 						x="124"
-						y="53"
+						y="47"
 						width="142"
 						height="17"
 						forecolor="#000000"
 						backcolor="#FFFFFF"
 						key="textField"
+						positionType="Float"
 						isRemoveLineWhenBlank="true"/>
 					<box>					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -128,13 +127,14 @@ WHERE
 				<staticText>
 					<reportElement
 						x="14"
-						y="53"
+						y="47"
 						width="110"
 						height="17"
 						forecolor="#000000"
 						backcolor="#FFFFFF"
 						key="staticText"
-						positionType="Float"/>
+						positionType="Float"
+						isRemoveLineWhenBlank="true"/>
 					<box>					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<bottomPen lineWidth="0.0" lineColor="#000000"/>
@@ -148,12 +148,13 @@ WHERE
 				<textField isStretchWithOverflow="false" pattern="dd/MM/yyyy" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
 						x="194"
-						y="70"
+						y="64"
 						width="72"
 						height="17"
 						forecolor="#000000"
 						backcolor="#FFFFFF"
 						key="textField"
+						positionType="Float"
 						isRemoveLineWhenBlank="true"/>
 					<box>					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -168,13 +169,14 @@ WHERE
 				<staticText>
 					<reportElement
 						x="14"
-						y="70"
+						y="64"
 						width="180"
 						height="17"
 						forecolor="#000000"
 						backcolor="#FFFFFF"
 						key="staticText"
-						positionType="Float"/>
+						positionType="Float"
+						isRemoveLineWhenBlank="true"/>
 					<box>					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<bottomPen lineWidth="0.0" lineColor="#000000"/>
@@ -188,12 +190,13 @@ WHERE
 				<textField isStretchWithOverflow="false" pattern="" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
 						x="109"
-						y="103"
+						y="97"
 						width="157"
 						height="17"
 						forecolor="#000000"
 						backcolor="#FFFFFF"
 						key="textField"
+						positionType="Float"
 						isRemoveLineWhenBlank="true"/>
 					<box>					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -208,13 +211,14 @@ WHERE
 				<staticText>
 					<reportElement
 						x="14"
-						y="103"
+						y="97"
 						width="95"
 						height="17"
 						forecolor="#000000"
 						backcolor="#FFFFFF"
 						key="staticText"
-						positionType="Float"/>
+						positionType="Float"
+						isRemoveLineWhenBlank="true"/>
 					<box>					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<bottomPen lineWidth="0.0" lineColor="#000000"/>
@@ -228,12 +232,13 @@ WHERE
 				<textField isStretchWithOverflow="false" pattern="" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
 						x="124"
-						y="120"
+						y="199"
 						width="142"
 						height="17"
 						forecolor="#000000"
 						backcolor="#FFFFFF"
 						key="textField"
+						positionType="Float"
 						isRemoveLineWhenBlank="true"/>
 					<box>					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -248,13 +253,14 @@ WHERE
 				<staticText>
 					<reportElement
 						x="14"
-						y="120"
+						y="199"
 						width="110"
 						height="17"
 						forecolor="#000000"
 						backcolor="#FFFFFF"
 						key="staticText"
-						positionType="Float"/>
+						positionType="Float"
+						isRemoveLineWhenBlank="true"/>
 					<box>					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<bottomPen lineWidth="0.0" lineColor="#000000"/>
@@ -268,12 +274,13 @@ WHERE
 				<textField isStretchWithOverflow="false" pattern="" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
 						x="102"
-						y="87"
+						y="81"
 						width="164"
 						height="16"
 						forecolor="#000000"
 						backcolor="#FFFFFF"
 						key="textField"
+						positionType="Float"
 						isRemoveLineWhenBlank="true"/>
 					<box>					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -288,13 +295,14 @@ WHERE
 				<staticText>
 					<reportElement
 						x="14"
-						y="86"
+						y="80"
 						width="88"
 						height="17"
 						forecolor="#000000"
 						backcolor="#FFFFFF"
 						key="staticText"
-						positionType="Float"/>
+						positionType="Float"
+						isRemoveLineWhenBlank="true"/>
 					<box>					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<bottomPen lineWidth="0.0" lineColor="#000000"/>
@@ -308,12 +316,13 @@ WHERE
 				<textField isStretchWithOverflow="false" pattern="" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
 						x="154"
-						y="171"
+						y="250"
 						width="357"
 						height="17"
 						forecolor="#000000"
 						backcolor="#FFFFFF"
 						key="textField"
+						positionType="Float"
 						isRemoveLineWhenBlank="true"/>
 					<box>					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -328,13 +337,14 @@ WHERE
 				<staticText>
 					<reportElement
 						x="14"
-						y="171"
+						y="250"
 						width="140"
 						height="17"
 						forecolor="#000000"
 						backcolor="#FFFFFF"
 						key="staticText"
-						positionType="Float">
+						positionType="Float"
+						isRemoveLineWhenBlank="true">
 							<printWhenExpression><![CDATA[new Boolean(!$F{dependente_dep_faculdade}.trim().equals(""))]]></printWhenExpression>
 						</reportElement>
 					<box>					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -350,12 +360,13 @@ WHERE
 				<textField isStretchWithOverflow="false" pattern="" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
 						x="131"
-						y="205"
+						y="284"
 						width="135"
 						height="17"
 						forecolor="#000000"
 						backcolor="#FFFFFF"
 						key="textField"
+						positionType="Float"
 						isRemoveLineWhenBlank="true"/>
 					<box>					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -370,13 +381,14 @@ WHERE
 				<staticText>
 					<reportElement
 						x="14"
-						y="205"
+						y="284"
 						width="117"
 						height="17"
 						forecolor="#000000"
 						backcolor="#FFFFFF"
 						key="staticText"
-						positionType="Float">
+						positionType="Float"
+						isRemoveLineWhenBlank="true">
 							<printWhenExpression><![CDATA[new Boolean($F{dependente_dep_data_fechamento} != null)]]></printWhenExpression>
 						</reportElement>
 					<box>					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -391,13 +403,14 @@ WHERE
 				</staticText>
 				<textField isStretchWithOverflow="false" pattern="" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
-						x="385"
-						y="53"
+						x="121"
+						y="114"
 						width="126"
 						height="17"
 						forecolor="#000000"
 						backcolor="#FFFFFF"
 						key="textField"
+						positionType="Float"
 						isRemoveLineWhenBlank="true"/>
 					<box>					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -411,14 +424,15 @@ WHERE
 				</textField>
 				<staticText>
 					<reportElement
-						x="278"
-						y="53"
+						x="14"
+						y="114"
 						width="107"
 						height="17"
 						forecolor="#000000"
 						backcolor="#FFFFFF"
 						key="staticText"
-						positionType="Float"/>
+						positionType="Float"
+						isRemoveLineWhenBlank="true"/>
 					<box>					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<bottomPen lineWidth="0.0" lineColor="#000000"/>
@@ -431,13 +445,14 @@ WHERE
 				</staticText>
 				<textField isStretchWithOverflow="false" pattern="" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
-						x="379"
-						y="70"
+						x="115"
+						y="131"
 						width="132"
 						height="17"
 						forecolor="#000000"
 						backcolor="#FFFFFF"
 						key="textField"
+						positionType="Float"
 						isRemoveLineWhenBlank="true"/>
 					<box>					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -451,14 +466,15 @@ WHERE
 				</textField>
 				<staticText>
 					<reportElement
-						x="278"
-						y="70"
+						x="14"
+						y="131"
 						width="101"
 						height="17"
 						forecolor="#000000"
 						backcolor="#FFFFFF"
 						key="staticText"
-						positionType="Float"/>
+						positionType="Float"
+						isRemoveLineWhenBlank="true"/>
 					<box>					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<bottomPen lineWidth="0.0" lineColor="#000000"/>
@@ -472,12 +488,13 @@ WHERE
 				<textField isStretchWithOverflow="false" pattern="" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
 						x="140"
-						y="137"
-						width="107"
+						y="216"
+						width="126"
 						height="17"
 						forecolor="#000000"
 						backcolor="#FFFFFF"
 						key="textField"
+						positionType="Float"
 						isRemoveLineWhenBlank="true"/>
 					<box>					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -492,13 +509,14 @@ WHERE
 				<staticText>
 					<reportElement
 						x="14"
-						y="137"
+						y="216"
 						width="126"
 						height="17"
 						forecolor="#000000"
 						backcolor="#FFFFFF"
 						key="staticText"
-						positionType="Float">
+						positionType="Float"
+						isRemoveLineWhenBlank="true">
 							<printWhenExpression><![CDATA[new Boolean(!$F{estado_est_uf}.trim().equals(""))]]></printWhenExpression>
 						</reportElement>
 					<box>					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -514,12 +532,13 @@ WHERE
 				<textField isStretchWithOverflow="false" pattern="dd/MM/yyyy" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
 						x="143"
-						y="154"
-						width="104"
+						y="233"
+						width="123"
 						height="17"
 						forecolor="#000000"
 						backcolor="#FFFFFF"
 						key="textField"
+						positionType="Float"
 						isRemoveLineWhenBlank="true"/>
 					<box>					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -534,13 +553,14 @@ WHERE
 				<staticText>
 					<reportElement
 						x="14"
-						y="154"
+						y="233"
 						width="129"
 						height="17"
 						forecolor="#000000"
 						backcolor="#FFFFFF"
 						key="staticText"
-						positionType="Float">
+						positionType="Float"
+						isRemoveLineWhenBlank="true">
 							<printWhenExpression><![CDATA[new Boolean($F{dependente_dep_rg_data_exp} != null)]]></printWhenExpression>
 						</reportElement>
 					<box>					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -556,12 +576,13 @@ WHERE
 				<textField isStretchWithOverflow="false" pattern="" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
 						x="49"
-						y="188"
+						y="267"
 						width="217"
 						height="17"
 						forecolor="#000000"
 						backcolor="#FFFFFF"
 						key="textField"
+						positionType="Float"
 						isRemoveLineWhenBlank="true"/>
 					<box>					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -576,13 +597,14 @@ WHERE
 				<staticText>
 					<reportElement
 						x="14"
-						y="188"
+						y="267"
 						width="35"
 						height="17"
 						forecolor="#000000"
 						backcolor="#FFFFFF"
 						key="staticText"
-						positionType="Float">
+						positionType="Float"
+						isRemoveLineWhenBlank="true">
 							<printWhenExpression><![CDATA[new Boolean(!$F{dependente_dep_curso}.trim().equals(""))]]></printWhenExpression>
 						</reportElement>
 					<box>					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -597,13 +619,14 @@ WHERE
 				</staticText>
 				<textField isStretchWithOverflow="false" pattern="" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
-						x="407"
-						y="87"
+						x="143"
+						y="148"
 						width="104"
 						height="17"
 						forecolor="#000000"
 						backcolor="#FFFFFF"
 						key="textField-1"
+						positionType="Float"
 						isRemoveLineWhenBlank="true"/>
 					<box>					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -617,14 +640,15 @@ WHERE
 				</textField>
 				<staticText>
 					<reportElement
-						x="278"
-						y="87"
+						x="14"
+						y="148"
 						width="129"
 						height="17"
 						forecolor="#000000"
 						backcolor="#FFFFFF"
 						key="staticText-1"
-						positionType="Float"/>
+						positionType="Float"
+						isRemoveLineWhenBlank="true"/>
 					<box>					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<bottomPen lineWidth="0.0" lineColor="#000000"/>
@@ -637,14 +661,15 @@ WHERE
 				</staticText>
 				<staticText>
 					<reportElement
-						x="278"
-						y="104"
+						x="14"
+						y="165"
 						width="91"
 						height="17"
 						forecolor="#000000"
 						backcolor="#FFFFFF"
 						key="staticText-2"
-						positionType="Float"/>
+						positionType="Float"
+						isRemoveLineWhenBlank="true"/>
 					<box>					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<bottomPen lineWidth="0.0" lineColor="#000000"/>
@@ -657,14 +682,15 @@ WHERE
 				</staticText>
 				<staticText>
 					<reportElement
-						x="278"
-						y="121"
+						x="14"
+						y="182"
 						width="121"
 						height="17"
 						forecolor="#000000"
 						backcolor="#FFFFFF"
 						key="staticText-3"
-						positionType="Float"/>
+						positionType="Float"
+						isRemoveLineWhenBlank="true"/>
 					<box>					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<bottomPen lineWidth="0.0" lineColor="#000000"/>
@@ -677,13 +703,14 @@ WHERE
 				</staticText>
 				<textField isStretchWithOverflow="false" pattern="" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
-						x="369"
-						y="104"
+						x="105"
+						y="165"
 						width="142"
 						height="17"
 						forecolor="#000000"
 						backcolor="#FFFFFF"
 						key="textField-2"
+						positionType="Float"
 						isRemoveLineWhenBlank="true"/>
 					<box>					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -697,13 +724,14 @@ WHERE
 				</textField>
 				<textField isStretchWithOverflow="false" pattern="" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
-						x="399"
-						y="121"
+						x="135"
+						y="182"
 						width="112"
 						height="17"
 						forecolor="#000000"
 						backcolor="#FFFFFF"
 						key="textField-3"
+						positionType="Float"
 						isRemoveLineWhenBlank="true"/>
 					<box>					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
