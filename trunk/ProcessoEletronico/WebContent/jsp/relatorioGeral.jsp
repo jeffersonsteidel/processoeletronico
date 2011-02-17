@@ -13,19 +13,29 @@
 	<jsp:directive.include file="menus.jsp" />
 	<center><a4j:form id="form">
 		<rich:panel>
+			<rich:messages layout="list" errorLabelClass="errorLabel"
+				style="top:auto;" infoLabelClass="infoLabel">
+				<f:facet name="infoMarker">
+					<h:graphicImage value="../images/passed.gif" />
+				</f:facet>
+				<f:facet name="errorMarker">
+					<h:graphicImage value="../images/error.gif" />
+				</f:facet>
+			</rich:messages>
 			<font size="2"><b>GERAR RELATÓRIO</b></font>
 
 			<h:panelGrid columns="4">
 				<center><h:outputText value="SIAPE: " /> <h:inputText
-					value="#{relatorioController.servidor.siape}" size="10" maxlength="7"
-					required="true" onkeypress="mascara(this, soNumeros);"
+					value="#{relatorioController.servidor.siape}" size="10"
+					maxlength="7" required="true"
+					onkeypress="mascara(this, soNumeros);"
 					requiredMessage="Campo Siape é obrigatório!">
 				</h:inputText></center>
 			</h:panelGrid>
 
 			<h:panelGrid columns="2">
 				<h:commandButton value="Gerar Relatório"
-				 action="#{relatorioController.gerarRelatorioServidorGeral}"/>
+					action="#{relatorioController.gerarRelatorioServidorGeral}" />
 			</h:panelGrid>
 
 		</rich:panel>
