@@ -115,13 +115,13 @@ FROM
 					<textElement>
 						<font pdfFontName="Helvetica-Bold" size="10" isBold="true"/>
 					</textElement>
-				<text><![CDATA[Siape]]></text>
+				<text><![CDATA[SIAPE]]></text>
 				</staticText>
 				<staticText>
 					<reportElement
 						x="43"
 						y="160"
-						width="198"
+						width="151"
 						height="17"
 						forecolor="#000000"
 						backcolor="#FFFFFF"
@@ -135,13 +135,13 @@ FROM
 					<textElement>
 						<font pdfFontName="Helvetica-Bold" size="10" isBold="true"/>
 					</textElement>
-				<text><![CDATA[Nome]]></text>
+				<text><![CDATA[NOME]]></text>
 				</staticText>
 				<staticText>
 					<reportElement
-						x="291"
+						x="254"
 						y="160"
-						width="76"
+						width="88"
 						height="17"
 						forecolor="#000000"
 						backcolor="#FFFFFF"
@@ -155,13 +155,13 @@ FROM
 					<textElement>
 						<font pdfFontName="Helvetica-Bold" size="10" isBold="true"/>
 					</textElement>
-				<text><![CDATA[Administrador]]></text>
+				<text><![CDATA[ADMINISTRADOR]]></text>
 				</staticText>
 				<staticText>
 					<reportElement
-						x="372"
+						x="345"
 						y="160"
-						width="41"
+						width="50"
 						height="17"
 						forecolor="#000000"
 						backcolor="#FFFFFF"
@@ -175,13 +175,13 @@ FROM
 					<textElement>
 						<font pdfFontName="Helvetica-Bold" size="10" isBold="true"/>
 					</textElement>
-				<text><![CDATA[Diretor]]></text>
+				<text><![CDATA[DIRETOR]]></text>
 				</staticText>
 				<staticText>
 					<reportElement
-						x="468"
+						x="451"
 						y="160"
-						width="66"
+						width="83"
 						height="17"
 						forecolor="#000000"
 						backcolor="#FFFFFF"
@@ -195,13 +195,13 @@ FROM
 					<textElement>
 						<font pdfFontName="Helvetica-Bold" size="10" isBold="true"/>
 					</textElement>
-				<text><![CDATA[Secretariado]]></text>
+				<text><![CDATA[SECRETÁRIA(O)]]></text>
 				</staticText>
 				<staticText>
 					<reportElement
-						x="418"
+						x="398"
 						y="160"
-						width="46"
+						width="50"
 						height="17"
 						forecolor="#000000"
 						backcolor="#FFFFFF"
@@ -215,7 +215,7 @@ FROM
 					<textElement>
 						<font pdfFontName="Helvetica-Bold" size="10" isBold="true"/>
 					</textElement>
-				<text><![CDATA[Gerente]]></text>
+				<text><![CDATA[GERENTE]]></text>
 				</staticText>
 				<image  evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
@@ -230,9 +230,9 @@ FROM
 				</image>
 				<staticText>
 					<reportElement
-						x="248"
+						x="199"
 						y="160"
-						width="41"
+						width="53"
 						height="17"
 						forecolor="#000000"
 						backcolor="#FFFFFF"
@@ -246,7 +246,7 @@ FROM
 					<textElement>
 						<font pdfFontName="Helvetica-Bold" size="10" isBold="true"/>
 					</textElement>
-				<text><![CDATA[Usuário]]></text>
+				<text><![CDATA[USUÁRIO]]></text>
 				</staticText>
 			</band>
 		</pageHeader>
@@ -280,7 +280,7 @@ FROM
 					<reportElement
 						x="43"
 						y="3"
-						width="198"
+						width="151"
 						height="17"
 						forecolor="#000000"
 						backcolor="#FFFFFF"
@@ -298,9 +298,9 @@ FROM
 				</textField>
 				<textField isStretchWithOverflow="false" pattern="" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
-						x="308"
+						x="283"
 						y="3"
-						width="55"
+						width="48"
 						height="17"
 						forecolor="#000000"
 						backcolor="#FFFFFF"
@@ -318,7 +318,7 @@ FROM
 				</textField>
 				<textField isStretchWithOverflow="false" pattern="" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
-						x="378"
+						x="355"
 						y="3"
 						width="29"
 						height="17"
@@ -338,7 +338,7 @@ FROM
 				</textField>
 				<textField isStretchWithOverflow="false" pattern="" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
-						x="485"
+						x="475"
 						y="3"
 						width="45"
 						height="17"
@@ -358,7 +358,7 @@ FROM
 				</textField>
 				<textField isStretchWithOverflow="false" pattern="" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
-						x="427"
+						x="415"
 						y="3"
 						width="31"
 						height="17"
@@ -378,7 +378,7 @@ FROM
 				</textField>
 				<textField isStretchWithOverflow="false" pattern="" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
-						x="259"
+						x="211"
 						y="3"
 						width="30"
 						height="17"
