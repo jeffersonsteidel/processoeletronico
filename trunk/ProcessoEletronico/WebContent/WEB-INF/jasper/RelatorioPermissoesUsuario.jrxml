@@ -121,7 +121,7 @@ FROM
 					<reportElement
 						x="43"
 						y="160"
-						width="221"
+						width="198"
 						height="17"
 						forecolor="#000000"
 						backcolor="#FFFFFF"
@@ -139,7 +139,7 @@ FROM
 				</staticText>
 				<staticText>
 					<reportElement
-						x="273"
+						x="291"
 						y="160"
 						width="76"
 						height="17"
@@ -159,7 +159,7 @@ FROM
 				</staticText>
 				<staticText>
 					<reportElement
-						x="358"
+						x="372"
 						y="160"
 						width="41"
 						height="17"
@@ -179,7 +179,7 @@ FROM
 				</staticText>
 				<staticText>
 					<reportElement
-						x="410"
+						x="468"
 						y="160"
 						width="66"
 						height="17"
@@ -199,7 +199,7 @@ FROM
 				</staticText>
 				<staticText>
 					<reportElement
-						x="482"
+						x="418"
 						y="160"
 						width="46"
 						height="17"
@@ -228,6 +228,26 @@ FROM
 					<graphicElement stretchType="NoStretch"/>
 					<imageExpression class="java.lang.String"><![CDATA[$P{BANNER}]]></imageExpression>
 				</image>
+				<staticText>
+					<reportElement
+						x="248"
+						y="160"
+						width="41"
+						height="17"
+						forecolor="#000000"
+						backcolor="#FFFFFF"
+						key="staticText-1"
+						positionType="Float"/>
+					<box>					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+</box>
+					<textElement>
+						<font pdfFontName="Helvetica-Bold" size="10" isBold="true"/>
+					</textElement>
+				<text><![CDATA[Usuário]]></text>
+				</staticText>
 			</band>
 		</pageHeader>
 		<columnHeader>
@@ -260,7 +280,7 @@ FROM
 					<reportElement
 						x="43"
 						y="3"
-						width="221"
+						width="198"
 						height="17"
 						forecolor="#000000"
 						backcolor="#FFFFFF"
@@ -278,9 +298,9 @@ FROM
 				</textField>
 				<textField isStretchWithOverflow="false" pattern="" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
-						x="273"
+						x="308"
 						y="3"
-						width="76"
+						width="55"
 						height="17"
 						forecolor="#000000"
 						backcolor="#FFFFFF"
@@ -298,9 +318,9 @@ FROM
 				</textField>
 				<textField isStretchWithOverflow="false" pattern="" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
-						x="358"
+						x="378"
 						y="3"
-						width="41"
+						width="29"
 						height="17"
 						forecolor="#000000"
 						backcolor="#FFFFFF"
@@ -318,9 +338,9 @@ FROM
 				</textField>
 				<textField isStretchWithOverflow="false" pattern="" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
-						x="410"
+						x="485"
 						y="3"
-						width="66"
+						width="45"
 						height="17"
 						forecolor="#000000"
 						backcolor="#FFFFFF"
@@ -338,9 +358,9 @@ FROM
 				</textField>
 				<textField isStretchWithOverflow="false" pattern="" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
-						x="482"
+						x="427"
 						y="3"
-						width="46"
+						width="31"
 						height="17"
 						forecolor="#000000"
 						backcolor="#FFFFFF"
@@ -355,6 +375,26 @@ FROM
 						<font size="10"/>
 					</textElement>
 				<textFieldExpression   class="java.lang.String"><![CDATA[($F{autenticacao_aut_ind_gerente}.equals("0") ? "NÃO" : "SIM")]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" pattern="" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="259"
+						y="3"
+						width="30"
+						height="17"
+						forecolor="#000000"
+						backcolor="#FFFFFF"
+						key="textField-1"
+						positionType="Float"/>
+					<box>					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+</box>
+					<textElement>
+						<font size="10"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[($F{autenticacao_aut_ind_diretor}.equals("0") ? "SIM" : "SIM")]]></textFieldExpression>
 				</textField>
 			</band>
 		</detail>
