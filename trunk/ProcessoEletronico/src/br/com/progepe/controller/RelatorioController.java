@@ -155,12 +155,39 @@ public class RelatorioController implements Serializable {
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public String gerarRelatorioServidorCargoLotacaoByFiltro()
 			throws ClassNotFoundException, SQLException, JRException {
+		
+		@SuppressWarnings("unused")
+		String sql = new String();
+		
+		if(cargo != 0){
+		sql = "SELECT servidor.serv_siape AS servidor_serv_siape, servidor.serv_nome AS servidor_serv_nome," +
+				" lotacao.lot_desc AS lotacao_lot_desc, cargo.carg_desc AS cargo_carg_desc, servidor.`serv_data_saida` AS servidor_serv_data_saida" +
+				" FROM lotacao INNER JOIN servidor ON lotacao.lot_cod = servidor.lot_cod INNER JOIN cargo ON servidor.carg_cod = cargo.carg_cod" +
+				" WHERE cargo.carg_cod = 1 order by servidor.serv_siape";
+		}
+		if(lotacao != null	){
+			sql = "SELECT servidor.serv_siape AS servidor_serv_siape, servidor.serv_nome AS servidor_serv_nome," +
+			" lotacao.lot_desc AS lotacao_lot_desc, cargo.carg_desc AS cargo_carg_desc, servidor.`serv_data_saida` AS servidor_serv_data_saida" +
+			" FROM lotacao INNER JOIN servidor ON lotacao.lot_cod = servidor.lot_cod INNER JOIN cargo ON servidor.carg_cod = cargo.carg_cod" +
+			" WHERE lotacao.lot_cod = 12 order by servidor.serv_siape";
+		}
+		if(lotacao != 0 && cargo != 0){
+			sql = "SELECT servidor.serv_siape AS servidor_serv_siape, servidor.serv_nome AS servidor_serv_nome," +
+			" lotacao.lot_desc AS lotacao_lot_desc, cargo.carg_desc AS cargo_carg_desc, servidor.`serv_data_saida` AS servidor_serv_data_saida" +
+			" FROM lotacao INNER JOIN servidor ON lotacao.lot_cod = servidor.lot_cod INNER JOIN cargo ON servidor.carg_cod = cargo.carg_cod" +
+			" WHERE cargo.lot_cod = 1 and cargo.carg_cod = 1 order by servidor.serv_siape";
+		}
+		
+		if(situacao != null){
+	
+		}
+		
 		JasperMB jasperMB = new JasperMB();
 		jasperMB.criaConexao();
 		HashMap parametros = new HashMap();
-		parametros.put("BANNER",
-				jasperMB.getDiretorioReal("/images/banner_topo.gif"));
-		String nomeDoJasper = "/WEB-INF/jasper/relatorioServidorCargoLotacao.jasper";
+		parametros.put("BANNER",jasperMB.getDiretorioReal("/images/banner_topo.gif"));
+		parametros.put("SQL",jasperMB.getDiretorioReal(sql));
+		String nomeDoJasper = "/WEB-INF/jasper/relatorioServidorCargoLotacaoByFiltro.jasper";
 		jasperMB.geraRelatorioPassandoResultSet(parametros, nomeDoJasper);
 		return "";
 	}
@@ -171,8 +198,7 @@ public class RelatorioController implements Serializable {
 		JasperMB jasperMB = new JasperMB();
 		jasperMB.criaConexao();
 		HashMap parametros = new HashMap();
-		parametros.put("BANNER",
-				jasperMB.getDiretorioReal("/images/banner_topo.gif"));
+		parametros.put("BANNER",jasperMB.getDiretorioReal("/images/banner_topo.gif"));
 		String nomeDoJasper = "/WEB-INF/jasper/relatorioServidorContaBancaria.jasper";
 		jasperMB.geraRelatorioPassandoResultSet(parametros, nomeDoJasper);
 		return "";
