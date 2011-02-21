@@ -80,9 +80,12 @@
 			<h:panelGrid columns="2">
 				<h:outputText value="Justificativa: " />
 				<h:inputTextarea value="#{empregoController.emprego.justificativa}"
-					rows="5" cols="50"
-					disabled="#{empregoController.emprego.statusSolicitacao.codigo > 2}">
-				</h:inputTextarea>
+					rows="5" cols="50" 
+					disabled="#{empregoController.emprego.statusSolicitacao.codigo > 2}"
+					validatorMessage="A Justificativa deve ter no máximo 250 caracteres!"
+						requiredMessage="Campo Justificativa é obrigatório!">
+						<f:validateLength maximum="250"></f:validateLength>
+					</h:inputTextarea>
 			</h:panelGrid> <h:panelGrid columns="2" id="botoes">
 				<a4j:commandButton value="Deferir" reRender="confirmPanel"
 					disabled="#{empregoController.emprego.statusSolicitacao.codigo != 2}"

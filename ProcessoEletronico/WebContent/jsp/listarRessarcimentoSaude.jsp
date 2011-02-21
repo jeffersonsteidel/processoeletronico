@@ -15,7 +15,7 @@
 	<jsp:directive.include file="menus.jsp" />
 	<center><a4j:form id="form">
 		<rich:panel>
-			
+
 			<font size="2"><b>LISTAR RESSARCIMENTO SAÚDE</b></font>
 			<h:panelGrid columns="13">
 				<h:outputText value="Siape do Servidor: ">
@@ -38,7 +38,7 @@
 					<f:selectItem itemLabel="SELECIONE" itemValue="" />
 					<f:selectItems value="#{ressarcimentoSaudeController.status}" />
 				</h:selectOneMenu>
-				
+
 				<h:outputText value="Situação do Ressarcimento: " />
 				<h:selectOneMenu value="#{ressarcimentoSaudeController.indAtual}">
 					<f:selectItem itemLabel="TODOS" itemValue="0" />
@@ -84,8 +84,7 @@
 					<h:outputText value="#{list.nomePlano}" />
 				</rich:column>
 
-			<rich:column width="240px"
-					sortBy="#{list.status.descricao}">
+				<rich:column width="240px" sortBy="#{list.status.descricao}">
 					<f:facet name="header">
 						<h:outputText value="Status" />
 					</f:facet>
@@ -96,8 +95,8 @@
 					<f:facet name="header">
 						<h:outputText value="Visualizar" />
 					</f:facet>
-					<a4j:commandLink rendered="#{list.status.codigo == 1}" 
-					action="#{ressarcimentoSaudeController.carregar}"
+					<a4j:commandLink rendered="#{list.status.codigo == 1}"
+						action="#{ressarcimentoSaudeController.carregar}"
 						reRender="editPanel,listaRessarcimento" ajaxSingle="true"
 						oncomplete="#{rich:component('editPanel')}.show()">
 						<h:graphicImage value="../images/encaminhado.png" style="border:0"
@@ -105,14 +104,13 @@
 						<f:setPropertyActionListener value="#{list.codigo}"
 							target="#{ressarcimentoSaudeController.ressarcimentoSaude.codigo}" />
 					</a4j:commandLink>
-					<a4j:commandLink rendered="#{list.status.codigo == 2}"
-						action="#"
+					<a4j:commandLink rendered="#{list.status.codigo == 2}" action="#"
 						ajaxSingle="true">
 						<h:graphicImage value="../images/analize.gif" style="border:0"
 							width="20" height="18" id="emAnalise" />
-						</a4j:commandLink>
-					<a4j:commandLink rendered="#{list.status.codigo == 3}" 
-					action="#{ressarcimentoSaudeController.carregar}"
+					</a4j:commandLink>
+					<a4j:commandLink rendered="#{list.status.codigo == 3}"
+						action="#{ressarcimentoSaudeController.carregar}"
 						reRender="editPanel" ajaxSingle="true"
 						oncomplete="#{rich:component('editPanel')}.show()">
 						<h:graphicImage value="../images/deferido.gif" style="border:0"
@@ -120,8 +118,8 @@
 						<f:setPropertyActionListener value="#{list.codigo}"
 							target="#{ressarcimentoSaudeController.ressarcimentoSaude.codigo}" />
 					</a4j:commandLink>
-					<a4j:commandLink rendered="#{list.status.codigo == 4}" 
-					action="#{ressarcimentoSaudeController.carregar}"
+					<a4j:commandLink rendered="#{list.status.codigo == 4}"
+						action="#{ressarcimentoSaudeController.carregar}"
 						reRender="editPanel" ajaxSingle="true"
 						oncomplete="#{rich:component('editPanel')}.show()">
 						<h:graphicImage value="../images/indeferido.gif" style="border:0"
@@ -130,12 +128,13 @@
 							target="#{ressarcimentoSaudeController.ressarcimentoSaude.codigo}" />
 					</a4j:commandLink>
 					<rich:toolTip for="encaminhado" value="Encaminhado" />
-					<rich:toolTip for="emAnalise" value="Você não pode abrir uma solicitação que está em Análise!" />
+					<rich:toolTip for="emAnalise"
+						value="Você não pode abrir uma solicitação que está em Análise!" />
 					<rich:toolTip for="deferido" value="Deferido" />
 					<rich:toolTip for="indeferido" value="Indeferido" />
 				</rich:column>
-				
-				
+
+
 				<f:facet name="footer">
 					<rich:datascroller id="ds"></rich:datascroller>
 				</f:facet>
@@ -160,24 +159,29 @@
 		</f:facet>
 		<h:form>
 			<center><h:panelGrid columns="2">
-					<h:outputText
-					value="Atual: " />
-				<h:outputText value="SIM" rendered="#{ressarcimentoSaudeController.ressarcimentoSaude.indAtual}" />
-				<h:outputText value="NÃO" rendered="#{!ressarcimentoSaudeController.ressarcimentoSaude.indAtual}" />
+				<h:outputText value="Atual: " />
+				<h:outputText value="SIM"
+					rendered="#{ressarcimentoSaudeController.ressarcimentoSaude.indAtual}" />
+				<h:outputText value="NÃO"
+					rendered="#{!ressarcimentoSaudeController.ressarcimentoSaude.indAtual}" />
+				<h:outputText value="Servidor: " />
 				<h:outputText
-					value="Servidor: " />
-				<h:outputText value="#{ressarcimentoSaudeController.ressarcimentoSaude.servidor.siape} - #{ressarcimentoSaudeController.ressarcimentoSaude.servidor.nome}" />
+					value="#{ressarcimentoSaudeController.ressarcimentoSaude.servidor.siape} - #{ressarcimentoSaudeController.ressarcimentoSaude.servidor.nome}" />
+				<h:outputText value="Tipo do Plano: " />
 				<h:outputText
-					value="Tipo do Plano: " />
-				<h:outputText value="#{ressarcimentoSaudeController.ressarcimentoSaude.tipoPlano.descricao}" />
-				<h:outputText rendered="#{ressarcimentoSaudeController.ressarcimentoSaude.nomePlano != null}" 
+					value="#{ressarcimentoSaudeController.ressarcimentoSaude.tipoPlano.descricao}" />
+				<h:outputText
+					rendered="#{ressarcimentoSaudeController.ressarcimentoSaude.nomePlano != null}"
 					value="Nome do Plano: " />
-				<h:outputText value="#{ressarcimentoSaudeController.ressarcimentoSaude.nomePlano}"
+				<h:outputText
+					value="#{ressarcimentoSaudeController.ressarcimentoSaude.nomePlano}"
 					rendered="#{ressarcimentoSaudeController.ressarcimentoSaude.nomePlano != null}" />
-				<h:outputText 	rendered="#{ressarcimentoSaudeController.ressarcimentoSaude.numeroContrato != null}"
+				<h:outputText
+					rendered="#{ressarcimentoSaudeController.ressarcimentoSaude.numeroContrato != null}"
 					value="Numero do Contrato: " />
-				<h:outputText value="#{ressarcimentoSaudeController.ressarcimentoSaude.numeroContrato}" 
-				rendered="#{ressarcimentoSaudeController.ressarcimentoSaude.numeroContrato != null}"/>
+				<h:outputText
+					value="#{ressarcimentoSaudeController.ressarcimentoSaude.numeroContrato}"
+					rendered="#{ressarcimentoSaudeController.ressarcimentoSaude.numeroContrato != null}" />
 				<h:outputText value="Data Adesão:" />
 				<h:outputText
 					value="#{ressarcimentoSaudeController.ressarcimentoSaude.dataAdesao.date}">
@@ -258,8 +262,7 @@
 						</rich:panel>
 					</rich:dataGrid>
 				</rich:panel>
-			</h:panelGroup>
-			<rich:messages layout="list" errorLabelClass="errorLabel"
+			</h:panelGroup> <rich:messages layout="list" errorLabelClass="errorLabel"
 				style="top:auto;" infoLabelClass="infoLabel">
 				<f:facet name="infoMarker">
 					<h:graphicImage value="../images/passed.gif" />
@@ -267,18 +270,23 @@
 				<f:facet name="errorMarker">
 					<h:graphicImage value="../images/error.gif" />
 				</f:facet>
-			</rich:messages> 
-				<h:panelGrid columns="2">
+			</rich:messages> <h:panelGrid columns="2">
 				<h:outputText value="Justificativa: " />
-				<h:inputTextarea disabled="#{!ressarcimentoSaudeController.botaoHabilitado}"
+				<h:inputTextarea
+					disabled="#{!ressarcimentoSaudeController.botaoHabilitado}"
 					value="#{ressarcimentoSaudeController.ressarcimentoSaude.justificativa}"
-					cols="50" rows="5" id="justificativa"></h:inputTextarea>
-			</h:panelGrid>
-			<h:panelGrid columns="3">
+					cols="50" rows="5" id="justificativa"
+					validatorMessage="A Atividade deve ter no máximo 500 caracteres!"
+					requiredMessage="Campo Atividades é obrigatório!">
+					<f:validateLength maximum="500"></f:validateLength>
+				</h:inputTextarea>
+			</h:panelGrid> <h:panelGrid columns="3">
 				<a4j:commandButton value="Deferir" id="deferir"
-					action="#{ressarcimentoSaudeController.deferir}" disabled="#{!ressarcimentoSaudeController.botaoHabilitado}"
+					action="#{ressarcimentoSaudeController.deferir}"
+					disabled="#{!ressarcimentoSaudeController.botaoHabilitado}"
 					reRender="listaRessarcimento, deferir, indeferir, justificativa" />
-				<a4j:commandButton value="Indeferir" disabled="#{!ressarcimentoSaudeController.botaoHabilitado}"
+				<a4j:commandButton value="Indeferir"
+					disabled="#{!ressarcimentoSaudeController.botaoHabilitado}"
 					action="#{ressarcimentoSaudeController.indeferir}" id="indeferir"
 					reRender="listaRessarcimento, deferir, indeferir, justificativa" />
 				<a4j:commandButton value="Fechar"
