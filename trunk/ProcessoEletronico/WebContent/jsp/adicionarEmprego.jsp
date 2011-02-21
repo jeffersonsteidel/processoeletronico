@@ -68,7 +68,8 @@
 				<h:panelGrid columns="4">
 					<center><h:outputText value="Atividades: " /> <h:inputTextarea
 						value="#{empregoController.emprego.atividades}" rows="10"
-						cols="50" required="true" validatorMessage="A Atividade deve ter no máximo 500 caracteres!"
+						cols="50" required="true"
+						validatorMessage="A Atividade deve ter no máximo 500 caracteres!"
 						requiredMessage="Campo Atividades é obrigatório!">
 						<f:validateLength maximum="500"></f:validateLength>
 					</h:inputTextarea></center>
@@ -82,7 +83,7 @@
 
 				<rich:dataTable id="listaEmpregos"
 					value="#{empregoController.listaEmpregos}" var="list"
-					width="1150px" columnClasses="center" >
+					width="1150px" columnClasses="center">
 
 					<rich:column width="700px" sortBy="#{list.empresa}">
 						<f:facet name="header">
@@ -137,7 +138,7 @@
 						<rich:toolTip for="editarNPermitido"
 							value="Você somente poderá editar dependentes deferidos ou indeferidos!" />
 					</rich:column>
-					
+
 					<rich:column width="60px">
 						<f:facet name="header">
 							<h:outputText value="Documentos" />
@@ -148,7 +149,8 @@
 							<h:graphicImage value="../images/add_documentos.png"
 								style="border:0" width="20" height="18" />
 						</a4j:commandLink>
-						<rich:toolTip for="documentos" value="Clique aqui para adicionar a Cópia do Registro em Carteira!" />
+						<rich:toolTip for="documentos"
+							value="Clique aqui para adicionar a Cópia do Registro em Carteira!" />
 					</rich:column>
 
 					<rich:column width="30px">
@@ -251,7 +253,7 @@
 			<h:outputText
 				rendered="#{empregoController.empregoFiltro.justificativa != null}"
 				value="Justificativa: " />
-			<h:outputText 
+			<h:outputText
 				rendered="#{empregoController.empregoFiltro.justificativa != null}"
 				value="#{empregoController.empregoFiltro.justificativa}">
 			</h:outputText>

@@ -142,8 +142,10 @@
 				<h:inputTextarea id="justificativa"
 					disabled="#{conjugeController.conjuge.statusSolicitacao.codigo != 2}"
 					value="#{conjugeController.conjuge.justificativa}" cols="50"
-					rows="5">
-				</h:inputTextarea>
+					rows="5"
+					validatorMessage="A Justificativa deve ter no máximo 250 caracteres!">
+					<f:validateLength maximum="250"></f:validateLength>
+				</h:inputTextarea>>
 			</h:panelGrid>
 			<h:panelGrid columns="2" id="botoes">
 				<a4j:commandButton value="Deferir" reRender="confirmPanel"
