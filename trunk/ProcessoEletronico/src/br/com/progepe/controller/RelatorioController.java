@@ -12,6 +12,7 @@ import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
 
 import net.sf.jasperreports.engine.JRException;
+import br.com.progepe.constantes.Constantes;
 import br.com.progepe.dao.DAO;
 import br.com.progepe.dao.ServidorDAO;
 import br.com.progepe.entity.Cargo;
@@ -157,30 +158,26 @@ public class RelatorioController implements Serializable {
 			throws ClassNotFoundException, SQLException, JRException {
 		
 		@SuppressWarnings("unused")
-		String sql = new String();
+		String sql = "SELECT servidor.serv_siape AS servidor_serv_siape, servidor.serv_nome AS servidor_serv_nome," +
+		" lotacao.lot_desc AS lotacao_lot_desc, cargo.carg_desc AS cargo_carg_desc, servidor.`serv_data_saida` AS servidor_serv_data_saida" +
+		" FROM lotacao INNER JOIN servidor ON lotacao.lot_cod = servidor.lot_cod INNER JOIN cargo ON servidor.carg_cod = cargo.carg_cod" +
+		" WHERE 1 = 1";
 		
-		if(cargo != 0){
-		sql = "SELECT servidor.serv_siape AS servidor_serv_siape, servidor.serv_nome AS servidor_serv_nome," +
-				" lotacao.lot_desc AS lotacao_lot_desc, cargo.carg_desc AS cargo_carg_desc, servidor.`serv_data_saida` AS servidor_serv_data_saida" +
-				" FROM lotacao INNER JOIN servidor ON lotacao.lot_cod = servidor.lot_cod INNER JOIN cargo ON servidor.carg_cod = cargo.carg_cod" +
-				" WHERE cargo.carg_cod = 1 order by servidor.serv_siape";
+		if(cargo != null && cargo != 0){
+			sql += " AND cargo.carg_cod = "+cargo;
 		}
-		if(lotacao != null	){
-			sql = "SELECT servidor.serv_siape AS servidor_serv_siape, servidor.serv_nome AS servidor_serv_nome," +
-			" lotacao.lot_desc AS lotacao_lot_desc, cargo.carg_desc AS cargo_carg_desc, servidor.`serv_data_saida` AS servidor_serv_data_saida" +
-			" FROM lotacao INNER JOIN servidor ON lotacao.lot_cod = servidor.lot_cod INNER JOIN cargo ON servidor.carg_cod = cargo.carg_cod" +
-			" WHERE lotacao.lot_cod = 12 order by servidor.serv_siape";
-		}
-		if(lotacao != 0 && cargo != 0){
-			sql = "SELECT servidor.serv_siape AS servidor_serv_siape, servidor.serv_nome AS servidor_serv_nome," +
-			" lotacao.lot_desc AS lotacao_lot_desc, cargo.carg_desc AS cargo_carg_desc, servidor.`serv_data_saida` AS servidor_serv_data_saida" +
-			" FROM lotacao INNER JOIN servidor ON lotacao.lot_cod = servidor.lot_cod INNER JOIN cargo ON servidor.carg_cod = cargo.carg_cod" +
-			" WHERE cargo.lot_cod = 1 and cargo.carg_cod = 1 order by servidor.serv_siape";
+		if(lotacao != null && lotacao != 0){
+			sql += " and cargo.carg_cod =  "+lotacao;
 		}
 		
-		if(situacao != null){
-	
+		if(situacao != null && situacao.equals(Constantes.ATIVO)){
+			sql += " and servidor.serv_data_saida is null ";
 		}
+		if(situacao != null && situacao.equals(Constantes.DESATIVO)){
+			sql += " and servidor.serv_data_saida is not null";
+		}
+		
+		sql +=" order by servidor.serv_siape";
 		
 		JasperMB jasperMB = new JasperMB();
 		jasperMB.criaConexao();
