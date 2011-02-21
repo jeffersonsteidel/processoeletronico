@@ -76,7 +76,7 @@ public class RelatorioController implements Serializable {
 		this.situacao = situacao;
 	}
 
-	public void abrirRelatorioCargoLotacaoByFiltro() throws Exception {
+	public String abrirRelatorioCargoLotacaoByFiltro() throws Exception {
 		try {
 			listarCargos();
 			listarLotacoes();
@@ -85,6 +85,7 @@ public class RelatorioController implements Serializable {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		return "";
 	}
 	
 	@SuppressWarnings("unchecked")
