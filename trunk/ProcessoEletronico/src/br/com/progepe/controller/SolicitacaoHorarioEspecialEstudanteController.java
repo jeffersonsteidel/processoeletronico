@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.io.Serializable;
 import java.text.ParseException;
-import java.util.ArrayList;
 import java.util.Date;
 
 import javax.faces.application.FacesMessage;
@@ -42,8 +41,6 @@ public class SolicitacaoHorarioEspecialEstudanteController implements
 			throws ParseException {
 		try {
 			solicitacaoHorarioEspecialEstudante = new SolicitacaoHorarioEspecialEstudante();
-			solicitacaoHorarioEspecialEstudante
-					.setFiles(new ArrayList<SolicitacaoHorarioEspecialEstudante>());
 			buscarServidorLogado();
 			solicitacaoHorarioEspecialEstudante.setTotalSemana("00:00");
 			FacesContext.getCurrentInstance().getExternalContext()
@@ -66,16 +63,14 @@ public class SolicitacaoHorarioEspecialEstudanteController implements
 	}
 
 	public void paint(OutputStream stream, Object object) throws IOException {
-		stream.write(solicitacaoHorarioEspecialEstudante.getFiles()
-				.get((Integer) object).getDeclaracaoMatricula());
+		stream.write(solicitacaoHorarioEspecialEstudante
+				.getDeclaracaoMatricula());
 	}
 
 	public void listener(UploadEvent event) throws Exception {
 		UploadItem item = event.getUploadItem();
 		solicitacaoHorarioEspecialEstudante.setDeclaracaoMatricula(item
 				.getData());
-		solicitacaoHorarioEspecialEstudante.getFiles().add(
-				solicitacaoHorarioEspecialEstudante);
 	}
 
 	public void salvar() throws IOException, ParseException {
@@ -88,11 +83,9 @@ public class SolicitacaoHorarioEspecialEstudanteController implements
 		} else if (!(Constantes.REGIME_DEDICACAO_EXCLUSIVA
 				.equals(solicitacaoHorarioEspecialEstudante.getSolicitante()
 						.getRegimeTrabalho().getCodigo()))
-				&& !(solicitacaoHorarioEspecialEstudante
-						.getSolicitante()
-						.getRegimeTrabalho()
-						.getCodigo()
-						.toString() +":00").equals(solicitacaoHorarioEspecialEstudante
+				&& !(solicitacaoHorarioEspecialEstudante.getSolicitante()
+						.getRegimeTrabalho().getCodigo().toString() + ":00")
+						.equals(solicitacaoHorarioEspecialEstudante
 								.getTotalSemana())) {
 			message = new FacesMessage(
 					FacesMessage.SEVERITY_ERROR,
@@ -112,10 +105,9 @@ public class SolicitacaoHorarioEspecialEstudanteController implements
 					.setCodigo(Constantes.STATUS_SOLICITACAO_ENCAMINHADO);
 			DAO.getInstance().saveOrUpdate(solicitacaoHorarioEspecialEstudante);
 			EnviarEmail enviarEmail = new EnviarEmail();
-			enviarEmail.enviarEmailSolicitacao(solicitacaoHorarioEspecialEstudante);
+			enviarEmail
+					.enviarEmailSolicitacao(solicitacaoHorarioEspecialEstudante);
 			solicitacaoHorarioEspecialEstudante = new SolicitacaoHorarioEspecialEstudante();
-			solicitacaoHorarioEspecialEstudante
-					.setFiles(new ArrayList<SolicitacaoHorarioEspecialEstudante>());
 			buscarServidorLogado();
 			solicitacaoHorarioEspecialEstudante.setTotalSemana("00:00");
 		}
@@ -228,10 +220,10 @@ public class SolicitacaoHorarioEspecialEstudanteController implements
 		}
 
 		// TERCA
-		 finalIntevalo = 0;
-		 inicioIntevalo = 0;
-		 horaFinal = 0;
-		 horaIncial = 0;
+		finalIntevalo = 0;
+		inicioIntevalo = 0;
+		horaFinal = 0;
+		horaIncial = 0;
 		if (solicitacaoHorarioEspecialEstudante.getHorarioSaidaTerca() != null
 				&& solicitacaoHorarioEspecialEstudante.getHorarioSaidaTerca() != ""
 				&& solicitacaoHorarioEspecialEstudante.getHorarioEntradaTerca() != null
@@ -327,10 +319,10 @@ public class SolicitacaoHorarioEspecialEstudanteController implements
 		}
 
 		// QUARTA
-		 finalIntevalo = 0;
-		 inicioIntevalo = 0;
-		 horaFinal = 0;
-		 horaIncial = 0;
+		finalIntevalo = 0;
+		inicioIntevalo = 0;
+		horaFinal = 0;
+		horaIncial = 0;
 		if (solicitacaoHorarioEspecialEstudante.getHorarioSaidaQuarta() != null
 				&& solicitacaoHorarioEspecialEstudante.getHorarioSaidaQuarta() != ""
 				&& solicitacaoHorarioEspecialEstudante
@@ -430,10 +422,10 @@ public class SolicitacaoHorarioEspecialEstudanteController implements
 		}
 
 		// QUINTA
-		 finalIntevalo = 0;
-		 inicioIntevalo = 0;
-		 horaFinal = 0;
-		 horaIncial = 0;
+		finalIntevalo = 0;
+		inicioIntevalo = 0;
+		horaFinal = 0;
+		horaIncial = 0;
 		if (solicitacaoHorarioEspecialEstudante.getHorarioSaidaQuinta() != null
 				&& solicitacaoHorarioEspecialEstudante.getHorarioSaidaQuinta() != ""
 				&& solicitacaoHorarioEspecialEstudante
@@ -533,10 +525,10 @@ public class SolicitacaoHorarioEspecialEstudanteController implements
 		}
 
 		// SEXTA
-		 finalIntevalo = 0;
-		 inicioIntevalo = 0;
-		 horaFinal = 0;
-		 horaIncial = 0;
+		finalIntevalo = 0;
+		inicioIntevalo = 0;
+		horaFinal = 0;
+		horaIncial = 0;
 		if (solicitacaoHorarioEspecialEstudante.getHorarioSaidaSexta() != null
 				&& solicitacaoHorarioEspecialEstudante.getHorarioSaidaSexta() != ""
 				&& solicitacaoHorarioEspecialEstudante.getHorarioEntradaSexta() != null
@@ -632,10 +624,10 @@ public class SolicitacaoHorarioEspecialEstudanteController implements
 		}
 
 		// SABADO
-		 finalIntevalo = 0;
-		 inicioIntevalo = 0;
-		 horaFinal = 0;
-		 horaIncial = 0;
+		finalIntevalo = 0;
+		inicioIntevalo = 0;
+		horaFinal = 0;
+		horaIncial = 0;
 		if (solicitacaoHorarioEspecialEstudante.getHorarioSaidaSabado() != null
 				&& solicitacaoHorarioEspecialEstudante.getHorarioSaidaSabado() != ""
 				&& solicitacaoHorarioEspecialEstudante

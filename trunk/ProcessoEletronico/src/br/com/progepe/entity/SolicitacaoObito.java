@@ -1,6 +1,5 @@
 package br.com.progepe.entity;
 
-import java.util.ArrayList;
 import java.util.Date;
 
 public class SolicitacaoObito extends Solicitacao {
@@ -13,7 +12,6 @@ public class SolicitacaoObito extends Solicitacao {
 	private byte[] certidaoObito;
 	private Date dataObito;
 	private Date dataRetorno;
-	private ArrayList<SolicitacaoObito> files = new ArrayList<SolicitacaoObito>();
 	private boolean documentoValidado = false;
 	
 	
@@ -48,13 +46,6 @@ public class SolicitacaoObito extends Solicitacao {
 		this.documentoValidado = documentoValidado;
 	}
 	
-	public ArrayList<SolicitacaoObito> getFiles() {
-		return files;
-	}
-
-	public void setFiles(ArrayList<SolicitacaoObito> files) {
-		this.files = files;
-	}
 	public Date getDataObito() {
 		return dataObito;
 	}

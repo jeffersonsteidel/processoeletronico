@@ -99,7 +99,7 @@
 						</rich:panel>
 					</rich:dataGrid>
 					<rich:dataGrid columns="1"
-						value="#{portariaController.portaria.arquivo2 }" var="file"
+						value="#{portariaController.portaria.arquivo2}" var="file"
 						rowKeyVar="row">
 						<rich:panel bodyClass="rich-laguna-panel-no-header">
 							<h:panelGrid columns="5">
@@ -111,7 +111,7 @@
 						</rich:panel>
 					</rich:dataGrid>
 					<rich:dataGrid columns="1"
-						value="#{portariaController.portaria.arquivo3 }" var="file"
+						value="#{portariaController.portaria.arquivo3}" var="file"
 						rowKeyVar="row">
 						<rich:panel bodyClass="rich-laguna-panel-no-header">
 							<h:panelGrid columns="5">
@@ -123,7 +123,7 @@
 						</rich:panel>
 					</rich:dataGrid>
 					<rich:dataGrid columns="1"
-						value="#{portariaController.portaria.arquivo4 }" var="file"
+						value="#{portariaController.portaria.arquivo4}" var="file"
 						rowKeyVar="row">
 						<rich:panel bodyClass="rich-laguna-panel-no-header">
 							<h:panelGrid columns="5">
@@ -135,7 +135,7 @@
 						</rich:panel>
 					</rich:dataGrid>
 					<rich:dataGrid columns="1"
-						value="#{portariaController.portaria.arquivo5 }" var="file"
+						value="#{portariaController.portaria.arquivo5}" var="file"
 						rowKeyVar="row">
 						<rich:panel bodyClass="rich-laguna-panel-no-header">
 							<h:panelGrid columns="5">

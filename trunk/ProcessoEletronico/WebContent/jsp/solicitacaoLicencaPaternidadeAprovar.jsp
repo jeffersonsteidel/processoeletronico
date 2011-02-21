@@ -16,16 +16,6 @@
 	<a4j:loadScript src="../js/script.js" />
 	<a4j:form id="form">
 		<center><rich:panel>
-			<rich:messages layout="list" errorLabelClass="errorLabel"
-				style="top:auto;" infoLabelClass="infoLabel">
-				<f:facet name="infoMarker">
-					<h:graphicImage value="../images/passed.gif" />
-				</f:facet>
-				<f:facet name="errorMarker">
-					<h:graphicImage value="../images/error.gif" />
-				</f:facet>
-			</rich:messages>
-
 			<font size="2"><b>LICENÇA PATERNIDADE</b></font>
 
 			<h:panelGrid columns="1">
@@ -36,11 +26,12 @@
 
 			<h:panelGrid columns="2">
 				<h:outputText value="Data de Nascimento do Filho(a): "></h:outputText>
-				<h:outputText value="#{solicitacaoController.solicitacaoLicencaPaternidade.dataNascimento}">
+				<h:outputText
+					value="#{solicitacaoController.solicitacaoLicencaPaternidade.dataNascimento}">
 					<f:convertDateTime locale="pt_BR" pattern="dd/MM/yyyy" />
-				</h:outputText>	
+				</h:outputText>
 				<h:outputText value="Data de Retorno ao Trabalho: "></h:outputText>
-				<h:outputText 
+				<h:outputText
 					value="#{solicitacaoController.solicitacaoLicencaPaternidade.dataRetorno}">
 					<f:convertDateTime locale="pt_BR" pattern="dd/MM/yyyy" />
 				</h:outputText>
@@ -48,21 +39,29 @@
 			<h:panelGroup id="info">
 				<rich:panel bodyClass="info">
 					<rich:dataGrid columns="1"
-						value="#{solicitacaoController.solicitacaoLicencaPaternidade.files}"
+						value="#{solicitacaoController.solicitacaoLicencaPaternidade.certidaoNascimento}"
 						var="file" rowKeyVar="row">
 						<rich:panel bodyClass="rich-laguna-panel-no-header">
 							<h:panelGrid columns="2">
 								<a4j:mediaOutput element="img"
-									createContent="#{solicitacaoController.paint}"
-									value="#{row}" style="width:600px; height:800px;"
-									cacheable="false">
+									createContent="#{solicitacaoController.paint}" value="#{row}"
+									style="width:600px; height:800px;" cacheable="false">
 								</a4j:mediaOutput>
 							</h:panelGrid>
 						</rich:panel>
 					</rich:dataGrid>
 				</rich:panel>
 			</h:panelGroup>
-		<h:panelGrid columns="2">
+			<rich:messages layout="list" errorLabelClass="errorLabel"
+				style="top:auto;" infoLabelClass="infoLabel">
+				<f:facet name="infoMarker">
+					<h:graphicImage value="../images/passed.gif" />
+				</f:facet>
+				<f:facet name="errorMarker">
+					<h:graphicImage value="../images/error.gif" />
+				</f:facet>
+			</rich:messages>
+			<h:panelGrid columns="2">
 				<h:outputText value="Justificativa: " />
 				<h:inputTextarea disabled="#{solicitacaoController.desabilitaBotao}"
 					value="#{solicitacaoController.solicitacaoLicencaPaternidade.justificativa}"
@@ -70,13 +69,17 @@
 			</h:panelGrid>
 
 			<h:panelGrid columns="2">
-				<a4j:commandButton value="Deferir" reRender="form" disabled="#{solicitacaoController.desabilitaBotao}"
-					oncomplete="#{rich:component('confirmPanel')}.show()"/>
-				<a4j:commandButton value="Indeferir" reRender="form" disabled="#{solicitacaoController.desabilitaBotao}"
-					oncomplete="#{rich:component('confirmPanel02')}.show()"/>
+				<a4j:commandButton value="Deferir" reRender="form"
+					disabled="#{solicitacaoController.desabilitaBotao}"
+					oncomplete="#{rich:component('confirmPanel')}.show()" />
+				<a4j:commandButton value="Indeferir" reRender="form"
+					disabled="#{solicitacaoController.desabilitaBotao}"
+					oncomplete="#{rich:component('confirmPanel02')}.show()" />
 			</h:panelGrid>
-			<h:panelGrid columns="1" rendered="#{solicitacaoController.desabilitaBotao && autenticacaoController.siapeAutenticado.indAdministrador}">
-			<a4j:commandButton value="Voltar" action="#{solicitacaoController.retornarUltimaPesquisa}" />
+			<h:panelGrid columns="1"
+				rendered="#{solicitacaoController.desabilitaBotao && autenticacaoController.siapeAutenticado.indAdministrador}">
+				<a4j:commandButton value="Voltar"
+					action="#{solicitacaoController.retornarUltimaPesquisa}" />
 			</h:panelGrid>
 		</rich:panel></center>
 

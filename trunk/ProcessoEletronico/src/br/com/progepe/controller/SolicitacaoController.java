@@ -430,8 +430,6 @@ public class SolicitacaoController implements Serializable {
 			throws IOException {
 		solicitacaoLicencaPaternidade = (SolicitacaoLicencaPaternidade) DAO
 				.getInstance().refresh(codigoSolicitacaoLicencaPaternidade);
-		solicitacaoLicencaPaternidade.getFiles().add(
-				solicitacaoLicencaPaternidade);
 		FacesContext context = FacesContext.getCurrentInstance();
 		HttpServletResponse response = (HttpServletResponse) context
 				.getExternalContext().getResponse();
@@ -444,8 +442,6 @@ public class SolicitacaoController implements Serializable {
 		solicitacaoHorarioEspecialEstudante = (SolicitacaoHorarioEspecialEstudante) DAO
 				.getInstance().refresh(
 						codigoSolicitacaoHorarioEspecialEstudante);
-		solicitacaoHorarioEspecialEstudante.getFiles().add(
-				solicitacaoHorarioEspecialEstudante);
 		FacesContext context = FacesContext.getCurrentInstance();
 		HttpServletResponse response = (HttpServletResponse) context
 				.getExternalContext().getResponse();
@@ -456,7 +452,6 @@ public class SolicitacaoController implements Serializable {
 			throws IOException {
 		solicitacaoObito = (SolicitacaoObito) DAO.getInstance().refresh(
 				codigoSolicitacaoObito);
-		solicitacaoObito.getFiles().add(solicitacaoObito);
 		FacesContext context = FacesContext.getCurrentInstance();
 		HttpServletResponse response = (HttpServletResponse) context
 				.getExternalContext().getResponse();
@@ -467,7 +462,6 @@ public class SolicitacaoController implements Serializable {
 			SolicitacaoCasamento codigoSolicitacaoCasamento) throws IOException {
 		solicitacaoCasamento = (SolicitacaoCasamento) DAO.getInstance()
 				.refresh(codigoSolicitacaoCasamento);
-		solicitacaoCasamento.getFiles().add(solicitacaoCasamento);
 		FacesContext context = FacesContext.getCurrentInstance();
 		HttpServletResponse response = (HttpServletResponse) context
 				.getExternalContext().getResponse();
@@ -568,8 +562,6 @@ public class SolicitacaoController implements Serializable {
 			} else if (Constantes.TIPO_SOLICITACAO_LICENCA_PATERNIDADE
 					.equals(tipoSolicitacao)) {
 				solicitacaoLicencaPaternidade = new SolicitacaoLicencaPaternidade();
-				solicitacaoLicencaPaternidade
-						.setFiles(new ArrayList<SolicitacaoLicencaPaternidade>());
 				solicitacaoLicencaPaternidade.setSolicitante(new Servidor());
 				solicitacaoLicencaPaternidade.setCodigo(codigoSolicitacao);
 				solicitacaoLicencaPaternidade = (SolicitacaoLicencaPaternidade) SolicitacaoDAO
@@ -596,8 +588,6 @@ public class SolicitacaoController implements Serializable {
 			} else if (Constantes.TIPO_SOLICITACAO_HORARIO_ESPECIAL_ESTUDANTE
 					.equals(tipoSolicitacao)) {
 				solicitacaoHorarioEspecialEstudante = new SolicitacaoHorarioEspecialEstudante();
-				solicitacaoHorarioEspecialEstudante
-						.setFiles(new ArrayList<SolicitacaoHorarioEspecialEstudante>());
 				solicitacaoHorarioEspecialEstudante
 						.setSolicitante(new Servidor());
 				solicitacaoHorarioEspecialEstudante
@@ -628,7 +618,6 @@ public class SolicitacaoController implements Serializable {
 			} else if (Constantes.TIPO_SOLICITACAO_OBITO
 					.equals(tipoSolicitacao)) {
 				solicitacaoObito = new SolicitacaoObito();
-				solicitacaoObito.setFiles(new ArrayList<SolicitacaoObito>());
 				solicitacaoObito.setSolicitante(new Servidor());
 				solicitacaoObito.setCodigo(codigoSolicitacao);
 				solicitacaoObito = (SolicitacaoObito) SolicitacaoDAO
@@ -650,8 +639,6 @@ public class SolicitacaoController implements Serializable {
 			} else if (Constantes.TIPO_SOLICITACAO_LICENCA_CASAMENTO
 					.equals(tipoSolicitacao)) {
 				solicitacaoCasamento = new SolicitacaoCasamento();
-				solicitacaoCasamento
-						.setFiles(new ArrayList<SolicitacaoCasamento>());
 				solicitacaoCasamento.setSolicitante(new Servidor());
 				solicitacaoCasamento.setCodigo(codigoSolicitacao);
 				solicitacaoCasamento = (SolicitacaoCasamento) SolicitacaoDAO
@@ -1201,19 +1188,15 @@ public class SolicitacaoController implements Serializable {
 	public void paint(OutputStream stream, Object object) throws IOException {
 		if (Constantes.TIPO_SOLICITACAO_LICENCA_PATERNIDADE
 				.equals(tipoSolicitacao)) {
-			stream.write(solicitacaoLicencaPaternidade.getFiles()
-					.get((Integer) object).getCertidaoNascimento());
+			stream.write(solicitacaoLicencaPaternidade.getCertidaoNascimento());
 		} else if (Constantes.TIPO_SOLICITACAO_HORARIO_ESPECIAL_ESTUDANTE
 				.equals(tipoSolicitacao)) {
-			stream.write(solicitacaoHorarioEspecialEstudante.getFiles()
-					.get((Integer) object).getDeclaracaoMatricula());
+			stream.write(solicitacaoHorarioEspecialEstudante.getDeclaracaoMatricula());
 		} else if (Constantes.TIPO_SOLICITACAO_OBITO.equals(tipoSolicitacao)) {
-			stream.write(solicitacaoObito.getFiles().get((Integer) object)
-					.getCertidaoObito());
+			stream.write(solicitacaoObito.getCertidaoObito());
 		} else if (Constantes.TIPO_SOLICITACAO_LICENCA_CASAMENTO
 				.equals(tipoSolicitacao)) {
-			stream.write(solicitacaoCasamento.getFiles().get((Integer) object)
-					.getCertidaoCasamento());
+			stream.write(solicitacaoCasamento.getCertidaoCasamento());
 		} else if (Constantes.TIPO_SOLICITACAO_RESSARCIMENTO_SAUDE
 				.equals(tipoSolicitacao)) {
 			stream.write(solicitacaoRessarcimentoSaude.getComprovante());

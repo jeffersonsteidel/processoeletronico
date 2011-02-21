@@ -16,16 +16,6 @@
 	<a4j:loadScript src="../js/script.js" />
 	<a4j:form id="form">
 		<center><rich:panel>
-			<rich:messages layout="list" errorLabelClass="errorLabel"
-				style="top:auto;" infoLabelClass="infoLabel">
-				<f:facet name="infoMarker">
-					<h:graphicImage value="../images/passed.gif" />
-				</f:facet>
-				<f:facet name="errorMarker">
-					<h:graphicImage value="../images/error.gif" />
-				</f:facet>
-			</rich:messages>
-
 			<font size="2"><b>LICENÇA DE CASAMENTO</b></font>
 			<h:panelGrid columns="1">
 				<h:outputText
@@ -35,7 +25,7 @@
 
 			<h:panelGrid columns="2">
 				<h:outputText value="Nome do Cônjuge: " />
-				<h:outputText
+				<h:outputText styleClass="maiusculo"
 					value="#{solicitacaoController.solicitacaoCasamento.nomeConjuge}">
 				</h:outputText>
 
@@ -43,31 +33,29 @@
 				<h:outputText
 					value="#{solicitacaoController.solicitacaoCasamento.numeroCertidao}">
 				</h:outputText>
-				
+
 				<h:outputText value="Data do Casamento: "></h:outputText>
-				<h:outputText 
+				<h:outputText
 					value="#{solicitacaoController.solicitacaoCasamento.dataCasamento}">
 					<f:convertDateTime locale="pt_BR" pattern="dd/MM/yyyy" />
 				</h:outputText>
-				
+
 				<h:outputText value="Data de Retorno ao Trabalho: "></h:outputText>
-				<h:outputText 
+				<h:outputText
 					value="#{solicitacaoController.solicitacaoCasamento.dataRetorno}">
 					<f:convertDateTime locale="pt_BR" pattern="dd/MM/yyyy" />
 				</h:outputText>
-				
+
 			</h:panelGrid>
 
 			<a4j:region>
-					<a4j:commandLink
-						action="#"
-						value="Verificar Dados do Cônjuge"></a4j:commandLink>
+				<a4j:commandLink action="#{conjugeController.carregarConjugeSolicitante}" value="Verificar Dados do Cônjuge"></a4j:commandLink>
 			</a4j:region>
-				
+
 			<h:panelGroup id="info">
 				<rich:panel bodyClass="info">
 					<rich:dataGrid columns="1"
-						value="#{solicitacaoController.solicitacaoCasamento.files}"
+						value="#{solicitacaoController.solicitacaoCasamento.certidaoCasamento}"
 						var="file" rowKeyVar="row">
 						<rich:panel bodyClass="rich-laguna-panel-no-header">
 							<h:panelGrid columns="2">
@@ -80,6 +68,16 @@
 					</rich:dataGrid>
 				</rich:panel>
 			</h:panelGroup>
+			<rich:messages layout="list" errorLabelClass="errorLabel"
+				style="top:auto;" infoLabelClass="infoLabel">
+				<f:facet name="infoMarker">
+					<h:graphicImage value="../images/passed.gif" />
+				</f:facet>
+				<f:facet name="errorMarker">
+					<h:graphicImage value="../images/error.gif" />
+				</f:facet>
+			</rich:messages>
+
 			<h:panelGrid columns="2">
 				<h:outputText value="Justificativa: " />
 				<h:inputTextarea disabled="#{solicitacaoController.desabilitaBotao}"
@@ -88,13 +86,17 @@
 			</h:panelGrid>
 
 			<h:panelGrid columns="2">
-				<a4j:commandButton value="Deferir" reRender="form" disabled="#{solicitacaoController.desabilitaBotao}"
+				<a4j:commandButton value="Deferir" reRender="form"
+					disabled="#{solicitacaoController.desabilitaBotao}"
 					oncomplete="#{rich:component('confirmPanel')}.show()" />
-				<a4j:commandButton value="Indeferir" reRender="form" disabled="#{solicitacaoController.desabilitaBotao}"
+				<a4j:commandButton value="Indeferir" reRender="form"
+					disabled="#{solicitacaoController.desabilitaBotao}"
 					oncomplete="#{rich:component('confirmPanel02')}.show()" />
 			</h:panelGrid>
-			<h:panelGrid columns="1" rendered="#{solicitacaoController.desabilitaBotao && autenticacaoController.siapeAutenticado.indAdministrador}">
-			<a4j:commandButton value="Voltar" action="#{solicitacaoController.retornarUltimaPesquisa}" />
+			<h:panelGrid columns="1"
+				rendered="#{solicitacaoController.desabilitaBotao && autenticacaoController.siapeAutenticado.indAdministrador}">
+				<a4j:commandButton value="Voltar"
+					action="#{solicitacaoController.retornarUltimaPesquisa}" />
 			</h:panelGrid>
 		</rich:panel></center>
 
@@ -131,7 +133,7 @@
 					<tbody>
 						<tr>
 							<td align="center" width="50%"><a4j:commandButton
-								value="Sim" ajaxSingle="true" 
+								value="Sim" ajaxSingle="true"
 								action="#{solicitacaoController.indeferirSolicitacao}"
 								oncomplete="#{rich:component('confirmPanel02')}.hide();"
 								reRender="form" /></td>

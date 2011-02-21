@@ -93,20 +93,17 @@ public class SolicitacaoObitoController implements Serializable {
 			EnviarEmail enviarEmail = new EnviarEmail();
 			enviarEmail.enviarEmailSolicitacao(solicitacaoObito);
 			solicitacaoObito = new SolicitacaoObito();
-			solicitacaoObito.setFiles(new ArrayList<SolicitacaoObito>());
 			buscarServidorLogado();
 		}
 	}
 
 	public void paint(OutputStream stream, Object object) throws IOException {
-		stream.write(solicitacaoObito.getFiles().get((Integer) object)
-				.getCertidaoObito());
+		stream.write(solicitacaoObito.getCertidaoObito());
 	}
 
 	public void listener(UploadEvent event) throws Exception {
 		UploadItem item = event.getUploadItem();
 		solicitacaoObito.setCertidaoObito(item.getData());
-		solicitacaoObito.getFiles().add(solicitacaoObito);
 	}
 
 	public List<SelectItem> listarGrauParentesco() {

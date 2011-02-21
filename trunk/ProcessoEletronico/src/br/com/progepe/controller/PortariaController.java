@@ -27,7 +27,6 @@ public class PortariaController implements Serializable {
 	Portaria portaria;
 	private Date dataInicio;
 	private Date dataFinal;
-	private List<Portaria> files = new ArrayList<Portaria>();
 	private List<Portaria> portariaList = new ArrayList<Portaria>();
 	private List<SelectItem> tiposPortaria = new ArrayList<SelectItem>();
 	private List<Portaria> portarias = new ArrayList<Portaria>();
@@ -55,14 +54,6 @@ public class PortariaController implements Serializable {
 
 	public void setDataFinal(Date dataFinal) {
 		this.dataFinal = dataFinal;
-	}
-
-	public List<Portaria> getFiles() {
-		return files;
-	}
-
-	public void setFiles(List<Portaria> files) {
-		this.files = files;
 	}
 
 	public List<SelectItem> getTiposPortaria() {
@@ -108,7 +99,6 @@ public class PortariaController implements Serializable {
 			portaria.setTipo(new TipoPortaria());
 			tiposPortaria = new ArrayList<SelectItem>();
 			listarTiposPortaria();
-			files.clear();
 			FacesContext.getCurrentInstance().getExternalContext()
 					.redirect("portaria.jsp");
 		} catch (IOException e) {
@@ -134,7 +124,6 @@ public class PortariaController implements Serializable {
 		} else {
 			DAO.getInstance().saveOrUpdate(portaria);
 			portaria = new Portaria();
-			files = new ArrayList<Portaria>();
 		}
 	}
 
@@ -175,7 +164,6 @@ public class PortariaController implements Serializable {
 		} else if (quantidadeArquivos == 5) {
 			portaria.setArquivo5(item.getData());
 		}
-		files.add(portaria);
 	}
 
 	public void paint1(OutputStream stream, Object object) throws IOException {
