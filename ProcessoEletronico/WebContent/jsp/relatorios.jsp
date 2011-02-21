@@ -32,6 +32,10 @@
 				<h:graphicImage value="../images/icopdf.gif" />
 				<h:commandLink value="RELATÓRIO PERMISSÃO USUÁRIO"
 					action="#{relatorioController.abrirRelatorioPermissaoUsuario}" />
+
+				<h:graphicImage value="../images/icopdf.gif" />
+				<h:commandLink value="CARGO LOTAÇÂO (FILTRO)"
+					action="#{relatorioController.abrirRelatorioCargoLotacaoByFiltro}" />
 			</h:panelGrid>
 		</h:form>
 	</rich:panel>

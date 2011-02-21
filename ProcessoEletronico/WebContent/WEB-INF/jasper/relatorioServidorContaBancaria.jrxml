@@ -5,10 +5,10 @@
 		 name="classic"
 		 columnCount="1"
 		 printOrder="Vertical"
-		 orientation="Portrait"
-		 pageWidth="595"
-		 pageHeight="842"
-		 columnWidth="535"
+		 orientation="Landscape"
+		 pageWidth="842"
+		 pageHeight="595"
+		 columnWidth="782"
 		 columnSpacing="0"
 		 leftMargin="30"
 		 rightMargin="30"
@@ -46,7 +46,7 @@ FROM
 		<group  name="servidor_serv_siape" >
 			<groupExpression><![CDATA[$F{servidor_serv_siape}]]></groupExpression>
 			<groupHeader>
-			<band height="3"  isSplitAllowed="true" >
+			<band height="0"  isSplitAllowed="true" >
 			</band>
 			</groupHeader>
 			<groupFooter>
@@ -72,11 +72,11 @@ FROM
 			</band>
 		</title>
 		<pageHeader>
-			<band height="127"  isSplitAllowed="true" >
+			<band height="94"  isSplitAllowed="true" >
 				<staticText>
 					<reportElement
 						x="1"
-						y="108"
+						y="72"
 						width="40"
 						height="17"
 						forecolor="#000000"
@@ -91,50 +91,22 @@ FROM
 					<textElement>
 						<font fontName="Times New Roman" pdfFontName="Helvetica-Bold" size="12" isBold="true"/>
 					</textElement>
-				<text><![CDATA[Siape]]></text>
+				<text><![CDATA[SIAPE]]></text>
 				</staticText>
-				<staticText>
-					<reportElement
-						x="1"
-						y="62"
-						width="534"
-						height="40"
-						forecolor="#000000"
-						backcolor="#FFFFFF"
-						key="staticText"/>
-					<box>					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-					<bottomPen lineWidth="0.0" lineColor="#000000"/>
-					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-</box>
-					<textElement textAlignment="Center">
-						<font size="30"/>
-					</textElement>
-				<text><![CDATA[Relatório Servidor Conta Bancária]]></text>
-				</staticText>
-				<line direction="TopDown">
-					<reportElement
-						x="0"
-						y="126"
-						width="534"
-						height="0"
-						key="line"/>
-					<graphicElement stretchType="NoStretch"/>
-				</line>
 				<line direction="BottomUp">
 					<reportElement
 						x="0"
-						y="103"
-						width="535"
+						y="67"
+						width="782"
 						height="0"
 						key="line"/>
 					<graphicElement stretchType="NoStretch"/>
 				</line>
 				<staticText>
 					<reportElement
-						x="41"
-						y="108"
-						width="169"
+						x="47"
+						y="72"
+						width="260"
 						height="17"
 						forecolor="#000000"
 						backcolor="#FFFFFF"
@@ -148,12 +120,12 @@ FROM
 					<textElement>
 						<font fontName="Times New Roman" pdfFontName="Helvetica-Bold" size="12" isBold="true"/>
 					</textElement>
-				<text><![CDATA[Nome]]></text>
+				<text><![CDATA[NOME]]></text>
 				</staticText>
 				<staticText>
 					<reportElement
-						x="330"
-						y="108"
+						x="503"
+						y="72"
 						width="76"
 						height="17"
 						forecolor="#000000"
@@ -168,13 +140,13 @@ FROM
 					<textElement>
 						<font fontName="Times New Roman" pdfFontName="Helvetica-Bold" size="12" isBold="true"/>
 					</textElement>
-				<text><![CDATA[Conta Bancaria]]></text>
+				<text><![CDATA[CONTA]]></text>
 				</staticText>
 				<staticText>
 					<reportElement
-						x="406"
-						y="108"
-						width="51"
+						x="600"
+						y="72"
+						width="63"
 						height="17"
 						forecolor="#000000"
 						backcolor="#FFFFFF"
@@ -188,13 +160,13 @@ FROM
 					<textElement>
 						<font fontName="Times New Roman" pdfFontName="Helvetica-Bold" size="12" isBold="true"/>
 					</textElement>
-				<text><![CDATA[Agência]]></text>
+				<text><![CDATA[AGÊNCIA]]></text>
 				</staticText>
 				<staticText>
 					<reportElement
-						x="468"
-						y="108"
-						width="64"
+						x="695"
+						y="72"
+						width="77"
 						height="17"
 						forecolor="#000000"
 						backcolor="#FFFFFF"
@@ -208,13 +180,13 @@ FROM
 					<textElement>
 						<font fontName="Times New Roman" pdfFontName="Helvetica-Bold" size="12" isBold="true"/>
 					</textElement>
-				<text><![CDATA[Poupança]]></text>
+				<text><![CDATA[POUPANÇA]]></text>
 				</staticText>
 				<staticText>
 					<reportElement
-						x="217"
-						y="108"
-						width="108"
+						x="319"
+						y="72"
+						width="167"
 						height="17"
 						forecolor="#000000"
 						backcolor="#FFFFFF"
@@ -228,19 +200,28 @@ FROM
 					<textElement>
 						<font fontName="Times New Roman" pdfFontName="Helvetica-Bold" size="12" isBold="true"/>
 					</textElement>
-				<text><![CDATA[Banco]]></text>
+				<text><![CDATA[BANCO]]></text>
 				</staticText>
-				<image  evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+				<image  scaleImage="FillFrame" hAlign="Center" isUsingCache="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
 						x="1"
 						y="2"
-						width="534"
+						width="781"
 						height="60"
 						key="image-1"/>
 					<box></box>
 					<graphicElement stretchType="NoStretch"/>
 					<imageExpression class="java.lang.String"><![CDATA[$P{BANNER}]]></imageExpression>
 				</image>
+				<line direction="BottomUp">
+					<reportElement
+						x="0"
+						y="90"
+						width="782"
+						height="0"
+						key="line-1"/>
+					<graphicElement stretchType="NoStretch"/>
+				</line>
 			</band>
 		</pageHeader>
 		<columnHeader>
@@ -270,9 +251,9 @@ FROM
 				</textField>
 				<textField isStretchWithOverflow="true" pattern="" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
-						x="41"
+						x="47"
 						y="4"
-						width="169"
+						width="260"
 						height="17"
 						forecolor="#000000"
 						backcolor="#FFFFFF"
@@ -289,7 +270,7 @@ FROM
 				</textField>
 				<textField isStretchWithOverflow="true" pattern="" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
-						x="330"
+						x="503"
 						y="4"
 						width="76"
 						height="17"
@@ -308,7 +289,7 @@ FROM
 				</textField>
 				<textField isStretchWithOverflow="true" pattern="" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
-						x="406"
+						x="600"
 						y="4"
 						width="51"
 						height="17"
@@ -327,9 +308,9 @@ FROM
 				</textField>
 				<textField isStretchWithOverflow="true" pattern="" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
-						x="217"
+						x="319"
 						y="4"
-						width="108"
+						width="167"
 						height="17"
 						forecolor="#000000"
 						backcolor="#FFFFFF"
@@ -346,7 +327,7 @@ FROM
 				</textField>
 				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
-						x="468"
+						x="695"
 						y="3"
 						width="64"
 						height="17"
@@ -367,7 +348,7 @@ FROM
 			<band height="28"  isSplitAllowed="true" >
 				<textField isStretchWithOverflow="false" pattern="" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
-						x="325"
+						x="570"
 						y="4"
 						width="170"
 						height="19"
@@ -386,7 +367,7 @@ FROM
 				</textField>
 				<textField isStretchWithOverflow="false" pattern="" isBlankWhenNull="false" evaluationTime="Report" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
-						x="499"
+						x="744"
 						y="4"
 						width="36"
 						height="19"
@@ -403,15 +384,6 @@ FROM
 					</textElement>
 				<textFieldExpression   class="java.lang.String"><![CDATA["" + $V{PAGE_NUMBER}]]></textFieldExpression>
 				</textField>
-				<line direction="TopDown">
-					<reportElement
-						x="0"
-						y="3"
-						width="535"
-						height="0"
-						key="line"/>
-					<graphicElement stretchType="NoStretch"/>
-				</line>
 				<textField isStretchWithOverflow="false" pattern="" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
 						x="1"
@@ -431,6 +403,15 @@ FROM
 					</textElement>
 				<textFieldExpression   class="java.util.Date"><![CDATA[new Date()]]></textFieldExpression>
 				</textField>
+				<line direction="BottomUp">
+					<reportElement
+						x="0"
+						y="3"
+						width="782"
+						height="0"
+						key="line-2"/>
+					<graphicElement stretchType="NoStretch"/>
+				</line>
 			</band>
 		</pageFooter>
 		<summary>
