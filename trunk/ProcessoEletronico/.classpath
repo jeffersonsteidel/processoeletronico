@@ -19,12 +19,13 @@
 			<attribute name="owner.project.facets" value="jst.jsf"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/apache-tomcat-7.0.0/apache-tomcat-7.0.0/lib/jasperreports-3.0.0.jar"/>
-	<classpathentry kind="lib" path="C:/apache-tomcat-7.0.0/apache-tomcat-7.0.0/lib/mailapi.jar"/>
-	<classpathentry kind="lib" path="C:/apache-tomcat-7.0.0/apache-tomcat-7.0.0/lib/pop3.jar"/>
-	<classpathentry kind="lib" path="C:/apache-tomcat-7.0.0/apache-tomcat-7.0.0/lib/smtp.jar"/>
-	<classpathentry kind="lib" path="C:/Documents and Settings/Marlon/Meus documentos/Meus arquivos recebidos/dsn.jar"/>
-	<classpathentry kind="lib" path="C:/Documents and Settings/Marlon/Meus documentos/Meus arquivos recebidos/imap.jar"/>
-	<classpathentry kind="lib" path="C:/Documents and Settings/Marlon/Meus documentos/Meus arquivos recebidos/mail.jar"/>
+	<classpathentry kind="lib" path="C:/Documents and Settings/Jefferson/Meus documentos/PROJETO/ProcessoEletronico/WebContent/WEB-INF/lib/dsn.jar"/>
+	<classpathentry kind="lib" path="C:/Documents and Settings/Jefferson/Meus documentos/PROJETO/ProcessoEletronico/WebContent/WEB-INF/lib/imap.jar"/>
+	<classpathentry kind="lib" path="C:/Documents and Settings/Jefferson/Meus documentos/PROJETO/ProcessoEletronico/WebContent/WEB-INF/lib/jasperreports-3.0.0.jar"/>
+	<classpathentry kind="lib" path="C:/Documents and Settings/Jefferson/Meus documentos/PROJETO/ProcessoEletronico/WebContent/WEB-INF/lib/mail.jar"/>
+	<classpathentry kind="lib" path="C:/Documents and Settings/Jefferson/Meus documentos/PROJETO/ProcessoEletronico/WebContent/WEB-INF/lib/mailapi.jar"/>
+	<classpathentry kind="lib" path="C:/Documents and Settings/Jefferson/Meus documentos/PROJETO/ProcessoEletronico/WebContent/WEB-INF/lib/pop3.jar"/>
+	<classpathentry kind="lib" path="C:/Documents and Settings/Jefferson/Meus documentos/PROJETO/ProcessoEletronico/WebContent/WEB-INF/lib/smtp.jar"/>
+	<classpathentry kind="lib" path="C:/Documents and Settings/Jefferson/Meus documentos/PROJETO/Agenda/WebContent/WEB-INF/lib/poi-3.2-FINAL.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
