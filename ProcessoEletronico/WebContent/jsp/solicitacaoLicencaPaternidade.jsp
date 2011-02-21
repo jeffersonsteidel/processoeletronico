@@ -39,7 +39,7 @@
 				</h:outputText>
 			</h:panelGrid>
 
-			<h:panelGrid columns="4">
+			<h:panelGrid columns="2">
 				<h:outputText value="Data de Nascimento do Filho(a): "></h:outputText>
 				<rich:calendar
 					value="#{solicitacaoLicencaPaternidadeController.solicitacaoLicencaPaternidade.dataNascimento}"
@@ -79,7 +79,7 @@
 			<h:panelGroup id="info">
 				<rich:panel bodyClass="info">
 					<rich:dataGrid columns="1"
-						value="#{solicitacaoLicencaPaternidadeController.solicitacaoLicencaPaternidade.files}"
+						value="#{solicitacaoLicencaPaternidadeController.solicitacaoLicencaPaternidade.certidaoNascimento}"
 						var="file" rowKeyVar="row">
 						<rich:panel bodyClass="rich-laguna-panel-no-header">
 							<h:panelGrid columns="2">

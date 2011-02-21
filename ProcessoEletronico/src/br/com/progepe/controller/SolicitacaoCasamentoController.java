@@ -95,14 +95,12 @@ public class SolicitacaoCasamentoController implements Serializable {
 	}
 
 	public void paint(OutputStream stream, Object object) throws IOException {
-		stream.write(solicitacaoCasamento.getFiles().get((Integer) object)
-				.getCertidaoCasamento());
+		stream.write(solicitacaoCasamento.getCertidaoCasamento());
 	}
 
 	public void listener(UploadEvent event) throws Exception {
 		UploadItem item = event.getUploadItem();
 		solicitacaoCasamento.setCertidaoCasamento(item.getData());
-		solicitacaoCasamento.getFiles().add(solicitacaoCasamento);
 	}
 	
 	public void calcularRetorno(){

@@ -31,101 +31,84 @@
 
 			<h:panelGrid columns="2">
 				<h:outputText value="Nome da Portaria: "></h:outputText>
-				<h:inputText value="#{portariaController.portaria.nome}" size="53"
-					maxlength="120" required="true" disabled="true"
-					requiredMessage="Campo Nome da Portaria é obrigatório!">
-				</h:inputText>
+				<h:outputText value="#{portariaController.portaria.nome}">
+				</h:outputText>
 				<h:outputText value="Numero da Portaria: "></h:outputText>
-				<h:inputText value="#{portariaController.portaria.numero}" size="53" disabled="true"
-					maxlength="11" required="true" onkeypress="mascara(this,soNumeros);"
-					requiredMessage="Campo Numero da Portaria é obrigatório!">
-				</h:inputText>
+				<h:outputText value="#{portariaController.portaria.numero}">
+				</h:outputText>
 				<h:outputText value="Data da Portaria: "></h:outputText>
-				<rich:calendar value="#{portariaController.portaria.data}" locale=""
-					popup="true" datePattern="dd/MM/yyyy" showApplyButton="#" disabled="true"
-					cellWidth="12px" cellHeight="12px" style="width:80px"
-					required="true" inputSize="12" ajaxSingle="true"
-					requiredMessage="Campo Data da Portaria é obrigatório!">
-				</rich:calendar>
+				<h:outputText value="#{portariaController.portaria.data}">
+					<f:convertDateTime pattern="dd/MM/yyyy" />
+				</h:outputText>
 				<h:outputText value="Tipo da Portaria: "></h:outputText>
-				<h:selectOneMenu value="#{portariaController.portaria.tipo.codigo}" disabled="true"
-					required="true"
-					requiredMessage="Campo Tipo da Portaria é obrigatório!">
-					<f:selectItem itemLabel="SELECIONE" itemValue="" /> 
-					<f:selectItems value="#{portariaController.tiposPortaria}" />
-				</h:selectOneMenu>
+				<h:outputText value="#{portariaController.portaria.tipo.descricao}">
+				</h:outputText>
 				<h:outputText value="Local da Portaria: "></h:outputText>
-				<h:selectOneMenu value="#{portariaController.portaria.local}"
-					required="true" disabled="true"
-					requiredMessage="Campo Local da Portaria é obrigatório!">
-					<f:selectItem itemLabel="SELECIONE" itemValue="" />
-					<f:selectItem itemLabel="PROGEPE" itemValue="PROGEPE" />
-					<f:selectItem itemLabel="REITORIA" itemValue="REITORIA" />
-				</h:selectOneMenu>
+				<h:outputText value="#{portariaController.portaria.local}">
+				</h:outputText>
 				<h:outputText value="Descrição da Portaria: "></h:outputText>
-				<h:inputTextarea value="#{portariaController.portaria.descricao}" disabled="true"
-					rows="10" cols="50">
+				<h:inputTextarea value="#{portariaController.portaria.descricao}"
+					disabled="true" rows="10" cols="50">
 				</h:inputTextarea>
 			</h:panelGrid>
 			<h:panelGroup id="info">
 				<rich:panel bodyClass="info">
 					<rich:dataGrid columns="1"
-					value="#{portariaController.portaria.arquivo1 }"
-						var="file" rowKeyVar="row">
+						value="#{portariaController.portaria.arquivo1}" var="file"
+						rowKeyVar="row">
 						<rich:panel bodyClass="rich-laguna-panel-no-header">
 							<h:panelGrid columns="5">
 								<a4j:mediaOutput element="img"
-									createContent="#{portariaController.paint1}"
-									value="#{row}" style="width:600px; height:800px;"
-									cacheable="false">
+									createContent="#{portariaController.paint1}" value="#{row}"
+									style="width:600px; height:800px;" cacheable="false">
 								</a4j:mediaOutput>
 							</h:panelGrid>
 						</rich:panel>
 					</rich:dataGrid>
-					<rich:dataGrid columns="1" value="#{portariaController.portaria.arquivo2 }"
-						var="file" rowKeyVar="row">
+					<rich:dataGrid columns="1"
+						value="#{portariaController.portaria.arquivo2}" var="file"
+						rowKeyVar="row">
 						<rich:panel bodyClass="rich-laguna-panel-no-header">
 							<h:panelGrid columns="5">
 								<a4j:mediaOutput element="img"
-									createContent="#{portariaController.paint2}"
-									value="#{row}" style="width:600px; height:800px;"
-									cacheable="false">
+									createContent="#{portariaController.paint2}" value="#{row}"
+									style="width:600px; height:800px;" cacheable="false">
 								</a4j:mediaOutput>
 							</h:panelGrid>
 						</rich:panel>
 					</rich:dataGrid>
-					<rich:dataGrid columns="1" value="#{portariaController.portaria.arquivo3 }"
-						var="file" rowKeyVar="row">
+					<rich:dataGrid columns="1"
+						value="#{portariaController.portaria.arquivo3}" var="file"
+						rowKeyVar="row">
 						<rich:panel bodyClass="rich-laguna-panel-no-header">
 							<h:panelGrid columns="5">
 								<a4j:mediaOutput element="img"
-									createContent="#{portariaController.paint3}"
-									value="#{row}" style="width:600px; height:800px;"
-									cacheable="false">
+									createContent="#{portariaController.paint3}" value="#{row}"
+									style="width:600px; height:800px;" cacheable="false">
 								</a4j:mediaOutput>
 							</h:panelGrid>
 						</rich:panel>
 					</rich:dataGrid>
-					<rich:dataGrid columns="1" value="#{portariaController.portaria.arquivo4 }"
-						var="file" rowKeyVar="row">
+					<rich:dataGrid columns="1"
+						value="#{portariaController.portaria.arquivo4}" var="file"
+						rowKeyVar="row">
 						<rich:panel bodyClass="rich-laguna-panel-no-header">
 							<h:panelGrid columns="5">
 								<a4j:mediaOutput element="img"
-									createContent="#{portariaController.paint4}"
-									value="#{row}" style="width:600px; height:800px;"
-									cacheable="false">
+									createContent="#{portariaController.paint4}" value="#{row}"
+									style="width:600px; height:800px;" cacheable="false">
 								</a4j:mediaOutput>
 							</h:panelGrid>
 						</rich:panel>
 					</rich:dataGrid>
-					<rich:dataGrid columns="1" value="#{portariaController.portaria.arquivo5 }"
-						var="file" rowKeyVar="row">
+					<rich:dataGrid columns="1"
+						value="#{portariaController.portaria.arquivo5}" var="file"
+						rowKeyVar="row">
 						<rich:panel bodyClass="rich-laguna-panel-no-header">
 							<h:panelGrid columns="5">
 								<a4j:mediaOutput element="img"
-									createContent="#{portariaController.paint5}"
-									value="#{row}" style="width:600px; height:800px;"
-									cacheable="false">
+									createContent="#{portariaController.paint5}" value="#{row}"
+									style="width:600px; height:800px;" cacheable="false">
 								</a4j:mediaOutput>
 							</h:panelGrid>
 						</rich:panel>
@@ -134,7 +117,7 @@
 			</h:panelGroup>
 
 		</rich:panel></center>
-		
+
 	</a4j:form>
 </f:view>
 </body>

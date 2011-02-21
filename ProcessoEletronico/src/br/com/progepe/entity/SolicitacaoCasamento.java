@@ -1,6 +1,5 @@
 package br.com.progepe.entity;
 
-import java.util.ArrayList;
 import java.util.Date;
 
 public class SolicitacaoCasamento extends Solicitacao {
@@ -13,7 +12,6 @@ public class SolicitacaoCasamento extends Solicitacao {
 	private Boolean documentoValidado = false;
 	private Date dataCasamento;
 	private Date dataRetorno;
-	private ArrayList<SolicitacaoCasamento> files = new ArrayList<SolicitacaoCasamento>();
 
 	public String getNomeConjuge() {
 		return nomeConjuge;
@@ -47,14 +45,6 @@ public class SolicitacaoCasamento extends Solicitacao {
 		this.documentoValidado = documentoValidado;
 	}
 	
-	public ArrayList<SolicitacaoCasamento> getFiles() {
-		return files;
-	}
-
-	public void setFiles(ArrayList<SolicitacaoCasamento> files) {
-		this.files = files;
-	}
-
 	public Date getDataCasamento() {
 		return dataCasamento;
 	}

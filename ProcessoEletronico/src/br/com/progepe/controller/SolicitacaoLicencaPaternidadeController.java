@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.io.Serializable;
 import java.text.ParseException;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -51,7 +50,6 @@ public class SolicitacaoLicencaPaternidadeController implements Serializable {
 		try {
 			texto = "";
 			solicitacaoLicencaPaternidade = new SolicitacaoLicencaPaternidade();
-			solicitacaoLicencaPaternidade.getFiles().clear();
 			buscarServidorLogado();
 			FacesContext.getCurrentInstance().getExternalContext()
 					.redirect("solicitacaoLicencaPaternidade.jsp");
@@ -73,15 +71,12 @@ public class SolicitacaoLicencaPaternidadeController implements Serializable {
 	}
 
 	public void paint(OutputStream stream, Object object) throws IOException {
-		stream.write(solicitacaoLicencaPaternidade.getFiles()
-				.get((Integer) object).getCertidaoNascimento());
+		stream.write(solicitacaoLicencaPaternidade.getCertidaoNascimento());
 	}
 
 	public void listener(UploadEvent event) throws Exception {
 		UploadItem item = event.getUploadItem();
 		solicitacaoLicencaPaternidade.setCertidaoNascimento(item.getData());
-		solicitacaoLicencaPaternidade.getFiles().add(
-				solicitacaoLicencaPaternidade);
 	}
 
 	public void salvar() throws IOException, ParseException {
@@ -106,8 +101,6 @@ public class SolicitacaoLicencaPaternidadeController implements Serializable {
 			EnviarEmail enviarEmail = new EnviarEmail();
 			enviarEmail.enviarEmailSolicitacao(solicitacaoLicencaPaternidade);
 			solicitacaoLicencaPaternidade = new SolicitacaoLicencaPaternidade();
-			solicitacaoLicencaPaternidade
-					.setFiles(new ArrayList<SolicitacaoLicencaPaternidade>());
 			buscarServidorLogado();
 			texto = "Clique aqui para ir para tela de cadastro de dependentes, lá você poderá adicionar seu filho(a) como seu dependedente!";
 		}
@@ -117,8 +110,7 @@ public class SolicitacaoLicencaPaternidadeController implements Serializable {
 			SolicitacaoLicencaPaternidade codigoSolicitacaoLicencaPaternidade)
 			throws IOException {
 		solicitacaoLicencaPaternidade = codigoSolicitacaoLicencaPaternidade; // (SolicitacaoLicencaPaternidade)
-																				// dao.refresh(codigoSolicitacaoLicencaPaternidade);
-		System.out.println(solicitacaoLicencaPaternidade.getDataNascimento());
+																				// dao.refresh(codigoSolicitacaoLicencaPaternidade)
 		FacesContext.getCurrentInstance().getExternalContext()
 				.redirect("solicitacaoLicencaPaternidadeAprovar.jsp");
 	}

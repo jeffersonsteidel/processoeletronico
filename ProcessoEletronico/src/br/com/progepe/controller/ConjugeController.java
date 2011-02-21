@@ -353,6 +353,7 @@ public class ConjugeController implements Serializable {
 			conjuge.setPais(new Pais());
 		}
 	}
+	
 	public void verificarStatus() throws IOException, ParseException {
 		FacesContext context = FacesContext.getCurrentInstance();
 		conjugeFilter = (Conjuge) context.getExternalContext().getRequestMap()
