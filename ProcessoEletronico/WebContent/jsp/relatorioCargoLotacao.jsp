@@ -30,19 +30,20 @@
 			<h:panelGrid columns="6">
 
 				<h:outputText value="Cargo: " />
-				<h:selectOneMenu value="#{RelatorioController.cargo}">
+				<h:selectOneMenu value="#{relatorioController.cargo}">
 					<f:selectItem itemLabel="SELECIONE" itemValue="" />
 					<f:selectItems value="#{relatorioController.cargos}" />
 				</h:selectOneMenu>
 
 				<h:outputText value="Local Exercício: " />
-				<h:selectOneMenu value="#{RelatorioController.lotacao}">
+				<h:selectOneMenu value="#{relatorioController.lotacao}">
 					<f:selectItem itemLabel="SELECIONE" itemValue="" />
 					<f:selectItems value="#{relatorioController.locaisExercicio}" />
 				</h:selectOneMenu>
 
 				<h:outputText value="Situação do Servidor: " />
 				<h:selectOneMenu value="#{relatorioController.situacao}">
+				<f:selectItem itemLabel="TODOS" itemValue="0" />
 					<f:selectItem itemLabel="ATIVOS" itemValue="1" />
 					<f:selectItem itemLabel="INATIVOS" itemValue="2" />
 				</h:selectOneMenu>
