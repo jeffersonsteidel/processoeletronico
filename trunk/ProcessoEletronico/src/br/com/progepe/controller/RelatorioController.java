@@ -157,17 +157,17 @@ public class RelatorioController implements Serializable {
 	public String gerarRelatorioServidorCargoLotacaoByFiltro()
 			throws ClassNotFoundException, SQLException, JRException {
 		
-		@SuppressWarnings("unused")
+
 		String sql = "SELECT servidor.serv_siape AS servidor_serv_siape, servidor.serv_nome AS servidor_serv_nome," +
-		" lotacao.lot_desc AS lotacao_lot_desc, cargo.carg_desc AS cargo_carg_desc, servidor.`serv_data_saida` AS servidor_serv_data_saida" +
+		" lotacao.lot_desc AS lotacao_lot_desc, cargo.carg_desc AS cargo_carg_desc, servidor.serv_data_saida AS servidor_serv_data_saida" +
 		" FROM lotacao INNER JOIN servidor ON lotacao.lot_cod = servidor.lot_cod INNER JOIN cargo ON servidor.carg_cod = cargo.carg_cod" +
-		" WHERE 1 = 1";
+		" WHERE 1 = 1 ";
 		
 		if(cargo != null && cargo != 0){
 			sql += " AND cargo.carg_cod = "+cargo;
 		}
 		if(lotacao != null && lotacao != 0){
-			sql += " and cargo.carg_cod =  "+lotacao;
+			sql += " and lotacao.lot_cod =  "+lotacao;
 		}
 		
 		if(situacao != null && situacao.equals(Constantes.ATIVO)){
@@ -177,7 +177,7 @@ public class RelatorioController implements Serializable {
 			sql += " and servidor.serv_data_saida is not null";
 		}
 		
-		sql +=" order by servidor.serv_siape";
+		sql +=" order by servidor.serv_siape ";
 		
 		JasperMB jasperMB = new JasperMB();
 		jasperMB.criaConexao();
