@@ -47,11 +47,12 @@
 				</h:outputText>
 
 			</h:panelGrid>
-
+<%--
 			<a4j:region>
-				<a4j:commandLink action="#{conjugeController.carregarConjugeSolicitante}" value="Verificar Dados do Cônjuge"></a4j:commandLink>
+				<a4j:commandLink action="#{conjugeController.abrirConjugeSolicitante}" value="Verificar Dados do Cônjuge">
+				</a4j:commandLink>
 			</a4j:region>
-
+ --%>
 			<h:panelGroup id="info">
 				<rich:panel bodyClass="info">
 					<rich:dataGrid columns="1"
