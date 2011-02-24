@@ -75,10 +75,11 @@
 				maxFilesQuantity="5" clearAllControlLabel="Limpar Todos"
 				addControlLabel="Adicionar Pagina de Portaria" id="upload"
 				transferErrorLabel="Falha Ao realizar Transferência"
-				doneLabelClass="Finalizada" immediateUpload="true" listWidth="400px"
-				stopControlLabel="Parar" acceptedTypes="jpg, gif, png, bmp"
-				allowFlash="true" sizeErrorLabel="Foto muito grande"
-				uploadControlLabel="Carregar" listHeight="70px">
+				autoclear="true" doneLabelClass="Finalizada" immediateUpload="true"
+				listWidth="400px" stopControlLabel="Parar"
+				acceptedTypes="jpg, gif, png, bmp" allowFlash="true"
+				sizeErrorLabel="Foto muito grande" uploadControlLabel="Carregar"
+				listHeight="70px">
 				<a4j:support event="onuploadcomplete" reRender="info" />
 			</rich:fileUpload>
 			<a4j:commandButton value="Salvar"

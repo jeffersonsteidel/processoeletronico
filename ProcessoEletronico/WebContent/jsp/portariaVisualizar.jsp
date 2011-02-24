@@ -115,7 +115,8 @@
 					</rich:dataGrid>
 				</rich:panel>
 			</h:panelGroup>
-
+			<a4j:commandButton value="Voltar"
+ 				action="#{portariaController.retornaUltimaPesquisa}"></a4j:commandButton>
 		</rich:panel></center>
 
 	</a4j:form>
