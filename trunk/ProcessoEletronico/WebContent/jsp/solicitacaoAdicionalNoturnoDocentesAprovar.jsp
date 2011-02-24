@@ -113,9 +113,7 @@
 				<h:inputTextarea disabled="#{solicitacaoController.desabilitaBotao}"
 					value="#{solicitacaoController.solicitacaoAdicionalNoturnoDocente.justificativa}"
 					cols="50" rows="5"
-					validatorMessage="A Justificativa deve ter no máximo 500 caracteres!"
 					requiredMessage="Campo Justificativa é obrigatório!">
-					<f:validateLength maximum="500"></f:validateLength>
 				</h:inputTextarea>
 			</h:panelGrid>
 

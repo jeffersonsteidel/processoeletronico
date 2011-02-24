@@ -65,9 +65,7 @@
 				<h:outputText value="Justificativa: " />
 				<h:inputTextarea disabled="#{solicitacaoController.desabilitaBotao}"
 					value="#{solicitacaoController.solicitacaoLicencaPaternidade.justificativa}"
-					cols="50" rows="5"
-					validatorMessage="Tarefas Diarias deve ter no máximo 250 caracteres!">
-					<f:validateLength maximum="250"></f:validateLength>
+					cols="50" rows="5">
 				</h:inputTextarea>
 			</h:panelGrid>
 

@@ -922,7 +922,8 @@ public class SolicitacaoController implements Serializable {
 					solicitacaoAdicionalNoturnoTecnico);
 			this.setDesabilitaBotao(true);
 			EnviarEmail enviarEmail = new EnviarEmail();
-			enviarEmail.enviarEmailSolicitacao(solicitacaoAdicionalNoturnoTecnico);
+			enviarEmail
+					.enviarEmailSolicitacao(solicitacaoAdicionalNoturnoTecnico);
 		} else if (Constantes.TIPO_SOLICITACAO_ADICIONAL_NOTURNO_DOCENTES
 				.equals(tipoSolicitacao)) {
 			solicitacaoAdicionalNoturnoDocente.getStatusSolicitacao()
@@ -932,7 +933,8 @@ public class SolicitacaoController implements Serializable {
 					solicitacaoAdicionalNoturnoDocente);
 			this.setDesabilitaBotao(true);
 			EnviarEmail enviarEmail = new EnviarEmail();
-			enviarEmail.enviarEmailSolicitacao(solicitacaoAdicionalNoturnoDocente);
+			enviarEmail
+					.enviarEmailSolicitacao(solicitacaoAdicionalNoturnoDocente);
 		} else if (Constantes.TIPO_SOLICITACAO_ALTERACAO_ENDERECO
 				.equals(tipoSolicitacao)) {
 			solicitacaoAlteracaoEndereco.getStatusSolicitacao().setCodigo(
@@ -983,12 +985,19 @@ public class SolicitacaoController implements Serializable {
 					Constantes.STATUS_SOLICITACAO_INDEFERIDO);
 			solicitacaoContaBancaria.setDataFechamento(new Date());
 			if (solicitacaoContaBancaria.getJustificativa() != null
-					&& solicitacaoContaBancaria.getJustificativa() != "") {
+					&& solicitacaoContaBancaria.getJustificativa() != ""
+					&& solicitacaoContaBancaria.getJustificativa().length() <= 0) {
 				SolicitacaoDAO.getInstance().saveOrUpdate(
 						solicitacaoContaBancaria);
 				this.setDesabilitaBotao(true);
 				EnviarEmail enviarEmail = new EnviarEmail();
 				enviarEmail.enviarEmailSolicitacao(solicitacaoContaBancaria);
+			} else if (solicitacaoContaBancaria.getJustificativa().length() > 250) {
+				FacesMessage message = new FacesMessage(
+						FacesMessage.SEVERITY_ERROR,
+						"O campo Justificativa deve conter no maximo 250 caracteres!",
+						"O campo Justificativa deve conter no maximo 250 caracteres!");
+				FacesContext.getCurrentInstance().addMessage("", message);
 			} else {
 				FacesMessage message = new FacesMessage(
 						FacesMessage.SEVERITY_ERROR,
@@ -1002,12 +1011,21 @@ public class SolicitacaoController implements Serializable {
 					Constantes.STATUS_SOLICITACAO_INDEFERIDO);
 			solicitacaoLicencaPaternidade.setDataFechamento(new Date());
 			if (solicitacaoLicencaPaternidade.getJustificativa() != null
-					&& solicitacaoLicencaPaternidade.getJustificativa() != "") {
+					&& solicitacaoLicencaPaternidade.getJustificativa() != ""
+					&& solicitacaoContaBancaria.getJustificativa().length() <= 0) {
 				SolicitacaoDAO.getInstance().saveOrUpdate(
 						solicitacaoLicencaPaternidade);
 				this.setDesabilitaBotao(true);
 				EnviarEmail enviarEmail = new EnviarEmail();
-				enviarEmail.enviarEmailSolicitacao(solicitacaoLicencaPaternidade);
+				enviarEmail
+						.enviarEmailSolicitacao(solicitacaoLicencaPaternidade);
+			} else if (solicitacaoLicencaPaternidade.getJustificativa()
+					.length() > 250) {
+				FacesMessage message = new FacesMessage(
+						FacesMessage.SEVERITY_ERROR,
+						"O campo Justificativa deve conter no maximo 250 caracteres!",
+						"O campo Justificativa deve conter no maximo 250 caracteres!");
+				FacesContext.getCurrentInstance().addMessage("", message);
 			} else {
 				FacesMessage message = new FacesMessage(
 						FacesMessage.SEVERITY_ERROR,
@@ -1021,12 +1039,21 @@ public class SolicitacaoController implements Serializable {
 					.setCodigo(Constantes.STATUS_SOLICITACAO_INDEFERIDO);
 			solicitacaoHorarioEspecialEstudante.setDataFechamento(new Date());
 			if (solicitacaoHorarioEspecialEstudante.getJustificativa() != null
-					&& solicitacaoHorarioEspecialEstudante.getJustificativa() != "") {
+					&& solicitacaoHorarioEspecialEstudante.getJustificativa() != ""
+					&& solicitacaoContaBancaria.getJustificativa().length() <= 0) {
 				SolicitacaoDAO.getInstance().saveOrUpdate(
 						solicitacaoHorarioEspecialEstudante);
 				this.setDesabilitaBotao(true);
 				EnviarEmail enviarEmail = new EnviarEmail();
-				enviarEmail.enviarEmailSolicitacao(solicitacaoHorarioEspecialEstudante);
+				enviarEmail
+						.enviarEmailSolicitacao(solicitacaoHorarioEspecialEstudante);
+			} else if (solicitacaoHorarioEspecialEstudante.getJustificativa()
+					.length() > 250) {
+				FacesMessage message = new FacesMessage(
+						FacesMessage.SEVERITY_ERROR,
+						"O campo Justificativa deve conter no maximo 250 caracteres!",
+						"O campo Justificativa deve conter no maximo 250 caracteres!");
+				FacesContext.getCurrentInstance().addMessage("", message);
 			} else {
 				FacesMessage message = new FacesMessage(
 						FacesMessage.SEVERITY_ERROR,
@@ -1039,11 +1066,18 @@ public class SolicitacaoController implements Serializable {
 					Constantes.STATUS_SOLICITACAO_INDEFERIDO);
 			solicitacaoObito.setDataFechamento(new Date());
 			if (solicitacaoObito.getJustificativa() != null
-					&& solicitacaoObito.getJustificativa() != "") {
+					&& solicitacaoObito.getJustificativa() != ""
+					&& solicitacaoContaBancaria.getJustificativa().length() <= 0) {
 				SolicitacaoDAO.getInstance().saveOrUpdate(solicitacaoObito);
 				this.setDesabilitaBotao(true);
 				EnviarEmail enviarEmail = new EnviarEmail();
 				enviarEmail.enviarEmailSolicitacao(solicitacaoObito);
+			} else if (solicitacaoObito.getJustificativa().length() > 250) {
+				FacesMessage message = new FacesMessage(
+						FacesMessage.SEVERITY_ERROR,
+						"O campo Justificativa deve conter no maximo 250 caracteres!",
+						"O campo Justificativa deve conter no maximo 250 caracteres!");
+				FacesContext.getCurrentInstance().addMessage("", message);
 			} else {
 				FacesMessage message = new FacesMessage(
 						FacesMessage.SEVERITY_ERROR,
@@ -1057,11 +1091,18 @@ public class SolicitacaoController implements Serializable {
 					Constantes.STATUS_SOLICITACAO_INDEFERIDO);
 			solicitacaoCasamento.setDataFechamento(new Date());
 			if (solicitacaoCasamento.getJustificativa() != null
-					&& solicitacaoCasamento.getJustificativa() != "") {
+					&& solicitacaoCasamento.getJustificativa() != ""
+					&& solicitacaoContaBancaria.getJustificativa().length() <= 0) {
 				SolicitacaoDAO.getInstance().saveOrUpdate(solicitacaoCasamento);
 				this.setDesabilitaBotao(true);
 				EnviarEmail enviarEmail = new EnviarEmail();
 				enviarEmail.enviarEmailSolicitacao(solicitacaoCasamento);
+			} else if (solicitacaoCasamento.getJustificativa().length() > 250) {
+				FacesMessage message = new FacesMessage(
+						FacesMessage.SEVERITY_ERROR,
+						"O campo Justificativa deve conter no maximo 250 caracteres!",
+						"O campo Justificativa deve conter no maximo 250 caracteres!");
+				FacesContext.getCurrentInstance().addMessage("", message);
 			} else {
 				FacesMessage message = new FacesMessage(
 						FacesMessage.SEVERITY_ERROR,
@@ -1075,12 +1116,19 @@ public class SolicitacaoController implements Serializable {
 					Constantes.STATUS_SOLICITACAO_INDEFERIDO);
 			solicitacaoAlimentacao.setDataFechamento(new Date());
 			if (solicitacaoAlimentacao.getJustificativa() != null
-					&& solicitacaoAlimentacao.getJustificativa() != "") {
+					&& solicitacaoAlimentacao.getJustificativa() != ""
+					&& solicitacaoContaBancaria.getJustificativa().length() <= 0) {
 				SolicitacaoDAO.getInstance().saveOrUpdate(
 						solicitacaoAlimentacao);
 				this.setDesabilitaBotao(true);
 				EnviarEmail enviarEmail = new EnviarEmail();
 				enviarEmail.enviarEmailSolicitacao(solicitacaoAlimentacao);
+			} else if (solicitacaoAlimentacao.getJustificativa().length() > 250) {
+				FacesMessage message = new FacesMessage(
+						FacesMessage.SEVERITY_ERROR,
+						"O campo Justificativa deve conter no maximo 250 caracteres!",
+						"O campo Justificativa deve conter no maximo 250 caracteres!");
+				FacesContext.getCurrentInstance().addMessage("", message);
 			} else {
 				FacesMessage message = new FacesMessage(
 						FacesMessage.SEVERITY_ERROR,
@@ -1094,12 +1142,21 @@ public class SolicitacaoController implements Serializable {
 					Constantes.STATUS_SOLICITACAO_INDEFERIDO);
 			solicitacaoAfastamentoConjuge.setDataFechamento(new Date());
 			if (solicitacaoAfastamentoConjuge.getJustificativa() != null
-					&& solicitacaoAfastamentoConjuge.getJustificativa() != "") {
+					&& solicitacaoAfastamentoConjuge.getJustificativa() != ""
+					&& solicitacaoContaBancaria.getJustificativa().length() <= 0) {
 				SolicitacaoDAO.getInstance().saveOrUpdate(
 						solicitacaoAfastamentoConjuge);
 				this.setDesabilitaBotao(true);
 				EnviarEmail enviarEmail = new EnviarEmail();
-				enviarEmail.enviarEmailSolicitacao(solicitacaoAfastamentoConjuge);
+				enviarEmail
+						.enviarEmailSolicitacao(solicitacaoAfastamentoConjuge);
+			} else if (solicitacaoAfastamentoConjuge.getJustificativa()
+					.length() > 250) {
+				FacesMessage message = new FacesMessage(
+						FacesMessage.SEVERITY_ERROR,
+						"O campo Justificativa deve conter no maximo 250 caracteres!",
+						"O campo Justificativa deve conter no maximo 250 caracteres!");
+				FacesContext.getCurrentInstance().addMessage("", message);
 			} else {
 				FacesMessage message = new FacesMessage(
 						FacesMessage.SEVERITY_ERROR,
@@ -1113,12 +1170,21 @@ public class SolicitacaoController implements Serializable {
 					.setCodigo(Constantes.STATUS_SOLICITACAO_INDEFERIDO);
 			solicitacaoAdicionalNoturnoTecnico.setDataFechamento(new Date());
 			if (solicitacaoAdicionalNoturnoTecnico.getJustificativa() != null
-					&& solicitacaoAdicionalNoturnoTecnico.getJustificativa() != "") {
+					&& solicitacaoAdicionalNoturnoTecnico.getJustificativa() != ""
+					&& solicitacaoContaBancaria.getJustificativa().length() <= 0) {
 				AdicionalNoturnoDAO.getInstance().saveOrUpdateAdicional(
 						solicitacaoAdicionalNoturnoTecnico);
 				this.setDesabilitaBotao(true);
 				EnviarEmail enviarEmail = new EnviarEmail();
-				enviarEmail.enviarEmailSolicitacao(solicitacaoAdicionalNoturnoTecnico);
+				enviarEmail
+						.enviarEmailSolicitacao(solicitacaoAdicionalNoturnoTecnico);
+			} else if (solicitacaoAdicionalNoturnoTecnico.getJustificativa()
+					.length() > 250) {
+				FacesMessage message = new FacesMessage(
+						FacesMessage.SEVERITY_ERROR,
+						"O campo Justificativa deve conter no maximo 250 caracteres!",
+						"O campo Justificativa deve conter no maximo 250 caracteres!");
+				FacesContext.getCurrentInstance().addMessage("", message);
 			} else {
 				FacesMessage message = new FacesMessage(
 						FacesMessage.SEVERITY_ERROR,
@@ -1132,12 +1198,21 @@ public class SolicitacaoController implements Serializable {
 					.setCodigo(Constantes.STATUS_SOLICITACAO_INDEFERIDO);
 			solicitacaoAdicionalNoturnoDocente.setDataFechamento(new Date());
 			if (solicitacaoAdicionalNoturnoDocente.getJustificativa() != null
-					&& solicitacaoAdicionalNoturnoDocente.getJustificativa() != "") {
+					&& solicitacaoAdicionalNoturnoDocente.getJustificativa() != ""
+					&& solicitacaoContaBancaria.getJustificativa().length() <= 0) {
 				AdicionalNoturnoDAO.getInstance().saveOrUpdateAdicional(
 						solicitacaoAdicionalNoturnoDocente);
 				this.setDesabilitaBotao(true);
 				EnviarEmail enviarEmail = new EnviarEmail();
-				enviarEmail.enviarEmailSolicitacao(solicitacaoAdicionalNoturnoDocente);
+				enviarEmail
+						.enviarEmailSolicitacao(solicitacaoAdicionalNoturnoDocente);
+			} else if (solicitacaoAdicionalNoturnoDocente.getJustificativa()
+					.length() > 250) {
+				FacesMessage message = new FacesMessage(
+						FacesMessage.SEVERITY_ERROR,
+						"O campo Justificativa deve conter no maximo 250 caracteres!",
+						"O campo Justificativa deve conter no maximo 250 caracteres!");
+				FacesContext.getCurrentInstance().addMessage("", message);
 			} else {
 				FacesMessage message = new FacesMessage(
 						FacesMessage.SEVERITY_ERROR,
@@ -1151,12 +1226,20 @@ public class SolicitacaoController implements Serializable {
 					Constantes.STATUS_SOLICITACAO_INDEFERIDO);
 			solicitacaoAlteracaoEndereco.setDataFechamento(new Date());
 			if (solicitacaoAlteracaoEndereco.getJustificativa() != null
-					&& solicitacaoAlteracaoEndereco.getJustificativa() != "") {
+					&& solicitacaoAlteracaoEndereco.getJustificativa() != ""
+					&& solicitacaoContaBancaria.getJustificativa().length() <= 0) {
 				AdicionalNoturnoDAO.getInstance().saveOrUpdateAdicional(
 						solicitacaoAlteracaoEndereco);
 				this.setDesabilitaBotao(true);
 				EnviarEmail enviarEmail = new EnviarEmail();
-				enviarEmail.enviarEmailSolicitacao(solicitacaoAlteracaoEndereco);
+				enviarEmail
+						.enviarEmailSolicitacao(solicitacaoAlteracaoEndereco);
+			} else if (solicitacaoAlteracaoEndereco.getJustificativa().length() > 250) {
+				FacesMessage message = new FacesMessage(
+						FacesMessage.SEVERITY_ERROR,
+						"O campo Justificativa deve conter no maximo 250 caracteres!",
+						"O campo Justificativa deve conter no maximo 250 caracteres!");
+				FacesContext.getCurrentInstance().addMessage("", message);
 			} else {
 				FacesMessage message = new FacesMessage(
 						FacesMessage.SEVERITY_ERROR,
@@ -1170,11 +1253,20 @@ public class SolicitacaoController implements Serializable {
 					Constantes.STATUS_SOLICITACAO_INDEFERIDO);
 			solicitacaoRessarcimentoSaude.setDataFechamento(new Date());
 			if (solicitacaoRessarcimentoSaude.getJustificativa() != null
-					&& solicitacaoRessarcimentoSaude.getJustificativa() != "") {
+					&& solicitacaoRessarcimentoSaude.getJustificativa() != ""
+					&& solicitacaoContaBancaria.getJustificativa().length() <= 0) {
 				DAO.getInstance().update(solicitacaoRessarcimentoSaude);
 				this.setDesabilitaBotao(true);
 				EnviarEmail enviarEmail = new EnviarEmail();
-				enviarEmail.enviarEmailSolicitacao(solicitacaoRessarcimentoSaude);
+				enviarEmail
+						.enviarEmailSolicitacao(solicitacaoRessarcimentoSaude);
+			} else if (solicitacaoRessarcimentoSaude.getJustificativa()
+					.length() > 250) {
+				FacesMessage message = new FacesMessage(
+						FacesMessage.SEVERITY_ERROR,
+						"O campo Justificativa deve conter no maximo 250 caracteres!",
+						"O campo Justificativa deve conter no maximo 250 caracteres!");
+				FacesContext.getCurrentInstance().addMessage("", message);
 			} else {
 				FacesMessage message = new FacesMessage(
 						FacesMessage.SEVERITY_ERROR,
@@ -1191,7 +1283,8 @@ public class SolicitacaoController implements Serializable {
 			stream.write(solicitacaoLicencaPaternidade.getCertidaoNascimento());
 		} else if (Constantes.TIPO_SOLICITACAO_HORARIO_ESPECIAL_ESTUDANTE
 				.equals(tipoSolicitacao)) {
-			stream.write(solicitacaoHorarioEspecialEstudante.getDeclaracaoMatricula());
+			stream.write(solicitacaoHorarioEspecialEstudante
+					.getDeclaracaoMatricula());
 		} else if (Constantes.TIPO_SOLICITACAO_OBITO.equals(tipoSolicitacao)) {
 			stream.write(solicitacaoObito.getCertidaoObito());
 		} else if (Constantes.TIPO_SOLICITACAO_LICENCA_CASAMENTO

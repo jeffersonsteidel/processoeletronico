@@ -26,17 +26,25 @@
 					<h:graphicImage value="../images/error.gif" />
 				</f:facet>
 			</rich:messages>
-			<font size="2"><b>ADICIONAL NOTURNO -
-			TÉCNICOS</b></font>
+			<font size="2"><b>ADICIONAL NOTURNO - TÉCNICOS</b></font>
 
-			<br><h:outputText value="Solicitante: #{solicitacaoController.solicitacaoAdicionalNoturnoTecnico.solicitante.siape} - #{solicitacaoController.solicitacaoAdicionalNoturnoTecnico.solicitante.nome}"/>
-			<br><h:outputText value="Diretor: #{solicitacaoController.solicitacaoAdicionalNoturnoTecnico.servidor.siape} - #{solicitacaoController.solicitacaoAdicionalNoturnoTecnico.servidor.nome}"/>
-			<br><h:outputText value="Processo: #{solicitacaoController.solicitacaoAdicionalNoturnoTecnico.codigo} - " />
-			<h:outputText  value="#{solicitacaoController.solicitacaoAdicionalNoturnoDocente.dataAbertura}">
+			<br>
+			<h:outputText
+				value="Solicitante: #{solicitacaoController.solicitacaoAdicionalNoturnoTecnico.solicitante.siape} - #{solicitacaoController.solicitacaoAdicionalNoturnoTecnico.solicitante.nome}" />
+			<br>
+			<h:outputText
+				value="Diretor: #{solicitacaoController.solicitacaoAdicionalNoturnoTecnico.servidor.siape} - #{solicitacaoController.solicitacaoAdicionalNoturnoTecnico.servidor.nome}" />
+			<br>
+			<h:outputText
+				value="Processo: #{solicitacaoController.solicitacaoAdicionalNoturnoTecnico.codigo} - " />
+			<h:outputText
+				value="#{solicitacaoController.solicitacaoAdicionalNoturnoDocente.dataAbertura}">
 				<f:convertDateTime pattern="dd/MM/yyyy" />
 			</h:outputText>
-			<br><h:outputText value="Campus: #{solicitacaoController.solicitacaoAdicionalNoturnoTecnico.lotacao.descricao}"/>
-			
+			<br>
+			<h:outputText
+				value="Campus: #{solicitacaoController.solicitacaoAdicionalNoturnoTecnico.lotacao.descricao}" />
+
 			<h:panelGrid columns="1">
 				<rich:dataTable id="listaSolicitacoesAdicionalTecnicos"
 					value="#{solicitacaoController.solicitacaoAdicionalNoturnoTecnico.listaAdicionaisTecnicos}"
@@ -70,10 +78,10 @@
 						<f:facet name="header">
 							<h:outputText value="Horário" />
 						</f:facet>
-						<h:outputText value="#{list.horaInicial} - #{list.horaFinal}" >
+						<h:outputText value="#{list.horaInicial} - #{list.horaFinal}">
 						</h:outputText>
 					</rich:column>
-					
+
 					<rich:column width="70px" sortBy="#{list.indAprovadoDiretor}">
 						<f:facet name="header">
 							<h:outputText value="Aprovado" />
@@ -84,21 +92,19 @@
 
 					<rich:column width="940px" sortBy="#{list.motivo}">
 						<f:facet name="header">
-						<h:outputText value="Motivo" />
-					</f:facet>
-					<h:outputText value="#{list.motivo}" />
+							<h:outputText value="Motivo" />
+						</f:facet>
+						<h:outputText value="#{list.motivo}" />
 					</rich:column>
-					
+
 				</rich:dataTable>
 			</h:panelGrid>
 			<h:panelGrid columns="2">
 				<h:outputText value="Justificativa: " />
 				<h:inputTextarea disabled="#{solicitacaoController.desabilitaBotao}"
 					value="#{solicitacaoController.solicitacaoAdicionalNoturnoTecnico.justificativa}"
-					cols="50" rows="5"
-validatorMessage="A Justificativa deve ter no máximo 500 caracteres!"
-					>
-					<f:validateLength maximum="500"></f:validateLength></h:inputTextarea>
+					cols="50" rows="5">
+				</h:inputTextarea>
 			</h:panelGrid>
 
 			<h:panelGrid columns="2">
@@ -109,58 +115,58 @@ validatorMessage="A Justificativa deve ter no máximo 500 caracteres!"
 					disabled="#{solicitacaoController.desabilitaBotao}"
 					oncomplete="#{rich:component('confirmPanel02')}.show()" />
 			</h:panelGrid>
-			<h:panelGrid columns="1" rendered="#{solicitacaoController.desabilitaBotao && autenticacaoController.siapeAutenticado.indAdministrador}">
-			<a4j:commandButton value="Voltar" action="#{solicitacaoController.retornarUltimaPesquisa}" />
+			<h:panelGrid columns="1"
+				rendered="#{solicitacaoController.desabilitaBotao && autenticacaoController.siapeAutenticado.indAdministrador}">
+				<a4j:commandButton value="Voltar"
+					action="#{solicitacaoController.retornarUltimaPesquisa}" />
 			</h:panelGrid>
-			</a4j:form>
-		</rich:panel></center>
+		</a4j:form>
+	</rich:panel></center>
 
-		<rich:modalPanel id="confirmPanel" autosized="true" width="200">
-			<f:facet name="header">
-				<h:outputText value="Confirma este deferimento?"
-					style="padding-right:15px;" />
-			</f:facet>
-			<h:form>
-				<table width="100%">
-					<tbody>
-						<tr>
-							<td align="center" width="50%"><a4j:commandButton
-								value="Sim" ajaxSingle="true"
-								action="#{solicitacaoController.deferirSolicitacao}"
-								oncomplete="#{rich:component('confirmPanel')}.hide();"
-								reRender="form" /></td>
-							<td align="center" width="50%"><a4j:commandButton
-								value="Não"
-								onclick="#{rich:component('confirmPanel')}.hide();return false;" />
-							</td>
-						</tr>
-					</tbody>
-				</table>
-			</h:form>
-		</rich:modalPanel>
-		<rich:modalPanel id="confirmPanel02" autosized="true" width="200">
-			<f:facet name="header">
-				<h:outputText value="Confirma este indeferimento?"
-					style="padding-right:15px;" />
-			</f:facet>
-			<h:form>
-				<table width="100%">
-					<tbody>
-						<tr>
-							<td align="center" width="50%"><a4j:commandButton
-								value="Sim" ajaxSingle="true"
-								action="#{solicitacaoController.indeferirSolicitacao}"
-								oncomplete="#{rich:component('confirmPanel02')}.hide();"
-								reRender="form" /></td>
-							<td align="center" width="50%"><a4j:commandButton
-								value="Não"
-								onclick="#{rich:component('confirmPanel02')}.hide();return false;" />
-							</td>
-						</tr>
-					</tbody>
-				</table>
-			</h:form>
-		</rich:modalPanel>
+	<rich:modalPanel id="confirmPanel" autosized="true" width="200">
+		<f:facet name="header">
+			<h:outputText value="Confirma este deferimento?"
+				style="padding-right:15px;" />
+		</f:facet>
+		<h:form>
+			<table width="100%">
+				<tbody>
+					<tr>
+						<td align="center" width="50%"><a4j:commandButton value="Sim"
+							ajaxSingle="true"
+							action="#{solicitacaoController.deferirSolicitacao}"
+							oncomplete="#{rich:component('confirmPanel')}.hide();"
+							reRender="form" /></td>
+						<td align="center" width="50%"><a4j:commandButton value="Não"
+							onclick="#{rich:component('confirmPanel')}.hide();return false;" />
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</h:form>
+	</rich:modalPanel>
+	<rich:modalPanel id="confirmPanel02" autosized="true" width="200">
+		<f:facet name="header">
+			<h:outputText value="Confirma este indeferimento?"
+				style="padding-right:15px;" />
+		</f:facet>
+		<h:form>
+			<table width="100%">
+				<tbody>
+					<tr>
+						<td align="center" width="50%"><a4j:commandButton value="Sim"
+							ajaxSingle="true"
+							action="#{solicitacaoController.indeferirSolicitacao}"
+							oncomplete="#{rich:component('confirmPanel02')}.hide();"
+							reRender="form" /></td>
+						<td align="center" width="50%"><a4j:commandButton value="Não"
+							onclick="#{rich:component('confirmPanel02')}.hide();return false;" />
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</h:form>
+	</rich:modalPanel>
 
 </f:view>
 </body>
