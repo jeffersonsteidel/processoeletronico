@@ -17,13 +17,13 @@
 			<h:panelGrid columns="13">
 				<h:outputText value="Número: ">
 				</h:outputText>
-				<h:inputText value="#{portariaController.portaria.numero}" size="10"
+				<h:inputText value="#{portariaController.portariaFilter.numero}" size="10"
 					maxlength="7" onkeyup="mascara(this, soNumeros);">
 				</h:inputText>
 
 				<h:outputText value="Nome: ">
 				</h:outputText>
-				<h:inputText value="#{portariaController.portaria.nome}" size="50">
+				<h:inputText value="#{portariaController.portariaFilter.nome}" size="50">
 				</h:inputText>
 
 				<h:outputText value="Data: " />
@@ -39,14 +39,14 @@
 					inputSize="10" />
 
 				<h:outputText value="Tipo Portaria: " />
-				<h:selectOneMenu value="#{portariaController.portaria.tipo.codigo}">
+				<h:selectOneMenu value="#{portariaController.portariaFilter.tipo.codigo}">
 					<f:selectItem itemLabel="SELECIONE" itemValue="" />
 					<f:selectItems value="#{portariaController.tiposPortaria}" />
 				</h:selectOneMenu>
 
 				<h:outputText value="Local: ">
 				</h:outputText>
-				<h:selectOneMenu value="#{portariaController.portaria.local}">
+				<h:selectOneMenu value="#{portariaController.portariaFilter.local}">
 					<f:selectItem itemLabel="SELECIONE" itemValue="" />
 					<f:selectItem itemLabel="REITORIA" itemValue="reitoria" />
 					<f:selectItem itemLabel="PROGEPE" itemValue="progepe" />

@@ -25,6 +25,7 @@ public class PortariaController implements Serializable {
 	private static final long serialVersionUID = -333995781063775201L;
 
 	Portaria portaria;
+	Portaria portariaFilter;
 	private Date dataInicio;
 	private Date dataFinal;
 	private List<Portaria> portariaList = new ArrayList<Portaria>();
@@ -79,6 +80,14 @@ public class PortariaController implements Serializable {
 	public void setPortarias(List<Portaria> portarias) {
 		this.portarias = portarias;
 	}
+	
+	public Portaria getPortariaFilter() {
+		return portariaFilter;
+	}
+
+	public void setPortariaFilter(Portaria portariaFilter) {
+		this.portariaFilter = portariaFilter;
+	}
 
 	@SuppressWarnings("unchecked")
 	public List<SelectItem> listarTiposPortaria() {
@@ -130,15 +139,15 @@ public class PortariaController implements Serializable {
 	public void listarPortarias() throws IOException {
 		portariaList = new ArrayList<Portaria>();
 		portariaList.clear();
-		portaria = new Portaria();
-		portaria.setTipo(new TipoPortaria());
+		portariaFilter = new Portaria();
+		portariaFilter.setTipo(new TipoPortaria());
 		listarTiposPortaria();
 		FacesContext.getCurrentInstance().getExternalContext()
 				.redirect("listarPortarias.jsp");
 	}
 
 	public void pesquisarPortarias() throws IOException {
-		this.setPortariaList(PortariaDAO.getInstance().listByFilter(portaria,
+		this.setPortariaList(PortariaDAO.getInstance().listByFilter(portariaFilter,
 				dataInicio, dataFinal));
 		FacesContext.getCurrentInstance().getExternalContext()
 				.redirect("listarPortarias.jsp");
@@ -189,5 +198,10 @@ public class PortariaController implements Serializable {
 	public void excluir() throws IOException {
 		DAO.getInstance().delete(portaria);
 		listarPortarias();
+	}
+	
+	public void retornaUltimaPesquisa() throws IOException{
+		FacesContext.getCurrentInstance().getExternalContext()
+		.redirect("listarPortarias.jsp");
 	}
 }
