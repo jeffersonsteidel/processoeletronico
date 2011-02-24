@@ -478,7 +478,6 @@ public class RessarcimentoSaudeController implements Serializable {
 		ressarcimentoSaude.setFiles(RessarcimentoSaudeDAO.getInstance()
 				.getContratos(ressarcimentoSaude));
 
-		
 	}
 
 	public void abrirListar() {
@@ -507,24 +506,32 @@ public class RessarcimentoSaudeController implements Serializable {
 	}
 
 	public void deferir() {
-		ressarcimentoSaude.setStatus(new StatusSolicitacao());
-		ressarcimentoSaude.getStatus().setCodigo(
-				Constantes.STATUS_SOLICITACAO_DEFERIDO);
-		Autenticacao siapeAutenticado = (Autenticacao) FacesContext
-				.getCurrentInstance().getExternalContext().getSessionMap()
-				.get("usuarioLogado");
-		ressarcimentoSaude.setAtendente(siapeAutenticado.getSiape());
-		ressarcimentoSaude.setDataFechamento(new Date());
-		DAO.getInstance().update(ressarcimentoSaude);
-		ressarcimentoList = new ArrayList<RessarcimentoSaude>();
-		ressarcimentoSaude = new RessarcimentoSaude();
-		ressarcimentoSaude.setServidor(new Servidor());
-		ressarcimentoSaude.setTipoPlano(new TipoPlano());
-		ressarcimentoSaude.setStatus(new StatusSolicitacao());
-		ressarcimentoSaude
-				.setFiles(new ArrayList<RessarcimentoSaudeContrato>());
-		pesquisar();
-		botaoHabilitado = false;
+		if (ressarcimentoSaude.getJustificativa().length() > 250) {
+			FacesMessage message = new FacesMessage(
+					FacesMessage.SEVERITY_ERROR,
+					"O campo Justificativa deve ter no maxímo 250 caracteres!",
+					"O campo Justificativa deve ter no maxímo 250 caracteres!");
+			FacesContext.getCurrentInstance().addMessage("", message);
+		} else {
+			ressarcimentoSaude.setStatus(new StatusSolicitacao());
+			ressarcimentoSaude.getStatus().setCodigo(
+					Constantes.STATUS_SOLICITACAO_DEFERIDO);
+			Autenticacao siapeAutenticado = (Autenticacao) FacesContext
+					.getCurrentInstance().getExternalContext().getSessionMap()
+					.get("usuarioLogado");
+			ressarcimentoSaude.setAtendente(siapeAutenticado.getSiape());
+			ressarcimentoSaude.setDataFechamento(new Date());
+			DAO.getInstance().update(ressarcimentoSaude);
+			ressarcimentoList = new ArrayList<RessarcimentoSaude>();
+			ressarcimentoSaude = new RessarcimentoSaude();
+			ressarcimentoSaude.setServidor(new Servidor());
+			ressarcimentoSaude.setTipoPlano(new TipoPlano());
+			ressarcimentoSaude.setStatus(new StatusSolicitacao());
+			ressarcimentoSaude
+					.setFiles(new ArrayList<RessarcimentoSaudeContrato>());
+			pesquisar();
+			botaoHabilitado = false;
+		}
 	}
 
 	public void indeferir() {
@@ -534,6 +541,12 @@ public class RessarcimentoSaudeController implements Serializable {
 					FacesMessage.SEVERITY_ERROR,
 					"O campo Justificativa é obrigatório!",
 					"O campo Justificativa é obrigatório!");
+			FacesContext.getCurrentInstance().addMessage("", message);
+		} else if (ressarcimentoSaude.getJustificativa().length() > 250) {
+			FacesMessage message = new FacesMessage(
+					FacesMessage.SEVERITY_ERROR,
+					"O campo Justificativa deve ter no maxímo 250 caracteres!",
+					"O campo Justificativa deve ter no maxímo 250 caracteres!");
 			FacesContext.getCurrentInstance().addMessage("", message);
 		} else {
 			ressarcimentoSaude.setStatus(new StatusSolicitacao());

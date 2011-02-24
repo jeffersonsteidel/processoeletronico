@@ -26,8 +26,7 @@
 				</f:facet>
 			</rich:messages>
 
-			<font size="2"><b>HORÁRIO ESPECIAL PARA
-			ESTUDANTE</b></font>
+			<font size="2"><b>HORÁRIO ESPECIAL PARA ESTUDANTE</b></font>
 			<h:panelGrid columns="1">
 				<h:outputText
 					value="#{solicitacaoHorarioEspecialEstudanteController.solicitacaoHorarioEspecialEstudante.solicitante.siape} - #{solicitacaoHorarioEspecialEstudanteController.solicitacaoHorarioEspecialEstudante.solicitante.nome}">
@@ -56,7 +55,9 @@
 				<h:inputTextarea
 					value="#{solicitacaoHorarioEspecialEstudanteController.solicitacaoHorarioEspecialEstudante.motivo}"
 					cols="50" rows="5" required="true"
-					requiredMessage="Campo Motivo é obrigatório!">
+					requiredMessage="Campo Motivo é obrigatório!"
+					validatorMessage="Tarefas Diarias deve ter no máximo 250 caracteres!">
+					<f:validateLength maximum="250"></f:validateLength>
 				</h:inputTextarea>
 			</h:panelGrid>
 

@@ -49,7 +49,7 @@
 					size="10" requiredMessage="Campo Valor da Tabela é obrigatório!"
 					onkeypress="mascara(this,moeda);"></h:inputText>
 			</h:panelGrid>
-			
+
 			<h:panelGroup id="info">
 				<rich:panel bodyClass="info">
 					<rich:dataGrid columns="1"
@@ -72,9 +72,12 @@
 				<h:outputText value="Justificativa: " />
 				<h:inputTextarea disabled="#{solicitacaoController.desabilitaBotao}"
 					value="#{solicitacaoController.solicitacaoRessarcimentoSaude.justificativa}"
-					cols="50" rows="5"></h:inputTextarea>
+					cols="50" rows="5"
+					validatorMessage="Tarefas Diarias deve ter no máximo 250 caracteres!">
+					<f:validateLength maximum="250"></f:validateLength>
+				</h:inputTextarea>
 			</h:panelGrid>
-		
+
 
 			<h:panelGrid columns="2">
 				<a4j:commandButton value="Deferir" reRender="form"

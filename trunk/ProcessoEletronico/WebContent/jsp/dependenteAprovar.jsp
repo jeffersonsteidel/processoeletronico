@@ -36,7 +36,8 @@
 			<h:panelGrid columns="4">
 				<h:outputText value="Nome do Dependente: ">
 				</h:outputText>
-				<h:outputText styleClass="maiusculo" value="#{dependenteController.dependente.nome}"></h:outputText>
+				<h:outputText styleClass="maiusculo"
+					value="#{dependenteController.dependente.nome}"></h:outputText>
 				<h:outputText value="Sexo do Dependente: " />
 				<h:outputText value="FEMININO"
 					rendered="#{dependenteController.dependente.sexo == 'F'}"></h:outputText>
@@ -53,7 +54,8 @@
 					rendered="#{dependenteController.dependente.cpf != ''}" />
 				<h:outputText value="RG do Dependente: "
 					rendered="#{dependenteController.dependente.rg != ''}" />
-				<h:outputText styleClass="maiusculo" value="#{dependenteController.dependente.rg}"
+				<h:outputText styleClass="maiusculo"
+					value="#{dependenteController.dependente.rg}"
 					rendered="#{dependenteController.dependente.rg != ''}"></h:outputText>
 				<h:outputText value="UF do RG do Dependente: "
 					rendered="#{dependenteController.dependente.rgUf.uf != null}" />
@@ -61,7 +63,8 @@
 					rendered="#{dependenteController.dependente.rgUf.uf != null}"></h:outputText>
 				<h:outputText value="Orgão Emissor do RG do Dependente: "
 					rendered="#{dependenteController.dependente.rgOrgao != ''}" />
-				<h:outputText styleClass="maiusculo" value="#{dependenteController.dependente.rgOrgao}"
+				<h:outputText styleClass="maiusculo"
+					value="#{dependenteController.dependente.rgOrgao}"
 					rendered="#{dependenteController.dependente.rgOrgao != ''}" />
 				<h:outputText value="Data de Expedição do RG do Dependente: "
 					rendered="#{dependenteController.dependente.rgDataExpedicao.date!=null}" />
@@ -91,7 +94,8 @@
 				<h:outputText value="Estabelecimento de Ensino: "
 					rendered="#{dependenteController.dependente.indEstudante}">
 				</h:outputText>
-				<h:outputText styleClass="maiusculo" value="#{dependenteController.dependente.faculdade}"
+				<h:outputText styleClass="maiusculo"
+					value="#{dependenteController.dependente.faculdade}"
 					rendered="#{dependenteController.dependente.indEstudante}"></h:outputText>
 				<h:outputText value="Curso: "
 					rendered="#{dependenteController.dependente.indEstudante}">
@@ -117,48 +121,51 @@
 				<h:outputText rendered="#{dependenteController.dependente.indNovo}"
 					value="SIM">
 				</h:outputText>
-				<h:outputText
-					rendered="#{!dependenteController.dependente.indNovo}" value="NÃO">
+				<h:outputText rendered="#{!dependenteController.dependente.indNovo}"
+					value="NÃO">
 				</h:outputText>
 			</h:panelGrid>
-			
+
 			<h:panelGrid columns="1" id="documentos">
-		     	<h:outputText styleClass="negrito" value="Nenhum Documento apresentado!"  rendered="#{empty dependenteController.documentos}"/>
-				<h:outputText value="Documentos apresentados:"  rendered="#{not empty dependenteController.documentos}"/>
-				<rich:dataTable id="listaDocumento"  rendered="#{not empty dependenteController.documentos}"
-				value="#{dependenteController.documentos}" var="list"
-				width="600px" columnClasses="center" rows="15" reRender="ds">
+				<h:outputText styleClass="negrito"
+					value="Nenhum Documento apresentado!"
+					rendered="#{empty dependenteController.documentos}" />
+				<h:outputText value="Documentos apresentados:"
+					rendered="#{not empty dependenteController.documentos}" />
+				<rich:dataTable id="listaDocumento"
+					rendered="#{not empty dependenteController.documentos}"
+					value="#{dependenteController.documentos}" var="list" width="600px"
+					columnClasses="center" rows="15" reRender="ds">
 
-				<rich:column width="500px">
-					<f:facet name="header">
-						<h:outputText value="Tipo Documento" />
-					</f:facet>
-					<h:outputText value="#{list.tipoDocumento.descricao}" />
-				</rich:column>
+					<rich:column width="500px">
+						<f:facet name="header">
+							<h:outputText value="Tipo Documento" />
+						</f:facet>
+						<h:outputText value="#{list.tipoDocumento.descricao}" />
+					</rich:column>
 
-				<rich:column width="50px">
-					<f:facet name="header">
-						<h:outputText value="Visualizar" />
-					</f:facet>
-					<a4j:commandLink action="#{documentoImagemController.verDocumentos}"
-						reRender="editPanel" ajaxSingle="true">
-						<h:graphicImage value="../images/visualizar.gif" style="border:0"
-							width="20" height="18" id="editar" />
-						<f:setPropertyActionListener value="#{list.codigo}"
-							target="#{documentoImagemController.documentoImagem.codigo}" />
-					</a4j:commandLink>
-					<rich:toolTip for="visualizar" value="Visualizar" />
-				</rich:column>
-			</rich:dataTable>
+					<rich:column width="50px">
+						<f:facet name="header">
+							<h:outputText value="Visualizar" />
+						</f:facet>
+						<a4j:commandLink
+							action="#{documentoImagemController.verDocumentos}"
+							reRender="editPanel" ajaxSingle="true">
+							<h:graphicImage value="../images/visualizar.gif" style="border:0"
+								width="20" height="18" id="editar" />
+							<f:setPropertyActionListener value="#{list.codigo}"
+								target="#{documentoImagemController.documentoImagem.codigo}" />
+						</a4j:commandLink>
+						<rich:toolTip for="visualizar" value="Visualizar" />
+					</rich:column>
+				</rich:dataTable>
 			</h:panelGrid>
 			<h:panelGrid columns="2" style="text-align: center;">
 				<h:outputText value="Justificativa: " />
 				<h:inputTextarea id="justificativa"
 					disabled="#{dependenteController.dependente.statusSolicitacao.codigo != 2}"
 					value="#{dependenteController.dependente.justificativa}" cols="50"
-					 validatorMessage="A Justificativa deve ter no máximo 250 caracteres!"
 					rows="5">
-					<f:validateLength maximum="250"></f:validateLength>
 				</h:inputTextarea>
 			</h:panelGrid>
 			<h:panelGrid columns="2" id="botoes">
@@ -212,7 +219,7 @@
 								value="Sim" ajaxSingle="true"
 								action="#{dependenteController.indeferir}"
 								oncomplete="#{rich:component('confirmPanel02')}.hide();"
-								reRender="form, justificativa, messages, botoes, voltar" /></td>
+								reRender="form, justificativa, botoes, voltar" /></td>
 							<td align="center" width="50%"><a4j:commandButton
 								value="Não"
 								onclick="#{rich:component('confirmPanel02')}.hide();return false;" />

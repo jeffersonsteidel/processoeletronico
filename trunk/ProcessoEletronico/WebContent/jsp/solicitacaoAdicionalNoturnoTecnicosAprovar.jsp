@@ -95,7 +95,10 @@
 				<h:outputText value="Justificativa: " />
 				<h:inputTextarea disabled="#{solicitacaoController.desabilitaBotao}"
 					value="#{solicitacaoController.solicitacaoAdicionalNoturnoTecnico.justificativa}"
-					cols="50" rows="5"></h:inputTextarea>
+					cols="50" rows="5"
+validatorMessage="A Justificativa deve ter no máximo 500 caracteres!"
+					>
+					<f:validateLength maximum="500"></f:validateLength></h:inputTextarea>
 			</h:panelGrid>
 
 			<h:panelGrid columns="2">

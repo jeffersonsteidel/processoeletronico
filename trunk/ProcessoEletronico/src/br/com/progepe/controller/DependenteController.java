@@ -38,7 +38,7 @@ public class DependenteController implements Serializable {
 	private Integer situacao = 0;
 	private Integer ativo = 0;
 	private Servidor atendente;
-	private List<DocumentoImagem> documentos;  
+	private List<DocumentoImagem> documentos;
 
 	public List<Dependente> getListaDependentes() {
 		return listaDependentes;
@@ -245,7 +245,8 @@ public class DependenteController implements Serializable {
 		dependente.setDataAtendimento(null);
 		dependente.setDataFechamento(null);
 		dependente.setJustificativa(null);
-		if(dependente.getCodigo() == null || Constantes.ZERO.equals(dependente.getCodigo()) ){
+		if (dependente.getCodigo() == null
+				|| Constantes.ZERO.equals(dependente.getCodigo())) {
 			dependente.setIndNovo(true);
 		}
 		if (validarCPF()) {
@@ -261,11 +262,19 @@ public class DependenteController implements Serializable {
 	}
 
 	public void deferir() {
-		dependente.getStatusSolicitacao().setCodigo(
-				Constantes.STATUS_SOLICITACAO_DEFERIDO);
-		dependente.setDataFechamento(new Date());
-		dependente.setIndNovo(false);
-		DAO.getInstance().update(dependente);
+		if (dependente.getJustificativa().length() > 250) {
+			FacesMessage message = new FacesMessage(
+					FacesMessage.SEVERITY_ERROR,
+					"O campo Justificativa deve ter no maxímo 250 caracteres!",
+					"O campo Justificativa deve ter no maxímo 250 caracteres!");
+			FacesContext.getCurrentInstance().addMessage("", message);
+		} else {
+			dependente.getStatusSolicitacao().setCodigo(
+					Constantes.STATUS_SOLICITACAO_DEFERIDO);
+			dependente.setDataFechamento(new Date());
+			dependente.setIndNovo(false);
+			DAO.getInstance().update(dependente);
+		}
 	}
 
 	public void indeferir() {
@@ -276,13 +285,13 @@ public class DependenteController implements Serializable {
 					"O campo Justificativa é obrigatório!",
 					"O campo Justificativa é obrigatório!");
 			FacesContext.getCurrentInstance().addMessage("", message);
-		} else if(dependente.getJustificativa().length()>250){
+		} else if (dependente.getJustificativa().length() > 250) {
 			FacesMessage message = new FacesMessage(
 					FacesMessage.SEVERITY_ERROR,
 					"O campo Justificativa deve ter no maxímo 250 caracteres!",
 					"O campo Justificativa deve ter no maxímo 250 caracteres!");
 			FacesContext.getCurrentInstance().addMessage("", message);
-		}	else {
+		} else {
 			dependente.getStatusSolicitacao().setCodigo(
 					Constantes.STATUS_SOLICITACAO_INDEFERIDO);
 			dependente.setDataFechamento(new Date());
@@ -338,11 +347,11 @@ public class DependenteController implements Serializable {
 			dependente.setRgUf(new Estado());
 		}
 	}
-	
+
 	public void verificarStatus() throws Exception {
 		FacesContext context = FacesContext.getCurrentInstance();
-		dependenteFilter = (Dependente) context.getExternalContext().getRequestMap()
-		.get("list");
+		dependenteFilter = (Dependente) context.getExternalContext()
+				.getRequestMap().get("list");
 		if (dependenteFilter.getRgUf() == null) {
 			dependenteFilter.setRgUf(new Estado());
 		}
@@ -373,7 +382,7 @@ public class DependenteController implements Serializable {
 			dependente.setDataFormacao(null);
 		}
 	}
-	
+
 	public void validar() throws IOException {
 		dependente = (Dependente) DAO.getInstance().refresh(dependente);
 		if (Constantes.STATUS_SOLICITACAO_ENCAMINHADO.equals(dependente
@@ -390,7 +399,8 @@ public class DependenteController implements Serializable {
 			dependente.setAtendente(atendente.getSiape());
 			DependenteDAO.getInstance().updateDependente(dependente);
 			documentos = new ArrayList<DocumentoImagem>();
-			documentos = DocumentoImagemDAO.getInstance().listDocumentosByDependente(dependente);
+			documentos = DocumentoImagemDAO.getInstance()
+					.listDocumentosByDependente(dependente);
 			FacesContext.getCurrentInstance().getExternalContext()
 					.redirect("dependenteAprovar.jsp");
 		} else if (Constantes.STATUS_SOLICITACAO_EM_ANALISE.equals(dependente
@@ -402,7 +412,8 @@ public class DependenteController implements Serializable {
 			FacesContext.getCurrentInstance().addMessage("", message);
 		} else {
 			documentos = new ArrayList<DocumentoImagem>();
-			documentos = DocumentoImagemDAO.getInstance().listDocumentosByDependente(dependente);
+			documentos = DocumentoImagemDAO.getInstance()
+					.listDocumentosByDependente(dependente);
 			FacesContext.getCurrentInstance().getExternalContext()
 					.redirect("dependenteAprovar.jsp");
 		}
@@ -430,7 +441,7 @@ public class DependenteController implements Serializable {
 			atendente = ServidorDAO.getInstance().refreshBySiape(atendente);
 		}
 	}
-	
+
 	public void visualizarDocumentos() {
 		DocumentoImagemDAO.getInstance().listDocumentosByDependente(dependente);
 	}

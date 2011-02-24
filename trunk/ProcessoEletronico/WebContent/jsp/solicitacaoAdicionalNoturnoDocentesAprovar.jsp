@@ -26,18 +26,22 @@
 					<h:graphicImage value="../images/error.gif" />
 				</f:facet>
 			</rich:messages>
-			<font size="2"><b>ADICIONAL NOTURNO -
-			DOCENTES</b></font>
-			<br><h:outputText
+			<font size="2"><b>ADICIONAL NOTURNO - DOCENTES</b></font>
+			<br>
+			<h:outputText
 				value="Solicitante: #{solicitacaoController.solicitacaoAdicionalNoturnoDocente.solicitante.siape} - #{solicitacaoController.solicitacaoAdicionalNoturnoDocente.solicitante.nome}" />
 			<br>
 			<h:outputText
 				value="Diretor: #{solicitacaoController.solicitacaoAdicionalNoturnoDocente.servidor.siape} - #{solicitacaoController.solicitacaoAdicionalNoturnoDocente.servidor.nome}" />
-			<br><h:outputText value="Processo: #{solicitacaoController.solicitacaoAdicionalNoturnoDocente.codigo} - " />
-			<h:outputText  value="#{solicitacaoController.solicitacaoAdicionalNoturnoDocente.dataAbertura}">
+			<br>
+			<h:outputText
+				value="Processo: #{solicitacaoController.solicitacaoAdicionalNoturnoDocente.codigo} - " />
+			<h:outputText
+				value="#{solicitacaoController.solicitacaoAdicionalNoturnoDocente.dataAbertura}">
 				<f:convertDateTime pattern="dd/MM/yyyy" />
 			</h:outputText>
-			<br><h:outputText
+			<br>
+			<h:outputText
 				value="Campus: #{solicitacaoController.solicitacaoAdicionalNoturnoDocente.lotacao.descricao}" />
 
 			<h:panelGrid columns="1">
@@ -93,7 +97,7 @@
 						</f:facet>
 						<h:outputText value="#{list.turma}" />
 					</rich:column>
-					
+
 					<rich:column width="70px" sortBy="#{list.indAprovadoDiretor}">
 						<f:facet name="header">
 							<h:outputText value="Aprovado" />
@@ -101,14 +105,18 @@
 						<h:outputText value="SIM" rendered="#{list.indAprovadoDiretor}" />
 						<h:outputText value="NÃO" rendered="#{!list.indAprovadoDiretor}" />
 					</rich:column>
-				
+
 				</rich:dataTable>
 			</h:panelGrid>
 			<h:panelGrid columns="2">
 				<h:outputText value="Justificativa: " />
 				<h:inputTextarea disabled="#{solicitacaoController.desabilitaBotao}"
 					value="#{solicitacaoController.solicitacaoAdicionalNoturnoDocente.justificativa}"
-					cols="50" rows="5"></h:inputTextarea>
+					cols="50" rows="5"
+					validatorMessage="A Justificativa deve ter no máximo 500 caracteres!"
+					requiredMessage="Campo Justificativa é obrigatório!">
+					<f:validateLength maximum="500"></f:validateLength>
+				</h:inputTextarea>
 			</h:panelGrid>
 
 			<h:panelGrid columns="2">
@@ -119,8 +127,10 @@
 					disabled="#{solicitacaoController.desabilitaBotao}"
 					oncomplete="#{rich:component('confirmPanel02')}.show()" />
 			</h:panelGrid>
-			<h:panelGrid columns="1" rendered="#{solicitacaoController.desabilitaBotao && autenticacaoController.siapeAutenticado.indAdministrador}">
-			<a4j:commandButton value="Voltar" action="#{solicitacaoController.retornarUltimaPesquisa}" />
+			<h:panelGrid columns="1"
+				rendered="#{solicitacaoController.desabilitaBotao && autenticacaoController.siapeAutenticado.indAdministrador}">
+				<a4j:commandButton value="Voltar"
+					action="#{solicitacaoController.retornarUltimaPesquisa}" />
 			</h:panelGrid>
 		</a4j:form>
 	</rich:panel></center>

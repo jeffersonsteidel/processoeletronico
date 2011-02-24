@@ -276,9 +276,7 @@
 					disabled="#{!ressarcimentoSaudeController.botaoHabilitado}"
 					value="#{ressarcimentoSaudeController.ressarcimentoSaude.justificativa}"
 					cols="50" rows="5" id="justificativa"
-					validatorMessage="A Atividade deve ter no máximo 500 caracteres!"
 					requiredMessage="Campo Atividades é obrigatório!">
-					<f:validateLength maximum="500"></f:validateLength>
 				</h:inputTextarea>
 			</h:panelGrid> <h:panelGrid columns="3">
 				<a4j:commandButton value="Deferir" id="deferir"
