@@ -26,6 +26,10 @@
 					action="#{relatorioController.gerarRelatorioServidorContaBancaria}" />
 
 				<h:graphicImage value="../images/icopdf.gif" />
+				<h:commandLink value="RELATÓRIO GERAL TITULAÇÃO"
+					action="#{relatorioController.gerarRelatorioServidorTitulacao}" />
+
+				<h:graphicImage value="../images/icopdf.gif" />
 				<h:commandLink value="RELATÓRIO GERAL SERVIDOR"
 					action="#{relatorioController.abrirRelatorioGeral}" />
 
@@ -36,6 +40,7 @@
 				<h:graphicImage value="../images/icopdf.gif" />
 				<h:commandLink value="CARGO LOTAÇÂO (FILTRO)"
 					action="#{relatorioController.abrirRelatorioCargoLotacaoByFiltro}" />
+
 			</h:panelGrid>
 		</h:form>
 	</rich:panel>
