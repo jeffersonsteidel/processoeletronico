@@ -41,7 +41,7 @@
 				<h:outputText styleClass="maiusculo"
 					value="#{servidorTitulacaoController.servidorTitulacao.estabelecimentoEnsino}" />
 
-				<h:outputText value="Curso: " 
+				<h:outputText value="Curso: "
 					rendered="#{servidorTitulacaoController.indSuperior}" />
 				<h:outputText styleClass="maiusculo"
 					value="#{servidorTitulacaoController.servidorTitulacao.curso}"
@@ -53,7 +53,7 @@
 					value="#{servidorTitulacaoController.servidorTitulacao.areaConhecimento.descricao}"
 					rendered="#{servidorTitulacaoController.indSuperior}" />
 
-				<h:outputText value="Estado do Estabelecimento de Ensino: " 
+				<h:outputText value="Estado do Estabelecimento de Ensino: "
 					rendered="#{servidorTitulacaoController.servidorTitulacao.cidadeEstabelecimentoEnsino.estado.codigo != 0}" />
 				<h:outputText
 					rendered="#{servidorTitulacaoController.servidorTitulacao.cidadeEstabelecimentoEnsino.estado.codigo != 0}"
@@ -69,8 +69,7 @@
 				<h:outputText value="Carga Horária: "
 					rendered="#{servidorTitulacaoController.indSuperior}" />
 
-				<h:outputText
-					rendered="#{servidorTitulacaoController.indSuperior}"
+				<h:outputText rendered="#{servidorTitulacaoController.indSuperior}"
 					value="#{servidorTitulacaoController.servidorTitulacao.cargaHoraria}"></h:outputText>
 
 				<h:outputText value="Ano de Conclusão: "
@@ -81,20 +80,22 @@
 					value="#{servidorTitulacaoController.servidorTitulacao.anoConclusao}">
 				</h:outputText>
 
-				<h:outputText value="Registro no Conselho: " rendered="#{servidorTitulacaoController.servidorTitulacao.registroConselho != '' && servidorTitulacaoController.servidorTitulacao.registroConselho != null}"/>
+				<h:outputText value="Registro no Conselho: "
+					rendered="#{servidorTitulacaoController.servidorTitulacao.registroConselho != '' && servidorTitulacaoController.servidorTitulacao.registroConselho != null}" />
 
 				<h:outputText
 					rendered="#{servidorTitulacaoController.servidorTitulacao.registroConselho != '' && servidorTitulacaoController.servidorTitulacao.registroConselho != null}"
 					value="#{servidorTitulacaoController.servidorTitulacao.registroConselho}"></h:outputText>
 
-				<h:outputText value="Orgão Emissor do Registro: " 
+				<h:outputText value="Orgão Emissor do Registro: "
 					rendered="#{servidorTitulacaoController.servidorTitulacao.orgaoEmissor != '' && servidorTitulacaoController.servidorTitulacao.orgaoEmissor != null}" />
 
-				<h:outputText  styleClass="maiusculo"
+				<h:outputText styleClass="maiusculo"
 					rendered="#{servidorTitulacaoController.servidorTitulacao.orgaoEmissor != '' && servidorTitulacaoController.servidorTitulacao.orgaoEmissor != null}"
 					value="#{servidorTitulacaoController.servidorTitulacao.orgaoEmissor}"></h:outputText>
 
-				<h:outputText value="Estado do Orgão Emissor: " rendered="#{servidorTitulacaoController.servidorTitulacao.estadoOrgaoEmissor != null && servidorTitulacaoController.servidorTitulacao.estadoOrgaoEmissor != ''}"/>
+				<h:outputText value="Estado do Orgão Emissor: "
+					rendered="#{servidorTitulacaoController.servidorTitulacao.estadoOrgaoEmissor != null && servidorTitulacaoController.servidorTitulacao.estadoOrgaoEmissor != ''}" />
 				<h:outputText
 					rendered="#{servidorTitulacaoController.servidorTitulacao.estadoOrgaoEmissor != null && servidorTitulacaoController.servidorTitulacao.estadoOrgaoEmissor != ''}"
 					value="#{servidorTitulacaoController.servidorTitulacao.estadoOrgaoEmissor.descricao}">
@@ -106,7 +107,8 @@
 				<h:outputText value="NÃO"
 					rendered="#{!servidorTitulacaoController.indTitulacaoEstrangeira}" />
 
-				<h:outputText value="País: " rendered="#{servidorTitulacaoController.indTitulacaoEstrangeira}"/>
+				<h:outputText value="País: "
+					rendered="#{servidorTitulacaoController.indTitulacaoEstrangeira}" />
 				<h:outputText id="pais"
 					rendered="#{servidorTitulacaoController.indTitulacaoEstrangeira}"
 					value="#{servidorTitulacaoController.servidorTitulacao.pais.descricao}">
@@ -114,40 +116,48 @@
 
 			</h:panelGrid>
 			<h:panelGrid columns="1" id="documentos">
-				<h:outputText styleClass="negrito" value="Nenhum Documento apresentado!"  rendered="#{empty servidorTitulacaoController.documentos}"/>
-				<h:outputText value="Documentos apresentados:" rendered="#{not empty servidorTitulacaoController.documentos}"/>
-				<rich:dataTable id="listaDocumento" rendered="#{not empty servidorTitulacaoController.documentos}"
-				value="#{servidorTitulacaoController.documentos}" var="list"
-				width="600px" columnClasses="center" rows="15" reRender="ds">
+				<h:outputText styleClass="negrito"
+					value="Nenhum Documento apresentado!"
+					rendered="#{empty servidorTitulacaoController.documentos}" />
+				<h:outputText value="Documentos apresentados:"
+					rendered="#{not empty servidorTitulacaoController.documentos}" />
+				<rich:dataTable id="listaDocumento"
+					rendered="#{not empty servidorTitulacaoController.documentos}"
+					value="#{servidorTitulacaoController.documentos}" var="list"
+					width="600px" columnClasses="center" rows="15" reRender="ds">
 
-				<rich:column width="550px">
-					<f:facet name="header">
-						<h:outputText value="Tipo Documento" />
-					</f:facet>
-					<h:outputText value="#{list.tipoDocumento.descricao}" />
-				</rich:column>
+					<rich:column width="550px">
+						<f:facet name="header">
+							<h:outputText value="Tipo Documento" />
+						</f:facet>
+						<h:outputText value="#{list.tipoDocumento.descricao}" />
+					</rich:column>
 
-				<rich:column width="50px">
-					<f:facet name="header">
-						<h:outputText value="Visualizar" />
-					</f:facet>
-					<a4j:commandLink action="#{documentoImagemController.verDocumentos}"
-						reRender="editPanel" ajaxSingle="true">
-						<h:graphicImage value="../images/visualizar.gif" style="border:0"
-							width="20" height="18" id="visualizar" />
-						<f:setPropertyActionListener value="#{list.codigo}"
-							target="#{documentoImagemController.documentoImagem.codigo}" />
-					</a4j:commandLink>
-					<rich:toolTip for="visualizar" value="Visualizar" />
-				</rich:column>
-			</rich:dataTable>
+					<rich:column width="50px">
+						<f:facet name="header">
+							<h:outputText value="Visualizar" />
+						</f:facet>
+						<a4j:commandLink
+							action="#{documentoImagemController.verDocumentos}"
+							reRender="editPanel" ajaxSingle="true">
+							<h:graphicImage value="../images/visualizar.gif" style="border:0"
+								width="20" height="18" id="visualizar" />
+							<f:setPropertyActionListener value="#{list.codigo}"
+								target="#{documentoImagemController.documentoImagem.codigo}" />
+						</a4j:commandLink>
+						<rich:toolTip for="visualizar" value="Visualizar" />
+					</rich:column>
+				</rich:dataTable>
 			</h:panelGrid>
 			<h:panelGrid columns="2" style="text-align: center;">
 				<h:outputText value="Justificativa: " />
 				<h:inputTextarea id="justificativa"
 					disabled="#{servidorTitulacaoController.servidorTitulacao.statusSolicitacao.codigo != 2}"
 					value="#{servidorTitulacaoController.servidorTitulacao.justificativa}"
-					cols="50" rows="5"></h:inputTextarea>
+					cols="50" rows="5"
+					validatorMessage="Tarefas Diarias deve ter no máximo 250 caracteres!">
+					<f:validateLength maximum="250"></f:validateLength>
+				</h:inputTextarea>
 			</h:panelGrid>
 			<h:panelGrid columns="2" id="botoes">
 				<a4j:commandButton value="Deferir" reRender="confirmPanel"

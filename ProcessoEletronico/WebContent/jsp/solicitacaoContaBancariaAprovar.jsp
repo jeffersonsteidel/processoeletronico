@@ -33,7 +33,8 @@
 				</h:outputText>
 			</h:panelGrid>
 
-			<h:panelGrid columns="8" rendered="#{!solicitacaoController.desabilitaBotao}">
+			<h:panelGrid columns="8"
+				rendered="#{!solicitacaoController.desabilitaBotao}">
 				<h:outputText value="Banco Atual: ">
 				</h:outputText>
 				<h:outputText
@@ -57,7 +58,7 @@
 				<h:outputText value="Conta Corrente"
 					rendered="#{solicitacaoController.solicitacaoContaBancaria.solicitante.contaBancaria.indPoupanca == false}">
 				</h:outputText>
-			</h:panelGrid>	
+			</h:panelGrid>
 
 			<h:panelGrid columns="8">
 				<h:outputText value="Novo Banco: " />
@@ -85,17 +86,24 @@
 				<h:outputText value="Justificativa: " />
 				<h:inputTextarea disabled="#{solicitacaoController.desabilitaBotao}"
 					value="#{solicitacaoController.solicitacaoContaBancaria.justificativa}"
-					cols="50" rows="5"></h:inputTextarea>
+					cols="50" rows="5"
+					validatorMessage="Tarefas Diarias deve ter no máximo 250 caracteres!">
+					<f:validateLength maximum="250"></f:validateLength>
+				</h:inputTextarea>
 			</h:panelGrid>
 
 			<h:panelGrid columns="2">
-				<a4j:commandButton value="Deferir" reRender="form" disabled="#{solicitacaoController.desabilitaBotao}"
+				<a4j:commandButton value="Deferir" reRender="form"
+					disabled="#{solicitacaoController.desabilitaBotao}"
 					oncomplete="#{rich:component('confirmPanel')}.show()" />
-				<a4j:commandButton value="Indeferir" reRender="form" disabled="#{solicitacaoController.desabilitaBotao}"
-					oncomplete="#{rich:component('confirmPanel02')}.show()" />	
+				<a4j:commandButton value="Indeferir" reRender="form"
+					disabled="#{solicitacaoController.desabilitaBotao}"
+					oncomplete="#{rich:component('confirmPanel02')}.show()" />
 			</h:panelGrid>
-			<h:panelGrid columns="1" rendered="#{solicitacaoController.desabilitaBotao && autenticacaoController.siapeAutenticado.indAdministrador}">
-			<a4j:commandButton value="Voltar" action="#{solicitacaoController.retornarUltimaPesquisa}" />
+			<h:panelGrid columns="1"
+				rendered="#{solicitacaoController.desabilitaBotao && autenticacaoController.siapeAutenticado.indAdministrador}">
+				<a4j:commandButton value="Voltar"
+					action="#{solicitacaoController.retornarUltimaPesquisa}" />
 			</h:panelGrid>
 		</rich:panel></center>
 

@@ -145,7 +145,7 @@
 					rows="5"
 					validatorMessage="A Justificativa deve ter no máximo 250 caracteres!">
 					<f:validateLength maximum="250"></f:validateLength>
-				</h:inputTextarea>>
+				</h:inputTextarea>
 			</h:panelGrid>
 			<h:panelGrid columns="2" id="botoes">
 				<a4j:commandButton value="Deferir" reRender="confirmPanel"
@@ -175,7 +175,7 @@
 								value="Sim" ajaxSingle="true"
 								action="#{conjugeController.deferir}"
 								oncomplete="#{rich:component('confirmPanel')}.hide();"
-								reRender="form, justificativa, messages, botoes, voltar" /></td>
+								reRender="form, justificativa,  botoes, voltar" /></td>
 							<td align="center" width="50%"><a4j:commandButton
 								value="Não"
 								onclick="#{rich:component('confirmPanel')}.hide();return false;" />

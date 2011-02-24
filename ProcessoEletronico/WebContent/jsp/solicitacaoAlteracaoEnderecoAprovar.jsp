@@ -164,7 +164,10 @@
 				<h:outputText value="Justificativa: " />
 				<h:inputTextarea disabled="#{solicitacaoController.desabilitaBotao}"
 					value="#{solicitacaoController.solicitacaoAlteracaoEndereco.justificativa}"
-					cols="50" rows="5"></h:inputTextarea>
+					cols="50" rows="5"
+					validatorMessage="Tarefas Diarias deve ter no máximo 250 caracteres!">
+					<f:validateLength maximum="250"></f:validateLength>
+				</h:inputTextarea>
 			</h:panelGrid>
 
 			<h:panelGrid columns="2">
@@ -175,8 +178,10 @@
 					disabled="#{solicitacaoController.desabilitaBotao}"
 					oncomplete="#{rich:component('confirmPanel02')}.show()" />
 			</h:panelGrid>
-			<h:panelGrid columns="1" rendered="#{solicitacaoController.desabilitaBotao && autenticacaoController.siapeAutenticado.indAdministrador}">
-			<a4j:commandButton value="Voltar" action="#{solicitacaoController.retornarUltimaPesquisa}" />
+			<h:panelGrid columns="1"
+				rendered="#{solicitacaoController.desabilitaBotao && autenticacaoController.siapeAutenticado.indAdministrador}">
+				<a4j:commandButton value="Voltar"
+					action="#{solicitacaoController.retornarUltimaPesquisa}" />
 			</h:panelGrid>
 		</rich:panel></center>
 

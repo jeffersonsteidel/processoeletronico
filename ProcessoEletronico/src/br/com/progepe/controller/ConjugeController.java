@@ -260,7 +260,7 @@ public class ConjugeController implements Serializable {
 			conjugeList.remove(conjuge);
 		}
 	}
-	
+
 	public void validar() throws IOException {
 		conjuge = (Conjuge) DAO.getInstance().refresh(conjuge);
 		if (Constantes.STATUS_SOLICITACAO_ENCAMINHADO.equals(conjuge
@@ -277,7 +277,8 @@ public class ConjugeController implements Serializable {
 			conjuge.setAtendente(atendente.getSiape());
 			ConjugeDAO.getInstance().updateConjuge(conjuge);
 			documentos = new ArrayList<DocumentoImagem>();
-			documentos = DocumentoImagemDAO.getInstance().listDocumentosByConjuge(conjuge);
+			documentos = DocumentoImagemDAO.getInstance()
+					.listDocumentosByConjuge(conjuge);
 			FacesContext.getCurrentInstance().getExternalContext()
 					.redirect("conjugeAprovar.jsp");
 		} else if (Constantes.STATUS_SOLICITACAO_EM_ANALISE.equals(conjuge
@@ -289,17 +290,26 @@ public class ConjugeController implements Serializable {
 			FacesContext.getCurrentInstance().addMessage("", message);
 		} else {
 			documentos = new ArrayList<DocumentoImagem>();
-			documentos = DocumentoImagemDAO.getInstance().listDocumentosByConjuge(conjuge);
+			documentos = DocumentoImagemDAO.getInstance()
+					.listDocumentosByConjuge(conjuge);
 			FacesContext.getCurrentInstance().getExternalContext()
 					.redirect("conjugeAprovar.jsp");
 		}
 	}
 
 	public void deferir() {
-		conjuge.getStatusSolicitacao().setCodigo(
-				Constantes.STATUS_SOLICITACAO_DEFERIDO);
-		conjuge.setDataFechamento(new Date());
-		DAO.getInstance().update(conjuge);
+		if (conjuge.getJustificativa().length() > 250) {
+			FacesMessage message = new FacesMessage(
+					FacesMessage.SEVERITY_ERROR,
+					"O campo Justificativa deve ter no máximo 250 caracteres!",
+					"O campo Justificativa deve ter no máximo 250 caracteres!");
+			FacesContext.getCurrentInstance().addMessage("", message);
+		} else {
+			conjuge.getStatusSolicitacao().setCodigo(
+					Constantes.STATUS_SOLICITACAO_DEFERIDO);
+			conjuge.setDataFechamento(new Date());
+			DAO.getInstance().update(conjuge);
+		}
 	}
 
 	public void indeferir() {
@@ -310,14 +320,13 @@ public class ConjugeController implements Serializable {
 					"O campo Justificativa é obrigatório!",
 					"O campo Justificativa é obrigatório!");
 			FacesContext.getCurrentInstance().addMessage("", message);
-		} 
-		else if(conjuge.getJustificativa().length() > 250){
+		} else if (conjuge.getJustificativa().length() > 250) {
 			FacesMessage message = new FacesMessage(
 					FacesMessage.SEVERITY_ERROR,
 					"O campo Justificativa deve ter no máximo 250 caracteres!",
 					"O campo Justificativa deve ter no máximo 250 caracteres!");
 			FacesContext.getCurrentInstance().addMessage("", message);
-		}else {
+		} else {
 			conjuge.getStatusSolicitacao().setCodigo(
 					Constantes.STATUS_SOLICITACAO_INDEFERIDO);
 			conjuge.setDataFechamento(new Date());
@@ -353,11 +362,11 @@ public class ConjugeController implements Serializable {
 			conjuge.setPais(new Pais());
 		}
 	}
-	
+
 	public void verificarStatus() throws IOException, ParseException {
 		FacesContext context = FacesContext.getCurrentInstance();
 		conjugeFilter = (Conjuge) context.getExternalContext().getRequestMap()
-		.get("list");
+				.get("list");
 		if (!(Constantes.STATUS_SOLICITACAO_ENCAMINHADO.equals(conjugeFilter
 				.getStatusSolicitacao().getCodigo()))) {
 			atendente = new Servidor();

@@ -25,58 +25,62 @@
 					<h:graphicImage value="../images/error.gif" />
 				</f:facet>
 			</rich:messages>
-			
+
 			<font size="2"><b>ALTERAÇÃO DE FÉRIAS</b></font>
 			<h:panelGrid columns="1">
 				<h:outputText
 					value="#{solicitacaoAlteracaoFeriasController.solicitacaoAlteracaoFerias.solicitante.siape} - #{solicitacaoAlteracaoFeriasController.solicitacaoAlteracaoFerias.solicitante.nome}">
 				</h:outputText>
 			</h:panelGrid>
-			
+
 			<h:panelGrid columns="4">
-				<h:outputText value="De: " ></h:outputText>
+				<h:outputText value="De: "></h:outputText>
 				<rich:calendar
-						value="#{solicitacaoAlteracaoFeriasController.solicitacaoAlteracaoFerias.dataInicio}" locale=""
-						popup="true" datePattern="dd/MM/yyyy" showApplyButton="#"
-						cellWidth="12px" cellHeight="12px" style="width:80px"
-						required="true" inputSize="12"
-						requiredMessage="Campo De (Inicio das férias) é obrigatório!" />				
-				
-				<h:outputText value=" a " ></h:outputText>
+					value="#{solicitacaoAlteracaoFeriasController.solicitacaoAlteracaoFerias.dataInicio}"
+					locale="" popup="true" datePattern="dd/MM/yyyy" showApplyButton="#"
+					cellWidth="12px" cellHeight="12px" style="width:80px"
+					required="true" inputSize="12"
+					requiredMessage="Campo De (Inicio das férias) é obrigatório!" />
+
+				<h:outputText value=" a "></h:outputText>
 				<rich:calendar
-						value="#{solicitacaoAlteracaoFeriasController.solicitacaoAlteracaoFerias.dataFinal}" locale=""
-						popup="true" datePattern="dd/MM/yyyy" showApplyButton="#"
-						cellWidth="12px" cellHeight="12px" style="width:80px"
-						required="true" inputSize="12"
-						requiredMessage="Campo De (Final das férias) é obrigatório!" />
-				
-				<h:outputText value="Para: " ></h:outputText>
+					value="#{solicitacaoAlteracaoFeriasController.solicitacaoAlteracaoFerias.dataFinal}"
+					locale="" popup="true" datePattern="dd/MM/yyyy" showApplyButton="#"
+					cellWidth="12px" cellHeight="12px" style="width:80px"
+					required="true" inputSize="12"
+					requiredMessage="Campo De (Final das férias) é obrigatório!" />
+
+				<h:outputText value="Para: "></h:outputText>
 				<rich:calendar
-						value="#{solicitacaoAlteracaoFeriasController.solicitacaoAlteracaoFerias.novaDataInicio}" locale=""
-						popup="true" datePattern="dd/MM/yyyy" showApplyButton="#"
-						cellWidth="12px" cellHeight="12px" style="width:80px"
-						required="true" inputSize="12"
-						requiredMessage="Campo Para (Inicio das férias) é obrigatório!" />
-				
-				<h:outputText value=" a " ></h:outputText>
+					value="#{solicitacaoAlteracaoFeriasController.solicitacaoAlteracaoFerias.novaDataInicio}"
+					locale="" popup="true" datePattern="dd/MM/yyyy" showApplyButton="#"
+					cellWidth="12px" cellHeight="12px" style="width:80px"
+					required="true" inputSize="12"
+					requiredMessage="Campo Para (Inicio das férias) é obrigatório!" />
+
+				<h:outputText value=" a "></h:outputText>
 				<rich:calendar
-						value="#{solicitacaoAlteracaoFeriasController.solicitacaoAlteracaoFerias.novaDataFinal}" locale=""
-						popup="true" datePattern="dd/MM/yyyy" showApplyButton="#"
-						cellWidth="12px" cellHeight="12px" style="width:80px"
-						required="true" inputSize="12"
-						requiredMessage="Campo Para (Final das férias) é obrigatório!" />
+					value="#{solicitacaoAlteracaoFeriasController.solicitacaoAlteracaoFerias.novaDataFinal}"
+					locale="" popup="true" datePattern="dd/MM/yyyy" showApplyButton="#"
+					cellWidth="12px" cellHeight="12px" style="width:80px"
+					required="true" inputSize="12"
+					requiredMessage="Campo Para (Final das férias) é obrigatório!" />
 			</h:panelGrid>
-			
+
 			<h:panelGrid columns="2">
-				<h:outputText value="Motivo:" ></h:outputText>
-				<h:inputTextarea  cols="50" rows="5"  value = "#{solicitacaoAlteracaoFeriasController.solicitacaoAlteracaoFerias.motivo}"
-				required="true" requiredMessage="Campo Motivo é obrigatório!"
-				></h:inputTextarea>
+				<h:outputText value="Motivo:"></h:outputText>
+				<h:inputTextarea cols="50" rows="5"
+					value="#{solicitacaoAlteracaoFeriasController.solicitacaoAlteracaoFerias.motivo}"
+					required="true" requiredMessage="Campo Motivo é obrigatório!"
+					validatorMessage="Tarefas Diarias deve ter no máximo 250 caracteres!">
+					<f:validateLength maximum="250"></f:validateLength>
+				</h:inputTextarea>
 			</h:panelGrid>
-			
-		
+
+
 			<a4j:commandButton value="Salvar"
-				action="#{solicitacaoAlteracaoFeriasController.salvar}" reRender="form"/>
+				action="#{solicitacaoAlteracaoFeriasController.salvar}"
+				reRender="form" />
 		</rich:panel></center>
 	</a4j:form>
 </f:view>

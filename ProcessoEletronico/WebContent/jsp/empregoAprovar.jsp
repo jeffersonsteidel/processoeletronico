@@ -33,13 +33,15 @@
 					value="#{empregoController.emprego.servidor.siape} - #{empregoController.emprego.servidor.nome}" />
 			</h:panelGrid> <h:panelGrid columns="4">
 				<h:outputText value="Cargo: " />
-				<h:outputText id="cargo" styleClass="maiusculo" value="#{empregoController.emprego.cargo}"></h:outputText>
+				<h:outputText id="cargo" styleClass="maiusculo"
+					value="#{empregoController.emprego.cargo}"></h:outputText>
 				<h:outputText value="Data de Admissão: " />
 				<h:outputText value="#{empregoController.emprego.dataAdmissao}">
 					<f:convertDateTime pattern="dd/MM/yyyy" />
 				</h:outputText>
 				<h:outputText value="Empresa: " />
-				<h:outputText styleClass="maiusculo" value="#{empregoController.emprego.empresa}"></h:outputText>
+				<h:outputText styleClass="maiusculo"
+					value="#{empregoController.emprego.empresa}"></h:outputText>
 				<h:outputText value="Data de Saida: " />
 				<h:outputText value="#{empregoController.emprego.dataSaida}">
 					<f:convertDateTime pattern="dd/MM/yyyy" />
@@ -50,9 +52,13 @@
 				</h:outputText>
 			</h:panelGrid>
 			<center><h:panelGrid columns="1" id="documentos">
-				<h:outputText value="Documentos apresentados:" rendered="#{not empty empregoController.documentos}"/>
-				<h:outputText styleClass="negrito" value="Nenhum Documento para este Emprego!" rendered="#{empty empregoController.documentos}"/>
-				<rich:dataTable id="listaDocumento" rendered="#{not empty empregoController.documentos}"
+				<h:outputText value="Documentos apresentados:"
+					rendered="#{not empty empregoController.documentos}" />
+				<h:outputText styleClass="negrito"
+					value="Nenhum Documento para este Emprego!"
+					rendered="#{empty empregoController.documentos}" />
+				<rich:dataTable id="listaDocumento"
+					rendered="#{not empty empregoController.documentos}"
 					value="#{empregoController.documentos}" var="list" width="600px"
 					columnClasses="center" reRender="ds">
 					<rich:column width="550px">
@@ -80,12 +86,10 @@
 			<h:panelGrid columns="2">
 				<h:outputText value="Justificativa: " />
 				<h:inputTextarea value="#{empregoController.emprego.justificativa}"
-					rows="5" cols="50" 
+					rows="5" cols="50"
 					disabled="#{empregoController.emprego.statusSolicitacao.codigo > 2}"
-					validatorMessage="A Justificativa deve ter no máximo 250 caracteres!"
-						requiredMessage="Campo Justificativa é obrigatório!">
-						<f:validateLength maximum="250"></f:validateLength>
-					</h:inputTextarea>
+					requiredMessage="Campo Justificativa é obrigatório!">
+				</h:inputTextarea>
 			</h:panelGrid> <h:panelGrid columns="2" id="botoes">
 				<a4j:commandButton value="Deferir" reRender="confirmPanel"
 					disabled="#{empregoController.emprego.statusSolicitacao.codigo != 2}"
@@ -136,7 +140,7 @@
 								value="Sim" ajaxSingle="true"
 								action="#{empregoController.indeferir}"
 								oncomplete="#{rich:component('confirmPanel02')}.hide();"
-								reRender="form, justificativa, messages, botoes, voltar" /></td>
+								reRender="form, justificativa, botoes, voltar" /></td>
 							<td align="center" width="50%"><a4j:commandButton
 								value="Não"
 								onclick="#{rich:component('confirmPanel02')}.hide();return false;" />

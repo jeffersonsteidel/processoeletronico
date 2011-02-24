@@ -41,21 +41,29 @@
 				<h:inputTextarea
 					value="#{solicitacaoAdicionalInsalubridadeController.solicitacaoAdicionalInsalubridade.tarefasDiarias}"
 					rows="5" cols="50" required="true"
-					requiredMessage="Campo Tarefas Diarias é obrigatório!">
+					requiredMessage="Campo Tarefas Diarias é obrigatório!"
+					validatorMessage="Tarefas Diarias deve ter no máximo 250 caracteres!">
+					<f:validateLength maximum="250"></f:validateLength>
 				</h:inputTextarea>
 
 
 				<h:inputTextarea
 					value="#{solicitacaoAdicionalInsalubridadeController.solicitacaoAdicionalInsalubridade.tarefasSemanais}"
 					rows="5" cols="50" required="true"
-					requiredMessage="Campo Tarefas Semanais é obrigatório!">
+					requiredMessage="Campo Tarefas Semanais é obrigatório!"
+					validatorMessage="Tarefas Semanais deve ter no máximo 250 caracteres!"
+					requiredMessage="Campo Atividades é obrigatório!">
+					<f:validateLength maximum="250"></f:validateLength>
 				</h:inputTextarea>
 
 
 				<h:inputTextarea
 					value="#{solicitacaoAdicionalInsalubridadeController.solicitacaoAdicionalInsalubridade.tarefasMensais}"
 					rows="5" cols="50" required="true"
-					requiredMessage="Campo Tarefas Mensais é obrigatório!">
+					requiredMessage="Campo Tarefas Mensais é obrigatório!"
+					validatorMessage="Tarefas Mensais deve ter no máximo 250 caracteres!"
+					requiredMessage="Campo Atividades é obrigatório!">
+					<f:validateLength maximum="250"></f:validateLength>
 				</h:inputTextarea>
 			</h:panelGrid>
 
@@ -72,7 +80,9 @@
 					value="#{solicitacaoAdicionalInsalubridadeController.solicitacaoAdicionalInsalubridade.justRiscosFisicos}"
 					rows="5" cols="50" required="true"
 					requiredMessage="Campo Descrição dos Riscos Físicos é obrigatório!"
-					disabled="#{!solicitacaoAdicionalInsalubridadeController.solicitacaoAdicionalInsalubridade.indRiscosFisicos}">
+					disabled="#{!solicitacaoAdicionalInsalubridadeController.solicitacaoAdicionalInsalubridade.indRiscosFisicos}"
+					validatorMessage="A Descrição dos Riscos Físicos deve ter no máximo 250 caracteres!">
+					<f:validateLength maximum="250"></f:validateLength>
 				</h:inputTextarea>
 
 				<h:outputText value="Riscos Químico: " />
@@ -82,11 +92,13 @@
 						reRender="descricaoRiscosQuimicos">
 					</a4j:support>
 				</h:selectBooleanCheckbox>
-				<h:inputTextarea id = "descricaoRiscosQuimicos"
+				<h:inputTextarea id="descricaoRiscosQuimicos"
 					value="#{solicitacaoAdicionalInsalubridadeController.solicitacaoAdicionalInsalubridade.justRiscosQuimicos}"
 					rows="5" cols="50" required="true"
 					requiredMessage="Campo Descrição dos Riscos Químicos é obrigatório!"
-					disabled="#{!solicitacaoAdicionalInsalubridadeController.solicitacaoAdicionalInsalubridade.indRiscosQuimicos}">
+					disabled="#{!solicitacaoAdicionalInsalubridadeController.solicitacaoAdicionalInsalubridade.indRiscosQuimicos}"
+					validatorMessage="A Descrição dos Riscos Químicos deve ter no máximo 250 caracteres!">
+					<f:validateLength maximum="250"></f:validateLength>
 				</h:inputTextarea>
 
 				<h:outputText value="Riscos Biologicos: " />
@@ -100,7 +112,9 @@
 					value="#{solicitacaoAdicionalInsalubridadeController.solicitacaoAdicionalInsalubridade.justRiscosBiologicos}"
 					rows="5" cols="50" required="true"
 					requiredMessage="Campo Descrição dos Riscos Biologicos é obrigatório!"
-					disabled="#{!solicitacaoAdicionalInsalubridadeController.solicitacaoAdicionalInsalubridade.indRiscosBiologicos}">
+					disabled="#{!solicitacaoAdicionalInsalubridadeController.solicitacaoAdicionalInsalubridade.indRiscosBiologicos}"
+					validatorMessage="A Descrição dos Riscos Biologicos deve ter no máximo 250 caracteres!">
+					<f:validateLength maximum="250"></f:validateLength>
 				</h:inputTextarea>
 
 				<h:outputText value="Riscos por Radiação Ionizante: " />
@@ -113,8 +127,10 @@
 				<h:inputTextarea id="descricaoRiscosIrradiacaoIonizante"
 					value="#{solicitacaoAdicionalInsalubridadeController.solicitacaoAdicionalInsalubridade.justRiscosIrradiacaoIonizante}"
 					rows="5" cols="50" required="true"
-					requiredMessage="Campo Descrição dos Riscos por Irradiacao Ionizante é obrigatório!"
-					disabled="#{!solicitacaoAdicionalInsalubridadeController.solicitacaoAdicionalInsalubridade.indRiscosIrradiacaoIonizante}">
+					requiredMessage="Campo Descrição dos Riscos por Radiacao Ionizante é obrigatório!"
+					disabled="#{!solicitacaoAdicionalInsalubridadeController.solicitacaoAdicionalInsalubridade.indRiscosIrradiacaoIonizante}"
+					validatorMessage="A Descrição dos Riscos por Radiação Ionizante deve ter no máximo 250 caracteres!">
+					<f:validateLength maximum="250"></f:validateLength>
 				</h:inputTextarea>
 
 			</h:panelGrid>

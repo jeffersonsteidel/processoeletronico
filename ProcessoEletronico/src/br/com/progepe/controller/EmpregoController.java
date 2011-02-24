@@ -177,13 +177,21 @@ public class EmpregoController implements Serializable {
 	}
 
 	public void deferir() {
-		emprego.getStatusSolicitacao().setCodigo(
-				Constantes.STATUS_SOLICITACAO_DEFERIDO);
-		if (emprego.getJustificativa() == "") {
-			emprego.setJustificativa(null);
+		if (emprego.getJustificativa().length() > 250) {
+			FacesMessage message = new FacesMessage(
+					FacesMessage.SEVERITY_ERROR,
+					"O campo Justificativa deve ter no maxímo 250 caracteres!",
+					"O campo Justificativa deve ter no maxímo 250 caracteres!");
+			FacesContext.getCurrentInstance().addMessage("", message);
+		} else {
+			emprego.getStatusSolicitacao().setCodigo(
+					Constantes.STATUS_SOLICITACAO_DEFERIDO);
+			if (emprego.getJustificativa() == "") {
+				emprego.setJustificativa(null);
+			}
+			emprego.setDataFechamento(new Date());
+			DAO.getInstance().update(emprego);
 		}
-		emprego.setDataFechamento(new Date());
-		DAO.getInstance().update(emprego);
 	}
 
 	public void indeferir() {
@@ -193,13 +201,13 @@ public class EmpregoController implements Serializable {
 					Constantes.STATUS_SOLICITACAO_INDEFERIDO);
 			emprego.setDataFechamento(new Date());
 			DAO.getInstance().update(emprego);
-		} else if(emprego.getJustificativa().length()>250){
+		} else if (emprego.getJustificativa().length() > 250) {
 			FacesMessage message = new FacesMessage(
 					FacesMessage.SEVERITY_ERROR,
 					"O campo Justificativa deve ter no maxímo 250 caracteres!",
 					"O campo Justificativa deve ter no maxímo 250 caracteres!");
 			FacesContext.getCurrentInstance().addMessage("", message);
-		}	else {
+		} else {
 			FacesMessage message = new FacesMessage(
 					FacesMessage.SEVERITY_ERROR,
 					"Campo Justificativa é obrigatório!",
@@ -258,7 +266,6 @@ public class EmpregoController implements Serializable {
 					.redirect("empregoAprovar.jsp");
 		}
 	}
-
 
 	public void verificarStatus() throws Exception {
 		FacesContext context = FacesContext.getCurrentInstance();
