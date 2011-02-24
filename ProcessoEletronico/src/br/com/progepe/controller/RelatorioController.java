@@ -197,7 +197,7 @@ public class RelatorioController implements Serializable {
 		jasperMB.criaConexao();
 		HashMap parametros = new HashMap();
 		parametros.put("BANNER",jasperMB.getDiretorioReal("/images/banner_topo.gif"));
-		parametros.put("SQL",jasperMB.getDiretorioReal(sql));
+		parametros.put("SQL",sql);
 		String nomeDoJasper = "/WEB-INF/jasper/relatorioServidorCargoLotacaoByFiltro.jasper";
 		jasperMB.geraRelatorioPassandoResultSet(parametros, nomeDoJasper);
 		return "";
