@@ -26,8 +26,16 @@
 					action="#{relatorioController.gerarRelatorioServidorContaBancaria}" />
 
 				<h:graphicImage value="../images/icopdf.gif" />
+				<h:commandLink value="RELATÓRIO GERAL CÔNJUGE"
+					action="#{relatorioController.gerarRelatorioServidorConjuge}" />
+
+				<h:graphicImage value="../images/icopdf.gif" />
 				<h:commandLink value="RELATÓRIO GERAL DEPENDENTE"
 					action="#{relatorioController.gerarRelatorioServidorDependente}" />
+
+				<h:graphicImage value="../images/icopdf.gif" />
+				<h:commandLink value="RELATÓRIO GERAL EMPREGO"
+					action="#{relatorioController.gerarRelatorioServidorEmprego}" />
 
 				<h:graphicImage value="../images/icopdf.gif" />
 				<h:commandLink value="RELATÓRIO GERAL TITULAÇÃO"
