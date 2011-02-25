@@ -26,6 +26,10 @@
 					action="#{relatorioController.gerarRelatorioServidorContaBancaria}" />
 
 				<h:graphicImage value="../images/icopdf.gif" />
+				<h:commandLink value="RELATÓRIO GERAL DEPENDENTE"
+					action="#{relatorioController.gerarRelatorioServidorDependente}" />
+
+				<h:graphicImage value="../images/icopdf.gif" />
 				<h:commandLink value="RELATÓRIO GERAL TITULAÇÃO"
 					action="#{relatorioController.gerarRelatorioServidorTitulacao}" />
 
