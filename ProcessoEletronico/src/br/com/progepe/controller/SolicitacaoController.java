@@ -1012,7 +1012,8 @@ public class SolicitacaoController implements Serializable {
 			solicitacaoLicencaPaternidade.setDataFechamento(new Date());
 			if (solicitacaoLicencaPaternidade.getJustificativa() != null
 					&& solicitacaoLicencaPaternidade.getJustificativa() != ""
-					&& solicitacaoContaBancaria.getJustificativa().length() <= 250) {
+					&& solicitacaoLicencaPaternidade.getJustificativa()
+							.length() <= 250) {
 				SolicitacaoDAO.getInstance().saveOrUpdate(
 						solicitacaoLicencaPaternidade);
 				this.setDesabilitaBotao(true);
@@ -1040,7 +1041,8 @@ public class SolicitacaoController implements Serializable {
 			solicitacaoHorarioEspecialEstudante.setDataFechamento(new Date());
 			if (solicitacaoHorarioEspecialEstudante.getJustificativa() != null
 					&& solicitacaoHorarioEspecialEstudante.getJustificativa() != ""
-					&& solicitacaoContaBancaria.getJustificativa().length() <= 250) {
+					&& solicitacaoHorarioEspecialEstudante.getJustificativa()
+							.length() <= 250) {
 				SolicitacaoDAO.getInstance().saveOrUpdate(
 						solicitacaoHorarioEspecialEstudante);
 				this.setDesabilitaBotao(true);
@@ -1067,7 +1069,7 @@ public class SolicitacaoController implements Serializable {
 			solicitacaoObito.setDataFechamento(new Date());
 			if (solicitacaoObito.getJustificativa() != null
 					&& solicitacaoObito.getJustificativa() != ""
-					&& solicitacaoContaBancaria.getJustificativa().length() <= 250) {
+					&& solicitacaoObito.getJustificativa().length() <= 250) {
 				SolicitacaoDAO.getInstance().saveOrUpdate(solicitacaoObito);
 				this.setDesabilitaBotao(true);
 				EnviarEmail enviarEmail = new EnviarEmail();
@@ -1092,7 +1094,7 @@ public class SolicitacaoController implements Serializable {
 			solicitacaoCasamento.setDataFechamento(new Date());
 			if (solicitacaoCasamento.getJustificativa() != null
 					&& solicitacaoCasamento.getJustificativa() != ""
-					&& solicitacaoContaBancaria.getJustificativa().length() <= 250) {
+					&& solicitacaoCasamento.getJustificativa().length() <= 250) {
 				SolicitacaoDAO.getInstance().saveOrUpdate(solicitacaoCasamento);
 				this.setDesabilitaBotao(true);
 				EnviarEmail enviarEmail = new EnviarEmail();
@@ -1117,7 +1119,7 @@ public class SolicitacaoController implements Serializable {
 			solicitacaoAlimentacao.setDataFechamento(new Date());
 			if (solicitacaoAlimentacao.getJustificativa() != null
 					&& solicitacaoAlimentacao.getJustificativa() != ""
-					&& solicitacaoContaBancaria.getJustificativa().length() <= 250) {
+					&& solicitacaoAlimentacao.getJustificativa().length() <= 250) {
 				SolicitacaoDAO.getInstance().saveOrUpdate(
 						solicitacaoAlimentacao);
 				this.setDesabilitaBotao(true);
@@ -1143,7 +1145,8 @@ public class SolicitacaoController implements Serializable {
 			solicitacaoAfastamentoConjuge.setDataFechamento(new Date());
 			if (solicitacaoAfastamentoConjuge.getJustificativa() != null
 					&& solicitacaoAfastamentoConjuge.getJustificativa() != ""
-					&& solicitacaoContaBancaria.getJustificativa().length() <= 250) {
+					&& solicitacaoAfastamentoConjuge.getJustificativa()
+							.length() <= 250) {
 				SolicitacaoDAO.getInstance().saveOrUpdate(
 						solicitacaoAfastamentoConjuge);
 				this.setDesabilitaBotao(true);
@@ -1171,7 +1174,8 @@ public class SolicitacaoController implements Serializable {
 			solicitacaoAdicionalNoturnoTecnico.setDataFechamento(new Date());
 			if (solicitacaoAdicionalNoturnoTecnico.getJustificativa() != null
 					&& solicitacaoAdicionalNoturnoTecnico.getJustificativa() != ""
-					&& solicitacaoContaBancaria.getJustificativa().length() <= 250) {
+					&& solicitacaoAdicionalNoturnoTecnico.getJustificativa()
+							.length() <= 250) {
 				AdicionalNoturnoDAO.getInstance().saveOrUpdateAdicional(
 						solicitacaoAdicionalNoturnoTecnico);
 				this.setDesabilitaBotao(true);
@@ -1199,7 +1203,8 @@ public class SolicitacaoController implements Serializable {
 			solicitacaoAdicionalNoturnoDocente.setDataFechamento(new Date());
 			if (solicitacaoAdicionalNoturnoDocente.getJustificativa() != null
 					&& solicitacaoAdicionalNoturnoDocente.getJustificativa() != ""
-					&& solicitacaoContaBancaria.getJustificativa().length() <= 250) {
+					&& solicitacaoAdicionalNoturnoDocente.getJustificativa()
+							.length() <= 250) {
 				AdicionalNoturnoDAO.getInstance().saveOrUpdateAdicional(
 						solicitacaoAdicionalNoturnoDocente);
 				this.setDesabilitaBotao(true);
@@ -1227,7 +1232,7 @@ public class SolicitacaoController implements Serializable {
 			solicitacaoAlteracaoEndereco.setDataFechamento(new Date());
 			if (solicitacaoAlteracaoEndereco.getJustificativa() != null
 					&& solicitacaoAlteracaoEndereco.getJustificativa() != ""
-					&& solicitacaoContaBancaria.getJustificativa().length() <= 250) {
+					&& solicitacaoAlteracaoEndereco.getJustificativa().length() <= 250) {
 				AdicionalNoturnoDAO.getInstance().saveOrUpdateAdicional(
 						solicitacaoAlteracaoEndereco);
 				this.setDesabilitaBotao(true);
@@ -1254,7 +1259,8 @@ public class SolicitacaoController implements Serializable {
 			solicitacaoRessarcimentoSaude.setDataFechamento(new Date());
 			if (solicitacaoRessarcimentoSaude.getJustificativa() != null
 					&& solicitacaoRessarcimentoSaude.getJustificativa() != ""
-					&& solicitacaoContaBancaria.getJustificativa().length() <= 250) {
+					&& solicitacaoRessarcimentoSaude.getJustificativa()
+							.length() <= 250) {
 				DAO.getInstance().update(solicitacaoRessarcimentoSaude);
 				this.setDesabilitaBotao(true);
 				EnviarEmail enviarEmail = new EnviarEmail();
