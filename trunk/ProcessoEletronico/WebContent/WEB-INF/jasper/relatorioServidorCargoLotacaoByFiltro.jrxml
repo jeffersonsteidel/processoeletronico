@@ -190,7 +190,7 @@
 			</band>
 		</columnHeader>
 		<detail>
-			<band height="26"  isSplitAllowed="true" >
+			<band height="22"  isSplitAllowed="true" >
 				<textField isStretchWithOverflow="true" pattern="" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
 						x="0"
