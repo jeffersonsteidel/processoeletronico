@@ -30,6 +30,9 @@
       dependente.dep_nome AS dependente_dep_nome,
       dependente.dep_sexo AS dependente_dep_sexo,
       dependente.dep_cpf AS dependente_dep_cpf,
+      dependente.dep_ind_ir AS  dependente_dep_ind_imposto_renda,
+      dependente.dep_ind_est AS  dependente_dep_ind_est,
+      dependente.dep_ind_nec_esp AS  dependente_dep_ind_nec_esp,
       dependente.dep_data_nasc AS dependente_dep_data_nasc,
       grauparentesco.grau_par_desc AS grauparentesco_grau_par_desc
 FROM
@@ -41,6 +44,9 @@ FROM
 	<field name="dependente_dep_nome" class="java.lang.String"/>
 	<field name="dependente_dep_sexo" class="java.lang.String"/>
 	<field name="dependente_dep_cpf" class="java.lang.String"/>
+	<field name="dependente_dep_ind_imposto_renda" class="java.lang.String"/>
+	<field name="dependente_dep_ind_est" class="java.lang.String"/>
+	<field name="dependente_dep_ind_nec_esp" class="java.lang.String"/>
 	<field name="dependente_dep_data_nasc" class="java.sql.Date"/>
 	<field name="grauparentesco_grau_par_desc" class="java.lang.String"/>
 
@@ -164,7 +170,7 @@ FROM
 					<reportElement
 						x="0"
 						y="43"
-						width="387"
+						width="253"
 						height="14"
 						forecolor="#000000"
 						backcolor="#FFFFFF"
@@ -183,7 +189,7 @@ FROM
 				</staticText>
 				<staticText>
 					<reportElement
-						x="411"
+						x="258"
 						y="43"
 						width="26"
 						height="14"
@@ -203,7 +209,7 @@ FROM
 				</staticText>
 				<staticText>
 					<reportElement
-						x="461"
+						x="289"
 						y="43"
 						width="87"
 						height="14"
@@ -223,7 +229,7 @@ FROM
 				</staticText>
 				<staticText>
 					<reportElement
-						x="584"
+						x="381"
 						y="43"
 						width="87"
 						height="14"
@@ -243,7 +249,7 @@ FROM
 				</staticText>
 				<staticText>
 					<reportElement
-						x="680"
+						x="475"
 						y="43"
 						width="98"
 						height="14"
@@ -260,6 +266,66 @@ FROM
 						<font pdfFontName="Helvetica-Bold" size="8" isBold="true"/>
 					</textElement>
 				<text><![CDATA[DATA DE NASCIMENTO]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						x="743"
+						y="43"
+						width="32"
+						height="14"
+						forecolor="#000000"
+						backcolor="#FFFFFF"
+						key="staticText-7"
+						isRemoveLineWhenBlank="true"/>
+					<box>					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+</box>
+					<textElement>
+						<font pdfFontName="Helvetica-Bold" size="8" isBold="true"/>
+					</textElement>
+				<text><![CDATA[PNE]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						x="682"
+						y="43"
+						width="55"
+						height="14"
+						forecolor="#000000"
+						backcolor="#FFFFFF"
+						key="staticText-8"
+						isRemoveLineWhenBlank="true"/>
+					<box>					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+</box>
+					<textElement>
+						<font pdfFontName="Helvetica-Bold" size="8" isBold="true"/>
+					</textElement>
+				<text><![CDATA[ESTUDANTE]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						x="582"
+						y="43"
+						width="87"
+						height="14"
+						forecolor="#000000"
+						backcolor="#FFFFFF"
+						key="staticText-9"
+						isRemoveLineWhenBlank="true"/>
+					<box>					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+</box>
+					<textElement>
+						<font pdfFontName="Helvetica-Bold" size="8" isBold="true"/>
+					</textElement>
+				<text><![CDATA[IMPOSTO DE RENDA]]></text>
 				</staticText>
 			</band>
 			</groupHeader>
@@ -323,7 +389,7 @@ FROM
 					<reportElement
 						x="0"
 						y="0"
-						width="387"
+						width="253"
 						height="18"
 						key="textField"/>
 					<box></box>
@@ -334,7 +400,7 @@ FROM
 				</textField>
 				<textField isStretchWithOverflow="true" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
-						x="411"
+						x="258"
 						y="0"
 						width="26"
 						height="18"
@@ -347,7 +413,7 @@ FROM
 				</textField>
 				<textField isStretchWithOverflow="true" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
-						x="461"
+						x="289"
 						y="0"
 						width="87"
 						height="18"
@@ -360,7 +426,7 @@ FROM
 				</textField>
 				<textField isStretchWithOverflow="true" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
-						x="584"
+						x="381"
 						y="0"
 						width="87"
 						height="18"
@@ -371,11 +437,11 @@ FROM
 					</textElement>
 				<textFieldExpression   class="java.lang.String"><![CDATA[$F{dependente_dep_cpf}]]></textFieldExpression>
 				</textField>
-				<textField isStretchWithOverflow="true" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+				<textField isStretchWithOverflow="true" pattern="dd/MM/yyyy" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
-						x="680"
+						x="475"
 						y="0"
-						width="93"
+						width="98"
 						height="18"
 						key="textField"/>
 					<box></box>
@@ -383,6 +449,45 @@ FROM
 						<font/>
 					</textElement>
 				<textFieldExpression   class="java.util.Date"><![CDATA[$F{dependente_dep_data_nasc}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="582"
+						y="0"
+						width="87"
+						height="18"
+						key="textField"/>
+					<box></box>
+					<textElement>
+						<font/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[($F{dependente_dep_ind_imposto_renda}.equals("0") ? "NÃO" : "SIM")]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="682"
+						y="0"
+						width="55"
+						height="18"
+						key="textField"/>
+					<box></box>
+					<textElement>
+						<font/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[($F{dependente_dep_ind_est}.equals("0") ? "NÃO" : "SIM")]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="743"
+						y="-2"
+						width="30"
+						height="20"
+						key="textField"/>
+					<box></box>
+					<textElement>
+						<font/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[($F{dependente_dep_ind_nec_esp}.equals("0") ? "NÃO" : "SIM")]]></textFieldExpression>
 				</textField>
 			</band>
 		</detail>
