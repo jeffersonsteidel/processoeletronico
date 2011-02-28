@@ -192,7 +192,7 @@ FROM
 				<image  hAlign="Center" isUsingCache="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
 						x="0"
-						y="0"
+						y="5"
 						width="781"
 						height="78"
 						key="image-1"/>

@@ -64,7 +64,7 @@ FROM
 					<reportElement
 						mode="Opaque"
 						x="3"
-						y="21"
+						y="19"
 						width="37"
 						height="17"
 						forecolor="#000000"
@@ -84,7 +84,7 @@ FROM
 					<reportElement
 						mode="Opaque"
 						x="40"
-						y="21"
+						y="19"
 						width="41"
 						height="17"
 						forecolor="#000000"
@@ -114,7 +114,7 @@ FROM
 				<textField isStretchWithOverflow="true" pattern="" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
 						x="132"
-						y="21"
+						y="19"
 						width="641"
 						height="17"
 						forecolor="#000000"
@@ -133,7 +133,7 @@ FROM
 					<reportElement
 						mode="Opaque"
 						x="91"
-						y="21"
+						y="19"
 						width="41"
 						height="17"
 						forecolor="#000000"
@@ -287,12 +287,12 @@ FROM
 			</band>
 		</title>
 		<pageHeader>
-			<band height="80"  isSplitAllowed="true" >
+			<band height="86"  isSplitAllowed="true" >
 				<image  evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
 						x="0"
-						y="0"
-						width="782"
+						y="5"
+						width="781"
 						height="78"
 						key="image-1"/>
 					<box></box>
@@ -306,7 +306,7 @@ FROM
 				<line direction="BottomUp">
 					<reportElement
 						x="0"
-						y="-103"
+						y="-109"
 						width="782"
 						height="0"
 						forecolor="#000000"

@@ -270,7 +270,7 @@ ORDER BY
 					<reportElement
 						x="713"
 						y="43"
-						width="47"
+						width="60"
 						height="14"
 						forecolor="#000000"
 						backcolor="#FFFFFF"
@@ -313,11 +313,11 @@ ORDER BY
 			</band>
 		</title>
 		<pageHeader>
-			<band height="83"  isSplitAllowed="true" >
+			<band height="89"  isSplitAllowed="true" >
 				<image  evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
 						x="0"
-						y="0"
+						y="5"
 						width="781"
 						height="78"
 						key="image-1"/>
@@ -332,7 +332,7 @@ ORDER BY
 				<line direction="BottomUp">
 					<reportElement
 						x="0"
-						y="-106"
+						y="-112"
 						width="782"
 						height="0"
 						forecolor="#000000"
@@ -368,7 +368,7 @@ ORDER BY
 					<textElement>
 						<font size="10"/>
 					</textElement>
-				<textFieldExpression   class="java.lang.String"><![CDATA[$F{servidor_serv_nome}]]></textFieldExpression>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{conjuge_conj_nome}]]></textFieldExpression>
 				</textField>
 				<textField isStretchWithOverflow="true" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
@@ -413,7 +413,7 @@ ORDER BY
 					<reportElement
 						x="713"
 						y="1"
-						width="47"
+						width="60"
 						height="18"
 						key="textField"/>
 					<box></box>
