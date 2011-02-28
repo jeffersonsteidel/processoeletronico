@@ -53,6 +53,10 @@
 				<h:commandLink value="CARGO LOTAÇÂO (FILTRO)"
 					action="#{relatorioController.abrirRelatorioCargoLotacaoByFiltro}" />
 
+				<h:graphicImage value="../images/icopdf.gif" />
+				<h:commandLink value="RELATÓRIO SOLICITAÇÂO (FILTRO)"
+					action="#{relatorioController.abrirRelatorioSolicitacaoByFiltro}" />
+
 			</h:panelGrid>
 		</h:form>
 	</rich:panel>
