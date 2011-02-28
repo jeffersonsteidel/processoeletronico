@@ -49,21 +49,12 @@ FROM
 			</band>
 		</title>
 		<pageHeader>
-			<band height="98"  isSplitAllowed="true" >
-				<line direction="TopDown">
-					<reportElement
-						x="0"
-						y="80"
-						width="782"
-						height="3"
-						key="line"/>
-					<graphicElement stretchType="NoStretch"/>
-				</line>
+			<band height="113"  isSplitAllowed="true" >
 				<elementGroup><!--  Start: 1 !-->
 				<line direction="BottomUp">
 					<reportElement
 						x="0"
-						y="94"
+						y="111"
 						width="782"
 						height="0"
 						key="line"/>
@@ -73,9 +64,9 @@ FROM
 				<staticText>
 					<reportElement
 						x="0"
-						y="83"
+						y="97"
 						width="39"
-						height="12"
+						height="14"
 						forecolor="#000000"
 						backcolor="#FFFFFF"
 						key="staticText"
@@ -86,16 +77,16 @@ FROM
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 </box>
 					<textElement>
-						<font fontName="Times New Roman" pdfFontName="Helvetica-Bold" size="9" isBold="true"/>
+						<font fontName="Times New Roman" pdfFontName="Helvetica-Bold" size="10" isBold="true"/>
 					</textElement>
 				<text><![CDATA[SIAPE]]></text>
 				</staticText>
 				<staticText>
 					<reportElement
 						x="44"
-						y="83"
+						y="97"
 						width="240"
-						height="12"
+						height="14"
 						forecolor="#000000"
 						backcolor="#FFFFFF"
 						key="staticText"
@@ -106,16 +97,16 @@ FROM
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 </box>
 					<textElement>
-						<font fontName="Times New Roman" pdfFontName="Helvetica-Bold" size="9" isBold="true"/>
+						<font fontName="Times New Roman" pdfFontName="Helvetica-Bold" size="10" isBold="true"/>
 					</textElement>
 				<text><![CDATA[NOME]]></text>
 				</staticText>
 				<staticText>
 					<reportElement
 						x="501"
-						y="83"
+						y="97"
 						width="205"
-						height="12"
+						height="14"
 						forecolor="#000000"
 						backcolor="#FFFFFF"
 						key="staticText"
@@ -126,16 +117,16 @@ FROM
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 </box>
 					<textElement>
-						<font fontName="Times New Roman" pdfFontName="Helvetica-Bold" size="9" isBold="true"/>
+						<font fontName="Times New Roman" pdfFontName="Helvetica-Bold" size="10" isBold="true"/>
 					</textElement>
 				<text><![CDATA[LOTAÇÃO]]></text>
 				</staticText>
 				<staticText>
 					<reportElement
 						x="298"
-						y="83"
+						y="97"
 						width="184"
-						height="12"
+						height="14"
 						forecolor="#000000"
 						backcolor="#FFFFFF"
 						key="staticText"
@@ -146,16 +137,16 @@ FROM
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 </box>
 					<textElement>
-						<font fontName="Times New Roman" pdfFontName="Helvetica-Bold" size="9" isBold="true"/>
+						<font fontName="Times New Roman" pdfFontName="Helvetica-Bold" size="10" isBold="true"/>
 					</textElement>
 				<text><![CDATA[CARGO]]></text>
 				</staticText>
 				<staticText>
 					<reportElement
 						x="721"
-						y="83"
+						y="97"
 						width="61"
-						height="12"
+						height="14"
 						forecolor="#000000"
 						backcolor="#FFFFFF"
 						key="staticText"
@@ -166,21 +157,30 @@ FROM
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 </box>
 					<textElement>
-						<font fontName="Times New Roman" pdfFontName="Helvetica-Bold" size="9" isBold="true"/>
+						<font fontName="Times New Roman" pdfFontName="Helvetica-Bold" size="10" isBold="true"/>
 					</textElement>
 				<text><![CDATA[SITUAÇÃO]]></text>
 				</staticText>
 				<image  evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
 						x="0"
-						y="2"
-						width="782"
+						y="5"
+						width="781"
 						height="78"
 						key="image-1"/>
 					<box></box>
 					<graphicElement stretchType="NoStretch"/>
 					<imageExpression class="java.lang.String"><![CDATA[$P{BANNER}]]></imageExpression>
 				</image>
+				<line direction="BottomUp">
+					<reportElement
+						x="0"
+						y="93"
+						width="782"
+						height="0"
+						key="line-1"/>
+					<graphicElement stretchType="NoStretch"/>
+				</line>
 			</band>
 		</pageHeader>
 		<columnHeader>
@@ -188,7 +188,7 @@ FROM
 			</band>
 		</columnHeader>
 		<detail>
-			<band height="19"  isSplitAllowed="true" >
+			<band height="30"  isSplitAllowed="true" >
 				<textField isStretchWithOverflow="true" pattern="" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
 						x="0"
@@ -287,7 +287,7 @@ FROM
 			</band>
 		</columnFooter>
 		<pageFooter>
-			<band height="18"  isSplitAllowed="true" >
+			<band height="20"  isSplitAllowed="true" >
 				<textField isStretchWithOverflow="false" pattern="" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
 						x="565"
@@ -303,7 +303,7 @@ FROM
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 </box>
 					<textElement textAlignment="Right">
-						<font fontName="Times New Roman" size="9"/>
+						<font fontName="Times New Roman" size="10"/>
 					</textElement>
 				<textFieldExpression   class="java.lang.String"><![CDATA["Page " + $V{PAGE_NUMBER} + " of "]]></textFieldExpression>
 				</textField>
@@ -322,7 +322,7 @@ FROM
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 </box>
 					<textElement>
-						<font fontName="Times New Roman" size="9"/>
+						<font fontName="Times New Roman" size="10"/>
 					</textElement>
 				<textFieldExpression   class="java.lang.String"><![CDATA["" + $V{PAGE_NUMBER}]]></textFieldExpression>
 				</textField>
@@ -350,7 +350,7 @@ FROM
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 </box>
 					<textElement>
-						<font fontName="Times New Roman" size="9"/>
+						<font fontName="Times New Roman" size="10"/>
 					</textElement>
 				<textFieldExpression   class="java.util.Date"><![CDATA[new Date()]]></textFieldExpression>
 				</textField>

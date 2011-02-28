@@ -68,11 +68,11 @@ FROM
 			</band>
 		</title>
 		<pageHeader>
-			<band height="103"  isSplitAllowed="true" >
+			<band height="114"  isSplitAllowed="true" >
 				<staticText>
 					<reportElement
 						x="0"
-						y="83"
+						y="96"
 						width="34"
 						height="17"
 						forecolor="#000000"
@@ -92,7 +92,7 @@ FROM
 				<staticText>
 					<reportElement
 						x="43"
-						y="83"
+						y="96"
 						width="262"
 						height="17"
 						forecolor="#000000"
@@ -112,7 +112,7 @@ FROM
 				<staticText>
 					<reportElement
 						x="396"
-						y="83"
+						y="96"
 						width="88"
 						height="17"
 						forecolor="#000000"
@@ -132,7 +132,7 @@ FROM
 				<staticText>
 					<reportElement
 						x="506"
-						y="83"
+						y="96"
 						width="50"
 						height="17"
 						forecolor="#000000"
@@ -152,7 +152,7 @@ FROM
 				<staticText>
 					<reportElement
 						x="649"
-						y="83"
+						y="96"
 						width="83"
 						height="17"
 						forecolor="#000000"
@@ -172,7 +172,7 @@ FROM
 				<staticText>
 					<reportElement
 						x="576"
-						y="83"
+						y="96"
 						width="50"
 						height="17"
 						forecolor="#000000"
@@ -192,9 +192,9 @@ FROM
 				<image  hAlign="Center" isUsingCache="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
 						x="0"
-						y="11"
-						width="782"
-						height="60"
+						y="0"
+						width="781"
+						height="78"
 						key="image-1"/>
 					<box></box>
 					<graphicElement stretchType="NoStretch"/>
@@ -203,7 +203,7 @@ FROM
 				<staticText>
 					<reportElement
 						x="327"
-						y="83"
+						y="96"
 						width="53"
 						height="17"
 						forecolor="#000000"
@@ -223,10 +223,19 @@ FROM
 				<line direction="BottomUp">
 					<reportElement
 						x="0"
-						y="100"
+						y="113"
 						width="782"
 						height="0"
 						key="line-1"/>
+					<graphicElement stretchType="NoStretch"/>
+				</line>
+				<line direction="BottomUp">
+					<reportElement
+						x="0"
+						y="92"
+						width="782"
+						height="0"
+						key="line-3"/>
 					<graphicElement stretchType="NoStretch"/>
 				</line>
 			</band>
@@ -236,7 +245,7 @@ FROM
 			</band>
 		</columnHeader>
 		<detail>
-			<band height="24"  isSplitAllowed="true" >
+			<band height="21"  isSplitAllowed="true" >
 				<textField isStretchWithOverflow="false" pattern="" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
 						x="0"
