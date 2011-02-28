@@ -51,8 +51,7 @@
 					value="#{solicitacaoAdicionalInsalubridadeController.solicitacaoAdicionalInsalubridade.tarefasSemanais}"
 					rows="5" cols="50" required="true"
 					requiredMessage="Campo Tarefas Semanais é obrigatório!"
-					validatorMessage="Tarefas Semanais deve ter no máximo 250 caracteres!"
-					requiredMessage="Campo Atividades é obrigatório!">
+					validatorMessage="Tarefas Semanais deve ter no máximo 250 caracteres!">
 					<f:validateLength maximum="250"></f:validateLength>
 				</h:inputTextarea>
 
@@ -61,8 +60,7 @@
 					value="#{solicitacaoAdicionalInsalubridadeController.solicitacaoAdicionalInsalubridade.tarefasMensais}"
 					rows="5" cols="50" required="true"
 					requiredMessage="Campo Tarefas Mensais é obrigatório!"
-					validatorMessage="Tarefas Mensais deve ter no máximo 250 caracteres!"
-					requiredMessage="Campo Atividades é obrigatório!">
+					validatorMessage="Tarefas Mensais deve ter no máximo 250 caracteres!">
 					<f:validateLength maximum="250"></f:validateLength>
 				</h:inputTextarea>
 			</h:panelGrid>

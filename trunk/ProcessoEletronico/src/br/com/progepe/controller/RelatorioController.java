@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -27,6 +28,7 @@ public class RelatorioController implements Serializable {
 	private List<SelectItem> locaisExercicio = new ArrayList<SelectItem>();
 	private Integer lotacao;
 	private Integer situacao;
+	private Date solicitacao;
 
 	public Servidor getServidor() {
 		return servidor;
@@ -76,6 +78,24 @@ public class RelatorioController implements Serializable {
 		this.situacao = situacao;
 	}
 
+	public Date getSolicitacao() {
+		return solicitacao;
+	}
+
+	public void setSolicitacao(Date solicitacao) {
+		this.solicitacao = solicitacao;
+	}
+
+	public String abrirRelatorioSolicitacaoByFiltro() throws Exception {
+		try {
+			FacesContext.getCurrentInstance().getExternalContext()
+					.redirect("relatorioSolicitacao.jsp");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return "";
+	}
+	
 	public String abrirRelatorioCargoLotacaoByFiltro() throws Exception {
 		try {
 			listarCargos();
@@ -202,6 +222,33 @@ public class RelatorioController implements Serializable {
 		parametros.put("BANNER",
 				jasperMB.getDiretorioReal("/images/banner_topo.gif"));
 		String nomeDoJasper = "/WEB-INF/jasper/relatorioServidorTitulacao.jasper";
+		jasperMB.geraRelatorioPassandoResultSet(parametros, nomeDoJasper);
+		return "";
+	}
+	
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	public String gerarRelatorioServidorSolicitacaoByFiltro()
+			throws ClassNotFoundException, SQLException, JRException {
+		
+		String sql = "SELECT solicitacao.solic_dt_abertura AS solicitacao_solic_dt_abertura," +
+				"solicitacao.solic_dt_atendimento AS solicitacao_solic_dt_atendimento," +
+				"solicitacao.solic_dt_fechamento AS solicitacao_solic_dt_fechamento," +
+				"tiposolicitacao.tipo_solic_desc AS tiposolicitacao_tipo_solic_desc," +
+				"statussolicitacao.sta_solic_desc AS statussolicitacao_sta_solic_desc," +
+				"servidorSolicitante.serv_nome AS servidor_serv_nome_solicitante," +
+				"servidorAt.serv_nome AS servidor_serv_nome_atendente" +
+				"FROM solicitacao INNER JOIN tiposolicitacao ON solicitacao.tipo_solic_cod = tiposolicitacao.tipo_solic_cod" +
+				"INNER JOIN statussolicitacao ON solicitacao.sta_solic_cod = statussolicitacao.sta_solic_cod" +
+				"INNER JOIN servidor AS servidorSolicitante  ON solicitacao.serv_cod_solic = servidorSolicitante.serv_cod" +
+				"INNER JOIN servidor AS servidorAt  ON solicitacao.serv_cod_atendente = servidorAt.serv_siape" +
+				"WHERE solicitacao_solic_dt_abertura > " + solicitacao ;
+	
+		JasperMB jasperMB = new JasperMB();
+		jasperMB.criaConexao();
+		HashMap parametros = new HashMap();
+		parametros.put("BANNER",jasperMB.getDiretorioReal("/images/banner_topo.gif"));
+		parametros.put("SQL",sql);
+		String nomeDoJasper = "/WEB-INF/jasper/historicoServidorSolicitacaoByFiltro.jasper";
 		jasperMB.geraRelatorioPassandoResultSet(parametros, nomeDoJasper);
 		return "";
 	}
