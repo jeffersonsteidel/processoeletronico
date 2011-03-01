@@ -3,6 +3,7 @@ package br.com.progepe.controller;
 import java.io.IOException;
 import java.io.Serializable;
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -19,6 +20,7 @@ import br.com.progepe.dao.ServidorDAO;
 import br.com.progepe.entity.Cargo;
 import br.com.progepe.entity.Lotacao;
 import br.com.progepe.entity.Servidor;
+import br.com.progepe.entity.TipoSolicitacao;
 
 public class RelatorioController implements Serializable {
 	private static final long serialVersionUID = -333995781063775201L;
@@ -28,8 +30,14 @@ public class RelatorioController implements Serializable {
 	private List<SelectItem> locaisExercicio = new ArrayList<SelectItem>();
 	private Integer lotacao;
 	private Integer situacao;
-	private Date solicitacao;
-
+	private Date periodoInicio;
+	private Date periodoFinal;
+	private List<SelectItem> tipoSolicitacoes = new ArrayList<SelectItem>();
+	private String solicitacao;
+	private String status;
+	private Servidor atendente;
+	private Servidor solicitante;
+	
 	public Servidor getServidor() {
 		return servidor;
 	}
@@ -45,7 +53,7 @@ public class RelatorioController implements Serializable {
 	public void setCargos(List<SelectItem> cargos) {
 		this.cargos = cargos;
 	}
-	
+
 	public Integer getCargo() {
 		return cargo;
 	}
@@ -78,16 +86,77 @@ public class RelatorioController implements Serializable {
 		this.situacao = situacao;
 	}
 
-	public Date getSolicitacao() {
+	public Date getPeriodoInicio() {
+		return periodoInicio;
+	}
+
+	public void setPeriodoInicio(Date periodoInicio) {
+		this.periodoInicio = periodoInicio;
+	}
+
+	public Date getPeriodoFinal() {
+		return periodoFinal;
+	}
+
+	public void setPeriodoFinal(Date periodoFinal) {
+		this.periodoFinal = periodoFinal;
+	}
+
+	public List<SelectItem> getTipoSolicitacoes() {
+		return tipoSolicitacoes;
+	}
+
+	public void setTipoSolicitacoes(List<SelectItem> tipoSolicitacoes) {
+		this.tipoSolicitacoes = tipoSolicitacoes;
+	}
+
+	public String getSolicitacao() {
 		return solicitacao;
 	}
 
-	public void setSolicitacao(Date solicitacao) {
+	public void setSolicitacao(String solicitacao) {
 		this.solicitacao = solicitacao;
 	}
 
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	public Servidor getAtendente() {
+		return atendente;
+	}
+
+	public void setAtendente(Servidor atendente) {
+		this.atendente = atendente;
+	}
+
+	public Servidor getSolicitante() {
+		return solicitante;
+	}
+
+	public void setSolicitante(Servidor solicitante) {
+		this.solicitante = solicitante;
+	}
+
+	public void buscarServidorAtendente() throws IOException, ParseException {
+		atendente = (Servidor) ServidorDAO.getInstance()
+		.refreshBySiape(atendente);
+	}
+	
+	public void buscarServidorSolicitante() throws IOException, ParseException {
+		solicitante = (Servidor) ServidorDAO.getInstance()
+		.refreshBySiape(solicitante);
+	}
+	
 	public String abrirRelatorioSolicitacaoByFiltro() throws Exception {
 		try {
+			atendente = new Servidor();
+			solicitante = new Servidor();
+			listarTiposSolicitacoes();
 			FacesContext.getCurrentInstance().getExternalContext()
 					.redirect("relatorioSolicitacao.jsp");
 		} catch (IOException e) {
@@ -95,7 +164,7 @@ public class RelatorioController implements Serializable {
 		}
 		return "";
 	}
-	
+
 	public String abrirRelatorioCargoLotacaoByFiltro() throws Exception {
 		try {
 			listarCargos();
@@ -107,19 +176,18 @@ public class RelatorioController implements Serializable {
 		}
 		return "";
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	public List<SelectItem> listarCargos() {
 		cargos = new ArrayList<SelectItem>();
 		List<Cargo> cargoList = new ArrayList<Cargo>();
 		cargoList = DAO.getInstance().list(Cargo.class, "descricao");
 		for (Cargo cargo : cargoList) {
-			cargos.add(new SelectItem(cargo.getCodigo(), cargo
-					.getDescricao()));
+			cargos.add(new SelectItem(cargo.getCodigo(), cargo.getDescricao()));
 		}
 		return cargos;
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	public List<SelectItem> listarLotacoes() {
 		locaisExercicio = new ArrayList<SelectItem>();
@@ -131,7 +199,20 @@ public class RelatorioController implements Serializable {
 		}
 		return locaisExercicio;
 	}
-	
+
+	@SuppressWarnings("unchecked")
+	public List<SelectItem> listarTiposSolicitacoes() {
+		tipoSolicitacoes = new ArrayList<SelectItem>();
+		List<TipoSolicitacao> tipoSolicitacoesList = new ArrayList<TipoSolicitacao>();
+		tipoSolicitacoesList = DAO.getInstance().list(TipoSolicitacao.class,
+				"descricao");
+		for (TipoSolicitacao tipoSolicitacao : tipoSolicitacoesList) {
+			tipoSolicitacoes.add(new SelectItem(tipoSolicitacao.getCodigo(),
+					tipoSolicitacao.getDescricao()));
+		}
+		return tipoSolicitacoes;
+	}
+
 	public void abrirRelatorios() throws IOException {
 		FacesContext.getCurrentInstance().getExternalContext()
 				.redirect("relatorios.jsp");
@@ -186,7 +267,7 @@ public class RelatorioController implements Serializable {
 		jasperMB.geraRelatorioPassandoResultSet(parametros, nomeDoJasper);
 		return "";
 	}
-	
+
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public String gerarRelatorioServidorConjuge()
 			throws ClassNotFoundException, SQLException, JRException {
@@ -199,7 +280,7 @@ public class RelatorioController implements Serializable {
 		jasperMB.geraRelatorioPassandoResultSet(parametros, nomeDoJasper);
 		return "";
 	}
-	
+
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public String gerarRelatorioServidorEmprego()
 			throws ClassNotFoundException, SQLException, JRException {
@@ -212,7 +293,7 @@ public class RelatorioController implements Serializable {
 		jasperMB.geraRelatorioPassandoResultSet(parametros, nomeDoJasper);
 		return "";
 	}
-	
+
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public String gerarRelatorioServidorTitulacao()
 			throws ClassNotFoundException, SQLException, JRException {
@@ -225,65 +306,66 @@ public class RelatorioController implements Serializable {
 		jasperMB.geraRelatorioPassandoResultSet(parametros, nomeDoJasper);
 		return "";
 	}
-	
+
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public String gerarRelatorioServidorSolicitacaoByFiltro()
 			throws ClassNotFoundException, SQLException, JRException {
-		
-		String sql = "SELECT solicitacao.solic_dt_abertura AS solicitacao_solic_dt_abertura," +
-				"solicitacao.solic_dt_atendimento AS solicitacao_solic_dt_atendimento," +
-				"solicitacao.solic_dt_fechamento AS solicitacao_solic_dt_fechamento," +
-				"tiposolicitacao.tipo_solic_desc AS tiposolicitacao_tipo_solic_desc," +
-				"statussolicitacao.sta_solic_desc AS statussolicitacao_sta_solic_desc," +
-				"servidorSolicitante.serv_nome AS servidor_serv_nome_solicitante," +
-				"servidorAt.serv_nome AS servidor_serv_nome_atendente" +
-				"FROM solicitacao INNER JOIN tiposolicitacao ON solicitacao.tipo_solic_cod = tiposolicitacao.tipo_solic_cod" +
-				"INNER JOIN statussolicitacao ON solicitacao.sta_solic_cod = statussolicitacao.sta_solic_cod" +
-				"INNER JOIN servidor AS servidorSolicitante  ON solicitacao.serv_cod_solic = servidorSolicitante.serv_cod" +
-				"INNER JOIN servidor AS servidorAt  ON solicitacao.serv_cod_atendente = servidorAt.serv_siape" +
-				"WHERE solicitacao_solic_dt_abertura > " + solicitacao ;
-	
+
+		String sql = "SELECT solicitacao.solic_dt_abertura AS solicitacao_solic_dt_abertura,"
+				+ " solicitacao.solic_dt_atendimento AS solicitacao_solic_dt_atendimento,"
+				+ " solicitacao.solic_dt_fechamento AS solicitacao_solic_dt_fechamento,"
+				+ " tiposolicitacao.tipo_solic_desc AS tiposolicitacao_tipo_solic_desc,"
+				+ " statussolicitacao.sta_solic_desc AS statussolicitacao_sta_solic_desc,"
+				+ " servidorSolicitante.serv_nome AS servidor_serv_nome_solicitante,"
+				+ " servidorAt.serv_nome AS servidor_serv_nome_atendente"
+				+ " FROM solicitacao INNER JOIN tiposolicitacao ON solicitacao.tipo_solic_cod = tiposolicitacao.tipo_solic_cod"
+				+ " INNER JOIN statussolicitacao ON solicitacao.sta_solic_cod = statussolicitacao.sta_solic_cod"
+				+ " INNER JOIN servidor AS servidorSolicitante  ON solicitacao.serv_cod_solic = servidorSolicitante.serv_cod"
+				+ " INNER JOIN servidor AS servidorAt  ON solicitacao.serv_cod_atendente = servidorAt.serv_siape"
+				+ " ";
+
 		JasperMB jasperMB = new JasperMB();
 		jasperMB.criaConexao();
 		HashMap parametros = new HashMap();
-		parametros.put("BANNER",jasperMB.getDiretorioReal("/images/banner_topo.gif"));
-		parametros.put("SQL",sql);
+		parametros.put("BANNER",
+				jasperMB.getDiretorioReal("/images/banner_topo.gif"));
+		parametros.put("SQL", sql);
 		String nomeDoJasper = "/WEB-INF/jasper/historicoServidorSolicitacaoByFiltro.jasper";
 		jasperMB.geraRelatorioPassandoResultSet(parametros, nomeDoJasper);
 		return "";
 	}
-	
+
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public String gerarRelatorioServidorCargoLotacaoByFiltro()
 			throws ClassNotFoundException, SQLException, JRException {
-		
 
-		String sql = "SELECT servidor.serv_siape AS servidor_serv_siape, servidor.serv_nome AS servidor_serv_nome," +
-		" lotacao.lot_desc AS lotacao_lot_desc, cargo.carg_desc AS cargo_carg_desc, servidor.serv_data_saida AS servidor_serv_data_saida" +
-		" FROM lotacao INNER JOIN servidor ON lotacao.lot_cod = servidor.lot_cod INNER JOIN cargo ON servidor.carg_cod = cargo.carg_cod" +
-		" WHERE 1 = 1 ";
-		
-		if(cargo != null && cargo != 0){
-			sql += " AND cargo.carg_cod = "+cargo;
+		String sql = "SELECT servidor.serv_siape AS servidor_serv_siape, servidor.serv_nome AS servidor_serv_nome,"
+				+ " lotacao.lot_desc AS lotacao_lot_desc, cargo.carg_desc AS cargo_carg_desc, servidor.serv_data_saida AS servidor_serv_data_saida"
+				+ " FROM lotacao INNER JOIN servidor ON lotacao.lot_cod = servidor.lot_cod INNER JOIN cargo ON servidor.carg_cod = cargo.carg_cod"
+				+ " WHERE 1 = 1 ";
+
+		if (cargo != null && cargo != 0) {
+			sql += " AND cargo.carg_cod = " + cargo;
 		}
-		if(lotacao != null && lotacao != 0){
-			sql += " and lotacao.lot_cod =  "+lotacao;
+		if (lotacao != null && lotacao != 0) {
+			sql += " and lotacao.lot_cod =  " + lotacao;
 		}
-		
-		if(situacao != null && situacao.equals(Constantes.ATIVO)){
+
+		if (situacao != null && situacao.equals(Constantes.ATIVO)) {
 			sql += " and servidor.serv_data_saida is null ";
 		}
-		if(situacao != null && situacao.equals(Constantes.DESATIVO)){
+		if (situacao != null && situacao.equals(Constantes.DESATIVO)) {
 			sql += " and servidor.serv_data_saida is not null";
 		}
-		
-		sql +=" order by servidor.serv_siape ";
-		
+
+		sql += " order by servidor.serv_siape ";
+
 		JasperMB jasperMB = new JasperMB();
 		jasperMB.criaConexao();
 		HashMap parametros = new HashMap();
-		parametros.put("BANNER",jasperMB.getDiretorioReal("/images/banner_topo.gif"));
-		parametros.put("SQL",sql);
+		parametros.put("BANNER",
+				jasperMB.getDiretorioReal("/images/banner_topo.gif"));
+		parametros.put("SQL", sql);
 		String nomeDoJasper = "/WEB-INF/jasper/relatorioServidorCargoLotacaoByFiltro.jasper";
 		jasperMB.geraRelatorioPassandoResultSet(parametros, nomeDoJasper);
 		return "";
@@ -295,7 +377,8 @@ public class RelatorioController implements Serializable {
 		JasperMB jasperMB = new JasperMB();
 		jasperMB.criaConexao();
 		HashMap parametros = new HashMap();
-		parametros.put("BANNER",jasperMB.getDiretorioReal("/images/banner_topo.gif"));
+		parametros.put("BANNER",
+				jasperMB.getDiretorioReal("/images/banner_topo.gif"));
 		String nomeDoJasper = "/WEB-INF/jasper/relatorioServidorContaBancaria.jasper";
 		jasperMB.geraRelatorioPassandoResultSet(parametros, nomeDoJasper);
 		return "";

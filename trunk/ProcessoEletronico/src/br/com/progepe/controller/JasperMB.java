@@ -27,7 +27,7 @@ public class JasperMB {
 	String saida;
 
 	public void criaConexao() throws ClassNotFoundException, SQLException {
-		String endereco = "jdbc:mysql://172.16.32.31:3306/ifpr";
+		String endereco = "jdbc:mysql://172.16.32.27:3306/ifpr";
 		String usuario = "marlon";
 		String senha = "ifpr";
 
