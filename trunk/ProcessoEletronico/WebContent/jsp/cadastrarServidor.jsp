@@ -16,13 +16,23 @@
 	<a4j:loadScript src="../js/script.js" />
 	<center><a4j:form id="form">
 		<rich:panel>
-			<h:panelGrid columns="1" rendered="#{servidorController.servidor.codigo == null}">
+			<h:panelGrid columns="1"
+				rendered="#{servidorController.servidor.codigo == null}">
 				<font size="2"><b>CADASTRAR SERVIDOR</b></font>
 			</h:panelGrid>
-			<h:panelGrid columns="1" rendered="#{servidorController.servidor.codigo != 0 && servidorController.servidor.codigo != null}">
+			<h:panelGrid columns="1"
+				rendered="#{servidorController.servidor.codigo != 0 && servidorController.servidor.codigo != null}">
 				<font size="2"><b>ATUALIZAR DADOS</b></font>
 			</h:panelGrid>
-			
+			<rich:messages layout="list" errorLabelClass="errorLabel"
+				style="top:auto;" infoLabelClass="infoLabel">
+				<f:facet name="infoMarker">
+					<h:graphicImage value="../images/passed.gif" />
+				</f:facet>
+				<f:facet name="errorMarker">
+					<h:graphicImage value="../images/error.gif" />
+				</f:facet>
+			</rich:messages>
 			<rich:tabPanel switchType="client" width="750" height="120">
 				<rich:tab label="Dados Pessoais">
 					<h:panelGrid columns="4">
@@ -148,7 +158,7 @@
 							validatorMessage="O campo Id Única deve ter 10 caracteres">
 							<f:validateLength minimum="10" />
 						</h:inputText>
-							
+
 						<h:outputText value="Data de Admissão no IFPR: " />
 						<rich:calendar value="#{servidorController.servidor.dataAdmissao}"
 							locale="" popup="true" datePattern="dd/MM/yyyy"
@@ -220,7 +230,8 @@
 							<f:selectItems value="#{servidorController.situacoesFuncionais}" />
 						</h:selectOneMenu>
 
-						<h:outputText value="Data de Saída do Orgão: " rendered="#{autenticacaoController.siapeAutenticado.indAdministrador}"/>
+						<h:outputText value="Data de Saída do Orgão: "
+							rendered="#{autenticacaoController.siapeAutenticado.indAdministrador}" />
 						<rich:calendar value="#{servidorController.servidor.dataSaida}"
 							locale="" popup="true" datePattern="dd/MM/yyyy"
 							rendered="#{autenticacaoController.siapeAutenticado.indAdministrador}"
@@ -459,12 +470,10 @@
 				<rich:tab label="SALVAR">
 					<h:panelGrid columns="1">
 						<center><a4j:commandButton value="Salvar"
-							action="#{servidorController.salvar}" reRender="form"
-							oncomplete="#{rich:component('confirmPanel')}.show()" /> <a4j:commandButton
+							action="#{servidorController.salvar}" reRender="form" /> <a4j:commandButton
 							value="Aprovar"
 							rendered="#{autenticacaoController.siapeAutenticado.indAdministrador}"
-							action="#{servidorController.aprovar}" reRender="form"
-							oncomplete="#{rich:component('confirmPanel')}.show()" /></center>
+							action="#{servidorController.aprovar}" reRender="form" /></center>
 						<h:panelGrid columns="2"
 							rendered="#{autenticacaoController.siapeAutenticado.indAdministrador}">
 							<h:graphicImage value="../images/indeferido.gif" style="border:0"
@@ -484,7 +493,8 @@
 							<h:outputText
 								value="Data da última atualização realizada pelo servidor:"></h:outputText>
 							<h:outputText value="#{servidorController.dataUltimaAlteracao}"></h:outputText>
-							<h:outputText value="Data da última aprovação:" rendered="#{servidorController.dataUltimaAprovacao != null}"></h:outputText>
+							<h:outputText value="Data da última aprovação:"
+								rendered="#{servidorController.dataUltimaAprovacao != null}"></h:outputText>
 							<h:outputText value="#{servidorController.dataUltimaAprovacao}"></h:outputText>
 						</h:panelGrid>
 					</h:panelGrid>
@@ -492,38 +502,6 @@
 			</rich:tabPanel>
 		</rich:panel>
 	</a4j:form></center>
-	<center><rich:modalPanel id="confirmPanel" autosized="false"
-		style="overflow: auto;"
-		showWhenRendered="#{not empty facesContext.maximumSeverity}">
-		<f:facet name="header">
-			<h:panelGroup>
-				<h:outputText value="Verificar Campos"></h:outputText>
-			</h:panelGroup>
-		</f:facet>
-		<f:facet name="controls">
-			<h:panelGroup>
-				<h:graphicImage value="../images/close.gif"
-					onclick="#{rich:component('confirmPanel')}.hide();" />
-			</h:panelGroup>
-		</f:facet>
-		<h:form>
-			<table width="100%" height="100%">
-				<tbody>
-					<tr>
-						<td><rich:messages layout="list" errorLabelClass="errorLabel"
-							style="top:auto;" infoLabelClass="infoLabel">
-							<f:facet name="infoMarker">
-								<h:graphicImage value="../images/passed.gif" />
-							</f:facet>
-							<f:facet name="errorMarker">
-								<h:graphicImage value="../images/error.gif" />
-							</f:facet>
-						</rich:messages></td>
-					</tr>
-				</tbody>
-			</table>
-		</h:form>
-	</rich:modalPanel></center>
 </f:view>
 </body>
 </html>
