@@ -17,6 +17,12 @@
 		<url-pattern>/faces/*</url-pattern>
 	</servlet-mapping>
 
+
+	<context-param>
+		<param-name>org.ajax4jsf.COMPRESS_SCRIPT</param-name>
+		<param-value>true</param-value>
+	</context-param>
+
 	<!-- "Blue Sky" skin para o projeto -->
 	<context-param>
 		<param-name>org.richfaces.SKIN</param-name>
@@ -27,6 +33,27 @@
 		<param-name>org.richfaces.CONTROL_SKINNING</param-name>
 		<param-value>enable</param-value>
 	</context-param>
+
+	<context-param>
+		<param-name>org.richfaces.LoadStyleStrategy</param-name>
+		<param-value>all</param-value>
+	</context-param>
+
+	<context-param>
+		<param-name>org.richfaces.LoadScriptStrategy</param-name>
+		<param-value>all</param-value>
+	</context-param>
+
+	<context-param>
+		<param-name>org.ajax4jsf.xmlparser.ORDER</param-name>
+		<param-value>NEKO</param-value>
+	</context-param>
+
+	<context-param>
+		<param-name>org.ajax4jsf.xmlparser.NEKO</param-name>
+		<param-value> .* \ ..*</param-value>
+	</context-param>
+
 	<!-- Defining and mapping the RichFaces filter -->
 	<filter>
 		<display-name>RichFaces Filter</display-name>
@@ -37,8 +64,16 @@
 			<param-value>false</param-value>
 		</init-param>
 		<init-param>
+			<param-name>forceparser</param-name>
+			<param-value>false</param-value>
+		</init-param>
+		<init-param>
 			<param-name>maxRequestSize</param-name>
 			<param-value>990000000</param-value>
+		</init-param>
+		<init-param>
+			<param-name>enable-cache</param-name>
+			<param-value>true</param-value>
 		</init-param>
 	</filter>
 	<filter-mapping>

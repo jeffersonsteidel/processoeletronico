@@ -575,6 +575,7 @@ public class ServidorController {
 			servidor.setCidadeNascimento(null);
 			servidor.setEstadoNascimento(new Estado());
 			servidorBrasileiro = false;
+			cidadesNascimento = new ArrayList<SelectItem>();
 		} else {
 			servidor.setPais(null);
 			servidor.setEstadoNascimento(new Estado());
