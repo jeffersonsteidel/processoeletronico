@@ -532,6 +532,10 @@ public class FitaEspelho {
 						html = html + "TÉCNICO/";
 						if (linha.substring(116, 119).equals("001")) {
 							html = html + "ADMINISTRADOR";
+						} else if (linha.substring(116, 119).equals("004")) {
+							html = html + "ARQUITETO E URBANISTA";
+						} else if (linha.substring(116, 119).equals("006")) {
+							html = html + "ASS. SOCIAL";
 						} else if (linha.substring(116, 119).equals("009")) {
 							html = html + "AUDITOR";
 						} else if (linha.substring(116, 119).equals("010")) {
