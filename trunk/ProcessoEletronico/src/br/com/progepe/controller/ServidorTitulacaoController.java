@@ -402,10 +402,18 @@ public class ServidorTitulacaoController implements Serializable {
 	}
 
 	public void deferir() {
-		servidorTitulacao.getStatusSolicitacao().setCodigo(
-				Constantes.STATUS_SOLICITACAO_DEFERIDO);
-		servidorTitulacao.setDataFechamento(new Date());
-		DAO.getInstance().update(servidorTitulacao);
+		if (servidorTitulacao.getJustificativa().length() > 250) {
+			FacesMessage message = new FacesMessage(
+					FacesMessage.SEVERITY_ERROR,
+					"O campo Justificativa deve ter no maxímo 250 caracteres!",
+					"O campo Justificativa deve ter no maxímo 250 caracteres!");
+			FacesContext.getCurrentInstance().addMessage("", message);
+		} else {
+			servidorTitulacao.getStatusSolicitacao().setCodigo(
+					Constantes.STATUS_SOLICITACAO_DEFERIDO);
+			servidorTitulacao.setDataFechamento(new Date());
+			DAO.getInstance().update(servidorTitulacao);
+		}
 	}
 
 	public void indeferir() {
@@ -415,13 +423,13 @@ public class ServidorTitulacaoController implements Serializable {
 					Constantes.STATUS_SOLICITACAO_INDEFERIDO);
 			servidorTitulacao.setDataFechamento(new Date());
 			DAO.getInstance().update(servidorTitulacao);
-		} else if(servidorTitulacao.getJustificativa().length()>250){
+		} else if (servidorTitulacao.getJustificativa().length() > 250) {
 			FacesMessage message = new FacesMessage(
 					FacesMessage.SEVERITY_ERROR,
 					"O campo Justificativa deve ter no maxímo 250 caracteres!",
 					"O campo Justificativa deve ter no maxímo 250 caracteres!");
 			FacesContext.getCurrentInstance().addMessage("", message);
-		}	else {
+		} else {
 			FacesMessage message = new FacesMessage(
 					FacesMessage.SEVERITY_ERROR,
 					"O campo Justificativa é obrigatório!",
