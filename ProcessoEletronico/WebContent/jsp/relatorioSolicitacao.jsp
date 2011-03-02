@@ -69,7 +69,7 @@
 						ajaxSingle="true" reRender="servidorSolicitante,siapeSolicitante"></a4j:support>
 				</h:inputText>
 
-				<h:outputText value="Nome do Atendente: ">
+				<h:outputText value="Nome do Solicitante: ">
 				</h:outputText>
 				<h:outputText id="servidorSolicitante"
 					value="#{relatorioController.solicitante.nome}">
@@ -83,7 +83,7 @@
 			</h:selectOneMenu>
 
 			<h:outputText value="Status Solicitação: " />
-			<h:selectOneMenu value="#{relatorioController.situacao}">
+			<h:selectOneMenu value="#{relatorioController.status}">
 				<f:selectItem itemLabel="TODOS" itemValue="0" />
 				<f:selectItem itemLabel="ENCAMINHADO" itemValue="1" />
 				<f:selectItem itemLabel="EM ANÁLISE" itemValue="2" />
