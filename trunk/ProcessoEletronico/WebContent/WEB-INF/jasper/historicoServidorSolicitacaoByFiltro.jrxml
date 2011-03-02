@@ -87,7 +87,7 @@
 					<reportElement
 						x="173"
 						y="96"
-						width="67"
+						width="80"
 						height="17"
 						forecolor="#000000"
 						backcolor="#FFFFFF"
@@ -105,9 +105,9 @@
 				</staticText>
 				<staticText>
 					<reportElement
-						x="319"
+						x="340"
 						y="96"
-						width="176"
+						width="142"
 						height="17"
 						forecolor="#000000"
 						backcolor="#FFFFFF"
@@ -125,9 +125,9 @@
 				</staticText>
 				<staticText>
 					<reportElement
-						x="499"
+						x="488"
 						y="96"
-						width="76"
+						width="87"
 						height="17"
 						forecolor="#000000"
 						backcolor="#FFFFFF"
@@ -196,9 +196,9 @@
 				</image>
 				<staticText>
 					<reportElement
-						x="246"
+						x="257"
 						y="96"
-						width="68"
+						width="77"
 						height="17"
 						forecolor="#000000"
 						backcolor="#FFFFFF"
@@ -240,11 +240,11 @@
 		</columnHeader>
 		<detail>
 			<band height="21"  isSplitAllowed="true" >
-				<textField isStretchWithOverflow="false" pattern="" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+				<textField isStretchWithOverflow="false" pattern="dd/MM/yyyy HH.mm.ss" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
 						x="173"
 						y="3"
-						width="67"
+						width="80"
 						height="18"
 						key="textField"/>
 					<box></box>
@@ -253,11 +253,11 @@
 					</textElement>
 				<textFieldExpression   class="java.sql.Timestamp"><![CDATA[$F{solicitacao_solic_dt_abertura}]]></textFieldExpression>
 				</textField>
-				<textField isStretchWithOverflow="false" pattern="" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+				<textField isStretchWithOverflow="false" pattern="dd/MM/yyyy HH.mm.ss" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
-						x="246"
+						x="258"
 						y="3"
-						width="68"
+						width="76"
 						height="18"
 						key="textField"/>
 					<box></box>
@@ -266,11 +266,11 @@
 					</textElement>
 				<textFieldExpression   class="java.sql.Timestamp"><![CDATA[$F{solicitacao_solic_dt_atendimento}]]></textFieldExpression>
 				</textField>
-				<textField isStretchWithOverflow="false" pattern="" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+				<textField isStretchWithOverflow="false" pattern="dd/MM/yyyy HH.mm.ss" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
-						x="499"
+						x="488"
 						y="3"
-						width="76"
+						width="87"
 						height="18"
 						key="textField"/>
 					<box></box>
@@ -320,9 +320,9 @@
 				</textField>
 				<textField isStretchWithOverflow="true" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
-						x="319"
+						x="340"
 						y="3"
-						width="176"
+						width="137"
 						height="18"
 						key="textField"/>
 					<box></box>
