@@ -304,6 +304,12 @@ public class ConjugeController implements Serializable {
 					"O campo Justificativa deve ter no máximo 250 caracteres!",
 					"O campo Justificativa deve ter no máximo 250 caracteres!");
 			FacesContext.getCurrentInstance().addMessage("", message);
+		} else if (conjuge.getJustificativa().length() > 250) {
+			FacesMessage message = new FacesMessage(
+					FacesMessage.SEVERITY_ERROR,
+					"O campo Justificativa deve ter no máximo 250 caracteres!",
+					"O campo Justificativa deve ter no máximo 250 caracteres!");
+			FacesContext.getCurrentInstance().addMessage("", message);
 		} else {
 			conjuge.getStatusSolicitacao().setCodigo(
 					Constantes.STATUS_SOLICITACAO_DEFERIDO);

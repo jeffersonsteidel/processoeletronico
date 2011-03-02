@@ -195,12 +195,13 @@ public class EmpregoController implements Serializable {
 	}
 
 	public void indeferir() {
-		if (emprego.getJustificativa() != null
-				&& !emprego.getJustificativa().equals("")) {
-			emprego.getStatusSolicitacao().setCodigo(
-					Constantes.STATUS_SOLICITACAO_INDEFERIDO);
-			emprego.setDataFechamento(new Date());
-			DAO.getInstance().update(emprego);
+		if (emprego.getJustificativa() == null
+				|| emprego.getJustificativa()=="") {
+			FacesMessage message = new FacesMessage(
+					FacesMessage.SEVERITY_ERROR,
+					"Campo Justificativa é obrigatório!",
+			"Campo Justificativa é obrigatório!");
+			FacesContext.getCurrentInstance().addMessage("", message);
 		} else if (emprego.getJustificativa().length() > 250) {
 			FacesMessage message = new FacesMessage(
 					FacesMessage.SEVERITY_ERROR,
@@ -208,11 +209,10 @@ public class EmpregoController implements Serializable {
 					"O campo Justificativa deve ter no maxímo 250 caracteres!");
 			FacesContext.getCurrentInstance().addMessage("", message);
 		} else {
-			FacesMessage message = new FacesMessage(
-					FacesMessage.SEVERITY_ERROR,
-					"Campo Justificativa é obrigatório!",
-					"Campo Justificativa é obrigatório!");
-			FacesContext.getCurrentInstance().addMessage("", message);
+			emprego.getStatusSolicitacao().setCodigo(
+					Constantes.STATUS_SOLICITACAO_INDEFERIDO);
+			emprego.setDataFechamento(new Date());
+			DAO.getInstance().update(emprego);
 		}
 	}
 
