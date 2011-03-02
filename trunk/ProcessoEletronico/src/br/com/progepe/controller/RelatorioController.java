@@ -25,19 +25,19 @@ import br.com.progepe.entity.TipoSolicitacao;
 public class RelatorioController implements Serializable {
 	private static final long serialVersionUID = -333995781063775201L;
 	private Servidor servidor;
-	private List<SelectItem> cargos = new ArrayList<SelectItem>();
-	private Integer cargo;
-	private List<SelectItem> locaisExercicio = new ArrayList<SelectItem>();
-	private Integer lotacao;
-	private Integer situacao;
-	private Date periodoInicio;
-	private Date periodoFinal;
-	private List<SelectItem> tipoSolicitacoes = new ArrayList<SelectItem>();
-	private String solicitacao;
-	private String status;
 	private Servidor atendente;
 	private Servidor solicitante;
-	
+	private List<SelectItem> cargos = new ArrayList<SelectItem>();
+	private List<SelectItem> locaisExercicio = new ArrayList<SelectItem>();
+	private List<SelectItem> tipoSolicitacoes = new ArrayList<SelectItem>();
+	private Integer cargo;
+	private Integer lotacao;
+	private Integer situacao;
+	private Integer solicitacao;
+	private Integer status;
+	private Date periodoInicio;
+	private Date periodoFinal;
+
 	public Servidor getServidor() {
 		return servidor;
 	}
@@ -110,19 +110,19 @@ public class RelatorioController implements Serializable {
 		this.tipoSolicitacoes = tipoSolicitacoes;
 	}
 
-	public String getSolicitacao() {
+	public Integer getSolicitacao() {
 		return solicitacao;
 	}
 
-	public void setSolicitacao(String solicitacao) {
+	public void setSolicitacao(Integer solicitacao) {
 		this.solicitacao = solicitacao;
 	}
 
-	public String getStatus() {
+	public Integer getStatus() {
 		return status;
 	}
 
-	public void setStatus(String status) {
+	public void setStatus(Integer status) {
 		this.status = status;
 	}
 
@@ -145,11 +145,26 @@ public class RelatorioController implements Serializable {
 	public void buscarServidorAtendente() throws IOException, ParseException {
 		atendente = (Servidor) ServidorDAO.getInstance()
 		.refreshBySiape(atendente);
+		
+		if (atendente == null) {
+			atendente = (new Servidor());
+			FacesMessage message = new FacesMessage(
+					FacesMessage.SEVERITY_ERROR, "Siape inválido!",
+					"Siape inválido!");
+			FacesContext.getCurrentInstance().addMessage("", message);
+		}
 	}
 	
 	public void buscarServidorSolicitante() throws IOException, ParseException {
 		solicitante = (Servidor) ServidorDAO.getInstance()
 		.refreshBySiape(solicitante);
+		if (solicitante == null) {
+			solicitante = (new Servidor());
+			FacesMessage message = new FacesMessage(
+					FacesMessage.SEVERITY_ERROR, "Siape inválido!",
+					"Siape inválido!");
+			FacesContext.getCurrentInstance().addMessage("", message);
+		}
 	}
 	
 	public String abrirRelatorioSolicitacaoByFiltro() throws Exception {
@@ -321,9 +336,39 @@ public class RelatorioController implements Serializable {
 				+ " FROM solicitacao INNER JOIN tiposolicitacao ON solicitacao.tipo_solic_cod = tiposolicitacao.tipo_solic_cod"
 				+ " INNER JOIN statussolicitacao ON solicitacao.sta_solic_cod = statussolicitacao.sta_solic_cod"
 				+ " INNER JOIN servidor AS servidorSolicitante  ON solicitacao.serv_cod_solic = servidorSolicitante.serv_cod"
-				+ " INNER JOIN servidor AS servidorAt  ON solicitacao.serv_cod_atendente = servidorAt.serv_siape"
-				+ " ";
-
+				+ " LEFT JOIN servidor AS servidorAt  ON solicitacao.serv_cod_atendente = servidorAt.serv_siape"
+				+ " WHERE 1 = 1";
+		
+		/*
+		if (periodoInicio != null) {
+			sql += " and solicitacao.solic_dt_abertura > " + periodoInicio ;
+		}
+		
+		if (periodoFinal != null) {
+			sql += " and solicitacao.solic_dt_abertura < " + periodoInicio ;
+		}
+		*/
+		
+		if (atendente != null && atendente.getSiape() != 0) {
+			sql += " and servidorAt.serv_nome = '" + atendente.getNome(); 
+			sql += "'";
+		}
+		
+		if (solicitante != null && solicitante.getSiape() != 0 ) {
+			sql += " and servidorSolicitante.serv_nome = '"  + solicitante.getNome();
+			sql += "'";
+		}
+		
+		if (solicitacao != null && solicitacao != 0) {
+			sql += " and tiposolicitacao.tipo_solic_cod = " + solicitacao;
+		}
+		
+		if (status != null && status != 0) {
+			sql += " and solicitacao.sta_solic_cod = " + status;
+		}
+		
+		sql += " ORDER BY servidorAt.serv_nome is null; ";
+		
 		JasperMB jasperMB = new JasperMB();
 		jasperMB.criaConexao();
 		HashMap parametros = new HashMap();
