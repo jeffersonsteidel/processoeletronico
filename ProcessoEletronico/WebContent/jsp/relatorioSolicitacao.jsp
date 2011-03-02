@@ -30,16 +30,16 @@
 			<h:panelGrid columns="4">
 
 				<h:outputText value="Data Perido Inicio: " />
-				<rich:calendar
-					value="#{relatorioController.periodoInicio}" locale="" popup="true"
-					datePattern="dd/MM/yyyy" showApplyButton="#" cellWidth="12px"
-					cellHeight="12px" style="width:80px" inputSize="12" />
+				<rich:calendar value="#{relatorioController.periodoInicio}"
+					locale="" popup="true" datePattern="dd/MM/yyyy" showApplyButton="#"
+					cellWidth="12px" cellHeight="12px" style="width:80px"
+					inputSize="12" />
 
 				<h:outputText value="Data Perido Fim: " />
-				<rich:calendar
-					value="#{relatorioController.periodoFinal}" locale="" popup="true"
-					datePattern="dd/MM/yyyy" showApplyButton="#" cellWidth="12px"
-					cellHeight="12px" style="width:80px" inputSize="12" />
+				<rich:calendar value="#{relatorioController.periodoFinal}" locale=""
+					popup="true" datePattern="dd/MM/yyyy" showApplyButton="#"
+					cellWidth="12px" cellHeight="12px" style="width:80px"
+					inputSize="12" />
 			</h:panelGrid>
 
 			<h:panelGrid columns="4">
@@ -82,13 +82,10 @@
 				<f:selectItems value="#{relatorioController.tipoSolicitacoes}" />
 			</h:selectOneMenu>
 
-			<h:outputText value="Status Solicitação: " />
+			<h:outputText value="Tipo Solicitação: " />
 			<h:selectOneMenu value="#{relatorioController.status}">
-				<f:selectItem itemLabel="TODOS" itemValue="0" />
-				<f:selectItem itemLabel="ENCAMINHADO" itemValue="1" />
-				<f:selectItem itemLabel="EM ANÁLISE" itemValue="2" />
-				<f:selectItem itemLabel="DEFERIDO" itemValue="3" />
-				<f:selectItem itemLabel="INDEFERIDO" itemValue="4" />
+				<f:selectItem itemLabel="SELECIONE" itemValue="" />
+				<f:selectItems value="#{relatorioController.tipoStatus}" />
 			</h:selectOneMenu>
 
 			<h:panelGrid columns="2">

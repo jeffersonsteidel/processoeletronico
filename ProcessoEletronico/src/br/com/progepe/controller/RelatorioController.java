@@ -20,6 +20,7 @@ import br.com.progepe.dao.ServidorDAO;
 import br.com.progepe.entity.Cargo;
 import br.com.progepe.entity.Lotacao;
 import br.com.progepe.entity.Servidor;
+import br.com.progepe.entity.StatusSolicitacao;
 import br.com.progepe.entity.TipoSolicitacao;
 
 public class RelatorioController implements Serializable {
@@ -30,6 +31,7 @@ public class RelatorioController implements Serializable {
 	private List<SelectItem> cargos = new ArrayList<SelectItem>();
 	private List<SelectItem> locaisExercicio = new ArrayList<SelectItem>();
 	private List<SelectItem> tipoSolicitacoes = new ArrayList<SelectItem>();
+	private List<SelectItem> tipoStatus = new ArrayList<SelectItem>();
 	private Integer cargo;
 	private Integer lotacao;
 	private Integer situacao;
@@ -44,86 +46,6 @@ public class RelatorioController implements Serializable {
 
 	public void setServidor(Servidor servidor) {
 		this.servidor = servidor;
-	}
-
-	public List<SelectItem> getCargos() {
-		return cargos;
-	}
-
-	public void setCargos(List<SelectItem> cargos) {
-		this.cargos = cargos;
-	}
-
-	public Integer getCargo() {
-		return cargo;
-	}
-
-	public void setCargo(Integer cargo) {
-		this.cargo = cargo;
-	}
-
-	public Integer getLotacao() {
-		return lotacao;
-	}
-
-	public void setLotacao(Integer lotacao) {
-		this.lotacao = lotacao;
-	}
-
-	public List<SelectItem> getLocaisExercicio() {
-		return locaisExercicio;
-	}
-
-	public void setLocaisExercicio(List<SelectItem> locaisExercicio) {
-		this.locaisExercicio = locaisExercicio;
-	}
-
-	public Integer getSituacao() {
-		return situacao;
-	}
-
-	public void setSituacao(Integer situacao) {
-		this.situacao = situacao;
-	}
-
-	public Date getPeriodoInicio() {
-		return periodoInicio;
-	}
-
-	public void setPeriodoInicio(Date periodoInicio) {
-		this.periodoInicio = periodoInicio;
-	}
-
-	public Date getPeriodoFinal() {
-		return periodoFinal;
-	}
-
-	public void setPeriodoFinal(Date periodoFinal) {
-		this.periodoFinal = periodoFinal;
-	}
-
-	public List<SelectItem> getTipoSolicitacoes() {
-		return tipoSolicitacoes;
-	}
-
-	public void setTipoSolicitacoes(List<SelectItem> tipoSolicitacoes) {
-		this.tipoSolicitacoes = tipoSolicitacoes;
-	}
-
-	public Integer getSolicitacao() {
-		return solicitacao;
-	}
-
-	public void setSolicitacao(Integer solicitacao) {
-		this.solicitacao = solicitacao;
-	}
-
-	public Integer getStatus() {
-		return status;
-	}
-
-	public void setStatus(Integer status) {
-		this.status = status;
 	}
 
 	public Servidor getAtendente() {
@@ -142,9 +64,99 @@ public class RelatorioController implements Serializable {
 		this.solicitante = solicitante;
 	}
 
+	public List<SelectItem> getCargos() {
+		return cargos;
+	}
+
+	public void setCargos(List<SelectItem> cargos) {
+		this.cargos = cargos;
+	}
+
+	public List<SelectItem> getLocaisExercicio() {
+		return locaisExercicio;
+	}
+
+	public void setLocaisExercicio(List<SelectItem> locaisExercicio) {
+		this.locaisExercicio = locaisExercicio;
+	}
+
+	public List<SelectItem> getTipoSolicitacoes() {
+		return tipoSolicitacoes;
+	}
+
+	public void setTipoSolicitacoes(List<SelectItem> tipoSolicitacoes) {
+		this.tipoSolicitacoes = tipoSolicitacoes;
+	}
+
+	public List<SelectItem> getTipoStatus() {
+		return tipoStatus;
+	}
+
+	public void setTipoStatus(List<SelectItem> tipoStatus) {
+		this.tipoStatus = tipoStatus;
+	}
+
+	public Integer getCargo() {
+		return cargo;
+	}
+
+	public void setCargo(Integer cargo) {
+		this.cargo = cargo;
+	}
+
+	public Integer getLotacao() {
+		return lotacao;
+	}
+
+	public void setLotacao(Integer lotacao) {
+		this.lotacao = lotacao;
+	}
+
+	public Integer getSituacao() {
+		return situacao;
+	}
+
+	public void setSituacao(Integer situacao) {
+		this.situacao = situacao;
+	}
+
+	public Integer getSolicitacao() {
+		return solicitacao;
+	}
+
+	public void setSolicitacao(Integer solicitacao) {
+		this.solicitacao = solicitacao;
+	}
+
+	public Integer getStatus() {
+		return status;
+	}
+
+	public void setStatus(Integer status) {
+		this.status = status;
+	}
+
+	public Date getPeriodoInicio() {
+		return periodoInicio;
+	}
+
+	public void setPeriodoInicio(Date periodoInicio) {
+		this.periodoInicio = periodoInicio;
+	}
+
+	public Date getPeriodoFinal() {
+		return periodoFinal;
+	}
+
+	public void setPeriodoFinal(Date periodoFinal) {
+		this.periodoFinal = periodoFinal;
+	}
+
 	public void buscarServidorAtendente() throws IOException, ParseException {
-		atendente = (Servidor) ServidorDAO.getInstance()
-		.refreshBySiape(atendente);
+		if(atendente.getSiape() != 0){
+			atendente = (Servidor) ServidorDAO.getInstance()
+			.refreshBySiape(atendente);
+		}
 		
 		if (atendente == null) {
 			atendente = (new Servidor());
@@ -152,18 +164,29 @@ public class RelatorioController implements Serializable {
 					FacesMessage.SEVERITY_ERROR, "Siape inválido!",
 					"Siape inválido!");
 			FacesContext.getCurrentInstance().addMessage("", message);
+			return;
+		}
+		if(atendente.getSiape() == 0 ){
+			atendente = (new Servidor());
 		}
 	}
 	
 	public void buscarServidorSolicitante() throws IOException, ParseException {
+		if(solicitante.getSiape() != 0){
 		solicitante = (Servidor) ServidorDAO.getInstance()
 		.refreshBySiape(solicitante);
+		}
+		
 		if (solicitante == null) {
 			solicitante = (new Servidor());
 			FacesMessage message = new FacesMessage(
 					FacesMessage.SEVERITY_ERROR, "Siape inválido!",
 					"Siape inválido!");
 			FacesContext.getCurrentInstance().addMessage("", message);
+			return;
+		}
+		if(solicitante.getSiape() == 0 ){
+			solicitante = (new Servidor());
 		}
 	}
 	
@@ -172,6 +195,7 @@ public class RelatorioController implements Serializable {
 			atendente = new Servidor();
 			solicitante = new Servidor();
 			listarTiposSolicitacoes();
+			listarTiposStatus();
 			FacesContext.getCurrentInstance().getExternalContext()
 					.redirect("relatorioSolicitacao.jsp");
 		} catch (IOException e) {
@@ -226,6 +250,19 @@ public class RelatorioController implements Serializable {
 					tipoSolicitacao.getDescricao()));
 		}
 		return tipoSolicitacoes;
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<SelectItem> listarTiposStatus() {
+		tipoStatus = new ArrayList<SelectItem>();
+		List<StatusSolicitacao> tipoStatusList = new ArrayList<StatusSolicitacao>();
+		tipoStatusList = DAO.getInstance().list(StatusSolicitacao.class,
+		"descricao");
+		for (StatusSolicitacao status : tipoStatusList) {
+			tipoStatus.add(new SelectItem(status.getCodigo(),
+					status.getDescricao()));
+		}
+		return tipoStatus;
 	}
 
 	public void abrirRelatorios() throws IOException {
