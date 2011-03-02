@@ -532,7 +532,7 @@ public class SolicitacaoController implements Serializable {
 					"Está solicitação já está sendo analizada por outro servidor!");
 			FacesContext.getCurrentInstance().addMessage("", message);
 		} else {
-			//ALTERAÇÃO CONTA BANCARIA
+			// ALTERAÇÃO CONTA BANCARIA
 			if (Constantes.TIPO_SOLICITACAO_ALTERAR_CONTA_BANCARIA
 					.equals(tipoSolicitacao)) {
 				solicitacaoContaBancaria = new SolicitacaoContaBancaria();
@@ -561,7 +561,7 @@ public class SolicitacaoController implements Serializable {
 				}
 				this.carregarSolicitacaoContaBancaria(solicitacaoContaBancaria);
 			}
-			//LICENCA PATERNIDADE
+			// LICENCA PATERNIDADE
 			else if (Constantes.TIPO_SOLICITACAO_LICENCA_PATERNIDADE
 					.equals(tipoSolicitacao)) {
 				solicitacaoLicencaPaternidade = new SolicitacaoLicencaPaternidade();
@@ -589,7 +589,7 @@ public class SolicitacaoController implements Serializable {
 				}
 				this.carregarSolicitacaoLicencaPaternidade(solicitacaoLicencaPaternidade);
 			}
-			//HORARIO ESPECIAL ESTUDANTE
+			// HORARIO ESPECIAL ESTUDANTE
 			else if (Constantes.TIPO_SOLICITACAO_HORARIO_ESPECIAL_ESTUDANTE
 					.equals(tipoSolicitacao)) {
 				solicitacaoHorarioEspecialEstudante = new SolicitacaoHorarioEspecialEstudante();
@@ -622,8 +622,7 @@ public class SolicitacaoController implements Serializable {
 				this.carregarSolicitacaoHorarioEspecialEstudante(solicitacaoHorarioEspecialEstudante);
 			}
 			// LICENÇA OBITO
-			else if (Constantes.TIPO_SOLICITACAO_OBITO
-					.equals(tipoSolicitacao)) {
+			else if (Constantes.TIPO_SOLICITACAO_OBITO.equals(tipoSolicitacao)) {
 				solicitacaoObito = new SolicitacaoObito();
 				solicitacaoObito.setSolicitante(new Servidor());
 				solicitacaoObito.setCodigo(codigoSolicitacao);
@@ -691,8 +690,8 @@ public class SolicitacaoController implements Serializable {
 					DAO.getInstance().saveOrUpdate(solicitacaoAlimentacao);
 				}
 				this.carregarSolicitacaoAlimentacao(solicitacaoAlimentacao);
-			} 
-			//AFASTAMENTO CONJUGE
+			}
+			// AFASTAMENTO CONJUGE
 			else if (Constantes.TIPO_SOLICITACAO_AFASTAMENTO_CONJUGE
 					.equals(tipoSolicitacao)) {
 				solicitacaoAfastamentoConjuge = new SolicitacaoAfastamentoConjuge();
@@ -796,7 +795,7 @@ public class SolicitacaoController implements Serializable {
 				}
 				this.carregarSolicitacaoAdicionalNotunoDocente(solicitacaoAdicionalNoturnoDocente);
 			}
-			// ALTERAÇÃO ENDERECO 
+			// ALTERAÇÃO ENDERECO
 			else if (Constantes.TIPO_SOLICITACAO_ALTERACAO_ENDERECO
 					.equals(tipoSolicitacao)) {
 				solicitacaoAlteracaoEndereco = new SolicitacaoAlteracaoEndereco();
@@ -854,174 +853,285 @@ public class SolicitacaoController implements Serializable {
 	}
 
 	public void deferirSolicitacao() throws IOException, ParseException {
-		//ALTERAÇÃO CONTA BANCARIA
+		// ALTERAÇÃO CONTA BANCARIA
 		if (Constantes.TIPO_SOLICITACAO_ALTERAR_CONTA_BANCARIA
 				.equals(tipoSolicitacao)) {
-			solicitacaoContaBancaria.getStatusSolicitacao().setCodigo(
-					Constantes.STATUS_SOLICITACAO_DEFERIDO);
-			solicitacaoContaBancaria.setDataFechamento(new Date());
-			SolicitacaoDAO.getInstance().updateSolicitacao(
-					solicitacaoContaBancaria);
-			solicitacaoContaBancaria.getSolicitante().getContaBancaria()
-					.setBanco(solicitacaoContaBancaria.getNovoBanco());
-			solicitacaoContaBancaria
-					.getSolicitante()
-					.getContaBancaria()
-					.setNumeroConta(
-							solicitacaoContaBancaria.getNovoNumeroConta());
-			solicitacaoContaBancaria.getSolicitante().getContaBancaria()
-					.setAgencia(solicitacaoContaBancaria.getNovaAgencia());
-			solicitacaoContaBancaria
-					.getSolicitante()
-					.getContaBancaria()
-					.setIndPoupanca(
-							solicitacaoContaBancaria.getNovoIndPoupanca());
-			DAO.getInstance().update(solicitacaoContaBancaria.getSolicitante());
-			this.setDesabilitaBotao(true);
-			EnviarEmail enviarEmail = new EnviarEmail();
-			enviarEmail.enviarEmailSolicitacao(solicitacaoContaBancaria);
+			if (solicitacaoContaBancaria.getJustificativa().length() > 250) {
+				FacesMessage message = new FacesMessage(
+						FacesMessage.SEVERITY_ERROR,
+						"O campo Justificativa deve conter no maximo 250 caracteres!",
+						"O campo Justificativa deve conter no maximo 250 caracteres!");
+				FacesContext.getCurrentInstance().addMessage("", message);
+			} else {
+				solicitacaoContaBancaria.getStatusSolicitacao().setCodigo(
+						Constantes.STATUS_SOLICITACAO_DEFERIDO);
+				solicitacaoContaBancaria.setDataFechamento(new Date());
+				SolicitacaoDAO.getInstance().updateSolicitacao(
+						solicitacaoContaBancaria);
+				solicitacaoContaBancaria.getSolicitante().getContaBancaria()
+						.setBanco(solicitacaoContaBancaria.getNovoBanco());
+				solicitacaoContaBancaria
+						.getSolicitante()
+						.getContaBancaria()
+						.setNumeroConta(
+								solicitacaoContaBancaria.getNovoNumeroConta());
+				solicitacaoContaBancaria.getSolicitante().getContaBancaria()
+						.setAgencia(solicitacaoContaBancaria.getNovaAgencia());
+				solicitacaoContaBancaria
+						.getSolicitante()
+						.getContaBancaria()
+						.setIndPoupanca(
+								solicitacaoContaBancaria.getNovoIndPoupanca());
+				DAO.getInstance().update(
+						solicitacaoContaBancaria.getSolicitante());
+				this.setDesabilitaBotao(true);
+				EnviarEmail enviarEmail = new EnviarEmail();
+				enviarEmail.enviarEmailSolicitacao(solicitacaoContaBancaria);
+			}
 		}
+
 		// LICENÇA PATERNIDADE
 		else if (Constantes.TIPO_SOLICITACAO_LICENCA_PATERNIDADE
 				.equals(tipoSolicitacao)) {
-			solicitacaoLicencaPaternidade.getStatusSolicitacao().setCodigo(
-					Constantes.STATUS_SOLICITACAO_DEFERIDO);
-			solicitacaoLicencaPaternidade.setDataFechamento(new Date());
-			DAO.getInstance().update(solicitacaoLicencaPaternidade);
-			this.setDesabilitaBotao(true);
-			EnviarEmail enviarEmail = new EnviarEmail();
-			enviarEmail.enviarEmailSolicitacao(solicitacaoLicencaPaternidade);
+			if (solicitacaoLicencaPaternidade.getJustificativa().length() > 250) {
+				FacesMessage message = new FacesMessage(
+						FacesMessage.SEVERITY_ERROR,
+						"O campo Justificativa deve conter no maximo 250 caracteres!",
+						"O campo Justificativa deve conter no maximo 250 caracteres!");
+				FacesContext.getCurrentInstance().addMessage("", message);
+			} else {
+				solicitacaoLicencaPaternidade.getStatusSolicitacao().setCodigo(
+						Constantes.STATUS_SOLICITACAO_DEFERIDO);
+				solicitacaoLicencaPaternidade.setDataFechamento(new Date());
+				DAO.getInstance().update(solicitacaoLicencaPaternidade);
+				this.setDesabilitaBotao(true);
+				EnviarEmail enviarEmail = new EnviarEmail();
+				enviarEmail
+						.enviarEmailSolicitacao(solicitacaoLicencaPaternidade);
+			}
 		}
-		// HORARIO ESPECIAL ESTUDANTE 
+
+		// HORARIO ESPECIAL ESTUDANTE
 		else if (Constantes.TIPO_SOLICITACAO_HORARIO_ESPECIAL_ESTUDANTE
 				.equals(tipoSolicitacao)) {
-			solicitacaoHorarioEspecialEstudante.getStatusSolicitacao()
-					.setCodigo(Constantes.STATUS_SOLICITACAO_DEFERIDO);
-			solicitacaoHorarioEspecialEstudante.setDataFechamento(new Date());
-			DAO.getInstance().update(solicitacaoHorarioEspecialEstudante);
-			this.setDesabilitaBotao(true);
+			if (solicitacaoHorarioEspecialEstudante.getJustificativa().length() > 250) {
+				FacesMessage message = new FacesMessage(
+						FacesMessage.SEVERITY_ERROR,
+						"O campo Justificativa deve conter no maximo 250 caracteres!",
+						"O campo Justificativa deve conter no maximo 250 caracteres!");
+				FacesContext.getCurrentInstance().addMessage("", message);
+			} else {
+				solicitacaoHorarioEspecialEstudante.getStatusSolicitacao()
+						.setCodigo(Constantes.STATUS_SOLICITACAO_DEFERIDO);
+				solicitacaoHorarioEspecialEstudante
+						.setDataFechamento(new Date());
+				DAO.getInstance().update(solicitacaoHorarioEspecialEstudante);
+				this.setDesabilitaBotao(true);
+			}
 		}
+
 		// LICENÇA OBITO
 		else if (Constantes.TIPO_SOLICITACAO_OBITO.equals(tipoSolicitacao)) {
-			solicitacaoObito.getStatusSolicitacao().setCodigo(
-					Constantes.STATUS_SOLICITACAO_DEFERIDO);
-			solicitacaoObito.setDataFechamento(new Date());
-			DAO.getInstance().update(solicitacaoObito);
-			this.setDesabilitaBotao(true);
-			EnviarEmail enviarEmail = new EnviarEmail();
-			enviarEmail.enviarEmailSolicitacao(solicitacaoObito);
+			if (solicitacaoObito.getJustificativa().length() > 250) {
+				FacesMessage message = new FacesMessage(
+						FacesMessage.SEVERITY_ERROR,
+						"O campo Justificativa deve conter no maximo 250 caracteres!",
+						"O campo Justificativa deve conter no maximo 250 caracteres!");
+				FacesContext.getCurrentInstance().addMessage("", message);
+			} else {
+				solicitacaoObito.getStatusSolicitacao().setCodigo(
+						Constantes.STATUS_SOLICITACAO_DEFERIDO);
+				solicitacaoObito.setDataFechamento(new Date());
+				DAO.getInstance().update(solicitacaoObito);
+				this.setDesabilitaBotao(true);
+				EnviarEmail enviarEmail = new EnviarEmail();
+				enviarEmail.enviarEmailSolicitacao(solicitacaoObito);
+			}
 		}
+
 		// LICENÇA CASAMENTO
 		else if (Constantes.TIPO_SOLICITACAO_LICENCA_CASAMENTO
 				.equals(tipoSolicitacao)) {
-			solicitacaoCasamento.getStatusSolicitacao().setCodigo(
-					Constantes.STATUS_SOLICITACAO_DEFERIDO);
-			solicitacaoCasamento.setDataFechamento(new Date());
-			SolicitacaoDAO.getInstance()
-					.updateSolicitacao(solicitacaoCasamento);
-			solicitacaoCasamento.getSolicitante().getEstadoCivil()
-					.setCodigo(Constantes.ESTADO_CIVIL_CASADO);
-			DAO.getInstance().update(solicitacaoCasamento.getSolicitante());
-			this.setDesabilitaBotao(true);
-			EnviarEmail enviarEmail = new EnviarEmail();
-			enviarEmail.enviarEmailSolicitacao(solicitacaoCasamento);
-		} 
+			if (solicitacaoCasamento.getJustificativa().length() > 250) {
+				FacesMessage message = new FacesMessage(
+						FacesMessage.SEVERITY_ERROR,
+						"O campo Justificativa deve conter no maximo 250 caracteres!",
+						"O campo Justificativa deve conter no maximo 250 caracteres!");
+				FacesContext.getCurrentInstance().addMessage("", message);
+			} else {
+				solicitacaoCasamento.getStatusSolicitacao().setCodigo(
+						Constantes.STATUS_SOLICITACAO_DEFERIDO);
+				solicitacaoCasamento.setDataFechamento(new Date());
+				SolicitacaoDAO.getInstance().updateSolicitacao(
+						solicitacaoCasamento);
+				solicitacaoCasamento.getSolicitante().getEstadoCivil()
+						.setCodigo(Constantes.ESTADO_CIVIL_CASADO);
+				DAO.getInstance().update(solicitacaoCasamento.getSolicitante());
+				this.setDesabilitaBotao(true);
+				EnviarEmail enviarEmail = new EnviarEmail();
+				enviarEmail.enviarEmailSolicitacao(solicitacaoCasamento);
+			}
+		}
+
 		// LICENÇA AUXILIO ALIMENTAÇÃO
 		else if (Constantes.TIPO_SOLICITACAO_AUXILIO_ALIMENTACAO
 				.equals(tipoSolicitacao)) {
-			solicitacaoAlimentacao.getStatusSolicitacao().setCodigo(
-					Constantes.STATUS_SOLICITACAO_DEFERIDO);
-			solicitacaoAlimentacao.setDataFechamento(new Date());
-			DAO.getInstance().update(solicitacaoAlimentacao);
-			this.setDesabilitaBotao(true);
-			EnviarEmail enviarEmail = new EnviarEmail();
-			enviarEmail.enviarEmailSolicitacao(solicitacaoAlimentacao);
+			if (solicitacaoAlimentacao.getJustificativa().length() > 250) {
+				FacesMessage message = new FacesMessage(
+						FacesMessage.SEVERITY_ERROR,
+						"O campo Justificativa deve conter no maximo 250 caracteres!",
+						"O campo Justificativa deve conter no maximo 250 caracteres!");
+				FacesContext.getCurrentInstance().addMessage("", message);
+			} else {
+				solicitacaoAlimentacao.getStatusSolicitacao().setCodigo(
+						Constantes.STATUS_SOLICITACAO_DEFERIDO);
+				solicitacaoAlimentacao.setDataFechamento(new Date());
+				DAO.getInstance().update(solicitacaoAlimentacao);
+				this.setDesabilitaBotao(true);
+				EnviarEmail enviarEmail = new EnviarEmail();
+				enviarEmail.enviarEmailSolicitacao(solicitacaoAlimentacao);
+			}
 		}
+
 		// LICENÇA AFASTAMENTO CONJUGE
 		else if (Constantes.TIPO_SOLICITACAO_AFASTAMENTO_CONJUGE
 				.equals(tipoSolicitacao)) {
-			solicitacaoAfastamentoConjuge.getStatusSolicitacao().setCodigo(
-					Constantes.STATUS_SOLICITACAO_DEFERIDO);
-			solicitacaoAfastamentoConjuge.setDataFechamento(new Date());
-			DAO.getInstance().update(solicitacaoAfastamentoConjuge);
-			this.setDesabilitaBotao(true);
-			EnviarEmail enviarEmail = new EnviarEmail();
-			enviarEmail.enviarEmailSolicitacao(solicitacaoAfastamentoConjuge);
+			if (solicitacaoAfastamentoConjuge.getJustificativa().length() > 250) {
+				FacesMessage message = new FacesMessage(
+						FacesMessage.SEVERITY_ERROR,
+						"O campo Justificativa deve conter no maximo 250 caracteres!",
+						"O campo Justificativa deve conter no maximo 250 caracteres!");
+				FacesContext.getCurrentInstance().addMessage("", message);
+			} else {
+				solicitacaoAfastamentoConjuge.getStatusSolicitacao().setCodigo(
+						Constantes.STATUS_SOLICITACAO_DEFERIDO);
+				solicitacaoAfastamentoConjuge.setDataFechamento(new Date());
+				DAO.getInstance().update(solicitacaoAfastamentoConjuge);
+				this.setDesabilitaBotao(true);
+				EnviarEmail enviarEmail = new EnviarEmail();
+				enviarEmail
+						.enviarEmailSolicitacao(solicitacaoAfastamentoConjuge);
+			}
 		}
 		// LICENÇA ADICIONAL NOTURNO TECNICOS
 		else if (Constantes.TIPO_SOLICITACAO_ADICIONAL_NOTURNO_TECNICOS
 				.equals(tipoSolicitacao)) {
-			solicitacaoAdicionalNoturnoTecnico.getStatusSolicitacao()
-					.setCodigo(Constantes.STATUS_SOLICITACAO_DEFERIDO);
-			solicitacaoAdicionalNoturnoTecnico.setDataFechamento(new Date());
-			AdicionalNoturnoDAO.getInstance().saveOrUpdateAdicional(
-					solicitacaoAdicionalNoturnoTecnico);
-			this.setDesabilitaBotao(true);
-			EnviarEmail enviarEmail = new EnviarEmail();
-			enviarEmail
-					.enviarEmailSolicitacao(solicitacaoAdicionalNoturnoTecnico);
+			if (solicitacaoAdicionalNoturnoTecnico.getJustificativa().length() > 250) {
+				FacesMessage message = new FacesMessage(
+						FacesMessage.SEVERITY_ERROR,
+						"O campo Justificativa deve conter no maximo 250 caracteres!",
+						"O campo Justificativa deve conter no maximo 250 caracteres!");
+				FacesContext.getCurrentInstance().addMessage("", message);
+			} else {
+				solicitacaoAdicionalNoturnoTecnico.getStatusSolicitacao()
+						.setCodigo(Constantes.STATUS_SOLICITACAO_DEFERIDO);
+				solicitacaoAdicionalNoturnoTecnico
+						.setDataFechamento(new Date());
+				AdicionalNoturnoDAO.getInstance().saveOrUpdateAdicional(
+						solicitacaoAdicionalNoturnoTecnico);
+				this.setDesabilitaBotao(true);
+				EnviarEmail enviarEmail = new EnviarEmail();
+				enviarEmail
+						.enviarEmailSolicitacao(solicitacaoAdicionalNoturnoTecnico);
+			}
 		}
+
 		// LICENÇA ADICIONAL NOTURNO DOCENTES
 		else if (Constantes.TIPO_SOLICITACAO_ADICIONAL_NOTURNO_DOCENTES
 				.equals(tipoSolicitacao)) {
-			solicitacaoAdicionalNoturnoDocente.getStatusSolicitacao()
-					.setCodigo(Constantes.STATUS_SOLICITACAO_DEFERIDO);
-			solicitacaoAdicionalNoturnoDocente.setDataFechamento(new Date());
-			AdicionalNoturnoDAO.getInstance().saveOrUpdateAdicional(
-					solicitacaoAdicionalNoturnoDocente);
-			this.setDesabilitaBotao(true);
-			EnviarEmail enviarEmail = new EnviarEmail();
-			enviarEmail
-					.enviarEmailSolicitacao(solicitacaoAdicionalNoturnoDocente);
-		} 
+			if (solicitacaoAdicionalNoturnoDocente.getJustificativa().length() > 250) {
+				FacesMessage message = new FacesMessage(
+						FacesMessage.SEVERITY_ERROR,
+						"O campo Justificativa deve conter no maximo 250 caracteres!",
+						"O campo Justificativa deve conter no maximo 250 caracteres!");
+				FacesContext.getCurrentInstance().addMessage("", message);
+			} else {
+				solicitacaoAdicionalNoturnoDocente.getStatusSolicitacao()
+						.setCodigo(Constantes.STATUS_SOLICITACAO_DEFERIDO);
+				solicitacaoAdicionalNoturnoDocente
+						.setDataFechamento(new Date());
+				AdicionalNoturnoDAO.getInstance().saveOrUpdateAdicional(
+						solicitacaoAdicionalNoturnoDocente);
+				this.setDesabilitaBotao(true);
+				EnviarEmail enviarEmail = new EnviarEmail();
+				enviarEmail
+						.enviarEmailSolicitacao(solicitacaoAdicionalNoturnoDocente);
+			}
+		}
+
 		// ALTERAÇÃO DE ENDEREÇO
 		else if (Constantes.TIPO_SOLICITACAO_ALTERACAO_ENDERECO
 				.equals(tipoSolicitacao)) {
-			solicitacaoAlteracaoEndereco.getStatusSolicitacao().setCodigo(
-					Constantes.STATUS_SOLICITACAO_DEFERIDO);
-			solicitacaoAlteracaoEndereco.setDataFechamento(new Date());
-			SolicitacaoDAO.getInstance().updateSolicitacao(
-					solicitacaoAlteracaoEndereco);
-			solicitacaoAlteracaoEndereco.getSolicitante().getEndereco()
-					.setBairro(solicitacaoAlteracaoEndereco.getNovoBairro());
-			solicitacaoAlteracaoEndereco.getSolicitante().getEndereco()
-					.setCidade(solicitacaoAlteracaoEndereco.getNovaCidade());
-			solicitacaoAlteracaoEndereco.getSolicitante().getEndereco()
-					.setCep(solicitacaoAlteracaoEndereco.getNovoCep());
-			solicitacaoAlteracaoEndereco
-					.getSolicitante()
-					.getEndereco()
-					.setComplemento(
-							solicitacaoAlteracaoEndereco.getNovoComplemento());
-			solicitacaoAlteracaoEndereco.getSolicitante().getEndereco()
-					.setNumero(solicitacaoAlteracaoEndereco.getNovoNumero());
-			solicitacaoAlteracaoEndereco.getSolicitante().getEndereco()
-					.setRua(solicitacaoAlteracaoEndereco.getNovaRua());
-			solicitacaoAlteracaoEndereco.getSolicitante().setEmail(
-					solicitacaoAlteracaoEndereco.getNovoEmail());
-			solicitacaoAlteracaoEndereco.getSolicitante().setTelefone(
-					solicitacaoAlteracaoEndereco.getNovoTelefone());
-			solicitacaoAlteracaoEndereco.getSolicitante().setCelular(
-					solicitacaoAlteracaoEndereco.getNovoCelular());
-			DAO.getInstance().update(
-					solicitacaoAlteracaoEndereco.getSolicitante());
-			this.setDesabilitaBotao(true);
+			if (solicitacaoAlteracaoEndereco.getJustificativa().length() > 250) {
+				FacesMessage message = new FacesMessage(
+						FacesMessage.SEVERITY_ERROR,
+						"O campo Justificativa deve conter no maximo 250 caracteres!",
+						"O campo Justificativa deve conter no maximo 250 caracteres!");
+				FacesContext.getCurrentInstance().addMessage("", message);
+			} else {
+				solicitacaoAlteracaoEndereco.getStatusSolicitacao().setCodigo(
+						Constantes.STATUS_SOLICITACAO_DEFERIDO);
+				solicitacaoAlteracaoEndereco.setDataFechamento(new Date());
+				SolicitacaoDAO.getInstance().updateSolicitacao(
+						solicitacaoAlteracaoEndereco);
+				solicitacaoAlteracaoEndereco
+						.getSolicitante()
+						.getEndereco()
+						.setBairro(solicitacaoAlteracaoEndereco.getNovoBairro());
+				solicitacaoAlteracaoEndereco
+						.getSolicitante()
+						.getEndereco()
+						.setCidade(solicitacaoAlteracaoEndereco.getNovaCidade());
+				solicitacaoAlteracaoEndereco.getSolicitante().getEndereco()
+						.setCep(solicitacaoAlteracaoEndereco.getNovoCep());
+				solicitacaoAlteracaoEndereco
+						.getSolicitante()
+						.getEndereco()
+						.setComplemento(
+								solicitacaoAlteracaoEndereco
+										.getNovoComplemento());
+				solicitacaoAlteracaoEndereco
+						.getSolicitante()
+						.getEndereco()
+						.setNumero(solicitacaoAlteracaoEndereco.getNovoNumero());
+				solicitacaoAlteracaoEndereco.getSolicitante().getEndereco()
+						.setRua(solicitacaoAlteracaoEndereco.getNovaRua());
+				solicitacaoAlteracaoEndereco.getSolicitante().setEmail(
+						solicitacaoAlteracaoEndereco.getNovoEmail());
+				solicitacaoAlteracaoEndereco.getSolicitante().setTelefone(
+						solicitacaoAlteracaoEndereco.getNovoTelefone());
+				solicitacaoAlteracaoEndereco.getSolicitante().setCelular(
+						solicitacaoAlteracaoEndereco.getNovoCelular());
+				DAO.getInstance().update(
+						solicitacaoAlteracaoEndereco.getSolicitante());
+				this.setDesabilitaBotao(true);
+			}
 		}
- 		// RESSARCIMENTO SAUDE
- 		else if (Constantes.TIPO_SOLICITACAO_RESSARCIMENTO_SAUDE
+
+		// RESSARCIMENTO SAUDE
+		else if (Constantes.TIPO_SOLICITACAO_RESSARCIMENTO_SAUDE
 				.equals(tipoSolicitacao)) {
-			solicitacaoRessarcimentoSaude.getStatusSolicitacao().setCodigo(
-					Constantes.STATUS_SOLICITACAO_DEFERIDO);
-			solicitacaoRessarcimentoSaude.setDataFechamento(new Date());
-			DAO.getInstance().update(solicitacaoRessarcimentoSaude);
-			this.setDesabilitaBotao(true);
-			EnviarEmail enviarEmail = new EnviarEmail();
-			enviarEmail.enviarEmailSolicitacao(solicitacaoAlteracaoEndereco);
+			if (solicitacaoRessarcimentoSaude.getJustificativa().length() > 250) {
+				FacesMessage message = new FacesMessage(
+						FacesMessage.SEVERITY_ERROR,
+						"O campo Justificativa deve conter no maximo 250 caracteres!",
+						"O campo Justificativa deve conter no maximo 250 caracteres!");
+				FacesContext.getCurrentInstance().addMessage("", message);
+			} else {
+				solicitacaoRessarcimentoSaude.getStatusSolicitacao().setCodigo(
+						Constantes.STATUS_SOLICITACAO_DEFERIDO);
+				solicitacaoRessarcimentoSaude.setDataFechamento(new Date());
+				DAO.getInstance().update(solicitacaoRessarcimentoSaude);
+				this.setDesabilitaBotao(true);
+				EnviarEmail enviarEmail = new EnviarEmail();
+				enviarEmail
+						.enviarEmailSolicitacao(solicitacaoAlteracaoEndereco);
+			}
 		}
 	}
 
 	public void indeferirSolicitacao() throws IOException, ParseException {
-		//ALTERAÇÃO CONTA BANCARIA
+		// ALTERAÇÃO CONTA BANCARIA
 		if (Constantes.TIPO_SOLICITACAO_ALTERAR_CONTA_BANCARIA
 				.equals(tipoSolicitacao)) {
 			solicitacaoContaBancaria.getStatusSolicitacao().setCodigo(
@@ -1049,6 +1159,7 @@ public class SolicitacaoController implements Serializable {
 				FacesContext.getCurrentInstance().addMessage("", message);
 			}
 		}
+		
 		// LICENÇA PATERNIDADE
 		else if (Constantes.TIPO_SOLICITACAO_LICENCA_PATERNIDADE
 				.equals(tipoSolicitacao)) {
@@ -1080,6 +1191,7 @@ public class SolicitacaoController implements Serializable {
 				FacesContext.getCurrentInstance().addMessage("", message);
 			}
 		}
+		
 		// HORARIO ESPECIAL ESTUDANTE
 		else if (Constantes.TIPO_SOLICITACAO_HORARIO_ESPECIAL_ESTUDANTE
 				.equals(tipoSolicitacao)) {
@@ -1110,7 +1222,8 @@ public class SolicitacaoController implements Serializable {
 						"O campo Justificativa é obrigatório!!");
 				FacesContext.getCurrentInstance().addMessage("", message);
 			}
-		} 
+		}
+		
 		// LICENÇA OBITO
 		else if (Constantes.TIPO_SOLICITACAO_OBITO.equals(tipoSolicitacao)) {
 			solicitacaoObito.getStatusSolicitacao().setCodigo(
@@ -1137,6 +1250,7 @@ public class SolicitacaoController implements Serializable {
 				FacesContext.getCurrentInstance().addMessage("", message);
 			}
 		}
+		
 		// LICENÇA CASAMENTO
 		else if (Constantes.TIPO_SOLICITACAO_LICENCA_CASAMENTO
 				.equals(tipoSolicitacao)) {
@@ -1163,8 +1277,9 @@ public class SolicitacaoController implements Serializable {
 						"O campo Justificativa é obrigatório!!");
 				FacesContext.getCurrentInstance().addMessage("", message);
 			}
-		} 
-		//AUXILIO ALIMENÇÃO
+		}
+		
+		// AUXILIO ALIMENÇÃO
 		else if (Constantes.TIPO_SOLICITACAO_AUXILIO_ALIMENTACAO
 				.equals(tipoSolicitacao)) {
 			solicitacaoAlimentacao.getStatusSolicitacao().setCodigo(
@@ -1192,6 +1307,7 @@ public class SolicitacaoController implements Serializable {
 				FacesContext.getCurrentInstance().addMessage("", message);
 			}
 		}
+		
 		// AFASTAMENTO CONJUGE
 		else if (Constantes.TIPO_SOLICITACAO_AFASTAMENTO_CONJUGE
 				.equals(tipoSolicitacao)) {
@@ -1222,7 +1338,8 @@ public class SolicitacaoController implements Serializable {
 						"O campo Justificativa é obrigatório!!");
 				FacesContext.getCurrentInstance().addMessage("", message);
 			}
-		} 
+		}
+		
 		// ADICIONAL NOTURNO TECNICOS
 		else if (Constantes.TIPO_SOLICITACAO_ADICIONAL_NOTURNO_TECNICOS
 				.equals(tipoSolicitacao)) {
@@ -1254,6 +1371,7 @@ public class SolicitacaoController implements Serializable {
 				FacesContext.getCurrentInstance().addMessage("", message);
 			}
 		}
+		
 		// ADICIONAL NOTURNO DOCENTE
 		else if (Constantes.TIPO_SOLICITACAO_ADICIONAL_NOTURNO_DOCENTES
 				.equals(tipoSolicitacao)) {
@@ -1285,7 +1403,8 @@ public class SolicitacaoController implements Serializable {
 				FacesContext.getCurrentInstance().addMessage("", message);
 			}
 		}
-		//ALTERAÇÃO DE ENDEREÇO
+		
+		// ALTERAÇÃO DE ENDEREÇO
 		else if (Constantes.TIPO_SOLICITACAO_ALTERACAO_ENDERECO
 				.equals(tipoSolicitacao)) {
 			solicitacaoAlteracaoEndereco.getStatusSolicitacao().setCodigo(
@@ -1313,7 +1432,8 @@ public class SolicitacaoController implements Serializable {
 						"O campo Justificativa é obrigatório!!");
 				FacesContext.getCurrentInstance().addMessage("", message);
 			}
-		} 
+		}
+		
 		// RESSARCIMENTO SAUDE
 		else if (Constantes.TIPO_SOLICITACAO_RESSARCIMENTO_SAUDE
 				.equals(tipoSolicitacao)) {
@@ -1347,27 +1467,27 @@ public class SolicitacaoController implements Serializable {
 	}
 
 	public void paint(OutputStream stream, Object object) throws IOException {
-		//LICENÇA PATERNIDADE
+		// LICENÇA PATERNIDADE
 		if (Constantes.TIPO_SOLICITACAO_LICENCA_PATERNIDADE
 				.equals(tipoSolicitacao)) {
 			stream.write(solicitacaoLicencaPaternidade.getCertidaoNascimento());
 		}
-		// HORARIO ESPECIAL ESTUDANTE 
+		// HORARIO ESPECIAL ESTUDANTE
 		else if (Constantes.TIPO_SOLICITACAO_HORARIO_ESPECIAL_ESTUDANTE
 				.equals(tipoSolicitacao)) {
 			stream.write(solicitacaoHorarioEspecialEstudante
 					.getDeclaracaoMatricula());
-		} 
-		//LICENÇA OBITO
+		}
+		// LICENÇA OBITO
 		else if (Constantes.TIPO_SOLICITACAO_OBITO.equals(tipoSolicitacao)) {
 			stream.write(solicitacaoObito.getCertidaoObito());
-		} 
-		//LICENÇA CASAMENTO
+		}
+		// LICENÇA CASAMENTO
 		else if (Constantes.TIPO_SOLICITACAO_LICENCA_CASAMENTO
 				.equals(tipoSolicitacao)) {
 			stream.write(solicitacaoCasamento.getCertidaoCasamento());
-		} 
-		//RESARCIMENTO SAÚDE 
+		}
+		// RESARCIMENTO SAÚDE
 		else if (Constantes.TIPO_SOLICITACAO_RESSARCIMENTO_SAUDE
 				.equals(tipoSolicitacao)) {
 			stream.write(solicitacaoRessarcimentoSaude.getComprovante());
