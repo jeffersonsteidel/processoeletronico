@@ -24,8 +24,10 @@ import br.com.progepe.jsfUtil.EnviarEmail;
 
 public class SolicitacaoLicencaPaternidadeController  {
 
-	SolicitacaoLicencaPaternidade solicitacaoLicencaPaternidade;
-	String texto;
+	private SolicitacaoLicencaPaternidade solicitacaoLicencaPaternidade;
+	private Boolean desabilitaBotao = true;
+	
+	private String texto;
 
 	public SolicitacaoLicencaPaternidade getSolicitacaoLicencaPaternidade() {
 		return solicitacaoLicencaPaternidade;
@@ -43,10 +45,19 @@ public class SolicitacaoLicencaPaternidadeController  {
 	public void setTexto(String texto) {
 		this.texto = texto;
 	}
+	
+	public Boolean getDesabilitaBotao() {
+		return desabilitaBotao;
+	}
+
+	public void setDesabilitaBotao(Boolean desabilitaBotao) {
+		this.desabilitaBotao = desabilitaBotao;
+	}
 
 	public void abrirSolicitacaoPaternidade() throws ParseException {
 		try {
 			texto = "";
+			desabilitaBotao = false;
 			solicitacaoLicencaPaternidade = new SolicitacaoLicencaPaternidade();
 			buscarServidorLogado();
 			FacesContext.getCurrentInstance().getExternalContext()
@@ -96,6 +107,7 @@ public class SolicitacaoLicencaPaternidadeController  {
 			solicitacaoLicencaPaternidade.getStatusSolicitacao().setCodigo(
 					Constantes.STATUS_SOLICITACAO_ENCAMINHADO);
 			DAO.getInstance().saveOrUpdate(solicitacaoLicencaPaternidade);
+			desabilitaBotao = true;
 			EnviarEmail enviarEmail = new EnviarEmail();
 			enviarEmail.enviarEmailSolicitacao(solicitacaoLicencaPaternidade);
 			solicitacaoLicencaPaternidade = new SolicitacaoLicencaPaternidade();

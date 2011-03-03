@@ -30,6 +30,8 @@ import br.com.progepe.jsfUtil.EnviarEmail;
 public class SolicitacaoObitoController  {
 
 	private SolicitacaoObito solicitacaoObito;
+	private Boolean desabilitaBotao = true;
+	
 	private List<SelectItem> grausParentescos = new ArrayList<SelectItem>();
 
 	public SolicitacaoObito getSolicitacaoObito() {
@@ -48,8 +50,17 @@ public class SolicitacaoObitoController  {
 		this.grausParentescos = grausParentescos;
 	}
 
+	public Boolean getDesabilitaBotao() {
+		return desabilitaBotao;
+	}
+
+	public void setDesabilitaBotao(Boolean desabilitaBotao) {
+		this.desabilitaBotao = desabilitaBotao;
+	}
+
 	public void abrirSolicitacaoObito() throws ParseException {
 		try {
+			desabilitaBotao = false;
 			solicitacaoObito = new SolicitacaoObito();
 			solicitacaoObito.setGrauParentesco(new GrauParentesco());
 			listarGrauParentesco();
@@ -88,6 +99,7 @@ public class SolicitacaoObitoController  {
 			solicitacaoObito.getStatusSolicitacao().setCodigo(
 					Constantes.STATUS_SOLICITACAO_ENCAMINHADO);
 			DAO.getInstance().saveOrUpdate(solicitacaoObito);
+			desabilitaBotao = true;
 			EnviarEmail enviarEmail = new EnviarEmail();
 			enviarEmail.enviarEmailSolicitacao(solicitacaoObito);
 			solicitacaoObito = new SolicitacaoObito();

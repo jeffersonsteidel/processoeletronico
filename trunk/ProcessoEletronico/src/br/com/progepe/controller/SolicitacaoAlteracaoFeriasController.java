@@ -19,6 +19,7 @@ import br.com.progepe.jsfUtil.EnviarEmail;
 public class SolicitacaoAlteracaoFeriasController  {
 
 	private SolicitacaoAlteracaoFerias solicitacaoAlteracaoFerias;
+	private Boolean desabilitaBotao = true;
 
 	public SolicitacaoAlteracaoFerias getSolicitacaoAlteracaoFerias() {
 		return solicitacaoAlteracaoFerias;
@@ -29,8 +30,17 @@ public class SolicitacaoAlteracaoFeriasController  {
 		this.solicitacaoAlteracaoFerias = solicitacaoAlteracaoFerias;
 	}
 
+	public Boolean getDesabilitaBotao() {
+		return desabilitaBotao;
+	}
+
+	public void setDesabilitaBotao(Boolean desabilitaBotao) {
+		this.desabilitaBotao = desabilitaBotao;
+	}
+
 	public void abrirSolicitacaoAlteracaoFerias() throws ParseException {
 		try {
+			desabilitaBotao = false;
 			solicitacaoAlteracaoFerias = new SolicitacaoAlteracaoFerias();
 			solicitacaoAlteracaoFerias.setMotivo(null);
 			buscarServidorLogado();
@@ -64,6 +74,7 @@ public class SolicitacaoAlteracaoFeriasController  {
 		solicitacaoAlteracaoFerias.getStatusSolicitacao().setCodigo(
 				Constantes.STATUS_SOLICITACAO_ENCAMINHADO);
 		DAO.getInstance().saveOrUpdate(solicitacaoAlteracaoFerias);
+		desabilitaBotao = true;
 		EnviarEmail enviarEmail = new EnviarEmail();
 		enviarEmail.enviarEmailSolicitacao(solicitacaoAlteracaoFerias);
 		solicitacaoAlteracaoFerias = new SolicitacaoAlteracaoFerias();

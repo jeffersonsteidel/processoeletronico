@@ -26,6 +26,8 @@ public class SolicitacaoCasamentoController  {
 
 	private SolicitacaoCasamento solicitacaoCasamento;
 	private String texto;
+	
+	private Boolean desabilitaBotao = true;
 
 	public SolicitacaoCasamento getSolicitacaoCasamento() {
 		return solicitacaoCasamento;
@@ -43,10 +45,19 @@ public class SolicitacaoCasamentoController  {
 	public void setTexto(String texto) {
 		this.texto = texto;
 	}
+	
+	public Boolean getDesabilitaBotao() {
+		return desabilitaBotao;
+	}
+
+	public void setDesabilitaBotao(Boolean desabilitaBotao) {
+		this.desabilitaBotao = desabilitaBotao;
+	}
 
 	public void abrirSolicitacaoCasamento() throws ParseException {
 		try {
 			texto = "";
+			desabilitaBotao = false;
 			solicitacaoCasamento = new SolicitacaoCasamento();
 			buscarServidorLogado();
 			FacesContext.getCurrentInstance().getExternalContext()
@@ -84,6 +95,7 @@ public class SolicitacaoCasamentoController  {
 			solicitacaoCasamento.getStatusSolicitacao().setCodigo(
 					Constantes.STATUS_SOLICITACAO_ENCAMINHADO);
 			DAO.getInstance().saveOrUpdate(solicitacaoCasamento);
+			desabilitaBotao = true;
 			EnviarEmail enviarEmail = new EnviarEmail();
 			enviarEmail.enviarEmailSolicitacao(solicitacaoCasamento);
 			solicitacaoCasamento = new SolicitacaoCasamento();

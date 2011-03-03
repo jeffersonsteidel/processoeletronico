@@ -19,6 +19,7 @@ import br.com.progepe.jsfUtil.EnviarEmail;
 public class SolicitacaoAfastamentoConjugeController  {
 
 	private SolicitacaoAfastamentoConjuge solicitacaoAfastamentoConjuge;
+	private Boolean desabilitaBotao = true;
 
 	public SolicitacaoAfastamentoConjuge getSolicitacaoAfastamentoConjuge() {
 		return solicitacaoAfastamentoConjuge;
@@ -29,8 +30,17 @@ public class SolicitacaoAfastamentoConjugeController  {
 		this.solicitacaoAfastamentoConjuge = solicitacaoAfastamentoConjuge;
 	}
 
+	public Boolean getDesabilitaBotao() {
+		return desabilitaBotao;
+	}
+
+	public void setDesabilitaBotao(Boolean desabilitaBotao) {
+		this.desabilitaBotao = desabilitaBotao;
+	}
+
 	public void abrirSolicitacaoAfastamentoConjuge() throws ParseException {
 		try {
+		    desabilitaBotao = false;
 			solicitacaoAfastamentoConjuge = new SolicitacaoAfastamentoConjuge();
 			buscarServidorLogado();
 			FacesContext.getCurrentInstance().getExternalContext()
@@ -61,6 +71,7 @@ public class SolicitacaoAfastamentoConjugeController  {
 		solicitacaoAfastamentoConjuge.getStatusSolicitacao().setCodigo(
 				Constantes.STATUS_SOLICITACAO_ENCAMINHADO);
 		DAO.getInstance().saveOrUpdate(solicitacaoAfastamentoConjuge);
+		 desabilitaBotao = true;
 		EnviarEmail enviarEmail = new EnviarEmail();
 		enviarEmail.enviarEmailSolicitacao(solicitacaoAfastamentoConjuge);
 		solicitacaoAfastamentoConjuge = new SolicitacaoAfastamentoConjuge();

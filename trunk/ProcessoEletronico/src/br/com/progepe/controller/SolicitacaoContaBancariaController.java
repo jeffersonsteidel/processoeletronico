@@ -26,6 +26,8 @@ public class SolicitacaoContaBancariaController  {
 	private SolicitacaoContaBancaria solicitacaoContaBancaria;
 	private List<SelectItem> bancos = new ArrayList<SelectItem>();
 	private Boolean indPoupanca = false;
+	
+	private Boolean desabilitaBotao = true;
 
 	public SolicitacaoContaBancaria getSolicitacaoContaBancaria() {
 		return solicitacaoContaBancaria;
@@ -52,8 +54,17 @@ public class SolicitacaoContaBancariaController  {
 		this.indPoupanca = indPoupanca;
 	}
 
+	public Boolean getDesabilitaBotao() {
+		return desabilitaBotao;
+	}
+
+	public void setDesabilitaBotao(Boolean desabilitaBotao) {
+		this.desabilitaBotao = desabilitaBotao;
+	}
+
 	public void abrirSolicitacaoContaBancaria() throws ParseException {
 		try {
+			desabilitaBotao = false;
 			solicitacaoContaBancaria = new SolicitacaoContaBancaria();
 			solicitacaoContaBancaria.setNovoBanco(new Banco());
 			buscarServidorLogado();
@@ -112,6 +123,7 @@ public class SolicitacaoContaBancariaController  {
 		solicitacaoContaBancaria.getStatusSolicitacao().setCodigo(
 				Constantes.STATUS_SOLICITACAO_ENCAMINHADO);
 		DAO.getInstance().saveOrUpdate(solicitacaoContaBancaria);
+		desabilitaBotao = true;
 		EnviarEmail enviarEmail = new EnviarEmail();
 		enviarEmail.enviarEmailSolicitacao(solicitacaoContaBancaria);
 		solicitacaoContaBancaria = new SolicitacaoContaBancaria();
