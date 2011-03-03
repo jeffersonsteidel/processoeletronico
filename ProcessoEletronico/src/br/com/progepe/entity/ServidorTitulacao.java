@@ -5,9 +5,6 @@ import java.util.Date;
 
 public class ServidorTitulacao implements Serializable {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private Long codigo;
 	private Servidor servidor;
