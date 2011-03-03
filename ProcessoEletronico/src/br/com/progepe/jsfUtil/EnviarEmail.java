@@ -91,8 +91,6 @@ public class EnviarEmail {
 			}
 			conteudoDoEmail += "\n \n E-mail automático por favor não responder!";
 		}
-
-	
 		try{	
 			@SuppressWarnings("unused")
 			EnviarEmail enviar = new EnviarEmail(remetente, solicitacao.getSolicitante().getEmail(),
@@ -135,9 +133,7 @@ public class EnviarEmail {
 			mensagem.addRecipient(Message.RecipientType.TO,
 					new InternetAddress(this.destinatario));
 			mensagem.setText(this.conteudoDoEmail);
-			System.out.println("Enviando mensagem");
 			Transport.send(mensagem);
-			System.out.println("Mensagem enviada");
 		} catch (Exception err) {
 			System.out.println("Erro ao enviar mensagem");
 		}
