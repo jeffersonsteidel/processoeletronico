@@ -43,7 +43,7 @@
 					<f:selectItem itemValue="false" itemLabel="Cancelar Auxílio" />
 				</h:selectOneRadio>
 			</h:panelGrid>
-			<a4j:commandButton value="Salvar"
+			<a4j:commandButton value="Salvar" disabled="#{solicitacaoAlimentacaoController.desabilitaBotao}"
 				action="#{solicitacaoAlimentacaoController.salvar}" reRender="form" />
 		</rich:panel></center>
 	</a4j:form>

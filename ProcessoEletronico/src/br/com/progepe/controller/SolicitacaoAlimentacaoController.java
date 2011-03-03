@@ -24,6 +24,8 @@ public class SolicitacaoAlimentacaoController implements Serializable {
 	private SolicitacaoAlimentacao solicitacaoAlimentacao;
 	private Boolean indCancelarAlimentacao=false;
 	private Boolean indIncluirAlimentacao=true;
+	
+	private Boolean desabilitaBotao = false;
 
 	public SolicitacaoAlimentacao getSolicitacaoAlimentacao() {
 		return solicitacaoAlimentacao;
@@ -49,10 +51,19 @@ public class SolicitacaoAlimentacaoController implements Serializable {
 	public void setIndIncluirAlimentacao(Boolean indIncluirAlimentacao) {
 		this.indIncluirAlimentacao = indIncluirAlimentacao;
 	}
+	
+	public Boolean getDesabilitaBotao() {
+		return desabilitaBotao;
+	}
+
+	public void setDesabilitaBotao(Boolean desabilitaBotao) {
+		this.desabilitaBotao = desabilitaBotao;
+	}
 
 	public void abrirSolicitacaoAlimentacao() throws ParseException {
 		try {
 			solicitacaoAlimentacao = new SolicitacaoAlimentacao();
+			desabilitaBotao = false;
 			buscarServidorLogado();
 			FacesContext.getCurrentInstance().getExternalContext()
 					.redirect("solicitacaoAlimentacao.jsp");
@@ -95,6 +106,7 @@ public class SolicitacaoAlimentacaoController implements Serializable {
 		solicitacaoAlimentacao.getStatusSolicitacao().setCodigo(
 				Constantes.STATUS_SOLICITACAO_ENCAMINHADO);
 		DAO.getInstance().saveOrUpdate(solicitacaoAlimentacao);
+		desabilitaBotao = true;
 		EnviarEmail enviarEmail = new EnviarEmail();
 		enviarEmail.enviarEmailSolicitacao(solicitacaoAlimentacao);
 		solicitacaoAlimentacao = new SolicitacaoAlimentacao();
