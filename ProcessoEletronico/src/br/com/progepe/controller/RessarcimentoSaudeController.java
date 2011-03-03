@@ -51,6 +51,8 @@ public class RessarcimentoSaudeController  {
 	private Boolean ressarcimentoNovo;
 
 	private Servidor atendente = new Servidor();
+	
+	private Boolean desabilitaBotao = true;
 
 	public RessarcimentoSaude getRessarcimentoSaude() {
 		return ressarcimentoSaude;
@@ -207,8 +209,18 @@ public class RessarcimentoSaudeController  {
 		this.atendente = atendente;
 	}
 
+	
+	public Boolean getDesabilitaBotao() {
+		return desabilitaBotao;
+	}
+
+	public void setDesabilitaBotao(Boolean desabilitaBotao) {
+		this.desabilitaBotao = desabilitaBotao;
+	}
+
 	public void abrirRessarcimentoSaude() {
 		try {
+			desabilitaBotao = false;
 			indGEAP = false;
 			indParticular = false;
 			indSindicato = false;
@@ -374,6 +386,7 @@ public class RessarcimentoSaudeController  {
 			}
 			RessarcimentoSaudeDAO.getInstance().saveRessarcimentoSaude(
 					ressarcimentoSaude, dependentes, conjuges);
+			desabilitaBotao = true;
 			indGEAP = false;
 			indParticular = false;
 			indSindicato = false;
