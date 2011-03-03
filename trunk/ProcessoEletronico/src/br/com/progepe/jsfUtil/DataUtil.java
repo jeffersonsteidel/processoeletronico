@@ -225,4 +225,12 @@ public class DataUtil {
 	    dataSch.setTime(data);  
 	    return dataSch;  
 	  }  
+	  
+	  /**
+	   * Sql DATE 
+	   */
+	  public static void setSqlPattern() {  
+		    dateFormat = new SimpleDateFormat("yyyy-MM-dd");  
+		    dateHourFormat = new SimpleDateFormat("yyyy-MM-dd");  
+		  }  
 }
