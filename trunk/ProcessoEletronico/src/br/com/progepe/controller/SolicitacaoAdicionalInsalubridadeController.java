@@ -19,6 +19,7 @@ import br.com.progepe.jsfUtil.EnviarEmail;
 public class SolicitacaoAdicionalInsalubridadeController {
 	
 	private SolicitacaoAdicionalInsalubridade solicitacaoAdicionalInsalubridade;
+	private Boolean desabilitaBotao = true;
 
 	public SolicitacaoAdicionalInsalubridade getSolicitacaoAdicionalInsalubridade() {
 		return solicitacaoAdicionalInsalubridade;
@@ -27,6 +28,14 @@ public class SolicitacaoAdicionalInsalubridadeController {
 	public void setSolicitacaoAdicionalInsalubridade(
 			SolicitacaoAdicionalInsalubridade solicitacaoAdicionalInsalubridade) {
 		this.solicitacaoAdicionalInsalubridade = solicitacaoAdicionalInsalubridade;
+	}
+
+	public Boolean getDesabilitaBotao() {
+		return desabilitaBotao;
+	}
+
+	public void setDesabilitaBotao(Boolean desabilitaBotao) {
+		this.desabilitaBotao = desabilitaBotao;
 	}
 
 	public void isRiscoFisico() {
@@ -42,6 +51,7 @@ public class SolicitacaoAdicionalInsalubridadeController {
 		try {
 			solicitacaoAdicionalInsalubridade = new SolicitacaoAdicionalInsalubridade();
 			buscarServidorLogado();
+			desabilitaBotao = false;
 			FacesContext.getCurrentInstance().getExternalContext()
 					.redirect("solicitacaoAdicionalInsalubridade.jsp");
 		} catch (IOException e) {
@@ -77,5 +87,6 @@ public class SolicitacaoAdicionalInsalubridadeController {
 		enviarEmail.enviarEmailSolicitacao(solicitacaoAdicionalInsalubridade);
 		solicitacaoAdicionalInsalubridade = new SolicitacaoAdicionalInsalubridade();
 		buscarServidorLogado();
+		desabilitaBotao = true;
 	}
 }

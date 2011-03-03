@@ -132,7 +132,7 @@
 				</h:inputTextarea>
 
 			</h:panelGrid>
-			<a4j:commandButton value="Salvar"
+			<a4j:commandButton value="Salvar" disabled="#{solicitacaoAdicionalInsalubridadeController.desabilitaBotao}"
 				action="#{solicitacaoAdicionalInsalubridadeController.salvar}"
 				reRender="form" />
 		</rich:panel></center>

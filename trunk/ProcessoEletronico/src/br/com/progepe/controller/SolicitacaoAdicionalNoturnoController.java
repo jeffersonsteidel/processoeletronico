@@ -40,6 +40,8 @@ public class SolicitacaoAdicionalNoturnoController  {
 
 	private Boolean indEmpty = false;
 	private Boolean indVarias = false;
+	
+	private Boolean desabilitaBotao = true;
 
 	public List<SelectItem> getLotacoes() {
 		return lotacoes;
@@ -150,6 +152,14 @@ public class SolicitacaoAdicionalNoturnoController  {
 		this.indVarias = indVarias;
 	}
 
+	public Boolean getDesabilitaBotao() {
+		return desabilitaBotao;
+	}
+
+	public void setDesabilitaBotao(Boolean desabilitaBotao) {
+		this.desabilitaBotao = desabilitaBotao;
+	}
+
 	public void abrirSolicitacaoAdicionalNoturnoTecnico() throws ParseException {
 		try {
 			solicitacaoAdicionalNoturno = new SolicitacaoAdicionalNoturno();
@@ -163,6 +173,7 @@ public class SolicitacaoAdicionalNoturnoController  {
 			solicitacaoAdicionalNoturno.setLotacao(solicitacaoAdicionalNoturno
 					.getSolicitante().getLotacao());
 			listarServidoresTecnicosCampus();
+			desabilitaBotao = false;
 			FacesContext.getCurrentInstance().getExternalContext()
 					.redirect("solicitacaoAdicionalNoturnoTecnico.jsp");
 		} catch (IOException e) {
@@ -184,6 +195,7 @@ public class SolicitacaoAdicionalNoturnoController  {
 			solicitacaoAdicionalNoturno.setLotacao(solicitacaoAdicionalNoturno
 					.getSolicitante().getLotacao());
 			listarProfessoresCampus();
+			desabilitaBotao = false;
 			FacesContext.getCurrentInstance().getExternalContext()
 					.redirect("solicitacaoAdicionalNoturnoDocentes.jsp");
 		} catch (IOException e) {
@@ -204,6 +216,7 @@ public class SolicitacaoAdicionalNoturnoController  {
 			solicitacaoAdicionalNoturno.setLotacao(solicitacaoAdicionalNoturno
 					.getServidor().getLotacao());
 			listarAdicionaisTecnicosAprovacao();
+			desabilitaBotao = false;
 			FacesContext.getCurrentInstance().getExternalContext()
 					.redirect("listarSolicitacaoAdicionalNoturnoTecnicos.jsp");
 		} catch (IOException e) {
@@ -224,6 +237,7 @@ public class SolicitacaoAdicionalNoturnoController  {
 			solicitacaoAdicionalNoturno.setLotacao(solicitacaoAdicionalNoturno
 					.getServidor().getLotacao());
 			listarAdicionaisDocentesAprovacao();
+			desabilitaBotao = false;
 			FacesContext.getCurrentInstance().getExternalContext()
 					.redirect("listarSolicitacaoAdicionalNoturnoDocentes.jsp");
 		} catch (IOException e) {
@@ -599,6 +613,7 @@ public class SolicitacaoAdicionalNoturnoController  {
 				Constantes.TIPO_SOLICITACAO_ADICIONAL_NOTURNO_DOCENTES);
 		solicitacaoAdicionalNoturno.setDataAbertura(new Date());
 		DAO.getInstance().saveOrUpdate(solicitacaoAdicionalNoturno);
+		desabilitaBotao = false;
 		listaAdicionalNoturno = new ArrayList<AdicionalNoturno>();
 		adicionalNoturno = new AdicionalNoturno();
 		adicionalNoturno.setServidor(new Servidor());
@@ -614,6 +629,7 @@ public class SolicitacaoAdicionalNoturnoController  {
 				Constantes.TIPO_SOLICITACAO_ADICIONAL_NOTURNO_TECNICOS);
 		solicitacaoAdicionalNoturno.setDataAbertura(new Date());
 		DAO.getInstance().saveOrUpdate(solicitacaoAdicionalNoturno);
+		desabilitaBotao = false;
 		solicitacaoAdicionalNoturno = new SolicitacaoAdicionalNoturno();
 		listaAdicionalTecnicos = new ArrayList<AdicionalNoturno>();
 		adicionalNoturno = new AdicionalNoturno();

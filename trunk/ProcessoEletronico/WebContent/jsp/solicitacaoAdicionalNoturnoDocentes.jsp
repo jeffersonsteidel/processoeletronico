@@ -164,6 +164,7 @@
 
 				<a4j:commandButton id="salvar" value="Salvar" rendered="#{not empty solicitacaoAdicionalNoturnoController.listaAdicionalNoturno}"
 					action="#{solicitacaoAdicionalNoturnoController.salvarDocentes}"
+					disabled="#{solicitacaoAdicionalNoturnoController.desabilitaBotao}"
 					reRender="form" />
 
 			</a4j:region>
