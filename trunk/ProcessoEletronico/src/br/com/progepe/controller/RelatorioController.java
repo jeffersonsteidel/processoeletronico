@@ -1,7 +1,6 @@
 package br.com.progepe.controller;
 
 import java.io.IOException;
-import java.io.Serializable;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.ArrayList;
@@ -24,7 +23,7 @@ import br.com.progepe.entity.StatusSolicitacao;
 import br.com.progepe.entity.TipoSolicitacao;
 import br.com.progepe.jsfUtil.DataUtil;
 
-public class RelatorioController implements Serializable {
+public class RelatorioController  {
 	private static final long serialVersionUID = -333995781063775201L;
 	private Servidor servidor;
 	private Servidor atendente;
