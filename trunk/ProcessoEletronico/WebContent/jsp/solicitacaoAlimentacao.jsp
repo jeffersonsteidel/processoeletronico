@@ -45,7 +45,6 @@
 			</h:panelGrid>
 			<a4j:commandButton value="Salvar" disabled="#{solicitacaoAlimentacaoController.desabilitaBotao}"
 				action="#{solicitacaoAlimentacaoController.salvar}" reRender="form" 
-				disabled="#{solicitacaoAlimentacaoController.desabilitaBotao}"
 				/>
 		</rich:panel></center>
 	</a4j:form>
