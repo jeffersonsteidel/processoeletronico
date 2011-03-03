@@ -1,7 +1,6 @@
 package br.com.progepe.controller;
 
 import java.io.IOException;
-import java.io.Serializable;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
@@ -28,7 +27,7 @@ import br.com.progepe.entity.ServidorTitulacao;
 import br.com.progepe.entity.StatusSolicitacao;
 import br.com.progepe.entity.Titulacao;
 
-public class ServidorTitulacaoController implements Serializable {
+public class ServidorTitulacaoController  {
 	private static final long serialVersionUID = -333995781063775201L;
 	private List<ServidorTitulacao> listaServidorTitulacoes = new ArrayList<ServidorTitulacao>();
 	private ServidorTitulacao servidorTitulacao;

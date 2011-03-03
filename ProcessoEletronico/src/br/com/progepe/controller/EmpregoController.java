@@ -1,7 +1,6 @@
 package br.com.progepe.controller;
 
 import java.io.IOException;
-import java.io.Serializable;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
@@ -22,7 +21,7 @@ import br.com.progepe.entity.Emprego;
 import br.com.progepe.entity.Servidor;
 import br.com.progepe.entity.StatusSolicitacao;
 
-public class EmpregoController implements Serializable {
+public class EmpregoController  {
 	private static final long serialVersionUID = -333995781063775201L;
 	private List<Emprego> listaEmpregos = new ArrayList<Emprego>();
 	private List<Emprego> listaEmpregosByFilter = new ArrayList<Emprego>();

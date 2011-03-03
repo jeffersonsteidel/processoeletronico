@@ -1,7 +1,6 @@
 package br.com.progepe.controller;
 
 import java.io.IOException;
-import java.io.Serializable;
 import java.security.NoSuchAlgorithmException;
 
 import javax.faces.application.FacesMessage;
@@ -12,7 +11,7 @@ import br.com.progepe.dao.AutenticacaoDAO;
 import br.com.progepe.encripty.Encripty;
 import br.com.progepe.entity.Autenticacao;
 
-public class AutenticacaoController implements Serializable {
+public class AutenticacaoController  {
 	private static final long serialVersionUID = -333995781063775201L;
 
 	private Autenticacao autenticacao;

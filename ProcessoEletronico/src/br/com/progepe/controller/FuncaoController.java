@@ -1,7 +1,6 @@
 package br.com.progepe.controller;
 
 import java.io.IOException;
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,7 +14,7 @@ import br.com.progepe.entity.Funcao;
 import br.com.progepe.entity.FuncaoServidor;
 import br.com.progepe.entity.TipoFuncao;
 
-public class FuncaoController implements Serializable {
+public class FuncaoController  {
 
 	private static final long serialVersionUID = 8505987470598069907L;
 

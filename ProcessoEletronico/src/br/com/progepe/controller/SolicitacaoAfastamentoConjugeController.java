@@ -1,7 +1,6 @@
 package br.com.progepe.controller;
 
 import java.io.IOException;
-import java.io.Serializable;
 import java.text.ParseException;
 import java.util.Date;
 
@@ -17,7 +16,7 @@ import br.com.progepe.entity.StatusSolicitacao;
 import br.com.progepe.entity.TipoSolicitacao;
 import br.com.progepe.jsfUtil.EnviarEmail;
 
-public class SolicitacaoAfastamentoConjugeController implements Serializable {
+public class SolicitacaoAfastamentoConjugeController  {
 	private static final long serialVersionUID = -333995781063775201L;
 
 	private SolicitacaoAfastamentoConjuge solicitacaoAfastamentoConjuge;
