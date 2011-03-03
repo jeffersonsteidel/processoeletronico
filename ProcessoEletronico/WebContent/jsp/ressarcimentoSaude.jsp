@@ -255,7 +255,7 @@
 			</rich:fileUpload>
 
 			<a4j:commandButton value="Salvar"
-				rendered="#{ressarcimentoSaudeController.ressarcimentoNovo}" disabled="#{ressarcimentoSaudeController.desabilitaBotao}"
+				rendered="#{ressarcimentoSaudeController.ressarcimentoNovo}"
 				action="#{ressarcimentoSaudeController.salvar}" reRender="form" />
 
 			<a4j:commandButton value="Adicionar/Remover Dependentes/Cônjuges"
