@@ -5,9 +5,6 @@ import java.util.Date;
 
 public class RessarcimentoSaudeContrato implements Serializable {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 8858939815459194427L;
 	private Long codigo;
 	private Servidor servidor;

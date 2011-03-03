@@ -4,9 +4,6 @@ import java.io.Serializable;
 
 public class DocumentoImagem implements Serializable {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = -1254981489993800216L;
 	private Long codigo;
 	private TipoDocumento tipoDocumento;

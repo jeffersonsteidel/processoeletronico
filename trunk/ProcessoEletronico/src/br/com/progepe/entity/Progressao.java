@@ -5,9 +5,6 @@ import java.util.Date;
 
 public class Progressao implements Serializable {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private Long codigo;
 	private Servidor servidor;

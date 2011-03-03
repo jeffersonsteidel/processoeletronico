@@ -1,8 +1,9 @@
 package br.com.progepe.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class AdicionalNoturno {
+public class AdicionalNoturno implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 

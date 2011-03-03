@@ -4,9 +4,6 @@ import java.io.Serializable;
 
 public class DependenteRessarcimentoSaude implements Serializable {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = -6453895713062165271L;
 
 	private Long codigo;
