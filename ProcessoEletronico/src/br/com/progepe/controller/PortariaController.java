@@ -21,7 +21,6 @@ import br.com.progepe.entity.Portaria;
 import br.com.progepe.entity.TipoPortaria;
 
 public class PortariaController  {
-	private static final long serialVersionUID = -333995781063775201L;
 
 	Portaria portaria;
 	Portaria portariaFilter;

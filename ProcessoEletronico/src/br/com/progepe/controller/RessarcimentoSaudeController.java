@@ -28,7 +28,6 @@ import br.com.progepe.entity.StatusSolicitacao;
 import br.com.progepe.entity.TipoPlano;
 
 public class RessarcimentoSaudeController  {
-	private static final long serialVersionUID = -333995781063775201L;
 
 	private RessarcimentoSaude ressarcimentoSaude;
 	private List<SelectItem> tiposPlanos = new ArrayList<SelectItem>();

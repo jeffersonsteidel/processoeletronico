@@ -20,8 +20,6 @@ import br.com.progepe.entity.TipoFuncao;
 
 public class FuncaoServidorController  {
 
-	private static final long serialVersionUID = 8505987470598069907L;
-
 	private FuncaoServidor funcaoServidor;
 	private List<SelectItem> locaisExercicio = new ArrayList<SelectItem>();
 	private List<SelectItem> tipoFuncoes = new ArrayList<SelectItem>();

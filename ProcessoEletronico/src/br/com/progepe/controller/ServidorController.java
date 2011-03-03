@@ -41,7 +41,6 @@ import br.com.progepe.validator.Validator;
 
 public class ServidorController {
 
-
 	private Servidor servidor;
 	private List<Servidor> servidores;
 	private List<Servidor> servidoresList;

@@ -25,7 +25,7 @@ import br.com.progepe.entity.StatusSolicitacao;
 import br.com.progepe.validator.Validator;
 
 public class DependenteController  {
-	private static final long serialVersionUID = -333995781063775201L;
+
 	private Dependente dependente;
 	private Dependente dependenteFilter;
 	private Servidor servidor;

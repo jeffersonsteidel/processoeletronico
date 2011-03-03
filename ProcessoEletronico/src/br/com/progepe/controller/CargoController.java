@@ -13,7 +13,6 @@ import br.com.progepe.entity.Cargo;
 import br.com.progepe.entity.Classe;
 
 public class CargoController  {
-	private static final long serialVersionUID = -333995781063775201L;
 
 	private Cargo cargo;
 	private List<Cargo> cargoList;

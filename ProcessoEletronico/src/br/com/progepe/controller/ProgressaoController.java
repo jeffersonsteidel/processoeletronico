@@ -23,7 +23,6 @@ import br.com.progepe.entity.ServidorTitulacao;
 import br.com.progepe.entity.TipoProgressao;
 
 public class ProgressaoController  {
-	private static final long serialVersionUID = -333995781063775201L;
 
 	private Progressao progressao;
 	private List<Progressao> progressaoList;

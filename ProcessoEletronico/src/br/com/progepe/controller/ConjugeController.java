@@ -27,7 +27,6 @@ import br.com.progepe.entity.StatusSolicitacao;
 import br.com.progepe.validator.Validator;
 
 public class ConjugeController  {
-	private static final long serialVersionUID = -333995781063775201L;
 
 	private Conjuge conjuge;
 	private Conjuge conjugeFilter;

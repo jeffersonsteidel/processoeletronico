@@ -2,7 +2,6 @@ package br.com.progepe.controller;
 
 import java.io.IOException;
 import java.io.OutputStream;
-import java.io.Serializable;
 import java.text.ParseException;
 import java.util.Date;
 
@@ -22,9 +21,7 @@ import br.com.progepe.entity.StatusSolicitacao;
 import br.com.progepe.entity.TipoSolicitacao;
 import br.com.progepe.jsfUtil.EnviarEmail;
 
-public class SolicitacaoHorarioEspecialEstudanteController implements
-		Serializable {
-	private static final long serialVersionUID = -333995781063775201L;
+public class SolicitacaoHorarioEspecialEstudanteController {
 
 	private SolicitacaoHorarioEspecialEstudante solicitacaoHorarioEspecialEstudante;
 

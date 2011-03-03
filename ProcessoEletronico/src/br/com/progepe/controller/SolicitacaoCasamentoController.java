@@ -23,7 +23,6 @@ import br.com.progepe.entity.TipoSolicitacao;
 import br.com.progepe.jsfUtil.EnviarEmail;
 
 public class SolicitacaoCasamentoController  {
-	private static final long serialVersionUID = -333995781063775201L;
 
 	private SolicitacaoCasamento solicitacaoCasamento;
 	private String texto;

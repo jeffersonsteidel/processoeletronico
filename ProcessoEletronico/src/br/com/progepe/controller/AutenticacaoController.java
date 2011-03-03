@@ -12,7 +12,6 @@ import br.com.progepe.encripty.Encripty;
 import br.com.progepe.entity.Autenticacao;
 
 public class AutenticacaoController  {
-	private static final long serialVersionUID = -333995781063775201L;
 
 	private Autenticacao autenticacao;
 	private String novaSenha;

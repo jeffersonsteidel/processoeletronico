@@ -27,7 +27,6 @@ import br.com.progepe.entity.ServidorTitulacao;
 import br.com.progepe.entity.TipoDocumento;
 
 public class DocumentoImagemController  {
-	private static final long serialVersionUID = -333995781063775201L;
 
 	private DocumentoImagem documentoImagem;
 	private DocumentoImagem documentoImagemTemp;
