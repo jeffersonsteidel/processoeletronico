@@ -24,7 +24,6 @@ import br.com.progepe.entity.TipoSolicitacao;
 import br.com.progepe.jsfUtil.EnviarEmail;
 
 public class SolicitacaoAlteracaoEnderecoController  {
-	private static final long serialVersionUID = -333995781063775201L;
 
 	private SolicitacaoAlteracaoEndereco solicitacaoAlteracaoEndereco;
 	

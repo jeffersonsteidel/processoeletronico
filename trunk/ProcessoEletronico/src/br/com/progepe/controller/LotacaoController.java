@@ -16,7 +16,6 @@ import br.com.progepe.entity.Estado;
 import br.com.progepe.entity.Lotacao;
 
 public class LotacaoController  {
-	private static final long serialVersionUID = -333995781063775201L;
 
 	private Lotacao lotacao;
 	private List<Lotacao> lotacaoList;

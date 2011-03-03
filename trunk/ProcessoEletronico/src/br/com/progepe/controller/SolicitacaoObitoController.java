@@ -28,7 +28,6 @@ import br.com.progepe.entity.TipoSolicitacao;
 import br.com.progepe.jsfUtil.EnviarEmail;
 
 public class SolicitacaoObitoController  {
-	private static final long serialVersionUID = -333995781063775201L;
 
 	private SolicitacaoObito solicitacaoObito;
 	private List<SelectItem> grausParentescos = new ArrayList<SelectItem>();

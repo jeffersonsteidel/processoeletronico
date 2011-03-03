@@ -22,7 +22,7 @@ import br.com.progepe.entity.Servidor;
 import br.com.progepe.entity.StatusSolicitacao;
 
 public class EmpregoController  {
-	private static final long serialVersionUID = -333995781063775201L;
+
 	private List<Emprego> listaEmpregos = new ArrayList<Emprego>();
 	private List<Emprego> listaEmpregosByFilter = new ArrayList<Emprego>();
 	private List<SelectItem> statusSolicitacoes = new ArrayList<SelectItem>();

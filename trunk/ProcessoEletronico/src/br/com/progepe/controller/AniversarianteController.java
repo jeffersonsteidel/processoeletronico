@@ -11,7 +11,6 @@ import br.com.progepe.dao.ServidorDAO;
 import br.com.progepe.entity.Servidor;
 
 public class AniversarianteController  {
-	private static final long serialVersionUID = -333995781063775201L;
 
 	private Integer mes;
 	private List<Servidor> aniversariantesList = new ArrayList<Servidor>();

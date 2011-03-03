@@ -16,8 +16,6 @@ import br.com.progepe.entity.TipoFuncao;
 
 public class FuncaoController  {
 
-	private static final long serialVersionUID = 8505987470598069907L;
-
 	private Funcao funcao;
 	private List<SelectItem> tipoFuncoes = new ArrayList<SelectItem>();
 	private List<SelectItem> funcoes = new ArrayList<SelectItem>();

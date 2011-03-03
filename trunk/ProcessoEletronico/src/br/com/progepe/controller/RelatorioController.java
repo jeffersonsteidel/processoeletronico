@@ -24,7 +24,7 @@ import br.com.progepe.entity.TipoSolicitacao;
 import br.com.progepe.jsfUtil.DataUtil;
 
 public class RelatorioController  {
-	private static final long serialVersionUID = -333995781063775201L;
+
 	private Servidor servidor;
 	private Servidor atendente;
 	private Servidor solicitante;
