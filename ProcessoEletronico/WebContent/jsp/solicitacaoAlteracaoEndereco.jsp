@@ -182,6 +182,7 @@
 			</h:panelGrid>
 			<a4j:commandButton value="Salvar"
 				action="#{solicitacaoAlteracaoEnderecoController.salvar}"
+				disabled="#{solicitacaoAlteracaoEnderecoController.desabilitaBotao}"
 				reRender="form" />
 		</rich:panel></center>
 	</a4j:form>

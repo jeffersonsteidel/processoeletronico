@@ -377,6 +377,7 @@
 				<a4j:support event="onuploadcomplete" reRender="total, info" />
 			</rich:fileUpload>
 			<a4j:commandButton value="Salvar"
+				disabled="#{solicitacaoHorarioEspecialEstudanteController.desabilitaBotao}"
 				action="#{solicitacaoHorarioEspecialEstudanteController.salvar}"
 				reRender="form" />
 

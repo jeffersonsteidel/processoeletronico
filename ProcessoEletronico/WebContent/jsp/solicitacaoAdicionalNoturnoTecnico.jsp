@@ -144,7 +144,7 @@
 			</rich:dataTable>
 
 			<a4j:commandButton id="salvar" value="Salvar"
-				rendered="#{not empty solicitacaoAdicionalNoturnoController.listaAdicionalTecnicos}"
+				rendered="#{not empty solicitacaoAdicionalNoturnoController.listaAdicionalTecnicos && solicitacaoAdicionalNoturnoController.desabilitaBotao}"
 				action="#{solicitacaoAdicionalNoturnoController.salvarAdicionalTecnico}"
 				reRender="form" />
 		</rich:panel></center>

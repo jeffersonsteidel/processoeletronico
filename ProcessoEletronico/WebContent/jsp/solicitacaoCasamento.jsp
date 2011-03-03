@@ -92,6 +92,7 @@
 				<a4j:support event="onuploadcomplete" reRender="info" />
 			</rich:fileUpload>
 			<a4j:commandButton value="Salvar"
+				disabled="#{solicitacaoCasamentoController.desabilitaBotao}"
 				action="#{solicitacaoCasamentoController.salvar}" reRender="form" />
 
 			<h:panelGroup id="info">
