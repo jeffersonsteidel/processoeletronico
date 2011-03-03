@@ -1,7 +1,6 @@
 package br.com.progepe.controller;
 
 import java.io.IOException;
-import java.io.Serializable;
 import java.text.ParseException;
 import java.util.Date;
 
@@ -26,7 +25,7 @@ public class SolicitacaoAlimentacaoController {
 	private Boolean indCancelarAlimentacao=false;
 	private Boolean indIncluirAlimentacao=true;
 	
-	private Boolean desabilitaBotao = false;
+	private Boolean desabilitaBotao = true;
 
 	public SolicitacaoAlimentacao getSolicitacaoAlimentacao() {
 		return solicitacaoAlimentacao;

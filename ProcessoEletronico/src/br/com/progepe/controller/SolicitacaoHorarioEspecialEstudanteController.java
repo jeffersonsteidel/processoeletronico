@@ -24,6 +24,7 @@ import br.com.progepe.jsfUtil.EnviarEmail;
 public class SolicitacaoHorarioEspecialEstudanteController {
 
 	private SolicitacaoHorarioEspecialEstudante solicitacaoHorarioEspecialEstudante;
+	private Boolean desabilitaBotao = true;
 
 	public SolicitacaoHorarioEspecialEstudante getSolicitacaoHorarioEspecialEstudante() {
 		return solicitacaoHorarioEspecialEstudante;
@@ -33,10 +34,20 @@ public class SolicitacaoHorarioEspecialEstudanteController {
 			SolicitacaoHorarioEspecialEstudante solicitacaoHorarioEspecialEstudante) {
 		this.solicitacaoHorarioEspecialEstudante = solicitacaoHorarioEspecialEstudante;
 	}
+	
+
+	public Boolean getDesabilitaBotao() {
+		return desabilitaBotao;
+	}
+
+	public void setDesabilitaBotao(Boolean desabilitaBotao) {
+		this.desabilitaBotao = desabilitaBotao;
+	}
 
 	public void abrirSolicitacaoHorarioEspecialEstudante()
 			throws ParseException {
 		try {
+			desabilitaBotao = false;
 			solicitacaoHorarioEspecialEstudante = new SolicitacaoHorarioEspecialEstudante();
 			buscarServidorLogado();
 			solicitacaoHorarioEspecialEstudante.setTotalSemana("00:00");
@@ -101,6 +112,7 @@ public class SolicitacaoHorarioEspecialEstudanteController {
 			solicitacaoHorarioEspecialEstudante.getStatusSolicitacao()
 					.setCodigo(Constantes.STATUS_SOLICITACAO_ENCAMINHADO);
 			DAO.getInstance().saveOrUpdate(solicitacaoHorarioEspecialEstudante);
+			desabilitaBotao = true;
 			EnviarEmail enviarEmail = new EnviarEmail();
 			enviarEmail
 					.enviarEmailSolicitacao(solicitacaoHorarioEspecialEstudante);

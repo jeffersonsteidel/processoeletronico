@@ -24,6 +24,7 @@ import br.com.progepe.jsfUtil.EnviarEmail;
 public class SolicitacaoRessarcimentoSaudeController  {
 
 	private SolicitacaoRessarcimentoSaude solicitacaoRessarcimentoSaude;
+	private Boolean desabilitaBotao = true;
 
 	public SolicitacaoRessarcimentoSaude getSolicitacaoRessarcimentoSaude() {
 		return solicitacaoRessarcimentoSaude;
@@ -33,9 +34,18 @@ public class SolicitacaoRessarcimentoSaudeController  {
 			SolicitacaoRessarcimentoSaude solicitacaoRessarcimentoSaude) {
 		this.solicitacaoRessarcimentoSaude = solicitacaoRessarcimentoSaude;
 	}
+	
+	public Boolean getDesabilitaBotao() {
+		return desabilitaBotao;
+	}
+
+	public void setDesabilitaBotao(Boolean desabilitaBotao) {
+		this.desabilitaBotao = desabilitaBotao;
+	}
 
 	public void abrirSolicitacaoRessarcimentoSaude() throws ParseException {
 		try {
+			desabilitaBotao = false;
 			solicitacaoRessarcimentoSaude = new SolicitacaoRessarcimentoSaude();
 			solicitacaoRessarcimentoSaude
 					.setRessarcimentoSaude(new RessarcimentoSaude());
@@ -70,6 +80,7 @@ public class SolicitacaoRessarcimentoSaudeController  {
 		solicitacaoRessarcimentoSaude.getStatusSolicitacao().setCodigo(
 				Constantes.STATUS_SOLICITACAO_ENCAMINHADO);
 		DAO.getInstance().save(solicitacaoRessarcimentoSaude);
+		desabilitaBotao = true;
 		EnviarEmail enviarEmail = new EnviarEmail();
 		enviarEmail.enviarEmailSolicitacao(solicitacaoRessarcimentoSaude);
 		solicitacaoRessarcimentoSaude = new SolicitacaoRessarcimentoSaude();

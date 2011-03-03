@@ -26,6 +26,7 @@ import br.com.progepe.jsfUtil.EnviarEmail;
 public class SolicitacaoAlteracaoEnderecoController  {
 
 	private SolicitacaoAlteracaoEndereco solicitacaoAlteracaoEndereco;
+	private Boolean desabilitaBotao = true;
 	
 	private List<SelectItem> cidades = new ArrayList<SelectItem>();
 	private List<SelectItem> estados = new ArrayList<SelectItem>();
@@ -55,8 +56,17 @@ public class SolicitacaoAlteracaoEnderecoController  {
 		this.estados = estados;
 	}
 
+	public Boolean getDesabilitaBotao() {
+		return desabilitaBotao;
+	}
+
+	public void setDesabilitaBotao(Boolean desabilitaBotao) {
+		this.desabilitaBotao = desabilitaBotao;
+	}
+
 	public void abrirSolicitacaoAlteracaoEndereco() throws ParseException {
 		try {
+			 desabilitaBotao = false;
 			solicitacaoAlteracaoEndereco = new SolicitacaoAlteracaoEndereco();
 			solicitacaoAlteracaoEndereco.setNovaCidade(new Cidade());
 			solicitacaoAlteracaoEndereco.getNovaCidade().setEstado(new Estado());
@@ -92,6 +102,7 @@ public class SolicitacaoAlteracaoEnderecoController  {
 		solicitacaoAlteracaoEndereco.getStatusSolicitacao().setCodigo(
 				Constantes.STATUS_SOLICITACAO_ENCAMINHADO);
 		DAO.getInstance().saveOrUpdate(solicitacaoAlteracaoEndereco);
+		desabilitaBotao = true;
 		EnviarEmail enviarEmail = new EnviarEmail();
 		enviarEmail.enviarEmailSolicitacao(solicitacaoAlteracaoEndereco);
 		solicitacaoAlteracaoEndereco = new SolicitacaoAlteracaoEndereco();
