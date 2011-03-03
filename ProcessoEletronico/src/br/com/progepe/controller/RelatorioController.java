@@ -22,6 +22,7 @@ import br.com.progepe.entity.Lotacao;
 import br.com.progepe.entity.Servidor;
 import br.com.progepe.entity.StatusSolicitacao;
 import br.com.progepe.entity.TipoSolicitacao;
+import br.com.progepe.jsfUtil.DataUtil;
 
 public class RelatorioController implements Serializable {
 	private static final long serialVersionUID = -333995781063775201L;
@@ -376,15 +377,15 @@ public class RelatorioController implements Serializable {
 				+ " LEFT JOIN servidor AS servidorAt  ON solicitacao.serv_cod_atendente = servidorAt.serv_siape"
 				+ " WHERE 1 = 1";
 		
-		/*
+		
 		if (periodoInicio != null) {
-			sql += " and solicitacao.solic_dt_abertura > " + periodoInicio ;
+			sql += " and solicitacao.solic_dt_abertura > '" + DataUtil.format(periodoInicio, "yyyy-MM-dd") +"'";
 		}
 		
 		if (periodoFinal != null) {
-			sql += " and solicitacao.solic_dt_abertura < " + periodoInicio ;
+			sql += " and solicitacao.solic_dt_abertura < '" + DataUtil.format(periodoFinal, "yyyy-MM-dd") +"'";
 		}
-		*/
+		
 		
 		if (atendente != null && atendente.getSiape() != 0) {
 			sql += " and servidorAt.serv_nome = '" + atendente.getNome(); 
@@ -392,8 +393,7 @@ public class RelatorioController implements Serializable {
 		}
 		
 		if (solicitante != null && solicitante.getSiape() != 0 ) {
-			sql += " and servidorSolicitante.serv_nome = '"  + solicitante.getNome();
-			sql += "'";
+			sql += " and servidorSolicitante.serv_nome = '"  + solicitante.getNome()+ "'";
 		}
 		
 		if (solicitacao != null && solicitacao != 0) {
@@ -404,7 +404,7 @@ public class RelatorioController implements Serializable {
 			sql += " and solicitacao.sta_solic_cod = " + status;
 		}
 		
-		sql += " ORDER BY servidorAt.serv_nome is null; ";
+		sql += " ORDER BY solicitacao.solic_cod asc; ";
 		
 		JasperMB jasperMB = new JasperMB();
 		jasperMB.criaConexao();
