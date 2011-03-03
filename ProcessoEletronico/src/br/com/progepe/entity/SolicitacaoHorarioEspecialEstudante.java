@@ -1,7 +1,9 @@
 package br.com.progepe.entity;
 
+import java.io.Serializable;
 
-public class SolicitacaoHorarioEspecialEstudante extends Solicitacao {
+
+public class SolicitacaoHorarioEspecialEstudante extends Solicitacao implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 

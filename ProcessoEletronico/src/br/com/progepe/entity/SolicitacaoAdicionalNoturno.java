@@ -1,11 +1,12 @@
 package br.com.progepe.entity;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class SolicitacaoAdicionalNoturno extends Solicitacao {
+public class SolicitacaoAdicionalNoturno extends Solicitacao implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 

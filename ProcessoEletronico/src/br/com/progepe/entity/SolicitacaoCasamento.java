@@ -1,8 +1,9 @@
 package br.com.progepe.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class SolicitacaoCasamento extends Solicitacao {
+public class SolicitacaoCasamento extends Solicitacao implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 

@@ -1,6 +1,8 @@
 package br.com.progepe.entity;
 
-public class SolicitacaoAlteracaoEndereco extends Solicitacao {
+import java.io.Serializable;
+
+public class SolicitacaoAlteracaoEndereco extends Solicitacao implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 
