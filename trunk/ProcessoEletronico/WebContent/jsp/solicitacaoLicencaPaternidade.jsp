@@ -73,6 +73,7 @@
 				<a4j:support event="onuploadcomplete" reRender="info" />
 			</rich:fileUpload>
 			<a4j:commandButton value="Salvar"
+				disabled="#{solicitacaoLicencaPaternidadeController.desabilitaBotao}"
 				action="#{solicitacaoLicencaPaternidadeController.salvar}"
 				reRender="form" />
 

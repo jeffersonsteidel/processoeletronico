@@ -82,6 +82,7 @@
 			</h:panelGrid>
 
 			<a4j:commandButton value="Salvar"
+				disabled="#{solicitacaoAfastamentoConjugeController.desabilitaBotao}"
 				action="#{solicitacaoAfastamentoConjugeController.salvar}"
 				reRender="form" />
 		</rich:panel></center>

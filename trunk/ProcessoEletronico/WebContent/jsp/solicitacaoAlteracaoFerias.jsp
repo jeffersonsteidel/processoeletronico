@@ -80,6 +80,7 @@
 
 			<a4j:commandButton value="Salvar"
 				action="#{solicitacaoAlteracaoFeriasController.salvar}"
+				disabled="#{solicitacaoAlteracaoFeriasController.desabilitaBotao}"
 				reRender="form" />
 		</rich:panel></center>
 	</a4j:form>

@@ -61,6 +61,7 @@
 			</rich:fileUpload>
 			<a4j:commandButton value="Salvar"
 				action="#{solicitacaoRessarcimentoSaudeController.salvar}"
+				disabled="#{solicitacaoRessarcimentoSaudeController.desabilitaBotao}"
 				reRender="form" />
 
 			<h:panelGroup id="info">
