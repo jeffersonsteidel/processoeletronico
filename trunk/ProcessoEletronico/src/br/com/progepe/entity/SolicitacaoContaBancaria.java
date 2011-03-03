@@ -1,6 +1,8 @@
 package br.com.progepe.entity;
 
-public class SolicitacaoContaBancaria extends Solicitacao {
+import java.io.Serializable;
+
+public class SolicitacaoContaBancaria extends Solicitacao implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	private String novoNumeroConta;

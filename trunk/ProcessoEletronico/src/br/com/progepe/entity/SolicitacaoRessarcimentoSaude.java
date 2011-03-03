@@ -1,11 +1,10 @@
 package br.com.progepe.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class SolicitacaoRessarcimentoSaude extends Solicitacao {
-	/**
-	 * 
-	 */
+public class SolicitacaoRessarcimentoSaude extends Solicitacao implements Serializable{
+
 	private static final long serialVersionUID = -1595653461934669946L;
 	private byte[] comprovante;
 	private Date dataPagamento;
