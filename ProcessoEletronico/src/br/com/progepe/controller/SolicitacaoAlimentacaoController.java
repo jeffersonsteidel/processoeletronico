@@ -18,8 +18,10 @@ import br.com.progepe.entity.StatusSolicitacao;
 import br.com.progepe.entity.TipoSolicitacao;
 import br.com.progepe.jsfUtil.EnviarEmail;
 
-public class SolicitacaoAlimentacaoController implements Serializable {
+public class SolicitacaoAlimentacaoController {
 
+	private static final long serialVersionUID = 1L;
+	
 	private SolicitacaoAlimentacao solicitacaoAlimentacao;
 	private Boolean indCancelarAlimentacao=false;
 	private Boolean indIncluirAlimentacao=true;
