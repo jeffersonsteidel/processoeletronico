@@ -3,9 +3,7 @@ package br.com.progepe.entity;
 import java.io.Serializable;
 
 public class TipoDocumento implements Serializable {
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = -4907890108698701588L;
 	private Long codigo;
 	private String descricao;

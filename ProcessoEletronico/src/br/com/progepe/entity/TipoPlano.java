@@ -4,9 +4,6 @@ import java.io.Serializable;
 
 public class TipoPlano implements Serializable {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = -558879579871645805L;
 
 	private Long codigo;
