@@ -664,9 +664,16 @@ public class FitaEspelho {
 						html = html + "DIR. GERAL/ C. FOZ";
 					} else if (linha.substring(215, 224).equals("000000116")) {
 						html = html + "N. A. DE IRATI";
-					}else if (linha.substring(215, 224).equals("000000010")) {
+					} else if (linha.substring(215, 224).equals("000000010")) {
 						html = html + "AUDITORIA INTERNA";
-					} else {
+					} else if (linha.substring(215, 224).equals("000000019")){
+						html = html + "DIRETORIA ADM E FINANC/CPGUA";
+					} else if (linha.substring(215, 224).equals("000000034")){
+						html = html + "DIRETORIA ENSINO/CTBOR";
+					} else if (linha.substring(215, 224).equals("000000115")){
+						html = html + "DIR. ADM. E FIN./C.PALMAS";
+					}
+					else {
 						html = html + linha.substring(215, 224);
 					}
 					html = html + "</td>";
