@@ -367,8 +367,8 @@ public class RelatorioController {
 				|| getPeriodoInicio() == null && getPeriodoFinal() != null) {
 			FacesMessage message = new FacesMessage(
 					FacesMessage.SEVERITY_ERROR,
-					"Relatório por Filtro Data, Obrigatório o Preenchimento dos Campos Data!",
-					"Relatório por Filtro Data, Obrigatório o Preenchimento dos Campos Data!");
+					"O campo Data de Abertura Entre é inválido!",
+					"O campo Data de Abertura Entre é inválido!");
 			FacesContext.getCurrentInstance().addMessage("", message);
 			return "";
 		}
@@ -376,8 +376,8 @@ public class RelatorioController {
 			if (getPeriodoInicio().after(getPeriodoFinal())) {
 				FacesMessage message = new FacesMessage(
 						FacesMessage.SEVERITY_ERROR,
-						"A Data de Filtro Final deve ser maior que Data de Filtro Inicial!",
-						"A Data de Filtro Final deve ser maior que Data de Filtro Inicial!");
+						"A Data de Abertura Final deve ser maior que Data de Abertura Inicial!",
+						"A Data de Abertura Final deve ser maior que Data de Abertura Inicial!");
 				FacesContext.getCurrentInstance().addMessage("", message);
 				return "";
 			}
