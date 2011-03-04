@@ -613,11 +613,14 @@ public class SolicitacaoAdicionalNoturnoController  {
 				Constantes.TIPO_SOLICITACAO_ADICIONAL_NOTURNO_DOCENTES);
 		solicitacaoAdicionalNoturno.setDataAbertura(new Date());
 		DAO.getInstance().saveOrUpdate(solicitacaoAdicionalNoturno);
+		Lotacao lotacaoTemp = solicitacaoAdicionalNoturno.getLotacao();
 		desabilitaBotao = false;
 		listaAdicionalNoturno = new ArrayList<AdicionalNoturno>();
 		adicionalNoturno = new AdicionalNoturno();
 		adicionalNoturno.setServidor(new Servidor());
+		solicitacaoAdicionalNoturno = new SolicitacaoAdicionalNoturno();
 		solicitacaoAdicionalNoturno.setLotacao(new Lotacao());
+		solicitacaoAdicionalNoturno.setLotacao(lotacaoTemp);
 	}
 
 	public void salvarAdicionalTecnico() throws Exception {
