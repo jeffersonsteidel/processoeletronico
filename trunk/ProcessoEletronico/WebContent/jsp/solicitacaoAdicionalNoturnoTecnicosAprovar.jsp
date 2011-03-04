@@ -38,7 +38,7 @@
 			<h:outputText
 				value="Processo: #{solicitacaoController.solicitacaoAdicionalNoturnoTecnico.codigo} - " />
 			<h:outputText
-				value="#{solicitacaoController.solicitacaoAdicionalNoturnoDocente.dataAbertura}">
+				value="#{solicitacaoController.solicitacaoAdicionalNoturnoTecnico.dataAbertura}">
 				<f:convertDateTime pattern="dd/MM/yyyy" />
 			</h:outputText>
 			<br>
