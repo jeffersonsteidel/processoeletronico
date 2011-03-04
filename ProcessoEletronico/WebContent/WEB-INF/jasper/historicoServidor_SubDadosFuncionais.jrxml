@@ -314,8 +314,8 @@ WHERE
 				</staticText>
 				<textField isStretchWithOverflow="false" pattern="" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
-						x="316"
-						y="129"
+						x="318"
+						y="112"
 						width="205"
 						height="17"
 						forecolor="#000000"
@@ -334,8 +334,8 @@ WHERE
 				<staticText>
 					<reportElement
 						x="271"
-						y="129"
-						width="55"
+						y="112"
+						width="47"
 						height="17"
 						forecolor="#000000"
 						backcolor="#FFFFFF"
@@ -354,10 +354,10 @@ WHERE
 					</textElement>
 				<text><![CDATA[Id Única:]]></text>
 				</staticText>
-				<textField isStretchWithOverflow="false" pattern="" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+				<textField isStretchWithOverflow="false" pattern="dd/MM/yyyy" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
-						x="361"
-						y="112"
+						x="371"
+						y="129"
 						width="160"
 						height="17"
 						forecolor="#000000"
@@ -376,7 +376,7 @@ WHERE
 				<staticText>
 					<reportElement
 						x="271"
-						y="112"
+						y="129"
 						width="100"
 						height="17"
 						forecolor="#000000"
