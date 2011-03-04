@@ -98,9 +98,9 @@ WHERE servidor.`serv_cod` = $P{COD_SERV}]]></queryString>
 				</staticText>
 				<textField isStretchWithOverflow="false" pattern="" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
-						x="313"
+						x="360"
 						y="46"
-						width="184"
+						width="129"
 						height="17"
 						forecolor="#000000"
 						backcolor="#FFFFFF"
@@ -117,9 +117,9 @@ WHERE servidor.`serv_cod` = $P{COD_SERV}]]></queryString>
 				</textField>
 				<staticText>
 					<reportElement
-						x="226"
+						x="272"
 						y="46"
-						width="87"
+						width="90"
 						height="17"
 						forecolor="#000000"
 						backcolor="#FFFFFF"
@@ -176,9 +176,9 @@ WHERE servidor.`serv_cod` = $P{COD_SERV}]]></queryString>
 				</staticText>
 				<textField isStretchWithOverflow="false" pattern="" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
-						x="282"
+						x="327"
 						y="63"
-						width="215"
+						width="162"
 						height="17"
 						forecolor="#000000"
 						backcolor="#FFFFFF"
@@ -195,9 +195,9 @@ WHERE servidor.`serv_cod` = $P{COD_SERV}]]></queryString>
 				</textField>
 				<staticText>
 					<reportElement
-						x="226"
+						x="272"
 						y="63"
-						width="56"
+						width="57"
 						height="17"
 						forecolor="#000000"
 						backcolor="#FFFFFF"
@@ -213,16 +213,6 @@ WHERE servidor.`serv_cod` = $P{COD_SERV}]]></queryString>
 					</textElement>
 				<text><![CDATA[Poupança:]]></text>
 				</staticText>
-				<line direction="BottomUp">
-					<reportElement
-						x="11"
-						y="32"
-						width="497"
-						height="0"
-						key="line-1"
-						positionType="Float"/>
-					<graphicElement stretchType="NoStretch"/>
-				</line>
 				<staticText>
 					<reportElement
 						x="15"
@@ -237,6 +227,16 @@ WHERE servidor.`serv_cod` = $P{COD_SERV}]]></queryString>
 					</textElement>
 				<text><![CDATA[Conta Bancaria]]></text>
 				</staticText>
+				<line direction="BottomUp">
+					<reportElement
+						x="12"
+						y="32"
+						width="497"
+						height="0"
+						key="line-2"
+						positionType="Float"/>
+					<graphicElement stretchType="NoStretch"/>
+				</line>
 			</band>
 		</detail>
 		<columnFooter>
