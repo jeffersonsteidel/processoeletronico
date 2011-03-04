@@ -43,16 +43,6 @@ WHERE
 
 		<background>
 			<band height="46"  isSplitAllowed="true" >
-				<line direction="BottomUp">
-					<reportElement
-						x="14"
-						y="43"
-						width="497"
-						height="0"
-						key="line-1"
-						positionType="Float"/>
-					<graphicElement stretchType="NoStretch"/>
-				</line>
 				<staticText>
 					<reportElement
 						x="18"
@@ -67,6 +57,16 @@ WHERE
 					</textElement>
 				<text><![CDATA[Emprego]]></text>
 				</staticText>
+				<line direction="BottomUp">
+					<reportElement
+						x="16"
+						y="42"
+						width="497"
+						height="0"
+						key="line-1"
+						positionType="Float"/>
+					<graphicElement stretchType="NoStretch"/>
+				</line>
 			</band>
 		</background>
 		<title>
@@ -163,9 +163,9 @@ WHERE
 				</staticText>
 				<textField isStretchWithOverflow="false" pattern="" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
-						x="263"
+						x="323"
 						y="53"
-						width="239"
+						width="208"
 						height="17"
 						forecolor="#000000"
 						backcolor="#FFFFFF"
@@ -182,7 +182,7 @@ WHERE
 				</textField>
 				<staticText>
 					<reportElement
-						x="214"
+						x="274"
 						y="53"
 						width="49"
 						height="17"
@@ -202,9 +202,9 @@ WHERE
 				</staticText>
 				<textField isStretchWithOverflow="false" pattern="" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
-						x="287"
+						x="347"
 						y="70"
-						width="215"
+						width="184"
 						height="17"
 						forecolor="#000000"
 						backcolor="#FFFFFF"
@@ -221,7 +221,7 @@ WHERE
 				</textField>
 				<staticText>
 					<reportElement
-						x="214"
+						x="274"
 						y="70"
 						width="73"
 						height="17"

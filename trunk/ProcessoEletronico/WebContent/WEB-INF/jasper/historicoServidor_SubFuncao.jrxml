@@ -62,9 +62,9 @@ WHERE
 			<band height="87"  isSplitAllowed="true" >
 				<textField isStretchWithOverflow="false" pattern="dd/MM/yyyy" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
-						x="346"
+						x="341"
 						y="60"
-						width="131"
+						width="136"
 						height="17"
 						forecolor="#000000"
 						backcolor="#FFFFFF"
@@ -81,7 +81,7 @@ WHERE
 				</textField>
 				<staticText>
 					<reportElement
-						x="277"
+						x="272"
 						y="60"
 						width="69"
 						height="17"
@@ -101,9 +101,9 @@ WHERE
 				</staticText>
 				<textField isStretchWithOverflow="false" pattern="" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
-						x="320"
+						x="315"
 						y="43"
-						width="157"
+						width="162"
 						height="17"
 						forecolor="#000000"
 						backcolor="#FFFFFF"
@@ -120,7 +120,7 @@ WHERE
 				</textField>
 				<staticText>
 					<reportElement
-						x="277"
+						x="272"
 						y="43"
 						width="43"
 						height="17"
@@ -142,7 +142,7 @@ WHERE
 					<reportElement
 						x="100"
 						y="60"
-						width="171"
+						width="153"
 						height="17"
 						forecolor="#000000"
 						backcolor="#FFFFFF"
@@ -181,7 +181,7 @@ WHERE
 					<reportElement
 						x="83"
 						y="43"
-						width="188"
+						width="170"
 						height="17"
 						forecolor="#000000"
 						backcolor="#FFFFFF"
@@ -216,16 +216,6 @@ WHERE
 					</textElement>
 				<text><![CDATA[Tipo Função:]]></text>
 				</staticText>
-				<line direction="BottomUp">
-					<reportElement
-						x="13"
-						y="28"
-						width="497"
-						height="0"
-						key="line-1"
-						positionType="Float"/>
-					<graphicElement stretchType="NoStretch"/>
-				</line>
 				<staticText>
 					<reportElement
 						x="17"
@@ -240,6 +230,16 @@ WHERE
 					</textElement>
 				<text><![CDATA[Função]]></text>
 				</staticText>
+				<line direction="BottomUp">
+					<reportElement
+						x="14"
+						y="28"
+						width="497"
+						height="0"
+						key="line-1"
+						positionType="Float"/>
+					<graphicElement stretchType="NoStretch"/>
+				</line>
 			</band>
 		</detail>
 		<columnFooter>

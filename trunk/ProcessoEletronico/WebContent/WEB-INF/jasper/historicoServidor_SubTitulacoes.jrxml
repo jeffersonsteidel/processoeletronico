@@ -61,16 +61,6 @@ WHERE
 
 		<background>
 			<band height="31"  isSplitAllowed="true" >
-				<line direction="BottomUp">
-					<reportElement
-						x="13"
-						y="30"
-						width="497"
-						height="0"
-						key="line-1"
-						positionType="Float"/>
-					<graphicElement stretchType="NoStretch"/>
-				</line>
 				<staticText>
 					<reportElement
 						x="17"
@@ -85,6 +75,16 @@ WHERE
 					</textElement>
 				<text><![CDATA[Titulação]]></text>
 				</staticText>
+				<line direction="BottomUp">
+					<reportElement
+						x="15"
+						y="30"
+						width="497"
+						height="0"
+						key="line-1"
+						positionType="Float"/>
+					<graphicElement stretchType="NoStretch"/>
+				</line>
 			</band>
 		</background>
 		<title>

@@ -64,16 +64,7 @@ WHERE
 	<field name="estado_est_uf" class="java.lang.String"/>
 
 		<background>
-			<band height="31"  isSplitAllowed="true" >
-				<line direction="BottomUp">
-					<reportElement
-						x="14"
-						y="30"
-						width="497"
-						height="0"
-						key="line-1"/>
-					<graphicElement stretchType="NoStretch"/>
-				</line>
+			<band height="32"  isSplitAllowed="true" >
 				<staticText>
 					<reportElement
 						x="18"
@@ -87,6 +78,16 @@ WHERE
 					</textElement>
 				<text><![CDATA[Dependente]]></text>
 				</staticText>
+				<line direction="BottomUp">
+					<reportElement
+						x="16"
+						y="30"
+						width="497"
+						height="0"
+						key="line-1"
+						positionType="Float"/>
+					<graphicElement stretchType="NoStretch"/>
+				</line>
 			</band>
 		</background>
 		<title>
