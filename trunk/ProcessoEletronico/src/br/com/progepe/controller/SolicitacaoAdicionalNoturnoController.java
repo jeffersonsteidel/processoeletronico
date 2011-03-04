@@ -634,7 +634,8 @@ public class SolicitacaoAdicionalNoturnoController  {
 		listaAdicionalTecnicos = new ArrayList<AdicionalNoturno>();
 		adicionalNoturno = new AdicionalNoturno();
 		adicionalNoturno.setServidor(new Servidor());
-		solicitacaoAdicionalNoturno.setLotacao(new Lotacao());
+		solicitacaoAdicionalNoturno.setLotacao(solicitacaoAdicionalNoturno
+				.getSolicitante().getLotacao());
 	}
 
 	public void encaminharDocentes() throws IOException, ParseException {

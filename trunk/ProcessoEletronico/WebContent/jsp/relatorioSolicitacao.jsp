@@ -29,13 +29,13 @@
 
 			<h:panelGrid columns="4">
 
-				<h:outputText value="Data Perido Inicio: " />
+				<h:outputText value="Data de Abertura Entre: " />
 				<rich:calendar value="#{relatorioController.periodoInicio}"
 					locale="" popup="true" datePattern="dd/MM/yyyy" showApplyButton="#"
 					cellWidth="12px" cellHeight="12px" style="width:80px"
 					inputSize="12" />
 
-				<h:outputText value="Data Perido Fim: " />
+				<h:outputText value="à" />
 				<rich:calendar value="#{relatorioController.periodoFinal}" locale=""
 					popup="true" datePattern="dd/MM/yyyy" showApplyButton="#"
 					cellWidth="12px" cellHeight="12px" style="width:80px"
