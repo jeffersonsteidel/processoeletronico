@@ -23,7 +23,7 @@ import br.com.progepe.entity.StatusSolicitacao;
 import br.com.progepe.entity.TipoSolicitacao;
 import br.com.progepe.jsfUtil.DataUtil;
 
-public class RelatorioController  {
+public class RelatorioController {
 
 	private Servidor servidor;
 	private Servidor atendente;
@@ -153,11 +153,11 @@ public class RelatorioController  {
 	}
 
 	public void buscarServidorAtendente() throws IOException, ParseException {
-		if(atendente.getSiape() != 0){
-			atendente = (Servidor) ServidorDAO.getInstance()
-			.refreshBySiape(atendente);
+		if (atendente.getSiape() != 0) {
+			atendente = (Servidor) ServidorDAO.getInstance().refreshBySiape(
+					atendente);
 		}
-		
+
 		if (atendente == null) {
 			atendente = (new Servidor());
 			FacesMessage message = new FacesMessage(
@@ -166,17 +166,17 @@ public class RelatorioController  {
 			FacesContext.getCurrentInstance().addMessage("", message);
 			return;
 		}
-		if(atendente.getSiape() == 0 ){
+		if (atendente.getSiape() == 0) {
 			atendente = (new Servidor());
 		}
 	}
-	
+
 	public void buscarServidorSolicitante() throws IOException, ParseException {
-		if(solicitante.getSiape() != 0){
-		solicitante = (Servidor) ServidorDAO.getInstance()
-		.refreshBySiape(solicitante);
+		if (solicitante.getSiape() != 0) {
+			solicitante = (Servidor) ServidorDAO.getInstance().refreshBySiape(
+					solicitante);
 		}
-		
+
 		if (solicitante == null) {
 			solicitante = (new Servidor());
 			FacesMessage message = new FacesMessage(
@@ -185,11 +185,11 @@ public class RelatorioController  {
 			FacesContext.getCurrentInstance().addMessage("", message);
 			return;
 		}
-		if(solicitante.getSiape() == 0 ){
+		if (solicitante.getSiape() == 0) {
 			solicitante = (new Servidor());
 		}
 	}
-	
+
 	public String abrirRelatorioSolicitacaoByFiltro() throws Exception {
 		try {
 			atendente = new Servidor();
@@ -251,16 +251,16 @@ public class RelatorioController  {
 		}
 		return tipoSolicitacoes;
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	public List<SelectItem> listarTiposStatus() {
 		tipoStatus = new ArrayList<SelectItem>();
 		List<StatusSolicitacao> tipoStatusList = new ArrayList<StatusSolicitacao>();
 		tipoStatusList = DAO.getInstance().list(StatusSolicitacao.class,
-		"descricao");
+				"descricao");
 		for (StatusSolicitacao status : tipoStatusList) {
-			tipoStatus.add(new SelectItem(status.getCodigo(),
-					status.getDescricao()));
+			tipoStatus.add(new SelectItem(status.getCodigo(), status
+					.getDescricao()));
 		}
 		return tipoStatus;
 	}
@@ -363,6 +363,26 @@ public class RelatorioController  {
 	public String gerarRelatorioServidorSolicitacaoByFiltro()
 			throws ClassNotFoundException, SQLException, JRException {
 
+		if (getPeriodoInicio() != null && getPeriodoFinal() == null
+				|| getPeriodoInicio() == null && getPeriodoFinal() != null) {
+			FacesMessage message = new FacesMessage(
+					FacesMessage.SEVERITY_ERROR,
+					"Relatório por Filtro Data, Obrigatório o Preenchimento dos Campos Data!",
+					"Relatório por Filtro Data, Obrigatório o Preenchimento dos Campos Data!");
+			FacesContext.getCurrentInstance().addMessage("", message);
+			return "";
+		}
+		if (getPeriodoInicio() != null || getPeriodoFinal() != null) {
+			if (getPeriodoInicio().after(getPeriodoFinal())) {
+				FacesMessage message = new FacesMessage(
+						FacesMessage.SEVERITY_ERROR,
+						"A Data de Filtro Final deve ser maior que Data de Filtro Inicial!",
+						"A Data de Filtro Final deve ser maior que Data de Filtro Inicial!");
+				FacesContext.getCurrentInstance().addMessage("", message);
+				return "";
+			}
+		}
+
 		String sql = "SELECT solicitacao.solic_dt_abertura AS solicitacao_solic_dt_abertura,"
 				+ " solicitacao.solic_dt_atendimento AS solicitacao_solic_dt_atendimento,"
 				+ " solicitacao.solic_dt_fechamento AS solicitacao_solic_dt_fechamento,"
@@ -375,36 +395,36 @@ public class RelatorioController  {
 				+ " INNER JOIN servidor AS servidorSolicitante  ON solicitacao.serv_cod_solic = servidorSolicitante.serv_cod"
 				+ " LEFT JOIN servidor AS servidorAt  ON solicitacao.serv_cod_atendente = servidorAt.serv_siape"
 				+ " WHERE 1 = 1";
-		
-		
+
 		if (periodoInicio != null) {
-			sql += " and solicitacao.solic_dt_abertura > '" + DataUtil.format(periodoInicio, "yyyy-MM-dd") +"'";
+			sql += " and solicitacao.solic_dt_abertura >= '"
+					+ DataUtil.format(periodoInicio, "yyyy-MM-dd") + "'";
 		}
-		
+
 		if (periodoFinal != null) {
-			sql += " and solicitacao.solic_dt_abertura < '" + DataUtil.format(periodoFinal, "yyyy-MM-dd") +"'";
+			sql += " and solicitacao.solic_dt_abertura <= '"
+					+ DataUtil.format(periodoFinal, "yyyy-MM-dd") + "'";
 		}
-		
-		
+
 		if (atendente != null && atendente.getSiape() != 0) {
-			sql += " and servidorAt.serv_nome = '" + atendente.getNome(); 
-			sql += "'";
+			sql += " and servidorAt.serv_nome = '" + atendente.getNome() + "'";
 		}
-		
-		if (solicitante != null && solicitante.getSiape() != 0 ) {
-			sql += " and servidorSolicitante.serv_nome = '"  + solicitante.getNome()+ "'";
+
+		if (solicitante != null && solicitante.getSiape() != 0) {
+			sql += " and servidorSolicitante.serv_nome = '"
+					+ solicitante.getNome() + "'";
 		}
-		
+
 		if (solicitacao != null && solicitacao != 0) {
 			sql += " and tiposolicitacao.tipo_solic_cod = " + solicitacao;
 		}
-		
+
 		if (status != null && status != 0) {
 			sql += " and solicitacao.sta_solic_cod = " + status;
 		}
-		
+
 		sql += " ORDER BY solicitacao.solic_cod asc; ";
-		
+
 		JasperMB jasperMB = new JasperMB();
 		jasperMB.criaConexao();
 		HashMap parametros = new HashMap();
