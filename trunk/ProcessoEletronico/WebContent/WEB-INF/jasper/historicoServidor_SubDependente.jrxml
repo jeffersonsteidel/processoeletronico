@@ -108,7 +108,7 @@ WHERE
 					<reportElement
 						x="124"
 						y="47"
-						width="142"
+						width="387"
 						height="17"
 						forecolor="#000000"
 						backcolor="#FFFFFF"
@@ -150,7 +150,7 @@ WHERE
 					<reportElement
 						x="194"
 						y="64"
-						width="72"
+						width="317"
 						height="17"
 						forecolor="#000000"
 						backcolor="#FFFFFF"
@@ -192,7 +192,7 @@ WHERE
 					<reportElement
 						x="109"
 						y="97"
-						width="157"
+						width="402"
 						height="17"
 						forecolor="#000000"
 						backcolor="#FFFFFF"
@@ -234,7 +234,7 @@ WHERE
 					<reportElement
 						x="124"
 						y="199"
-						width="142"
+						width="387"
 						height="17"
 						forecolor="#000000"
 						backcolor="#FFFFFF"
@@ -276,7 +276,7 @@ WHERE
 					<reportElement
 						x="102"
 						y="81"
-						width="164"
+						width="409"
 						height="16"
 						forecolor="#000000"
 						backcolor="#FFFFFF"
@@ -362,7 +362,7 @@ WHERE
 					<reportElement
 						x="131"
 						y="284"
-						width="135"
+						width="380"
 						height="17"
 						forecolor="#000000"
 						backcolor="#FFFFFF"
@@ -406,7 +406,7 @@ WHERE
 					<reportElement
 						x="121"
 						y="114"
-						width="126"
+						width="390"
 						height="17"
 						forecolor="#000000"
 						backcolor="#FFFFFF"
@@ -448,7 +448,7 @@ WHERE
 					<reportElement
 						x="115"
 						y="131"
-						width="132"
+						width="396"
 						height="17"
 						forecolor="#000000"
 						backcolor="#FFFFFF"
@@ -490,7 +490,7 @@ WHERE
 					<reportElement
 						x="140"
 						y="216"
-						width="126"
+						width="371"
 						height="17"
 						forecolor="#000000"
 						backcolor="#FFFFFF"
@@ -534,7 +534,7 @@ WHERE
 					<reportElement
 						x="143"
 						y="233"
-						width="123"
+						width="368"
 						height="17"
 						forecolor="#000000"
 						backcolor="#FFFFFF"
@@ -578,7 +578,7 @@ WHERE
 					<reportElement
 						x="49"
 						y="267"
-						width="217"
+						width="462"
 						height="17"
 						forecolor="#000000"
 						backcolor="#FFFFFF"
@@ -622,7 +622,7 @@ WHERE
 					<reportElement
 						x="143"
 						y="148"
-						width="104"
+						width="368"
 						height="17"
 						forecolor="#000000"
 						backcolor="#FFFFFF"
@@ -706,7 +706,7 @@ WHERE
 					<reportElement
 						x="105"
 						y="165"
-						width="142"
+						width="406"
 						height="17"
 						forecolor="#000000"
 						backcolor="#FFFFFF"
@@ -727,7 +727,7 @@ WHERE
 					<reportElement
 						x="135"
 						y="182"
-						width="112"
+						width="376"
 						height="17"
 						forecolor="#000000"
 						backcolor="#FFFFFF"

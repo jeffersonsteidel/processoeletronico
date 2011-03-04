@@ -669,7 +669,7 @@ WHERE
 					<reportElement
 						x="438"
 						y="131"
-						width="77"
+						width="89"
 						height="17"
 						forecolor="#000000"
 						backcolor="#FFFFFF"
