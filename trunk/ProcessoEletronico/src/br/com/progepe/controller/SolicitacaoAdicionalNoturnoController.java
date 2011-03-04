@@ -621,6 +621,7 @@ public class SolicitacaoAdicionalNoturnoController  {
 		solicitacaoAdicionalNoturno = new SolicitacaoAdicionalNoturno();
 		solicitacaoAdicionalNoturno.setLotacao(new Lotacao());
 		solicitacaoAdicionalNoturno.setLotacao(lotacaoTemp);
+		buscarServidorLogado();
 	}
 
 	public void salvarAdicionalTecnico() throws Exception {
@@ -640,6 +641,7 @@ public class SolicitacaoAdicionalNoturnoController  {
 		listaAdicionalTecnicos = new ArrayList<AdicionalNoturno>();
 		adicionalNoturno = new AdicionalNoturno();
 		adicionalNoturno.setServidor(new Servidor());
+		buscarServidorLogado();
 	}
 
 	public void encaminharDocentes() throws IOException, ParseException {
