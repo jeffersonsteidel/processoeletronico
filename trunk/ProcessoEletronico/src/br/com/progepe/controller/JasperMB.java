@@ -60,7 +60,8 @@ public class JasperMB {
 	}
 
 	@SuppressWarnings("rawtypes")
-	private void preenchePdf(JasperPrint print, String nomeDoJasper, HashMap parametros) throws JRException, Exception {
+	private void preenchePdf(JasperPrint print, String nomeDoJasper,
+			HashMap parametros) throws JRException, Exception {
 		ExternalContext context = FacesContext.getCurrentInstance()
 				.getExternalContext(); // Context
 		HttpServletResponse response = (HttpServletResponse) context
@@ -72,6 +73,11 @@ public class JasperMB {
 			print = JasperFillManager.fillReport(jasper, parametros, conexao);
 			arquivo = JasperExportManager.exportReportToPdf(print);
 
+			response.setHeader(
+					"Content-Disposition",
+					"attachment; filename="
+							+ nomeDoJasper.replace("/WEB-INF/jasper/", "")
+									.replace(".jasper", "") + ".pdf");
 			response.setContentType("application/pdf");
 			response.setContentLength(arquivo.length);
 
@@ -89,8 +95,8 @@ public class JasperMB {
 	}
 
 	@SuppressWarnings("rawtypes")
-	public void geraRelatorioPassandoResultSet(HashMap parametros,String nomeDoJasper)
-			throws JRException {
+	public void geraRelatorioPassandoResultSet(HashMap parametros,
+			String nomeDoJasper) throws JRException {
 		saida = null;
 		String jasper = getDiretorioReal(nomeDoJasper);
 		Connection conexao = null;
