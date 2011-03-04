@@ -79,7 +79,7 @@ WHERE  servidor.`serv_cod` = $P{COD_SERV}]]></queryString>
 					<textElement textAlignment="Center">
 						<font size="30"/>
 					</textElement>
-				<text><![CDATA[Histórico Servidor]]></text>
+				<text><![CDATA[Histórico do Servidor]]></text>
 				</staticText>
 				<subreport  isUsingCache="true">
 					<reportElement

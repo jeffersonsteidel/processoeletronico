@@ -540,9 +540,9 @@ WHERE servidor.`serv_cod` = $P{COD_SERV}]]></queryString>
 				</staticText>
 				<textField isStretchWithOverflow="false" pattern="" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
-						x="349"
+						x="356"
 						y="82"
-						width="172"
+						width="165"
 						height="17"
 						forecolor="#000000"
 						backcolor="#FFFFFF"
@@ -561,7 +561,7 @@ WHERE servidor.`serv_cod` = $P{COD_SERV}]]></queryString>
 					<reportElement
 						x="273"
 						y="82"
-						width="76"
+						width="83"
 						height="17"
 						forecolor="#000000"
 						backcolor="#FFFFFF"
