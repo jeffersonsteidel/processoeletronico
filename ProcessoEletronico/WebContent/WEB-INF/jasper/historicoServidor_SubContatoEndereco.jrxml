@@ -86,7 +86,7 @@ WHERE servidor.`serv_cod` = $P{COD_SERV}]]></queryString>
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 </box>
 					<textElement>
-						<font size="10"/>
+						<font size="8"/>
 					</textElement>
 				<textFieldExpression   class="java.lang.String"><![CDATA[($F{endereco_end_rua}.trim().equals("") ? "Nao informado" : $F{endereco_end_rua})]]></textFieldExpression>
 				</textField>
@@ -105,7 +105,7 @@ WHERE servidor.`serv_cod` = $P{COD_SERV}]]></queryString>
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 </box>
 					<textElement>
-						<font size="10"/>
+						<font size="8"/>
 					</textElement>
 				<textFieldExpression   class="java.lang.String"><![CDATA[($F{endereco_end_bairro}.trim().equals("") ? "Nao informado" : $F{endereco_end_bairro})]]></textFieldExpression>
 				</textField>
@@ -125,7 +125,7 @@ WHERE servidor.`serv_cod` = $P{COD_SERV}]]></queryString>
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 </box>
 					<textElement>
-						<font pdfFontName="Helvetica-Bold" size="10" isBold="true"/>
+						<font pdfFontName="Helvetica-Bold" size="8" isBold="true"/>
 					</textElement>
 				<text><![CDATA[Bairro:]]></text>
 				</staticText>
@@ -144,7 +144,7 @@ WHERE servidor.`serv_cod` = $P{COD_SERV}]]></queryString>
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 </box>
 					<textElement>
-						<font size="10"/>
+						<font size="8"/>
 					</textElement>
 				<textFieldExpression   class="java.lang.String"><![CDATA[($F{endereco_end_cep}.trim().equals("") ? "Nao informado" : $F{endereco_end_cep})]]></textFieldExpression>
 				</textField>
@@ -164,7 +164,7 @@ WHERE servidor.`serv_cod` = $P{COD_SERV}]]></queryString>
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 </box>
 					<textElement>
-						<font pdfFontName="Helvetica-Bold" size="10" isBold="true"/>
+						<font pdfFontName="Helvetica-Bold" size="8" isBold="true"/>
 					</textElement>
 				<text><![CDATA[CEP:]]></text>
 				</staticText>
@@ -183,7 +183,7 @@ WHERE servidor.`serv_cod` = $P{COD_SERV}]]></queryString>
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 </box>
 					<textElement>
-						<font size="10"/>
+						<font size="8"/>
 					</textElement>
 				<textFieldExpression   class="java.lang.String"><![CDATA[($F{endereco_end_num}.trim().equals("") ? "Nao informado" : $F{endereco_end_num})]]></textFieldExpression>
 				</textField>
@@ -203,7 +203,7 @@ WHERE servidor.`serv_cod` = $P{COD_SERV}]]></queryString>
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 </box>
 					<textElement>
-						<font pdfFontName="Helvetica-Bold" size="10" isBold="true"/>
+						<font pdfFontName="Helvetica-Bold" size="8" isBold="true"/>
 					</textElement>
 				<text><![CDATA[Número:]]></text>
 				</staticText>
@@ -222,7 +222,7 @@ WHERE servidor.`serv_cod` = $P{COD_SERV}]]></queryString>
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 </box>
 					<textElement>
-						<font size="10"/>
+						<font size="8"/>
 					</textElement>
 				<textFieldExpression   class="java.lang.String"><![CDATA[($F{endereco_end_comp}.trim().equals("") ? "Nao informado" : $F{endereco_end_comp})]]></textFieldExpression>
 				</textField>
@@ -242,7 +242,7 @@ WHERE servidor.`serv_cod` = $P{COD_SERV}]]></queryString>
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 </box>
 					<textElement>
-						<font pdfFontName="Helvetica-Bold" size="10" isBold="true"/>
+						<font pdfFontName="Helvetica-Bold" size="8" isBold="true"/>
 					</textElement>
 				<text><![CDATA[Complemento:]]></text>
 				</staticText>
@@ -261,7 +261,7 @@ WHERE servidor.`serv_cod` = $P{COD_SERV}]]></queryString>
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 </box>
 					<textElement>
-						<font size="10"/>
+						<font size="8"/>
 					</textElement>
 				<textFieldExpression   class="java.lang.String"><![CDATA[($F{cidade_cid_desc}.trim().equals("") ? "Nao informado" : $F{cidade_cid_desc})]]></textFieldExpression>
 				</textField>
@@ -281,7 +281,7 @@ WHERE servidor.`serv_cod` = $P{COD_SERV}]]></queryString>
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 </box>
 					<textElement>
-						<font pdfFontName="Helvetica-Bold" size="10" isBold="true"/>
+						<font pdfFontName="Helvetica-Bold" size="8" isBold="true"/>
 					</textElement>
 				<text><![CDATA[Cidade:]]></text>
 				</staticText>
@@ -300,7 +300,7 @@ WHERE servidor.`serv_cod` = $P{COD_SERV}]]></queryString>
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 </box>
 					<textElement>
-						<font size="10"/>
+						<font size="8"/>
 					</textElement>
 				<textFieldExpression   class="java.lang.String"><![CDATA[($F{estado_est_desc}.trim().equals("") ? "Nao informado" : $F{estado_est_desc})]]></textFieldExpression>
 				</textField>
@@ -320,7 +320,7 @@ WHERE servidor.`serv_cod` = $P{COD_SERV}]]></queryString>
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 </box>
 					<textElement>
-						<font pdfFontName="Helvetica-Bold" size="10" isBold="true"/>
+						<font pdfFontName="Helvetica-Bold" size="8" isBold="true"/>
 					</textElement>
 				<text><![CDATA[Estado:]]></text>
 				</staticText>
@@ -339,7 +339,7 @@ WHERE servidor.`serv_cod` = $P{COD_SERV}]]></queryString>
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 </box>
 					<textElement>
-						<font size="10"/>
+						<font size="8"/>
 					</textElement>
 				<textFieldExpression   class="java.lang.String"><![CDATA[$F{servidor_serv_tel_cel}]]></textFieldExpression>
 				</textField>
@@ -362,7 +362,7 @@ WHERE servidor.`serv_cod` = $P{COD_SERV}]]></queryString>
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 </box>
 					<textElement>
-						<font pdfFontName="Helvetica-Bold" size="10" isBold="true"/>
+						<font pdfFontName="Helvetica-Bold" size="8" isBold="true"/>
 					</textElement>
 				<text><![CDATA[Celular:]]></text>
 				</staticText>
@@ -381,7 +381,7 @@ WHERE servidor.`serv_cod` = $P{COD_SERV}]]></queryString>
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 </box>
 					<textElement>
-						<font size="10"/>
+						<font size="8"/>
 					</textElement>
 				<textFieldExpression   class="java.lang.String"><![CDATA[$F{servidor_serv_tel_fixo}]]></textFieldExpression>
 				</textField>
@@ -404,7 +404,7 @@ WHERE servidor.`serv_cod` = $P{COD_SERV}]]></queryString>
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 </box>
 					<textElement>
-						<font pdfFontName="Helvetica-Bold" size="10" isBold="true"/>
+						<font pdfFontName="Helvetica-Bold" size="8" isBold="true"/>
 					</textElement>
 				<text><![CDATA[Telefone:]]></text>
 				</staticText>
@@ -423,7 +423,7 @@ WHERE servidor.`serv_cod` = $P{COD_SERV}]]></queryString>
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 </box>
 					<textElement>
-						<font size="10"/>
+						<font size="8"/>
 					</textElement>
 				<textFieldExpression   class="java.lang.String"><![CDATA[$F{servidor_serv_email}]]></textFieldExpression>
 				</textField>
@@ -445,7 +445,7 @@ WHERE servidor.`serv_cod` = $P{COD_SERV}]]></queryString>
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 </box>
 					<textElement>
-						<font pdfFontName="Helvetica-Bold" size="10" isBold="true"/>
+						<font pdfFontName="Helvetica-Bold" size="8" isBold="true"/>
 					</textElement>
 				<text><![CDATA[E-mail:]]></text>
 				</staticText>
@@ -465,7 +465,7 @@ WHERE servidor.`serv_cod` = $P{COD_SERV}]]></queryString>
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 </box>
 					<textElement>
-						<font pdfFontName="Helvetica-Bold" size="10" isBold="true"/>
+						<font pdfFontName="Helvetica-Bold" size="8" isBold="true"/>
 					</textElement>
 				<text><![CDATA[Rua:]]></text>
 				</staticText>

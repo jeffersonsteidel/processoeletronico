@@ -188,7 +188,7 @@ ORDER BY
 				</staticText>
 				<staticText>
 					<reportElement
-						x="372"
+						x="368"
 						y="43"
 						width="35"
 						height="14"
@@ -208,9 +208,9 @@ ORDER BY
 				</staticText>
 				<staticText>
 					<reportElement
-						x="635"
+						x="629"
 						y="43"
-						width="73"
+						width="92"
 						height="14"
 						forecolor="#000000"
 						backcolor="#FFFFFF"
@@ -228,7 +228,7 @@ ORDER BY
 				</staticText>
 				<staticText>
 					<reportElement
-						x="412"
+						x="409"
 						y="43"
 						width="93"
 						height="14"
@@ -248,7 +248,7 @@ ORDER BY
 				</staticText>
 				<staticText>
 					<reportElement
-						x="511"
+						x="507"
 						y="43"
 						width="118"
 						height="14"
@@ -268,7 +268,7 @@ ORDER BY
 				</staticText>
 				<staticText>
 					<reportElement
-						x="713"
+						x="721"
 						y="43"
 						width="60"
 						height="14"
@@ -346,7 +346,7 @@ ORDER BY
 			<band height="20"  isSplitAllowed="true" >
 				<textField isStretchWithOverflow="true" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
-						x="635"
+						x="629"
 						y="1"
 						width="72"
 						height="18"
@@ -372,7 +372,7 @@ ORDER BY
 				</textField>
 				<textField isStretchWithOverflow="true" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
-						x="372"
+						x="368"
 						y="1"
 						width="35"
 						height="18"
@@ -385,7 +385,7 @@ ORDER BY
 				</textField>
 				<textField isStretchWithOverflow="true" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
-						x="412"
+						x="409"
 						y="1"
 						width="93"
 						height="18"
@@ -398,7 +398,7 @@ ORDER BY
 				</textField>
 				<textField isStretchWithOverflow="true" pattern="dd/MM/yyyy" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
-						x="511"
+						x="507"
 						y="1"
 						width="99"
 						height="18"
@@ -411,7 +411,7 @@ ORDER BY
 				</textField>
 				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
-						x="713"
+						x="721"
 						y="1"
 						width="60"
 						height="18"

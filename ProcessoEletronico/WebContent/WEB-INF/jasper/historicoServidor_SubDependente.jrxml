@@ -121,7 +121,7 @@ WHERE
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 </box>
 					<textElement>
-						<font size="12"/>
+						<font size="10"/>
 					</textElement>
 				<textFieldExpression   class="java.lang.String"><![CDATA[$F{dependente_dep_nome}]]></textFieldExpression>
 				</textField>
@@ -163,7 +163,7 @@ WHERE
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 </box>
 					<textElement>
-						<font size="12"/>
+						<font size="10"/>
 					</textElement>
 				<textFieldExpression   class="java.util.Date"><![CDATA[$F{dependente_dep_data_nasc}]]></textFieldExpression>
 				</textField>
@@ -205,7 +205,7 @@ WHERE
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 </box>
 					<textElement>
-						<font size="12"/>
+						<font size="10"/>
 					</textElement>
 				<textFieldExpression   class="java.lang.String"><![CDATA[($F{dependente_dep_rg}.trim().equals("") ? "Nao informado" : $F{dependente_dep_rg})]]></textFieldExpression>
 				</textField>
@@ -247,7 +247,7 @@ WHERE
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 </box>
 					<textElement>
-						<font size="12"/>
+						<font size="10"/>
 					</textElement>
 				<textFieldExpression   class="java.lang.String"><![CDATA[($F{dependente_dep_rg_org_emi}.trim().equals("") ? "Nao informado" : $F{dependente_dep_rg_org_emi})]]></textFieldExpression>
 				</textField>
@@ -289,7 +289,7 @@ WHERE
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 </box>
 					<textElement>
-						<font size="12"/>
+						<font size="10"/>
 					</textElement>
 				<textFieldExpression   class="java.lang.String"><![CDATA[$F{grauparentesco_grau_par_desc}]]></textFieldExpression>
 				</textField>
@@ -331,7 +331,7 @@ WHERE
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 </box>
 					<textElement>
-						<font size="12"/>
+						<font size="10"/>
 					</textElement>
 				<textFieldExpression   class="java.lang.String"><![CDATA[$F{dependente_dep_faculdade}]]></textFieldExpression>
 				</textField>
@@ -375,7 +375,7 @@ WHERE
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 </box>
 					<textElement>
-						<font size="12"/>
+						<font size="10"/>
 					</textElement>
 				<textFieldExpression   class="java.sql.Timestamp"><![CDATA[$F{dependente_dep_data_fechamento}]]></textFieldExpression>
 				</textField>
@@ -419,7 +419,7 @@ WHERE
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 </box>
 					<textElement>
-						<font size="12"/>
+						<font size="10"/>
 					</textElement>
 				<textFieldExpression   class="java.lang.String"><![CDATA[$F{dependente_dep_sexo}]]></textFieldExpression>
 				</textField>
@@ -461,7 +461,7 @@ WHERE
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 </box>
 					<textElement>
-						<font size="12"/>
+						<font size="10"/>
 					</textElement>
 				<textFieldExpression   class="java.lang.String"><![CDATA[$F{dependente_dep_cpf}]]></textFieldExpression>
 				</textField>
@@ -503,7 +503,7 @@ WHERE
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 </box>
 					<textElement>
-						<font size="12"/>
+						<font size="10"/>
 					</textElement>
 				<textFieldExpression   class="java.lang.String"><![CDATA[$F{estado_est_uf}]]></textFieldExpression>
 				</textField>
@@ -547,7 +547,7 @@ WHERE
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 </box>
 					<textElement>
-						<font size="12"/>
+						<font size="10"/>
 					</textElement>
 				<textFieldExpression   class="java.util.Date"><![CDATA[$F{dependente_dep_rg_data_exp}]]></textFieldExpression>
 				</textField>
@@ -591,7 +591,7 @@ WHERE
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 </box>
 					<textElement>
-						<font size="12"/>
+						<font size="10"/>
 					</textElement>
 				<textFieldExpression   class="java.lang.String"><![CDATA[$F{dependente_dep_curso}]]></textFieldExpression>
 				</textField>
