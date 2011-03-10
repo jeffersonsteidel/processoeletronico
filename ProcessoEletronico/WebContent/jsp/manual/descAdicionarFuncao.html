@@ -2,69 +2,132 @@
 <body>
 <center>
 <h1>Manual Do Usuário</h1>
-<p><font size='4'>ADICIONAR FUNÇÃO</font></p>
-</center>
-<b>*É necessário permissão de Administrador para visualizar esta
-tela.</b>
+<p><font size='5'>ADICIONAR FUNÇÃO</font></p>
 <br>
-<br>
-Formulário que deve ser preenchido, de acordo com a tabela abaixo, caso
-o usuário logado deseje adicionar uma nova função à um determinado
-servidor.
-<br>
-<br>
-<center>
-<table name="adicionarFuncao" border="1">
-	<th><b>Campo</b></th>
-	<th><b>Descrição</b></th>
-	<th><b>Obrigatório</b></th>
-
+<table border="1" style="width: 900px">
 	<tr>
+		<td style="width: 200px"><b>Módulo</b></td>
+		<td>Servidor | Adicionar Função</td>
+	</tr>
+	<tr>
+		<td style="width: 200px"><b>Perfil</b></td>
+		<td>Administrador</td>
+	</tr>
+	<tr>
+		<td style="width: 200px"><b>Última alteração</b></td>
+		<td>10/12/2010</td>
+	</tr>
+	<tr>
+		<td style="width: 200px"><b>Responsável</b></td>
+		<td>Jefferson Steidel dos Santos</td>
+	</tr>
+	<tr>
+		<td style="width: 200px"><b>Contato</b></td>
+		<td>jefferson.steidel@ifpr.edu.br</td>
+	</tr>
+</table>
+<br>
+<font size='3'><b>Objetivo:</b></font>
+<br>
+Atribuir uma função à um servidor.
+<br>
+<br>
+<font size='3'><b>Procedimento:</b></font>
+<br>
+1. Preencher os seguintes campos:
+<table border="1" style="width: 900px">
+	<tr>
+		<td><b></b></td>
+		<td>Descrição</td>
+		<td>Tipo</td>
+		<td>Obrigatório</td>
+	</tr>
+<tr>
 		<td>Tipo Função</td>
 		<td>Selecione o tipo da função que será adicionada ao servidor</td>
+		<td>Alfabético</td>
 		<td>SIM</td>
 	</tr>
 	<tr>
 		<td>Função*</td>
 		<td>Selecione a função que será adicionada ao servidor</td>
+		<td>Alfabético</td>
 		<td>SIM</td>
 	</tr>
 	<tr>
 		<td>Local Exercício</td>
 		<td>Selecione o campus no qual o servidor exerce a função
 		selecionada</td>
+		<td>Alfabético</td>
 		<td>SIM</td>
 	</tr>
 	<tr>
 		<td>Siape do Servidor</td>
 		<td>Digite o siape do servidor que exerce a função selecionada</td>
+		<td>Numérico</td>
 		<td>SIM</td>
 	</tr>
 	<tr>
 		<td>Nome do Servidor</td>
 		<td><i>Campo gerado automaticamente de acordo com o Siape
 		digitado</i></td>
+		<td>Alfabético</td>
 		<td>NÃO</td>
 	</tr>
 	<tr>
 		<td>Data de Entrada</td>
 		<td>Data que o servidor começou a trabalhar na função selecionada
-		no formato 'dd/mm/aaaa' (para acessar o calendário, clica-se no botão
+		(para acessar o calendário, clica-se no botão
 		ao lado direito do campo)</td>
+		<td>Data no formato: dd/MM/aaaa</td>
 		<td>SIM</td>
 	</tr>
 	<tr>
 		<td>**Data de Saída</td>
 		<td>Data que o servidor saiu da função</td>
+		<td>Data no formato: dd/MM/aaaa</td>
 		<td>NÃO</td>
 	</tr>
-	
-
 </table>
 *As opções de <b>Função</b> são carregadas de acordo com o <b>Tipo
 Função</b> selecionado.<br>
-**A Data de Saída pode ser preenchida manualmente quando o usuário sai da função, automaticamente quando a
+**A Data de Saída é visivel apenas ao se editar uma função. Pode ser preenchida manualmente quando o usuário sai da função, automaticamente quando a
 função é extinta ou quando o servidor sai da instituição. 
+
+<br>
+2. Clicar em salvar.
+<br>
+<br>
+<font size='3'><b>Resultado esperado:</b></font>
+<br>
+Caso não ocorra nenhum erro, o sistema salva a função atribuida, e exibirá a
+mensagem "Item salvo com sucesso!".
+<br>
+<br>
+<font size='3'><b>Possíveis erros:</b></font>
+<br>
+<table border="1" style="width: 900px">
+	<tr>
+		<td><b>Mensagem</b></td>
+		<td><b>Motivo</b></td>
+	</tr>
+	<tr>
+		<td>Siape inexistente!</td>
+		<td>Não existe um servidor cadastrado no sistema com este número
+		SIAPE</td>
+	</tr>
+	<tr>
+		<td>Este servidor está desativado!</td>
+		<td>O servidor relacionado ao número SIAPE informado está inativo e
+		teve seu acesso ao sistema cancelado!</td>
+	</tr>
+	<tr>
+		<td>Erro ao comunicar com o servidor!</td>
+		<td>Ocorreu alguma falha durante a realização da operação!</td>
+	</tr>
+</table>
+<br>
+<br>
 </center>
 </body>
 </html>
