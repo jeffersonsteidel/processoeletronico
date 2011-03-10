@@ -17,6 +17,13 @@
 	<rich:panel>
 		<h:form>
 			<h:panelGrid columns="3">
+
+				<h:graphicImage value="../images/icopdf.gif" />
+				<h:commandLink value="SERVIDOR GERAL"
+					action="#{relatorioController.abrirRelatorioGeral}" />
+				<h:outputText
+					value="(retorna todos os dados do servidor, dados pessoais, funcionais, endereço, documentos, conta bancária, titulações, dependentes, empregos, cônjuge, função)" />
+
 				<h:graphicImage value="../images/icopdf.gif" />
 				<h:commandLink value="SERVIDOR POR CONTA BANCÁRIA"
 					action="#{relatorioController.gerarRelatorioServidorContaBancaria}" />
@@ -24,44 +31,52 @@
 					value="(retorna todos os servidores, traz o o siape, nome, banco, número da conta, agência, indicador de poupança pelo siape)" />
 
 				<h:graphicImage value="../images/icopdf.gif" />
+				<h:commandLink value="SERVIDOR POR FILTRO CARGO LOTAÇÂO"
+					action="#{relatorioController.abrirRelatorioCargoLotacaoByFiltro}" />
+				<h:outputText
+					value="(retorna servidores por filtro, cargo, local exercício e situação. traz o siape, nome, cargo, lotação e indicador de atividade)" />
+
+				<h:graphicImage value="../images/icopdf.gif" />
+				<h:commandLink value="SERVIDOR POR FILTRO SOLICITAÇÂO"
+					action="#{relatorioController.abrirRelatorioSolicitacaoByFiltro}" />
+				<h:outputText
+					value="(retorna servidores por filtro, data entre, atendente, solicitante, tipo e status solicitacão. traz solicitante, atendente, data abertura, atendimento e fechamento, tipo e status solicitação)" />
+
+				<h:graphicImage value="../images/icopdf.gif" />
 				<h:commandLink value="SERVIDOR POR LOTAÇÃO E CARGO"
 					action="#{relatorioController.gerarRelatorioServidorCargoLotacao}" />
 				<h:outputText
 					value="(retorna todos os servidores, traz o siape, nome, cargo, lotação e indicador de atividade ordenados pelo siape)" />
-			</h:panelGrid>
-			
-			<h:panelGrid columns="2">
+
 				<h:graphicImage value="../images/icopdf.gif" />
-				<h:commandLink value="RELATÓRIO GERAL CÔNJUGE"
+				<h:commandLink value="SERVIDOR CÔNJUGE"
 					action="#{relatorioController.gerarRelatorioServidorConjuge}" />
+				<h:outputText
+					value="(retorna todos os servidores que possuem cônjuge, traz o siape e nome do servidor, nome do cônjuge, sexo, cpf, se é cônjuge atual, se é servidor)" />
 
 				<h:graphicImage value="../images/icopdf.gif" />
-				<h:commandLink value="RELATÓRIO GERAL DEPENDENTE"
+				<h:commandLink value="SERVIDOR DEPENDENTE"
 					action="#{relatorioController.gerarRelatorioServidorDependente}" />
+				<h:outputText
+					value="(retorna todos os servidores que possuem dependente, traz o siape e nome do servidor, nome do dependente, sexo, grau de parentesco, cpf, data nascimento, indicador estudante, indicador pne)" />
 
 				<h:graphicImage value="../images/icopdf.gif" />
-				<h:commandLink value="RELATÓRIO GERAL EMPREGO"
+				<h:commandLink value="SERVIDOR EMPREGO"
 					action="#{relatorioController.gerarRelatorioServidorEmprego}" />
+				<h:outputText
+					value="(retorna todos os servidores que possuem emprego, traz o siape, nome, cargo, empresa, atividades, data de entrada, data de saida)" />
 
 				<h:graphicImage value="../images/icopdf.gif" />
-				<h:commandLink value="RELATÓRIO GERAL TITULAÇÃO"
+				<h:commandLink value="SERVIDOR TITULAÇÃO"
 					action="#{relatorioController.gerarRelatorioServidorTitulacao}" />
+				<h:outputText
+					value="(retorna todos os servidores que possuem titulação, traz o siape, nome, titulação, curso, estabelicimento de ensino, carga horária, area de conhecimento, ano de conclusão)" />
 
 				<h:graphicImage value="../images/icopdf.gif" />
-				<h:commandLink value="RELATÓRIO GERAL SERVIDOR"
-					action="#{relatorioController.abrirRelatorioGeral}" />
-
-				<h:graphicImage value="../images/icopdf.gif" />
-				<h:commandLink value="RELATÓRIO PERMISSÃO USUÁRIO"
+				<h:commandLink value="PERMISSÃO USUÁRIO"
 					action="#{relatorioController.abrirRelatorioPermissaoUsuario}" />
-
-				<h:graphicImage value="../images/icopdf.gif" />
-				<h:commandLink value="CARGO LOTAÇÂO (FILTRO)"
-					action="#{relatorioController.abrirRelatorioCargoLotacaoByFiltro}" />
-
-				<h:graphicImage value="../images/icopdf.gif" />
-				<h:commandLink value="RELATÓRIO SOLICITAÇÂO (FILTRO)"
-					action="#{relatorioController.abrirRelatorioSolicitacaoByFiltro}" />
+				<h:outputText
+					value="(retorna as permissões de cada usuário no sistema)" />
 
 			</h:panelGrid>
 		</h:form>

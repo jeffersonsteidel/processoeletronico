@@ -37,7 +37,10 @@
       grauparentesco.grau_par_desc AS grauparentesco_grau_par_desc
 FROM
       servidor INNER JOIN dependente ON servidor.serv_cod = dependente.serv_cod
-      INNER JOIN grauparentesco ON dependente.grau_par_cod_dep = grauparentesco.grau_par_cod ORDER BY servidor.serv_nome;]]></queryString>
+      INNER JOIN grauparentesco ON dependente.grau_par_cod_dep = grauparentesco.grau_par_cod
+WHERE
+     dependente.sta_solic_cod = 3
+ORDER BY servidor.serv_nome;]]></queryString>
 
 	<field name="servidor_serv_siape" class="java.lang.Integer"/>
 	<field name="servidor_serv_nome" class="java.lang.String"/>

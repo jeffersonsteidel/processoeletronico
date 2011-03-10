@@ -38,6 +38,8 @@ FROM
   servidortitulacao INNER JOIN titulacao ON servidortitulacao.tit_cod = titulacao.tit_cod
   INNER JOIN servidor ON servidortitulacao.serv_cod = servidor.serv_cod
   LEFT JOIN areaconhecimento ON servidortitulacao.area_conh_cod = areaconhecimento.area_conh_cod
+WHERE
+  servidortitulacao.sta_solic_cod = 3
 ORDER BY servidor.serv_nome;]]></queryString>
 
 	<field name="servidor_serv_siape" class="java.lang.Integer"/>

@@ -34,14 +34,17 @@
      emprego.emp_data_saida AS emprego_emp_data_saida,
      emprego.emp_atividade AS emprego_emp_atividade
 FROM
-     servidor INNER JOIN emprego ON servidor.serv_cod = emprego.serv_cod ORDER BY servidor.serv_nome;]]></queryString>
+     servidor INNER JOIN emprego ON servidor.serv_cod = emprego.serv_cod
+WHERE
+     emprego.sta_solic_cod = 3
+ ORDER BY servidor.serv_nome;]]></queryString>
 
-	<field name="servidor_serv_siape" class="java.lang.Integer"/>
 	<field name="servidor_serv_nome" class="java.lang.String"/>
+	<field name="servidor_serv_siape" class="java.lang.Integer"/>
 	<field name="emprego_emp_cargo" class="java.lang.String"/>
-	<field name="emprego_emp_data_adm" class="java.util.Date"/>
+	<field name="emprego_emp_data_adm" class="java.sql.Date"/>
 	<field name="emprego_emp_empresa" class="java.lang.String"/>
-	<field name="emprego_emp_data_saida" class="java.util.Date"/>
+	<field name="emprego_emp_data_saida" class="java.sql.Date"/>
 	<field name="emprego_emp_atividade" class="java.lang.String"/>
 
 

@@ -37,6 +37,8 @@
      conjuge.conj_ind_serv AS conjuge_conj_ind_serv
 FROM
      servidor INNER JOIN conjuge ON servidor.serv_cod = conjuge.serv_cod
+WHERE
+	conjuge.sta_solic_cod = 3
 ORDER BY
      servidor.serv_nome;]]></queryString>
 
