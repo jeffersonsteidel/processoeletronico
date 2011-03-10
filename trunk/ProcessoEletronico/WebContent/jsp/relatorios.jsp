@@ -16,15 +16,21 @@
 	<a4j:loadScript src="../js/script.js" />
 	<rich:panel>
 		<h:form>
-			<h:panelGrid columns="2">
+			<h:panelGrid columns="3">
 				<h:graphicImage value="../images/icopdf.gif" />
-				<h:commandLink value="RELATÓRIO SERVIDOR CARGO LOTAÇÃO"
-					action="#{relatorioController.gerarRelatorioServidorCargoLotacao}" />
-
-				<h:graphicImage value="../images/icopdf.gif" />
-				<h:commandLink value="RELATÓRIO SERVIDOR CONTA BANCÁRIA"
+				<h:commandLink value="SERVIDOR POR CONTA BANCÁRIA"
 					action="#{relatorioController.gerarRelatorioServidorContaBancaria}" />
+				<h:outputText
+					value="(retorna todos os servidores, traz o o siape, nome, banco, número da conta, agência, indicador de poupança pelo siape)" />
 
+				<h:graphicImage value="../images/icopdf.gif" />
+				<h:commandLink value="SERVIDOR POR LOTAÇÃO E CARGO"
+					action="#{relatorioController.gerarRelatorioServidorCargoLotacao}" />
+				<h:outputText
+					value="(retorna todos os servidores, traz o siape, nome, cargo, lotação e indicador de atividade ordenados pelo siape)" />
+			</h:panelGrid>
+			
+			<h:panelGrid columns="2">
 				<h:graphicImage value="../images/icopdf.gif" />
 				<h:commandLink value="RELATÓRIO GERAL CÔNJUGE"
 					action="#{relatorioController.gerarRelatorioServidorConjuge}" />
