@@ -430,6 +430,7 @@
 
 						<h:outputText value="E-mail: " />
 						<h:inputText value="#{servidorController.servidor.email}"
+							required="true" requiredMessage="Campo E-mail é obrigatório!"
 							size="40" title="Colocar de preferencial o e-mail institucional!"
 							maxlength="150"></h:inputText>
 					</h:panelGrid>
