@@ -1,48 +1,69 @@
 <html>
-<head>
-<title>Processo Verde</title>
-</head>
 <body>
 <center>
 <h1>Manual Do Usuário</h1>
-<p><font size='4'>PESQUISAR SERVIDOR</font></p>
-</center>
-
-<b>*É necessário permissão de Administrador para visualizar esta
-tela.</b>
+<p><font size='5'>PESQUISAR SERVIDOR</font></p>
+<br>
+<table border="1" style="width: 900px">
+	<tr>
+		<td style="width: 200px"><b>Módulo</b></td>
+		<td>Servidor | Pesquisar Servidor</td>
+	</tr>
+	<tr>
+		<td style="width: 200px"><b>Perfil</b></td>
+		<td>Administrador</td>
+	</tr>
+	<tr>
+		<td style="width: 200px"><b>Última alteração</b></td>
+		<td>10/12/2010</td>
+	</tr>
+	<tr>
+		<td style="width: 200px"><b>Responsável</b></td>
+		<td>Jefferson Steidel dos Santos</td>
+	</tr>
+	<tr>
+		<td style="width: 200px"><b>Contato</b></td>
+		<td>jefferson.steidel@ifpr.edu.br</td>
+	</tr>
+</table>
+<br>
+<font size='3'><b>Objetivo:</b></font>
+<br>
+Pesquisar servidores de acordo com os filtros informados.
 <br>
 <br>
-Alguns filtros são exibidos na tela (Siape, Nome, Lotação e Cargo). O
-Administrador insere algum dado no filtro que deseja e o programa
-pesquisará baseando-se no critério fornecido. Ao clicar no botão
-pesquisar, o sistema exibirá uma tabela com todos os servidores
-relacionados com o(s) filtro(s) informado(s).
+<font size='3'><b>Procedimento:</b></font>
 <br>
-<br>
-<br>
-<center>
-<table name="pesquisarServidor" border="1">
-	<th><b>Campo</b></th>
-	<th><b>Descrição</b></th>
-	<th><b>Obrigatório</b></th>
+1. Preencher os seguintes campos:
+<table border="1" style="width: 900px">
+	<tr>
+		<td><b></b></td>
+		<td>Descrição</td>
+		<td>Tipo</td>
+		<td>Obrigatório</td>
+	</tr>
 	<tr>
 		<td>Siape</td>
 		<td>Siape do servidor que você deseja buscar</td>
+		<td>Numérico</td>
 		<td>NÃO</td>
 	</tr>
 	<tr>
 		<td>Nome</td>
 		<td>Nome do servidor que você deseja buscar</td>
+		<td>Alfabético</td>
 		<td>NÃO</td>
 	</tr>
 	<tr>
 		<td>Lotação</td>
 		<td>Lotação do servidor que você deseja buscar</td>
+		<td>Alfabético</td>
 		<td>NÃO</td>
 	</tr>
 	<tr>
 		<td>Cargo</td>
 		<td>Cargo do servidor que você deseja buscar</td>
+		<td>Alfabético</td>
 		<td>NÃO</td>
 	</tr>
 	<tr>
@@ -51,29 +72,38 @@ relacionados com o(s) filtro(s) informado(s).
 		TODOS    - listar todos<br>
 		ATIVOS   - listar apenas os que ainda trabalham no IFPR<br>
 		INATIVOS - listar apenas os que não trabalham mais no IFPR</td>
+		<td>Alfabético</td>
 		<td>NÃO</td>
 	</tr>
 </table>
+<br>
+2. Clicar em pesquisar.
+<br>
+<br>
+<font size='3'><b>Resultado esperado:</b></font>
+<br>
+Caso não ocorra nenhum erro, o sistema listará os servidores que possuem os requisitos dos filtros. Caso nenhum campo seja preenchido, o sistema listará todos os servidores
+existentes. Ao lado direito de cada servidor presente na tabela há um campo <b>Editar</b>. O campo <b>Editar</b> é um link para uma pagina de Edição dos Dados do Servidor.
+<br>
+<br>
+<font size='3'><b>Possíveis erros:</b></font>
+<br>
+<table border="1" style="width: 900px">
+	<tr>
+		<td><b>Mensagem</b></td>
+		<td><b>Motivo</b></td>
+	</tr>
+	<tr>
+		<td>Nenhum registro para o filtro informado!</td>
+		<td>Não há servidor que sejá compatível com os filtros selecionados.</td>
+	</tr>
+	<tr>
+		<td>Erro ao comunicar com o servidor!</td>
+		<td>Ocorreu alguma falha durante a realização da operação!</td>
+	</tr>
+</table>
+<br>
+<br>
 </center>
-
-<br>
-<b>*</b>
-Caso não exista registro com os dados informados aparecerá a mensagem:
-"Nenhum registro para o filtro informado!"
-<br>
-<b>*</b>
-Caso nenhum campo seja preenchido, o sistema listará todos os servidores
-existentes.
-<br>
-<br>
-Ao lado direito de cada servidor presente na tabela há um campo:
-<b>Editar</b>
-.
-<br>
-<b>*</b>
-O campo
-<b>Editar</b>
-é um link para uma pagina de Edição dos Dados do Servidor.
-<br>
 </body>
 </html>
