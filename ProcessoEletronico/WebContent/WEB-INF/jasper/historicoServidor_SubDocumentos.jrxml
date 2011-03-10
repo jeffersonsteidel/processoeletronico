@@ -93,9 +93,9 @@ WHERE servidor.`serv_cod` = $P{COD_SERV}]]></queryString>
 			<band height="210"  isSplitAllowed="true" >
 				<textField isStretchWithOverflow="false" pattern="" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
-						x="44"
+						x="41"
 						y="48"
-						width="211"
+						width="214"
 						height="17"
 						forecolor="#000000"
 						backcolor="#FFFFFF"
@@ -114,7 +114,7 @@ WHERE servidor.`serv_cod` = $P{COD_SERV}]]></queryString>
 					<reportElement
 						x="19"
 						y="48"
-						width="25"
+						width="20"
 						height="17"
 						forecolor="#000000"
 						backcolor="#FFFFFF"
@@ -132,9 +132,9 @@ WHERE servidor.`serv_cod` = $P{COD_SERV}]]></queryString>
 				</staticText>
 				<textField isStretchWithOverflow="false" pattern="" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
-						x="73"
+						x="62"
 						y="65"
-						width="182"
+						width="193"
 						height="17"
 						forecolor="#000000"
 						backcolor="#FFFFFF"
@@ -153,7 +153,7 @@ WHERE servidor.`serv_cod` = $P{COD_SERV}]]></queryString>
 					<reportElement
 						x="19"
 						y="65"
-						width="54"
+						width="43"
 						height="17"
 						forecolor="#000000"
 						backcolor="#FFFFFF"
@@ -171,9 +171,9 @@ WHERE servidor.`serv_cod` = $P{COD_SERV}]]></queryString>
 				</staticText>
 				<textField isStretchWithOverflow="false" pattern="dd/MM/yyyy" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
-						x="149"
+						x="118"
 						y="82"
-						width="106"
+						width="137"
 						height="17"
 						forecolor="#000000"
 						backcolor="#FFFFFF"
@@ -192,7 +192,7 @@ WHERE servidor.`serv_cod` = $P{COD_SERV}]]></queryString>
 					<reportElement
 						x="19"
 						y="82"
-						width="130"
+						width="99"
 						height="17"
 						forecolor="#000000"
 						backcolor="#FFFFFF"
@@ -210,9 +210,9 @@ WHERE servidor.`serv_cod` = $P{COD_SERV}]]></queryString>
 				</staticText>
 				<textField isStretchWithOverflow="false" pattern="" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
-						x="127"
+						x="108"
 						y="99"
-						width="128"
+						width="147"
 						height="17"
 						forecolor="#000000"
 						backcolor="#FFFFFF"
@@ -231,7 +231,7 @@ WHERE servidor.`serv_cod` = $P{COD_SERV}]]></queryString>
 					<reportElement
 						x="19"
 						y="99"
-						width="108"
+						width="87"
 						height="17"
 						forecolor="#000000"
 						backcolor="#FFFFFF"
@@ -250,9 +250,9 @@ WHERE servidor.`serv_cod` = $P{COD_SERV}]]></queryString>
 				</staticText>
 				<textField isStretchWithOverflow="false" pattern="" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
-						x="132"
+						x="111"
 						y="116"
-						width="123"
+						width="144"
 						height="17"
 						forecolor="#000000"
 						backcolor="#FFFFFF"
@@ -271,7 +271,7 @@ WHERE servidor.`serv_cod` = $P{COD_SERV}]]></queryString>
 					<reportElement
 						x="19"
 						y="116"
-						width="113"
+						width="92"
 						height="17"
 						forecolor="#000000"
 						backcolor="#FFFFFF"
@@ -292,9 +292,9 @@ WHERE servidor.`serv_cod` = $P{COD_SERV}]]></queryString>
 				</staticText>
 				<textField isStretchWithOverflow="false" pattern="" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
-						x="365"
+						x="349"
 						y="167"
-						width="156"
+						width="172"
 						height="17"
 						forecolor="#000000"
 						backcolor="#FFFFFF"
@@ -316,7 +316,7 @@ WHERE servidor.`serv_cod` = $P{COD_SERV}]]></queryString>
 					<reportElement
 						x="273"
 						y="167"
-						width="92"
+						width="74"
 						height="17"
 						forecolor="#000000"
 						backcolor="#FFFFFF"
@@ -337,9 +337,9 @@ WHERE servidor.`serv_cod` = $P{COD_SERV}]]></queryString>
 				</staticText>
 				<textField isStretchWithOverflow="false" pattern="" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
-						x="394"
+						x="370"
 						y="184"
-						width="127"
+						width="151"
 						height="17"
 						forecolor="#000000"
 						backcolor="#FFFFFF"
@@ -361,7 +361,7 @@ WHERE servidor.`serv_cod` = $P{COD_SERV}]]></queryString>
 					<reportElement
 						x="273"
 						y="184"
-						width="121"
+						width="97"
 						height="17"
 						forecolor="#000000"
 						backcolor="#FFFFFF"
@@ -382,9 +382,9 @@ WHERE servidor.`serv_cod` = $P{COD_SERV}]]></queryString>
 				</staticText>
 				<textField isStretchWithOverflow="false" pattern="" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
-						x="155"
+						x="127"
 						y="133"
-						width="100"
+						width="128"
 						height="17"
 						forecolor="#000000"
 						backcolor="#FFFFFF"
@@ -403,7 +403,7 @@ WHERE servidor.`serv_cod` = $P{COD_SERV}]]></queryString>
 					<reportElement
 						x="19"
 						y="133"
-						width="136"
+						width="108"
 						height="17"
 						forecolor="#000000"
 						backcolor="#FFFFFF"
@@ -421,9 +421,9 @@ WHERE servidor.`serv_cod` = $P{COD_SERV}]]></queryString>
 				</staticText>
 				<textField isStretchWithOverflow="false" pattern="" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
-						x="83"
+						x="67"
 						y="150"
-						width="172"
+						width="188"
 						height="17"
 						forecolor="#000000"
 						backcolor="#FFFFFF"
@@ -442,7 +442,7 @@ WHERE servidor.`serv_cod` = $P{COD_SERV}]]></queryString>
 					<reportElement
 						x="19"
 						y="150"
-						width="64"
+						width="48"
 						height="17"
 						forecolor="#000000"
 						backcolor="#FFFFFF"
@@ -501,9 +501,9 @@ WHERE servidor.`serv_cod` = $P{COD_SERV}]]></queryString>
 				</staticText>
 				<textField isStretchWithOverflow="false" pattern="" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
-						x="384"
+						x="365"
 						y="65"
-						width="137"
+						width="156"
 						height="17"
 						forecolor="#000000"
 						backcolor="#FFFFFF"
@@ -522,7 +522,7 @@ WHERE servidor.`serv_cod` = $P{COD_SERV}]]></queryString>
 					<reportElement
 						x="273"
 						y="65"
-						width="111"
+						width="92"
 						height="17"
 						forecolor="#000000"
 						backcolor="#FFFFFF"
@@ -540,9 +540,9 @@ WHERE servidor.`serv_cod` = $P{COD_SERV}]]></queryString>
 				</staticText>
 				<textField isStretchWithOverflow="false" pattern="" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
-						x="356"
+						x="338"
 						y="82"
-						width="165"
+						width="183"
 						height="17"
 						forecolor="#000000"
 						backcolor="#FFFFFF"
@@ -561,7 +561,7 @@ WHERE servidor.`serv_cod` = $P{COD_SERV}]]></queryString>
 					<reportElement
 						x="273"
 						y="82"
-						width="83"
+						width="65"
 						height="17"
 						forecolor="#000000"
 						backcolor="#FFFFFF"
@@ -579,9 +579,9 @@ WHERE servidor.`serv_cod` = $P{COD_SERV}]]></queryString>
 				</staticText>
 				<textField isStretchWithOverflow="false" pattern="" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
-						x="394"
+						x="370"
 						y="99"
-						width="127"
+						width="151"
 						height="17"
 						forecolor="#000000"
 						backcolor="#FFFFFF"
@@ -600,7 +600,7 @@ WHERE servidor.`serv_cod` = $P{COD_SERV}]]></queryString>
 					<reportElement
 						x="273"
 						y="99"
-						width="121"
+						width="97"
 						height="17"
 						forecolor="#000000"
 						backcolor="#FFFFFF"
@@ -619,9 +619,9 @@ WHERE servidor.`serv_cod` = $P{COD_SERV}]]></queryString>
 				</staticText>
 				<textField isStretchWithOverflow="false" pattern="dd/MM/yyyy" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
-						x="458"
+						x="417"
 						y="116"
-						width="63"
+						width="104"
 						height="17"
 						forecolor="#000000"
 						backcolor="#FFFFFF"
@@ -640,7 +640,7 @@ WHERE servidor.`serv_cod` = $P{COD_SERV}]]></queryString>
 					<reportElement
 						x="273"
 						y="116"
-						width="185"
+						width="142"
 						height="17"
 						forecolor="#000000"
 						backcolor="#FFFFFF"
@@ -661,9 +661,9 @@ WHERE servidor.`serv_cod` = $P{COD_SERV}]]></queryString>
 				</staticText>
 				<textField isStretchWithOverflow="false" pattern="" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
-						x="441"
+						x="403"
 						y="150"
-						width="80"
+						width="118"
 						height="17"
 						forecolor="#000000"
 						backcolor="#FFFFFF"
@@ -682,7 +682,7 @@ WHERE servidor.`serv_cod` = $P{COD_SERV}]]></queryString>
 					<reportElement
 						x="273"
 						y="150"
-						width="168"
+						width="130"
 						height="17"
 						forecolor="#000000"
 						backcolor="#FFFFFF"
@@ -703,9 +703,9 @@ WHERE servidor.`serv_cod` = $P{COD_SERV}]]></queryString>
 				</staticText>
 				<textField isStretchWithOverflow="false" pattern="" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
-						x="377"
+						x="356"
 						y="133"
-						width="144"
+						width="165"
 						height="17"
 						forecolor="#000000"
 						backcolor="#FFFFFF"
@@ -724,7 +724,7 @@ WHERE servidor.`serv_cod` = $P{COD_SERV}]]></queryString>
 					<reportElement
 						x="273"
 						y="133"
-						width="104"
+						width="83"
 						height="17"
 						forecolor="#000000"
 						backcolor="#FFFFFF"
@@ -742,9 +742,9 @@ WHERE servidor.`serv_cod` = $P{COD_SERV}]]></queryString>
 				</staticText>
 				<textField isStretchWithOverflow="false" pattern="" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
-						x="155"
+						x="127"
 						y="167"
-						width="100"
+						width="128"
 						height="17"
 						forecolor="#000000"
 						backcolor="#FFFFFF"
@@ -763,7 +763,7 @@ WHERE servidor.`serv_cod` = $P{COD_SERV}]]></queryString>
 					<reportElement
 						x="19"
 						y="167"
-						width="136"
+						width="108"
 						height="17"
 						forecolor="#000000"
 						backcolor="#FFFFFF"
@@ -781,9 +781,9 @@ WHERE servidor.`serv_cod` = $P{COD_SERV}]]></queryString>
 				</staticText>
 				<textField isStretchWithOverflow="false" pattern="dd/MM/yyyy" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
-						x="123"
+						x="100"
 						y="184"
-						width="132"
+						width="155"
 						height="17"
 						forecolor="#000000"
 						backcolor="#FFFFFF"
@@ -802,7 +802,7 @@ WHERE servidor.`serv_cod` = $P{COD_SERV}]]></queryString>
 					<reportElement
 						x="19"
 						y="184"
-						width="104"
+						width="81"
 						height="17"
 						forecolor="#000000"
 						backcolor="#FFFFFF"

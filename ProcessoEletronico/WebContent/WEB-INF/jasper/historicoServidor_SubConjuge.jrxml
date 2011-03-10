@@ -47,7 +47,7 @@ FROM
      LEFT JOIN estado AS estadonasc ON conjuge.conj_rg_uf = estadonasc.est_cod 
      LEFT JOIN pais ON conjuge.pais_cod = pais.pais_cod
 WHERE
-  servidor.serv_cod = $P{COD_SERV};]]></queryString>
+  conjuge.sta_solic_cod = 3 AND servidor.serv_cod = $P{COD_SERV};]]></queryString>
 
 	<field name="conjuge_conj_nome" class="java.lang.String"/>
 	<field name="conjuge_conj_data_nasc" class="java.sql.Date"/>
@@ -85,9 +85,9 @@ WHERE
 			<band height="191"  isSplitAllowed="true" >
 				<textField isStretchWithOverflow="false" pattern="" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
-						x="108"
+						x="85"
 						y="46"
-						width="157"
+						width="166"
 						height="17"
 						forecolor="#000000"
 						backcolor="#FFFFFF"
@@ -106,7 +106,7 @@ WHERE
 					<reportElement
 						x="14"
 						y="46"
-						width="94"
+						width="71"
 						height="17"
 						forecolor="#000000"
 						backcolor="#FFFFFF"
@@ -124,9 +124,9 @@ WHERE
 				</staticText>
 				<textField isStretchWithOverflow="false" pattern="dd/MM/yyyy" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
-						x="177"
+						x="139"
 						y="63"
-						width="88"
+						width="112"
 						height="17"
 						forecolor="#000000"
 						backcolor="#FFFFFF"
@@ -145,7 +145,7 @@ WHERE
 					<reportElement
 						x="14"
 						y="63"
-						width="163"
+						width="125"
 						height="19"
 						forecolor="#000000"
 						backcolor="#FFFFFF"
@@ -163,10 +163,10 @@ WHERE
 				</staticText>
 				<textField isStretchWithOverflow="false" pattern="" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
-						x="94"
-						y="82"
-						width="171"
-						height="15"
+						x="76"
+						y="80"
+						width="175"
+						height="17"
 						forecolor="#000000"
 						backcolor="#FFFFFF"
 						key="textField"/>
@@ -184,7 +184,7 @@ WHERE
 					<reportElement
 						x="14"
 						y="80"
-						width="80"
+						width="62"
 						height="17"
 						forecolor="#000000"
 						backcolor="#FFFFFF"
@@ -202,9 +202,9 @@ WHERE
 				</staticText>
 				<textField isStretchWithOverflow="false" pattern="" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
-						x="184"
+						x="149"
 						y="97"
-						width="81"
+						width="102"
 						height="17"
 						forecolor="#000000"
 						backcolor="#FFFFFF"
@@ -223,7 +223,7 @@ WHERE
 					<reportElement
 						x="14"
 						y="97"
-						width="170"
+						width="135"
 						height="17"
 						forecolor="#000000"
 						backcolor="#FFFFFF"
@@ -241,9 +241,9 @@ WHERE
 				</staticText>
 				<textField isStretchWithOverflow="false" pattern="" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
-						x="190"
+						x="149"
 						y="114"
-						width="75"
+						width="102"
 						height="17"
 						forecolor="#000000"
 						backcolor="#FFFFFF"
@@ -262,7 +262,7 @@ WHERE
 					<reportElement
 						x="14"
 						y="114"
-						width="176"
+						width="135"
 						height="17"
 						forecolor="#000000"
 						backcolor="#FFFFFF"
@@ -280,7 +280,7 @@ WHERE
 				</staticText>
 				<textField isStretchWithOverflow="false" pattern="" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
-						x="76"
+						x="62"
 						y="131"
 						width="189"
 						height="17"
@@ -301,7 +301,7 @@ WHERE
 					<reportElement
 						x="14"
 						y="131"
-						width="62"
+						width="48"
 						height="17"
 						forecolor="#000000"
 						backcolor="#FFFFFF"
@@ -319,9 +319,9 @@ WHERE
 				</staticText>
 				<textField isStretchWithOverflow="false" pattern="" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
-						x="94"
+						x="76"
 						y="148"
-						width="171"
+						width="175"
 						height="17"
 						forecolor="#000000"
 						backcolor="#FFFFFF"
@@ -340,7 +340,7 @@ WHERE
 					<reportElement
 						x="14"
 						y="148"
-						width="80"
+						width="62"
 						height="17"
 						forecolor="#000000"
 						backcolor="#FFFFFF"
@@ -358,9 +358,9 @@ WHERE
 				</staticText>
 				<textField isStretchWithOverflow="false" pattern="" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
-						x="364"
+						x="340"
 						y="46"
-						width="163"
+						width="187"
 						height="17"
 						forecolor="#000000"
 						backcolor="#FFFFFF"
@@ -379,7 +379,7 @@ WHERE
 					<reportElement
 						x="270"
 						y="46"
-						width="95"
+						width="70"
 						height="17"
 						forecolor="#000000"
 						backcolor="#FFFFFF"
@@ -397,9 +397,9 @@ WHERE
 				</staticText>
 				<textField isStretchWithOverflow="false" pattern="" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
-						x="357"
+						x="340"
 						y="63"
-						width="170"
+						width="187"
 						height="17"
 						forecolor="#000000"
 						backcolor="#FFFFFF"
@@ -418,7 +418,7 @@ WHERE
 					<reportElement
 						x="270"
 						y="63"
-						width="88"
+						width="70"
 						height="17"
 						forecolor="#000000"
 						backcolor="#FFFFFF"
@@ -436,9 +436,9 @@ WHERE
 				</staticText>
 				<textField isStretchWithOverflow="false" pattern="" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
-						x="385"
+						x="357"
 						y="80"
-						width="142"
+						width="170"
 						height="17"
 						forecolor="#000000"
 						backcolor="#FFFFFF"
@@ -457,7 +457,7 @@ WHERE
 					<reportElement
 						x="270"
 						y="80"
-						width="116"
+						width="87"
 						height="17"
 						forecolor="#000000"
 						backcolor="#FFFFFF"
@@ -475,9 +475,9 @@ WHERE
 				</staticText>
 				<textField isStretchWithOverflow="false" pattern="dd/MM/yyyy" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
-						x="463"
+						x="416"
 						y="97"
-						width="64"
+						width="111"
 						height="17"
 						forecolor="#000000"
 						backcolor="#FFFFFF"
@@ -496,7 +496,7 @@ WHERE
 					<reportElement
 						x="270"
 						y="97"
-						width="193"
+						width="146"
 						height="17"
 						forecolor="#000000"
 						backcolor="#FFFFFF"
@@ -514,9 +514,9 @@ WHERE
 				</staticText>
 				<textField isStretchWithOverflow="false" pattern="" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
-						x="450"
+						x="402"
 						y="114"
-						width="77"
+						width="125"
 						height="17"
 						forecolor="#000000"
 						backcolor="#FFFFFF"
@@ -535,7 +535,7 @@ WHERE
 					<reportElement
 						x="270"
 						y="114"
-						width="180"
+						width="132"
 						height="17"
 						forecolor="#000000"
 						backcolor="#FFFFFF"
@@ -553,9 +553,9 @@ WHERE
 				</staticText>
 				<textField isStretchWithOverflow="false" pattern="" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
-						x="76"
+						x="62"
 						y="165"
-						width="451"
+						width="465"
 						height="17"
 						forecolor="#000000"
 						backcolor="#FFFFFF"
@@ -574,7 +574,7 @@ WHERE
 					<reportElement
 						x="14"
 						y="165"
-						width="62"
+						width="48"
 						height="17"
 						forecolor="#000000"
 						backcolor="#FFFFFF"
@@ -592,9 +592,9 @@ WHERE
 				</staticText>
 				<textField isStretchWithOverflow="false" pattern="" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
-						x="369"
+						x="340"
 						y="148"
-						width="158"
+						width="187"
 						height="17"
 						forecolor="#000000"
 						backcolor="#FFFFFF"
@@ -613,7 +613,7 @@ WHERE
 					<reportElement
 						x="270"
 						y="148"
-						width="100"
+						width="70"
 						height="17"
 						forecolor="#000000"
 						backcolor="#FFFFFF"
@@ -635,7 +635,7 @@ WHERE
 					<reportElement
 						x="270"
 						y="131"
-						width="168"
+						width="124"
 						height="17"
 						forecolor="#000000"
 						backcolor="#FFFFFF"
@@ -667,9 +667,9 @@ WHERE
 				</staticText>
 				<textField isStretchWithOverflow="false" pattern="" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
-						x="438"
+						x="394"
 						y="131"
-						width="89"
+						width="133"
 						height="17"
 						forecolor="#000000"
 						backcolor="#FFFFFF"

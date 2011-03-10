@@ -62,9 +62,9 @@ WHERE
 			<band height="87"  isSplitAllowed="true" >
 				<textField isStretchWithOverflow="false" pattern="dd/MM/yyyy" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
-						x="341"
+						x="329"
 						y="60"
-						width="136"
+						width="148"
 						height="17"
 						forecolor="#000000"
 						backcolor="#FFFFFF"
@@ -83,7 +83,7 @@ WHERE
 					<reportElement
 						x="272"
 						y="60"
-						width="69"
+						width="57"
 						height="17"
 						forecolor="#000000"
 						backcolor="#FFFFFF"
@@ -101,9 +101,9 @@ WHERE
 				</staticText>
 				<textField isStretchWithOverflow="false" pattern="" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
-						x="315"
+						x="307"
 						y="43"
-						width="162"
+						width="170"
 						height="17"
 						forecolor="#000000"
 						backcolor="#FFFFFF"
@@ -122,7 +122,7 @@ WHERE
 					<reportElement
 						x="272"
 						y="43"
-						width="43"
+						width="35"
 						height="17"
 						forecolor="#000000"
 						backcolor="#FFFFFF"
@@ -140,9 +140,9 @@ WHERE
 				</staticText>
 				<textField isStretchWithOverflow="false" pattern="" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
-						x="100"
+						x="83"
 						y="60"
-						width="153"
+						width="170"
 						height="17"
 						forecolor="#000000"
 						backcolor="#FFFFFF"
@@ -161,7 +161,7 @@ WHERE
 					<reportElement
 						x="18"
 						y="60"
-						width="82"
+						width="65"
 						height="17"
 						forecolor="#000000"
 						backcolor="#FFFFFF"
@@ -179,9 +179,9 @@ WHERE
 				</staticText>
 				<textField isStretchWithOverflow="false" pattern="" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
-						x="83"
+						x="72"
 						y="43"
-						width="170"
+						width="181"
 						height="17"
 						forecolor="#000000"
 						backcolor="#FFFFFF"
@@ -200,7 +200,7 @@ WHERE
 					<reportElement
 						x="18"
 						y="43"
-						width="65"
+						width="54"
 						height="17"
 						forecolor="#000000"
 						backcolor="#FFFFFF"
