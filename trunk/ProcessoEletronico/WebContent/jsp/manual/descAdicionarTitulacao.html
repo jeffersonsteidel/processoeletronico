@@ -1,93 +1,128 @@
 <html>
-<head>
-<title>Processo Verde</title>
-</head>
 <body>
 <center>
 <h1>Manual Do Usuário</h1>
-<p><font size='4'>ADICIONAR TITULAÇÃO</font></p>
-</center>
-*Página que exibe em uma tabela as titulações do servidor logado, ou seja, é uma
-espécie de histórico escolar.. 
+<p><font size='5'>ADICIONAR TITULAÇÃO</font></p>
 <br>
-*Caso não haja titulações, a tabela aparecerá vazia.
+<table border="1" style="width: 900px">
+	<tr>
+		<td style="width: 200px"><b>Módulo</b></td>
+		<td>Atualizar Meus Dados | Adicionar Titulação</td>
+	</tr>
+	<tr>
+		<td style="width: 200px"><b>Perfil</b></td>
+		<td>Usuário</td>
+	</tr>
+	<tr>
+		<td style="width: 200px"><b>Última alteração</b></td>
+		<td>14/02/2011</td>
+	</tr>
+	<tr>
+		<td style="width: 200px"><b>Responsável</b></td>
+		<td>Jefferson Steidel dos Santos</td>
+	</tr>
+	<tr>
+		<td style="width: 200px"><b>Contato</b></td>
+		<td>jefferson.steidel@ifpr.edu.br</td>
+	</tr>
+</table>
 <br>
-*Para adicionar uma nova titulação é necessário preencher o seguinte
-formulário:
+<font size='3'><b>Objetivo:</b></font>
+<br>
+Página que exibe em uma tabela as titulações do servidor logado, ou seja, é uma
+espécie de histórico escolar. Caso não haja titulações, a tabela aparecerá vazia.
 <br>
 <br>
-<center>
-<table name="adicionarTitulação" border="1">
-	<th><b>Campo</b></th>
-	<th><b>Descrição</b></th>
-	<th><b>Obrigatório</b></th>
+<font size='3'><b>Procedimento:</b></font>
+<br>
+1. Preencher os seguintes campos:
+<table border="1" style="width: 900px">
+	<tr>
+		<td><b></b></td>
+		<td>Descrição</td>
+		<td>Tipo</td>
+		<td>Obrigatório</td>
+	</tr>
 	<tr>
 		<td>Titulação</td>
 		<td>Selecione a titulação que você deseja adicionar</td>
+		<td>Alfabético</td>
 		<td>SIM</td>
 	</tr>
 	<tr>
 		<td>Estabelecimento de Ensino</td>
 		<td>Nome completo da instituição na qual você concluiu esta
 		titulação</td>
+		<td>Alfanumérico</td>
 		<td>SIM</td>
 	</tr>
 	<tr>
 		<td>Curso*</td>
 		<td>Nome por extenso do curso estudado pelo servidor logado</td>
+		<td>Alfanumérico</td>
 		<td>NÃO</td>
 	</tr>
 	<tr>
 		<td>Area de Conhecimento*</td>
 		<td>Selecione a área de conhecimento do curso estudado</td>
+		<td>Alfabético</td>
 		<td>NÃO</td>
 	</tr>
 	<tr>
 		<td>Estado do Estabelecimento de Ensino**</td>
 		<td>Selecione o estado onde está localizado o estabelecimento de
 		ensino</td>
+		<td>Alfabético</td>
 		<td>NÃO</td>
 	</tr>
 	<tr>
 		<td>Cidade de Estabelecimento de Ensino**</td>
 		<td>Selecione a cidade onde está localizado o estabelecimento de
 		ensino</td>
+		<td>Alfabético</td>
 		<td>NÃO</td>
 	</tr>
 	<tr>
 		<td>Carga Horária*</td>
 		<td>Digite a quantidade de horas da titulação em questão</td>
+		<td>Numérico</td>
 		<td>NÃO</td>
 	</tr>
 	<tr>
 		<td>Ano de Conclusão</td>
 		<td>Digite o ano que o servidor logado concluiu a titulação em
 		questão</td>
+		<td>Numérico</td>
 		<td>SIM</td>
 	</tr>
 	<tr>
 		<td>Registro no Conselho*</td>
 		<td>Digite código do Registro do Conselho</td>
+		<td>Alfanumérico</td>
 		<td>NÃO</td>
 	</tr>
 	<tr>
 		<td>Orgão Emissor do Registro*</td>
 		<td>Digite o Orgão Emissor do Registro do Conselho</td>
+		<td>Alfanumérico</td>
 		<td>NÃO</td>
 	</tr>
 	<tr>
 		<td>Estado do Orgão Emissor*</td>
 		<td>Escolha a Unidade Federativa Orgão Emissor do Registro do Conselho</td>
+		<td>Alfabético</td>
 		<td>NÃO</td>
 	</tr>
 	<tr>
 		<td>Titulação Estrangeira</td>
 		<td>Selecione caso a titulação tenha sido obtida fora do Brasil</td>
+		<td>Caixa de checagem</td>
 		<td>NÃO</td>
 	</tr>
 	<tr>
 		<td>Pais***</td>
 		<td>Selecione o país onde a titulação foi obtida</td>
+		<td>Alfabético</td>
 		<td>NÃO</td>
 	</tr>
 </table>
@@ -97,11 +132,30 @@ foi selecionado 'Ensino Médio' ou 'Ensino Fundamental'</b>.<br>
 Estrangeira' não está selecionado.</b><br>
 <b>***</b>Campo obrigatório apenas quando o campo <b>'Titulação
 Estrangeira' está selecionado.</b><br>
-</center>
 <br>
-*Clique em
-<b>Adicionar</b>
-para que o formulário seja adicionado a sua lista de titulações.<br>
-O campo Validado na lista indica se sua titulção foi validada pela PROGEPE.
+2. Clicar em Adicionar.
+<br>
+<br>
+<font size='3'><b>Resultado esperado:</b></font>
+<br>
+Caso não ocorra nenhum erro, o sistema salva a titulação, irá adiciona-lá na lista de titulações e exibirá a
+mensagem "Item alterado com sucesso!".
+<br>
+<br>
+<font size='3'><b>Possíveis erros:</b></font>
+<br>
+<table border="1" style="width: 900px">
+	<tr>
+		<td><b>Mensagem</b></td>
+		<td><b>Motivo</b></td>
+	</tr>
+	<tr>
+		<td>Erro ao comunicar com o servidor!</td>
+		<td>Ocorreu alguma falha durante a realização da operação!</td>
+	</tr>
+</table>
+<br>
+<br>
+</center>
 </body>
 </html>
