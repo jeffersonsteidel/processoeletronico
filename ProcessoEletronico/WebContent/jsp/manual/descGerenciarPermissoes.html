@@ -2,41 +2,77 @@
 <body>
 <center>
 <h1>Manual Do Usuário</h1>
-<p><font size='4'>GERENCIAR PERMISSÕES</font></p>
-</center>
+<p><font size='5'><b>GERENCIAR PERMISSÕES</b></font></p>
+<br>
+<table border="1" style="width: 900px">
+	<tr>
+	<td style="width: 200px"><b>Módulo</b></td>
+	<td>Administração | Gerenciar Permissões</td>
+	</tr>
+	<tr>
+	<td style="width: 200px"><b>Perfil</b></td>
+	<td>Gerente</td>
+	</tr>
+	<tr>
+	<td style="width: 200px"><b>Última alteração</b></td>
+	<td>21/02/2011</td>
+	</tr>
+	<tr>
+	<td style="width: 200px"><b>Responsável</b></td>
+	<td>Jefferson Steidel dos Santos</td>
+	</tr>
+	<tr>
+	<td style="width: 200px"><b>Contato</b></td>
+	<td>jefferson.steidel@ifpr.edu.br</td>
+	</tr>
+</table>	
+<br>
+<font size='3'><b>Objetivo:</b></font><br>
+Alterar permissões de um servidor no sistema. <br>
+<br>
+<font size='3'><b>Procedimento:</b></font><br>
+1. Preencher os seguintes campos:
+<table border="1" style="width: 900px">
+	<tr>
+	<td><b></b></td>
+	<td>Descrição</td>
+	<td>Tipo</td>
+	<td>Obrigatório</td>
+	</tr>
+	<tr>
+	<td><b>SIAPE</b></td>
+	<td>Número SIAPE do servidor</td>
+	<td>Numérico</td>
+	<td>SIM</td>
+	</tr>
+</table>
+2. Selecionar as permissões do servidor para alteração.
+<br>
+3. Clicar em salvar.
 <br>
 <br>
-<center><font size='4'>Permissões: </font><br>
-Usuários gerentes do sistema. <br>
+<font size='3'><b>Resultado esperado:</b></font><br>
+Caso não ocorra nenhum erro, o sistema salva os dados no banco e exibirá a mensagem "Item alterado com sucesso!". <br>
 <br>
-<font size='4'>Objetivo da tela: </font><br>
-Permitir alterações nas permissões de um servidor ao sistema. <br>
-<br>
-<font size='4'>Fluxo de preenchimento: </font><br>
-Deve-se informar um siape. Se o siape informado se referir a um servidor
-que possui acesso ao sistema, serão carregados campos para marcar as
-permissões que o servidor terá dentro do sistema. <br>
-<br>
-<font size='4'>Resultado: </font><br>
-O servidor teve suas permissões alteradas com sucesso. <br>
-<br>
-<font size='4'>Possíveis erros: </font><br>
-<table border="1">
-	<th><b>Mensagem</b></th>
-	<th><b>Motivo</b></th>
+<font size='3'><b>Possíveis erros:</b></font><br>
+<table border="1" style="width: 900px">
+	<tr>
+		<td><b>Mensagem</b></td>
+		<td><b>Motivo</b></td>
+	</tr>
 	<tr>
 		<td>Siape inexistente!</td>
-		<td>Não existe um servidor cadastrado no sistema com este numero
+		<td>Não existe um servidor cadastrado no sistema com este número
 		SIAPE</td>
 	</tr>
 	<tr>
 		<td>Este servidor está desativado!</td>
-		<td>O servidor relacionado a este numero SIAPE está inativo e
-		teve seu acesso ao sistema cancelado</td>
+		<td>O servidor relacionado ao número SIAPE informado está inativo e
+		teve seu acesso ao sistema cancelado!</td>
 	</tr>
 	<tr>
 		<td>Erro ao comunicar com o servidor!</td>
-		<td>Ocorreu alguma falha durante a realização da opração</td>
+		<td>Ocorreu alguma falha durante a realização da operação!</td>
 	</tr>
 </table>
 <br>
