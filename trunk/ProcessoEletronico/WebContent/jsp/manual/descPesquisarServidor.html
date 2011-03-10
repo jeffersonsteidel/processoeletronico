@@ -27,14 +27,11 @@
 	</tr>
 </table>
 <br>
-<font size='3'><b>Objetivo:</b></font>
+<font size='3'><b>Objetivo:</b></font> <br>
+Pesquisar servidores de acordo com os filtros informados. <br>
 <br>
-Pesquisar servidores de acordo com os filtros informados.
-<br>
-<br>
-<font size='3'><b>Procedimento:</b></font>
-<br>
-1. Preencher os seguintes campos:
+<font size='3'><b>Procedimento:</b></font> <br>
+1. Preencher os seguintes campos: (opcional)
 <table border="1" style="width: 900px">
 	<tr>
 		<td><b></b></td>
@@ -69,25 +66,33 @@ Pesquisar servidores de acordo com os filtros informados.
 	<tr>
 		<td>Situação</td>
 		<td>Situação dos servidores que aparecereção na lista<br>
-		TODOS    - listar todos<br>
-		ATIVOS   - listar apenas os que ainda trabalham no IFPR<br>
+		TODOS - listar todos<br>
+		ATIVOS - listar apenas os que ainda trabalham no IFPR<br>
 		INATIVOS - listar apenas os que não trabalham mais no IFPR</td>
 		<td>Alfabético</td>
 		<td>NÃO</td>
 	</tr>
 </table>
 <br>
-2. Clicar em pesquisar.
+2. Clicar em pesquisar. <br>
 <br>
+<font size='3'><b>Resultado esperado:</b></font> <br>
+Caso nenhum campo seja preenchido, o sistema listará todos os servidores
+existentes. <br>
+Caso não ocorra nenhum erro, o sistema listará os servidores que possuem
+os requisitos dos filtros. <br>
+Valores retornados:<br>
+-Siape<br>
+- Nome<br>
+- Lotação<br>
+- CPF<br>
+- Cargo <br>
+- Situação Funcional <br>
+Ao lado direito de cada registro retornado há um campo <b>Editar</b>.
+O campo <b>Editar</b> é um link para uma pagina de Atualizar Meus Dados
+com os dados do Servidor selecionado preenchido. <br>
 <br>
-<font size='3'><b>Resultado esperado:</b></font>
-<br>
-Caso não ocorra nenhum erro, o sistema listará os servidores que possuem os requisitos dos filtros. Caso nenhum campo seja preenchido, o sistema listará todos os servidores
-existentes. Ao lado direito de cada servidor presente na tabela há um campo <b>Editar</b>. O campo <b>Editar</b> é um link para uma pagina de Edição dos Dados do Servidor.
-<br>
-<br>
-<font size='3'><b>Possíveis erros:</b></font>
-<br>
+<font size='3'><b>Possíveis erros:</b></font> <br>
 <table border="1" style="width: 900px">
 	<tr>
 		<td><b>Mensagem</b></td>
@@ -95,7 +100,8 @@ existentes. Ao lado direito de cada servidor presente na tabela há um campo <b>E
 	</tr>
 	<tr>
 		<td>Nenhum registro para o filtro informado!</td>
-		<td>Não há servidor que sejá compatível com os filtros selecionados.</td>
+		<td>Não há servidor que sejá compatível com os filtros
+		selecionados.</td>
 	</tr>
 	<tr>
 		<td>Erro ao comunicar com o servidor!</td>
