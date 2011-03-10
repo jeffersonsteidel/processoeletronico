@@ -1,69 +1,104 @@
 <html>
-<head>
-<title>Processo Verde</title>
-</head>
 <body>
 <center>
 <h1>Manual Do Usuário</h1>
-<p><font size='4'>ADICIONAR EMPREGO</font></p>
-</center>
-Formulário que deve ser preenchido caso o usuário logado deseje
-adicionar os seus empregos anteriores.
-
-</br>
-</br>
-<center>
-<table name="cadastrarConjuge" border="1">
-	<th><b>Campo</b></th>
-	<th><b>Descrição</b></th>
-	<th><b>Obrigatório</b></th>
+<p><font size='5'>ADICIONAR EMPREGO</font></p>
+<br>
+<table border="1" style="width: 900px">
+	<tr>
+		<td style="width: 200px"><b>Módulo</b></td>
+		<td>Atualizar Meus Dados | Adicionar Emprego</td>
+	</tr>
+	<tr>
+		<td style="width: 200px"><b>Perfil</b></td>
+		<td>Usuário</td>
+	</tr>
+	<tr>
+		<td style="width: 200px"><b>Última alteração</b></td>
+		<td>10/12/2010</td>
+	</tr>
+	<tr>
+		<td style="width: 200px"><b>Responsável</b></td>
+		<td>Jefferson Steidel dos Santos</td>
+	</tr>
+	<tr>
+		<td style="width: 200px"><b>Contato</b></td>
+		<td>jefferson.steidel@ifpr.edu.br</td>
+	</tr>
+</table>
+<br>
+<font size='3'><b>Objetivo:</b></font>
+<br>
+Adicionar empregos anteriores.
+<br>
+<br>
+<font size='3'><b>Procedimento:</b></font>
+<br>
+1. Preencher os seguintes campos:
+<table border="1" style="width: 900px">
+	<tr>
+		<td><b></b></td>
+		<td>Descrição</td>
+		<td>Tipo</td>
+		<td>Obrigatório</td>
+	</tr>
 	<tr>
 		<td>Cargo</td>
 		<td>Nome do cargo que ocupava</td>
+		<td>Alfanumérico</td>
 		<td>SIM</td>
 	</tr>
 	<tr>
 		<td>Empresa</td>
 		<td>Nome da empresa na qual o servidor trabalhava</td>
+		<td>Alfanumérico</td>
 		<td>SIM</td>
 	</tr>
 	<tr>
 		<td>Data de Admissão</td>
-		<td>Data aproximada no formato 'dd/mm/aaaa' que o servidor
+		<td>Data aproximada que o servidor
 		assumiu o cargo na antiga empresa (para acessar o calendário, clica-se
 		no botão ao lado direito do campo)</td>
+		<td>Data no formato: dd/MM/aaaa</td>
 		<td>SIM</td>
 	</tr>
 	<tr>
 		<td>Data de Saida</td>
-		<td>Data aproximada no formato 'dd/mm/aaaa' que o servidor deixou
+		<td>Data aproximada que o servidor deixou
 		o cargo na antiga empresa (para acessar o calendário, clica-se no
 		botão ao lado direito do campo)</td>
+		<td>Data no formato: dd/MM/aaaa</td>
 		<td>SIM</td>
 	</tr>
 	<tr>
 		<td>Atividades</td>
 		<td>Descrição das atividades exercidas no cargo informado</td>
+		<td>Alfanumérico</td>
 		<td>SIM</td>
 	</tr>
-
 </table>
-
+<br>
+2. Clicar em Adicionar.
+<br>
+<br>
+<font size='3'><b>Resultado esperado:</b></font>
+<br>
+Caso não ocorra nenhum erro, o sistema salva o emprego, o adiciona na lista de empregos na parte inferior da tela e exibirá a
+mensagem "Item salvo com sucesso!".
+<br>
+<br>
+<font size='3'><b>Possíveis erros:</b></font>
+<br>
+<table border="1" style="width: 900px">
+	<tr>
+		<td><b>Mensagem</b></td>
+		<td><b>Motivo</b></td>
+	</tr>
+	<tr>
+		<td>Erro ao comunicar com o servidor!</td>
+		<td>Ocorreu alguma falha durante a realização da operação!</td>
+	</tr>
+</table>
 </center>
-<br>
-*Clique em
-<b>Adicionar</b>
-para que o emprego seja adicionado a lista.
-<br>
-*A quantidade de empregos que o servidor pode adicionar é ilimitada.
-<br>
-*Conforme os dados são preenchidos e o servidor vá clicando no botão
-<b>Adicionar</b>
-, uma tabela abaixo do formulário é exibida com os dados informados.
-<br>
-*Para que o(s) cadastramento(s) do(s) emprego(s) seja(m) salvo(s), o
-servidor deverá clicar no botão
-<b>Salvar</b>
-abaixo da tabela.
 </body>
 </html>
