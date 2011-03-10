@@ -1,60 +1,113 @@
 <html>
-<head>
-<title>Processo Verde</title>
-</head>
 <body>
-<center><h1>Manual Do Usuário</h1>
-<p><font size='4'>LISTAR SERVIDORES</font></p></center>
-
-Todos os servidores são listados de acordo com o siape. Nesta tela há alguns filtros (Siape, Nome, Lotação, CPF, Cargo e Situação) que podem ser preenchidos pelo Administrador. Conforme estes filtros são preenchidos, o sistema lista automaticamente os servidores que possuem os dados correspondentes aos filtros inseridos.
-</br>
-<b>*É necessário permissão de administrador para visualizar esta tela.</b>
-
-</br></br>
 <center>
-<table name = "listarServidores" border = "1">
-	<th><b>Campo</b></th>
-	<th><b>Descrição</b></th>
-	<th><b>Obrigatório</b></th>
+<h1>Manual Do Usuário</h1>
+<p><font size='5'>LISTAR SERVIDORES</font></p>
+<br>
+<table border="1" style="width: 900px">
+	<tr>
+		<td style="width: 200px"><b>Módulo</b></td>
+		<td>Servidor | Listar Servidores</td>
+	</tr>
+	<tr>
+		<td style="width: 200px"><b>Perfil</b></td>
+		<td>Administrador</td>
+	</tr>
+	<tr>
+		<td style="width: 200px"><b>Última alteração</b></td>
+		<td>10/12/2010</td>
+	</tr>
+	<tr>
+		<td style="width: 200px"><b>Responsável</b></td>
+		<td>Jefferson Steidel dos Santos</td>
+	</tr>
+	<tr>
+		<td style="width: 200px"><b>Contato</b></td>
+		<td>jefferson.steidel@ifpr.edu.br</td>
+	</tr>
+</table>
+<br>
+<font size='3'><b>Objetivo:</b></font>
+<br>
+Lista todos os servidores do Sistema. Nesta tela há alguns filtros (Siape, Nome, Lotação, CPF, Cargo e Situação) que podem ser preenchidos pelo Administrador. Conforme estes filtros são preenchidos, o sistema lista automaticamente os servidores que possuem os dados correspondentes aos filtros inseridos.
+<br>
+<br>
+<font size='3'><b>Procedimento:</b></font>
+<br>
+1. Preencher os seguintes campos:
+<table border="1" style="width: 900px">
+	<tr>
+		<td><b></b></td>
+		<td>Descrição</td>
+		<td>Tipo</td>
+		<td>Obrigatório</td>
+	</tr>
 	<tr>
 		<td>Siape</td>
 		<td>Siape do servidor que você deseja buscar</td>
+		<td>Numérico</td>
 		<td>NÃO</td>		
 	</tr>
 	<tr>
 		<td>Nome</td>
 		<td>Nome do servidor que você deseja buscar</td>
+		<td>Alfabético</td>
 		<td>NÃO</td>		
 	</tr>
 	<tr>
 		<td>Lotação</td>
 		<td>Lotação do servidor que você deseja buscar</td>
+		<td>Alfabético</td>
 		<td>NÃO</td>		
 	</tr>
 	<tr>
 		<td>CPF</td>
 		<td>CPF do servidor que você deseja buscar</td>
+		<td>Numérico</td>
 		<td>NÃO</td>		
 	</tr>
 	<tr>
 		<td>Cargo</td>
 		<td>Cargo do servidor que você deseja buscar</td>
+		<td>Alfabético</td>
 		<td>NÃO</td>		
 	</tr>
 	<tr>
 		<td>Situação Funcional</td>
 		<td>Situação Funcional do servidor que você deseja buscar</td>
+		<td>Alfabético</td>
 		<td>NÃO</td>		
 	</tr>
 </table>
-</center>
-
 <br>
-Ao lado direito de cada servidor presente na tabela há dois campos: <b>Editar</b> e <b>Validado</b>. <br>
-<b>*</b>O campo <b>Editar</b> é um link para uma pagina de Edição dos Dados do Servidor.<br>
-<b>*</b>O campo <b>Ativo</b> exibe um icone que contém:<br>
-1)Um icone com seta verde para servidores que atualmente trabalham no IFPR.<br>
+<br>
+<font size='3'><b>Resultado esperado:</b></font>
+<br>
+Caso não ocorra nenhum erro, o sistema listará todos os servidores. Caso algum filtro sejá informado, o sistema informará apenas os servidores que correspondam àquele filtro. os dados retornados são:<br>
+- Siape - Siape do Servidor<br>
+- Nome - Nome do Servidor<br>
+- Lotação - Lotação do Servidor<br>
+- CPF - CPF do Servidor<br>
+- Cargo - Cargo do Servidor<br>
+- Situação Funcional - Situação Funcional do Servidor<br>
+- Editar - Link para pagina de Edição dos Dados do Servidor<br>
+- Ativo - Icone que contém:
+1)Um icone com seta verde para servidores que atualmente trabalham no IFPR.
 2)Um icone com seta vermelha para servidores que sairam do IFPR.<br>
-<b>*</b>O campo <b>Validado</b> mostra um alerta se os dados foram validados, ou não, pela PROGEPE.
+- Validado - Alerta se os dados foram validados, ou não, pela PROGEPE. <br>
+<br>
+<font size='3'><b>Possíveis erros:</b></font>
+<br>
+<table border="1" style="width: 900px">
+	<tr>
+		<td><b>Mensagem</b></td>
+		<td><b>Motivo</b></td>
+	</tr>
+	<tr>
+		<td>Erro ao comunicar com o servidor!</td>
+		<td>Ocorreu alguma falha durante a realização da operação!</td>
+	</tr>
+</table>
+</center>
 </body>
 </html>
