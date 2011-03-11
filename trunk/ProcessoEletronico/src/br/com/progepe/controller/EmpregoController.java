@@ -20,6 +20,7 @@ import br.com.progepe.entity.DocumentoImagem;
 import br.com.progepe.entity.Emprego;
 import br.com.progepe.entity.Servidor;
 import br.com.progepe.entity.StatusSolicitacao;
+import br.com.progepe.jsfUtil.EnviarEmail;
 
 public class EmpregoController  {
 
@@ -167,6 +168,8 @@ public class EmpregoController  {
 			emprego.setDataFechamento(null);
 			emprego.setJustificativa(null);
 			DAO.getInstance().saveOrUpdate(emprego);
+			EnviarEmail email = new EnviarEmail();
+			email.enviarEmailEmprego(emprego);
 			listarEmpregoServidorLogado();
 			emprego = new Emprego();
 			emprego.setStatusSolicitacao(new StatusSolicitacao());
@@ -190,6 +193,8 @@ public class EmpregoController  {
 			}
 			emprego.setDataFechamento(new Date());
 			DAO.getInstance().update(emprego);
+			EnviarEmail email = new EnviarEmail();
+			email.enviarEmailEmprego(emprego);
 		}
 	}
 
@@ -212,6 +217,8 @@ public class EmpregoController  {
 					Constantes.STATUS_SOLICITACAO_INDEFERIDO);
 			emprego.setDataFechamento(new Date());
 			DAO.getInstance().update(emprego);
+			EnviarEmail email = new EnviarEmail();
+			email.enviarEmailEmprego(emprego);
 		}
 	}
 
