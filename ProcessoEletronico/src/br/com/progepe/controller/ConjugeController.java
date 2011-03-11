@@ -24,6 +24,7 @@ import br.com.progepe.entity.Estado;
 import br.com.progepe.entity.Pais;
 import br.com.progepe.entity.Servidor;
 import br.com.progepe.entity.StatusSolicitacao;
+import br.com.progepe.jsfUtil.EnviarEmail;
 import br.com.progepe.validator.Validator;
 
 public class ConjugeController  {
@@ -237,6 +238,8 @@ public class ConjugeController  {
 			conjuge.setDataFechamento(null);
 			conjuge.setJustificativa(null);
 			DAO.getInstance().saveOrUpdate(conjuge);
+			EnviarEmail email = new EnviarEmail();
+			email.enviarEmailConjuge(conjuge);
 			conjuge = new Conjuge();
 			conjuge.setCidadeNascimento(new Cidade());
 			conjuge.setRgUf(new Estado());
@@ -313,6 +316,8 @@ public class ConjugeController  {
 					Constantes.STATUS_SOLICITACAO_DEFERIDO);
 			conjuge.setDataFechamento(new Date());
 			DAO.getInstance().update(conjuge);
+			EnviarEmail email = new EnviarEmail();
+			email.enviarEmailConjuge(conjuge);
 		}
 	}
 
@@ -335,6 +340,8 @@ public class ConjugeController  {
 					Constantes.STATUS_SOLICITACAO_INDEFERIDO);
 			conjuge.setDataFechamento(new Date());
 			DAO.getInstance().update(conjuge);
+			EnviarEmail email = new EnviarEmail();
+			email.enviarEmailConjuge(conjuge);
 		}
 	}
 
