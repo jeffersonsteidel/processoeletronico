@@ -288,7 +288,7 @@ public class EnviarEmail {
 						+ servidorTitulacao.getAreaConhecimento()
 								.getDescricao();
 			}
-			conteudoDoEmail += "\n: Estabelecimento de Ensino:"
+			conteudoDoEmail += "\n Estabelecimento de Ensino: "
 					+ servidorTitulacao.getEstabelecimentoEnsino()
 							.toUpperCase();
 			if (servidorTitulacao.getCargaHoraria() != null) {
@@ -319,7 +319,7 @@ public class EnviarEmail {
 						+ servidorTitulacao.getAreaConhecimento()
 								.getDescricao();
 			}
-			conteudoDoEmail += "\n: Estabelecimento de Ensino:"
+			conteudoDoEmail += "\n Estabelecimento de Ensino: "
 					+ servidorTitulacao.getEstabelecimentoEnsino()
 							.toUpperCase();
 			if (servidorTitulacao.getCargaHoraria() != null) {
