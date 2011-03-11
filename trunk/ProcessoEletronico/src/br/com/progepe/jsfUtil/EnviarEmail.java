@@ -14,6 +14,7 @@ import javax.mail.internet.MimeMessage;
 import br.com.progepe.constantes.Constantes;
 import br.com.progepe.dao.DAO;
 import br.com.progepe.dao.ServidorDAO;
+import br.com.progepe.entity.Conjuge;
 import br.com.progepe.entity.Dependente;
 import br.com.progepe.entity.Emprego;
 import br.com.progepe.entity.Servidor;
@@ -135,7 +136,7 @@ public class EnviarEmail {
 				.getStatusSolicitacao().getCodigo())) {
 			assunto = "PROCESSO VERDE - Emprego cadastrado: "
 					+ DataUtil.formatDateHour(emprego.getDataAbertura());
-			assunto = "PROCESSO VERDE - Emprego cadastrado: "
+			assunto = "PROCESSO VERDE - CADASTRO DE EMPREGO: "
 					+ DataUtil.formatDateHour(emprego.getDataAbertura());
 			conteudoDoEmail = "\n Solicitação: CADASTRO DE EMPREGO";
 			conteudoDoEmail += "\n Status: "
@@ -154,7 +155,7 @@ public class EnviarEmail {
 			atendente = new Servidor();
 			atendente.setSiape(emprego.getAtendente());
 			atendente = ServidorDAO.getInstance().refreshBySiape(atendente);
-			assunto = "PROCESSO VERDE - Emprego cadastrado: "
+			assunto = "PROCESSO VERDE - CADASTRO DE EMPREGO: "
 					+ DataUtil.formatDateHour(emprego.getDataAbertura());
 			conteudoDoEmail = "\n Solicitação: CADASTRO DE EMPREGO";
 			conteudoDoEmail += "\n Status: "
@@ -201,7 +202,7 @@ public class EnviarEmail {
 
 		if (Constantes.STATUS_SOLICITACAO_ENCAMINHADO.equals(dependente
 				.getStatusSolicitacao().getCodigo())) {
-			assunto = "PROCESSO VERDE - Dependente cadastrado: "
+			assunto = "PROCESSO VERDE - CADASTRO DE DEPENDENTE: "
 					+ DataUtil.formatDateHour(dependente.getDataAbertura());
 			conteudoDoEmail = "\n Solicitação: CADASTRO DE DEPENDENTE";
 			conteudoDoEmail += "\n Status: "
@@ -222,7 +223,7 @@ public class EnviarEmail {
 			atendente = new Servidor();
 			atendente.setSiape(dependente.getAtendente());
 			atendente = ServidorDAO.getInstance().refreshBySiape(atendente);
-			assunto = "PROCESSO VERDE - Dependente cadastrado: "
+			assunto = "PROCESSO VERDE - CADASTRO DE DEPENDENTE: "
 					+ DataUtil.formatDateHour(dependente.getDataAbertura());
 			conteudoDoEmail = "\n Solicitação: CADASTRO DE DEPENDENTE";
 			conteudoDoEmail += "\n Status: "
@@ -272,7 +273,7 @@ public class EnviarEmail {
 
 		if (Constantes.STATUS_SOLICITACAO_ENCAMINHADO.equals(servidorTitulacao
 				.getStatusSolicitacao().getCodigo())) {
-			assunto = "PROCESSO VERDE - Titulação cadastrado: "
+			assunto = "PROCESSO VERDE - CADASTRO DE TITULAÇÃO: "
 					+ DataUtil.formatDateHour(servidorTitulacao
 							.getDataAbertura());
 			conteudoDoEmail = "\n Solicitação: CADASTRO DE TITULAÇÃO";
@@ -303,7 +304,7 @@ public class EnviarEmail {
 			atendente = new Servidor();
 			atendente.setSiape(servidorTitulacao.getAtendente());
 			atendente = ServidorDAO.getInstance().refreshBySiape(atendente);
-			assunto = "PROCESSO VERDE - Titulação cadastrado: "
+			assunto = "PROCESSO VERDE - CADASTRO DE TITULAÇÃO: "
 					+ DataUtil.formatDateHour(servidorTitulacao
 							.getDataAbertura());
 			conteudoDoEmail = "\n Solicitação: CADASTRO DE TITULAÇÃO";
@@ -346,6 +347,70 @@ public class EnviarEmail {
 		try {
 			@SuppressWarnings("unused")
 			EnviarEmail enviar = new EnviarEmail(remetente, servidorTitulacao
+					.getServidor().getEmail(), assunto, smtpHost, porta,
+					usuario, senha, conteudoDoEmail);
+		} catch (Exception e) {
+			System.err.println(e);
+		}
+	}
+
+	public void enviarEmailConjuge(Conjuge conjuge) {
+		String remetente = "processo.verde@ifpr.edu.br";
+		String smtpHost = "smtp.gmail.com";
+		String porta = "465";
+		String usuario = "processo.verde@ifpr.edu.br";
+		String senha = "ifpr10";
+
+		Servidor atendente = null;
+		conjuge = (Conjuge) DAO.getInstance().refresh(conjuge);
+
+		if (Constantes.STATUS_SOLICITACAO_ENCAMINHADO.equals(conjuge
+				.getStatusSolicitacao().getCodigo())) {
+			assunto = "PROCESSO VERDE - CADASTRO DE CÔNJUGE: "
+					+ DataUtil.formatDateHour(conjuge.getDataAbertura());
+			conteudoDoEmail = "\n Solicitação: CADASTRO DE CÔNJUGE";
+			conteudoDoEmail += "\n Status: "
+					+ conjuge.getStatusSolicitacao().getDescricao();
+			conteudoDoEmail += "\n Data de Abertura: "
+					+ DataUtil.formatDateHour(conjuge.getDataAbertura());
+			conteudoDoEmail += "\n Data de Nascimento do Cônjuge: "
+					+ DataUtil.formatDate(conjuge.getDataNascimento());
+			conteudoDoEmail += "\n CPF do Cônjuge: " + conjuge.getCpf();
+			conteudoDoEmail += "\n Atual: "
+					+ (conjuge.getAtual() ? "SIM" : "NÃO");
+			conteudoDoEmail += "\n \n E-mail automático por favor não responder!";
+		}
+		if (conjuge.getStatusSolicitacao().getCodigo() > Constantes.STATUS_SOLICITACAO_ENCAMINHADO) {
+			atendente = new Servidor();
+			atendente.setSiape(conjuge.getAtendente());
+			atendente = ServidorDAO.getInstance().refreshBySiape(atendente);
+			assunto = "PROCESSO VERDE - CADASTRO DE CÔNJUGE: "
+					+ DataUtil.formatDateHour(conjuge.getDataAbertura());
+			conteudoDoEmail = "\n Solicitação: CADASTRO DE CÔNJUGE";
+			conteudoDoEmail += "\n Status: "
+					+ conjuge.getStatusSolicitacao().getDescricao();
+			conteudoDoEmail += "\n Data de Abertura: "
+					+ DataUtil.formatDateHour(conjuge.getDataAbertura());
+			conteudoDoEmail += "\n Data de Nascimento do Cônjuge: "
+					+ DataUtil.formatDate(conjuge.getDataNascimento());
+			conteudoDoEmail += "\n CPF do Cônjuge: " + conjuge.getCpf();
+			conteudoDoEmail += "\n Atual: "
+					+ (conjuge.getAtual() ? "SIM" : "NÃO");
+			conteudoDoEmail += "\n Data de Atendimento: "
+					+ DataUtil.formatDate(conjuge.getDataAtendimento());
+			conteudoDoEmail += "\n Atendente: " + atendente.getNome();
+			conteudoDoEmail += "\n Data de Fechamento: "
+					+ DataUtil.formatDate(conjuge.getDataFechamento());
+			if (conjuge.getJustificativa() != null
+					&& conjuge.getJustificativa().length() > 0) {
+				conteudoDoEmail += "\n Justificativa: "
+						+ conjuge.getJustificativa();
+			}
+			conteudoDoEmail += "\n \n E-mail automático por favor não responder!";
+		}
+		try {
+			@SuppressWarnings("unused")
+			EnviarEmail enviar = new EnviarEmail(remetente, conjuge
 					.getServidor().getEmail(), assunto, smtpHost, porta,
 					usuario, senha, conteudoDoEmail);
 		} catch (Exception e) {
