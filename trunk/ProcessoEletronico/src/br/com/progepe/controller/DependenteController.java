@@ -22,6 +22,7 @@ import br.com.progepe.entity.Estado;
 import br.com.progepe.entity.GrauParentesco;
 import br.com.progepe.entity.Servidor;
 import br.com.progepe.entity.StatusSolicitacao;
+import br.com.progepe.jsfUtil.EnviarEmail;
 import br.com.progepe.validator.Validator;
 
 public class DependenteController  {
@@ -250,6 +251,8 @@ public class DependenteController  {
 		}
 		if (validarCPF()) {
 			DAO.getInstance().saveOrUpdate(dependente);
+			EnviarEmail email = new EnviarEmail();
+			email.enviarEmailDependente(dependente);
 			listarDependentesServidorLogado();
 			dependente = null;
 			dependente = new Dependente();
@@ -273,6 +276,8 @@ public class DependenteController  {
 			dependente.setDataFechamento(new Date());
 			dependente.setIndNovo(false);
 			DAO.getInstance().update(dependente);
+			EnviarEmail email = new EnviarEmail();
+			email.enviarEmailDependente(dependente);
 		}
 	}
 
@@ -295,6 +300,8 @@ public class DependenteController  {
 					Constantes.STATUS_SOLICITACAO_INDEFERIDO);
 			dependente.setDataFechamento(new Date());
 			DAO.getInstance().update(dependente);
+			EnviarEmail email = new EnviarEmail();
+			email.enviarEmailDependente(dependente);
 		}
 	}
 

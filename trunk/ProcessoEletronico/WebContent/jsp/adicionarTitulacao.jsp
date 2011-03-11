@@ -32,7 +32,6 @@
 				</h:outputText>
 			</h:panelGrid>
 
-			<a4j:region>
 				<h:panelGrid columns="4">
 
 					<h:outputText value="Tiulação: " />
@@ -282,7 +281,6 @@
 						<rich:datascroller id="ds"></rich:datascroller>
 					</f:facet>
 				</rich:dataTable>
-			</a4j:region>
 		</rich:panel></center>
 	</a4j:form>
 	<center><rich:modalPanel id="painel" autosized="true"

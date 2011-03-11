@@ -26,8 +26,9 @@ import br.com.progepe.entity.Servidor;
 import br.com.progepe.entity.ServidorTitulacao;
 import br.com.progepe.entity.StatusSolicitacao;
 import br.com.progepe.entity.Titulacao;
+import br.com.progepe.jsfUtil.EnviarEmail;
 
-public class ServidorTitulacaoController  {
+public class ServidorTitulacaoController {
 
 	private List<ServidorTitulacao> listaServidorTitulacoes = new ArrayList<ServidorTitulacao>();
 	private ServidorTitulacao servidorTitulacao;
@@ -379,6 +380,8 @@ public class ServidorTitulacaoController  {
 		servidorTitulacao.setDataFechamento(null);
 		servidorTitulacao.setJustificativa(null);
 		DAO.getInstance().saveOrUpdate(servidorTitulacao);
+		EnviarEmail email = new EnviarEmail();
+		email.enviarEmailTitulacao(servidorTitulacao);
 		listarTitulacoesServidorLogado();
 		servidorTitulacao = new ServidorTitulacao();
 		servidorTitulacao.setEstadoOrgaoEmissor(new Estado());
@@ -412,6 +415,8 @@ public class ServidorTitulacaoController  {
 					Constantes.STATUS_SOLICITACAO_DEFERIDO);
 			servidorTitulacao.setDataFechamento(new Date());
 			DAO.getInstance().update(servidorTitulacao);
+			EnviarEmail email = new EnviarEmail();
+			email.enviarEmailTitulacao(servidorTitulacao);
 		}
 	}
 
@@ -422,6 +427,8 @@ public class ServidorTitulacaoController  {
 					Constantes.STATUS_SOLICITACAO_INDEFERIDO);
 			servidorTitulacao.setDataFechamento(new Date());
 			DAO.getInstance().update(servidorTitulacao);
+			EnviarEmail email = new EnviarEmail();
+			email.enviarEmailTitulacao(servidorTitulacao);
 		} else if (servidorTitulacao.getJustificativa().length() > 250) {
 			FacesMessage message = new FacesMessage(
 					FacesMessage.SEVERITY_ERROR,
