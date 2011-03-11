@@ -1,14 +1,12 @@
 <html>
-<head>
-<title>Processo Verde</title>
-</head>
 <body>
-<center><h1>Manual Do Usuário</h1>
-<p><font size='5'>LISTA DE LOTAÇÕES</font></p>
+<center>
+<h1>Manual Do Usuário</h1>
+<p><font size='5'>CADASTRAR LOTAÇÃO</font></p>
 <table border="1" cellspacing="0" style="width: 900px">
 	<tr>
 		<td style="width: 200px"><b>Módulo</b></td>
-		<td>Administração | Listar Lotações</td>
+		<td>Administração | Cadastrar Lotação</td>
 	</tr>
 	<tr>
 		<td style="width: 200px"><b>Perfil</b></td>
@@ -30,7 +28,7 @@
 <br>
 <font size='3'><b>Objetivo:</b></font>
 <br>
-Utilizada para listar as lotações cadastradas no sistema. 
+Cadastrar Lotação.
 <br>
 <br>
 <font size='3'><b>Procedimento:</b></font>
@@ -41,37 +39,75 @@ Utilizada para listar as lotações cadastradas no sistema.
 <table border="1" cellspacing="0" style="width: 900px">
 	<th><b></b></th>
 	<th><b>Descrição</b></th>
+	<th><b>Obrigatório</b></th>
+
 	<tr>
-		<td>Código</td>
-		<td>Código do Cargo</td>	
-	</tr>
-	<tr>
-		<td>Campus</td>
-		<td>Nome do Campus</td>	
+		<td>Código:</td>
+		<td>Cógigo da Lotação</td>
+		<td>SIM</td>
 	</tr>
 	<tr>
 		<td>Diretor Administrativo</td>
-		<td>Nome do Diretor Administrativo</td>
+		<td>Diretor Administrativo da Lotação</td>
+		<td>SIM</td>
 	</tr>
 	<tr>
+		<td>Endereco</td>
+		<td>Endereço da Lotação</td>
+		<td>SIM</td>
+	</tr>
+	<tr>
+		<td>Bairro</td>
+		<td>Bairro da Lotação</td>
+		<td>SIM</td>
+	</tr>
+	<tr>
+		<td>Cidade</td>
+		<td>Cidade da Lotação</td>
+		<td>SIM</td>
+	</tr>
+		<tr>
+		<td>Email</td>
+		<td>Email da Lotação</td>
+		<td>SIM</td>
+	</tr>
+		<tr>
+		<td>Nome</td>
+		<td>Nome da Lotação</td>
+		<td>SIM</td>
+	</tr>
+		<tr>
 		<td>Diretor Geral</td>
-		<td>Nome do Diretor Geral</td>
+		<td>Diretor Geral da Lotação</td>
+		<td>SIM</td>
 	</tr>
-	<tr>
-		<td>Endereço</td>
-		<td>Endereço do Campus</td>
+		<tr>
+		<td>Número</td>
+		<td>Número da Lotação</td>
+		<td>SIM</td>
+	</tr>
+			<tr>
+		<td>Estado</td>
+		<td>Estado da Lotação</td>
+		<td>SIM</td>
+	</tr>
+			<tr>
+		<td>Telefone</td>
+		<td>Telefone da Lotação</td>
+		<td>SIM</td>
+	</tr>
+			<tr>
+		<td>Site</td>
+		<td>Site da Lotação</td>
+		<td>SIM</td>
 	</tr>
 </table>
 <br><br>
+2. Clicar em salvar.
+<br><br>
 <font size='3'><b>Resultado esperado:</b></font>
 <br>
-Caso não ocorra nenhum erro, o sistema listará todos as lotações. Caso algum filtro sejá informado, o sistema informará apenas as lotações que correspondam àquele filtro. os dados retornados são:
-<br>
-- Código<br>
-- Campus<br>
-- Diretor Administrativo<br>
-- Diretor Geral <br>
-- Endereço <br>
+Caso não ocorra nenhum erro, o sistema exibirá a mensagem "Lotação salva com sucesso!". <br>
 <br>
 <font size='3'><b>Possíveis erros:</b></font>
 <br>
@@ -85,8 +121,6 @@ Caso não ocorra nenhum erro, o sistema listará todos as lotações. Caso algum fil
 		<td>Ocorreu alguma falha durante a realização da operação!</td>
 	</tr>
 </table>
-<br>
-Ao clicar em <b>EDITAR</b> abrirá uma tela para edição da Lotação. 
 </center>
 </body>
 </html>
