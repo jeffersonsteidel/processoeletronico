@@ -13,6 +13,7 @@ import javax.mail.internet.MimeMessage;
 import br.com.progepe.constantes.Constantes;
 import br.com.progepe.dao.DAO;
 import br.com.progepe.dao.ServidorDAO;
+import br.com.progepe.entity.Emprego;
 import br.com.progepe.entity.Servidor;
 import br.com.progepe.entity.Solicitacao;
 
@@ -94,6 +95,52 @@ public class EnviarEmail {
 		try{	
 			@SuppressWarnings("unused")
 			EnviarEmail enviar = new EnviarEmail(remetente, solicitacao.getSolicitante().getEmail(),
+					assunto, smtpHost, porta, usuario, senha, conteudoDoEmail);
+		}catch (Exception e) {
+			System.err.println(e);
+		}
+	}
+	
+	public  void enviarEmailEmprego(Emprego emprego) {
+		String remetente = "processo.verde@ifpr.edu.br";
+		String smtpHost = "smtp.gmail.com";
+		String porta = "465";
+		String usuario = "processo.verde@ifpr.edu.br";
+		String senha = "ifpr10";
+		
+		Servidor atendente = null;
+		emprego = (Emprego) DAO.getInstance().refresh(emprego);
+		
+		if(Constantes.STATUS_SOLICITACAO_ENCAMINHADO.equals(emprego.getStatusSolicitacao().getCodigo())){
+			assunto = "PROCESSO VERDE - Emprego cadastrado: "+ DataUtil.formatDateHour(emprego.getDataAbertura());
+			conteudoDoEmail = "\n Status: "+emprego.getStatusSolicitacao().getDescricao();
+			conteudoDoEmail += "\n Empresa: "+emprego.getEmpresa();
+			conteudoDoEmail += "\n Cargo: "+emprego.getCargo();
+			conteudoDoEmail += "\n Data de Admissão: "+DataUtil.formatDate(emprego.getDataAdmissao());
+			conteudoDoEmail += "\n Data de Demissão: "+DataUtil.formatDate(emprego.getDataSaida());
+			conteudoDoEmail += "\n \n E-mail automático por favor não responder!";
+		}
+		if(emprego.getStatusSolicitacao().getCodigo() > Constantes.STATUS_SOLICITACAO_ENCAMINHADO){
+			atendente = new Servidor();
+			atendente.setSiape(emprego.getAtendente());
+			atendente = ServidorDAO.getInstance().refreshBySiape(atendente);
+			assunto = "PROCESSO VERDE - Emprego cadastrado: "+ DataUtil.formatDateHour(emprego.getDataAbertura());
+			conteudoDoEmail = "\n Status: "+emprego.getStatusSolicitacao().getDescricao();
+			conteudoDoEmail += "\n Empresa: "+emprego.getEmpresa();
+			conteudoDoEmail += "\n Cargo: "+emprego.getCargo();
+			conteudoDoEmail += "\n Data de Admissão: "+DataUtil.formatDate(emprego.getDataAdmissao());
+			conteudoDoEmail += "\n Data de Demissão: "+DataUtil.formatDate(emprego.getDataSaida());
+			conteudoDoEmail += "\n Data de Atendimento: "+DataUtil.formatDate(emprego.getDataAtendimento());
+			conteudoDoEmail += "\n Atendente: "+atendente.getNome();
+			conteudoDoEmail += "\n Data de Fechamento: "+DataUtil.formatDate(emprego.getDataFechamento());
+			if(emprego.getJustificativa() != null  && emprego.getJustificativa().length() > 0){
+				conteudoDoEmail += "\n Justificativa: "+emprego.getJustificativa();
+			}
+			conteudoDoEmail += "\n \n E-mail automático por favor não responder!";
+		}
+		try{	
+			@SuppressWarnings("unused")
+			EnviarEmail enviar = new EnviarEmail(remetente, emprego.getServidor().getEmail(),
 					assunto, smtpHost, porta, usuario, senha, conteudoDoEmail);
 		}catch (Exception e) {
 			System.err.println(e);
