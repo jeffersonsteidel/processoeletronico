@@ -47,7 +47,7 @@
 				<h:outputText value="Horário de Compensação: " />
 
 
-				<h:panelGrid columns="6" border="1">
+				<h:panelGrid columns="6" border="1" cellspacing="0">
 					<h:outputText>
 						<b>Dia da Semana</b>
 					</h:outputText>
