@@ -5,21 +5,39 @@
 <body>
 <center>
 <h1>Manual Do Usuário</h1>
-<p><font size='4'>PESQUISAR TITULAÇÕES</font></p>
-</center>
-<b>*É necessário permissão de Administrador para visualizar esta
-tela.</b>
+<p><font size='5'>PESQUISAR TITULAÇÕES</font></p>
+<table border="1" cellspacing="0" style="width: 900px">
+	<tr>
+		<td style="width: 200px"><b>Módulo</b></td>
+		<td>Servidor | Pesquisar Titulações</td>
+	</tr>
+	<tr>
+		<td style="width: 200px"><b>Perfil</b></td>
+		<td>Administrador</td>
+	</tr>
+	<tr>
+		<td style="width: 200px"><b>Última alteração</b></td>
+		<td>10/12/2010</td>
+	</tr>
+	<tr>
+		<td style="width: 200px"><b>Responsável</b></td>
+		<td>Jefferson Steidel dos Santos</td>
+	</tr>
+	<tr>
+		<td style="width: 200px"><b>Contato</b></td>
+		<td>jefferson.steidel@ifpr.edu.br</td>
+	</tr>
+</table>
 <br>
+<font size='3'><b>Objetivo:</b></font>
 <br>
-
-Quatro filtros são exibidos na tela (Siape, Nome, Titulação e Área de
-Conhecimento). O Administrador insere algum dado no filtro que deseja e
-o programa pesquisará baseando-se no critério fornecido.
-</br>
-</br>
-<center>
-<table name="listarTitulacoes" border="1">
-	<th><b>Campo</b></th>
+Quatro filtros são exibidos na tela (Siape, Nome, Titulação e Área de Conhecimento). O Administrador insere algum dado no filtro que deseja e o programa pesquisará baseando-se no critério fornecido. <br>
+<br>
+<font size='3'><b>Procedimento:</b></font>
+<br></center><center>
+1. Preencher os seguintes campos:(opcional)
+<table border="1" cellspacing="0" style="width: 900px" name="listarTitulacoes">
+	<th><b></b></th>
 	<th><b>Descrição</b></th>
 	<th><b>Obrigatório</b></th>
 	<tr>
@@ -62,8 +80,6 @@ o programa pesquisará baseando-se no critério fornecido.
 		<td>NÃO</td>
 	</tr>
 </table>
-</center>
-<br>
 <b>*</b>
 Caso não exista registro com os dados informados aparecerá a mensagem:
 "Nenhum registro para o filtro informado!"
@@ -71,7 +87,10 @@ Caso não exista registro com os dados informados aparecerá a mensagem:
 <b>*</b>
 Caso nenhum campo seja preenchido, o sistema listará todos as titulações
 existentes.
-<br>
+<br><br>
+2. Clicar em Pesquisar.
+<br><br>
+<font size='3'><b>Resultado esperado:</b></font>
 <br>
 Ao clicar no botão
 <b>Pesquisar</b>
@@ -93,6 +112,19 @@ Ao lado direito de cada titulação presente na tabela há o campo
 <b>Visualizar</b>
 que é um link para uma página onde se pode visualizar todas as
 informações cadastradas a respeito desta titulação.
+<br><br>
+<font size='3'><b>Possíveis erros:</b></font>
 <br>
+<table border="1" cellspacing="0" style="width: 900px">
+	<tr>
+		<td><b>Mensagem</b></td>
+		<td><b>Motivo</b></td>
+	</tr>
+	<tr>
+		<td>Erro ao comunicar com o servidor!</td>
+		<td>Ocorreu alguma falha durante a realização da operação!</td>
+	</tr>
+</table>
+</center>
 </body>
 </html>

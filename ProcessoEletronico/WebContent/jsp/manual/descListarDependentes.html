@@ -5,23 +5,47 @@
 <body>
 <center>
 <h1>Manual Do Usuário</h1>
-<p><font size='4'>PESQUISAR DEPENDENTES</font></p>
-</center>
+<p><font size='5'>PESQUISAR DEPENDENTES</font></p>
+<table border="1" style="width: 900px" cellspacing="0">
+	<tr>
+		<td style="width: 200px"><b>Módulo</b></td>
+		<td>Servidor | Pesquisar Dependentes</td>
+	</tr>
+	<tr>
+		<td style="width: 200px"><b>Perfil</b></td>
+		<td>Administrador</td>
+	</tr>
+	<tr>
+		<td style="width: 200px"><b>Última alteração</b></td>
+		<td>14/02/2011</td>
+	</tr>
+	<tr>
+		<td style="width: 200px"><b>Responsável</b></td>
+		<td>Jefferson Steidel dos Santos</td>
+	</tr>
+	<tr>
+		<td style="width: 200px"><b>Contato</b></td>
+		<td>jefferson.steidel@ifpr.edu.br</td>
+	</tr>
+</table>
+<br></center><center>
+<font size='3'><b>Objetivo:</b></font>
+<br>
+Exibir todos os dependentes
+que estão relacionados com o(s) filtro(s) informado(s).
+<br><br>
+<font size='3'><b>Procedimento:</b></font>
+<br>
+1. Preencher os seguintes campos:<br><br>
 <b>*É necessário permissão de Administrador para visualizar esta
-tela.</b>
-<br>
-<br>
+tela.</b><br>
 
 Quatro filtros são exibidos na tela (Siape, Servidor, Dependente e
 Parentesco). O Administrador insere algum dado no filtro que deseja e o
-programa pesquisará baseando-se no critério fornecido. Ao clicar no
-botão pesquisar, o sistema exibirá uma tabela com todos os dependentes
-que estão relacionados com o(s) filtro(s) informado(s).
-</br>
-</br>
-<center>
-<table name="listarDependentes" border="1">
-	<th><b>Campo</b></th>
+programa pesquisará baseando-se no critério fornecido.
+
+<table border="1" style="width: 900px" cellspacing="0" name="listarDependentes">
+	<th><b></b></th>
 	<th><b>Descrição</b></th>
 	<th><b>Obrigatório</b></th>
 	<tr>
@@ -64,7 +88,6 @@ que estão relacionados com o(s) filtro(s) informado(s).
 		<td>NÃO</td>
 	</tr>
 </table>
-</center>
 <br>
 <b>*</b>
 Caso não exista registro com os dados informados aparecerá a mensagem:
@@ -75,6 +98,9 @@ Caso nenhum campo seja preenchido, o sistema listará todos os
 dependentes existentes.
 <br>
 <br>
+2. Clicar em pesquisar. <br>
+<br>
+<font size='3'><b>Resultado esperado:</b></font> <br>
 O resultado da pesquisa é uma tabela com os seguintes dados:
 <br>
 -SIAPE
@@ -91,5 +117,25 @@ Ao lado direito de cada dependente presente na tabela há o campo
 que é um link para uma página onde se pode visualizar todas as
 informações cadastradas a respeito deste dependente.
 <br>
+<br>
+<font size='3'><b>Possíveis erros:</b></font> <br>
+<table border="1" style="width: 900px" cellspacing="0">
+	<tr>
+		<td><b>Mensagem</b></td>
+		<td><b>Motivo</b></td>
+	</tr>
+	<tr>
+		<td>Nenhum registro para o filtro informado!</td>
+		<td>Não há servidor que sejá compatível com os filtros
+		selecionados.</td>
+	</tr>
+	<tr>
+		<td>Erro ao comunicar com o servidor!</td>
+		<td>Ocorreu alguma falha durante a realização da operação!</td>
+	</tr>
+</table>
+<br>
+<br>
+</center>
 </body>
 </html>
