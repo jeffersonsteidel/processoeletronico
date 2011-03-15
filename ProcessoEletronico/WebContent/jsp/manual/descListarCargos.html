@@ -56,7 +56,6 @@ Utilizada para listar os cargos cadastradas no sistema. <br>
 	</tr>
 </table>
 <br>
-<br>
 <font size='3'><b>Resultado esperado:</b></font> <br>
 Caso não ocorra nenhum erro, o sistema listará todos os cargos. Caso
 algum filtro sejá informado, o sistema informará apenas os cargos que
@@ -65,18 +64,23 @@ correspondam àquele filtro. os dados retornados são: <br>
 - Cargo<br>
 - Classe<br>
 <br>
+Ao clicar em <b>EDITAR</b> abrirá uma tela para edição do Cargo.<br><br>
 <font size='3'><b>Possíveis erros:</b></font> <br>
 <table border="1" cellspacing="0" style="width: 900px">
 	<tr>
 		<td><b>Mensagem</b></td>
 		<td><b>Motivo</b></td>
 	</tr>
+		<tr>
+		<td>Nenhum registro para o filtro informado!</td>
+		<td>Não há servidor que sejá compatível com os filtros
+		selecionados.</td>
+	</tr>
 	<tr>
 		<td>Erro ao comunicar com o servidor!</td>
 		<td>Ocorreu alguma falha durante a realização da operação!</td>
 	</tr>
 </table>
-<br>
-Ao clicar em <b>EDITAR</b> abrirá uma tela para edição do Cargo.</center>
+</center>
 </body>
 </html>
