@@ -31,7 +31,7 @@
 					value="(retorna todos os servidores, traz o o siape, nome, banco, número da conta, agência, indicador de poupança pelo siape)" />
 
 				<h:graphicImage value="../images/icopdf.gif" />
-				<h:commandLink value="SERVIDOR POR FILTRO CARGO LOTAÇÂO"
+				<h:commandLink value="SERVIDOR POR FILTRO CARGO LOTAÇÃO"
 					action="#{relatorioController.abrirRelatorioCargoLotacaoByFiltro}" />
 				<h:outputText
 					value="(retorna servidores por filtro, cargo, local exercício e situação. traz o siape, nome, cargo, lotação e indicador de atividade)" />
