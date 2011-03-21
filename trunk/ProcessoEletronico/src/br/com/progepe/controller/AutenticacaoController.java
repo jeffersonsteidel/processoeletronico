@@ -7,6 +7,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
 
+import br.com.progepe.constantes.Constantes;
 import br.com.progepe.dao.AutenticacaoDAO;
 import br.com.progepe.encripty.Encripty;
 import br.com.progepe.entity.Autenticacao;
@@ -69,7 +70,7 @@ public class AutenticacaoController  {
 			FacesContext.getCurrentInstance().getExternalContext()
 					.redirect("menus.jsp");
 			autenticacao = new Autenticacao();
-			session.setMaxInactiveInterval(-1);
+			session.setMaxInactiveInterval(Constantes.TEMPO_DA_SESSAO);
 		} else {
 			session.setAttribute("usuarioLogado", null);
 			session.removeAttribute("user");
