@@ -29,8 +29,8 @@ public class AutenticacaoDAO extends  DAO {
 		HibernateUtility.beginTransaction();
 		Criteria c = HibernateUtility.getSession().createCriteria(
 				Autenticacao.class);
-		c.add(Restrictions.like("siape", autenticacao.getSiape()));
-		c.add(Restrictions.like("senha",
+		c.add(Restrictions.eq("siape", autenticacao.getSiape()));
+		c.add(Restrictions.eq("senha",
 				Encripty.criptografaSenha(autenticacao.getSenha())));
 		HibernateUtility.commitTransaction();
 		return (Autenticacao) c.uniqueResult();
