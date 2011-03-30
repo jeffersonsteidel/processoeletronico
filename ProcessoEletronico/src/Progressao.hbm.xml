@@ -18,11 +18,9 @@
 		<many-to-one name="padraoNovo" class="br.com.progepe.entity.Padrao"
 			column="PAD_COD_NOVO" lazy="false" />
 		<many-to-one name="tipoProgressao" class="br.com.progepe.entity.TipoProgressao"
-			column="TIP_PROG_COD"  lazy="false" />		
-		<many-to-one name="servidorTitulacao" class="br.com.progepe.entity.ServidorTitulacao"
-			column="TIT_COD"  lazy="false" />		
+			column="TIP_PROG_COD"  lazy="false" />			
 		<property name="dataProgressao" column="PROG_DATA" />
-		<property name="dataProximaProgressao" column="PROG_DATE_PROX_PROG" />	
+		<property name="dataProximaProgressao" column="PROG_DATA_PROX_PROG" />	
 		<property name="portaria" column="PROG_PORT" />			
 	</class>
 </hibernate-mapping>
