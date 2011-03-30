@@ -91,8 +91,9 @@
 				<h:inputText value="#{progressaoController.progressao.portaria}"
 					size="40" maxlength="60"
 					requiredMessage="Campo Portaria é obrigatório!" required="true"></h:inputText>
+			</h:panelGrid>
 
-				<%-- <!-- 
+			<%-- <!-- 
 			<h:panelGrid columns="1" id="titulacoes">
 				
 				<rich:dataTable id="listaTitulacoes"
@@ -136,6 +137,7 @@
 					action="#{lotacaoController.salvar}" reRender="form" />
 			</h:panelGrid> -->
 			 --%>
+			<h:panelGrid>
 				<a4j:commandButton value="Salvar"
 					action="#{progressaoController.salvar}" reRender="form" />
 			</h:panelGrid>
