@@ -257,6 +257,9 @@
 				<rich:menuItem submitMode="ajax" value="Listar Lotações"
 					action="#{lotacaoController.abrirListarLotacoes}"
 					icon="../images/listarLotacao.gif" />
+				<rich:menuItem submitMode="ajax" value="Listar Progressão"
+					action="#{progressaoController.abrirListarProgressao}"
+					icon="../images/listarProgressao.gif" />
 				<rich:menuItem submitMode="ajax" value="Nova Função"
 					action="#{funcaoController.abrirNovaFuncao}"
 					icon="../images/novafuncao.png" />

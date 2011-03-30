@@ -14,7 +14,6 @@ import br.com.progepe.constantes.Constantes;
 import br.com.progepe.dao.DAO;
 import br.com.progepe.dao.ProgressaoDAO;
 import br.com.progepe.dao.ServidorDAO;
-import br.com.progepe.entity.Cargo;
 import br.com.progepe.entity.Classe;
 import br.com.progepe.entity.Padrao;
 import br.com.progepe.entity.Progressao;
@@ -93,7 +92,6 @@ public class ProgressaoController  {
 		try {
 			progressao = new Progressao();
 			progressaoList = new ArrayList<Progressao>();
-			progressao.getServidor().setCargo(new Cargo());
 			progressaoList = (List<Progressao>) DAO.getInstance().list(Progressao.class,
 					"codigo");
 			FacesContext.getCurrentInstance().getExternalContext()
@@ -116,7 +114,8 @@ public class ProgressaoController  {
 			progressao.setPadraoAntigo(new Padrao());
 			progressao.setPadraoNovo(new Padrao());
 			progressao.setTipoProgressao(new TipoProgressao());
-			progressao.setServidorTitulacao(new ServidorTitulacao());
+			progressao.getTipoProgressao().setCodigo(2L);
+		//	progressao.setServidorTitulacao(new ServidorTitulacao());
 			FacesContext.getCurrentInstance().getExternalContext()
 					.redirect("cadastrarProgressao.jsp");
 		} catch (IOException e) {
