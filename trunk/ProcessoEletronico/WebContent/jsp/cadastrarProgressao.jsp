@@ -36,7 +36,7 @@
 					requiredMessage="Campo Siape do Servidor é obrigatório!">
 					<a4j:support event="onchange"
 						action="#{progressaoController.buscarServidor}" ajaxSingle="true"
-						reRender="servidor,siape, classeAtual,padraoAtual,classeNova"></a4j:support>
+						reRender="servidor,siape, classeAtual, padraoAtual, classeNova"></a4j:support>
 				</h:inputText>
 
 				<h:outputText value="Nome do Servidor: ">
@@ -47,16 +47,16 @@
 
 				<h:outputText value="Classe Atual: "></h:outputText>
 				<h:outputText id="classeAtual"
-					value="#{progressaoController.progressao.servidor.cargo.classe.sigla}"></h:outputText>
+					value="#{progressaoController.progressao.classeAntiga.sigla}"></h:outputText>
 				<h:outputText value="Padrão Atual: "></h:outputText>
 				<h:outputText id="padraoAtual"
-					value="#{progressaoController.progressao.servidor.padrao.nivel}"></h:outputText>
+					value="#{progressaoController.progressao.padraoAntigo.nivel}"></h:outputText>
 				<h:outputText value="Classe Nova: "></h:outputText>
 				<h:outputText id="classeNova"
-					value="#{progressaoController.progressao.servidor.cargo.classe.sigla}"></h:outputText>
+					value="#{progressaoController.progressao.classeNova.sigla}"></h:outputText>
 				<h:outputText value="Padrão Novo: "></h:outputText>
 				<h:selectOneMenu
-					value="#{progressaoController.progressao.padraoNovo}"
+					value="#{progressaoController.progressao.padraoNovo.codigo}"
 					required="true" requiredMessage="Campo Padrão Novo é obrigatório!">
 					<f:selectItem itemLabel="SELECIONE" itemValue="" />
 					<f:selectItems value="#{progressaoController.padroes}" />
@@ -71,16 +71,17 @@
 					requiredMessage="Campo Data da Progressão é obrigatório!">
 					<a4j:support event="onchanged"
 						action="#{progressaoController.calcularProximaProgressao}"
-						ajaxSingle="true" reRender="dataProxima"></a4j:support>
+						ajaxSingle="true" reRender="form"></a4j:support>
 				</rich:calendar>
 
 
-				<h:outputText value="Data da Próxima Progressão: " />
-				<rich:calendar id="dataProxima"
-					value="#{progressaoController.progressao.dataProximaProgressao}"
-					locale="" popup="true" datePattern="dd/MM/yyyy" showApplyButton="#"
-					cellWidth="12px" cellHeight="12px" style="width:80px"
-					inputSize="12" disabled="true" />
+				<h:outputText value="Data da Próxima Progressão: "
+					rendered="#{progressaoController.progressao.dataProximaProgressao != null}" />
+				<h:outputText id="dataProxima"
+					rendered="#{progressaoController.progressao.dataProximaProgressao != null}"
+					value="#{progressaoController.progressao.dataProximaProgressao}">
+					<f:convertDateTime locale="pt_BR" pattern="dd/MM/yyyy" />
+				</h:outputText>
 
 				<h:outputText value="Tipo Progressão: "></h:outputText>
 				<h:outputText value="MÉRITO"></h:outputText>
@@ -90,8 +91,8 @@
 				<h:inputText value="#{progressaoController.progressao.portaria}"
 					size="40" maxlength="60"
 					requiredMessage="Campo Portaria é obrigatório!" required="true"></h:inputText>
-			</h:panelGrid>
-			<%-- 
+
+				<%-- <!-- 
 			<h:panelGrid columns="1" id="titulacoes">
 				
 				<rich:dataTable id="listaTitulacoes"
@@ -133,8 +134,11 @@
 			<h:panelGrid columns="2">
 				<a4j:commandButton value="Salvar"
 					action="#{lotacaoController.salvar}" reRender="form" />
-			</h:panelGrid>
+			</h:panelGrid> -->
 			 --%>
+				<a4j:commandButton value="Salvar"
+					action="#{progressaoController.salvar}" reRender="form" />
+			</h:panelGrid>
 		</rich:panel></center>
 	</a4j:form>
 </f:view>
