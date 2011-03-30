@@ -64,7 +64,7 @@ public class Constantes {
 	public static final Integer TITULAR_DOCUMENTO_IMAGEM_TITULACAO  = 4;
 	public static final Integer TITULAR_DOCUMENTO_IMAGEM_EMPREGO  = 5;
 	
-	public static final Integer TEMPO_DA_SESSAO = 2000;
+	public static final Integer TEMPO_DA_SESSAO = -1;
 	
 	
 }

@@ -14,6 +14,7 @@ import br.com.progepe.constantes.Constantes;
 import br.com.progepe.dao.DAO;
 import br.com.progepe.dao.ProgressaoDAO;
 import br.com.progepe.dao.ServidorDAO;
+import br.com.progepe.entity.Cargo;
 import br.com.progepe.entity.Classe;
 import br.com.progepe.entity.Padrao;
 import br.com.progepe.entity.Progressao;
@@ -114,8 +115,7 @@ public class ProgressaoController  {
 			progressao.setPadraoAntigo(new Padrao());
 			progressao.setPadraoNovo(new Padrao());
 			progressao.setTipoProgressao(new TipoProgressao());
-			progressao.getTipoProgressao().setCodigo(2L);
-		//	progressao.setServidorTitulacao(new ServidorTitulacao());
+			progressao.setServidorTitulacao(new ServidorTitulacao());
 			FacesContext.getCurrentInstance().getExternalContext()
 					.redirect("cadastrarProgressao.jsp");
 		} catch (IOException e) {
@@ -177,6 +177,10 @@ public class ProgressaoController  {
 					FacesMessage.SEVERITY_ERROR, "Siape inválido!",
 					"Siape inválido!");
 			FacesContext.getCurrentInstance().addMessage("", message);
+		}else{
+			progressao.setClasseAntiga(progressao.getServidor().getCargo().getClasse());
+			progressao.setClasseNova(progressao.getServidor().getCargo().getClasse());
+			progressao.setPadraoAntigo(progressao.getServidor().getPadrao());
 		}
 	}
 	
