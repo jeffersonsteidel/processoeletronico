@@ -75,9 +75,9 @@
 				</rich:calendar>
 
 
-				<h:outputText value="Data da Próxima Progressão: "
+				<h:outputText value="Data da Próxima Progressão: " id="dataProxima1"
 					rendered="#{progressaoController.progressao.dataProximaProgressao != null}" />
-				<h:outputText id="dataProxima"
+				<h:outputText id="dataProxima2"
 					rendered="#{progressaoController.progressao.dataProximaProgressao != null}"
 					value="#{progressaoController.progressao.dataProximaProgressao}">
 					<f:convertDateTime locale="pt_BR" pattern="dd/MM/yyyy" />

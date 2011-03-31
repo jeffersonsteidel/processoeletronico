@@ -14,7 +14,6 @@ import br.com.progepe.constantes.Constantes;
 import br.com.progepe.dao.DAO;
 import br.com.progepe.dao.ProgressaoDAO;
 import br.com.progepe.dao.ServidorDAO;
-import br.com.progepe.entity.Cargo;
 import br.com.progepe.entity.Classe;
 import br.com.progepe.entity.Padrao;
 import br.com.progepe.entity.Progressao;
@@ -158,12 +157,12 @@ public class ProgressaoController  {
 	}
 
 	public void salvar() {
+		progressao.getTipoProgressao().setCodigo(Constantes.TIPO_PROGRESSAO_MERITO);
 		DAO.getInstance().save(progressao);
 		progressao = new Progressao();
-		progressao.setClasseAntiga(progressao.getServidor().getCargo()
-				.getClasse());
+		progressao.setClasseAntiga(new Classe());
 		progressao.setClasseNova(new Classe());
-		progressao.setPadraoAntigo(progressao.getServidor().getPadrao());
+		progressao.setPadraoAntigo(new Padrao());
 		progressao.setPadraoNovo(new Padrao());
 		progressao.setServidorTitulacao(new ServidorTitulacao());
 	}
