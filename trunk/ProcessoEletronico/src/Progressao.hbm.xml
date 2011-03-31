@@ -21,6 +21,9 @@
 			column="TIP_PROG_COD"  lazy="false" />			
 		<property name="dataProgressao" column="PROG_DATA" />
 		<property name="dataProximaProgressao" column="PROG_DATA_PROX_PROG" />	
-		<property name="portaria" column="PROG_PORT" />			
+		<property name="portaria" column="PROG_PORT" />	
+		<property name="nota" column="PROG_NOTA" />
+		<property name="indConcedido" column="PROG_IND_CONCEDIDO" />	
+				
 	</class>
 </hibernate-mapping>

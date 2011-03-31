@@ -17,6 +17,8 @@ public class Progressao implements Serializable {
 	private String portaria;
 	private TipoProgressao tipoProgressao;
 	private ServidorTitulacao servidorTitulacao;
+	private Double nota;
+	private Integer indConcedido;
 
 	public Long getCodigo() {
 		return codigo;
@@ -104,6 +106,22 @@ public class Progressao implements Serializable {
 
 	public void setServidorTitulacao(ServidorTitulacao servidorTitulacao) {
 		this.servidorTitulacao = servidorTitulacao;
+	}
+
+	public Double getNota() {
+		return nota;
+	}
+
+	public void setNota(Double nota) {
+		this.nota = nota;
+	}
+
+	public Integer getIndConcedido() {
+		return indConcedido;
+	}
+
+	public void setIndConcedido(Integer indConcedido) {
+		this.indConcedido = indConcedido;
 	}
 
 }
