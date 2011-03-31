@@ -28,6 +28,10 @@ public class Constantes {
 	public static final Long ENSINO_FUNDAMENTAL = 6L;
 	public static final Long ENSINO_MEDIO = 8L;
 	
+	public static final Integer PROGRESSAO_CONCEDIDA = 1;
+	public static final Integer PROGRESSAO_NÃO_CONCEDIDA  = 2;
+	public static final Integer PROGRESSAO_ADIADA  = 3;
+	
 	public static final Integer RETORNO_MAXIMO_DOCUMENTOS_IMAGENS_NAO_VALIDADOS = 10;
 	public static final Integer RETORNO_MAXIMO_RESSARCIMENTOS_SAUDE_NAO_VALIDADOS = 10;
 	
