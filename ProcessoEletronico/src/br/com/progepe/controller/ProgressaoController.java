@@ -14,6 +14,7 @@ import br.com.progepe.constantes.Constantes;
 import br.com.progepe.dao.DAO;
 import br.com.progepe.dao.ProgressaoDAO;
 import br.com.progepe.dao.ServidorDAO;
+import br.com.progepe.dao.SolicitacaoDAO;
 import br.com.progepe.entity.Classe;
 import br.com.progepe.entity.Padrao;
 import br.com.progepe.entity.Progressao;
@@ -30,7 +31,6 @@ public class ProgressaoController  {
 	private List<SelectItem> tiposProgressoes = new ArrayList<SelectItem>();
 	private Boolean indCapacitacao;
 	private List<ServidorTitulacao> titulacoes = new ArrayList<ServidorTitulacao>();
-	private String indicador;
 
 	public Progressao getProgressao() {
 		return progressao;
@@ -88,14 +88,6 @@ public class ProgressaoController  {
 		this.titulacoes = titulacoes;
 	}
 	
-	public String getIndicador() {
-		return indicador;
-	}
-
-	public void setIndicador(String indicador) {
-		this.indicador = indicador;
-	}
-
 	public void abrirListarProgressao() throws ParseException {
 		try {
 			progressao = new Progressao();
@@ -165,13 +157,20 @@ public class ProgressaoController  {
 
 	public void salvar() {
 		progressao.getTipoProgressao().setCodigo(Constantes.TIPO_PROGRESSAO_MERITO);
+		if(progressao.getNota() >= Constantes.PROGRESSAO_NOTA_MINIMA_APROVACAO){
+			progressao.setIndConcedido(Constantes.PROGRESSAO_CONCEDIDA);
+		}else{
+			progressao.setIndConcedido(Constantes.PROGRESSAO_NAO_CONCEDIDA);
+		}
 		DAO.getInstance().save(progressao);
+		progressao.getServidor().setPadrao(progressao.getPadraoNovo());
+		SolicitacaoDAO.getInstance().updateSolicitacao(progressao.getServidor());
 		progressao = new Progressao();
 		progressao.setClasseAntiga(new Classe());
 		progressao.setClasseNova(new Classe());
 		progressao.setPadraoAntigo(new Padrao());
 		progressao.setPadraoNovo(new Padrao());
-		progressao.setServidorTitulacao(new ServidorTitulacao());
+		progressao.setServidor(new Servidor());
 	}
 
 	public void buscarServidor() throws IOException, ParseException {
@@ -202,7 +201,7 @@ public class ProgressaoController  {
 
 	
 	public List<Progressao> pesquisarProgressoes(){
-		progressaoList = ProgressaoDAO.getInstance().listProgresoes(progressao, indicador);
+		progressaoList = ProgressaoDAO.getInstance().listProgresoes(progressao);
 		return progressaoList;
 	}
 

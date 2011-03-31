@@ -13,7 +13,7 @@
 	<jsp:directive.include file="menus.jsp" />
 	<center><a4j:form id="form">
 		<rich:panel>
-			<font size="2"><b>PESQUISAR PROGRESSÕES</b></font>
+			<font size="2"><b>PESQUISAR PROGRESSÕES - POR MÉRITO</b></font>
 
 			<rich:messages layout="list">
 				<f:facet name="errorMarker">
@@ -29,21 +29,13 @@
 					maxlength="7" onkeyup="mascara(this, soNumeros);">
 				</h:inputText>
 
-				<h:selectOneMenu value="#{progressaoController.indicador}">
-					<f:selectItem itemLabel="SELECIONE" itemValue="" />
-					<f:selectItem itemLabel="FUTURAS" itemValue="F" />
-					<f:selectItem itemLabel="HOJE" itemValue="H" />
-					<f:selectItem itemLabel="PASSADAS" itemValue="P" />
-				</h:selectOneMenu>
-
 				<h:outputText value="Status: ">
 				</h:outputText>
-				<h:selectOneMenu value="#{progressaoController.statusProgressao}">
+				<h:selectOneMenu value="#{progressaoController.progressao.indConcedido}">
 					<f:selectItem itemLabel="SELECIONE" itemValue="" />
 					<f:selectItem itemLabel="CONCEDIDA" itemValue="1" />
 					<f:selectItem itemLabel="NÃO CONCEDIDA" itemValue="2" />
 					<f:selectItem itemLabel="ADIADA" itemValue="3" />
-
 				</h:selectOneMenu>
 				<a4j:commandButton value="Pesquisar"
 					action="#{progressaoController.pesquisarProgressoes}"
@@ -52,7 +44,7 @@
 
 			<rich:dataTable id="listarProgressao"
 				value="#{progressaoController.progressaoList}" var="list"
-				width="1000px" columnClasses="center" rows="15" reRender="ds">
+				width="1200px" columnClasses="center" rows="15" reRender="ds">
 
 				<rich:column width="50px" sortBy="#{list.servidor.siape}">
 					<f:facet name="header">
@@ -61,7 +53,7 @@
 					<h:outputText value="#{list.servidor.siape}" />
 				</rich:column>
 
-				<rich:column width="450px" sortBy="#{list.servidor.nome}">
+				<rich:column width="400px" sortBy="#{list.servidor.nome}">
 					<f:facet name="header">
 						<h:outputText value="Nome" />
 					</f:facet>
@@ -113,6 +105,23 @@
 					</f:facet>
 					<h:outputText value="#{list.portaria}" />
 				</rich:column>
+				
+				<rich:column width="50px" sortBy="#{list.nota}">
+					<f:facet name="header">
+						<h:outputText value="Nota" />
+					</f:facet>
+					<h:outputText value="#{list.nota}" />
+				</rich:column>
+				
+				<rich:column width="60px" sortBy="#{list.indConcedido}">
+					<f:facet name="header">
+						<h:outputText value="Status" />
+					</f:facet>
+					<h:outputText rendered="#{list.indConcedido == 1}"  value="CONCEDIDA" />
+					<h:outputText rendered="#{list.indConcedido == 2}"  value="NÃO CONCEDIDA" />
+					<h:outputText rendered="#{list.indConcedido == 3}"  value="ADIADA" />
+				</rich:column>
+				
 
 
 				<f:facet name="footer">
