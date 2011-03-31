@@ -24,7 +24,7 @@
 			<rich:dataTable id="listarProgressao"
 				value="#{progressaoController.progressaoList}" var="list"
 				width="1000px" columnClasses="center" rows="15" reRender="ds">
-				
+
 				<rich:column width="50px" sortBy="#{list.servidor.siape}"
 					filterBy="#{list.servidor.siape}" filterEvent="onkeyup">
 					<f:facet name="header">
@@ -66,6 +66,20 @@
 						<h:outputText value="Portaria" />
 					</f:facet>
 					<h:outputText value="#{list.portaria}" />
+				</rich:column>
+
+				<rich:column width="50px">
+					<f:facet name="header">
+						<h:outputText value="Editar" />
+					</f:facet>
+					<a4j:commandLink action="#{progressaoController.carregar}"
+						reRender="listarProgressao" ajaxSingle="true">
+						<h:graphicImage value="../images/edit.gif" style="border:0"
+							width="20" height="18" id="editar" />
+						<f:setPropertyActionListener value="#{list.codigo}"
+							target="#{progressaoController.progressao.codigo}" />
+					</a4j:commandLink>
+					<rich:toolTip for="editar" value="Editar" />
 				</rich:column>
 
 				<f:facet name="footer">

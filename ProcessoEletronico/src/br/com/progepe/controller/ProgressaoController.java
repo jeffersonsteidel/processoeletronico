@@ -21,7 +21,7 @@ import br.com.progepe.entity.Servidor;
 import br.com.progepe.entity.ServidorTitulacao;
 import br.com.progepe.entity.TipoProgressao;
 
-public class ProgressaoController  {
+public class ProgressaoController {
 
 	private Progressao progressao;
 	private List<Progressao> progressaoList;
@@ -29,6 +29,7 @@ public class ProgressaoController  {
 	private List<SelectItem> padroes = new ArrayList<SelectItem>();
 	private List<SelectItem> tiposProgressoes = new ArrayList<SelectItem>();
 	private Boolean indCapacitacao;
+	private Boolean indAtualizacao;
 	private List<ServidorTitulacao> titulacoes = new ArrayList<ServidorTitulacao>();
 
 	public Progressao getProgressao() {
@@ -87,22 +88,31 @@ public class ProgressaoController  {
 		this.titulacoes = titulacoes;
 	}
 
+	public Boolean getIndAtualizacao() {
+		return indAtualizacao;
+	}
+
+	public void setIndAtualizacao(Boolean indAtualizacao) {
+		this.indAtualizacao = indAtualizacao;
+	}
+
 	@SuppressWarnings("unchecked")
 	public void abrirListarProgressao() throws ParseException {
 		try {
 			progressao = new Progressao();
 			progressaoList = new ArrayList<Progressao>();
-			progressaoList = (List<Progressao>) DAO.getInstance().list(Progressao.class,
-					"codigo");
+			progressaoList = (List<Progressao>) DAO.getInstance().list(
+					Progressao.class, "codigo");
 			FacesContext.getCurrentInstance().getExternalContext()
 					.redirect("listarProgressoes.jsp");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void abrirCadastrarProgressao() throws ParseException {
 		try {
+			indAtualizacao = false;
 			indCapacitacao = false;
 			titulacoes.clear();
 			listarPadroes();
@@ -146,19 +156,25 @@ public class ProgressaoController  {
 		}
 		return padroes;
 	}
-	
-	public void calcularProximaProgressao(){
-		if(progressao.getDataProgressao() != null){
-			Calendar calendar = Calendar.getInstance();  
-			   calendar.setTime(progressao.getDataProgressao());  
-			   calendar.add(Calendar.MONTH, Constantes.QUANTIDADE_MESES_PROGRESSAO);  
+
+	public void calcularProximaProgressao() {
+		if (progressao.getDataProgressao() != null) {
+			Calendar calendar = Calendar.getInstance();
+			calendar.setTime(progressao.getDataProgressao());
+			calendar.add(Calendar.MONTH, Constantes.QUANTIDADE_MESES_PROGRESSAO);
 			progressao.setDataProximaProgressao(calendar.getTime());
 		}
 	}
 
 	public void salvar() {
-		progressao.getTipoProgressao().setCodigo(Constantes.TIPO_PROGRESSAO_MERITO);
-		DAO.getInstance().save(progressao);
+
+		if (indAtualizacao) {
+			DAO.getInstance().saveOrUpdate(progressao);
+		} else {
+			progressao.getTipoProgressao().setCodigo(
+					Constantes.TIPO_PROGRESSAO_MERITO);
+			DAO.getInstance().save(progressao);
+		}
 		progressao = new Progressao();
 		progressao.setClasseAntiga(new Classe());
 		progressao.setClasseNova(new Classe());
@@ -176,14 +192,17 @@ public class ProgressaoController  {
 					FacesMessage.SEVERITY_ERROR, "Siape inválido!",
 					"Siape inválido!");
 			FacesContext.getCurrentInstance().addMessage("", message);
-		}else{
-			progressao.setClasseAntiga(progressao.getServidor().getCargo().getClasse());
-			progressao.setClasseNova(progressao.getServidor().getCargo().getClasse());
+		} else {
+			progressao.setClasseAntiga(progressao.getServidor().getCargo()
+					.getClasse());
+			progressao.setClasseNova(progressao.getServidor().getCargo()
+					.getClasse());
 			progressao.setPadraoAntigo(progressao.getServidor().getPadrao());
 		}
 	}
-	
+
 	public void carregar() throws IOException {
+		indAtualizacao = true;
 		FacesContext context = FacesContext.getCurrentInstance();
 		progressao = (Progressao) context.getExternalContext().getRequestMap()
 				.get("list");
@@ -193,24 +212,27 @@ public class ProgressaoController  {
 				.redirect("cadastrarProgressao.jsp");
 	}
 
-
 	public void validarTipoProgressao() {
 		if (progressao.getTipoProgressao() != null
 				&& progressao.getTipoProgressao().getCodigo()
 						.equals(Constantes.TIPO_PROGRESSAO_CAPACITACAO)) {
 			indCapacitacao = true;
-			if (progressao.getServidor().getCodigo() == null || Constantes.ZERO.equals(progressao.getServidor().getCodigo())) {
+			if (progressao.getServidor().getCodigo() == null
+					|| Constantes.ZERO.equals(progressao.getServidor()
+							.getCodigo())) {
 				FacesMessage message = new FacesMessage(
-						FacesMessage.SEVERITY_ERROR, "Informe o Siape do Servidor!",
+						FacesMessage.SEVERITY_ERROR,
+						"Informe o Siape do Servidor!",
 						"Informe o Siape do Servidor!");
 				FacesContext.getCurrentInstance().addMessage("", message);
 				progressao.setTipoProgressao(new TipoProgressao());
 			} else {
 				titulacoes = ProgressaoDAO.getInstance()
 						.listTitulacoesServidor(progressao.getServidor());
-				if(titulacoes.isEmpty()){
+				if (titulacoes.isEmpty()) {
 					FacesMessage message = new FacesMessage(
-							FacesMessage.SEVERITY_ERROR, "Não existem Titulações para este Servidor!",
+							FacesMessage.SEVERITY_ERROR,
+							"Não existem Titulações para este Servidor!",
 							"Não existem Titulações para este Servidor!");
 					FacesContext.getCurrentInstance().addMessage("", message);
 				}
