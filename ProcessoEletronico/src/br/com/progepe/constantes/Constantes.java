@@ -54,6 +54,7 @@ public class Constantes {
 	public static final Long TIPO_PLANO_PARTICULAR = 3L;
 	
 	public static final Long TIPO_PROGRESSAO_CAPACITACAO = 1L;
+	public static final Long TIPO_PROGRESSAO_MERITO = 2L;
 	
 	public static final Long TIPO_DOCUMENTO_HISTORICO_ESCOLAR = 5L;
 	public static final Long TIPO_DOCUMENTO_DIPLOMA = 12L;
