@@ -1,14 +1,13 @@
 package br.com.progepe.dao;
 
-import java.util.Date;
 import java.util.List;
 
 import org.hibernate.Query;
 
+import br.com.progepe.constantes.Constantes;
 import br.com.progepe.entity.Progressao;
 import br.com.progepe.entity.Servidor;
 import br.com.progepe.entity.ServidorTitulacao;
-import br.com.progepe.jsfUtil.DataUtil;
 
 public class ProgressaoDAO extends DAO {
 
@@ -37,19 +36,23 @@ public class ProgressaoDAO extends DAO {
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<Progressao> listProgresoes(Progressao progressao,
-			String indicador) {
+	public List<Progressao> listProgresoes(Progressao progressao) {
 		HibernateUtility.getSession().clear();
 		String sql;
 		sql = "from Progressao p where 1 = 1 ";
-		if (indicador.equals("F")) {
-			sql += " and p.dataProximaProgressao > " + DataUtil.formatSql(new Date());
-		} else if (indicador.equals("P")) {
-			sql += " and p.dataProximaProgressao < " + DataUtil.formatSql(new Date());
-		} else if (indicador.equals("H")) {
-			sql += " and p.dataProximaProgressao = " + DataUtil.formatSql(new Date());
-		} else if (progressao.getServidor() != null && progressao.getServidor().getSiape() != 0) {
-			sql += " and p.servidor.siape = " + progressao.getServidor().getSiape();
+		if (progressao.getIndConcedido()
+				.equals(Constantes.PROGRESSAO_CONCEDIDA)) {
+			sql += " and p.indConcedido = 1";
+		} else if (progressao.getIndConcedido().equals(
+				Constantes.PROGRESSAO_NAO_CONCEDIDA)) {
+			sql += " and p.indConcedido = 2";
+		} else if (progressao.getIndConcedido().equals(
+				Constantes.PROGRESSAO_ADIADA)) {
+			sql += " and p.indConcedido = 3";
+		} else if (progressao.getServidor() != null
+				&& progressao.getServidor().getSiape() != 0) {
+			sql += " and p.servidor.siape = "
+					+ progressao.getServidor().getSiape();
 		}
 		Query query = HibernateUtility.getSession().createQuery(sql);
 		HibernateUtility.commitTransaction();
@@ -61,8 +64,10 @@ public class ProgressaoDAO extends DAO {
 		HibernateUtility.getSession().clear();
 		String sql;
 		sql = "from Progressao p where 1 and 1 ";
-		if (progressao.getServidor() != null && progressao.getServidor().getSiape() != 0) {
-			sql += " and p.servidor.siape = " + progressao.getServidor().getSiape();
+		if (progressao.getServidor() != null
+				&& progressao.getServidor().getSiape() != 0) {
+			sql += " and p.servidor.siape = "
+					+ progressao.getServidor().getSiape();
 		}
 		Query query = HibernateUtility.getSession().createQuery(sql);
 		HibernateUtility.commitTransaction();

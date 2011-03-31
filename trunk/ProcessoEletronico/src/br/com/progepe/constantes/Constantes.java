@@ -28,9 +28,12 @@ public class Constantes {
 	public static final Long ENSINO_FUNDAMENTAL = 6L;
 	public static final Long ENSINO_MEDIO = 8L;
 	
+	public static final Long TIPO_PROGRESSAO_CAPACITACAO = 1L;
+	public static final Long TIPO_PROGRESSAO_MERITO = 2L;
 	public static final Integer PROGRESSAO_CONCEDIDA = 1;
-	public static final Integer PROGRESSAO_NÃO_CONCEDIDA  = 2;
+	public static final Integer PROGRESSAO_NAO_CONCEDIDA  = 2;
 	public static final Integer PROGRESSAO_ADIADA  = 3;
+	public static final Double PROGRESSAO_NOTA_MINIMA_APROVACAO = 7.0;
 	
 	public static final Integer RETORNO_MAXIMO_DOCUMENTOS_IMAGENS_NAO_VALIDADOS = 10;
 	public static final Integer RETORNO_MAXIMO_RESSARCIMENTOS_SAUDE_NAO_VALIDADOS = 10;
@@ -56,9 +59,6 @@ public class Constantes {
 	public static final Long TIPO_PLANO_GEAPE = 1L;
 	public static final Long TIPO_PLANO_SINDICATO = 2L;
 	public static final Long TIPO_PLANO_PARTICULAR = 3L;
-	
-	public static final Long TIPO_PROGRESSAO_CAPACITACAO = 1L;
-	public static final Long TIPO_PROGRESSAO_MERITO = 2L;
 	
 	public static final Long TIPO_DOCUMENTO_HISTORICO_ESCOLAR = 5L;
 	public static final Long TIPO_DOCUMENTO_DIPLOMA = 12L;
