@@ -21,7 +21,7 @@
 				</f:facet>
 			</rich:messages>
 
-			<h:panelGrid columns="6">
+			<h:panelGrid columns="13">
 				<h:outputText value="Siape Servidor: ">
 				</h:outputText>
 				<h:inputText
@@ -31,12 +31,42 @@
 
 				<h:outputText value="Status: ">
 				</h:outputText>
-				<h:selectOneMenu value="#{progressaoController.progressao.indConcedido}">
+				<h:selectOneMenu
+					value="#{progressaoController.progressao.indConcedido}">
 					<f:selectItem itemLabel="SELECIONE" itemValue="" />
 					<f:selectItem itemLabel="CONCEDIDA" itemValue="1" />
 					<f:selectItem itemLabel="NÃO CONCEDIDA" itemValue="2" />
 					<f:selectItem itemLabel="ADIADA" itemValue="3" />
 				</h:selectOneMenu>
+
+				<h:outputText value="Data da progressão entre: " />
+				<h:panelGrid columns="3">
+					<rich:calendar value="#{progressaoController.dataProgressaoInicio}"
+						locale="" popup="true" datePattern="dd/MM/yyyy"
+						showApplyButton="#" cellWidth="12px" cellHeight="12px"
+						style="width:80px" inputSize="12" />
+					<h:outputText value="a" />
+					<rich:calendar value="#{progressaoController.dataProgressaoFim}"
+						locale="" popup="true" datePattern="dd/MM/yyyy"
+						showApplyButton="#" cellWidth="12px" cellHeight="12px"
+						style="width:80px" inputSize="12" />
+				</h:panelGrid>
+
+				<h:outputText value="Data das próximas progressões entre: " />
+				<h:panelGrid columns="3">
+					<rich:calendar
+						value="#{progressaoController.dataProximaProgressaoInicio}"
+						locale="" popup="true" datePattern="dd/MM/yyyy"
+						showApplyButton="#" cellWidth="12px" cellHeight="12px"
+						style="width:80px" inputSize="12" />
+					<h:outputText value="a" />
+					<rich:calendar
+						value="#{progressaoController.dataProximaProgressaoFim}" locale=""
+						popup="true" datePattern="dd/MM/yyyy" showApplyButton="#"
+						cellWidth="12px" cellHeight="12px" style="width:80px"
+						inputSize="12" />
+				</h:panelGrid>
+
 				<a4j:commandButton value="Pesquisar"
 					action="#{progressaoController.pesquisarProgressoes}"
 					reRender="listarProgressao"></a4j:commandButton>
@@ -105,23 +135,25 @@
 					</f:facet>
 					<h:outputText value="#{list.portaria}" />
 				</rich:column>
-				
+
 				<rich:column width="50px" sortBy="#{list.nota}">
 					<f:facet name="header">
 						<h:outputText value="Nota" />
 					</f:facet>
 					<h:outputText value="#{list.nota}" />
 				</rich:column>
-				
+
 				<rich:column width="60px" sortBy="#{list.indConcedido}">
 					<f:facet name="header">
 						<h:outputText value="Status" />
 					</f:facet>
-					<h:outputText rendered="#{list.indConcedido == 1}"  value="CONCEDIDA" />
-					<h:outputText rendered="#{list.indConcedido == 2}"  value="NÃO CONCEDIDA" />
-					<h:outputText rendered="#{list.indConcedido == 3}"  value="ADIADA" />
+					<h:outputText rendered="#{list.indConcedido == 1}"
+						value="CONCEDIDA" />
+					<h:outputText rendered="#{list.indConcedido == 2}"
+						value="NÃO CONCEDIDA" />
+					<h:outputText rendered="#{list.indConcedido == 3}" value="ADIADA" />
 				</rich:column>
-				
+
 
 
 				<f:facet name="footer">
