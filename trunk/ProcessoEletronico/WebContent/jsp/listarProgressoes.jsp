@@ -13,7 +13,7 @@
 	<jsp:directive.include file="menus.jsp" />
 	<center><a4j:form id="form">
 		<rich:panel>
-			<font size="2"><b>PESQUISAR PROGRESSÕES - POR MÉRITO</b></font>
+			<font size="2"><b>PESQUISAR PROGRESSÕES POR MÉRITO</b></font>
 
 			<rich:messages layout="list">
 				<f:facet name="errorMarker">
