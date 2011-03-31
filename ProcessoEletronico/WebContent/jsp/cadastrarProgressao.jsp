@@ -91,6 +91,11 @@
 				<h:inputText value="#{progressaoController.progressao.portaria}"
 					size="40" maxlength="60"
 					requiredMessage="Campo Portaria é obrigatório!" required="true"></h:inputText>
+
+				<h:outputText value="Nota: "></h:outputText>
+				<h:inputText value="#{progressaoController.progressao.nota}"
+					size="5" maxlength="20"
+					requiredMessage="Campo Nota é obrigatório!" required="true"></h:inputText>
 			</h:panelGrid>
 
 			<%-- <!-- 
