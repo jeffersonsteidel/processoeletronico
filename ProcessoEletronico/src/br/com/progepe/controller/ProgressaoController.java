@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import javax.faces.application.FacesMessage;
@@ -22,7 +23,7 @@ import br.com.progepe.entity.Servidor;
 import br.com.progepe.entity.ServidorTitulacao;
 import br.com.progepe.entity.TipoProgressao;
 
-public class ProgressaoController  {
+public class ProgressaoController {
 
 	private Progressao progressao;
 	private List<Progressao> progressaoList;
@@ -31,6 +32,11 @@ public class ProgressaoController  {
 	private List<SelectItem> tiposProgressoes = new ArrayList<SelectItem>();
 	private Boolean indCapacitacao;
 	private List<ServidorTitulacao> titulacoes = new ArrayList<ServidorTitulacao>();
+
+	private Date dataProgressaoInicio;
+	private Date dataProgressaoFim;
+	private Date dataProximaProgressaoInicio;
+	private Date dataProximaProgressaoFim;
 
 	public Progressao getProgressao() {
 		return progressao;
@@ -87,7 +93,39 @@ public class ProgressaoController  {
 	public void setTitulacoes(List<ServidorTitulacao> titulacoes) {
 		this.titulacoes = titulacoes;
 	}
-	
+
+	public Date getDataProgressaoInicio() {
+		return dataProgressaoInicio;
+	}
+
+	public void setDataProgressaoInicio(Date dataProgressaoInicio) {
+		this.dataProgressaoInicio = dataProgressaoInicio;
+	}
+
+	public Date getDataProgressaoFim() {
+		return dataProgressaoFim;
+	}
+
+	public void setDataProgressaoFim(Date dataProgressaoFim) {
+		this.dataProgressaoFim = dataProgressaoFim;
+	}
+
+	public Date getDataProximaProgressaoInicio() {
+		return dataProximaProgressaoInicio;
+	}
+
+	public void setDataProximaProgressaoInicio(Date dataProximaProgressaoInicio) {
+		this.dataProximaProgressaoInicio = dataProximaProgressaoInicio;
+	}
+
+	public Date getDataProximaProgressaoFim() {
+		return dataProximaProgressaoFim;
+	}
+
+	public void setDataProximaProgressaoFim(Date dataProximaProgressaoFim) {
+		this.dataProximaProgressaoFim = dataProximaProgressaoFim;
+	}
+
 	public void abrirListarProgressao() throws ParseException {
 		try {
 			progressao = new Progressao();
@@ -99,7 +137,7 @@ public class ProgressaoController  {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void abrirCadastrarProgressao() throws ParseException {
 		try {
 			indCapacitacao = false;
@@ -145,26 +183,28 @@ public class ProgressaoController  {
 		}
 		return padroes;
 	}
-	
-	public void calcularProximaProgressao(){
-		if(progressao.getDataProgressao() != null){
-			Calendar calendar = Calendar.getInstance();  
-			   calendar.setTime(progressao.getDataProgressao());  
-			   calendar.add(Calendar.MONTH, Constantes.QUANTIDADE_MESES_PROGRESSAO);  
+
+	public void calcularProximaProgressao() {
+		if (progressao.getDataProgressao() != null) {
+			Calendar calendar = Calendar.getInstance();
+			calendar.setTime(progressao.getDataProgressao());
+			calendar.add(Calendar.MONTH, Constantes.QUANTIDADE_MESES_PROGRESSAO);
 			progressao.setDataProximaProgressao(calendar.getTime());
 		}
 	}
 
 	public void salvar() {
-		progressao.getTipoProgressao().setCodigo(Constantes.TIPO_PROGRESSAO_MERITO);
-		if(progressao.getNota() >= Constantes.PROGRESSAO_NOTA_MINIMA_APROVACAO){
+		progressao.getTipoProgressao().setCodigo(
+				Constantes.TIPO_PROGRESSAO_MERITO);
+		if (progressao.getNota() >= Constantes.PROGRESSAO_NOTA_MINIMA_APROVACAO) {
 			progressao.setIndConcedido(Constantes.PROGRESSAO_CONCEDIDA);
-		}else{
+		} else {
 			progressao.setIndConcedido(Constantes.PROGRESSAO_NAO_CONCEDIDA);
 		}
 		DAO.getInstance().save(progressao);
 		progressao.getServidor().setPadrao(progressao.getPadraoNovo());
-		SolicitacaoDAO.getInstance().updateSolicitacao(progressao.getServidor());
+		SolicitacaoDAO.getInstance()
+				.updateSolicitacao(progressao.getServidor());
 		progressao = new Progressao();
 		progressao.setClasseAntiga(new Classe());
 		progressao.setClasseNova(new Classe());
@@ -182,13 +222,15 @@ public class ProgressaoController  {
 					FacesMessage.SEVERITY_ERROR, "Siape inválido!",
 					"Siape inválido!");
 			FacesContext.getCurrentInstance().addMessage("", message);
-		}else{
-			progressao.setClasseAntiga(progressao.getServidor().getCargo().getClasse());
-			progressao.setClasseNova(progressao.getServidor().getCargo().getClasse());
+		} else {
+			progressao.setClasseAntiga(progressao.getServidor().getCargo()
+					.getClasse());
+			progressao.setClasseNova(progressao.getServidor().getCargo()
+					.getClasse());
 			progressao.setPadraoAntigo(progressao.getServidor().getPadrao());
 		}
 	}
-	
+
 	public void carregar() throws IOException {
 		FacesContext context = FacesContext.getCurrentInstance();
 		progressao = (Progressao) context.getExternalContext().getRequestMap()
@@ -199,9 +241,34 @@ public class ProgressaoController  {
 				.redirect("cadastrarProgressao.jsp");
 	}
 
-	
-	public List<Progressao> pesquisarProgressoes(){
-		progressaoList = ProgressaoDAO.getInstance().listProgresoes(progressao);
+	public List<Progressao> pesquisarProgressoes() {
+		boolean validador = true;
+		if (dataProgressaoInicio != null && dataProgressaoFim != null) {
+			if (dataProgressaoInicio.after(dataProgressaoFim)
+					|| dataProgressaoInicio.equals(dataProgressaoFim)) {
+				FacesMessage message = new FacesMessage(
+						FacesMessage.SEVERITY_ERROR,
+						"A Data da Progressão Final deve ser maior que Data de Progressão Inicial!",
+						"A Data de Progressão Final deve ser menor que Data de Progressão Inicial!");
+				FacesContext.getCurrentInstance().addMessage("", message);
+				validador = false;
+			}
+		}
+		if (dataProximaProgressaoInicio != null && dataProximaProgressaoFim != null) {
+			if (dataProximaProgressaoInicio.after(dataProximaProgressaoFim)
+					|| dataProximaProgressaoInicio.equals(dataProximaProgressaoFim)) {
+				FacesMessage message = new FacesMessage(
+						FacesMessage.SEVERITY_ERROR,
+						"A Data da Próxima Progressão Final deve ser maior que Data de Próxima Progressão Inicial!",
+						"A Data de Próxima Progressão Final deve ser menor que Data de Próxima Progressão Inicial!");
+				FacesContext.getCurrentInstance().addMessage("", message);
+				validador = false;
+			}
+		}
+		if (validador) {
+			progressaoList = ProgressaoDAO.getInstance().listProgresoes(
+					progressao, dataProgressaoInicio, dataProgressaoFim, dataProximaProgressaoInicio, dataProximaProgressaoFim);
+		}
 		return progressaoList;
 	}
 
@@ -210,18 +277,22 @@ public class ProgressaoController  {
 				&& progressao.getTipoProgressao().getCodigo()
 						.equals(Constantes.TIPO_PROGRESSAO_CAPACITACAO)) {
 			indCapacitacao = true;
-			if (progressao.getServidor().getCodigo() == null || Constantes.ZERO.equals(progressao.getServidor().getCodigo())) {
+			if (progressao.getServidor().getCodigo() == null
+					|| Constantes.ZERO.equals(progressao.getServidor()
+							.getCodigo())) {
 				FacesMessage message = new FacesMessage(
-						FacesMessage.SEVERITY_ERROR, "Informe o Siape do Servidor!",
+						FacesMessage.SEVERITY_ERROR,
+						"Informe o Siape do Servidor!",
 						"Informe o Siape do Servidor!");
 				FacesContext.getCurrentInstance().addMessage("", message);
 				progressao.setTipoProgressao(new TipoProgressao());
 			} else {
 				titulacoes = ProgressaoDAO.getInstance()
 						.listTitulacoesServidor(progressao.getServidor());
-				if(titulacoes.isEmpty()){
+				if (titulacoes.isEmpty()) {
 					FacesMessage message = new FacesMessage(
-							FacesMessage.SEVERITY_ERROR, "Não existem Titulações para este Servidor!",
+							FacesMessage.SEVERITY_ERROR,
+							"Não existem Titulações para este Servidor!",
 							"Não existem Titulações para este Servidor!");
 					FacesContext.getCurrentInstance().addMessage("", message);
 				}
