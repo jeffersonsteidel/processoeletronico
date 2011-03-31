@@ -8,6 +8,7 @@ import org.hibernate.Query;
 import br.com.progepe.entity.Progressao;
 import br.com.progepe.entity.Servidor;
 import br.com.progepe.entity.ServidorTitulacao;
+import br.com.progepe.jsfUtil.DataUtil;
 
 public class ProgressaoDAO extends DAO {
 
@@ -36,36 +37,36 @@ public class ProgressaoDAO extends DAO {
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<Progressao> listProgresoes(Progressao progressao) {
+	public List<Progressao> listProgresoes(Progressao progressao,
+			String indicador) {
 		HibernateUtility.getSession().clear();
 		String sql;
-		sql = "from Progressao p where 1 and 1 ";
-		if (progressao.getDataProximaProgressao().after(new Date())) {
-			sql += " p.dataProximaProgressao > " + new Date();
-		} else if (progressao.getDataProximaProgressao().before(new Date())) {
-			sql += " p.dataProximaProgressao < " + new Date();
-		} else if (progressao.getServidor() != null && progressao.getServidor().getCodigo() != 0) {
-			sql += " p.servidor.codigo " + progressao.getServidor().getCodigo();
-		} 
-		else if (progressao.getDataProximaProgressao() == new Date()) {
-				sql += " p.dataProximaProgressao = " + new Date();
-			}
-		Query query = HibernateUtility.getSession().createQuery(sql);
-		HibernateUtility.commitTransaction();
-		return (List<Progressao>) query.list();
-	}
-	
-	@SuppressWarnings("unchecked")
-	public List<Progressao> listProgresoesByServidor(Progressao progressao) {
-		HibernateUtility.getSession().clear();
-		String sql;
-		sql = "from Progressao p where 1 and 1 ";
-		if (progressao.getServidor() != null && progressao.getServidor().getCodigo() != 0) {
-			sql += " p.servidor.codigo " + progressao.getServidor().getCodigo();
+		sql = "from Progressao p where 1 = 1 ";
+		if (indicador.equals("F")) {
+			sql += " and p.dataProximaProgressao > " + DataUtil.formatSql(new Date());
+		} else if (indicador.equals("P")) {
+			sql += " and p.dataProximaProgressao < " + DataUtil.formatSql(new Date());
+		} else if (indicador.equals("H")) {
+			sql += " and p.dataProximaProgressao = " + DataUtil.formatSql(new Date());
+		} else if (progressao.getServidor() != null && progressao.getServidor().getSiape() != 0) {
+			sql += " and p.servidor.siape = " + progressao.getServidor().getSiape();
 		}
 		Query query = HibernateUtility.getSession().createQuery(sql);
 		HibernateUtility.commitTransaction();
 		return (List<Progressao>) query.list();
 	}
-	
+
+	@SuppressWarnings("unchecked")
+	public List<Progressao> listProgresoesByServidor(Progressao progressao) {
+		HibernateUtility.getSession().clear();
+		String sql;
+		sql = "from Progressao p where 1 and 1 ";
+		if (progressao.getServidor() != null && progressao.getServidor().getSiape() != 0) {
+			sql += " and p.servidor.siape = " + progressao.getServidor().getSiape();
+		}
+		Query query = HibernateUtility.getSession().createQuery(sql);
+		HibernateUtility.commitTransaction();
+		return (List<Progressao>) query.list();
+	}
+
 }
