@@ -8,8 +8,7 @@ public class Progressao implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private Long codigo;
 	private Servidor servidor;
-	private Classe classeAntiga;
-	private Classe classeNova;
+	private Classe classe;
 	private Padrao padraoAntigo;
 	private Padrao padraoNovo;
 	private Date dataProgressao;
@@ -36,20 +35,12 @@ public class Progressao implements Serializable {
 		this.servidor = servidor;
 	}
 
-	public Classe getClasseAntiga() {
-		return classeAntiga;
+	public Classe getClasse() {
+		return classe;
 	}
 
-	public void setClasseAntiga(Classe classeAntiga) {
-		this.classeAntiga = classeAntiga;
-	}
-
-	public Classe getClasseNova() {
-		return classeNova;
-	}
-
-	public void setClasseNova(Classe classeNova) {
-		this.classeNova = classeNova;
+	public void setClasse(Classe classe) {
+		this.classe = classe;
 	}
 
 	public Padrao getPadraoAntigo() {

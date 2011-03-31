@@ -9,10 +9,8 @@
 		</id>
 		<many-to-one name="servidor" class="br.com.progepe.entity.Servidor"
 			column="SERV_COD"  lazy="false" />
-		<many-to-one name="classeAntiga" class="br.com.progepe.entity.Classe"
-			column="CLAS_COD_ANTIGA" lazy="false" />
-		<many-to-one name="classeNova" class="br.com.progepe.entity.Classe"
-			column="CLAS_COD_NOVA" lazy="false" />	
+		<many-to-one name="classe" class="br.com.progepe.entity.Classe"
+			column="CLAS_COD" lazy="false" />
 		<many-to-one name="padraoAntigo" class="br.com.progepe.entity.Padrao"
 			column="PAD_COD_ANTIGO" lazy="false" />
 		<many-to-one name="padraoNovo" class="br.com.progepe.entity.Padrao"
