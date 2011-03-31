@@ -138,7 +138,38 @@ public class Injetor {
 			servidor.getCargo().setCodigo(1L);
 			servidor.getPais().setCodigo(24L);
 			try{
-			if(servidor.getSiape() == 1836576 ){
+			if(servidor.getSiape() == 1363512 ||
+			   servidor.getSiape() == 1454260 ||
+			   servidor.getSiape() == 1614670 ||
+			   servidor.getSiape() == 1761375 ||
+			   servidor.getSiape() == 1847355 ||
+			   servidor.getSiape() == 1847537 ||
+			   servidor.getSiape() == 1848347 ||
+			   servidor.getSiape() == 1848826 ||
+			   servidor.getSiape() == 1849535 ||
+			   servidor.getSiape() == 1849913 ||
+			   servidor.getSiape() == 1849966 ||
+			   servidor.getSiape() == 1850177 ||
+			   servidor.getSiape() == 1850198 ||
+			   servidor.getSiape() == 1850462 ||
+			   servidor.getSiape() == 1850555 ||
+			   servidor.getSiape() == 1850661 ||
+			   servidor.getSiape() == 1850711 ||
+			   servidor.getSiape() == 1850773 ||
+			   servidor.getSiape() == 1850832 ||
+			   servidor.getSiape() == 1850866 ||
+			   servidor.getSiape() == 1850889 ||
+			   servidor.getSiape() == 1850972 ||
+			   servidor.getSiape() == 1851002 ||
+			   servidor.getSiape() == 1851024 ||
+			   servidor.getSiape() == 1851056 ||
+			   servidor.getSiape() == 1851088 ||
+			   servidor.getSiape() == 1851144 ||
+			   servidor.getSiape() == 1851483 ||
+			   servidor.getSiape() == 1852292 ||
+			   servidor.getSiape() == 1852328 ||
+			   servidor.getSiape() == 1853828 ||
+			   servidor.getSiape() == 2814807){
 				DAO.getInstance().saveFitaEspelho(servidor);
 			}
 			}catch (Exception e) {
