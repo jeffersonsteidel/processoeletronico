@@ -29,7 +29,6 @@ public class ProgressaoController {
 	private List<SelectItem> padroes = new ArrayList<SelectItem>();
 	private List<SelectItem> tiposProgressoes = new ArrayList<SelectItem>();
 	private Boolean indCapacitacao;
-	private Boolean indAtualizacao;
 	private List<ServidorTitulacao> titulacoes = new ArrayList<ServidorTitulacao>();
 
 	public Progressao getProgressao() {
@@ -88,14 +87,6 @@ public class ProgressaoController {
 		this.titulacoes = titulacoes;
 	}
 
-	public Boolean getIndAtualizacao() {
-		return indAtualizacao;
-	}
-
-	public void setIndAtualizacao(Boolean indAtualizacao) {
-		this.indAtualizacao = indAtualizacao;
-	}
-
 	@SuppressWarnings("unchecked")
 	public void abrirListarProgressao() throws ParseException {
 		try {
@@ -112,7 +103,6 @@ public class ProgressaoController {
 
 	public void abrirCadastrarProgressao() throws ParseException {
 		try {
-			indAtualizacao = false;
 			indCapacitacao = false;
 			titulacoes.clear();
 			listarPadroes();
@@ -168,13 +158,10 @@ public class ProgressaoController {
 
 	public void salvar() {
 
-		if (indAtualizacao) {
-			DAO.getInstance().saveOrUpdate(progressao);
-		} else {
-			progressao.getTipoProgressao().setCodigo(
-					Constantes.TIPO_PROGRESSAO_MERITO);
-			DAO.getInstance().save(progressao);
-		}
+		progressao.getTipoProgressao().setCodigo(
+				Constantes.TIPO_PROGRESSAO_MERITO);
+		DAO.getInstance().saveOrUpdate(progressao);
+		
 		progressao = new Progressao();
 		progressao.setClasseAntiga(new Classe());
 		progressao.setClasseNova(new Classe());
@@ -202,7 +189,6 @@ public class ProgressaoController {
 	}
 
 	public void carregar() throws IOException {
-		indAtualizacao = true;
 		FacesContext context = FacesContext.getCurrentInstance();
 		progressao = (Progressao) context.getExternalContext().getRequestMap()
 				.get("list");
