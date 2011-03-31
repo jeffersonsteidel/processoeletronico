@@ -45,22 +45,13 @@
 					value="#{progressaoController.progressao.servidor.nome}">
 				</h:outputText>
 
-				<h:outputText value="Classe Atual: "></h:outputText>
+				<h:outputText value="Classe: "></h:outputText>
 				<h:outputText id="classeAtual"
-					value="#{progressaoController.progressao.classeAntiga.sigla}"></h:outputText>
+					value="#{progressaoController.progressao.classe.sigla}"></h:outputText>
 				<h:outputText value="Padrão Atual: "></h:outputText>
 				<h:outputText id="padraoAtual"
 					value="#{progressaoController.progressao.padraoAntigo.nivel}"></h:outputText>
-				<h:outputText value="Classe Nova: "></h:outputText>
-				<h:outputText id="classeNova"
-					value="#{progressaoController.progressao.classeNova.sigla}"></h:outputText>
-				<h:outputText value="Padrão Novo: "></h:outputText>
-				<h:selectOneMenu
-					value="#{progressaoController.progressao.padraoNovo.codigo}"
-					required="true" requiredMessage="Campo Padrão Novo é obrigatório!">
-					<f:selectItem itemLabel="SELECIONE" itemValue="" />
-					<f:selectItems value="#{progressaoController.padroes}" />
-				</h:selectOneMenu>
+			
 
 				<h:outputText value="Data da Progressão: " />
 				<rich:calendar
@@ -73,15 +64,28 @@
 						action="#{progressaoController.calcularProximaProgressao}"
 						ajaxSingle="true" reRender="form"></a4j:support>
 				</rich:calendar>
-
-
-				<h:outputText value="Data da Próxima Progressão: " id="dataProxima1"
-					rendered="#{progressaoController.progressao.dataProximaProgressao != null}" />
+				
+				<h:outputText value="Data da Próxima Progressão: " id="dataProxima1" />
 				<h:outputText id="dataProxima2"
-					rendered="#{progressaoController.progressao.dataProximaProgressao != null}"
 					value="#{progressaoController.progressao.dataProximaProgressao}">
 					<f:convertDateTime locale="pt_BR" pattern="dd/MM/yyyy" />
 				</h:outputText>
+				
+
+				<h:outputText value="Nota: "></h:outputText>
+				<h:inputText value="#{progressaoController.progressao.nota}"
+					size="5" maxlength="6" requiredMessage="Campo Nota é obrigatório!"
+					required="true">
+					<a4j:support event="onchange"
+						action="#{progressaoController.validarConcessao}" ajaxSingle="true"
+						reRender="novoPadrao"></a4j:support>
+				</h:inputText>
+
+				<h:outputText value="Padrão Novo: "></h:outputText>
+				<h:outputText id="novoPadrao"
+					value="#{progressaoController.progressao.padraoNovo.nivel}">
+				</h:outputText>
+				
 
 				<h:outputText value="Tipo Progressão: "></h:outputText>
 				<h:outputText value="MÉRITO"></h:outputText>
@@ -91,57 +95,8 @@
 				<h:inputText value="#{progressaoController.progressao.portaria}"
 					size="40" maxlength="60"
 					requiredMessage="Campo Portaria é obrigatório!" required="true"></h:inputText>
-
-				<h:outputText value="Nota: "></h:outputText>
-				<h:inputText value="#{progressaoController.progressao.nota}"
-					size="5" maxlength="20"
-					requiredMessage="Campo Nota é obrigatório!" required="true"></h:inputText>
 			</h:panelGrid>
 
-			<%-- <!-- 
-			<h:panelGrid columns="1" id="titulacoes">
-				
-				<rich:dataTable id="listaTitulacoes"
-					value="#{progressaoController.titulacoes}" var="list"
-					width="1150px" columnClasses="center" rows="15"
-					rendered="#{not empty progressaoController.titulacoes}">
-					
-					<rich:column>
-					<f:facet name="header">
-						<h:outputText value="Incluir" />
-					</f:facet>
-					<h:selectBooleanCheckbox 
-					value="#{progressaoController.progressao.servidorTitulacao.codigo}">
-				</h:selectBooleanCheckbox>
-				</rich:column>
-					
-					<rich:column>
-						<f:facet name="header">
-							<h:outputText value="Titulacao" />
-						</f:facet>
-						<h:outputText value="#{list.titulacao.descricao}" />
-					</rich:column>
-					
-					
-					<rich:column width="400px">
-						<f:facet name="header">
-							<h:outputText value="Curso" />
-						</f:facet>
-						<h:outputText value="#{list.curso}" />
-					</rich:column>
-					<rich:column width="350px">
-						<f:facet name="header">
-							<h:outputText value="Area de Conhecimento" />
-						</f:facet>
-						<h:outputText value="#{list.areaConhecimento.descricao}" />
-					</rich:column>
-				</rich:dataTable>
-			</h:panelGrid>
-			<h:panelGrid columns="2">
-				<a4j:commandButton value="Salvar"
-					action="#{lotacaoController.salvar}" reRender="form" />
-			</h:panelGrid> -->
-			 --%>
 			<h:panelGrid>
 				<a4j:commandButton value="Salvar"
 					action="#{progressaoController.salvar}" reRender="form" />

@@ -146,8 +146,7 @@ public class ProgressaoController {
 			listarTiposProgressoes();
 			progressao = new Progressao();
 			progressao.setServidor(new Servidor());
-			progressao.setClasseAntiga(new Classe());
-			progressao.setClasseNova(new Classe());
+			progressao.setClasse(new Classe());
 			progressao.setPadraoAntigo(new Padrao());
 			progressao.setPadraoNovo(new Padrao());
 			progressao.setTipoProgressao(new TipoProgressao());
@@ -193,21 +192,31 @@ public class ProgressaoController {
 		}
 	}
 
+	public void validarConcessao() {
+		if (progressao.getNota() >= Constantes.PROGRESSAO_NOTA_MINIMA_APROVACAO) {
+			progressao.setIndConcedido(Constantes.PROGRESSAO_CONCEDIDA);
+			progressao.getPadraoNovo().setCodigo(
+					progressao.getPadraoAntigo().getCodigo() + 1);
+			progressao.getPadraoNovo().setNivel(
+					progressao.getServidor().getPadrao().getNivel() + 1);
+		} else {
+			progressao.setIndConcedido(Constantes.PROGRESSAO_NAO_CONCEDIDA);
+			progressao.getPadraoNovo().setCodigo(
+					progressao.getPadraoAntigo().getCodigo());
+			progressao.getPadraoNovo().setNivel(
+					progressao.getServidor().getPadrao().getNivel());
+		}
+	}
+
 	public void salvar() {
 		progressao.getTipoProgressao().setCodigo(
 				Constantes.TIPO_PROGRESSAO_MERITO);
-		if (progressao.getNota() >= Constantes.PROGRESSAO_NOTA_MINIMA_APROVACAO) {
-			progressao.setIndConcedido(Constantes.PROGRESSAO_CONCEDIDA);
-		} else {
-			progressao.setIndConcedido(Constantes.PROGRESSAO_NAO_CONCEDIDA);
-		}
 		DAO.getInstance().save(progressao);
 		progressao.getServidor().setPadrao(progressao.getPadraoNovo());
 		SolicitacaoDAO.getInstance()
 				.updateSolicitacao(progressao.getServidor());
 		progressao = new Progressao();
-		progressao.setClasseAntiga(new Classe());
-		progressao.setClasseNova(new Classe());
+		progressao.setClasse(new Classe());
 		progressao.setPadraoAntigo(new Padrao());
 		progressao.setPadraoNovo(new Padrao());
 		progressao.setServidor(new Servidor());
@@ -223,9 +232,7 @@ public class ProgressaoController {
 					"Siape inválido!");
 			FacesContext.getCurrentInstance().addMessage("", message);
 		} else {
-			progressao.setClasseAntiga(progressao.getServidor().getCargo()
-					.getClasse());
-			progressao.setClasseNova(progressao.getServidor().getCargo()
+			progressao.setClasse(progressao.getServidor().getCargo()
 					.getClasse());
 			progressao.setPadraoAntigo(progressao.getServidor().getPadrao());
 		}
@@ -254,9 +261,11 @@ public class ProgressaoController {
 				validador = false;
 			}
 		}
-		if (dataProximaProgressaoInicio != null && dataProximaProgressaoFim != null) {
+		if (dataProximaProgressaoInicio != null
+				&& dataProximaProgressaoFim != null) {
 			if (dataProximaProgressaoInicio.after(dataProximaProgressaoFim)
-					|| dataProximaProgressaoInicio.equals(dataProximaProgressaoFim)) {
+					|| dataProximaProgressaoInicio
+							.equals(dataProximaProgressaoFim)) {
 				FacesMessage message = new FacesMessage(
 						FacesMessage.SEVERITY_ERROR,
 						"A Data da Próxima Progressão Final deve ser maior que Data de Próxima Progressão Inicial!",
@@ -267,7 +276,8 @@ public class ProgressaoController {
 		}
 		if (validador) {
 			progressaoList = ProgressaoDAO.getInstance().listProgresoes(
-					progressao, dataProgressaoInicio, dataProgressaoFim, dataProximaProgressaoInicio, dataProximaProgressaoFim);
+					progressao, dataProgressaoInicio, dataProgressaoFim,
+					dataProximaProgressaoInicio, dataProximaProgressaoFim);
 		}
 		return progressaoList;
 	}

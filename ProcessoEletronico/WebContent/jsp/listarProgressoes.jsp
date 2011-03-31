@@ -39,7 +39,7 @@
 					<f:selectItem itemLabel="ADIADA" itemValue="3" />
 				</h:selectOneMenu>
 
-				<h:outputText value="Data da progressão entre: " />
+				<h:outputText value="Progressão entre: " />
 				<h:panelGrid columns="3">
 					<rich:calendar value="#{progressaoController.dataProgressaoInicio}"
 						locale="" popup="true" datePattern="dd/MM/yyyy"
@@ -52,7 +52,7 @@
 						style="width:80px" inputSize="12" />
 				</h:panelGrid>
 
-				<h:outputText value="Data das próximas progressões entre: " />
+				<h:outputText value="Próximas progressões entre: " />
 				<h:panelGrid columns="3">
 					<rich:calendar
 						value="#{progressaoController.dataProximaProgressaoInicio}"
@@ -83,16 +83,38 @@
 					<h:outputText value="#{list.servidor.siape}" />
 				</rich:column>
 
-				<rich:column width="400px" sortBy="#{list.servidor.nome}">
+				<rich:column width="350px" sortBy="#{list.servidor.nome}">
 					<f:facet name="header">
 						<h:outputText value="Nome" />
 					</f:facet>
 					<h:outputText value="#{list.servidor.nome}" />
 				</rich:column>
 
+				<rich:column width="50px" sortBy="#{list.classe.sigla}">
+					<f:facet name="header">
+						<h:outputText value="Classe" />
+					</f:facet>
+					<h:outputText value="#{list.classe.sigla}" />
+				</rich:column>
+
+				<rich:column width="40px" sortBy="#{list.padraoAntigo.nivel}">
+					<f:facet name="header">
+						<h:outputText value="Padrao Anterior" />
+					</f:facet>
+					<h:outputText value="#{list.padraoAntigo.nivel}" />
+				</rich:column>
+
+				<rich:column width="40px" sortBy="#{list.padraoNovo.nivel}">
+					<f:facet name="header">
+						<h:outputText value="Padrao Novo" />
+					</f:facet>
+					<h:outputText value="#{list.padraoNovo.nivel}" />
+				</rich:column>
+
+
 				<rich:column width="50px" sortBy="#{list.dataProgressao}">
 					<f:facet name="header">
-						<h:outputText value="Data última progressão" />
+						<h:outputText value="Última progressão" />
 					</f:facet>
 					<h:outputText value="#{list.dataProgressao}">
 						<f:convertDateTime pattern="dd/MM/yyyy" />
@@ -101,49 +123,28 @@
 
 				<rich:column width="50px" sortBy="#{list.dataProximaProgressao}">
 					<f:facet name="header">
-						<h:outputText value="Data próxima progressão" />
+						<h:outputText value="Próxima progressão" />
 					</f:facet>
 					<h:outputText value="#{list.dataProximaProgressao}">
 						<f:convertDateTime pattern="dd/MM/yyyy" />
 					</h:outputText>
 				</rich:column>
 
-				<rich:column width="50px" sortBy="#{list.classeNova.sigla}">
-					<f:facet name="header">
-						<h:outputText value="Classe" />
-					</f:facet>
-					<h:outputText value="#{list.classeNova.sigla}" />
-				</rich:column>
-
-				<rich:column width="50px" sortBy="#{list.padraoAntigo.nivel}">
-					<f:facet name="header">
-						<h:outputText value="Padrao Anterior" />
-					</f:facet>
-					<h:outputText value="#{list.padraoAntigo.nivel}" />
-				</rich:column>
-
-				<rich:column width="50px" sortBy="#{list.padraoNovo.nivel}">
-					<f:facet name="header">
-						<h:outputText value="Padrao Novo" />
-					</f:facet>
-					<h:outputText value="#{list.padraoNovo.nivel}" />
-				</rich:column>
-
-				<rich:column width="50px" sortBy="#{list.portaria}">
+				<rich:column width="80px" sortBy="#{list.portaria}">
 					<f:facet name="header">
 						<h:outputText value="Portaria" />
 					</f:facet>
 					<h:outputText value="#{list.portaria}" />
 				</rich:column>
 
-				<rich:column width="50px" sortBy="#{list.nota}">
+				<rich:column width="40px" sortBy="#{list.nota}">
 					<f:facet name="header">
 						<h:outputText value="Nota" />
 					</f:facet>
 					<h:outputText value="#{list.nota}" />
 				</rich:column>
 
-				<rich:column width="60px" sortBy="#{list.indConcedido}">
+				<rich:column width="70px" sortBy="#{list.indConcedido}">
 					<f:facet name="header">
 						<h:outputText value="Status" />
 					</f:facet>
