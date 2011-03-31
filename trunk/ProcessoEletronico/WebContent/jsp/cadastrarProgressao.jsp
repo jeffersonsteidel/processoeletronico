@@ -84,7 +84,7 @@
 				</h:outputText>
 
 				<h:outputText value="Tipo Progressão: "></h:outputText>
-				<h:outputText value="MÉRITO"></h:outputText> 
+				<h:outputText value="MÉRITO"></h:outputText>
 
 
 				<h:outputText value="Portaria: "></h:outputText>
@@ -93,6 +93,50 @@
 					requiredMessage="Campo Portaria é obrigatório!" required="true"></h:inputText>
 			</h:panelGrid>
 
+			<%-- <!-- 
+			<h:panelGrid columns="1" id="titulacoes">
+				
+				<rich:dataTable id="listaTitulacoes"
+					value="#{progressaoController.titulacoes}" var="list"
+					width="1150px" columnClasses="center" rows="15"
+					rendered="#{not empty progressaoController.titulacoes}">
+					
+					<rich:column>
+					<f:facet name="header">
+						<h:outputText value="Incluir" />
+					</f:facet>
+					<h:selectBooleanCheckbox 
+					value="#{progressaoController.progressao.servidorTitulacao.codigo}">
+				</h:selectBooleanCheckbox>
+				</rich:column>
+					
+					<rich:column>
+						<f:facet name="header">
+							<h:outputText value="Titulacao" />
+						</f:facet>
+						<h:outputText value="#{list.titulacao.descricao}" />
+					</rich:column>
+					
+					
+					<rich:column width="400px">
+						<f:facet name="header">
+							<h:outputText value="Curso" />
+						</f:facet>
+						<h:outputText value="#{list.curso}" />
+					</rich:column>
+					<rich:column width="350px">
+						<f:facet name="header">
+							<h:outputText value="Area de Conhecimento" />
+						</f:facet>
+						<h:outputText value="#{list.areaConhecimento.descricao}" />
+					</rich:column>
+				</rich:dataTable>
+			</h:panelGrid>
+			<h:panelGrid columns="2">
+				<a4j:commandButton value="Salvar"
+					action="#{lotacaoController.salvar}" reRender="form" />
+			</h:panelGrid> -->
+			 --%>
 			<h:panelGrid>
 				<a4j:commandButton value="Salvar"
 					action="#{progressaoController.salvar}" reRender="form" />
