@@ -258,6 +258,7 @@ public class ProgressaoController {
 						"A Data da Progressão Final deve ser maior que Data de Progressão Inicial!",
 						"A Data de Progressão Final deve ser menor que Data de Progressão Inicial!");
 				FacesContext.getCurrentInstance().addMessage("", message);
+				progressaoList.clear();
 				validador = false;
 			}
 		}
@@ -271,6 +272,7 @@ public class ProgressaoController {
 						"A Data da Próxima Progressão Final deve ser maior que Data de Próxima Progressão Inicial!",
 						"A Data de Próxima Progressão Final deve ser menor que Data de Próxima Progressão Inicial!");
 				FacesContext.getCurrentInstance().addMessage("", message);
+				progressaoList.clear();
 				validador = false;
 			}
 		}
@@ -279,6 +281,12 @@ public class ProgressaoController {
 					progressao, dataProgressaoInicio, dataProgressaoFim,
 					dataProximaProgressaoInicio, dataProximaProgressaoFim);
 		}
+		progressao = new Progressao();
+		progressao.setServidor(new Servidor());
+		dataProgressaoInicio = null;
+		dataProximaProgressaoInicio = null;
+		dataProgressaoFim = null;
+		dataProximaProgressaoFim = null;
 		return progressaoList;
 	}
 

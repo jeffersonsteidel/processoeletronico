@@ -15,7 +15,11 @@
 		<rich:panel>
 			<font size="2"><b>PESQUISAR PROGRESSÕES POR MÉRITO</b></font>
 
-			<rich:messages layout="list">
+			<rich:messages layout="list" errorLabelClass="errorLabel"
+				style="top:auto;" infoLabelClass="infoLabel">
+				<f:facet name="infoMarker">
+					<h:graphicImage value="../images/passed.gif" />
+				</f:facet>
 				<f:facet name="errorMarker">
 					<h:graphicImage value="../images/error.gif" />
 				</f:facet>
@@ -69,7 +73,7 @@
 
 				<a4j:commandButton value="Pesquisar"
 					action="#{progressaoController.pesquisarProgressoes}"
-					reRender="listarProgressao"></a4j:commandButton>
+					reRender="listarProgressao, form"></a4j:commandButton>
 			</h:panelGrid>
 
 			<rich:dataTable id="listarProgressao"
