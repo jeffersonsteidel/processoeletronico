@@ -10,8 +10,8 @@ import br.com.progepe.validator.Validator;
 
 public class FitaEspelho {
 
-	static String arquivoEntrada = "FITA_FEV";
-	static String arquivoSaida = "FITA_FEV";
+	static String arquivoEntrada = "FITA_MAR";
+	static String arquivoSaida = "FITA_MAR";
 	
 	public static void main(String[] args) throws ParseException {
 
