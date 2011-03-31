@@ -24,7 +24,7 @@ public class Extrator {
 	public void carregarDados() throws ParseException {
 		try {
 			BufferedReader br = new BufferedReader(new FileReader(
-					"C://FITA.txt"));
+					"C://FITAS_ESPELHO_2011/FITA_MAR.txt"));
 			DadosFitaEspelho dadosFitaEspelho = null;
 			while (br.ready()) {
 				String linha = br.readLine().substring(0, 764);
