@@ -21,7 +21,7 @@
 				</f:facet>
 			</rich:messages>
 
-			<h:panelGrid columns="5">
+			<h:panelGrid columns="6">
 				<h:outputText value="Siape Servidor: ">
 				</h:outputText>
 				<h:inputText
@@ -36,11 +36,20 @@
 					<f:selectItem itemLabel="PASSADAS" itemValue="P" />
 				</h:selectOneMenu>
 
+				<h:outputText value="Status: ">
+				</h:outputText>
+				<h:selectOneMenu value="#{progressaoController.statusProgressao}">
+					<f:selectItem itemLabel="SELECIONE" itemValue="" />
+					<f:selectItem itemLabel="CONCEDIDA" itemValue="1" />
+					<f:selectItem itemLabel="NÃO CONCEDIDA" itemValue="2" />
+					<f:selectItem itemLabel="ADIADA" itemValue="3" />
+
+				</h:selectOneMenu>
 				<a4j:commandButton value="Pesquisar"
 					action="#{progressaoController.pesquisarProgressoes}"
 					reRender="listarProgressao"></a4j:commandButton>
 			</h:panelGrid>
-			
+
 			<rich:dataTable id="listarProgressao"
 				value="#{progressaoController.progressaoList}" var="list"
 				width="1000px" columnClasses="center" rows="15" reRender="ds">
@@ -104,6 +113,7 @@
 					</f:facet>
 					<h:outputText value="#{list.portaria}" />
 				</rich:column>
+
 
 				<f:facet name="footer">
 					<rich:datascroller id="ds"></rich:datascroller>
