@@ -233,4 +233,8 @@ public class DataUtil {
 		    dateFormat = new SimpleDateFormat("yyyy-MM-dd");  
 		    dateHourFormat = new SimpleDateFormat("yyyy-MM-dd");  
 		  }  
+	  
+	  public static String formatSql(Date data){
+		  return format(data, "yyyy-MM-dd");
+	  }
 }

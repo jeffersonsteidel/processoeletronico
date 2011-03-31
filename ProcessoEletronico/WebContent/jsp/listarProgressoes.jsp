@@ -13,7 +13,7 @@
 	<jsp:directive.include file="menus.jsp" />
 	<center><a4j:form id="form">
 		<rich:panel>
-			<font size="2"><b>LISTAR PROGRESSÃO</b></font>
+			<font size="2"><b>PESQUISAR PROGRESSÕES</b></font>
 
 			<rich:messages layout="list">
 				<f:facet name="errorMarker">
@@ -21,65 +21,88 @@
 				</f:facet>
 			</rich:messages>
 
+			<h:panelGrid columns="5">
+				<h:outputText value="Siape Servidor: ">
+				</h:outputText>
+				<h:inputText
+					value="#{progressaoController.progressao.servidor.siape}" size="8"
+					maxlength="7" onkeyup="mascara(this, soNumeros);">
+				</h:inputText>
+
+				<h:selectOneMenu value="#{progressaoController.indicador}">
+					<f:selectItem itemLabel="SELECIONE" itemValue="" />
+					<f:selectItem itemLabel="FUTURAS" itemValue="F" />
+					<f:selectItem itemLabel="HOJE" itemValue="H" />
+					<f:selectItem itemLabel="PASSADAS" itemValue="P" />
+				</h:selectOneMenu>
+
+				<a4j:commandButton value="Pesquisar"
+					action="#{progressaoController.pesquisarProgressoes}"
+					reRender="listarProgressao"></a4j:commandButton>
+			</h:panelGrid>
+			
 			<rich:dataTable id="listarProgressao"
 				value="#{progressaoController.progressaoList}" var="list"
 				width="1000px" columnClasses="center" rows="15" reRender="ds">
 
-				<rich:column width="50px" sortBy="#{list.servidor.siape}"
-					filterBy="#{list.servidor.siape}" filterEvent="onkeyup">
+				<rich:column width="50px" sortBy="#{list.servidor.siape}">
 					<f:facet name="header">
 						<h:outputText value="Siape" />
 					</f:facet>
 					<h:outputText value="#{list.servidor.siape}" />
 				</rich:column>
 
-				<rich:column width="50px" sortBy="#{list.dataProgressao}"
-					filterBy="#{list.dataProgressao}" filterEvent="onkeyup">
+				<rich:column width="450px" sortBy="#{list.servidor.nome}">
 					<f:facet name="header">
-						<h:outputText value="Data" />
+						<h:outputText value="Nome" />
+					</f:facet>
+					<h:outputText value="#{list.servidor.nome}" />
+				</rich:column>
+
+				<rich:column width="50px" sortBy="#{list.dataProgressao}">
+					<f:facet name="header">
+						<h:outputText value="Data última progressão" />
 					</f:facet>
 					<h:outputText value="#{list.dataProgressao}">
 						<f:convertDateTime pattern="dd/MM/yyyy" />
 					</h:outputText>
-
 				</rich:column>
 
-				<rich:column width="50px" sortBy="#{list.classeNova.sigla}"
-					filterBy="#{list.classeNova.sigla}" filterEvent="onkeyup">
+				<rich:column width="50px" sortBy="#{list.dataProximaProgressao}">
+					<f:facet name="header">
+						<h:outputText value="Data próxima progressão" />
+					</f:facet>
+					<h:outputText value="#{list.dataProximaProgressao}">
+						<f:convertDateTime pattern="dd/MM/yyyy" />
+					</h:outputText>
+				</rich:column>
+
+				<rich:column width="50px" sortBy="#{list.classeNova.sigla}">
 					<f:facet name="header">
 						<h:outputText value="Classe" />
 					</f:facet>
 					<h:outputText value="#{list.classeNova.sigla}" />
 				</rich:column>
 
-				<rich:column width="50px" sortBy="#{list.padraoNovo.nivel}"
-					filterBy="#{list.padraoNovo.nivel}" filterEvent="onkeyup">
+				<rich:column width="50px" sortBy="#{list.padraoAntigo.nivel}">
 					<f:facet name="header">
-						<h:outputText value="Padrao" />
+						<h:outputText value="Padrao Anterior" />
+					</f:facet>
+					<h:outputText value="#{list.padraoAntigo.nivel}" />
+				</rich:column>
+
+				<rich:column width="50px" sortBy="#{list.padraoNovo.nivel}">
+					<f:facet name="header">
+						<h:outputText value="Padrao Novo" />
 					</f:facet>
 					<h:outputText value="#{list.padraoNovo.nivel}" />
 				</rich:column>
 
-				<rich:column width="50px" sortBy="#{list.portaria}"
-					filterBy="#{list.portaria}" filterEvent="onkeyup">
+				<rich:column width="50px" sortBy="#{list.portaria}">
 					<f:facet name="header">
 						<h:outputText value="Portaria" />
 					</f:facet>
 					<h:outputText value="#{list.portaria}" />
-				</rich:column>
-
-				<rich:column width="50px">
-					<f:facet name="header">
-						<h:outputText value="Editar" />
-					</f:facet>
-					<a4j:commandLink action="#{progressaoController.carregar}"
-						reRender="listarProgressao" ajaxSingle="true">
-						<h:graphicImage value="../images/edit.gif" style="border:0"
-							width="20" height="18" id="editar" />
-						<f:setPropertyActionListener value="#{list.codigo}"
-							target="#{progressaoController.progressao.codigo}" />
-					</a4j:commandLink>
-					<rich:toolTip for="editar" value="Editar" />
 				</rich:column>
 
 				<f:facet name="footer">
