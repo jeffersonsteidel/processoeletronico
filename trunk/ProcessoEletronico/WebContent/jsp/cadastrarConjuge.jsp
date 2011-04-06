@@ -136,7 +136,7 @@
 					<f:selectItems value="#{conjugeController.paises}" />
 				</h:selectOneMenu>
 
-				<h:outputText value="É Servidor? " />
+				<h:outputText value="É Servidor Federal? " />
 				<h:selectBooleanCheckbox id="servidor"
 					title="Marcar esta opção caso o cônjuge seja servidor!"
 					value="#{conjugeController.conjuge.indServidor}">
