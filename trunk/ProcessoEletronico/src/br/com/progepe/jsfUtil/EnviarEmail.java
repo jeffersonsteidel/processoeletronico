@@ -17,6 +17,7 @@ import br.com.progepe.dao.ServidorDAO;
 import br.com.progepe.entity.Conjuge;
 import br.com.progepe.entity.Dependente;
 import br.com.progepe.entity.Emprego;
+import br.com.progepe.entity.Progressao;
 import br.com.progepe.entity.Servidor;
 import br.com.progepe.entity.ServidorTitulacao;
 import br.com.progepe.entity.Solicitacao;
@@ -412,6 +413,42 @@ public class EnviarEmail {
 			@SuppressWarnings("unused")
 			EnviarEmail enviar = new EnviarEmail(remetente, conjuge
 					.getServidor().getEmail(), assunto, smtpHost, porta,
+					usuario, senha, conteudoDoEmail);
+		} catch (Exception e) {
+			System.err.println(e);
+		}
+	}
+
+	public void enviarEmailProgressaoMerito(Progressao progressao) {
+		String remetente = "processo.verde@ifpr.edu.br";
+		String smtpHost = "smtp.gmail.com";
+		String porta = "465";
+		String usuario = "processo.verde@ifpr.edu.br";
+		String senha = "ifpr10";
+
+		assunto = "PROCESSO VERDE - PROGRESSÃO POR MÉRITO PROFISSIONAL";
+		conteudoDoEmail = "\n "+ progressao.getServidor().getNome();
+		conteudoDoEmail += "\n Sua progressão por mérito profissional encontra-se  ";
+		if(progressao.getIndConcedido().equals(Constantes.PROGRESSAO_CONCEDIDA)){	
+			conteudoDoEmail += " CONCEDIDA ";
+			conteudoDoEmail += " passando do padrão "+progressao.getClasse().getSigla()+" "+progressao.getPadraoAntigo().getNivel();
+			conteudoDoEmail += " para "+progressao.getClasse().getSigla()+" "+progressao.getPadraoNovo().getNivel();
+			conteudoDoEmail += "\n Sua nota foi  "+progressao.getNota();
+			conteudoDoEmail += "\n Sua próxima progressão está prevista para:  "+DataUtil.formatDate(progressao.getDataProximaProgressao());
+		}
+		if(progressao.getIndConcedido().equals(Constantes.PROGRESSAO_NAO_CONCEDIDA)){	
+			conteudoDoEmail += "NÃO CONCEDIDA";
+			conteudoDoEmail += "sendo assim você permanece no padrão "+progressao.getClasse().getSigla()+" "+progressao.getPadraoAntigo().getNivel();
+			conteudoDoEmail += "\n Sua nota foi  "+progressao.getNota();
+			conteudoDoEmail += "\n Sua próxima progressão está prevista para:  "+DataUtil.formatDate(progressao.getDataProximaProgressao());
+		}
+		
+		conteudoDoEmail += "\n \n E-mail automático por favor não responder!";
+
+		try {
+			@SuppressWarnings("unused")
+			EnviarEmail enviar = new EnviarEmail(remetente, progressao
+					.getServidor().getEmail().toLowerCase(), assunto, smtpHost, porta,
 					usuario, senha, conteudoDoEmail);
 		} catch (Exception e) {
 			System.err.println(e);

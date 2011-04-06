@@ -22,6 +22,7 @@ import br.com.progepe.entity.Progressao;
 import br.com.progepe.entity.Servidor;
 import br.com.progepe.entity.ServidorTitulacao;
 import br.com.progepe.entity.TipoProgressao;
+import br.com.progepe.jsfUtil.EnviarEmail;
 
 public class ProgressaoController {
 
@@ -215,6 +216,8 @@ public class ProgressaoController {
 		progressao.getServidor().setPadrao(progressao.getPadraoNovo());
 		SolicitacaoDAO.getInstance()
 				.updateSolicitacao(progressao.getServidor());
+		EnviarEmail enviar = new EnviarEmail();
+		enviar.enviarEmailProgressaoMerito(progressao);
 		progressao = new Progressao();
 		progressao.setClasse(new Classe());
 		progressao.setPadraoAntigo(new Padrao());
