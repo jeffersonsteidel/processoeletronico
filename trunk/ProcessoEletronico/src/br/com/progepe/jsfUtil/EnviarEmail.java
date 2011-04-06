@@ -437,8 +437,8 @@ public class EnviarEmail {
 			conteudoDoEmail += "\n Sua próxima progressão está prevista para:  "+DataUtil.formatDate(progressao.getDataProximaProgressao());
 		}
 		if(progressao.getIndConcedido().equals(Constantes.PROGRESSAO_NAO_CONCEDIDA)){	
-			conteudoDoEmail += "NÃO CONCEDIDA";
-			conteudoDoEmail += "sendo assim você permanece no padrão "+progressao.getClasse().getSigla()+" "+progressao.getPadraoAntigo().getNivel();
+			conteudoDoEmail += " NÃO CONCEDIDA";
+			conteudoDoEmail += " sendo assim você permanece no padrão "+progressao.getClasse().getSigla()+" "+progressao.getPadraoAntigo().getNivel();
 			conteudoDoEmail += "\n Sua nota foi  "+progressao.getNota();
 			conteudoDoEmail += "\n Sua próxima progressão está prevista para:  "+DataUtil.formatDate(progressao.getDataProximaProgressao());
 		}
