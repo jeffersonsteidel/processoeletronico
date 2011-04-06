@@ -22,7 +22,7 @@ public class Constantes {
 	public static final Long CAIXA_ECONOMICA_FEDERAL = 104L;
 	public static final Long ESTADO_CIVIL_CASADO = 2L;
 	public static final Long CARGO_ESTAGIARIO = 999999L;
-	public static final Long PADRAO_DEFAULT = 69L;
+	public static final Long PADRAO_DEFAULT = 70L;
 	public static final Long CLASSE_DEFAULT = 99L;
 	public static final Long CODIGO_LIMITE_TECNICO = 6000L;
 	public static final Long ENSINO_FUNDAMENTAL = 6L;
@@ -70,6 +70,9 @@ public class Constantes {
 	public static final Integer TITULAR_DOCUMENTO_IMAGEM_EMPREGO  = 5;
 	
 	public static final Integer TEMPO_DA_SESSAO = -1;
+	
+	public static final String PROGRESSAO_LIMITE_TECNICO  = "17";
+	public static final String PROGRESSAO_LIMITE_DOCENTE = "05";
 	
 	
 }

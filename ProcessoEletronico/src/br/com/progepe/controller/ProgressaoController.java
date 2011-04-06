@@ -39,6 +39,8 @@ public class ProgressaoController {
 	private Date dataProximaProgressaoInicio;
 	private Date dataProximaProgressaoFim;
 
+	private Boolean validacao = true;
+
 	public Progressao getProgressao() {
 		return progressao;
 	}
@@ -194,6 +196,7 @@ public class ProgressaoController {
 	}
 
 	public void validarConcessao() {
+		validacao = true;
 		if (progressao.getNota() >= Constantes.PROGRESSAO_NOTA_MINIMA_APROVACAO) {
 			progressao.setIndConcedido(Constantes.PROGRESSAO_CONCEDIDA);
 			progressao.getPadraoNovo().setCodigo(
@@ -207,22 +210,55 @@ public class ProgressaoController {
 			progressao.getPadraoNovo().setNivel(
 					progressao.getServidor().getPadrao().getNivel());
 		}
+		if (progressao.getServidor().getCargo().getCodigo() > Constantes.CODIGO_LIMITE_TECNICO
+				&& progressao.getServidor().getCargo().getCodigo() != Constantes.CARGO_ESTAGIARIO) {
+			if (progressao.getPadraoNovo().getNivel().toString().substring(1)
+					.equals(Constantes.PROGRESSAO_LIMITE_DOCENTE)) {
+				progressao.getPadraoNovo().setCodigo(
+						progressao.getPadraoAntigo().getCodigo() - 1);
+				progressao.getPadraoNovo().setNivel(
+						progressao.getServidor().getPadrao().getNivel());
+				validacao = false;
+			}
+		} else if (progressao.getServidor().getCargo().getCodigo() < Constantes.CODIGO_LIMITE_TECNICO
+				&& progressao.getServidor().getCargo().getCodigo() != Constantes.CARGO_ESTAGIARIO) {
+			if (progressao.getPadraoNovo().getNivel().toString().substring(1)
+					.equals(Constantes.PROGRESSAO_LIMITE_TECNICO)) {
+				progressao.getPadraoNovo().setCodigo(
+						progressao.getPadraoAntigo().getCodigo() - 1);
+				progressao.getPadraoNovo().setNivel(
+						progressao.getServidor().getPadrao().getNivel());
+				validacao = false;
+			}
+		}
+
 	}
 
 	public void salvar() {
 		progressao.getTipoProgressao().setCodigo(
 				Constantes.TIPO_PROGRESSAO_MERITO);
-		DAO.getInstance().save(progressao);
-		progressao.getServidor().setPadrao(progressao.getPadraoNovo());
-		SolicitacaoDAO.getInstance()
-				.updateSolicitacao(progressao.getServidor());
-		EnviarEmail enviar = new EnviarEmail();
-		enviar.enviarEmailProgressaoMerito(progressao);
-		progressao = new Progressao();
-		progressao.setClasse(new Classe());
-		progressao.setPadraoAntigo(new Padrao());
-		progressao.setPadraoNovo(new Padrao());
-		progressao.setServidor(new Servidor());
+		if (validacao) {
+			DAO.getInstance().save(progressao);
+			progressao.getServidor().setPadrao(progressao.getPadraoNovo());
+			SolicitacaoDAO.getInstance().updateSolicitacao(
+					progressao.getServidor());
+			EnviarEmail enviar = new EnviarEmail();
+			enviar.enviarEmailProgressaoMerito(progressao);
+			progressao = new Progressao();
+			progressao.setServidor(new Servidor());
+			progressao.setClasse(new Classe());
+			progressao.setPadraoAntigo(new Padrao());
+			progressao.setPadraoNovo(new Padrao());
+			progressao.setTipoProgressao(new TipoProgressao());
+			progressao.setServidorTitulacao(new ServidorTitulacao());
+			progressao.setServidor(new Servidor());
+		} else {
+			FacesMessage message = new FacesMessage(
+					FacesMessage.SEVERITY_ERROR,
+					"Servidor já encontra-se no ultimo nível da carreira!",
+					"Servidor já encontra-se no ultimo nível da carreira!");
+			FacesContext.getCurrentInstance().addMessage("", message);
+		}
 	}
 
 	public void buscarServidor() throws IOException, ParseException {
