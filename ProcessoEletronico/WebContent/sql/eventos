@@ -18,7 +18,7 @@ UPDATE solicitacao SET serv_cod_atendente = null,solic_dt_atendimento = null, st
 CREATE EVENT validaDependenteRessarcimentoSaude
 ON SCHEDULE EVERY 1 second
 do
-UPDATE dependente SET dep_ind_saude = 0 WHERE  dep_ind_nec_esp = 0 and (dep_data_nasc <DATE_SUB(NOW() , INTERVAL 24 year) OR (dep_ind_est = 0 AND dep_data_nasc < DATE_SUB(NOW() , INTERVAL 21 year) ))  
+UPDATE dependente SET dep_ind_saude = 0 WHERE  dep_ind_nec_esp = 0 and (dep_data_nasc <DATE_SUB(NOW() , INTERVAL 24 year) OR (dep_ind_est = 0 AND dep_data_nasc < DATE_SUB(NOW() , INTERVAL 21 year) ));  
 
 -- RETORNO O STATUS DOS EMPREGOS QUE ESTÃO EM ANÁLISE A MAIS DE 30 MINUTOS  
 CREATE EVENT
@@ -52,7 +52,7 @@ EVERY 1 SECOND
 DO
 UPDATE dependente SET dep_atendente = null, dep_data_atendimento = null, dep_justificativa = null, sta_solic_cod = 1 WHERE sta_solic_cod = 2 AND dep_data_atendimento < DATE_SUB(NOW() , INTERVAL 30 MINUTE);
 
---DEIXAR ESSA PARTE POR ULTIMO
+-- DEIXAR ESSA PARTE POR ULTIMO
 SET GLOBAL event_scheduler = ON;
 SET GLOBAL event_scheduler = 1;
 SHOW PROCESSLIST;
