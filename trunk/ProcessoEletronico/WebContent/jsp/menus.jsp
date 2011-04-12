@@ -247,7 +247,7 @@
 					icon="../images/cadastrarLotacao.gif" />
 				<rich:menuItem submitMode="ajax" value="Cadastrar Progressão"
 					action="#{progressaoController.abrirCadastrarProgressao}"
-					icon="../images/cadastrarProgressao.gif" />
+					icon="../images/cadProgressao.gif" />
 				<rich:menuItem submitMode="ajax" value="Gerenciar Permissões"
 					action="#{permissaoController.abrirGerenciarPermissao}"
 					icon="../images/permissao.gif" />
@@ -259,7 +259,7 @@
 					icon="../images/listarLotacao.gif" />
 				<rich:menuItem submitMode="ajax" value="Listar Progressão"
 					action="#{progressaoController.abrirListarProgressao}"
-					icon="../images/listarProgressao.gif" />
+					icon="../images/listProgressao.gif" />
 				<rich:menuItem submitMode="ajax" value="Nova Função"
 					action="#{funcaoController.abrirNovaFuncao}"
 					icon="../images/novafuncao.png" />
