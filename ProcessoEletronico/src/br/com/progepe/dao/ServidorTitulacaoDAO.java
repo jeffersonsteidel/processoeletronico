@@ -40,7 +40,8 @@ public class ServidorTitulacaoDAO extends DAO {
 
 	@SuppressWarnings("unchecked")
 	public List<ServidorTitulacao> listByFilter(
-			ServidorTitulacao servidorTitulacao, Integer situacao, Integer validado) {
+			ServidorTitulacao servidorTitulacao, Integer situacao,
+			Integer validado) {
 		HibernateUtility.getSession().clear();
 		HibernateUtility.beginTransaction();
 		String sql = "from ServidorTitulacao st LEFT JOIN FETCH st.servidor s where 1 = 1 ";
@@ -57,7 +58,8 @@ public class ServidorTitulacaoDAO extends DAO {
 		}
 		if (servidorTitulacao.getTitulacao().getCodigo() != null
 				&& servidorTitulacao.getTitulacao().getCodigo() != 0) {
-			sql += " and st.titulacao.codigo = " +servidorTitulacao.getTitulacao().getCodigo();
+			sql += " and st.titulacao.codigo = "
+					+ servidorTitulacao.getTitulacao().getCodigo();
 		}
 		if (servidorTitulacao.getAreaConhecimento().getCodigo() != null
 				&& servidorTitulacao.getAreaConhecimento().getCodigo() != 0) {
@@ -67,20 +69,32 @@ public class ServidorTitulacaoDAO extends DAO {
 		if (servidorTitulacao.getStatusSolicitacao().getCodigo() != null
 				&& servidorTitulacao.getStatusSolicitacao().getCodigo() != 0) {
 			sql += " and st.statusSolicitacao.codigo =  "
-				+ servidorTitulacao.getStatusSolicitacao().getCodigo();
+					+ servidorTitulacao.getStatusSolicitacao().getCodigo();
 		}
-		if (situacao != null && Constantes.ATIVO.equals(situacao) ) {
+		if (situacao != null && Constantes.ATIVO.equals(situacao)) {
 			sql += " and s.dataSaida is null";
 		}
-		if (situacao != null && Constantes.DESATIVO.equals(situacao) ) {
+		if (situacao != null && Constantes.DESATIVO.equals(situacao)) {
 			sql += " and s.dataSaida is not null";
 		}
-		if (validado != null && Constantes.SIM.equals(validado) ) {
+		if (validado != null && Constantes.SIM.equals(validado)) {
 			sql += " and st.indValidado = 1";
 		}
-		if (validado != null && Constantes.NAO.equals(validado) ) {
+		if (validado != null && Constantes.NAO.equals(validado)) {
 			sql += " and st.indValidado is 0";
 		}
+		Query query = HibernateUtility.getSession().createQuery(sql);
+		HibernateUtility.commitTransaction();
+		return (List<ServidorTitulacao>) query.list();
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<ServidorTitulacao> listByIncentivo(
+			ServidorTitulacao servidorTitulacao) {
+		HibernateUtility.getSession().clear();
+		HibernateUtility.beginTransaction();
+		String sql = "from ServidorTitulacao st where st.statusSolicitacao = 3 and st.servidor.siape = "
+				+ servidorTitulacao.getServidor().getSiape();
 		Query query = HibernateUtility.getSession().createQuery(sql);
 		HibernateUtility.commitTransaction();
 		return (List<ServidorTitulacao>) query.list();
