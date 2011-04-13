@@ -137,6 +137,20 @@
 						action="#{solicitacaoAdicionalNoturnoController.abrirListarSolicitacaoAdicionalNoturnoTecnicos}"
 						icon="../images/listarAdicional.jpg" />
 				</rich:menuGroup>
+				<rich:menuGroup value="Ressarcimento Saúde">
+					<rich:menuItem submitMode="ajax"
+						value="Cadastrar Ressarcimento Saúde"
+						action="#{ressarcimentoSaudeController.abrirRessarcimentoSaude}"
+						icon="../images/ressarcimentoSaude.gif" />
+					<rich:menuItem submitMode="ajax"
+						value="Pesquisar Ressarcimento Saúde"
+						action="#{ressarcimentoSaudeController.abrirListar}"
+						icon="../images/saude.png" />
+					<rich:menuItem submitMode="ajax"
+						value="Reembolso Ressarcimento Saúde"
+						action="#{solicitacaoRessarcimentoSaudeController.abrirSolicitacaoRessarcimentoSaude}"
+						icon="../images/saude2.gif" />
+				</rich:menuGroup>
 				<rich:menuItem submitMode="ajax" value="Afastamento do Cônjuge"
 					action="#{solicitacaoAfastamentoConjugeController.abrirSolicitacaoAfastamentoConjuge}"
 					icon="../images/afastamentoconjuge.gif" />
@@ -170,9 +184,6 @@
 						action="#{solicitacaoLicencaPaternidadeController.abrirSolicitacaoPaternidade}"
 						icon="../images/auxiliopaternidade.gif" />
 				</rich:menuGroup>
-				<rich:menuItem submitMode="ajax" value="Ressarcimento Saúde"
-					action="#{solicitacaoRessarcimentoSaudeController.abrirSolicitacaoRessarcimentoSaude}"
-					icon="../images/saude2.gif" />
 				<rich:menuItem submitMode="ajax" value="Listar Solicitações"
 					rendered="#{autenticacaoController.siapeAutenticado.indAdministrador}"
 					action="#{solicitacaoController.abrirPesquisarSolicitacoes}"
@@ -180,22 +191,6 @@
 				<rich:menuItem submitMode="ajax" value="Minhas Solicitações"
 					action="#{solicitacaoController.abrirMinhasSolicitacoes}"
 					icon="../images/MINHASSOLICITACOES.GIF" />
-			</rich:dropDownMenu>
-			<rich:dropDownMenu>
-				<f:facet name="label">
-					<h:panelGroup>
-						<h:outputText value="RESSARCIMENTO SAÚDE" />
-					</h:panelGroup>
-				</f:facet>
-				<rich:menuItem submitMode="ajax"
-					value="Cadastrar Ressarcimento Saúde"
-					action="#{ressarcimentoSaudeController.abrirRessarcimentoSaude}"
-					icon="../images/ressarcimentoSaude.jpg" />
-				<rich:menuItem submitMode="ajax"
-					value="Pesquisar Ressarcimento Saúde"
-					action="#{ressarcimentoSaudeController.abrirListar}"
-					icon="../images/saude.png" />
-
 			</rich:dropDownMenu>
 			<rich:dropDownMenu>
 				<f:facet name="label">
@@ -210,7 +205,6 @@
 					action="#{portariaController.listarPortarias}"
 					icon="../images/portarias.gif" />
 			</rich:dropDownMenu>
-
 			<rich:dropDownMenu>
 				<f:facet name="label">
 					<h:panelGroup>
@@ -221,7 +215,20 @@
 					action="#{aniversarianteController.abrirAniversariantes}"
 					icon="../images/aniversario.png" />
 			</rich:dropDownMenu>
-
+			<rich:dropDownMenu>
+				<f:facet name="label">
+					<h:panelGroup>
+						<h:outputText value="PROGRESSÃO" />
+					</h:panelGroup>
+				</f:facet>
+				<rich:menuItem submitMode="ajax"
+					value="Cadastrar Progressão - Mérito"
+					action="#{progressaoController.abrirCadastrarProgressao}"
+					icon="../images/cadProgressao.gif" />
+				<rich:menuItem submitMode="ajax" value="Listar Progressão - Mérito"
+					action="#{progressaoController.abrirListarProgressao}"
+					icon="../images/listProgressao.gif" />
+			</rich:dropDownMenu>
 			<rich:dropDownMenu>
 				<f:facet name="label">
 					<h:panelGroup>
@@ -245,9 +252,6 @@
 				<rich:menuItem submitMode="ajax" value="Cadastrar Lotação"
 					action="#{lotacaoController.abrirCadastrarLotacao}"
 					icon="../images/cadastrarLotacao.gif" />
-				<rich:menuItem submitMode="ajax" value="Cadastrar Progressão"
-					action="#{progressaoController.abrirCadastrarProgressao}"
-					icon="../images/cadProgressao.gif" />
 				<rich:menuItem submitMode="ajax" value="Gerenciar Permissões"
 					action="#{permissaoController.abrirGerenciarPermissao}"
 					icon="../images/permissao.gif" />
@@ -257,9 +261,6 @@
 				<rich:menuItem submitMode="ajax" value="Listar Lotações"
 					action="#{lotacaoController.abrirListarLotacoes}"
 					icon="../images/listarLotacao.gif" />
-				<rich:menuItem submitMode="ajax" value="Listar Progressão"
-					action="#{progressaoController.abrirListarProgressao}"
-					icon="../images/listProgressao.gif" />
 				<rich:menuItem submitMode="ajax" value="Nova Função"
 					action="#{funcaoController.abrirNovaFuncao}"
 					icon="../images/novafuncao.png" />
@@ -267,7 +268,6 @@
 					action="#{funcaoController.abrirListarFuncoes}"
 					icon="../images/pesquisarfuncoes.gif" />
 			</rich:dropDownMenu>
-
 			<rich:dropDownMenu
 				rendered="#{autenticacaoController.siapeAutenticado.indGerente}">
 				<f:facet name="label">
@@ -279,8 +279,6 @@
 					action="#{relatorioController.abrirRelatorios}"
 					icon="../images/icopdf.gif" />
 			</rich:dropDownMenu>
-
-
 			<rich:toolBarGroup location="right">
 				<rich:dropDownMenu>
 					<f:facet name="label">
@@ -302,7 +300,6 @@
 						icon="../images/SAIR.gif" />
 				</rich:dropDownMenu>
 			</rich:toolBarGroup>
-
 		</rich:toolBar>
 
 		<a4j:status>
