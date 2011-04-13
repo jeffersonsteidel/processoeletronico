@@ -11,6 +11,5 @@
 		<property name="certificado" column="PROG_CAP_CERT_CERTIFICADO" />
 		<many-to-one name="solicitacaoProgressaoCapacitacao" cascade="all"
 			class="br.com.progepe.entity.SolicitacaoProgressaoCapacitacao" column="SOLIC_COD" />
-
 	</class>
 </hibernate-mapping>

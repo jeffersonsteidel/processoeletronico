@@ -12,7 +12,7 @@
 		<property name="instituicaoEnsino" column="SOLIC_PROG_CAP_INST_ENSINO" />
 		<property name="dataInicio" column="SOLIC_PROG_CAP_DATA_INICIO" />
 		<property name="dataTermino" column="SOLIC_PROG_CAP_DATA_TERMINO" />
-		<many-to-one name="padrao" cascade="all"
+		<many-to-one name="padrao" 
 			class="br.com.progepe.entity.Padrao" column="PAD_COD_NOVO" />
 	</joined-subclass>
 </hibernate-mapping>

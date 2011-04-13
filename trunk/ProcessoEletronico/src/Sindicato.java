@@ -8,29 +8,18 @@ public class Sindicato {
 	public static void main(String[] args) throws ParseException {
 		try {
 			BufferedReader br = new BufferedReader(new FileReader(
-					"C://SINDICATO.txt"));
+					"C://SINDICATO_ABRIL_2011.dat"));
 			while (br.ready()) {
 				String linha = br.readLine();
-				if (linha.length() > 96 && (!(linha.contains("Benef. Nome")) && !(linha.contains("Id.")))) {
-					char teste = linha.charAt(8);
-					if (teste == 'T') {
-						System.out.print("Titular: "
-								+ linha.substring(22, 60));
-						System.out.println("Valor: "
-								+ linha.substring(90, 97));	
-					}
-					if (teste == 'D') {
-						System.out.print("Dependente: "
-								+ linha.substring(22, 60));
-						System.out.println("Valor: "
-								+ linha.substring(90, 97));
-					}
-					if (linha.contains("Total por Familia:")) {
-						System.out.println("Valor Total por Familia: "
-								+ linha.substring(90, 97) +"\n");
+				if (linha.contains("Responsável:")) {
+						System.out.print("TITULAR: "
+								+ linha.substring(37, 90));
+				}
+				if (linha.contains("Total Família:")) {
+						System.out.println("TOTAL FAMILIA: "
+								+ linha.substring(14, 21));	
 					}
 				}
-			}
 			br.close();
 		} catch (IOException ioe) {
 			ioe.printStackTrace();
