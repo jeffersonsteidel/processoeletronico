@@ -3,7 +3,8 @@ package br.com.progepe.entity;
 import java.io.Serializable;
 import java.util.Date;
 
-public class SolicitacaoProgressaoCapacitacao extends Solicitacao implements Serializable {
+public class SolicitacaoProgressaoCapacitacao extends Solicitacao implements
+		Serializable {
 
 	private static final long serialVersionUID = 1L;
 
@@ -13,8 +14,7 @@ public class SolicitacaoProgressaoCapacitacao extends Solicitacao implements Ser
 	private Integer cargaHoraria;
 	private String instituicaoEnsino;
 	private Date dataInicio;
-	private Date dataTermio;
-
+	private Date dataTermino;
 
 	public Padrao getNovoPadrao() {
 		return novoPadrao;
@@ -64,12 +64,12 @@ public class SolicitacaoProgressaoCapacitacao extends Solicitacao implements Ser
 		this.dataInicio = dataInicio;
 	}
 
-	public Date getDataTermio() {
-		return dataTermio;
+	public Date getDataTermino() {
+		return dataTermino;
 	}
 
-	public void setDataTermio(Date dataTermio) {
-		this.dataTermio = dataTermio;
+	public void setDataTermino(Date dataTermino) {
+		this.dataTermino = dataTermino;
 	}
 
 }
