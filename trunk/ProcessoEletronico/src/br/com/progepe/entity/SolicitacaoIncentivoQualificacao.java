@@ -2,21 +2,13 @@ package br.com.progepe.entity;
 
 import java.io.Serializable;
 
-public class SolicitacaoIncentivoQualificacao implements Serializable {
+public class SolicitacaoIncentivoQualificacao extends Solicitacao implements
+		Serializable {
 
 	private static final long serialVersionUID = 1L;
-	private Long codigo;
 	private ServidorTitulacao titulacao;
-	private Boolean incQualificacaoDireta;
+	private Boolean indQualificacaoDireta;
 	private String portaria;
-
-	public Long getCodigo() {
-		return codigo;
-	}
-
-	public void setCodigo(Long codigo) {
-		this.codigo = codigo;
-	}
 
 	public ServidorTitulacao getTitulacao() {
 		return titulacao;
@@ -26,12 +18,12 @@ public class SolicitacaoIncentivoQualificacao implements Serializable {
 		this.titulacao = titulacao;
 	}
 
-	public Boolean getIncQualificacaoDireta() {
-		return incQualificacaoDireta;
+	public Boolean getIndQualificacaoDireta() {
+		return indQualificacaoDireta;
 	}
 
-	public void setIncQualificacaoDireta(Boolean incQualificacaoDireta) {
-		this.incQualificacaoDireta = incQualificacaoDireta;
+	public void setIndQualificacaoDireta(Boolean indQualificacaoDireta) {
+		this.indQualificacaoDireta = indQualificacaoDireta;
 	}
 
 	public String getPortaria() {
