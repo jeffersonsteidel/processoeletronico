@@ -6,16 +6,16 @@ public class SolicitacaoIncentivoQualificacao extends Solicitacao implements
 		Serializable {
 
 	private static final long serialVersionUID = 1L;
-	private ServidorTitulacao titulacao;
+	private ServidorTitulacao servidorTitulacao;
 	private Boolean indQualificacaoDireta;
 	private String portaria;
 
-	public ServidorTitulacao getTitulacao() {
-		return titulacao;
+	public ServidorTitulacao getServidorTitulacao() {
+		return servidorTitulacao;
 	}
 
-	public void setTitulacao(ServidorTitulacao titulacao) {
-		this.titulacao = titulacao;
+	public void setServidorTitulacao(ServidorTitulacao servidorTitulacao) {
+		this.servidorTitulacao = servidorTitulacao;
 	}
 
 	public Boolean getIndQualificacaoDireta() {
