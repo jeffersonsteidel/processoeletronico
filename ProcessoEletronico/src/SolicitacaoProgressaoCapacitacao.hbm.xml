@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping 
+	PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<joined-subclass
+		name="br.com.progepe.entity.SolicitacaoProgressaoCapacitacao" extends="br.com.progepe.entity.Solicitacao">
+		<key column="SOLIC_COD"></key>
+		<property name="portaria" column="SOLIC_PROG_CAP_PORTARIA" />
+		<property name="curso" column="SOLIC_PROG_CAP_CURSO" />
+		<property name="cargaHoraria" column="SOLIC_PROG_CAP_CARGA_HORARIA" />
+		<property name="instituicaoEnsino" column="SOLIC_PROG_CAP_INST_ENSINO" />
+		<property name="dataInicio" column="SOLIC_PROG_CAP_DATA_INICIO" />
+		<property name="dataTermino" column="SOLIC_PROG_CAP_DATA_TERMINO" />
+		<many-to-one name="padrao" cascade="all"
+			class="br.com.progepe.entity.Padrao" column="PAD_COD_NOVO" />
+	</joined-subclass>
+</hibernate-mapping>
