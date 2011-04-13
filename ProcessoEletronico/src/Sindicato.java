@@ -12,12 +12,10 @@ public class Sindicato {
 			while (br.ready()) {
 				String linha = br.readLine();
 				if (linha.contains("Responsável:")) {
-						System.out.print("TITULAR: "
-								+ linha.substring(37, 90));
+						System.out.print(linha.substring(37, 90)+"|");
 				}
 				if (linha.contains("Total Família:")) {
-						System.out.println("TOTAL FAMILIA: "
-								+ linha.substring(14, 21));	
+						System.out.println(linha.substring(14, 21));	
 					}
 				}
 			br.close();
