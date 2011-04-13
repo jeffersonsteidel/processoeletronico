@@ -198,7 +198,7 @@
 							<h:outputText value="Editar" />
 						</f:facet>
 						<a4j:commandLink action="#{servidorTitulacaoController.carregarTitulacao}"
-							rendered="#{list.statusSolicitacao.codigo > 2}"
+							rendered="#{list.statusSolicitacao.codigo > 3 }"
 							reRender="listaTitulacoes, form" ajaxSingle="true">
 							<h:graphicImage value="../images/edit.gif" style="border:0"
 								width="20" height="18" id="editar" />
@@ -212,7 +212,7 @@
 						</a4j:commandLink>
 						<rich:toolTip for="editar" value="Editar" />
 						<rich:toolTip for="editarNPermitido"
-							value="Você somente poderá editar titulações deferidas ou indeferidas!" />
+							value="Você somente poderá editar titulações indeferidas!" />
 					</rich:column>
 
 					<rich:column width="60px">
