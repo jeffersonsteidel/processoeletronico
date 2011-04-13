@@ -3,11 +3,10 @@ package br.com.progepe.entity;
 import java.io.Serializable;
 import java.util.Date;
 
-public class SolicitacaoProgressaoCapacitacao implements Serializable {
+public class SolicitacaoProgressaoCapacitacao extends Solicitacao implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	private Long codigo;
 	private Padrao novoPadrao;
 	private String portaria;
 	private String curso;
@@ -16,13 +15,6 @@ public class SolicitacaoProgressaoCapacitacao implements Serializable {
 	private Date dataInicio;
 	private Date dataTermio;
 
-	public Long getCodigo() {
-		return codigo;
-	}
-
-	public void setCodigo(Long codigo) {
-		this.codigo = codigo;
-	}
 
 	public Padrao getNovoPadrao() {
 		return novoPadrao;
