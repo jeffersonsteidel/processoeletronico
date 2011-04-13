@@ -204,6 +204,10 @@
 				<rich:menuItem submitMode="ajax" value="Listar Portarias"
 					action="#{portariaController.listarPortarias}"
 					icon="../images/portarias.gif" />
+				<rich:menuItem submitMode="ajax" value="Incentivo a Qualificação"
+					action="#{solicitacaoIncentivoQualificacaoController.abrirSolicitacaoIncentivoQualificacao}"
+					icon="../images/listarAdicional.jpg" />
+
 			</rich:dropDownMenu>
 			<rich:dropDownMenu>
 				<f:facet name="label">
