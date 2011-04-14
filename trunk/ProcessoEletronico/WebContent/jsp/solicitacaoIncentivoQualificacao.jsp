@@ -32,39 +32,30 @@
 					value="#{solicitacaoIncentivoQualificacaoController.solicitacaoIncentivoQualificacao.servidorTitulacao.servidor.siape} - #{solicitacaoIncentivoQualificacaoController.solicitacaoIncentivoQualificacao.servidorTitulacao.servidor.nome}">
 				</h:outputText>
 			</h:panelGrid>
-
+			<br>
+			<h:outputText
+				value="Clique no curso que deseja receber o incentivo: ">
+			</h:outputText>
 			<rich:dataTable id="listaTitulacoes"
 				value="#{solicitacaoIncentivoQualificacaoController.listaTitulacoes}"
 				var="list" width="1150px" columnClasses="center" rows="15"
-				reRender="ds">
-				<rich:column width="50px">
-					<f:facet name="header">
-					</f:facet>
-					<h:selectOneRadio id="radios"
-						value="#{solicitacaoIncentivoQualificacaoController.solicitacaoIncentivoQualificacao.servidorTitulacao.codigo}">
-					<f:selectItem itemValue="#{list.codigo}"  />
-				</h:selectOneRadio>
-				</rich:column>
-
-				<rich:column width="50px">
-					<f:facet name="header">
-						<h:outputText value="Siape" />
-					</f:facet>
-					<h:outputText value="#{list.servidor.siape}" />
-				</rich:column>
-
-				<rich:column width="420px">
-					<f:facet name="header">
-						<h:outputText value="Nome" />
-					</f:facet>
-					<h:outputText value="#{list.servidor.nome}" />
-				</rich:column>
+				reRender="ds, dados">
+				<a4j:support event="onRowClick"
+					actionListener="#{solicitacaoIncentivoQualificacaoController.selectionChanged}"
+					reRender="form" />
 
 				<rich:column width="280px" sortBy="#{list.titulacao.descricao}">
 					<f:facet name="header">
 						<h:outputText value="Titulação" />
 					</f:facet>
 					<h:outputText value="#{list.titulacao.descricao}" />
+				</rich:column>
+
+				<rich:column width="280px" sortBy="#{list.cursos}">
+					<f:facet name="header">
+						<h:outputText value="Curso" />
+					</f:facet>
+					<h:outputText value="#{list.curso}" />
 				</rich:column>
 
 				<rich:column width="280px"
@@ -79,7 +70,74 @@
 					<rich:datascroller id="ds"></rich:datascroller>
 				</f:facet>
 			</rich:dataTable>
+			<br>
+			<h:outputText value="Curso selecionado: " id="labelDados"
+				rendered="#{solicitacaoIncentivoQualificacaoController.solicitacaoIncentivoQualificacao.servidorTitulacao.codigo != 0 && solicitacaoIncentivoQualificacaoController.solicitacaoIncentivoQualificacao.servidorTitulacao.codigo != null}">
+			</h:outputText>
+			<h:panelGrid columns="4" id="dados"
+				rendered="#{solicitacaoIncentivoQualificacaoController.solicitacaoIncentivoQualificacao.servidorTitulacao.codigo != 0 && solicitacaoIncentivoQualificacaoController.solicitacaoIncentivoQualificacao.servidorTitulacao.codigo != null}">
+				<h:outputText value="Tiulação: " />
+				<h:outputText
+					value="#{solicitacaoIncentivoQualificacaoController.solicitacaoIncentivoQualificacao.servidorTitulacao.titulacao.descricao}" />
+				<h:outputText value="Estabelecimento de Ensino: " />
+				<h:outputText styleClass="maiusculo"
+					value="#{solicitacaoIncentivoQualificacaoController.solicitacaoIncentivoQualificacao.servidorTitulacao.estabelecimentoEnsino}" />
 
+				<h:outputText value="Curso: " />
+				<h:outputText styleClass="maiusculo"
+					value="#{solicitacaoIncentivoQualificacaoController.solicitacaoIncentivoQualificacao.servidorTitulacao.curso}" />
+
+				<h:outputText value="Area de Conhecimento: " />
+				<h:outputText
+					value="#{solicitacaoIncentivoQualificacaoController.solicitacaoIncentivoQualificacao.servidorTitulacao.areaConhecimento.descricao}" />
+
+				<h:outputText value="Estado do Estabelecimento de Ensino: "
+					rendered="#{solicitacaoIncentivoQualificacaoController.solicitacaoIncentivoQualificacao.servidorTitulacao.cidadeEstabelecimentoEnsino.estado.codigo != 0}" />
+				<h:outputText
+					rendered="#{solicitacaoIncentivoQualificacaoController.solicitacaoIncentivoQualificacao.servidorTitulacao.cidadeEstabelecimentoEnsino.estado.codigo != 0}"
+					value="#{solicitacaoIncentivoQualificacaoController.solicitacaoIncentivoQualificacao.servidorTitulacao.cidadeEstabelecimentoEnsino.estado.descricao}">
+				</h:outputText>
+
+				<h:outputText value="Cidade de Estabelecimento de Ensino: " />
+				<h:outputText
+					rendered="#{solicitacaoIncentivoQualificacaoController.solicitacaoIncentivoQualificacao.servidorTitulacao.cidadeEstabelecimentoEnsino.codigo != 0}"
+					value="#{solicitacaoIncentivoQualificacaoController.solicitacaoIncentivoQualificacao.servidorTitulacao.cidadeEstabelecimentoEnsino.descricao}">
+				</h:outputText>
+
+				<h:outputText value="Carga Horária: " />
+				<h:outputText
+					value="#{solicitacaoIncentivoQualificacaoController.solicitacaoIncentivoQualificacao.servidorTitulacao.cargaHoraria}"></h:outputText>
+
+				<h:outputText value="Ano de Conclusão: "
+					rendered="#{solicitacaoIncentivoQualificacaoController.solicitacaoIncentivoQualificacao.servidorTitulacao.anoConclusao != null}" />
+
+				<h:outputText
+					rendered="#{solicitacaoIncentivoQualificacaoController.solicitacaoIncentivoQualificacao.servidorTitulacao.anoConclusao != null}"
+					value="#{solicitacaoIncentivoQualificacaoController.solicitacaoIncentivoQualificacao.servidorTitulacao.anoConclusao}">
+				</h:outputText>
+
+				<h:outputText value="Registro no Conselho: "
+					rendered="#{solicitacaoIncentivoQualificacaoController.solicitacaoIncentivoQualificacao.servidorTitulacao.registroConselho != '' && solicitacaoIncentivoQualificacaoController.solicitacaoIncentivoQualificacao.servidorTitulacao.registroConselho != null}" />
+
+				<h:outputText
+					rendered="#{solicitacaoIncentivoQualificacaoController.solicitacaoIncentivoQualificacao.servidorTitulacao.registroConselho != '' && solicitacaoIncentivoQualificacaoController.solicitacaoIncentivoQualificacao.servidorTitulacao.registroConselho != null}"
+					value="#{solicitacaoIncentivoQualificacaoController.solicitacaoIncentivoQualificacao.servidorTitulacao.registroConselho}"></h:outputText>
+
+				<h:outputText value="Orgão Emissor do Registro: "
+					rendered="#{solicitacaoIncentivoQualificacaoController.solicitacaoIncentivoQualificacao.servidorTitulacao.orgaoEmissor != '' && solicitacaoIncentivoQualificacaoController.solicitacaoIncentivoQualificacao.servidorTitulacao.orgaoEmissor != null}" />
+
+				<h:outputText styleClass="maiusculo"
+					rendered="#{solicitacaoIncentivoQualificacaoController.solicitacaoIncentivoQualificacao.servidorTitulacao.orgaoEmissor != '' && solicitacaoIncentivoQualificacaoController.solicitacaoIncentivoQualificacao.servidorTitulacao.orgaoEmissor != null}"
+					value="#{solicitacaoIncentivoQualificacaoController.solicitacaoIncentivoQualificacao.servidorTitulacao.orgaoEmissor}"></h:outputText>
+
+				<h:outputText value="Estado do Orgão Emissor: "
+					rendered="#{solicitacaoIncentivoQualificacaoController.solicitacaoIncentivoQualificacao.servidorTitulacao.estadoOrgaoEmissor != null && solicitacaoIncentivoQualificacaoController.solicitacaoIncentivoQualificacao.servidorTitulacao.estadoOrgaoEmissor != ''}" />
+				<h:outputText
+					rendered="#{solicitacaoIncentivoQualificacaoController.solicitacaoIncentivoQualificacao.servidorTitulacao.estadoOrgaoEmissor != null && solicitacaoIncentivoQualificacaoController.solicitacaoIncentivoQualificacao.servidorTitulacao.estadoOrgaoEmissor != ''}"
+					value="#{solicitacaoIncentivoQualificacaoController.solicitacaoIncentivoQualificacao.servidorTitulacao.estadoOrgaoEmissor.descricao}">
+				</h:outputText>
+
+			</h:panelGrid>
 			<a4j:commandButton value="Salvar"
 				action="#{solicitacaoIncentivoQualificacaoController.salvar}"
 				reRender="form" />

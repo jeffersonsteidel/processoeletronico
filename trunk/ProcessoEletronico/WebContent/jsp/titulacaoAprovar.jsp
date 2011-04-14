@@ -34,7 +34,7 @@
 					value="#{servidorTitulacaoController.servidorTitulacao.servidor.siape} - #{servidorTitulacaoController.servidorTitulacao.servidor.nome}" />
 			</h:panelGrid>
 			<h:panelGrid columns="4">
-				<h:outputText value="Tiulação: " />
+				<h:outputText value="Titulação: " />
 				<h:outputText
 					value="#{servidorTitulacaoController.servidorTitulacao.titulacao.descricao}" />
 				<h:outputText value="Estabelecimento de Ensino: " />
