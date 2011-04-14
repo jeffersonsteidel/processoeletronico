@@ -139,6 +139,11 @@ Config 1.1//EN"
 		<managed-bean-scope>session</managed-bean-scope>
 	</managed-bean>
 	<managed-bean>
+		<managed-bean-name>solicitacaoIncentivoQualificacaoController</managed-bean-name>
+		<managed-bean-class>br.com.progepe.controller.SolicitacaoIncentivoQualificacaoController</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
 		<managed-bean-name>solicitacaoLicencaPaternidadeController</managed-bean-name>
 		<managed-bean-class>br.com.progepe.controller.SolicitacaoLicencaPaternidadeController</managed-bean-class>
 		<managed-bean-scope>session</managed-bean-scope>
