@@ -26,7 +26,7 @@
 				</f:facet>
 			</rich:messages>
 
-			<font size="2"><b>SOLICITAÇÃO INCENTIVO A QUALIFICAÇÃO</b></font>
+			<font size="2"><b>INCENTIVO A QUALIFICAÇÃO</b></font>
 			<h:panelGrid columns="2">
 				<h:outputText
 					value="#{solicitacaoIncentivoQualificacaoController.solicitacaoIncentivoQualificacao.servidorTitulacao.servidor.siape} - #{solicitacaoIncentivoQualificacaoController.solicitacaoIncentivoQualificacao.servidorTitulacao.servidor.nome}">
@@ -34,7 +34,7 @@
 			</h:panelGrid>
 			<br>
 			<h:outputText
-				value="Clique no curso que deseja receber o incentivo: ">
+				value="Clique na Titulação que deseja receber o incentivo: ">
 			</h:outputText>
 			<rich:dataTable id="listaTitulacoes"
 				value="#{solicitacaoIncentivoQualificacaoController.listaTitulacoes}"
@@ -44,22 +44,21 @@
 					actionListener="#{solicitacaoIncentivoQualificacaoController.selectionChanged}"
 					reRender="form" />
 
-				<rich:column width="280px" sortBy="#{list.titulacao.descricao}">
+				<rich:column width="280px">
 					<f:facet name="header">
 						<h:outputText value="Titulação" />
 					</f:facet>
 					<h:outputText value="#{list.titulacao.descricao}" />
 				</rich:column>
 
-				<rich:column width="280px" sortBy="#{list.cursos}">
+				<rich:column width="280px">
 					<f:facet name="header">
 						<h:outputText value="Curso" />
 					</f:facet>
 					<h:outputText value="#{list.curso}" />
 				</rich:column>
 
-				<rich:column width="280px"
-					sortBy="#{list.areaConhecimento.descricao}">
+				<rich:column width="280px">
 					<f:facet name="header">
 						<h:outputText value="Area de Conhecimento" />
 					</f:facet>
@@ -71,7 +70,7 @@
 				</f:facet>
 			</rich:dataTable>
 			<br>
-			<h:outputText value="Curso selecionado: " id="labelDados"
+			<h:outputText value="Titulação selecionada: " id="labelDados"
 				rendered="#{solicitacaoIncentivoQualificacaoController.solicitacaoIncentivoQualificacao.servidorTitulacao.codigo != 0 && solicitacaoIncentivoQualificacaoController.solicitacaoIncentivoQualificacao.servidorTitulacao.codigo != null}">
 			</h:outputText>
 			<h:panelGrid columns="4" id="dados"
