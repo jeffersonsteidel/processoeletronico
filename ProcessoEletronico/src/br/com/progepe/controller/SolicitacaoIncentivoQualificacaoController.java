@@ -5,7 +5,9 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
+import javax.faces.event.ActionEvent;
 
 import br.com.progepe.dao.DAO;
 import br.com.progepe.dao.ServidorDAO;
@@ -37,15 +39,20 @@ public class SolicitacaoIncentivoQualificacaoController {
 		this.listaTitulacoes = listaTitulacoes;
 	}
 
-	public void abrirSolicitacaoIncentivoQualificacao()
-			throws ParseException {
+	public void abrirSolicitacaoIncentivoQualificacao() throws ParseException {
 		try {
 			solicitacaoIncentivoQualificacao = new SolicitacaoIncentivoQualificacao();
-			solicitacaoIncentivoQualificacao.setServidorTitulacao(new ServidorTitulacao());
+			solicitacaoIncentivoQualificacao
+					.setServidorTitulacao(new ServidorTitulacao());
 			buscarServidorLogado();
 			listaTitulacoes.clear();
-			solicitacaoIncentivoQualificacao.getServidorTitulacao().setServidor(solicitacaoIncentivoQualificacao.getSolicitante());
-			listaTitulacoes = ServidorTitulacaoDAO.getInstance().listByIncentivo(solicitacaoIncentivoQualificacao.getServidorTitulacao());
+			solicitacaoIncentivoQualificacao.getServidorTitulacao()
+					.setServidor(
+							solicitacaoIncentivoQualificacao.getSolicitante());
+			listaTitulacoes = ServidorTitulacaoDAO.getInstance()
+					.listByIncentivo(
+							solicitacaoIncentivoQualificacao
+									.getServidorTitulacao());
 			FacesContext.getCurrentInstance().getExternalContext()
 					.redirect("solicitacaoIncentivoQualificacao.jsp");
 		} catch (IOException e) {
@@ -60,16 +67,28 @@ public class SolicitacaoIncentivoQualificacaoController {
 				.get("usuarioLogado");
 		solicitacaoIncentivoQualificacao.getSolicitante().setSiape(
 				siapeAutenticado.getSiape());
-		solicitacaoIncentivoQualificacao
-				.setSolicitante(ServidorDAO.getInstance().refreshBySiape(
+		solicitacaoIncentivoQualificacao.setSolicitante(ServidorDAO
+				.getInstance().refreshBySiape(
 						solicitacaoIncentivoQualificacao.getSolicitante()));
 	}
-	
+
 	public void salvar() {
 		DAO.getInstance().save(solicitacaoIncentivoQualificacao);
-		
+
 		solicitacaoIncentivoQualificacao = new SolicitacaoIncentivoQualificacao();
-		solicitacaoIncentivoQualificacao.setServidorTitulacao(new ServidorTitulacao());
+		solicitacaoIncentivoQualificacao
+				.setServidorTitulacao(new ServidorTitulacao());
+	}
+
+	public void selectionChanged(ActionEvent event) {
+		UIComponent comp = event.getComponent();
+		Object obj = comp.getParent();
+		org.richfaces.component.html.HtmlDataTable table = (org.richfaces.component.html.HtmlDataTable) obj;
+		Object rowData = table.getRowData();
+		if (rowData instanceof ServidorTitulacao) {
+			ServidorTitulacao selObj = (ServidorTitulacao) rowData;
+			solicitacaoIncentivoQualificacao.setServidorTitulacao(selObj);
+		}
 	}
 
 }
