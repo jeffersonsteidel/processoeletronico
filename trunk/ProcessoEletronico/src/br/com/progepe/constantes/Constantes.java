@@ -42,6 +42,9 @@ public class Constantes {
 	public static final Long STATUS_SOLICITACAO_EM_ANALISE = 2L;
 	public static final Long STATUS_SOLICITACAO_DEFERIDO = 3L;
 	public static final Long STATUS_SOLICITACAO_INDEFERIDO = 4L;
+	public static final Long STATUS_SOLICITACAO_AGUARDANDO_IMPLANTACAO = 5L;
+	
+	
 	public static final Long TIPO_SOLICITACAO_ALTERAR_CONTA_BANCARIA = 1L;
 	public static final Long TIPO_SOLICITACAO_AUXILIO_ALIMENTACAO = 2L;
 	public static final Long TIPO_SOLICITACAO_ALTERACAO_FERIAS = 3L;
@@ -56,6 +59,7 @@ public class Constantes {
 	public static final Long TIPO_SOLICITACAO_ALTERACAO_ENDERECO = 12L;
 	public static final Long TIPO_SOLICITACAO_RESSARCIMENTO_SAUDE = 13L;
 	public static final Long TIPO_SOLICITACAO_INCENTIVO_QUALIFICACAO = 14L;
+	public static final Long TIPO_SOLICITACAO_PROGRESSAO_CAPACITACAO = 15L;
 	
 	public static final Long TIPO_PLANO_GEAPE = 1L;
 	public static final Long TIPO_PLANO_SINDICATO = 2L;

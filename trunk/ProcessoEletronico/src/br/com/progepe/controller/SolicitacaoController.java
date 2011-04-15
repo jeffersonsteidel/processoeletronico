@@ -30,6 +30,7 @@ import br.com.progepe.entity.SolicitacaoAlteracaoEndereco;
 import br.com.progepe.entity.SolicitacaoCasamento;
 import br.com.progepe.entity.SolicitacaoContaBancaria;
 import br.com.progepe.entity.SolicitacaoHorarioEspecialEstudante;
+import br.com.progepe.entity.SolicitacaoIncentivoQualificacao;
 import br.com.progepe.entity.SolicitacaoLicencaPaternidade;
 import br.com.progepe.entity.SolicitacaoObito;
 import br.com.progepe.entity.SolicitacaoRessarcimentoSaude;
@@ -57,6 +58,7 @@ public class SolicitacaoController  {
 	private SolicitacaoAdicionalNoturno solicitacaoAdicionalNoturnoDocente;
 	private SolicitacaoAlteracaoEndereco solicitacaoAlteracaoEndereco;
 	private SolicitacaoRessarcimentoSaude solicitacaoRessarcimentoSaude;
+	private SolicitacaoIncentivoQualificacao solicitacaoIncentivoQualificacao;
 
 	Solicitacao solicitacaoTemp = new Solicitacao();
 
@@ -241,6 +243,15 @@ public class SolicitacaoController  {
 			SolicitacaoRessarcimentoSaude solicitacaoRessarcimentoSaude) {
 		this.solicitacaoRessarcimentoSaude = solicitacaoRessarcimentoSaude;
 	}
+	
+	public SolicitacaoIncentivoQualificacao getSolicitacaoIncentivoQualificacao() {
+		return solicitacaoIncentivoQualificacao;
+	}
+
+	public void setSolicitacaoIncentivoQualificacao(
+			SolicitacaoIncentivoQualificacao solicitacaoIncentivoQualificacao) {
+		this.solicitacaoIncentivoQualificacao = solicitacaoIncentivoQualificacao;
+	}
 
 	public void abrirPesquisarSolicitacoes() throws ParseException {
 		try {
@@ -401,6 +412,17 @@ public class SolicitacaoController  {
 		response.sendRedirect("solicitacaoContaBancariaAprovar.jsp ");
 	}
 
+	public void carregarSolicitacaoIncentivoQualificacao(
+			SolicitacaoIncentivoQualificacao codigoSolicitacaoIncentivoQualificacao)
+			throws IOException {
+		solicitacaoIncentivoQualificacao  = (SolicitacaoIncentivoQualificacao) DAO.getInstance()
+				.refresh(codigoSolicitacaoIncentivoQualificacao);
+		FacesContext context = FacesContext.getCurrentInstance();
+		HttpServletResponse response = (HttpServletResponse) context
+				.getExternalContext().getResponse();
+		response.sendRedirect("solicitacaoIncentivoQualificacaoAprovar.jsp ");
+	}
+	
 	public void carregarSolicitacaoAlimentacao(
 			SolicitacaoAlimentacao codigoSolicitacaoAlimentacao)
 			throws IOException {
