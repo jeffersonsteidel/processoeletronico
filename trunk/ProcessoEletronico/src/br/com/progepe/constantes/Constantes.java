@@ -55,6 +55,7 @@ public class Constantes {
 	public static final Long TIPO_SOLICITACAO_ADICIONAL_NOTURNO_DOCENTES = 11L;
 	public static final Long TIPO_SOLICITACAO_ALTERACAO_ENDERECO = 12L;
 	public static final Long TIPO_SOLICITACAO_RESSARCIMENTO_SAUDE = 13L;
+	public static final Long TIPO_SOLICITACAO_INCENTIVO_QUALIFICACAO = 14L;
 	
 	public static final Long TIPO_PLANO_GEAPE = 1L;
 	public static final Long TIPO_PLANO_SINDICATO = 2L;

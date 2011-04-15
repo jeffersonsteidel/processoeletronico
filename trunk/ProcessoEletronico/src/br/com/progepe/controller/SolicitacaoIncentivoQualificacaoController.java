@@ -3,12 +3,14 @@ package br.com.progepe.controller;
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 
+import br.com.progepe.constantes.Constantes;
 import br.com.progepe.dao.DAO;
 import br.com.progepe.dao.ServidorDAO;
 import br.com.progepe.dao.ServidorTitulacaoDAO;
@@ -16,9 +18,13 @@ import br.com.progepe.entity.Autenticacao;
 import br.com.progepe.entity.Servidor;
 import br.com.progepe.entity.ServidorTitulacao;
 import br.com.progepe.entity.SolicitacaoIncentivoQualificacao;
+import br.com.progepe.entity.StatusSolicitacao;
+import br.com.progepe.entity.TipoSolicitacao;
+import br.com.progepe.jsfUtil.EnviarEmail;
 
 public class SolicitacaoIncentivoQualificacaoController {
 
+	private Boolean desabilitaBotao;
 	private SolicitacaoIncentivoQualificacao solicitacaoIncentivoQualificacao;
 	private List<ServidorTitulacao> listaTitulacoes = new ArrayList<ServidorTitulacao>();
 
@@ -39,8 +45,17 @@ public class SolicitacaoIncentivoQualificacaoController {
 		this.listaTitulacoes = listaTitulacoes;
 	}
 
+	public Boolean getDesabilitaBotao() {
+		return desabilitaBotao;
+	}
+
+	public void setDesabilitaBotao(Boolean desabilitaBotao) {
+		this.desabilitaBotao = desabilitaBotao;
+	}
+
 	public void abrirSolicitacaoIncentivoQualificacao() throws ParseException {
 		try {
+			desabilitaBotao = false;
 			solicitacaoIncentivoQualificacao = new SolicitacaoIncentivoQualificacao();
 			solicitacaoIncentivoQualificacao
 					.setServidorTitulacao(new ServidorTitulacao());
@@ -72,12 +87,25 @@ public class SolicitacaoIncentivoQualificacaoController {
 						solicitacaoIncentivoQualificacao.getSolicitante()));
 	}
 
-	public void salvar() {
-		DAO.getInstance().save(solicitacaoIncentivoQualificacao);
-
+	public void salvar() throws IOException, ParseException {
+		solicitacaoIncentivoQualificacao.setDataAbertura(new Date());
+		solicitacaoIncentivoQualificacao.setDataAtendimento(null);
+		solicitacaoIncentivoQualificacao
+				.setTipoSolicitacao(new TipoSolicitacao());
+		solicitacaoIncentivoQualificacao.getTipoSolicitacao().setCodigo(
+				Constantes.TIPO_SOLICITACAO_INCENTIVO_QUALIFICACAO);
+		solicitacaoIncentivoQualificacao
+				.setStatusSolicitacao(new StatusSolicitacao());
+		solicitacaoIncentivoQualificacao.getStatusSolicitacao().setCodigo(
+				Constantes.STATUS_SOLICITACAO_ENCAMINHADO);
+		DAO.getInstance().saveOrUpdate(solicitacaoIncentivoQualificacao);
+		desabilitaBotao = true;
+		EnviarEmail enviarEmail = new EnviarEmail();
+		enviarEmail.enviarEmailSolicitacao(solicitacaoIncentivoQualificacao);
 		solicitacaoIncentivoQualificacao = new SolicitacaoIncentivoQualificacao();
 		solicitacaoIncentivoQualificacao
 				.setServidorTitulacao(new ServidorTitulacao());
+		buscarServidorLogado();
 	}
 
 	public void selectionChanged(ActionEvent event) {
@@ -90,5 +118,4 @@ public class SolicitacaoIncentivoQualificacaoController {
 			solicitacaoIncentivoQualificacao.setServidorTitulacao(selObj);
 		}
 	}
-
 }
