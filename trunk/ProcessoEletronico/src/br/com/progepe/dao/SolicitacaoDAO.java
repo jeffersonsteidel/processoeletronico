@@ -18,6 +18,7 @@ import br.com.progepe.entity.SolicitacaoAlteracaoEndereco;
 import br.com.progepe.entity.SolicitacaoCasamento;
 import br.com.progepe.entity.SolicitacaoContaBancaria;
 import br.com.progepe.entity.SolicitacaoHorarioEspecialEstudante;
+import br.com.progepe.entity.SolicitacaoIncentivoQualificacao;
 import br.com.progepe.entity.SolicitacaoLicencaPaternidade;
 import br.com.progepe.entity.SolicitacaoObito;
 import br.com.progepe.entity.SolicitacaoRessarcimentoSaude;
@@ -97,6 +98,15 @@ public class SolicitacaoDAO extends DAO {
 		query.setParameter("codigo", codigo);
 		HibernateUtility.commitTransaction();
 		return (SolicitacaoAlimentacao) query.uniqueResult();
+	}
+	
+	public SolicitacaoIncentivoQualificacao carregarSolicitacaoIncentivoQualificacao(Long codigo) {
+		HibernateUtility.getSession().clear();
+		Query query = HibernateUtility.getSession().createQuery(
+				"from SolicitacaoIncentivoQualificacao  s where s.codigo= :codigo");
+		query.setParameter("codigo", codigo);
+		HibernateUtility.commitTransaction();
+		return (SolicitacaoIncentivoQualificacao) query.uniqueResult();
 	}
 
 	public SolicitacaoLicencaPaternidade carregarSolicitacaoLicencaPaternidade(

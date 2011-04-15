@@ -9,6 +9,7 @@ public class SolicitacaoIncentivoQualificacao extends Solicitacao implements
 	private ServidorTitulacao servidorTitulacao;
 	private Boolean indQualificacaoDireta;
 	private String portaria;
+	private Integer siapeAtendenteDidep;
 
 	public ServidorTitulacao getServidorTitulacao() {
 		return servidorTitulacao;
@@ -34,4 +35,12 @@ public class SolicitacaoIncentivoQualificacao extends Solicitacao implements
 		this.portaria = portaria;
 	}
 
+	public Integer getSiapeAtendenteDidep() {
+		return siapeAtendenteDidep;
+	}
+
+	public void setSiapeAtendenteDidep(Integer siapeAtendenteDidep) {
+		this.siapeAtendenteDidep = siapeAtendenteDidep;
+	}
+	
 }
