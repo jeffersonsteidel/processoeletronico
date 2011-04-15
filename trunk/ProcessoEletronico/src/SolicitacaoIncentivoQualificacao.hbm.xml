@@ -8,7 +8,8 @@
 		<key column="SOLIC_COD"></key>
 		<property name="indQualificacaoDireta" column="SOLIC_INC_QUAL_DIRETA" />
 		<property name="portaria" column="SOLIC_INC_QUAL_PORTARIA" />
-		<many-to-one name="servidorTitulacao" 
+		<property name="siapeAtendenteDidep" column="SOLIC_INC_QUAL_ATENDENTE_DIDEP" />
+		<many-to-one name="servidorTitulacao"
 			class="br.com.progepe.entity.ServidorTitulacao" column="SERV_TIT_COD" />
 	</joined-subclass>
 </hibernate-mapping>
