@@ -15,12 +15,14 @@ import javax.servlet.http.HttpServletResponse;
 import br.com.progepe.constantes.Constantes;
 import br.com.progepe.dao.AdicionalNoturnoDAO;
 import br.com.progepe.dao.DAO;
+import br.com.progepe.dao.DocumentoImagemDAO;
 import br.com.progepe.dao.ServidorDAO;
 import br.com.progepe.dao.SolicitacaoDAO;
 import br.com.progepe.entity.AdicionalNoturno;
 import br.com.progepe.entity.Autenticacao;
 import br.com.progepe.entity.Banco;
 import br.com.progepe.entity.ContaBancaria;
+import br.com.progepe.entity.DocumentoImagem;
 import br.com.progepe.entity.Servidor;
 import br.com.progepe.entity.Solicitacao;
 import br.com.progepe.entity.SolicitacaoAdicionalNoturno;
@@ -43,6 +45,7 @@ public class SolicitacaoController  {
 	private Solicitacao solicitacao;
 	private Date dataAberturaInicial;
 	private Date dataAberturaFinal;
+	private List<DocumentoImagem> documentos;
 	private List<SelectItem> tiposSolicitacoes = new ArrayList<SelectItem>();
 	private List<SelectItem> statusSolicitacoes = new ArrayList<SelectItem>();
 	private List<Solicitacao> solicitacoes = new ArrayList<Solicitacao>();
@@ -252,6 +255,14 @@ public class SolicitacaoController  {
 			SolicitacaoIncentivoQualificacao solicitacaoIncentivoQualificacao) {
 		this.solicitacaoIncentivoQualificacao = solicitacaoIncentivoQualificacao;
 	}
+	
+	public List<DocumentoImagem> getDocumentos() {
+		return documentos;
+	}
+
+	public void setDocumentos(List<DocumentoImagem> documentos) {
+		this.documentos = documentos;
+	}
 
 	public void abrirPesquisarSolicitacoes() throws ParseException {
 		try {
@@ -420,6 +431,7 @@ public class SolicitacaoController  {
 		FacesContext context = FacesContext.getCurrentInstance();
 		HttpServletResponse response = (HttpServletResponse) context
 				.getExternalContext().getResponse();
+		solicitacaoIncentivoQualificacao.setIndQualificacaoDireta(true);
 		response.sendRedirect("solicitacaoIncentivoQualificacaoAprovar.jsp ");
 	}
 	
@@ -868,6 +880,36 @@ public class SolicitacaoController  {
 							solicitacaoRessarcimentoSaude);
 				}
 				this.carregarSolicitacaoRessarcimentoSaude(solicitacaoRessarcimentoSaude);
+			}
+			// INCENTIVO A QUALIFICACAO
+			else if (Constantes.TIPO_SOLICITACAO_INCENTIVO_QUALIFICACAO
+					.equals(tipoSolicitacao)) {
+				solicitacaoIncentivoQualificacao = new SolicitacaoIncentivoQualificacao();
+				solicitacaoIncentivoQualificacao.setSolicitante(new Servidor());
+				solicitacaoIncentivoQualificacao.setCodigo(codigoSolicitacao);
+				solicitacaoIncentivoQualificacao = (SolicitacaoIncentivoQualificacao) SolicitacaoDAO
+						.getInstance().carregarSolicitacaoIncentivoQualificacao(
+								codigoSolicitacao);
+				if (Constantes.STATUS_SOLICITACAO_ENCAMINHADO
+						.equals(solicitacaoIncentivoQualificacao
+								.getStatusSolicitacao().getCodigo())) {
+					this.setDesabilitaBotao(false);
+					solicitacaoIncentivoQualificacao
+							.getStatusSolicitacao()
+							.setCodigo(Constantes.STATUS_SOLICITACAO_EM_ANALISE);
+					solicitacaoIncentivoQualificacao
+							.setDataAtendimento(new Date());
+					solicitacaoIncentivoQualificacao.setAtendente(siapeAutenticado
+							.getSiape());
+					solicitacaoIncentivoQualificacao
+							.setAtendenteLogado(new Servidor());
+					solicitacaoIncentivoQualificacao.setAtendenteLogado(servidor);
+					DAO.getInstance().saveOrUpdate(
+							solicitacaoIncentivoQualificacao);
+				}
+				this.carregarSolicitacaoIncentivoQualificacao(solicitacaoIncentivoQualificacao);
+				documentos = DocumentoImagemDAO.getInstance()
+				.listDocumentosByTitulacao(solicitacaoIncentivoQualificacao.getServidorTitulacao());
 			}
 		}
 	}
