@@ -65,6 +65,7 @@
 		<mapping resource="SolicitacaoCasamento.hbm.xml" />
 		<mapping resource="SolicitacaoContaBancaria.hbm.xml" />
 		<mapping resource="SolicitacaoHorarioEspecialEstudante.hbm.xml" />
+		<mapping resource="SolicitacaoIncentivoQualificacao.hbm.xml" />
 		<mapping resource="SolicitacaoObito.hbm.xml" />
 		<mapping resource="SolicitacaoRessarcimentoSaude.hbm.xml" />
 		<mapping resource="StatusSolicitacao.hbm.xml" />

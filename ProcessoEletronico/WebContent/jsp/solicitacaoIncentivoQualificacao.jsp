@@ -29,9 +29,12 @@
 			<font size="2"><b>INCENTIVO A QUALIFICAÇÃO</b></font>
 			<h:panelGrid columns="2">
 				<h:outputText
-					value="#{solicitacaoIncentivoQualificacaoController.solicitacaoIncentivoQualificacao.servidorTitulacao.servidor.siape} - #{solicitacaoIncentivoQualificacaoController.solicitacaoIncentivoQualificacao.servidorTitulacao.servidor.nome}">
+					value="#{solicitacaoIncentivoQualificacaoController.solicitacaoIncentivoQualificacao.solicitante.siape} - #{solicitacaoIncentivoQualificacaoController.solicitacaoIncentivoQualificacao.solicitante.nome}">
 				</h:outputText>
 			</h:panelGrid>
+			<h:outputText
+				value="Para realizar está solicitação primeiro é necessário adicionar a Titulação na opção Meus Dados > Adicionar Titulação">
+			</h:outputText>
 			<br>
 			<h:outputText
 				value="Clique na Titulação que deseja receber o incentivo: ">
@@ -64,10 +67,6 @@
 					</f:facet>
 					<h:outputText value="#{list.areaConhecimento.descricao}" />
 				</rich:column>
-
-				<f:facet name="footer">
-					<rich:datascroller id="ds"></rich:datascroller>
-				</f:facet>
 			</rich:dataTable>
 			<br>
 			<h:outputText value="Titulação selecionada: " id="labelDados"
@@ -138,6 +137,7 @@
 
 			</h:panelGrid>
 			<a4j:commandButton value="Salvar"
+				disabled="#{solicitacaoIncentivoQualificacaoController.desabilitaBotao}"
 				action="#{solicitacaoIncentivoQualificacaoController.salvar}"
 				reRender="form" />
 		</rich:panel></center>

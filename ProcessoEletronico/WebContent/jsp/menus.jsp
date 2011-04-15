@@ -137,20 +137,6 @@
 						action="#{solicitacaoAdicionalNoturnoController.abrirListarSolicitacaoAdicionalNoturnoTecnicos}"
 						icon="../images/listarAdicional.jpg" />
 				</rich:menuGroup>
-				<rich:menuGroup value="Ressarcimento Saúde">
-					<rich:menuItem submitMode="ajax"
-						value="Cadastrar Ressarcimento Saúde"
-						action="#{ressarcimentoSaudeController.abrirRessarcimentoSaude}"
-						icon="../images/ressarcimentoSaude.gif" />
-					<rich:menuItem submitMode="ajax"
-						value="Pesquisar Ressarcimento Saúde"
-						action="#{ressarcimentoSaudeController.abrirListar}"
-						icon="../images/saude.png" />
-					<rich:menuItem submitMode="ajax"
-						value="Reembolso Ressarcimento Saúde"
-						action="#{solicitacaoRessarcimentoSaudeController.abrirSolicitacaoRessarcimentoSaude}"
-						icon="../images/saude2.gif" />
-				</rich:menuGroup>
 				<rich:menuItem submitMode="ajax" value="Afastamento do Cônjuge"
 					action="#{solicitacaoAfastamentoConjugeController.abrirSolicitacaoAfastamentoConjuge}"
 					icon="../images/afastamentoconjuge.gif" />
@@ -173,6 +159,9 @@
 					value="Horário Especial para Estudante"
 					action="#{solicitacaoHorarioEspecialEstudanteController.abrirSolicitacaoHorarioEspecialEstudante}"
 					icon="../images/SOLICITACAOHORARIOESPECIALESTUDANTE.gif" />
+				<rich:menuItem submitMode="ajax" value="Incentivo a Qualificação"
+					action="#{solicitacaoIncentivoQualificacaoController.abrirSolicitacaoIncentivoQualificacao}"
+					icon="../images/listarAdicional.jpg" />
 				<rich:menuGroup value="Licenças">
 					<rich:menuItem submitMode="ajax" value="Licença de Casamento"
 						action="#{solicitacaoCasamentoController.abrirSolicitacaoCasamento}"
@@ -183,6 +172,20 @@
 					<rich:menuItem submitMode="ajax" value="Licença Paternidade"
 						action="#{solicitacaoLicencaPaternidadeController.abrirSolicitacaoPaternidade}"
 						icon="../images/auxiliopaternidade.gif" />
+				</rich:menuGroup>
+				<rich:menuGroup value="Ressarcimento Saúde">
+					<rich:menuItem submitMode="ajax"
+						value="Cadastrar Ressarcimento Saúde"
+						action="#{ressarcimentoSaudeController.abrirRessarcimentoSaude}"
+						icon="../images/ressarcimentoSaude.gif" />
+					<rich:menuItem submitMode="ajax"
+						value="Pesquisar Ressarcimento Saúde"
+						action="#{ressarcimentoSaudeController.abrirListar}"
+						icon="../images/saude.png" />
+					<rich:menuItem submitMode="ajax"
+						value="Reembolso Ressarcimento Saúde"
+						action="#{solicitacaoRessarcimentoSaudeController.abrirSolicitacaoRessarcimentoSaude}"
+						icon="../images/saude2.gif" />
 				</rich:menuGroup>
 				<rich:menuItem submitMode="ajax" value="Listar Solicitações"
 					rendered="#{autenticacaoController.siapeAutenticado.indAdministrador}"
@@ -204,10 +207,6 @@
 				<rich:menuItem submitMode="ajax" value="Listar Portarias"
 					action="#{portariaController.listarPortarias}"
 					icon="../images/portarias.gif" />
-				<rich:menuItem submitMode="ajax" value="Incentivo a Qualificação"
-					action="#{solicitacaoIncentivoQualificacaoController.abrirSolicitacaoIncentivoQualificacao}"
-					icon="../images/listarAdicional.jpg" />
-
 			</rich:dropDownMenu>
 			<rich:dropDownMenu>
 				<f:facet name="label">
