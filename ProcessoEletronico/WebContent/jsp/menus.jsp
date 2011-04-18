@@ -75,7 +75,7 @@
 				<rich:menuItem submitMode="ajax" value="Pesquisar Titulações"
 					action="#{servidorTitulacaoController.abrirListarServidorTitulacao}"
 					icon="../images/listarTitulacao.gif" />
-			</rich:dropDownMenu>
+			</rich:dropDownMenu> 
 
 			<rich:dropDownMenu>
 				<f:facet name="label">
