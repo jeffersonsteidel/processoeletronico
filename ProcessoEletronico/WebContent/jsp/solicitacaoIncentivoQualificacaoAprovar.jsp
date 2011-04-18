@@ -176,7 +176,7 @@
 						<tr>
 							<td align="center" width="50%"><a4j:commandButton
 								value="Sim" ajaxSingle="true"
-								action="#{servidorTitulacaoController.deferir}"
+								action="#{solicitacaoController.encaminharDIGEP}"
 								oncomplete="#{rich:component('confirmPanel')}.hide();"
 								reRender="form, justificativa, messages, botoes, voltar" /></td>
 							<td align="center" width="50%"><a4j:commandButton
@@ -199,7 +199,7 @@
 						<tr>
 							<td align="center" width="50%"><a4j:commandButton
 								value="Sim" ajaxSingle="true"
-								action="#{servidorTitulacaoController.indeferir}"
+								action="#{solicitacaoController.indeferirSolicitacao}"
 								oncomplete="#{rich:component('confirmPanel02')}.hide();"
 								reRender="form, justificativa, messages, botoes, voltar" /></td>
 							<td align="center" width="50%"><a4j:commandButton
