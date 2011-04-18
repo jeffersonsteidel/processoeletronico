@@ -75,7 +75,7 @@
 				<rich:menuItem submitMode="ajax" value="Pesquisar Titulações"
 					action="#{servidorTitulacaoController.abrirListarServidorTitulacao}"
 					icon="../images/listarTitulacao.gif" />
-			</rich:dropDownMenu> 
+			</rich:dropDownMenu>
 
 			<rich:dropDownMenu>
 				<f:facet name="label">
@@ -137,6 +137,9 @@
 						action="#{solicitacaoAdicionalNoturnoController.abrirListarSolicitacaoAdicionalNoturnoTecnicos}"
 						icon="../images/listarAdicional.jpg" />
 				</rich:menuGroup>
+				<rich:menuItem submitMode="ajax" value="Solicitação Progressão Por Capacitação"
+					action="#{solicitacaoProgressaoCapacitacaoController.abrirProgressaoCapacitacao}"
+					icon="../images/cadProgressao.gif" />
 				<rich:menuItem submitMode="ajax" value="Afastamento do Cônjuge"
 					action="#{solicitacaoAfastamentoConjugeController.abrirSolicitacaoAfastamentoConjuge}"
 					icon="../images/afastamentoconjuge.gif" />

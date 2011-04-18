@@ -22,17 +22,17 @@ import br.com.progepe.entity.SolicitacaoProgressaoCapacitacao;
 
 public class SolicitacaoProgressaoCapacitacaoController {
 
-	private ProgressaoCapacitacaoCertificacao certificadoImagem;
+	private ProgressaoCapacitacaoCertificacao progressaoCapacitacaoCertificacaoImagem;
 	private SolicitacaoProgressaoCapacitacao solicitacaoProgressaoCapacitacao;
 	private List<ProgressaoCapacitacaoCertificacao> certificadoProgressaoCapacitacaoList = new ArrayList<ProgressaoCapacitacaoCertificacao>();
 
-	public ProgressaoCapacitacaoCertificacao getCertificadoImagem() {
-		return certificadoImagem;
+	public ProgressaoCapacitacaoCertificacao getProgressaoCapacitacaoCertificacaoImagem() {
+		return progressaoCapacitacaoCertificacaoImagem;
 	}
 
-	public void setCertificadoImagem(
-			ProgressaoCapacitacaoCertificacao certificadoImagem) {
-		this.certificadoImagem = certificadoImagem;
+	public void setProgressaoCapacitacaoCertificacaoImagem(
+			ProgressaoCapacitacaoCertificacao progressaoCapacitacaoCertificacaoImagem) {
+		this.progressaoCapacitacaoCertificacaoImagem = progressaoCapacitacaoCertificacaoImagem;
 	}
 
 	public SolicitacaoProgressaoCapacitacao getSolicitacaoProgressaoCapacitacao() {
@@ -57,7 +57,7 @@ public class SolicitacaoProgressaoCapacitacaoController {
 		try {
 			certificadoProgressaoCapacitacaoList.clear();
 			solicitacaoProgressaoCapacitacao = new SolicitacaoProgressaoCapacitacao();
-			certificadoImagem = new ProgressaoCapacitacaoCertificacao();
+			progressaoCapacitacaoCertificacaoImagem = new ProgressaoCapacitacaoCertificacao();
 			solicitacaoProgressaoCapacitacao.setNovoPadrao(new Padrao());
 			buscarServidorLogado();
 			FacesContext.getCurrentInstance().getExternalContext()
@@ -81,20 +81,20 @@ public class SolicitacaoProgressaoCapacitacaoController {
 
 	public void listener(UploadEvent event) throws Exception {
 		UploadItem item = event.getUploadItem();
-		certificadoImagem = new ProgressaoCapacitacaoCertificacao();
-		certificadoImagem.setCertificado(item.getData());
-		certificadoImagem
+		progressaoCapacitacaoCertificacaoImagem = new ProgressaoCapacitacaoCertificacao();
+		progressaoCapacitacaoCertificacaoImagem.setCertificado(item.getData());
+		progressaoCapacitacaoCertificacaoImagem
 				.setSolicitacaoProgressaoCapacitacao(solicitacaoProgressaoCapacitacao);
-		certificadoProgressaoCapacitacaoList.add(certificadoImagem);
+		certificadoProgressaoCapacitacaoList.add(progressaoCapacitacaoCertificacaoImagem);
 	}
 
 	public void paint(OutputStream stream, Object object) throws IOException {
-		stream.write(certificadoImagem.getCertificado());
+		stream.write(progressaoCapacitacaoCertificacaoImagem.getCertificado());
 	}
 
 	public void salvar() throws Exception {
 
-		if (certificadoImagem.getCertificado() == null) {
+		if (progressaoCapacitacaoCertificacaoImagem.getCertificado() == null) {
 			FacesMessage message = new FacesMessage(
 					FacesMessage.SEVERITY_ERROR,
 					"É necessário adicionar um Documento!",
@@ -102,12 +102,12 @@ public class SolicitacaoProgressaoCapacitacaoController {
 			FacesContext.getCurrentInstance().addMessage("", message);
 		} else {
 			DAO.getInstance().save(solicitacaoProgressaoCapacitacao);
-			DAO.getInstance().save(certificadoImagem);	
+			DAO.getInstance().save(progressaoCapacitacaoCertificacaoImagem);	
 			solicitacaoProgressaoCapacitacao = new SolicitacaoProgressaoCapacitacao();
 			solicitacaoProgressaoCapacitacao.setNovoPadrao(new Padrao());
 			
-			certificadoImagem = new ProgressaoCapacitacaoCertificacao();
-			certificadoImagem.setSolicitacaoProgressaoCapacitacao(new SolicitacaoProgressaoCapacitacao());
+			progressaoCapacitacaoCertificacaoImagem = new ProgressaoCapacitacaoCertificacao();
+			progressaoCapacitacaoCertificacaoImagem.setSolicitacaoProgressaoCapacitacao(new SolicitacaoProgressaoCapacitacao());
 		}
 	}
 }
