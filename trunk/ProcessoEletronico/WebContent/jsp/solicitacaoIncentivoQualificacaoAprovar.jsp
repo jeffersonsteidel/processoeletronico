@@ -31,6 +31,9 @@
 				<h:outputText
 					value="#{solicitacaoController.solicitacaoIncentivoQualificacao.solicitante.siape} - #{solicitacaoController.solicitacaoIncentivoQualificacao.solicitante.nome}">
 				</h:outputText>
+				<h:outputText
+					value="Cargo: #{solicitacaoController.solicitacaoIncentivoQualificacao.solicitante.cargo.descricao}">
+				</h:outputText>
 			</h:panelGrid>
 			<br>
 			<h:outputText value="Titulação selecionada: " id="labelDados"
