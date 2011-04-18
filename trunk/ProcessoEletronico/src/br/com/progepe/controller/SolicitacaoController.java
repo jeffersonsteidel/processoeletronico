@@ -40,7 +40,7 @@ import br.com.progepe.entity.StatusSolicitacao;
 import br.com.progepe.entity.TipoSolicitacao;
 import br.com.progepe.jsfUtil.EnviarEmail;
 
-public class SolicitacaoController  {
+public class SolicitacaoController {
 
 	private Solicitacao solicitacao;
 	private Date dataAberturaInicial;
@@ -246,7 +246,7 @@ public class SolicitacaoController  {
 			SolicitacaoRessarcimentoSaude solicitacaoRessarcimentoSaude) {
 		this.solicitacaoRessarcimentoSaude = solicitacaoRessarcimentoSaude;
 	}
-	
+
 	public SolicitacaoIncentivoQualificacao getSolicitacaoIncentivoQualificacao() {
 		return solicitacaoIncentivoQualificacao;
 	}
@@ -255,7 +255,7 @@ public class SolicitacaoController  {
 			SolicitacaoIncentivoQualificacao solicitacaoIncentivoQualificacao) {
 		this.solicitacaoIncentivoQualificacao = solicitacaoIncentivoQualificacao;
 	}
-	
+
 	public List<DocumentoImagem> getDocumentos() {
 		return documentos;
 	}
@@ -426,15 +426,15 @@ public class SolicitacaoController  {
 	public void carregarSolicitacaoIncentivoQualificacao(
 			SolicitacaoIncentivoQualificacao codigoSolicitacaoIncentivoQualificacao)
 			throws IOException {
-		solicitacaoIncentivoQualificacao  = (SolicitacaoIncentivoQualificacao) DAO.getInstance()
-				.refresh(codigoSolicitacaoIncentivoQualificacao);
+		solicitacaoIncentivoQualificacao = (SolicitacaoIncentivoQualificacao) DAO
+				.getInstance().refresh(codigoSolicitacaoIncentivoQualificacao);
 		FacesContext context = FacesContext.getCurrentInstance();
 		HttpServletResponse response = (HttpServletResponse) context
 				.getExternalContext().getResponse();
 		solicitacaoIncentivoQualificacao.setIndQualificacaoDireta(true);
 		response.sendRedirect("solicitacaoIncentivoQualificacaoAprovar.jsp ");
 	}
-	
+
 	public void carregarSolicitacaoAlimentacao(
 			SolicitacaoAlimentacao codigoSolicitacaoAlimentacao)
 			throws IOException {
@@ -888,7 +888,8 @@ public class SolicitacaoController  {
 				solicitacaoIncentivoQualificacao.setSolicitante(new Servidor());
 				solicitacaoIncentivoQualificacao.setCodigo(codigoSolicitacao);
 				solicitacaoIncentivoQualificacao = (SolicitacaoIncentivoQualificacao) SolicitacaoDAO
-						.getInstance().carregarSolicitacaoIncentivoQualificacao(
+						.getInstance()
+						.carregarSolicitacaoIncentivoQualificacao(
 								codigoSolicitacao);
 				if (Constantes.STATUS_SOLICITACAO_ENCAMINHADO
 						.equals(solicitacaoIncentivoQualificacao
@@ -899,17 +900,20 @@ public class SolicitacaoController  {
 							.setCodigo(Constantes.STATUS_SOLICITACAO_EM_ANALISE);
 					solicitacaoIncentivoQualificacao
 							.setDataAtendimento(new Date());
-					solicitacaoIncentivoQualificacao.setAtendente(siapeAutenticado
-							.getSiape());
+					solicitacaoIncentivoQualificacao
+							.setAtendente(siapeAutenticado.getSiape());
 					solicitacaoIncentivoQualificacao
 							.setAtendenteLogado(new Servidor());
-					solicitacaoIncentivoQualificacao.setAtendenteLogado(servidor);
+					solicitacaoIncentivoQualificacao
+							.setAtendenteLogado(servidor);
 					DAO.getInstance().saveOrUpdate(
 							solicitacaoIncentivoQualificacao);
 				}
 				this.carregarSolicitacaoIncentivoQualificacao(solicitacaoIncentivoQualificacao);
 				documentos = DocumentoImagemDAO.getInstance()
-				.listDocumentosByTitulacao(solicitacaoIncentivoQualificacao.getServidorTitulacao());
+						.listDocumentosByTitulacao(
+								solicitacaoIncentivoQualificacao
+										.getServidorTitulacao());
 			}
 		}
 	}
@@ -1169,7 +1173,6 @@ public class SolicitacaoController  {
 				this.setDesabilitaBotao(true);
 			}
 		}
-
 		// RESSARCIMENTO SAUDE
 		else if (Constantes.TIPO_SOLICITACAO_RESSARCIMENTO_SAUDE
 				.equals(tipoSolicitacao)) {
@@ -1188,6 +1191,26 @@ public class SolicitacaoController  {
 				EnviarEmail enviarEmail = new EnviarEmail();
 				enviarEmail
 						.enviarEmailSolicitacao(solicitacaoAlteracaoEndereco);
+			}
+		}
+		// INCENTIVO A QUALIFICACAO
+		else if (Constantes.TIPO_SOLICITACAO_INCENTIVO_QUALIFICACAO
+				.equals(tipoSolicitacao)) {
+			if (solicitacaoIncentivoQualificacao.getJustificativa().length() > 250) {
+				FacesMessage message = new FacesMessage(
+						FacesMessage.SEVERITY_ERROR,
+						"O campo Justificativa deve conter no maximo 250 caracteres!",
+						"O campo Justificativa deve conter no maximo 250 caracteres!");
+				FacesContext.getCurrentInstance().addMessage("", message);
+			} else {
+				solicitacaoIncentivoQualificacao.getStatusSolicitacao()
+						.setCodigo(Constantes.STATUS_SOLICITACAO_DEFERIDO);
+				solicitacaoIncentivoQualificacao.setDataFechamento(new Date());
+				DAO.getInstance().update(solicitacaoIncentivoQualificacao);
+				this.setDesabilitaBotao(true);
+				EnviarEmail enviarEmail = new EnviarEmail();
+				enviarEmail
+						.enviarEmailSolicitacao(solicitacaoIncentivoQualificacao);
 			}
 		}
 	}
@@ -1221,7 +1244,7 @@ public class SolicitacaoController  {
 				FacesContext.getCurrentInstance().addMessage("", message);
 			}
 		}
-		
+
 		// LICENÇA PATERNIDADE
 		else if (Constantes.TIPO_SOLICITACAO_LICENCA_PATERNIDADE
 				.equals(tipoSolicitacao)) {
@@ -1253,7 +1276,7 @@ public class SolicitacaoController  {
 				FacesContext.getCurrentInstance().addMessage("", message);
 			}
 		}
-		
+
 		// HORARIO ESPECIAL ESTUDANTE
 		else if (Constantes.TIPO_SOLICITACAO_HORARIO_ESPECIAL_ESTUDANTE
 				.equals(tipoSolicitacao)) {
@@ -1285,7 +1308,7 @@ public class SolicitacaoController  {
 				FacesContext.getCurrentInstance().addMessage("", message);
 			}
 		}
-		
+
 		// LICENÇA OBITO
 		else if (Constantes.TIPO_SOLICITACAO_OBITO.equals(tipoSolicitacao)) {
 			solicitacaoObito.getStatusSolicitacao().setCodigo(
@@ -1312,7 +1335,7 @@ public class SolicitacaoController  {
 				FacesContext.getCurrentInstance().addMessage("", message);
 			}
 		}
-		
+
 		// LICENÇA CASAMENTO
 		else if (Constantes.TIPO_SOLICITACAO_LICENCA_CASAMENTO
 				.equals(tipoSolicitacao)) {
@@ -1340,7 +1363,7 @@ public class SolicitacaoController  {
 				FacesContext.getCurrentInstance().addMessage("", message);
 			}
 		}
-		
+
 		// AUXILIO ALIMENÇÃO
 		else if (Constantes.TIPO_SOLICITACAO_AUXILIO_ALIMENTACAO
 				.equals(tipoSolicitacao)) {
@@ -1369,7 +1392,7 @@ public class SolicitacaoController  {
 				FacesContext.getCurrentInstance().addMessage("", message);
 			}
 		}
-		
+
 		// AFASTAMENTO CONJUGE
 		else if (Constantes.TIPO_SOLICITACAO_AFASTAMENTO_CONJUGE
 				.equals(tipoSolicitacao)) {
@@ -1401,7 +1424,7 @@ public class SolicitacaoController  {
 				FacesContext.getCurrentInstance().addMessage("", message);
 			}
 		}
-		
+
 		// ADICIONAL NOTURNO TECNICOS
 		else if (Constantes.TIPO_SOLICITACAO_ADICIONAL_NOTURNO_TECNICOS
 				.equals(tipoSolicitacao)) {
@@ -1433,7 +1456,7 @@ public class SolicitacaoController  {
 				FacesContext.getCurrentInstance().addMessage("", message);
 			}
 		}
-		
+
 		// ADICIONAL NOTURNO DOCENTE
 		else if (Constantes.TIPO_SOLICITACAO_ADICIONAL_NOTURNO_DOCENTES
 				.equals(tipoSolicitacao)) {
@@ -1465,7 +1488,7 @@ public class SolicitacaoController  {
 				FacesContext.getCurrentInstance().addMessage("", message);
 			}
 		}
-		
+
 		// ALTERAÇÃO DE ENDEREÇO
 		else if (Constantes.TIPO_SOLICITACAO_ALTERACAO_ENDERECO
 				.equals(tipoSolicitacao)) {
@@ -1495,7 +1518,7 @@ public class SolicitacaoController  {
 				FacesContext.getCurrentInstance().addMessage("", message);
 			}
 		}
-		
+
 		// RESSARCIMENTO SAUDE
 		else if (Constantes.TIPO_SOLICITACAO_RESSARCIMENTO_SAUDE
 				.equals(tipoSolicitacao)) {
@@ -1525,6 +1548,51 @@ public class SolicitacaoController  {
 						"O campo Justificativa é obrigatório!!");
 				FacesContext.getCurrentInstance().addMessage("", message);
 			}
+		}
+		// INCENTIVO A QUALIFICAÇÃO
+		else if (Constantes.TIPO_SOLICITACAO_INCENTIVO_QUALIFICACAO
+				.equals(tipoSolicitacao)) {
+			solicitacaoIncentivoQualificacao.getStatusSolicitacao().setCodigo(
+					Constantes.STATUS_SOLICITACAO_INDEFERIDO);
+			solicitacaoIncentivoQualificacao.setDataFechamento(new Date());
+			if (solicitacaoIncentivoQualificacao.getJustificativa() != null
+					&& solicitacaoIncentivoQualificacao.getJustificativa() != ""
+					&& solicitacaoIncentivoQualificacao.getJustificativa()
+							.length() <= 250) {
+				DAO.getInstance().update(solicitacaoIncentivoQualificacao);
+				this.setDesabilitaBotao(true);
+				EnviarEmail enviarEmail = new EnviarEmail();
+				enviarEmail
+						.enviarEmailSolicitacao(solicitacaoIncentivoQualificacao);
+			} else if (solicitacaoIncentivoQualificacao.getJustificativa()
+					.length() > 250) {
+				FacesMessage message = new FacesMessage(
+						FacesMessage.SEVERITY_ERROR,
+						"O campo Justificativa deve conter no maximo 250 caracteres!",
+						"O campo Justificativa deve conter no maximo 250 caracteres!");
+				FacesContext.getCurrentInstance().addMessage("", message);
+			} else {
+				FacesMessage message = new FacesMessage(
+						FacesMessage.SEVERITY_ERROR,
+						"O campo Justificativa é obrigatório!",
+						"O campo Justificativa é obrigatório!!");
+				FacesContext.getCurrentInstance().addMessage("", message);
+			}
+		}
+	}
+
+	public void encaminharDIGEP() throws IOException {
+		Autenticacao siapeAutenticado = (Autenticacao) FacesContext
+				.getCurrentInstance().getExternalContext().getSessionMap()
+				.get("usuarioLogado");
+		// INCENTIVO A QUALIFICAÇÃO
+		if (Constantes.TIPO_SOLICITACAO_INCENTIVO_QUALIFICACAO
+				.equals(tipoSolicitacao)) {
+			solicitacaoIncentivoQualificacao
+					.setSiapeAtendenteDidep(siapeAutenticado.getSiape());
+			solicitacaoIncentivoQualificacao.getStatusSolicitacao().setCodigo(
+					Constantes.STATUS_SOLICITACAO_AGUARDANDO_IMPLANTACAO);
+			DAO.getInstance().update(solicitacaoIncentivoQualificacao);
 		}
 	}
 
