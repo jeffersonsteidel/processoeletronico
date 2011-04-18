@@ -27,7 +27,7 @@
 			</rich:messages>
 
 			<font size="2"><b>INCENTIVO A QUALIFICAÇÃO</b></font>
-			<h:panelGrid columns="2">
+			<h:panelGrid columns="1">
 				<h:outputText
 					value="#{solicitacaoController.solicitacaoIncentivoQualificacao.solicitante.siape} - #{solicitacaoController.solicitacaoIncentivoQualificacao.solicitante.nome}">
 				</h:outputText>

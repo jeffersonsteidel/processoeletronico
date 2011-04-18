@@ -1240,7 +1240,7 @@ public class SolicitacaoController {
 				FacesMessage message = new FacesMessage(
 						FacesMessage.SEVERITY_ERROR,
 						"O campo Justificativa é obrigatório!",
-						"O campo Justificativa é obrigatório!!");
+						"O campo Justificativa é obrigatório!");
 				FacesContext.getCurrentInstance().addMessage("", message);
 			}
 		}
@@ -1272,7 +1272,7 @@ public class SolicitacaoController {
 				FacesMessage message = new FacesMessage(
 						FacesMessage.SEVERITY_ERROR,
 						"O campo Justificativa é obrigatório!",
-						"O campo Justificativa é obrigatório!!");
+						"O campo Justificativa é obrigatório!");
 				FacesContext.getCurrentInstance().addMessage("", message);
 			}
 		}
@@ -1304,7 +1304,7 @@ public class SolicitacaoController {
 				FacesMessage message = new FacesMessage(
 						FacesMessage.SEVERITY_ERROR,
 						"O campo Justificativa é obrigatório!",
-						"O campo Justificativa é obrigatório!!");
+						"O campo Justificativa é obrigatório!");
 				FacesContext.getCurrentInstance().addMessage("", message);
 			}
 		}
@@ -1331,7 +1331,7 @@ public class SolicitacaoController {
 				FacesMessage message = new FacesMessage(
 						FacesMessage.SEVERITY_ERROR,
 						"O campo Justificativa é obrigatório!",
-						"O campo Justificativa é obrigatório!!");
+						"O campo Justificativa é obrigatório!");
 				FacesContext.getCurrentInstance().addMessage("", message);
 			}
 		}
@@ -1359,12 +1359,12 @@ public class SolicitacaoController {
 				FacesMessage message = new FacesMessage(
 						FacesMessage.SEVERITY_ERROR,
 						"O campo Justificativa é obrigatório!",
-						"O campo Justificativa é obrigatório!!");
+						"O campo Justificativa é obrigatório!");
 				FacesContext.getCurrentInstance().addMessage("", message);
 			}
 		}
 
-		// AUXILIO ALIMENÇÃO
+		// AUXILIO ALIMENTAÇÃO
 		else if (Constantes.TIPO_SOLICITACAO_AUXILIO_ALIMENTACAO
 				.equals(tipoSolicitacao)) {
 			solicitacaoAlimentacao.getStatusSolicitacao().setCodigo(
@@ -1388,7 +1388,7 @@ public class SolicitacaoController {
 				FacesMessage message = new FacesMessage(
 						FacesMessage.SEVERITY_ERROR,
 						"O campo Justificativa é obrigatório!",
-						"O campo Justificativa é obrigatório!!");
+						"O campo Justificativa é obrigatório!");
 				FacesContext.getCurrentInstance().addMessage("", message);
 			}
 		}
@@ -1420,7 +1420,7 @@ public class SolicitacaoController {
 				FacesMessage message = new FacesMessage(
 						FacesMessage.SEVERITY_ERROR,
 						"O campo Justificativa é obrigatório!",
-						"O campo Justificativa é obrigatório!!");
+						"O campo Justificativa é obrigatório!");
 				FacesContext.getCurrentInstance().addMessage("", message);
 			}
 		}
@@ -1452,7 +1452,7 @@ public class SolicitacaoController {
 				FacesMessage message = new FacesMessage(
 						FacesMessage.SEVERITY_ERROR,
 						"O campo Justificativa é obrigatório!",
-						"O campo Justificativa é obrigatório!!");
+						"O campo Justificativa é obrigatório!");
 				FacesContext.getCurrentInstance().addMessage("", message);
 			}
 		}
@@ -1484,7 +1484,7 @@ public class SolicitacaoController {
 				FacesMessage message = new FacesMessage(
 						FacesMessage.SEVERITY_ERROR,
 						"O campo Justificativa é obrigatório!",
-						"O campo Justificativa é obrigatório!!");
+						"O campo Justificativa é obrigatório!");
 				FacesContext.getCurrentInstance().addMessage("", message);
 			}
 		}
@@ -1514,7 +1514,7 @@ public class SolicitacaoController {
 				FacesMessage message = new FacesMessage(
 						FacesMessage.SEVERITY_ERROR,
 						"O campo Justificativa é obrigatório!",
-						"O campo Justificativa é obrigatório!!");
+						"O campo Justificativa é obrigatório!");
 				FacesContext.getCurrentInstance().addMessage("", message);
 			}
 		}
@@ -1545,7 +1545,7 @@ public class SolicitacaoController {
 				FacesMessage message = new FacesMessage(
 						FacesMessage.SEVERITY_ERROR,
 						"O campo Justificativa é obrigatório!",
-						"O campo Justificativa é obrigatório!!");
+						"O campo Justificativa é obrigatório!");
 				FacesContext.getCurrentInstance().addMessage("", message);
 			}
 		}
@@ -1559,7 +1559,8 @@ public class SolicitacaoController {
 					&& solicitacaoIncentivoQualificacao.getJustificativa() != ""
 					&& solicitacaoIncentivoQualificacao.getJustificativa()
 							.length() <= 250) {
-				DAO.getInstance().update(solicitacaoIncentivoQualificacao);
+				SolicitacaoDAO.getInstance().saveOrUpdate(
+						solicitacaoIncentivoQualificacao);
 				this.setDesabilitaBotao(true);
 				EnviarEmail enviarEmail = new EnviarEmail();
 				enviarEmail
@@ -1575,7 +1576,7 @@ public class SolicitacaoController {
 				FacesMessage message = new FacesMessage(
 						FacesMessage.SEVERITY_ERROR,
 						"O campo Justificativa é obrigatório!",
-						"O campo Justificativa é obrigatório!!");
+						"O campo Justificativa é obrigatório!");
 				FacesContext.getCurrentInstance().addMessage("", message);
 			}
 		}
