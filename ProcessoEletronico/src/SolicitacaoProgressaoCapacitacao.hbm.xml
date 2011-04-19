@@ -12,7 +12,13 @@
 		<property name="instituicaoEnsino" column="SOLIC_PROG_CAP_INST_ENSINO" />
 		<property name="dataInicio" column="SOLIC_PROG_CAP_DATA_INICIO" />
 		<property name="dataTermino" column="SOLIC_PROG_CAP_DATA_TERMINO" />
-		<many-to-one name="padrao" 
-			class="br.com.progepe.entity.Padrao" column="PAD_COD_NOVO" />
+		<many-to-one name="padrao" class="br.com.progepe.entity.Padrao"
+			column="PAD_COD_NOVO" />
+		<set name="progressaoCapacitacaoCertificadoList" cascade="all"
+			table="PROGRESSAOCAPACITACAOCERTIFICACAO">
+			<key column="PROG_CAP_CERT_CERTIFICADO" />
+			<many-to-many column="SOLIC_COD"
+				class="br.com.progepe.entity.SolicitacaoProgressaoCapacitacao" />
+		</set>
 	</joined-subclass>
 </hibernate-mapping>

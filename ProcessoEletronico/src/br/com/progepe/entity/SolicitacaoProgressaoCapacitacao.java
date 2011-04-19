@@ -2,6 +2,8 @@ package br.com.progepe.entity;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 public class SolicitacaoProgressaoCapacitacao extends Solicitacao implements
 		Serializable {
@@ -15,6 +17,7 @@ public class SolicitacaoProgressaoCapacitacao extends Solicitacao implements
 	private String instituicaoEnsino;
 	private Date dataInicio;
 	private Date dataTermino;
+	private Set<ProgressaoCapacitacaoCertificado> progressaoCapacitacaoCertificadoList = new HashSet<ProgressaoCapacitacaoCertificado>();
 
 	public Padrao getNovoPadrao() {
 		return novoPadrao;
@@ -72,4 +75,13 @@ public class SolicitacaoProgressaoCapacitacao extends Solicitacao implements
 		this.dataTermino = dataTermino;
 	}
 
+	public Set<ProgressaoCapacitacaoCertificado> getProgressaoCapacitacaoCertificadoList() {
+		return progressaoCapacitacaoCertificadoList;
+	}
+
+	public void setProgressaoCapacitacaoCertificadoList(
+			Set<ProgressaoCapacitacaoCertificado> progressaoCapacitacaoCertificadoList) {
+		this.progressaoCapacitacaoCertificadoList = progressaoCapacitacaoCertificadoList;
+	}
+	
 }

@@ -48,6 +48,7 @@
 		<mapping resource="Pais.hbm.xml" />
 		<mapping resource="Portaria.hbm.xml" />
 		<mapping resource="Progressao.hbm.xml" />
+		<!-- <mapping resource="ProgressaoCapacitacaoCertificacao.hbm.xml" /> -->
 		<mapping resource="RegimeTrabalho.hbm.xml" />
 		<mapping resource="RessarcimentoSaude.hbm.xml" />
 		<mapping resource="RessarcimentoSaudeContrato.hbm.xml" />
@@ -67,6 +68,7 @@
 		<mapping resource="SolicitacaoHorarioEspecialEstudante.hbm.xml" />
 		<mapping resource="SolicitacaoIncentivoQualificacao.hbm.xml" />
 		<mapping resource="SolicitacaoObito.hbm.xml" />
+		<!-- <mapping resource="SolicitacaoProgressaoCapacitacao.hbm.xml" /> -->
 		<mapping resource="SolicitacaoRessarcimentoSaude.hbm.xml" />
 		<mapping resource="StatusSolicitacao.hbm.xml" />
 		<mapping resource="TipoDocumento.hbm.xml" />

@@ -83,16 +83,16 @@
 				acceptedTypes="jpg, gif, png" allowFlash="true"
 				sizeErrorLabel="Foto muito grande" uploadControlLabel="Carregar"
 				listHeight="70px">
-				<a4j:support event="onuploadcomplete" reRender="info" />
+				<a4j:support event="onuploadcomplete" reRender="info, upload" />
 			</rich:fileUpload>
 
 			<h:panelGroup id="info">
 				<rich:panel bodyClass="info">
-					<rich:dataGrid columns="1"
-						value="#{solicitacaoProgressaoCapacitacaoController.progressaoCapacitacaoCertificacaoImagem.certificado}"
+					<rich:dataGrid
+						value="#{solicitacaoProgressaoCapacitacaoController.certificadoProgressaoCapacitacaoList}"
 						var="file" rowKeyVar="row">
 						<rich:panel bodyClass="rich-laguna-panel-no-header">
-							<h:panelGrid columns="2">
+							<h:panelGrid columns="1">
 								<a4j:mediaOutput element="img"
 									createContent="#{solicitacaoProgressaoCapacitacaoController.paint}"
 									value="#{row}" style="width:600px; height:800px;"

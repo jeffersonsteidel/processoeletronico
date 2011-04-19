@@ -155,10 +155,10 @@
 			<h:panelGrid columns="2" id="botoes">
 				<a4j:commandButton value="Encaminhar a DIGEP"
 					reRender="confirmPanel"
-					disabled="#{solicitacaoController.solicitacaoIncentivoQualificacao.statusSolicitacao.codigo != 2}"
+					disabled="#{solicitacaoController.desabilitaBotao}"
 					oncomplete="#{rich:component('confirmPanel')}.show()" />
 				<a4j:commandButton value="Indeferir" reRender="confirmPanel02"
-					disabled="#{solicitacaoController.solicitacaoIncentivoQualificacao.statusSolicitacao.codigo != 2}"
+					disabled="#{solicitacaoController.desabilitaBotao}"
 					oncomplete="#{rich:component('confirmPanel02')}.show()" />
 			</h:panelGrid>
 			<h:panelGrid columns="2">
