@@ -3,7 +3,7 @@
 	PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
     "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
-	<class name="br.com.progepe.entity.ProgressaoCapacitacaoCertificacao"
+	<class name="br.com.progepe.entity.ProgressaoCapacitacaoCertificado"
 		table="PROGRESSAOCAPACITACAOCERTIFICACAO">
 		<id name="codigo" column="PROG_CAP_CERT_COD">
 			<generator class="increment"></generator>
