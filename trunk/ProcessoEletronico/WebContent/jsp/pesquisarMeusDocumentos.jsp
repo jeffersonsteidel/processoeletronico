@@ -76,11 +76,10 @@
 					<f:facet name="header">
 						<h:outputText value="Visualizar" />
 					</f:facet>
-					<a4j:commandLink action="#{documentoImagemController.carregar}"
-						reRender="editPanel" ajaxSingle="true"
-						oncomplete="#{rich:component('editPanel')}.show()">
-						<h:graphicImage value="../images/edit.gif" style="border:0"
-							width="20" height="18" id="editar" />
+					<a4j:commandLink action="#{documentoImagemController.verDocumentos}"
+						reRender="form" ajaxSingle="true" >
+						<h:graphicImage value="../images/visualizar.gif" style="border:0"
+							width="20" height="18" id="visualizar" />
 						<f:setPropertyActionListener value="#{list.codigo}"
 							target="#{documentoImagemController.documentoImagem.codigo}" />
 					</a4j:commandLink>
@@ -94,7 +93,7 @@
 		</rich:panel>
 	</a4j:form></center>
 	<center><rich:modalPanel id="editPanel" autosized="false"
-		width="700" height="400" style="overflow: auto;">
+		width="900" height="480" style="overflow: auto;">
 		<h:form>
 			<center><font size="2"><b>IMAGEM DO DOCUMENTO</b></font> <h:panelGroup
 				id="info">
@@ -140,7 +139,7 @@
 					</rich:dataGrid>
 				</rich:panel>
 			</h:panelGroup> <h:panelGrid columns="1">
-				<a4j:commandButton value="Fechar"
+				<a4j:commandButton value="Fechar" reRender="form"
 					onclick="#{rich:component('editPanel')}.hide();return false;" />
 			</h:panelGrid></center>
 		</h:form>

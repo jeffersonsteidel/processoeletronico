@@ -34,6 +34,14 @@
 					size="10" maxlength="7" onkeyup="mascara(this, soNumeros);">
 				</h:inputText>
 
+				<h:outputText value="Nome do Servidor: ">
+				</h:outputText>
+				<h:inputText
+					value="#{documentoImagemController.documentoImagem.servidor.nome}"
+					size="60" maxlength="250">
+				</h:inputText>
+
+
 				<h:outputText value="Tipo Documento: " />
 				<h:selectOneMenu
 					value="#{documentoImagemController.documentoImagem.tipoDocumento.codigo}">
@@ -41,12 +49,12 @@
 					<f:selectItems value="#{documentoImagemController.tiposDocumentos}" />
 				</h:selectOneMenu>
 
-				
+
 				<a4j:commandButton value="Pesquisar"
 					action="#{documentoImagemController.pesquisarDocumentos}"
 					reRender="listaDocumento" type="submit" />
 			</h:panelGrid>
-			
+
 			<rich:dataTable id="listaDocumento"
 				value="#{documentoImagemController.documentoList}" var="list"
 				width="1150px" columnClasses="center" rows="15" reRender="ds">
@@ -56,8 +64,7 @@
 					<f:facet name="header">
 						<h:outputText value="Nome do Titular" />
 					</f:facet>
-					<h:outputText value="#{list.servidor.nome}"
-						 />
+					<h:outputText value="#{list.servidor.nome}" />
 				</rich:column>
 
 				<rich:column width="500px">
@@ -71,7 +78,8 @@
 					<f:facet name="header">
 						<h:outputText value="Visualizar" />
 					</f:facet>
-					<a4j:commandLink action="#{documentoImagemController.verDocumentos}"
+					<a4j:commandLink
+						action="#{documentoImagemController.verDocumentos}"
 						reRender="editPanel" ajaxSingle="true">
 						<h:graphicImage value="../images/visualizar.gif" style="border:0"
 							width="20" height="18" id="visualizar" />
@@ -90,19 +98,18 @@
 	<center><rich:modalPanel id="editPanel" autosized="false"
 		width="700" height="400" style="overflow: auto;">
 		<f:facet name="header">
-					<h:panelGroup>
-						<h:outputText value="Imagem do Documento"></h:outputText>
-					</h:panelGroup>
-				</f:facet>
-				<f:facet name="controls">
-					<h:panelGroup>
-						<h:graphicImage value="../images/close.gif"
-							onclick="#{rich:component('editPanel')}.hide();" />
-					</h:panelGroup>
-				</f:facet>
+			<h:panelGroup>
+				<h:outputText value="Imagem do Documento"></h:outputText>
+			</h:panelGroup>
+		</f:facet>
+		<f:facet name="controls">
+			<h:panelGroup>
+				<h:graphicImage value="../images/close.gif"
+					onclick="#{rich:component('editPanel')}.hide();" />
+			</h:panelGroup>
+		</f:facet>
 		<h:form>
-			<center> <h:panelGroup
-				id="info">
+			<center><h:panelGroup id="info">
 				<rich:panel bodyClass="info">
 					<rich:dataGrid columns="1"
 						value="#{documentoImagemController.documentoImagem.imagem1}"
