@@ -137,10 +137,22 @@ public class DocumentoImagemDAO extends DAO {
 	@SuppressWarnings("unchecked")
 	public List<DocumentoImagem> listByFilter(DocumentoImagem documentoImagem) {
 		HibernateUtility.getSession().clear();
-		String sql;
-		sql = "from DocumentoImagem di where di.tipoDocumento.codigo ="
-					+ documentoImagem.getTipoDocumento().getCodigo()+" and di.servidor.siape = "
+		String sql = "from DocumentoImagem di where 1 = 1";
+		if (documentoImagem.getTipoDocumento().getCodigo() != null
+				&& documentoImagem.getTipoDocumento().getCodigo() != 0) {
+			sql += "and di.tipoDocumento.codigo ="
+					+ documentoImagem.getTipoDocumento().getCodigo();
+		}
+		if (documentoImagem.getServidor().getSiape() != null
+				&& documentoImagem.getServidor().getSiape() != 0) {
+			sql += " and di.servidor.siape = "
 					+ documentoImagem.getServidor().getSiape();
+		}
+		if (documentoImagem.getServidor().getNome() != null
+				&& documentoImagem.getServidor().getNome() != "") {
+			sql += " and di.servidor.nome like '%"
+					+ documentoImagem.getServidor().getNome() + "%'";
+		}
 		Query query = HibernateUtility.getSession().createQuery(sql);
 		HibernateUtility.commitTransaction();
 		return (List<DocumentoImagem>) query.setMaxResults(

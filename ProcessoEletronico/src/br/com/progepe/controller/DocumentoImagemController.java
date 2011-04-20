@@ -449,24 +449,24 @@ public class DocumentoImagemController  {
 
 	public void pesquisarDocumentos() {
 		Boolean validacao = true;
-		if (documentoImagem.getServidor().getSiape() == null
-				|| documentoImagem.getServidor().getSiape() == 0) {
-			validacao = false;
-			FacesMessage message = new FacesMessage(
-					FacesMessage.SEVERITY_ERROR,
-					"O campo Siape do Servidor é obrigatório!",
-					"O campo Siape do Servidor é obrigatório!");
-			FacesContext.getCurrentInstance().addMessage("", message);
-		}
-		if (documentoImagem.getTipoDocumento().getCodigo() == null
-				|| documentoImagem.getTipoDocumento().getCodigo() == 0) {
-			validacao = false;
-			FacesMessage message = new FacesMessage(
-					FacesMessage.SEVERITY_ERROR,
-					"O campo Tipo do Documento é obrigatório!",
-					"O campo Tipo do Documento é obrigatório!");
-			FacesContext.getCurrentInstance().addMessage("", message);
-		}
+//		if (documentoImagem.getServidor().getSiape() == null
+//				|| documentoImagem.getServidor().getSiape() == 0) {
+//			validacao = false;
+//			FacesMessage message = new FacesMessage(
+//					FacesMessage.SEVERITY_ERROR,
+//					"O campo Siape do Servidor é obrigatório!",
+//					"O campo Siape do Servidor é obrigatório!");
+//			FacesContext.getCurrentInstance().addMessage("", message);
+//		}
+//		if (documentoImagem.getTipoDocumento().getCodigo() == null
+//				|| documentoImagem.getTipoDocumento().getCodigo() == 0) {
+//			validacao = false;
+//			FacesMessage message = new FacesMessage(
+//					FacesMessage.SEVERITY_ERROR,
+//					"O campo Tipo do Documento é obrigatório!",
+//					"O campo Tipo do Documento é obrigatório!");
+//			FacesContext.getCurrentInstance().addMessage("", message);
+//		}
 		if (validacao) {
 			documentoList = DocumentoImagemDAO.getInstance().listByFilter(
 					documentoImagem);
