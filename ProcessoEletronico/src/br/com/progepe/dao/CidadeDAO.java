@@ -23,6 +23,7 @@ public class CidadeDAO extends DAO{
 	
 	@SuppressWarnings("unchecked")
 	public List<Cidade> listByEstado(Estado estado) {
+		HibernateUtility.getSession().clear();
 		HibernateUtility.beginTransaction();
 		HibernateUtility.commitTransaction();
 		return HibernateUtility.getSession().createCriteria(Cidade.class).add(
