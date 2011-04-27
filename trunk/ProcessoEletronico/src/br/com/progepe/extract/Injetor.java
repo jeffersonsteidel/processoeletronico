@@ -35,7 +35,6 @@ public class Injetor {
 			servidor.getContaBancaria().setBanco(new Banco());
 			servidor.setCorPele(new CorPele());
 			servidor.setDocumento(new Documento());
-//			servidor.getDocumento().setCarteiraUf(new Estado());
 //			servidor.getDocumento().setRgUf(new Estado());
 //			servidor.getDocumento().setTituloUf(new Estado());
 			servidor.setEndereco(new Endereco());
@@ -69,6 +68,7 @@ public class Injetor {
 					.formatarDataBR(dadosFitaEspelho.getDataNascimento()));
 			servidor.getEstadoCivil().setCodigo(
 					new Long(dadosFitaEspelho.getEstadoCivil()));
+			servidor.getDocumento().setRg(dadosFitaEspelho.getNumeroRegistroGeral());
 			servidor.getDocumento().setDataPrimeiroEmprego(
 					Validator.formatarDataBR(dadosFitaEspelho
 							.getDataPrimeiroEmprego()));
@@ -90,8 +90,8 @@ public class Injetor {
 //			servidor.getDocumento().getRgUf().setCodigo(18L);
 //			servidor.getDocumento().getTituloUf().setCodigo(18L);
 			
-			 servidor.getDocumento().setRg(
-					dadosFitaEspelho.getNumeroRegistroGeral());
+//			 servidor.getDocumento().setRg(
+//					dadosFitaEspelho.getNumeroRegistroGeral());
 			servidor.getDocumento().setRgOrgaoEmissor(
 					dadosFitaEspelho.getSiglaOrgaoExpedidor());
 			servidor.getDocumento().setRgDataExpedicao(
@@ -138,44 +138,33 @@ public class Injetor {
 			servidor.getCargo().setCodigo(1L);
 			servidor.getPais().setCodigo(24L);
 			try{
-			if(servidor.getSiape() == 1363512 ||
-			   servidor.getSiape() == 1454260 ||
-			   servidor.getSiape() == 1614670 ||
-			   servidor.getSiape() == 1761375 ||
-			   servidor.getSiape() == 1847355 ||
-			   servidor.getSiape() == 1847537 ||
-			   servidor.getSiape() == 1848347 ||
-			   servidor.getSiape() == 1848826 ||
-			   servidor.getSiape() == 1849535 ||
-			   servidor.getSiape() == 1849913 ||
-			   servidor.getSiape() == 1849966 ||
-			   servidor.getSiape() == 1850177 ||
-			   servidor.getSiape() == 1850198 ||
-			   servidor.getSiape() == 1850462 ||
-			   servidor.getSiape() == 1850555 ||
-			   servidor.getSiape() == 1850661 ||
-			   servidor.getSiape() == 1850711 ||
-			   servidor.getSiape() == 1850773 ||
-			   servidor.getSiape() == 1850832 ||
-			   servidor.getSiape() == 1850866 ||
-			   servidor.getSiape() == 1850889 ||
-			   servidor.getSiape() == 1850972 ||
-			   servidor.getSiape() == 1851002 ||
-			   servidor.getSiape() == 1851024 ||
-			   servidor.getSiape() == 1851056 ||
-			   servidor.getSiape() == 1851088 ||
-			   servidor.getSiape() == 1851144 ||
-			   servidor.getSiape() == 1851483 ||
-			   servidor.getSiape() == 1852292 ||
-			   servidor.getSiape() == 1852328 ||
-			   servidor.getSiape() == 1853828 ||
-			   servidor.getSiape() == 2814807){
+			if(servidor.getSiape() ==  1037636 ||
+			   servidor.getSiape() ==  1582244 ||
+			   servidor.getSiape() ==  1636146 ||
+			   servidor.getSiape() ==  1695766 ||
+			   servidor.getSiape() ==  1855801 ||
+			   servidor.getSiape() ==  1855836 ||
+			   servidor.getSiape() ==  1856181 ||
+			   servidor.getSiape() ==  1856271 ||
+			   servidor.getSiape() ==  1856360 ||
+			   servidor.getSiape() ==  1859783 ||
+			   servidor.getSiape() ==  1859875 ||
+			   servidor.getSiape() ==  1860240 ||
+			   servidor.getSiape() ==  1860290 ||
+			   servidor.getSiape() ==  1860420 ||
+			   servidor.getSiape() ==  1860429 ||
+			   servidor.getSiape() ==  1860672 ||
+			   servidor.getSiape() ==  1860691 ||
+			   servidor.getSiape() ==  1860696||
+			   servidor.getSiape() ==  1860755 ||
+			   servidor.getSiape() ==  1860795 ){
 				DAO.getInstance().saveFitaEspelho(servidor);
 			}
 			}catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
+		
 
 	}
 
