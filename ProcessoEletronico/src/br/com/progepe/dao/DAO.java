@@ -13,27 +13,27 @@ import org.hibernate.criterion.Order;
 import br.com.progepe.entity.Servidor;
 
 public class DAO implements BaseDAO {
-	
+
 	private static DAO instance;
-	protected DAO(){}
-	
-	
-	public static DAO getInstance(){
-		if(instance == null){
+
+	protected DAO() {
+	}
+
+	public static DAO getInstance() {
+		if (instance == null) {
 			instance = new DAO();
 		}
 		return instance;
 	}
-	
+
 	public void save(Object objeto) {
 		try {
 			HibernateUtility.getSession().clear();
 			HibernateUtility.beginTransaction();
 			HibernateUtility.getSession().save(objeto);
 			HibernateUtility.commitTransaction();
-			FacesMessage message = new FacesMessage(
-					FacesMessage.SEVERITY_INFO, "Item salvo com sucesso!",
-					"Item salvo com sucesso!");
+			FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO,
+					"Item salvo com sucesso!", "Item salvo com sucesso!");
 			FacesContext.getCurrentInstance().addMessage("", message);
 		} catch (Exception e) {
 			HibernateUtility.rollbackTransaction();
@@ -51,9 +51,8 @@ public class DAO implements BaseDAO {
 			HibernateUtility.beginTransaction();
 			HibernateUtility.getSession().saveOrUpdate(objeto);
 			HibernateUtility.commitTransaction();
-			FacesMessage message = new FacesMessage(
-					FacesMessage.SEVERITY_INFO, "Item salvo com sucesso!",
-					"Item salvo com sucesso!");
+			FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO,
+					"Item salvo com sucesso!", "Item salvo com sucesso!");
 			FacesContext.getCurrentInstance().addMessage("", message);
 		} catch (Exception e) {
 			HibernateUtility.rollbackTransaction();
@@ -65,15 +64,14 @@ public class DAO implements BaseDAO {
 		}
 	}
 
-	
 	public void update(Object objeto) {
 		try {
 			HibernateUtility.getSession().clear();
 			HibernateUtility.beginTransaction();
 			HibernateUtility.getSession().update(objeto);
 			HibernateUtility.commitTransaction();
-			FacesMessage message = new FacesMessage(
-					FacesMessage.SEVERITY_INFO, "Item atualizado com sucesso!",
+			FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO,
+					"Item atualizado com sucesso!",
 					"Item atualizado com sucesso!");
 			FacesContext.getCurrentInstance().addMessage("", message);
 		} catch (Exception e) {
@@ -92,9 +90,8 @@ public class DAO implements BaseDAO {
 			HibernateUtility.beginTransaction();
 			HibernateUtility.getSession().delete(objeto);
 			HibernateUtility.commitTransaction();
-			FacesMessage message = new FacesMessage(
-					FacesMessage.SEVERITY_INFO, "Item excluído com sucesso!",
-					"Item excluído com sucesso!");
+			FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO,
+					"Item excluído com sucesso!", "Item excluído com sucesso!");
 			FacesContext.getCurrentInstance().addMessage("", message);
 		} catch (Exception e) {
 			HibernateUtility.rollbackTransaction();
@@ -145,43 +142,36 @@ public class DAO implements BaseDAO {
 		return HibernateUtility.getSession().get(clazz, id);
 	}
 
-	public void saveFitaEspelho(Servidor servidor) throws Exception {
+	public void saveFitaEspelho(Servidor servidor) {
 		HibernateUtility.getSession().clear();
 		HibernateUtility.beginTransaction();
 		HibernateUtility.getSession().save(servidor);
-		if (servidor.getSiape() == 1363512 ||
-				   servidor.getSiape() == 1454260 ||
-				   servidor.getSiape() == 1614670 ||
-				   servidor.getSiape() == 1761375 ||
-				   servidor.getSiape() == 1847355 ||
-				   servidor.getSiape() == 1847537 ||
-				   servidor.getSiape() == 1848347 ||
-				   servidor.getSiape() == 1848826 ||
-				   servidor.getSiape() == 1849535 ||
-				   servidor.getSiape() == 1849913 ||
-				   servidor.getSiape() == 1849966 ||
-				   servidor.getSiape() == 1850177 ||
-				   servidor.getSiape() == 1850198 ||
-				   servidor.getSiape() == 1850462 ||
-				   servidor.getSiape() == 1850555 ||
-				   servidor.getSiape() == 1850661 ||
-				   servidor.getSiape() == 1850711 ||
-				   servidor.getSiape() == 1850773 ||
-				   servidor.getSiape() == 1850832 ||
-				   servidor.getSiape() == 1850866 ||
-				   servidor.getSiape() == 1850889 ||
-				   servidor.getSiape() == 1850972 ||
-				   servidor.getSiape() == 1851002 ||
-				   servidor.getSiape() == 1851024 ||
-				   servidor.getSiape() == 1851056 ||
-				   servidor.getSiape() == 1851088 ||
-				   servidor.getSiape() == 1851144 ||
-				   servidor.getSiape() == 1851483 ||
-				   servidor.getSiape() == 1852292 ||
-				   servidor.getSiape() == 1852328 ||
-				   servidor.getSiape() == 1853828 ||
-				   servidor.getSiape() == 2814807) {
-			HibernateUtility.getSession().getTransaction().commit();
+		try {
+			if (servidor.getSiape() == 1037636
+					|| servidor.getSiape() == 1582244
+					|| servidor.getSiape() == 1636146
+					|| servidor.getSiape() == 1695766
+					|| servidor.getSiape() == 1855801
+					|| servidor.getSiape() == 1855836
+					|| servidor.getSiape() == 1856181
+					|| servidor.getSiape() == 1856271
+					|| servidor.getSiape() == 1856360
+					|| servidor.getSiape() == 1859783
+					|| servidor.getSiape() == 1859875
+					|| servidor.getSiape() == 1860240
+					|| servidor.getSiape() == 1860290
+					|| servidor.getSiape() == 1860420
+					|| servidor.getSiape() == 1860429
+					|| servidor.getSiape() == 1860672
+					|| servidor.getSiape() == 1860691
+					|| servidor.getSiape() == 1860696
+					|| servidor.getSiape() == 1860755
+					|| servidor.getSiape() == 1860795) {
+				HibernateUtility.getSession().getTransaction().commit();
+			}
+		} catch (Exception e) {
+			System.out.println("ERRO: "+servidor.getSiape());
+			e.printStackTrace();
 		}
 	}
 
