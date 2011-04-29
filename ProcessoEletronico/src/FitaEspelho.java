@@ -299,7 +299,16 @@ public class FitaEspelho {
 						html = html + "DIRETORIA ENSINO/CTBOR";
 					} else if (linha.substring(215, 224).equals("000000115")) {
 						html = html + "DIR. ADM. E FIN./C.PALMAS";
-					} else {
+					} else if (linha.substring(215, 224).equals("00000015")) {
+						html = html + "DIRETORIA ADM E FINAN/CCTBA";
+					} 
+					else if (linha.substring(215, 224).equals("000000122")) {
+						html = html + "DIRECAO GERAL/ NAV IVAIPORA";
+					} 
+					else if (linha.substring(215, 224).equals("000000123")) {
+						html = html + "DIR. GERAL DE ENS. A DISTANCIA/CCTBA";
+					} 
+					else {
 						html = html + linha.substring(215, 224);
 					}
 					html = html + "</td>";
@@ -354,7 +363,10 @@ public class FitaEspelho {
 						html = html + "<td> EXERC DESCENT CARREI </td>";
 					} else if (situacao.equals(19)) {
 						html = html + "<td> EXERCICIO PROVISORIO </td>";
-					} else {
+					}else if (situacao.equals(52)) {
+						html = html + "<td> CONT. PROF. SUBSTITUTO </td>";
+					} 
+					else {
 						html = html + "<td>" + situacao + "</td>";
 					}
 
