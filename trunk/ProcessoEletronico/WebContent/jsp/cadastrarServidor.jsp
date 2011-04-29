@@ -314,17 +314,17 @@
 						<h:inputText disabled="#{servidorController.indFeminino}"
 							id="certificadoMilitar"
 							value="#{servidorController.servidor.documento.certificadoMilitar}"
-							size="16" maxlength="6" onkeypress="mascara(this, soNumeros);"></h:inputText>
+							size="16" maxlength="20" onkeypress="mascara(this, soNumeros);"></h:inputText>
 						<h:outputText value="Certificado Militar Orgão Emissor: " />
 						<h:inputText disabled="#{servidorController.indFeminino}"
 							id="certificadoMilitarOrgao"
 							value="#{servidorController.servidor.documento.certificadoOrgaoEmissor}"
-							size="16" maxlength="8"></h:inputText>
+							size="16" maxlength="12"></h:inputText>
 						<h:outputText value="Certificado Militar Série: " />
 						<h:inputText disabled="#{servidorController.indFeminino}"
 							id="certificadoMilitarSerio"
 							value="#{servidorController.servidor.documento.certificadoSerie}"
-							size="7" maxlength="1"></h:inputText>
+							size="7" maxlength="8"></h:inputText>
 						<h:outputText value="Carteira de Trabalho: " />
 						<h:inputText
 							value="#{servidorController.servidor.documento.carteiraTrabalho}"
