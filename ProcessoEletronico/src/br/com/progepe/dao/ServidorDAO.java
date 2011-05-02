@@ -34,11 +34,11 @@ public class ServidorDAO extends DAO {
 		Criteria c = HibernateUtility.getSession().createCriteria(
 				Servidor.class);
 		if (servidor.getSiape() != null && servidor.getSiape() != 0) {
-			c.add(Restrictions.like("siape", servidor.getSiape()));
+			c.add(Restrictions.eq("siape", servidor.getSiape()));
 		}
 
 		if (servidor.getLotacao().getCodigo() != 0) {
-			c.add(Restrictions.like("lotacao", servidor.getLotacao()));
+			c.add(Restrictions.eq("lotacao", servidor.getLotacao()));
 		}
 
 		if (servidor.getNome() != null && servidor.getNome() != "") {
@@ -47,7 +47,7 @@ public class ServidorDAO extends DAO {
 		}
 
 		if (servidor.getCargo().getCodigo() != 0) {
-			c.add(Restrictions.like("cargo", servidor.getCargo()));
+			c.add(Restrictions.eq("cargo", servidor.getCargo()));
 		}
 
 		if (situacao != null && Constantes.ATIVO.equals(situacao)) {
