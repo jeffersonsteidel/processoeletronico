@@ -17,7 +17,7 @@ public class Documento implements Serializable {
 	private Integer tituloZona;
 	private Integer tituloSecao;
 	private Date tituloDataEmissao;
-	private Integer certificadoMilitar;
+	private String certificadoMilitar;
 	private String certificadoOrgaoEmissor;
 	private String certificadoSerie;
 	private String carteiraTrabalho;
@@ -106,11 +106,11 @@ public class Documento implements Serializable {
 		this.tituloDataEmissao = tituloDataEmissao;
 	}
 
-	public Integer getCertificadoMilitar() {
+	public String getCertificadoMilitar() {
 		return certificadoMilitar;
 	}
 
-	public void setCertificadoMilitar(Integer certificadoMilitar) {
+	public void setCertificadoMilitar(String certificadoMilitar) {
 		this.certificadoMilitar = certificadoMilitar;
 	}
 
