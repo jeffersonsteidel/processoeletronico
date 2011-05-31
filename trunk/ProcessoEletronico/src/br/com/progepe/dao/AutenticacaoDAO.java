@@ -6,6 +6,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 
 import org.hibernate.Criteria;
+import org.hibernate.StaleStateException;
 import org.hibernate.criterion.Restrictions;
 
 import br.com.progepe.encripty.Encripty;
@@ -42,7 +43,11 @@ public class AutenticacaoDAO extends  DAO {
 			HibernateUtility.beginTransaction();
 			HibernateUtility.getSession().delete(objeto);
 			HibernateUtility.commitTransaction();
-		} catch (Exception e) {
+		}
+		catch (StaleStateException e) {
+			e.printStackTrace();
+		}
+		catch (Exception e) {
 			HibernateUtility.rollbackTransaction();
 			FacesMessage message = new FacesMessage(
 					FacesMessage.SEVERITY_ERROR,
