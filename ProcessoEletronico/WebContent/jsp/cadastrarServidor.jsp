@@ -337,9 +337,7 @@
 							requiredMessage="Campo Carteira de Trabalho Série é obrigatório!"></h:inputText>
 						<h:outputText value="UF da Carteira de Trabalho: " />
 						<h:selectOneMenu
-							value="#{servidorController.servidor.documento.carteiraUf}"
-							required="true"
-							requiredMessage="Campo UF da Carteira de Trabalho é obrigatório!">
+							value="#{servidorController.servidor.documento.carteiraUf}">
 							<f:selectItem itemLabel="SELECIONE" itemValue="" />
 							<f:selectItems value="#{servidorController.ufs}" />
 						</h:selectOneMenu>

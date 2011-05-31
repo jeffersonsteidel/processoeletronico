@@ -628,6 +628,9 @@ public class ServidorController {
 				autenticacao.setSenha(Encripty.criptografaSenha(servidor.getSiape().toString()));
 				AutenticacaoDAO.getInstance().saveAutenticacao(autenticacao);
 			}
+//			if(servidor.getDocumento().getCarteiraUf().equals(0)){
+//				servidor.getDocumento().setCarteiraUf(null);
+//			}
 			DAO.getInstance().saveOrUpdate(servidor);
 			servidor = (Servidor) DAO.getInstance().refresh(servidor);
 			if (servidor.getDataUltimaAlteracao() != null) {
