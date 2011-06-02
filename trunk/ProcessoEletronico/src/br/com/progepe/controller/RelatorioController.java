@@ -572,33 +572,33 @@ public class RelatorioController {
 		
 		if (funcaoServidor.getServidor() != null && funcaoServidor.getServidor().getSiape() != null
 				&& funcaoServidor.getServidor().getSiape() != 0) {
-			sql += " and s.siape = "
+			sql += "and s.serv_siape = "
 					+ funcaoServidor.getServidor().getSiape();
 		}
 		
 		if (funcaoServidor.getFuncao() != null && funcaoServidor.getFuncao().getTipoFuncao() != null
 				&& funcaoServidor.getFuncao().getTipoFuncao().getCodigo() != 0) {
-			sql += " and tf.codigo =  "
+			sql += " and tf.tip_func_cod =  "
 					+ funcaoServidor.getFuncao().getTipoFuncao().getCodigo();
 		}
 		
 		if (funcaoServidor.getFuncao() != null
 				&& funcaoServidor.getFuncao().getCodigo() != 0) {
-			sql += " and fs.funcao.codigo =  "
+			sql += " and f.func_cod =  "
 					+ funcaoServidor.getFuncao().getCodigo();
 		}
 		
 		if (funcaoServidor.getLocalExercicio()!= null
 				&& funcaoServidor.getLocalExercicio().getCodigo() != 0) {
-			sql += " and fs.localExercicio.codigo =  "
+			sql += " and l.lot_cod =  "
 					+ funcaoServidor.getLocalExercicio().getCodigo();
 		}
 		
 		if (situacao.equals(Constantes.ATIVO)) {
-			sql += " and fs.dataSaida is null";
+			sql += " and fs.func_serv_data_saida is null";
 		}
 		else if (situacao.equals(Constantes.DESATIVO)) {
-			sql += " and fs.dataSaida is not null";
+			sql += " and fs.func_serv_data_saida is not null";
 		}
 		
 		sql += " order by s.serv_siape ";
