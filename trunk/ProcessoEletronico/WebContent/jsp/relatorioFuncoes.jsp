@@ -25,31 +25,41 @@
 					<h:graphicImage value="../images/error.gif" />
 				</f:facet>
 			</rich:messages>
-			<font size="2"><b>RELATÓRIO FUNÇÕES</b></font>
+			<font size="2"><b>RELATÓRIO DE FUNÇÕES</b></font>
 
-			<h:panelGrid columns="8">
+			<h:panelGrid columns="10">
 
 				<h:outputText value="Tipo Função: " />
-				<h:selectOneMenu value="#{relatorioController.tipoFuncao}">
+				<h:selectOneMenu
+					value="#{relatorioController.funcaoServidor.funcao.tipoFuncao.codigo}">
 					<f:selectItem itemLabel="SELECIONE" itemValue="" />
 					<f:selectItems value="#{relatorioController.tipoFuncoes}" />
+					<a4j:support event="onchange"
+						action="#{relatorioController.listarFuncoes}" ajaxSingle="true"
+						reRender="funcao"></a4j:support>
 				</h:selectOneMenu>
-		
-		
+				
+				<h:outputText value="Função: " />
+				<h:selectOneMenu id="funcao"
+					value="#{relatorioController.funcaoServidor.funcao.codigo}">
+					<f:selectItem itemLabel="SELECIONE" itemValue="" />
+					<f:selectItems value="#{relatorioController.funcoes}" />
+				</h:selectOneMenu>
+
 				<h:outputText value="SIAPE: " />
-				<h:inputText value="#{relatorioController.servidor.siape}" size="10"
-					maxlength="7" required="true"
-					onkeypress="mascara(this, soNumeros);"
-					requiredMessage="Campo Siape é obrigatório!">
+				<h:inputText
+					value="#{relatorioController.funcaoServidor.servidor.siape}"
+					size="10" maxlength="7"
+					onkeypress="mascara(this, soNumeros);">
 				</h:inputText>
 
 				<h:outputText value="Local Exercicio: " />
-				<h:selectOneMenu value="#{relatorioController.lotacao}">
+				<h:selectOneMenu value="#{relatorioController.funcaoServidor.localExercicio.codigo}">
 					<f:selectItem itemLabel="SELECIONE" itemValue="" />
 					<f:selectItems value="#{relatorioController.locaisExercicio}" />
 				</h:selectOneMenu>
 
-				<h:outputText value="Situação do Servidor: " />
+				<h:outputText value="Situação da Função: " />
 				<h:selectOneMenu value="#{relatorioController.situacao}">
 					<f:selectItem itemLabel="TODOS" itemValue="0" />
 					<f:selectItem itemLabel="ATIVOS" itemValue="1" />
