@@ -578,8 +578,8 @@ public class RelatorioController {
 		
 		if (funcaoServidor.getServidor() != null && funcaoServidor.getServidor().getNome() != null
 				&& funcaoServidor.getServidor().getNome() != "") {
-			sql += "and s.serv_nome = like '%"
-					+ funcaoServidor.getServidor().getNome() +"%'";
+			sql += "and UPPER(s.serv_nome) like '%"
+					+ funcaoServidor.getServidor().getNome().toUpperCase() +"%'";
 		}
 		
 		if (funcaoServidor.getFuncao() != null && funcaoServidor.getFuncao().getTipoFuncao() != null
