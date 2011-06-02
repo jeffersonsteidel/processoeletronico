@@ -1,0 +1,108 @@
+<html>
+<head>
+<title>Processo Verde</title>
+</head>
+<body>
+<center>
+<h1>Manual Do Usuário</h1>
+<p><font size='5'>LISTAR FUNÇÕES</font></p>
+<table border="1" cellspacing="0" style="width: 900px">
+	<tr>
+		<td style="width: 200px"><b>Módulo</b></td>
+		<td>Relatórios | Servidor Funções</td>
+	</tr>
+	<tr>
+		<td style="width: 200px"><b>Perfil</b></td>
+		<td>Administrador</td>
+	</tr>
+	<tr>
+		<td style="width: 200px"><b>Última alteração</b></td>
+		<td>10/12/2010</td>
+	</tr>
+	<tr>
+		<td style="width: 200px"><b>Responsável</b></td>
+		<td>Jefferson Steidel dos Santos</td>
+	</tr>
+	<tr>
+		<td style="width: 200px"><b>Contato</b></td>
+		<td>jefferson.steidel@ifpr.edu.br</td>
+	</tr>
+</table>
+<br>
+<font size='3'><b>Objetivo:</b></font> <br>
+O sistema exibirá uma tabela com todos as funções que estão
+relacionados com o(s) filtro(s) informado(s) <br>
+<br>
+<font size='3'><b>Procedimento:</b></font> <br>
+1. Preencher os seguintes campos: <br>
+<table border="1" style="width: 900px" cellspacing="0">
+	<th><b></b></th>
+	<th><b>Descrição</b></th>
+	<th><b>Obrigatório</b></th>
+	<tr>
+		<td>Tipo Função</td>
+		<td>Tipo da Função que você deseja buscar</td>
+		<td>NÃO</td>
+	</tr>
+	<tr>
+		<td>Função</td>
+		<td>Função que você deseja buscar</td>
+		<td>NÃO</td>
+	</tr>
+	<tr>
+		<td>Siape</td>
+		<td>Siape do servidor que exerce a função que você deseja buscar</td>
+		<td>NÃO</td>
+	</tr>
+	<tr>
+		<td>Local Execício</td>
+		<td>Campus que você deseja buscar</td>
+		<td>NÃO</td>
+	</tr>
+	<tr>
+		<td>Atual</td>
+		<td>Buscar apenas as Funções exercidas atualmente</td>
+		<td>NÃO</td>
+	</tr>
+</table></center>
+<center><br>
+2. Gerar Relatório. <br>
+<br>
+<font size='3'><b>Resultado esperado:</b></font> <br>
+Caso não ocorra nenhum erro, o sistema listará todos os servidores. Caso
+algum filtro sejá informado, o sistema informará apenas os servidores
+que correspondam àquele filtro. os dados retornados são:<br>
+-Tipo Função
+<br>
+-Função
+<br>
+-Nome do Servidor
+<br>
+-Local Exercício
+<br>
+-Data Entrada
+<br>
+-Data Saída
+<br>
+-Ato de Criação
+<br><br>
+
+<font size='3'><b>Possíveis erros:</b></font> <br>
+<table border="1" cellspacing="0" style="width: 900px">
+	<tr>
+		<td><b>Mensagem</b></td>
+		<td><b>Motivo</b></td>
+	</tr>
+		<tr>
+		<td>Nenhum registro para o filtro informado!</td>
+		<td>Não há servidor que sejá compatível com os filtros
+		selecionados.</td>
+	</tr>
+	<tr>
+		<td>Erro ao comunicar com o servidor!</td>
+		<td>Ocorreu alguma falha durante a realização da operação!</td>
+	</tr>
+</table>
+</center>
+</body>
+</html>
