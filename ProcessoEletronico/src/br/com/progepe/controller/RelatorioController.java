@@ -564,7 +564,6 @@ public class RelatorioController {
 		
 		String sql = "select tf.tip_func_sigla, f.func_desc, s.serv_nome,"
 			+ " fs.func_serv_data_entrada, fs.func_serv_data_saida, l.lot_desc, f.func_ato_criacao from funcaoservidor fs"
-			+ " FROM lotacao INNER JOIN servidor ON lotacao.lot_cod = servidor.lot_cod INNER JOIN cargo ON servidor.carg_cod = cargo.carg_cod"
 			+ " inner join servidor s on fs.serv_cod = s.serv_cod"
 			+ " inner join lotacao l on l.lot_cod = fs.lot_cod"
 			+ " inner join funcao f on f.func_cod = fs.func_cod"
