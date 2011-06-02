@@ -27,7 +27,7 @@
 			</rich:messages>
 			<font size="2"><b>RELATÓRIO DE FUNÇÕES</b></font>
 
-			<h:panelGrid columns="10">
+			<h:panelGrid columns="8">
 
 				<h:outputText value="Tipo Função: " />
 				<h:selectOneMenu
@@ -38,25 +38,12 @@
 						action="#{relatorioController.listarFuncoes}" ajaxSingle="true"
 						reRender="funcao"></a4j:support>
 				</h:selectOneMenu>
-				
+
 				<h:outputText value="Função: " />
 				<h:selectOneMenu id="funcao"
 					value="#{relatorioController.funcaoServidor.funcao.codigo}">
 					<f:selectItem itemLabel="SELECIONE" itemValue="" />
 					<f:selectItems value="#{relatorioController.funcoes}" />
-				</h:selectOneMenu>
-
-				<h:outputText value="SIAPE: " />
-				<h:inputText
-					value="#{relatorioController.funcaoServidor.servidor.siape}"
-					size="10" maxlength="7"
-					onkeypress="mascara(this, soNumeros);">
-				</h:inputText>
-
-				<h:outputText value="Local Exercicio: " />
-				<h:selectOneMenu value="#{relatorioController.funcaoServidor.localExercicio.codigo}">
-					<f:selectItem itemLabel="SELECIONE" itemValue="" />
-					<f:selectItems value="#{relatorioController.locaisExercicio}" />
 				</h:selectOneMenu>
 
 				<h:outputText value="Situação da Função: " />
@@ -67,9 +54,32 @@
 				</h:selectOneMenu>
 
 
+
+			</h:panelGrid>
+
+			<h:panelGrid columns="8">
+				<h:outputText value="Local Exercicio: " />
+				<h:selectOneMenu
+					value="#{relatorioController.funcaoServidor.localExercicio.codigo}">
+					<f:selectItem itemLabel="SELECIONE" itemValue="" />
+					<f:selectItems value="#{relatorioController.locaisExercicio}" />
+				</h:selectOneMenu>
+
+
 			</h:panelGrid>
 
 			<h:panelGrid columns="2">
+				<h:outputText value="SIAPE: " />
+				<h:inputText
+					value="#{relatorioController.funcaoServidor.servidor.siape}"
+					size="10" maxlength="7" onkeypress="mascara(this, soNumeros);">
+				</h:inputText>
+
+				<h:outputText value="Nome: " />
+				<h:inputText
+					value="#{relatorioController.funcaoServidor.servidor.nome}"
+					size="40">
+				</h:inputText>
 				<h:commandButton value="Gerar Relatório"
 					action="#{relatorioController.gerarRelatorioServidorFuncoesByFiltro}" />
 			</h:panelGrid>

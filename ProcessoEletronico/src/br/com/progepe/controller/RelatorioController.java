@@ -576,6 +576,12 @@ public class RelatorioController {
 					+ funcaoServidor.getServidor().getSiape();
 		}
 		
+		if (funcaoServidor.getServidor() != null && funcaoServidor.getServidor().getNome() != null
+				&& funcaoServidor.getServidor().getNome() != "") {
+			sql += "and s.serv_nome = like '%"
+					+ funcaoServidor.getServidor().getNome() +"%'";
+		}
+		
 		if (funcaoServidor.getFuncao() != null && funcaoServidor.getFuncao().getTipoFuncao() != null
 				&& funcaoServidor.getFuncao().getTipoFuncao().getCodigo() != 0) {
 			sql += " and tf.tip_func_cod =  "
