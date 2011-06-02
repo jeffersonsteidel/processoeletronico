@@ -54,6 +54,7 @@
 				<rich:menuItem submitMode="ajax" value="Listar Servidores"
 					action="#{servidorController.listar}"
 					icon="../images/LISTARSERVIDORES2.gif" />
+				<%--
 				<rich:menuItem submitMode="ajax" value="Pesquisar Cônjuges"
 					action="#{conjugeController.abrirListarConjuge}"
 					icon="../images/conjuge.png" />
@@ -66,17 +67,22 @@
 				<rich:menuItem submitMode="ajax" value="Pesquisar Empregos"
 					action="#{empregoController.abrirListarEmprego}"
 					icon="../images/listemprego.gif" />
+				--%>
 				<rich:menuItem submitMode="ajax" value="Pesquisar Funções"
 					action="#{funcaoServidorController.abrirListarFuncoes}"
 					icon="../images/listfuncao.png" />
+
 				<rich:menuItem submitMode="ajax" value="Pesquisar Servidor"
 					action="#{servidorController.pesquisarServidores}"
 					icon="../images/PESQUISARSERVIDOR.gif" />
+				<%--	
 				<rich:menuItem submitMode="ajax" value="Pesquisar Titulações"
 					action="#{servidorTitulacaoController.abrirListarServidorTitulacao}"
 					icon="../images/listarTitulacao.gif" />
+				--%>
 			</rich:dropDownMenu>
 
+			<%--
 			<rich:dropDownMenu>
 				<f:facet name="label">
 					<h:panelGroup>
@@ -211,6 +217,7 @@
 					action="#{portariaController.listarPortarias}"
 					icon="../images/portarias.gif" />
 			</rich:dropDownMenu>
+			--%>
 			<rich:dropDownMenu>
 				<f:facet name="label">
 					<h:panelGroup>
@@ -221,6 +228,7 @@
 					action="#{aniversarianteController.abrirAniversariantes}"
 					icon="../images/aniversario.png" />
 			</rich:dropDownMenu>
+			<%--
 			<rich:dropDownMenu>
 				<f:facet name="label">
 					<h:panelGroup>
@@ -235,6 +243,7 @@
 					action="#{progressaoController.abrirListarProgressao}"
 					icon="../images/listProgressao.gif" />
 			</rich:dropDownMenu>
+			 --%>
 			<rich:dropDownMenu>
 				<f:facet name="label">
 					<h:panelGroup>
@@ -245,6 +254,7 @@
 					action="#{autenticacaoController.alterarSenha}"
 					icon="../images/ALTERARSENHA.gif" />
 			</rich:dropDownMenu>
+			<%--
 			<rich:dropDownMenu
 				rendered="#{autenticacaoController.siapeAutenticado.indGerente}">
 				<f:facet name="label">
@@ -274,8 +284,9 @@
 					action="#{funcaoController.abrirListarFuncoes}"
 					icon="../images/pesquisarfuncoes.gif" />
 			</rich:dropDownMenu>
+			 --%>
 			<rich:dropDownMenu
-				rendered="#{autenticacaoController.siapeAutenticado.indGerente}">
+				rendered="#{autenticacaoController.siapeAutenticado.indAdministrador}">
 				<f:facet name="label">
 					<h:panelGroup>
 						<h:outputText value="RELATÓRIOS" />
