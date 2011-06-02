@@ -12,14 +12,13 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
 
-import org.hibernate.Query;
-
 import net.sf.jasperreports.engine.JRException;
 import br.com.progepe.constantes.Constantes;
 import br.com.progepe.dao.DAO;
-import br.com.progepe.dao.HibernateUtility;
+import br.com.progepe.dao.FuncaoServidorDAO;
 import br.com.progepe.dao.ServidorDAO;
 import br.com.progepe.entity.Cargo;
+import br.com.progepe.entity.Funcao;
 import br.com.progepe.entity.FuncaoServidor;
 import br.com.progepe.entity.Lotacao;
 import br.com.progepe.entity.Servidor;
@@ -37,6 +36,7 @@ public class RelatorioController {
 	private List<SelectItem> locaisExercicio = new ArrayList<SelectItem>();
 	private List<SelectItem> tipoSolicitacoes = new ArrayList<SelectItem>();
 	private List<SelectItem> tipoStatus = new ArrayList<SelectItem>();
+	private List<SelectItem> funcoes = new ArrayList<SelectItem>();
 	private Integer cargo;
 	private Integer lotacao;
 	private Integer situacao;
@@ -47,6 +47,8 @@ public class RelatorioController {
 	
 	private String tipoFuncao;
 	private List<SelectItem> tipoFuncoes = new ArrayList<SelectItem>();
+	
+	private FuncaoServidor funcaoServidor;
 	
 
 	public Servidor getServidor() {
@@ -176,6 +178,24 @@ public class RelatorioController {
 	public void setTipoFuncoes(List<SelectItem> tipoFuncoes) {
 		this.tipoFuncoes = tipoFuncoes;
 	}
+	
+
+	public FuncaoServidor getFuncaoServidor() {
+		return funcaoServidor;
+	}
+
+	public void setFuncaoServidor(FuncaoServidor funcaoServidor) {
+		this.funcaoServidor = funcaoServidor;
+	}
+	
+
+	public List<SelectItem> getFuncoes() {
+		return funcoes;
+	}
+
+	public void setFuncoes(List<SelectItem> funcoes) {
+		this.funcoes = funcoes;
+	}
 
 	public void buscarServidorAtendente() throws IOException, ParseException {
 		if (atendente.getSiape() != 0) {
@@ -231,7 +251,12 @@ public class RelatorioController {
 
 	public String abrirRelatorioFuncoesByFiltro() throws Exception {
 		try {
-			listarFuncoes();
+			funcaoServidor = new FuncaoServidor();
+			funcaoServidor.setServidor(new Servidor());
+			funcaoServidor.setFuncao(new Funcao());
+			funcaoServidor.getFuncao().setTipoFuncao(new TipoFuncao());
+			funcaoServidor.setLocalExercicio(new Lotacao());
+			listarTipoFuncoes();
 			listarLotacoes();
 			FacesContext.getCurrentInstance().getExternalContext()
 					.redirect("relatorioFuncoes.jsp");
@@ -239,6 +264,19 @@ public class RelatorioController {
 			e.printStackTrace();
 		}
 		return "";
+	}
+	
+	
+	public List<SelectItem> listarFuncoes() {
+		funcoes = new ArrayList<SelectItem>();
+		List<Funcao> funcaoList = new ArrayList<Funcao>();
+		funcaoList = FuncaoServidorDAO.getInstance().listByTipoFuncao(
+				funcaoServidor.getFuncao().getTipoFuncao());
+		for (Funcao funcao : funcaoList) {
+			funcoes.add(new SelectItem(funcao.getCodigo(), funcao
+					.getDescricao()));
+		}
+		return funcoes;
 	}
 	
 	public String abrirRelatorioCargoLotacaoByFiltro() throws Exception {
@@ -265,11 +303,11 @@ public class RelatorioController {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public List<SelectItem> listarFuncoes() {
+	public List<SelectItem> listarTipoFuncoes() {
 		tipoFuncoes = new ArrayList<SelectItem>();
-		List<TipoFuncao> funcaoList = new ArrayList<TipoFuncao>();
-		funcaoList = DAO.getInstance().list(TipoFuncao.class, "descricao");
-		for (TipoFuncao tipoFuncao : funcaoList) {
+		List<TipoFuncao> tipoFuncaoList = new ArrayList<TipoFuncao>();
+		tipoFuncaoList = DAO.getInstance().list(TipoFuncao.class, "descricao");
+		for (TipoFuncao tipoFuncao : tipoFuncaoList) {
 			tipoFuncoes.add(new SelectItem(tipoFuncao.getCodigo(), tipoFuncao.getSigla()));
 		}
 		return tipoFuncoes;
@@ -521,7 +559,7 @@ public class RelatorioController {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public String gerarRelatorioServidorFuncoesByFiltro(FuncaoServidor funcaoServidor, Integer situacao)
+	public String gerarRelatorioServidorFuncoesByFiltro()
 		throws ClassNotFoundException, SQLException, JRException {
 		
 		String sql = "select tf.tip_func_sigla, f.func_desc, s.serv_nome,"
@@ -564,10 +602,11 @@ public class RelatorioController {
 			sql += " and fs.dataSaida is not null";
 		}
 		
-		sql += " order by servidor.serv_siape ";
+		sql += " order by s.serv_siape ";
 
 		JasperMB jasperMB = new JasperMB();
 		jasperMB.criaConexao();
+		@SuppressWarnings("rawtypes")
 		HashMap parametros = new HashMap();
 		parametros.put("BANNER",
 				jasperMB.getDiretorioReal("/images/banner_topo.gif"));
