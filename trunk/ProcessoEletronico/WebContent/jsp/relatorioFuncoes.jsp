@@ -27,7 +27,7 @@
 			</rich:messages>
 			<font size="2"><b>RELATÓRIO DE FUNÇÕES</b></font>
 
-			<h:panelGrid columns="8">
+			<h:panelGrid columns="6">
 
 				<h:outputText value="Tipo Função: " />
 				<h:selectOneMenu
@@ -53,22 +53,10 @@
 					<f:selectItem itemLabel="INATIVOS" itemValue="2" />
 				</h:selectOneMenu>
 
-
-
 			</h:panelGrid>
 
-			<h:panelGrid columns="8">
-				<h:outputText value="Local Exercicio: " />
-				<h:selectOneMenu
-					value="#{relatorioController.funcaoServidor.localExercicio.codigo}">
-					<f:selectItem itemLabel="SELECIONE" itemValue="" />
-					<f:selectItems value="#{relatorioController.locaisExercicio}" />
-				</h:selectOneMenu>
+			<h:panelGrid columns="6">
 
-
-			</h:panelGrid>
-
-			<h:panelGrid columns="2">
 				<h:outputText value="SIAPE: " />
 				<h:inputText
 					value="#{relatorioController.funcaoServidor.servidor.siape}"
@@ -80,9 +68,18 @@
 					value="#{relatorioController.funcaoServidor.servidor.nome}"
 					size="40">
 				</h:inputText>
-				<h:commandButton value="Gerar Relatório"
-					action="#{relatorioController.gerarRelatorioServidorFuncoesByFiltro}" />
+				
+				<h:outputText value="Local Exercicio: " />
+				<h:selectOneMenu
+					value="#{relatorioController.funcaoServidor.localExercicio.codigo}">
+					<f:selectItem itemLabel="SELECIONE" itemValue="" />
+					<f:selectItems value="#{relatorioController.locaisExercicio}" />
+				</h:selectOneMenu>
+				
 			</h:panelGrid>
+			<h:commandButton value="Gerar Relatório"
+				action="#{relatorioController.gerarRelatorioServidorFuncoesByFiltro}" />
+
 
 		</rich:panel></center>
 	</a4j:form>
