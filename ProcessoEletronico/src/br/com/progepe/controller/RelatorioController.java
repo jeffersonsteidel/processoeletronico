@@ -12,14 +12,19 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
 
+import org.hibernate.Query;
+
 import net.sf.jasperreports.engine.JRException;
 import br.com.progepe.constantes.Constantes;
 import br.com.progepe.dao.DAO;
+import br.com.progepe.dao.HibernateUtility;
 import br.com.progepe.dao.ServidorDAO;
 import br.com.progepe.entity.Cargo;
+import br.com.progepe.entity.FuncaoServidor;
 import br.com.progepe.entity.Lotacao;
 import br.com.progepe.entity.Servidor;
 import br.com.progepe.entity.StatusSolicitacao;
+import br.com.progepe.entity.TipoFuncao;
 import br.com.progepe.entity.TipoSolicitacao;
 import br.com.progepe.jsfUtil.DataUtil;
 
@@ -39,6 +44,10 @@ public class RelatorioController {
 	private Integer status;
 	private Date periodoInicio;
 	private Date periodoFinal;
+	
+	private String tipoFuncao;
+	private List<SelectItem> tipoFuncoes = new ArrayList<SelectItem>();
+	
 
 	public Servidor getServidor() {
 		return servidor;
@@ -152,6 +161,22 @@ public class RelatorioController {
 		this.periodoFinal = periodoFinal;
 	}
 
+	public String getTipoFuncao() {
+		return tipoFuncao;
+	}
+
+	public void setTipoFuncao(String tipoFuncao) {
+		this.tipoFuncao = tipoFuncao;
+	}
+
+	public List<SelectItem> getTipoFuncoes() {
+		return tipoFuncoes;
+	}
+
+	public void setTipoFuncoes(List<SelectItem> tipoFuncoes) {
+		this.tipoFuncoes = tipoFuncoes;
+	}
+
 	public void buscarServidorAtendente() throws IOException, ParseException {
 		if (atendente.getSiape() != 0) {
 			atendente = (Servidor) ServidorDAO.getInstance().refreshBySiape(
@@ -204,6 +229,18 @@ public class RelatorioController {
 		return "";
 	}
 
+	public String abrirRelatorioFuncoesByFiltro() throws Exception {
+		try {
+			listarFuncoes();
+			listarLotacoes();
+			FacesContext.getCurrentInstance().getExternalContext()
+					.redirect("relatorioFuncoes.jsp");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return "";
+	}
+	
 	public String abrirRelatorioCargoLotacaoByFiltro() throws Exception {
 		try {
 			listarCargos();
@@ -225,6 +262,17 @@ public class RelatorioController {
 			cargos.add(new SelectItem(cargo.getCodigo(), cargo.getDescricao()));
 		}
 		return cargos;
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<SelectItem> listarFuncoes() {
+		tipoFuncoes = new ArrayList<SelectItem>();
+		List<TipoFuncao> funcaoList = new ArrayList<TipoFuncao>();
+		funcaoList = DAO.getInstance().list(TipoFuncao.class, "descricao");
+		for (TipoFuncao tipoFuncao : funcaoList) {
+			tipoFuncoes.add(new SelectItem(tipoFuncao.getCodigo(), tipoFuncao.getSigla()));
+		}
+		return tipoFuncoes;
 	}
 
 	@SuppressWarnings("unchecked")
@@ -471,7 +519,66 @@ public class RelatorioController {
 		jasperMB.geraRelatorioPassandoResultSet(parametros, nomeDoJasper);
 		return "";
 	}
+	
+	@SuppressWarnings("unchecked")
+	public String gerarRelatorioServidorFuncoesByFiltro(FuncaoServidor funcaoServidor, Integer situacao)
+		throws ClassNotFoundException, SQLException, JRException {
+		
+		String sql = "select tf.tip_func_sigla, f.func_desc, s.serv_nome,"
+			+ " fs.func_serv_data_entrada, fs.func_serv_data_saida, l.lot_desc, f.func_ato_criacao from funcaoservidor fs"
+			+ " FROM lotacao INNER JOIN servidor ON lotacao.lot_cod = servidor.lot_cod INNER JOIN cargo ON servidor.carg_cod = cargo.carg_cod"
+			+ " inner join servidor s on fs.serv_cod = s.serv_cod"
+			+ " inner join lotacao l on l.lot_cod = fs.lot_cod"
+			+ " inner join funcao f on f.func_cod = fs.func_cod"
+			+ " inner join tipofuncao tf on tf.tip_func_cod = f.tip_func_cod"
+			+ " where 1 = 1 ";
+		
+		if (funcaoServidor.getServidor() != null && funcaoServidor.getServidor().getSiape() != null
+				&& funcaoServidor.getServidor().getSiape() != 0) {
+			sql += " and s.siape = "
+					+ funcaoServidor.getServidor().getSiape();
+		}
+		
+		if (funcaoServidor.getFuncao() != null && funcaoServidor.getFuncao().getTipoFuncao() != null
+				&& funcaoServidor.getFuncao().getTipoFuncao().getCodigo() != 0) {
+			sql += " and tf.codigo =  "
+					+ funcaoServidor.getFuncao().getTipoFuncao().getCodigo();
+		}
+		
+		if (funcaoServidor.getFuncao() != null
+				&& funcaoServidor.getFuncao().getCodigo() != 0) {
+			sql += " and fs.funcao.codigo =  "
+					+ funcaoServidor.getFuncao().getCodigo();
+		}
+		
+		if (funcaoServidor.getLocalExercicio()!= null
+				&& funcaoServidor.getLocalExercicio().getCodigo() != 0) {
+			sql += " and fs.localExercicio.codigo =  "
+					+ funcaoServidor.getLocalExercicio().getCodigo();
+		}
+		
+		if (situacao.equals(Constantes.ATIVO)) {
+			sql += " and fs.dataSaida is null";
+		}
+		else if (situacao.equals(Constantes.DESATIVO)) {
+			sql += " and fs.dataSaida is not null";
+		}
+		
+		sql += " order by servidor.serv_siape ";
 
+		JasperMB jasperMB = new JasperMB();
+		jasperMB.criaConexao();
+		HashMap parametros = new HashMap();
+		parametros.put("BANNER",
+				jasperMB.getDiretorioReal("/images/banner_topo.gif"));
+		parametros.put("SQL", sql);
+		String nomeDoJasper = "/WEB-INF/jasper/relatorioServidorFuncaoByFiltro.jasper";
+		jasperMB.geraRelatorioPassandoResultSet(parametros, nomeDoJasper);
+		
+		return "";
+	}
+	
+	
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public String gerarRelatorioServidorContaBancaria()
 			throws ClassNotFoundException, SQLException, JRException {

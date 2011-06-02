@@ -78,6 +78,11 @@
 				<h:outputText
 					value="(retorna as permissões de cada usuário no sistema)" />
 
+				<h:graphicImage value="../images/icopdf.gif" />
+				<h:commandLink value="SERVIDOR POR FILTRO FUNÇÕES"
+					action="#{relatorioController.abrirRelatorioFuncoesByFiltro}" />
+				<h:outputText value="(retorna ...)" />
+
 			</h:panelGrid>
 		</h:form>
 	</rich:panel>
