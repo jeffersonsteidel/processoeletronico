@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping 
+	PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="br.com.progepe.entity.Remocao" table="REMOCAO">
+		<id name="codigo" column="REM_COD">
+			<generator class="increment"></generator>
+		</id>
+		<many-to-one name="servidor" class="br.com.progepe.entity.Servidor"
+			column="SERV_COD" lazy="false" />
+		<many-to-one name="lotacao" class="br.com.progepe.entity.Lotacao"
+			column="LOT_COD" lazy="false" />
+		<property name="dataEntrada" column="REM_DATA_ENTRADA" />
+		<property name="dataSaida" column="REM_DATA_SAIDA" />
+	</class>
+</hibernate-mapping>
