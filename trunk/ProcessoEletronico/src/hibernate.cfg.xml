@@ -50,6 +50,7 @@
 		<mapping resource="Progressao.hbm.xml" />
 		<!-- <mapping resource="ProgressaoCapacitacaoCertificacao.hbm.xml" /> -->
 		<mapping resource="RegimeTrabalho.hbm.xml" />
+		<mapping resource="Remocao.hbm.xml" />
 		<mapping resource="RessarcimentoSaude.hbm.xml" />
 		<mapping resource="RessarcimentoSaudeContrato.hbm.xml" />
 		<mapping resource="Servidor.hbm.xml" />
