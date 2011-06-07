@@ -10,6 +10,7 @@ import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
 
 import br.com.progepe.dao.DAO;
+import br.com.progepe.dao.RemocaoDAO;
 import br.com.progepe.dao.ServidorDAO;
 import br.com.progepe.entity.Lotacao;
 import br.com.progepe.entity.Remocao;
@@ -92,7 +93,7 @@ public class RemocaoController {
 		remocao = new Remocao();
 	}
 
-	public void listarPortarias() throws IOException {
+	public void abrirListarRemocoes() throws IOException {
 		remocaoList = new ArrayList<Remocao>();
 		remocaoList.clear();
 		remocao = new Remocao();
@@ -100,7 +101,15 @@ public class RemocaoController {
 		remocao.setLotacao(new Lotacao());
 		listarLotacoes();
 		FacesContext.getCurrentInstance().getExternalContext()
-				.redirect("listarRemocoes.jsp");
+				.redirect("pesquisarRemocoes.jsp");
 	}
+	
+	
+	public List<Remocao> pesquisar(){
+		RemocaoDAO.getInstance().listByFilter(remocao);
+		return remocaoList;
+	}
+ 	
+	
 
 }
