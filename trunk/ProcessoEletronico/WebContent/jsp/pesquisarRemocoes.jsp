@@ -35,7 +35,7 @@
 					size="60" maxlength="120"></h:inputText>
 
 				<a4j:commandButton value="Pesquisar"
-					action="#{remocaoController.abrirListarRemocoes}"
+					action="#{remocaoController.pesquisar}"
 					reRender="listaRemocoes" type="submit" />
 
 			</h:panelGrid>
@@ -58,11 +58,11 @@
 						<h:outputText value="#{list.servidor.nome}" />
 					</rich:column>
 
-					<rich:column width="500px" sortBy="#{list.lotacao}">
+					<rich:column width="500px" sortBy="#{list.lotacao.descricao}">
 						<f:facet name="header">
 							<h:outputText value="Lotacao" />
 						</f:facet>
-						<h:outputText value="#{list.lotacao}" />
+						<h:outputText value="#{list.lotacao.descricao}" />
 					</rich:column>
 
 
