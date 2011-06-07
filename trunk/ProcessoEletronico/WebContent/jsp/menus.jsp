@@ -50,7 +50,7 @@
 					icon="../images/addfuncao.gif" />
 				<rich:menuItem submitMode="ajax" value="Cadastrar Remoção"
 					action="#{remocaoController.abrirCadastrarRemocao}"
-					icon="../images/listarTitulacao.gif" />	
+					icon="../images/cad_remocao.gif" />	
 				<rich:menuItem submitMode="ajax" value="Cadastrar Servidor"
 					action="#{servidorController.cadastrar}"
 					icon="../images/NOVOSERVIDOR.gif" />
@@ -88,7 +88,7 @@
 				--%>
 				<rich:menuItem submitMode="ajax" value="Pesquisar Remoções"
 					action="#{remocaoController.abrirListarRemocoes}"
-					icon="../images/listarTitulacao.gif" />
+					icon="../images/pes_remocao.gif" />
 			</rich:dropDownMenu>
 
 			<%--
