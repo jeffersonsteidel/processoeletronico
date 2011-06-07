@@ -76,7 +76,7 @@ public class RemocaoController {
 			FacesContext.getCurrentInstance().addMessage("", message);
 		}
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	public List<SelectItem> listarLotacoes() {
 		lotacoes = new ArrayList<SelectItem>();
@@ -103,13 +103,16 @@ public class RemocaoController {
 		FacesContext.getCurrentInstance().getExternalContext()
 				.redirect("pesquisarRemocoes.jsp");
 	}
-	
-	
-	public List<Remocao> pesquisar(){
+
+	public List<Remocao> pesquisar() {
 		remocaoList = RemocaoDAO.getInstance().listByFilter(remocao);
+		if (remocaoList == null) {
+			FacesMessage message = new FacesMessage(
+					FacesMessage.SEVERITY_ERROR,
+					"Não há servidor que sejá compatível com os filtros selecionados.",
+					"Não há servidor que sejá compatível com os filtros selecionados.");
+			FacesContext.getCurrentInstance().addMessage("", message);
+		}
 		return remocaoList;
 	}
- 	
-	
-
 }
