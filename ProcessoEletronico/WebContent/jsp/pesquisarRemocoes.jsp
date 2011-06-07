@@ -36,7 +36,7 @@
 
 				<a4j:commandButton value="Pesquisar"
 					action="#{remocaoController.pesquisar}"
-					reRender="listaRemocoes" type="submit" />
+					reRender="listaRemocoes, messages" type="submit" />
 
 			</h:panelGrid>
 			<a4j:region>
