@@ -5,10 +5,12 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
 
 import br.com.progepe.dao.DAO;
+import br.com.progepe.dao.ServidorDAO;
 import br.com.progepe.entity.Lotacao;
 import br.com.progepe.entity.Remocao;
 import br.com.progepe.entity.Servidor;
@@ -62,6 +64,18 @@ public class RemocaoController {
 				.redirect("cadastrarRemocao.jsp");
 	}
 
+	public void buscarServidor() throws IOException, ParseException {
+		remocao.setServidor(ServidorDAO.getInstance().refreshBySiape(
+				remocao.getServidor()));
+		if (remocao.getServidor() == null) {
+			remocao.setServidor(new Servidor());
+			FacesMessage message = new FacesMessage(
+					FacesMessage.SEVERITY_ERROR, "Siape inválido!",
+					"Siape inválido!");
+			FacesContext.getCurrentInstance().addMessage("", message);
+		}
+	}
+	
 	@SuppressWarnings("unchecked")
 	public List<SelectItem> listarLotacoes() {
 		lotacoes = new ArrayList<SelectItem>();
