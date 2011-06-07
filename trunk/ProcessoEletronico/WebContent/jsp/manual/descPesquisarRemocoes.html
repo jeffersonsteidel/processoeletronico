@@ -1,0 +1,98 @@
+<html>
+<head>
+<title>Processo Verde</title>
+</head>
+<body>
+<center>
+<h1>Manual Do Usuário</h1>
+<p><font size='5'>PESQUISAR REMOÇÕES</font></p>
+<table border="1" style="width: 900px" cellspacing="0">
+	<tr>
+		<td style="width: 200px"><b>Módulo</b></td>
+		<td>Servidor | Pesquisar Remoções</td>
+	</tr>
+	<tr>
+		<td style="width: 200px"><b>Perfil</b></td>
+		<td>Administrador</td>
+	</tr>
+	<tr>
+		<td style="width: 200px"><b>Última alteração</b></td>
+		<td>14/02/2011</td>
+	</tr>
+	<tr>
+		<td style="width: 200px"><b>Responsável</b></td>
+		<td>Jefferson Steidel dos Santos</td>
+	</tr>
+	<tr>
+		<td style="width: 200px"><b>Contato</b></td>
+		<td>jefferson.steidel@ifpr.edu.br</td>
+	</tr>
+</table>
+<br>
+<font size='3'><b>Objetivo:</b></font> <br>
+Exibir todas as remoções que estão relacionados com o(s) filtro(s)
+informado(s). <br>
+<br>
+<font size='3'><b>Procedimento:</b></font> <br>
+1. Preencher os seguintes campos:<br>
+<br>
+Dois filtros são exibidos na tela (Siape e Nome). O Administrador insere
+algum dado no filtro que deseja e o programa pesquisará baseando-se no
+critério fornecido. informado(s). </br>
+</center><center>
+<table border="1" style="width: 900px" cellspacing="0"
+	name="listarRemocoes">
+	<th><b></b></th>
+	<th><b>Descrição</b></th>
+	<th><b>Obrigatório</b></th>
+	<tr>
+		<td>Siape do Servidor</td>
+		<td>Siape do servidor que está relacionado com a remoção que você
+		deseja buscar</td>
+		<td>NÃO</td>
+	</tr>
+	<tr>
+		<td>Nome do Servidor</td>
+		<td>Nome do servidor que está relacionado com a remoção que você
+		deseja buscar</td>
+		<td>NÃO</td>
+	</tr>
+
+</table> <br>
+<br>
+2. Clicar em pesquisar. <br>
+<br>
+<font size='3'><b>Resultado esperado:</b></font> <br>
+O resultado da pesquisa é uma tabela com os seguintes dados: <br>
+-SIAPE <br>
+-Nome do Servidor <br>
+-Lotação <br>
+-Data de Admissão da Lotação <br>
+-Data de Saida da Lotação<br>
+<br>
+Ao lado direito de cada remoção presente na tabela há um campo: <b>Editar</b>
+. <br>
+<b>*</b> O campo <b>Editar</b> é um link para uma pagina de Edição dos
+Dados da Remoção. <br>
+<br>
+<font size='3'><b>Possíveis erros:</b></font> <br>
+<table border="1" style="width: 900px" cellspacing="0">
+	<tr>
+		<td><b>Mensagem</b></td>
+		<td><b>Motivo</b></td>
+	</tr>
+	<tr>
+		<td>Nenhum registro para o filtro informado!</td>
+		<td>Não há servidor que sejá compatível com os filtros
+		selecionados.</td>
+	</tr>
+	<tr>
+		<td>Erro ao comunicar com o servidor!</td>
+		<td>Ocorreu alguma falha durante a realização da operação!</td>
+	</tr>
+</table>
+<br>
+<br>
+</center>
+</body>
+</html>
