@@ -48,6 +48,9 @@
 				<rich:menuItem submitMode="ajax" value="Adicionar Função"
 					action="#{funcaoServidorController.abrirAdicionarFuncaoServidor}"
 					icon="../images/addfuncao.gif" />
+				<rich:menuItem submitMode="ajax" value="Cadastrar Remoção"
+					action="#{remocaoController.abrirCadastrarRemocao}"
+					icon="../images/listarTitulacao.gif" />	
 				<rich:menuItem submitMode="ajax" value="Cadastrar Servidor"
 					action="#{servidorController.cadastrar}"
 					icon="../images/NOVOSERVIDOR.gif" />
@@ -83,12 +86,9 @@
 					action="#{servidorTitulacaoController.abrirListarServidorTitulacao}"
 					icon="../images/listarTitulacao.gif" />
 				--%>
-				<rich:menuItem submitMode="ajax" value="Remoções Servidor"
-					action="#{remocaoController.abrirCadastrarRemocao}"
-					icon="../images/cad_remocao.gif" />
 				<rich:menuItem submitMode="ajax" value="Pesquisar Remoções"
 					action="#{remocaoController.abrirListarRemocoes}"
-					icon="../images/pes_remocao.gif" />
+					icon="../images/listarTitulacao.gif" />
 			</rich:dropDownMenu>
 
 			<%--
@@ -237,7 +237,7 @@
 					action="#{aniversarianteController.abrirAniversariantes}"
 					icon="../images/aniversario.png" />
 			</rich:dropDownMenu>
-			<%--
+
 			<rich:dropDownMenu>
 				<f:facet name="label">
 					<h:panelGroup>
@@ -252,7 +252,6 @@
 					action="#{progressaoController.abrirListarProgressao}"
 					icon="../images/listProgressao.gif" />
 			</rich:dropDownMenu>
-			--%>
 
 			<rich:dropDownMenu>
 				<f:facet name="label">
