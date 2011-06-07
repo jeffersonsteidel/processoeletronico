@@ -33,7 +33,7 @@ public class RemocaoDAO extends DAO {
 		if (remocao.getServidor() != null
 				&& remocao.getServidor().getNome() != null
 				&& remocao.getServidor().getNome() != "") {
-			sql += " and UPPER(s.serv_nome) like '%"
+			sql += " and UPPER(s.nome) like '%"
 					+ remocao.getServidor().getNome().toUpperCase() + "%'";
 		}
 		Query query = HibernateUtility.getSession().createQuery(sql);

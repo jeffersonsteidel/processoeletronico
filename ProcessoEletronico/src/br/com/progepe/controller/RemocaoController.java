@@ -106,7 +106,7 @@ public class RemocaoController {
 	
 	
 	public List<Remocao> pesquisar(){
-		RemocaoDAO.getInstance().listByFilter(remocao);
+		remocaoList = RemocaoDAO.getInstance().listByFilter(remocao);
 		return remocaoList;
 	}
  	
