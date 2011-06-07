@@ -85,10 +85,10 @@
 				--%>
 				<rich:menuItem submitMode="ajax" value="Remoções Servidor"
 					action="#{remocaoController.abrirCadastrarRemocao}"
-					icon="../images/listarTitulacao.gif" />
+					icon="../images/cad_remocao.gif" />
 				<rich:menuItem submitMode="ajax" value="Pesquisar Remoções"
 					action="#{remocaoController.abrirListarRemocoes}"
-					icon="../images/listarTitulacao.gif" />
+					icon="../images/pes_remocao.gif" />
 			</rich:dropDownMenu>
 
 			<%--
@@ -237,7 +237,7 @@
 					action="#{aniversarianteController.abrirAniversariantes}"
 					icon="../images/aniversario.png" />
 			</rich:dropDownMenu>
-
+			<%--
 			<rich:dropDownMenu>
 				<f:facet name="label">
 					<h:panelGroup>
@@ -252,6 +252,7 @@
 					action="#{progressaoController.abrirListarProgressao}"
 					icon="../images/listProgressao.gif" />
 			</rich:dropDownMenu>
+			--%>
 
 			<rich:dropDownMenu>
 				<f:facet name="label">
