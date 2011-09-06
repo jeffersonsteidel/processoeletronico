@@ -8,8 +8,8 @@ import java.text.ParseException;
 
 public class FitaEspelhoFin {
 
-	static String arquivoEntrada = "FITA_MAI";
-	static String arquivoSaida = "FITA_MAI_FIN";
+	static String arquivoEntrada = "FITA_AGO";
+	static String arquivoSaida = "FITA_AGO";
 	
 	public static void main(String[] args) throws ParseException {
 
@@ -23,16 +23,10 @@ public class FitaEspelhoFin {
 			html = html + "<table name='table' border='1'>";
 			html = html + "<tr>";
 			html = html + "<th>SIAPE</th>";
-			html = html + "<th>NOME</th>";
-			html = html + "<th>CARGO</th>";
-			html = html + "<th>LOTACAO</th>";
-			html = html + "</tr>";
-			html = html + "<tr>";
 			html = html + "<th>REND/DESC</th>";
 			html = html + "<th>COD</th>";
-			html = html + "<th>SEQ.</th>";
 			html = html + "<th>VALOR</th>";
-			html = html + "<th>PRAZO</th>";
+			html = html + "<th>MES/ANO</th>";
 //			html = html + "<th>PARAMETRIZAÇÃO</th>";
 //			html = html + "<th>PERC.</th>";
 //			html = html + "<th>FRAÇÃO</th>";
@@ -53,23 +47,13 @@ public class FitaEspelhoFin {
 				String linha = br.readLine().substring(0, 764);
 				Integer tipoRegistro = Integer
 						.parseInt(linha.substring(17, 18));
-				if(tipoRegistro.equals(1)){
-					html = html + "<tr>";
-					html = html + "<td>" + linha.substring(9, 16) + "</td>";
-					html = html + "<td>" + linha.substring(20, 80) + "</td>";
-				}
-				if(tipoRegistro.equals(2)){
-					html = html + "<td>" + linha.substring(113, 119) + "</td>";
-					html = html + "<td>" + linha.substring(215, 224)+ "</td>";
-					html = html + "</tr>";
-				}
 				if (tipoRegistro.equals(3)) {
 					html = html + "<tr>";
+					html = html + "<td>" + linha.substring(9, 16) + "</td>";
 					html = html + "<td>" + linha.substring(20, 21) + "</td>";
 					html = html + "<td>" + linha.substring(21, 26) + "</td>";
-					html = html + "<td>" + linha.substring(26, 27) + "</td>";
 					html = html + "<td>" + linha.substring(27, 36) + ","+ linha.substring(36, 38) +"</td>";
-					html = html + "<td>" + linha.substring(38, 41) + "</td>";
+					html = html + "<td>" + linha.substring(129,135) + "</td>";
 					html = html + "</tr>";
 				}
 			}

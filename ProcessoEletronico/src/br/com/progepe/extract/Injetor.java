@@ -35,17 +35,17 @@ public class Injetor {
 			servidor.getContaBancaria().setBanco(new Banco());
 			servidor.setCorPele(new CorPele());
 			servidor.setDocumento(new Documento());
-//			servidor.getDocumento().setRgUf(new Estado());
-//			servidor.getDocumento().setTituloUf(new Estado());
+			// servidor.getDocumento().setRgUf(new Estado());
+			// servidor.getDocumento().setTituloUf(new Estado());
 			servidor.setEndereco(new Endereco());
 			servidor.getEndereco().setCidade(new Cidade());
 			servidor.getEndereco().getCidade().setEstado(new Estado());
 			servidor.setEstadoCivil(new EstadoCivil());
-//			servidor.setFuncao(new Funcao());
-//			servidor.getFuncao().setTipoFuncao(new TipoFuncao());
+			// servidor.setFuncao(new Funcao());
+			// servidor.getFuncao().setTipoFuncao(new TipoFuncao());
 			servidor.setGrupoSanguineo(new GrupoSanguineo());
 			servidor.setLotacao(new Lotacao());
-//			servidor.setLocalExercicio(new Lotacao());
+			// servidor.setLocalExercicio(new Lotacao());
 			servidor.setEndereco(new Endereco());
 			servidor.getEndereco().setCidade(new Cidade());
 			servidor.getEndereco().getCidade().setEstado(new Estado());
@@ -53,7 +53,7 @@ public class Injetor {
 			servidor.setRegimeTrabalho(new RegimeTrabalho());
 			servidor.setSituacaoFuncional(new SituacaoFuncional());
 			servidor.setPais(new Pais());
-		
+
 			servidor.setSiape(dadosFitaEspelho.getMatriculaSiape());
 			servidor.setNome(dadosFitaEspelho.getNomeServidor());
 			servidor.getDocumento().setCpf(
@@ -68,7 +68,8 @@ public class Injetor {
 					.formatarDataBR(dadosFitaEspelho.getDataNascimento()));
 			servidor.getEstadoCivil().setCodigo(
 					new Long(dadosFitaEspelho.getEstadoCivil()));
-			servidor.getDocumento().setRg(dadosFitaEspelho.getNumeroRegistroGeral());
+			servidor.getDocumento().setRg(
+					dadosFitaEspelho.getNumeroRegistroGeral());
 			servidor.getDocumento().setDataPrimeiroEmprego(
 					Validator.formatarDataBR(dadosFitaEspelho
 							.getDataPrimeiroEmprego()));
@@ -80,18 +81,18 @@ public class Injetor {
 			servidor.getEndereco().setBairro(dadosFitaEspelho.getBairro());
 			servidor.getEndereco().setCep(
 					Validator.formatarCep(dadosFitaEspelho.getCep()));
-			
+
 			servidor.setCidadeNascimento(5915L);
-				
+
 			servidor.getEndereco().getCidade().setCodigo(5915L);
 			servidor.getEndereco().getCidade().getEstado().setCodigo(18L);
-			
-//			servidor.getDocumento().getCarteiraUf().setCodigo(18L);
-//			servidor.getDocumento().getRgUf().setCodigo(18L);
-//			servidor.getDocumento().getTituloUf().setCodigo(18L);
-			
-//			 servidor.getDocumento().setRg(
-//					dadosFitaEspelho.getNumeroRegistroGeral());
+
+			// servidor.getDocumento().getCarteiraUf().setCodigo(18L);
+			// servidor.getDocumento().getRgUf().setCodigo(18L);
+			// servidor.getDocumento().getTituloUf().setCodigo(18L);
+
+			// servidor.getDocumento().setRg(
+			// dadosFitaEspelho.getNumeroRegistroGeral());
 			servidor.getDocumento().setRgOrgaoEmissor(
 					dadosFitaEspelho.getSiglaOrgaoExpedidor());
 			servidor.getDocumento().setRgDataExpedicao(
@@ -115,57 +116,43 @@ public class Injetor {
 					dadosFitaEspelho.getContaCorrenteBanco());
 			servidor.setDataAdmissao(Validator.formatarDataBR(dadosFitaEspelho
 					.getDataEntradaOcupacaoCargo()));
-			servidor.setDataAdmServicoPublico(Validator.formatarDataBR(dadosFitaEspelho
-					.getDataIngressoServPublico()));
-//			if(dadosFitaEspelho
-//					.getDataSaidaCargo().equals("00000000")){
-//				servidor.setDataSaida(Validator.formatarDataBR(dadosFitaEspelho
-//					.getDataSaidaCargo()));
-//			}
+			servidor.setDataAdmServicoPublico(Validator
+					.formatarDataBR(dadosFitaEspelho
+							.getDataIngressoServPublico()));
+			// if(dadosFitaEspelho
+			// .getDataSaidaCargo().equals("00000000")){
+			// servidor.setDataSaida(Validator.formatarDataBR(dadosFitaEspelho
+			// .getDataSaidaCargo()));
+			// }
 			Long codigoLotacao = new Long(
 					dadosFitaEspelho.getCodigoUnidadeOrganizacionalLotacao());
 			if (codigoLotacao != null && codigoLotacao != 0) {
 				servidor.getLotacao().setCodigo(codigoLotacao);
-//				servidor.getLocalExercicio().setCodigo(codigoLotacao);
+				// servidor.getLocalExercicio().setCodigo(codigoLotacao);
 			} else {
 				servidor.getLotacao().setCodigo(12L);
-//				servidor.getLocalExercicio().setCodigo(12L);
+				// servidor.getLocalExercicio().setCodigo(12L);
 			}
 			servidor.getPadrao().setCodigo(69L);
 			servidor.getGrupoSanguineo().setCodigo(7L);
-			servidor.getEstadoCivil().setCodigo(new Long(dadosFitaEspelho.getEstadoCivil()));
+			servidor.getEstadoCivil().setCodigo(
+					new Long(dadosFitaEspelho.getEstadoCivil()));
 			servidor.getCorPele().setCodigo(1L);
 			servidor.getCargo().setCodigo(1L);
 			servidor.getPais().setCodigo(24L);
-			try{
-			if(servidor.getSiape() ==  1037636 ||
-			   servidor.getSiape() ==  1582244 ||
-			   servidor.getSiape() ==  1636146 ||
-			   servidor.getSiape() ==  1695766 ||
-			   servidor.getSiape() ==  1855801 ||
-			   servidor.getSiape() ==  1855836 ||
-			   servidor.getSiape() ==  1856181 ||
-			   servidor.getSiape() ==  1856271 ||
-			   servidor.getSiape() ==  1856360 ||
-			   servidor.getSiape() ==  1859783 ||
-			   servidor.getSiape() ==  1859875 ||
-			   servidor.getSiape() ==  1860240 ||
-			   servidor.getSiape() ==  1860290 ||
-			   servidor.getSiape() ==  1860420 ||
-			   servidor.getSiape() ==  1860429 ||
-			   servidor.getSiape() ==  1860672 ||
-			   servidor.getSiape() ==  1860691 ||
-			   servidor.getSiape() ==  1860696||
-			   servidor.getSiape() ==  1860755 ||
-			   servidor.getSiape() ==  1860795 ){
-				DAO.getInstance().saveFitaEspelho(servidor);
-			}
-			}catch (Exception e) {
+			try {
+				if (servidor.getSiape() == 1632374
+						|| servidor.getSiape() == 1873943
+						|| servidor.getSiape() == 1877319
+						|| servidor.getSiape() == 1877977
+						|| servidor.getSiape() == 1874009
+						|| servidor.getSiape() ==  1876933) {
+					DAO.getInstance().saveFitaEspelho(servidor);
+				}
+			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
-		
-
 	}
 
 	public static void main(String[] args) throws Exception {
