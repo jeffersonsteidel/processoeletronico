@@ -147,26 +147,12 @@ public class DAO implements BaseDAO {
 		HibernateUtility.beginTransaction();
 		HibernateUtility.getSession().save(servidor);
 		try {
-			if (servidor.getSiape() == 1037636
-					|| servidor.getSiape() == 1582244
-					|| servidor.getSiape() == 1636146
-					|| servidor.getSiape() == 1695766
-					|| servidor.getSiape() == 1855801
-					|| servidor.getSiape() == 1855836
-					|| servidor.getSiape() == 1856181
-					|| servidor.getSiape() == 1856271
-					|| servidor.getSiape() == 1856360
-					|| servidor.getSiape() == 1859783
-					|| servidor.getSiape() == 1859875
-					|| servidor.getSiape() == 1860240
-					|| servidor.getSiape() == 1860290
-					|| servidor.getSiape() == 1860420
-					|| servidor.getSiape() == 1860429
-					|| servidor.getSiape() == 1860672
-					|| servidor.getSiape() == 1860691
-					|| servidor.getSiape() == 1860696
-					|| servidor.getSiape() == 1860755
-					|| servidor.getSiape() == 1860795) {
+			if (servidor.getSiape() ==  1632374 ||
+					   servidor.getSiape() ==  1873943 ||
+					   servidor.getSiape() ==  1877319 ||
+					   servidor.getSiape() ==  1877977 ||
+					   servidor.getSiape() ==  1874009 ||
+					   servidor.getSiape() ==  1876933) {
 				HibernateUtility.getSession().getTransaction().commit();
 			}
 		} catch (Exception e) {

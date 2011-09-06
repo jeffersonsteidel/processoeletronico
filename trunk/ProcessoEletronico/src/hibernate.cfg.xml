@@ -7,8 +7,8 @@
 		<property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
 		<property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
 		<property name="hibernate.connection.url">jdbc:mysql://localhost:3306/ifpr</property>
-		<property name="hibernate.connection.username">jefferson</property>
-		<property name="hibernate.connection.password">1234</property>
+		<property name="hibernate.connection.username">marlon</property>
+		<property name="hibernate.connection.password">ifpr</property>
 		<property name="hibernate.connection.autoReconnect">true</property>
 		<property name="pool_size">1</property>
 		<property name="current_session_context_class">thread</property>

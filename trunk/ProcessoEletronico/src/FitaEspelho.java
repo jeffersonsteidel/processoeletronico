@@ -10,8 +10,8 @@ import br.com.progepe.validator.Validator;
 
 public class FitaEspelho {
 
-	static String arquivoEntrada = "FITA_MAI";
-	static String arquivoSaida = "FITA_MAI";
+	static String arquivoEntrada = "FITA_JUL";
+	static String arquivoSaida = "FITA_JUL";
 	
 	public static void main(String[] args) throws ParseException {
 
@@ -307,6 +307,21 @@ public class FitaEspelho {
 					} 
 					else if (linha.substring(215, 224).equals("000000123")) {
 						html = html + "DIR. GERAL DE ENS. A DISTANCIA/CCTBA";
+					} 
+					else if (linha.substring(215, 224).equals("000000124")) {
+						html = html + "PROENS";
+					} 
+					else if (linha.substring(215, 224).equals("000000125")) {
+						html = html + "PROAD";
+					} 
+					else if (linha.substring(215, 224).equals("000000126")) {
+						html = html + "PROEPI";
+					} 
+					else if (linha.substring(215, 224).equals("000000127")) {
+						html = html + "PROPLADI";
+					} 
+					else if (linha.substring(215, 224).equals("000000128")) {
+						html = html + "PROGEPE";
 					} 
 					else {
 						html = html + linha.substring(215, 224);
