@@ -33,7 +33,7 @@
 				<h:inputSecret required="true"
 					requiredMessage="Campo Senha Atual é obrigatório!"
 					value="#{autenticacaoController.autenticacao.senha}" size="12"
-					maxlength="6">
+					maxlength="7">
 				</h:inputSecret>
 				<h:outputText value="Nova Senha: ">
 				</h:outputText>
