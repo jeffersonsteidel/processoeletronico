@@ -8,7 +8,7 @@ public class Sindicato {
 	public static void main(String[] args) throws ParseException {
 		try {
 			BufferedReader br = new BufferedReader(new FileReader(
-					"C://SINDICATO_AGOSTO_2011.dat"));
+					"C://SINDICATO.TXT"));
 			while (br.ready()) {
 				String linha = br.readLine();
 				if (linha.contains("Responsável:")) {
