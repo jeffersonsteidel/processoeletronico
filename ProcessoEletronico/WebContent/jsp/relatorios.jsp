@@ -31,6 +31,11 @@
 					value="(retorna todos os servidores, traz o o siape, nome, banco, número da conta, agência, indicador de poupança pelo siape)" />
 
 				<h:graphicImage value="../images/icopdf.gif" />
+				<h:commandLink value="SERVIDOR E-MAIL"
+					action="#{relatorioController.gerarRelatorioEmail}" />
+				<h:outputText value="(retorna siape, nome e e-mail dos servidores)" />
+				
+				<h:graphicImage value="../images/icopdf.gif" />
 				<h:commandLink value="SERVIDOR POR FILTRO CARGO LOTAÇÃO"
 					action="#{relatorioController.abrirRelatorioCargoLotacaoByFiltro}" />
 				<h:outputText
