@@ -35,7 +35,7 @@
 %>
 <div id="non-printable"><f:subview id="Menu">
 	<center><a4j:form>
-		<h:graphicImage value="../images/banner_topo.gif" />
+		<h:graphicImage value="../images/banner_topo.gif" width="100%" />
 		<BR />
 		<rich:toolBar>
 			<rich:dropDownMenu
